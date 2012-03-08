@@ -23,7 +23,7 @@ class ApiController extends Controller
     }
     
     public function actionList() {
-        $candidates = '';
+        $result = '';
         switch($_GET['model']){
            
             case 'candidates' :
@@ -31,6 +31,8 @@ class ApiController extends Controller
              //$candidates = Candidate::model()->findAll();
              
              case 'alerts':  
+                 $alerts = UserAlerts::model()->findAllByAttributes(array('state_abbr'=>'na', 'district_number'=>0));
+                 $result = $alerts;
              break;
 
             
@@ -40,17 +42,17 @@ class ApiController extends Controller
             
         }
         
-        $this->_sendResponse(200, $candidates);
+        $this->_sendResponse(200, $result);
     }
     
      public function actionView() {
          switch( $_GET['model'] ){
              case 'candidates':
-                $this->_sendResponse(200, $this->getCandidates($_GET) ); 
+                $this->_sendResponse(200, $this->_getCandidates($_GET) ); 
                 break;
              
             case 'alerts':
-                $this->_sendResponse(200, $this->getAlerts($_GET) ); 
+                $this->_sendResponse(200, $this->_getAlerts($_GET) ); 
                 break;
             
             default:
@@ -63,7 +65,7 @@ class ApiController extends Controller
 
  
     
-    private function getCandidates($param){
+    private function _getCandidates($param){
         $search_attributes = array();
         
         if(isset($param['state_abbr']))
@@ -80,7 +82,7 @@ class ApiController extends Controller
        }
  
    
-    private function getAlerts($param){
+    private function _getAlerts($param){
        $search_attributes = array();
         
         if(isset($param['state_abbr']))
@@ -95,7 +97,11 @@ class ApiController extends Controller
     }
     
     public function actionCreate(){
-		error_log( print_r($_POST, true) );
+       if( !$this->_checkAuth() ){
+          $this->_sendResponse(401, $this->_getStatusCodeMessage(401) );
+           return false;
+       }
+ 
         switch($_GET['model']){
             case 'app_users': //insert/update  user record
                 $device_token = $_POST['device_token'];
@@ -104,7 +110,7 @@ class ApiController extends Controller
                 $user_state = $_POST['state_abbr'];
                 $user_district = $_POST['district_number'];
                 
-
+                
                 $app_user = new AppUsers();
 
                 $model = AppUsers::model()->findByPk($device_token);
@@ -118,13 +124,16 @@ class ApiController extends Controller
              
                 }
                 else{
+                  
                     $app_user->device_token= $device_token;
                     $app_user->latitude = $user_lat;
                     $app_user->longitude = $user_long;
                     $app_user->state_abbr = $user_state;
                     $app_user->district_number = $user_district;
                 
-                    $save_result = $app_user->save();
+          
+                    
+                    echo $save_result = $app_user->save();
                 }
                 
                 if($save_result == 1){
@@ -179,5 +188,18 @@ class ApiController extends Controller
     	return (isset($codes[$status])) ? $codes[$status] : '';
     }
     
+    private function _checkAuth(){
+        $api_salt = Yii::app()->params['api_salt'];
+        $api_username = Yii::app()->params['api_username'];
+        $api_password = Yii::app()->params['api_password'];
+        
+        
+        if( !(isset($_POST['HTTP_X_USERNAME']) and isset($_POST['HTTP_X_PASSWORD']) )) {
+             return true;
+        }
+
+        return ( ($api_username == $_POST['HTTP_X_USERNAME']) && (md5($api_password.$api_salt)  ==  md5( $_POST['HTTP_X_PASSWORD'].$api_salt)) );
+    }
 
 }
+
