@@ -10,7 +10,6 @@ $this->menu=array(
 	array('label'=>'Update a User Alert', 'url'=>array('update', 'id'=>$model->id)),
 	array('label'=>'Delete a User Alert', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Manage User Alerts', 'url'=>array('admin')),
-        array('label'=>'Send a User Alert', 'url'=>array('send',  'id'=>$model->id) ),
 );
 ?>
 
