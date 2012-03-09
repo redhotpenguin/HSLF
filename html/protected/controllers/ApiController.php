@@ -29,8 +29,13 @@ class ApiController extends Controller
             // list ALL candidates
              //$candidates = Candidate::model()->findAll();
              
-             case 'alerts':  
-                 $alerts = UserAlerts::model()->findAllByAttributes(array('state_abbr'=>'na', 'district_number'=>0));
+             case 'alerts':
+                 if( isset($_GET['limit']) && is_numeric($_GET['limit']) && $_GET['limit'] > 0  )
+                     $limit = $_GET['limit'];
+                else
+                    $limit = 10;
+                
+                 $alerts = UserAlerts::model()->findAllByAttributes(array('state_abbr'=>'na', 'district_number'=>0), array('limit'=>$limit) );
                  $result = $alerts;
              break;
 
@@ -91,7 +96,7 @@ class ApiController extends Controller
         
         if( isset($param['district_number']) )
              $search_attributes['district_number'] = $param['district_number'];
-       
+    
        return UserAlerts::model()->findAllByAttributes($search_attributes);
     }
     
@@ -124,7 +129,12 @@ class ApiController extends Controller
                 $model->district_number = $user_district;
                 $model->type = $user_type;
 
+                try{
                 $save_result = $model->save();
+                }
+                catch(Exception $exception){
+                     error_log('API actionCreate app_users: '.$exception->getMessage() );
+                }
 
                 if($save_result == 1){
                     $this->_sendResponse($status = 200, $body = 'insert_ok');
