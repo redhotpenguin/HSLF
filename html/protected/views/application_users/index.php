@@ -17,6 +17,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
         'device_token',  
         'state_abbr',
         'district_number',
+        'type',
         'registration',
         array(            // display a column with "view", "update" and "delete" buttons
             'class'=>'CButtonColumn',
