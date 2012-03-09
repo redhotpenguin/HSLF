@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'Voterguide Application',
+	'name'=>'MVG Application',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -69,7 +69,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=voterguide',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => 'pengu1n',
+			'password' => '',
 			'charset' => 'utf8',
 		),
 		
