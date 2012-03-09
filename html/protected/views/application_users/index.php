@@ -9,9 +9,21 @@ $this->menu=array(
 );
 ?>
 
-<h1>App Users</h1>
+<h1>Application Users</h1>
+<?php
+$this->widget('zii.widgets.grid.CGridView', array(
+    'dataProvider'=>$dataProvider,
+    'columns'=>array(        
+        'device_token',  
+        'state_abbr',
+        'district_number',
+        'registration',
+        array(            // display a column with "view", "update" and "delete" buttons
+            'class'=>'CButtonColumn',
+        ),
+    ),
+));
 
-<?php $this->widget('zii.widgets.CListView', array(
-	'dataProvider'=>$dataProvider,
-	'itemView'=>'_view',
-)); ?>
+
+
+?>
