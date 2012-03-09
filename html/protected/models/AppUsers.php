@@ -11,6 +11,7 @@
  * @property string $state_abbr
  * @property integer $district_number
  * @property string $registration
+ * @property string $type
  * @property string $user_agent
  *
  * The followings are the available model relations:
@@ -45,12 +46,13 @@ class AppUsers extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('device_token, state_abbr, district_number', 'required'),
+			array('device_token, state_abbr, district_number, type', 'required'),
 			array('district_number', 'numerical', 'integerOnly'=>true),
 			array('latitude, longitude', 'numerical'),
 			array('device_token', 'length', 'max'=>128),
 			array('state_abbr', 'length', 'max'=>2),
 			array('user_agent', 'length', 'max'=>1024),
+                         array('type', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, device_token, latitude, longitude, state_abbr, district_number, registration, user_agent', 'safe', 'on'=>'search'),
@@ -83,6 +85,7 @@ class AppUsers extends CActiveRecord
 			'state_abbr' => 'State Abbr',
 			'district_number' => 'District Number',
 			'registration' => 'Registration',
+                        'type' => 'Type',
 			'user_agent' => 'User Agent',
 		);
 	}
@@ -105,6 +108,7 @@ class AppUsers extends CActiveRecord
 		$criteria->compare('state_abbr',$this->state_abbr,true);
 		$criteria->compare('district_number',$this->district_number);
 		$criteria->compare('registration',$this->registration,true);
+                $criteria->compare('type',$this->type,true);
 		$criteria->compare('user_agent',$this->user_agent,true);
 
 		return new CActiveDataProvider($this, array(
