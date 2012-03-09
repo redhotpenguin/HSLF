@@ -25,6 +25,7 @@ $this->menu=array(
 		'state_abbr',
 		'district_number',
 		'registration',
+                'type',
 		'user_agent',
 	),
 )); ?>
