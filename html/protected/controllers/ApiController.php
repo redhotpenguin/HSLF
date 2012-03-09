@@ -103,38 +103,29 @@ class ApiController extends Controller
  
         switch($_GET['model']){
             case 'app_users': //insert/update  user record
+             
                 $device_token = $_POST['device_token'];
                 $user_lat = $_POST['user_lat'];
                 $user_long = $_POST['user_long'];
                 $user_state = $_POST['state_abbr'];
                 $user_district = $_POST['district_number'];
+                $user_type = $_POST['type']; 
                 
-                
-                $app_user = new AppUsers();
-
                 $model = AppUsers::model()->findByPk($device_token);
                 $save_result = 0;
-                if($model){
-                    $model->latitude = $user_lat;
-                    $model->longitude = $user_long;
-                    $model->state_abbr = $user_state;
-                    $model->district_number = $user_district;
-                    $save_result = $model->save();
-             
-                }
-                else{
-                  
-                    $app_user->device_token= $device_token;
-                    $app_user->latitude = $user_lat;
-                    $app_user->longitude = $user_long;
-                    $app_user->state_abbr = $user_state;
-                    $app_user->district_number = $user_district;
-                
-          
-                    
-                    echo $save_result = $app_user->save();
+                if(!$model){
+                    $model = new AppUsers();
+                    $model->device_token= $device_token;
                 }
                 
+                $model->latitude = $user_lat;
+                $model->longitude = $user_long;
+                $model->state_abbr = $user_state;
+                $model->district_number = $user_district;
+                $model->type = $user_type;
+
+                $save_result = $model->save();
+
                 if($save_result == 1){
                     $this->_sendResponse($status = 200, $body = 'insert_ok');
                 }
