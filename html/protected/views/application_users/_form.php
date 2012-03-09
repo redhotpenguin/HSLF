@@ -44,6 +44,12 @@
 		<?php echo $form->textField($model,'registration'); ?>
 		<?php echo $form->error($model,'registration'); ?>
 	</div>
+        
+        <div class="row">
+		<?php echo $form->labelEx($model,'type'); ?>
+		<?php echo $form->textField($model,'type',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->error($model,'type'); ?>
+	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'user_agent'); ?>
