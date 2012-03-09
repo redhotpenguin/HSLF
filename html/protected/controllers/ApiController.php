@@ -35,7 +35,17 @@ class ApiController extends Controller
                 else
                     $limit = 10;
                 
-                 $alerts = UserAlerts::model()->findAllByAttributes(array('state_abbr'=>'na', 'district_number'=>0), array('limit'=>$limit) );
+                $attributes = array(
+                    'state_abbr'=>'na',
+                    'district_number'=>0,
+                   );
+                
+                 $params = array(
+                     'limit' => $limit,
+                     'order' => 'id DESC',
+                 );
+                 
+                 $alerts = UserAlerts::model()->findAllByAttributes($attributes, $params );
                  $result = $alerts;
              break;
 
