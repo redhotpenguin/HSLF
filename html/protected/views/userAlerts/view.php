@@ -23,5 +23,6 @@ $this->menu=array(
 		'content',
 		'state_abbr',
 		'district_number',
+                'create_time',
 	),
 )); ?>
