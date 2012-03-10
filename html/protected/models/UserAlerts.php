@@ -9,6 +9,7 @@
  * @property string $content
  * @property string $state_abbr
  * @property integer $district_number
+ * @property string $create_time
  *
  * The followings are the available model relations:
  * @property State $stateAbbr
@@ -42,13 +43,13 @@ class UserAlerts extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, content, state_abbr, district_number', 'required'),
+			array('title, content, state_abbr, district_number, create_time', 'required'),
 			array('district_number', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>1024),
 			array('state_abbr', 'length', 'max'=>2),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, content, state_abbr, district_number', 'safe', 'on'=>'search'),
+			array('id, title, content, state_abbr, district_number, create_time', 'safe', 'on'=>'search'),
 		);
 	}
 
