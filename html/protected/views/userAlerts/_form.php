@@ -32,6 +32,28 @@
 		<?php echo $form->textField($model,'district_number'); ?>
 		<?php echo $form->error($model,'district_number'); ?>
 	</div>
+        
+        <div class="row">
+		<?php echo $form->labelEx($model,'create_time'); ?>
+            <?php
+                   $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+                    'name'=>'UserAlerts[create_time]',
+                    'value'=>$model->create_time,
+
+                    // additional javascript options for the date picker plugin
+                    'options'=>array(
+                        'showAnim'=>'fold',
+                        'dateFormat'=>'yy-mm-dd '.date('h:i:s'),
+                    ),
+                    'htmlOptions'=>array(
+                        'style'=>'height:20px;'
+                    ),
+                ));
+               
+            
+            ?>
+		<?php echo $form->error($model,'create_time'); ?>
+	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
