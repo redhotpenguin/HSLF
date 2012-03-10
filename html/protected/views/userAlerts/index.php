@@ -20,6 +20,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
         'title',  
         'content',
         'state_abbr',
+        'create_time',
        
         array(            // display a column with "view", "update" and "delete" buttons
             'class'=>'CButtonColumn',
