@@ -46,7 +46,7 @@
                           'empty' => '(not set)',
                     );
                
-                 echo $form->dropDownList($model,'type', array('senator'=>'Senator', 'representative'=>'Representative') , $options); 
+                 echo $form->dropDownList($model,'type', $model->getTypeOptions() , $options); 
                 ?>
 		<?php echo $form->error($model,'type'); ?>
 	</div>
