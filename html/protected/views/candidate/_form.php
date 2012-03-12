@@ -9,6 +9,25 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
+        <div class="row">
+               <?php
+               echo $form->labelEx($model,'endorsement');
+               
+               $this->widget('application.extensions.cleditor.ECLEditor', array(
+              'model'=>$model,
+                'attribute'=>'endorsement', //Model attribute name. Nome do atributo do modelo.
+                'options'=>array(
+                    'width'=>'650',
+                    'height'=>350,
+                    'useCSS'=>true,
+                ),
+                'value'=>$model->endorsement, //If you want pass a value for the widget. I think you will. Se você precisar passar um valor para o gadget. Eu acho irá.
+            ));
+                 
+            
+		 echo $form->error($model,'endorsement'); 
+                 ?>
+	</div>
 	
 
 	<div class="row">
@@ -52,12 +71,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'endorsement'); ?>
-		<?php echo $form->textArea($model,'endorsement',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'endorsement'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'full_name'); ?>
 		<?php echo $form->textField($model,'full_name',array('size'=>60,'maxlength'=>256)); ?>
 		<?php echo $form->error($model,'full_name'); ?>
@@ -98,7 +111,8 @@
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
-
+        
+        
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
