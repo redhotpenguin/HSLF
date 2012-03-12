@@ -20,6 +20,8 @@
  */
 class Candidate extends CActiveRecord
 {
+    const TYPE_SENATOR = 'senator';
+    const TYPE_REPRESENTATIVE = 'representative';
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -113,4 +115,16 @@ class Candidate extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
+        /**
+	 * Retrieves a list of candidate type
+         * 
+         */
+        
+        public function getTypeOptions(){
+            return array(
+                self::TYPE_REPRESENTATIVE => 'Representative',
+                self::TYPE_SENATOR => 'Senator',
+            );
+        }
 }
