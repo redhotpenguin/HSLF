@@ -35,10 +35,12 @@
 				array('label'=> 'District', 'url'=>array('/district'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=> 'Candidate', 'url'=>array('/candidate'), 'visible'=>!Yii::app()->user->isGuest),
                                 array('label'=> 'Application Users', 'url'=>array('/application_users'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=> 'Users', 'url'=>array('/user'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=> 'User Alerts', 'url'=>array('/userAlerts'), 'visible'=>!Yii::app()->user->isGuest),	
-					
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=> 'User Alerts', 'url'=>array('/user_alert'), 'visible'=>!Yii::app()->user->isGuest),	
+				array('label'=> 'Push Notifications', 'url'=>array('/pushNotifications'), 'visible'=>!Yii::app()->user->isGuest),	
+				
+                            	array('label'=> 'Users', 'url'=>array('/user'), 'visible'=>!Yii::app()->user->isGuest),
+
+                                  array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
 				
 			),
 		)); ?>
