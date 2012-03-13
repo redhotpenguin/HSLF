@@ -19,6 +19,13 @@ return array(
 	),
 
 	'modules'=>array(
+            
+            'gii'=>array(
+			'class'=>'system.gii.GiiModule',
+			'password'=>'giipass',
+		 	// If removed, Gii defaults to localhost only. Edit carefully to taste.
+			'ipFilters'=>array('127.0.0.1','::1'),
+		),
 	
 	),
 
@@ -39,7 +46,7 @@ return array(
                             
 			array('api/list', 'pattern'=>'api/<model:\w+>', 'verb'=>'GET'),
 			array('api/view', 'pattern'=>'api/<model:\w+>/state/<state_abbr:\w{2}>', 'verb'=>'GET'), 
-            array('api/view', 'pattern'=>'api/<model:\w+>/state/<state_abbr:\w{2}>/district/<district_number:\d+>', 'verb'=>'GET'),
+                        array('api/view', 'pattern'=>'api/<model:\w+>/state/<state_abbr:\w{2}>/district/<district_number:\d+>', 'verb'=>'GET'),
 			array('api/create', 'pattern'=>'api/<model:\w+>', 'verb'=>'POST'),
               
 			// Other controllers
@@ -58,10 +65,10 @@ return array(
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=voterguide',
+			'connectionString' => 'pgsql:host=localhost;port=5432;dbname=voterguide',
 			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
+			'username' => 'postgres',
+			'password' => 'pengu1n',
 			'charset' => 'utf8',
 		),
 		
@@ -92,7 +99,12 @@ return array(
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
 	'params'=>array(
-		// this is used in contact page
+		'dateFormat' => 'Y-m-d H:i:s',
 		'adminEmail'=>'jonas@winningmark.com',
+                'api_username' => 'secretname',
+                'api_password' => 'secretpassword',
+                'api_salt' => '1qV2453L674133',
+                'urbanairship_app_key'=> 'ouRCLPaBRRasv4K1AIw-xA',
+                'urbanairship_app_master_secret' => '7hd19C6rSzyrbKM3k6KqDg',
 	),
 );
