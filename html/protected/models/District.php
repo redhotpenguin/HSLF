@@ -9,8 +9,6 @@
  * @property integer $number
  *
  * The followings are the available model relations:
- * @property Candidate[] $candidates
- * @property Candidate[] $candidates1
  * @property State $stateAbbr
  */
 class District extends CActiveRecord
@@ -58,7 +56,8 @@ class District extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'candidates' => array(self::HAS_MANY, 'Candidate', 'district_number'),
+			'candidates' => array(self::HAS_MANY, 'Candidate', 'district_id'),
+                        'user_alerts' => array(self::HAS_MANY, 'User_alert', 'district_id'),
 			'stateAbbr' => array(self::BELONGS_TO, 'State', 'state_abbr'),
 		);
 	}
@@ -95,5 +94,16 @@ class District extends CActiveRecord
 		));
 	}
         
-
+        /**
+	 * Retrieve the District ID based on $state and $district_number
+	 */
+     
+      
+         static function getIdByStateAndDistrict($state, $district_number){
+            $district =  District::model()->findByAttributes( array ( 'state_abbr' => $state,'number' => $district_number ) );
+            if($district)
+                return $district->id;
+            else 
+                return false;
+         }
 }
