@@ -35,17 +35,20 @@ class ApiController extends Controller
                 else
                     $limit = 10;
                 
+                $district_id = District::getIdByStateAndDistrict('na', '0');
+                
+ 
                 $attributes = array(
                     'state_abbr'=>'na',
-                    'district_number'=>0,
+                    'district_id'=> $district_id,
                    );
                 
                  $params = array(
                      'limit' => $limit,
                      'order' => 'id DESC',
                  );
-                 
-                 $alerts = UserAlerts::model()->findAllByAttributes($attributes, $params );
+         
+                 $alerts = User_alert::model()->findAllByAttributes($attributes, $params );
                  $result = $alerts;
              break;
 
@@ -87,27 +90,48 @@ class ApiController extends Controller
          else
              return false;
         
-        if( isset($param['district_number']) )
-             $search_attributes['district_number'] = $param['district_number'];
-       
-        $search_attributes['publish'] = 'yes';
-        
-        return Candidate::model()->findAllByAttributes( $search_attributes );
-       }
+        if( isset($param['district_number']) ){
+            $district_id = District::getIdByStateAndDistrict($param['state_abbr'], $param['district_number']);
  
-   
+           $search_attributes['district_id'] = $district_id; 
+        }
+       
+      
+        $search_attributes['publish'] = 'yes';
+
+        $candidates = Candidate::model()->with('district')->findAllByAttributes($search_attributes);
+
+        foreach($candidates as $candidate) {
+            $candidate->district_id =  $candidate->district->number;
+        }
+        
+
+
+        return $candidates;
+
+         }
+ 
+ 
     private function _getAlerts($param){
        $search_attributes = array();
         
-        if(isset($param['state_abbr']))
-            $search_attributes['state_abbr'] = $param['state_abbr'];
+        if(isset($param['state_abbr'])){
+            $search_attributes['state_abbr'] =  array($param['state_abbr'], 'na');
+        }
          else
              return false;
         
-        if( isset($param['district_number']) )
-             $search_attributes['district_number'] = $param['district_number'];
+        if( isset($param['district_number']) ){
+             $district_id = District::getIdByStateAndDistrict($param['state_abbr'],$param['district_number']);
+             $search_attributes['district_id'] = array($district_id, 8);
+             
+        }
     
-       return UserAlerts::model()->findAllByAttributes($search_attributes);
+       $alerts =  User_alert::model()->with('district')->findAllByAttributes($search_attributes);
+       foreach($alerts as $alert)
+           $alert->district_id = $alert->district->number;
+       
+       return $alerts;
     }
     
     public function actionCreate(){
@@ -118,27 +142,27 @@ class ApiController extends Controller
  
         switch($_GET['model']){
             case 'app_users': //insert/update  user record
-             
                 $device_token = $_POST['device_token'];
                 $user_lat = $_POST['user_lat'];
                 $user_long = $_POST['user_long'];
                 $user_state = $_POST['state_abbr'];
-                $user_district = $_POST['district_number'];
+                $district_number = $_POST['district_number'];
                 $user_type = $_POST['type']; 
-                
-                $model = AppUsers::model()->findByPk($device_token);
+
+                $model = Application_users::model()->findByAttributes(array('device_token'=>$device_token));
+
                 $save_result = 0;
                 if(!$model){
-                    $model = new AppUsers();
+                    $model = new Application_users();
                     $model->device_token= $device_token;
                 }
                 
                 $model->latitude = $user_lat;
                 $model->longitude = $user_long;
                 $model->state_abbr = $user_state;
-                $model->district_number = $user_district;
+                $model->district = District::getIdByStateAndDistrict($user_state, $district_number);
                 $model->type = $user_type;
-
+ 
                 try{
                 $save_result = $model->save();
                 }
