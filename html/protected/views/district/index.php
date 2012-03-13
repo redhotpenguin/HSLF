@@ -21,7 +21,10 @@ $this->widget('zii.widgets.grid.CGridView', array(
     'dataProvider'=>$dataProvider,
     'columns'=>array(        
         'number',  
-        'state_abbr',
+        array(
+            'name' => 'State',
+            'value' => '$data->stateAbbr->name',
+        ),
         array(            // display a column with "view", "update" and "delete" buttons
             'class'=>'CButtonColumn',
         ),
