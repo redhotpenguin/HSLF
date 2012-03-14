@@ -174,8 +174,10 @@ class DistrictController extends Controller
         public function actionDynamicDistrict(){
          
             $model= $_GET['model'];
-            
-            $data = District::model()->findAllByAttributes( array('state_abbr'=> $_POST[$model]['state_abbr'] )) ;
+            $params = array(
+                'order' => 'number ASC',
+            );
+            $data = District::model()->findAllByAttributes( array('state_abbr'=> $_POST[$model]['state_abbr'] ), $params) ;
           
 
             
