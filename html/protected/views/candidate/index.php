@@ -22,12 +22,13 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'value' => '$data->district->number'
         ),
         'type',
-        array(
-            'header'=> 'endorsement',
-            'value' => 'substr( $data->endorsement, 0, 300 )."..."',
-            ),
         'full_name',
         'party',
+         array(
+            'header' => 'endorsement',
+            'value' => 'substr( $data->endorsement, 0, 300 )."..."',
+        ),
+        'scorecard',
         'date_published',
         'publish',
         array(            // display a column with "view", "update" and "delete" buttons

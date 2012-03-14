@@ -82,8 +82,14 @@
 		<?php echo $form->textField($model,'party',array('size'=>60,'maxlength'=>128)); ?>
 		<?php echo $form->error($model,'party'); ?>
 	</div>
+        
+        <div class="row">
+		<?php echo $form->labelEx($model,'scorecard'); ?>
+		<?php echo $form->textField($model,'scorecard',array('size'=>60,'maxlength'=>256)); ?>
+		<?php echo $form->error($model,'scorecard'); ?>
+	</div>
 
-		<div class="row">
+	<div class="row">
 		<?php echo $form->labelEx($model,'date_published'); ?>
                 <?php
                    $this->widget('zii.widgets.jui.CJuiDatePicker', array(
@@ -108,6 +114,7 @@
 		<?php  echo $form->dropDownList($model,'publish', array('yes'=>'Yes', 'no'=>'No') , $options);  ?>
 		<?php echo $form->error($model,'publish'); ?>
 	</div>
+        
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

@@ -30,5 +30,6 @@ $this->menu=array(
 		'party',
 		'date_published',
 		'publish',
+                'scorecard',
 	),
 )); ?>
