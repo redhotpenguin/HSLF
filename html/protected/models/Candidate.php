@@ -13,6 +13,7 @@
  * @property string $party
  * @property string $date_published
  * @property string $publish
+ * @property integer $scorecard
  *
  * The followings are the available model relations:
  * @property State $stateAbbr
@@ -48,12 +49,12 @@ class Candidate extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-                        array('state_abbr,district, full_name, party,type,endorsement,date_published, publish ','required'),
+                        array('state_abbr,district, full_name, party,type,endorsement,date_published, publish , scorecard','required'),
 			array('district_id', 'numerical', 'integerOnly'=>true),
 			array('state_abbr', 'length', 'max'=>3),
 			array('full_name', 'length', 'max'=>256),
 			array('party, publish', 'length', 'max'=>128),
-			array('type, endorsement, date_published', 'safe'),
+			array('type, endorsement, date_published, scorecard', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, state_abbr, district_id, type, endorsement, full_name, party, date_published, publish', 'safe', 'on'=>'search'),
