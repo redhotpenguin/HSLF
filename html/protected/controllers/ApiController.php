@@ -28,6 +28,8 @@ class ApiController extends Controller
             case 'candidates' :
             // list ALL candidates
              //$candidates = Candidate::model()->findAll();
+                
+              break;
              
              case 'alerts':
                  if( isset($_GET['limit']) && is_numeric($_GET['limit']) && $_GET['limit'] > 0  )
@@ -84,7 +86,7 @@ class ApiController extends Controller
     
     private function _getCandidates($param){
         $search_attributes = array();
-    
+
        if(isset($param['state_abbr']))
             $search_attributes['state_abbr'] = $param['state_abbr'];
          else
@@ -195,7 +197,8 @@ class ApiController extends Controller
     	$status_header = 'HTTP/1.1 ' . $status . ' ' . $this->_getStatusCodeMessage($status);
     	header($status_header);
     	header('Content-type: ' . 'application/json;charset=UTF-8');
-
+      
+   
     	if( !empty($body) ) {
             $container['results'] = $body;       
     	}
@@ -204,7 +207,10 @@ class ApiController extends Controller
             $container['results'] = 'no_results';
     	}
         
-        echo  CJSON::encode($container);
+        $json_encoded_result =   CJSON::encode($container);
+        
+       $json_encoded_result =  str_replace('district_id', 'district_number', $json_encoded_result);
+        echo $json_encoded_result;
         exit;
     }
     
