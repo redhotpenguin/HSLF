@@ -50,7 +50,7 @@ class Candidate extends CActiveRecord
 		return array(
                         array('state_abbr,district, full_name, party,type,endorsement,date_published, publish ','required'),
 			array('district_id', 'numerical', 'integerOnly'=>true),
-			array('state_abbr', 'length', 'max'=>2),
+			array('state_abbr', 'length', 'max'=>3),
 			array('full_name', 'length', 'max'=>256),
 			array('party, publish', 'length', 'max'=>128),
 			array('type, endorsement, date_published', 'safe'),
