@@ -42,7 +42,11 @@ class DistrictTreeView extends CJuiWidget {
                   if( strtolower( $state->abbr ) == 'na' )
                       continue;
          
-                  $districts = District::model()->findAllByAttributes(array('state_abbr'=> $state->abbr));
+                     $params = array(
+                     'order' => 'number ASC',
+                    );
+                     
+                  $districts = District::model()->findAllByAttributes(array('state_abbr'=> $state->abbr), $params);
                  
                    $finalList.= "<label>  $state->name  </label> ";
                    

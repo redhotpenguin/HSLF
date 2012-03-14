@@ -64,7 +64,7 @@ class ApiController extends Controller
     
      public function actionView() {
          switch( $_GET['model'] ){
-             case 'candidates':
+             case 'candidates':echo 
                 $this->_sendResponse(200, $this->_getCandidates($_GET) ); 
                 break;
              
@@ -84,8 +84,8 @@ class ApiController extends Controller
     
     private function _getCandidates($param){
         $search_attributes = array();
-        
-        if(isset($param['state_abbr']))
+    
+       if(isset($param['state_abbr']))
             $search_attributes['state_abbr'] = $param['state_abbr'];
          else
              return false;
@@ -104,12 +104,10 @@ class ApiController extends Controller
         foreach($candidates as $candidate) {
             $candidate->district_id =  $candidate->district->number;
         }
-        
-
 
         return $candidates;
 
-         }
+        }
  
  
     private function _getAlerts($param){
@@ -123,11 +121,17 @@ class ApiController extends Controller
         
         if( isset($param['district_number']) ){
              $district_id = District::getIdByStateAndDistrict($param['state_abbr'],$param['district_number']);
-             $search_attributes['district_id'] = array($district_id, 8);
-             
+             $global_alert_district_id = District::getIdByStateAndDistrict('na', 0);
+             $state_level_district_id = District::getIdByStateAndDistrict($param['state_abbr'], 0);
+             $search_attributes['district_id'] = array($district_id, $global_alert_district_id, $state_level_district_id);   
         }
     
-       $alerts =  User_alert::model()->with('district')->findAllByAttributes($search_attributes);
+       $params = array(
+            'order' => 'create_time DESC',
+       );
+        
+        
+       $alerts =  User_alert::model()->with('district')->findAllByAttributes($search_attributes, $params);
        foreach($alerts as $alert)
            $alert->district_id = $alert->district->number;
        
@@ -190,7 +194,7 @@ class ApiController extends Controller
        
     	$status_header = 'HTTP/1.1 ' . $status . ' ' . $this->_getStatusCodeMessage($status);
     	header($status_header);
-    	header('Content-type: ' . 'application/json');
+    	header('Content-type: ' . 'application/json;charset=UTF-8');
 
     	if( !empty($body) ) {
             $container['results'] = $body;       
