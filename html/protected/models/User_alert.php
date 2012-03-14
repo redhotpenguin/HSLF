@@ -46,7 +46,7 @@ class User_alert extends CActiveRecord
 			array('title, content', 'required'),
 			array('district_id', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>1024),
-			array('state_abbr', 'length', 'max'=>2),
+			array('state_abbr', 'length', 'max'=>3),
 			array('create_time', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
