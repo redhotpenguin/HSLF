@@ -41,7 +41,7 @@ class District extends CActiveRecord
 		return array(
 			array('state_abbr, number', 'required'),
 			array('number', 'numerical', 'integerOnly'=>true),
-			array('state_abbr', 'length', 'max'=>2),
+			array('state_abbr', 'length', 'max'=>3),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, state_abbr, number', 'safe', 'on'=>'search'),
