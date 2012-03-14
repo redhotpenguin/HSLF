@@ -19,13 +19,17 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'district_number',
 		'state_abbr',
+		array(
+                    'name' => 'district_id',
+                    'value'=>$model->district->number,
+                ),
 		'type',
 		'endorsement',
 		'full_name',
 		'party',
 		'date_published',
 		'publish',
+                'scorecard',
 	),
 )); ?>

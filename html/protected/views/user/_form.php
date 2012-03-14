@@ -27,12 +27,6 @@
 		<?php echo $form->error($model,'email'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'level'); ?>
-		<?php echo $form->textField($model,'level',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'level'); ?>
-	</div>
-
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>

@@ -5,23 +5,24 @@
  *
  * The followings are the available columns in table 'candidate':
  * @property integer $id
- * @property integer $district_number
  * @property string $state_abbr
+ * @property integer $district_id
  * @property string $type
  * @property string $endorsement
  * @property string $full_name
  * @property string $party
  * @property string $date_published
  * @property string $publish
+ * @property integer $scorecard
  *
  * The followings are the available model relations:
  * @property State $stateAbbr
- * @property District $districtNumber
+ * @property District $district
  */
 class Candidate extends CActiveRecord
-{
-    const TYPE_SENATOR = 'senator';
-    const TYPE_REPRESENTATIVE = 'representative';
+{       
+        const TYPE_SENATOR = 'senator';
+        const TYPE_REPRESENTATIVE = 'representative';
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -48,14 +49,15 @@ class Candidate extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('district_number, state_abbr, type, endorsement, full_name, party, date_published, publish', 'required'),
-			array('district_number', 'numerical', 'integerOnly'=>true),
-			array('state_abbr', 'length', 'max'=>2),
+                        array('state_abbr,district, full_name, party,type,endorsement,date_published, publish , scorecard','required'),
+			array('district_id', 'numerical', 'integerOnly'=>true),
+			array('state_abbr', 'length', 'max'=>3),
 			array('full_name', 'length', 'max'=>256),
-			array('party', 'length', 'max'=>128),
+			array('party, publish', 'length', 'max'=>128),
+			array('type, endorsement, date_published, scorecard', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, district_number, state_abbr, type, endorsement, full_name, party, date_published, publish', 'safe', 'on'=>'search'),
+			array('id, state_abbr, district_id, type, endorsement, full_name, party, date_published, publish', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,7 +70,7 @@ class Candidate extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'stateAbbr' => array(self::BELONGS_TO, 'State', 'state_abbr'),
-			'districtNumber' => array(self::BELONGS_TO, 'District', 'district_number'),
+			'district' => array(self::BELONGS_TO, 'District', 'district_id'),
 		);
 	}
 
@@ -79,8 +81,8 @@ class Candidate extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'district_number' => 'District Number',
 			'state_abbr' => 'State Abbr',
+			'district_id' => 'District',
 			'type' => 'Type',
 			'endorsement' => 'Endorsement',
 			'full_name' => 'Full Name',
@@ -102,8 +104,8 @@ class Candidate extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('district_number',$this->district_number);
 		$criteria->compare('state_abbr',$this->state_abbr,true);
+		$criteria->compare('district_id',$this->district_id);
 		$criteria->compare('type',$this->type,true);
 		$criteria->compare('endorsement',$this->endorsement,true);
 		$criteria->compare('full_name',$this->full_name,true);
@@ -116,9 +118,8 @@ class Candidate extends CActiveRecord
 		));
 	}
         
-        /**
+         /**
 	 * Retrieves a list of candidate type
-         * 
          */
         
         public function getTypeOptions(){

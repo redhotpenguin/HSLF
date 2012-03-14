@@ -7,7 +7,7 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'id'); ?>
-		<?php echo $form->textField($model,'id',array('size'=>20,'maxlength'=>20)); ?>
+		<?php echo $form->textField($model,'id'); ?>
 	</div>
 
 	<div class="row">
@@ -31,13 +31,18 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'district_number'); ?>
-		<?php echo $form->textField($model,'district_number'); ?>
+		<?php echo $form->label($model,'district'); ?>
+		<?php echo $form->textField($model,'district'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'registration'); ?>
 		<?php echo $form->textField($model,'registration'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'type'); ?>
+		<?php echo $form->textArea($model,'type',array('rows'=>6, 'cols'=>50)); ?>
 	</div>
 
 	<div class="row">

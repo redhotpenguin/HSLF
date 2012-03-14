@@ -11,13 +11,13 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'district_number'); ?>
-		<?php echo $form->textField($model,'district_number'); ?>
+		<?php echo $form->label($model,'state_abbr'); ?>
+		<?php echo $form->textField($model,'state_abbr',array('size'=>2,'maxlength'=>2)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'state_abbr'); ?>
-		<?php echo $form->textField($model,'state_abbr',array('size'=>2,'maxlength'=>2)); ?>
+		<?php echo $form->label($model,'district_id'); ?>
+		<?php echo $form->textField($model,'district_id'); ?>
 	</div>
 
 	<div class="row">
@@ -47,7 +47,7 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'publish'); ?>
-		<?php echo $form->textArea($model,'publish',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->textField($model,'publish',array('size'=>60,'maxlength'=>128)); ?>
 	</div>
 
 	<div class="row buttons">

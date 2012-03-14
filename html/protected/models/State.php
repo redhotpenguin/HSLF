@@ -41,7 +41,7 @@ class State extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('abbr, name', 'required'),
-			array('abbr', 'length', 'max'=>2),
+			array('abbr', 'length', 'max'=>3),
 			array('name', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.

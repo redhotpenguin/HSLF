@@ -36,7 +36,6 @@ class Application_usersController extends Controller
 				'users'=>array('*'),
 			),
 		);
-	
 	}
 
 	/**
@@ -56,16 +55,16 @@ class Application_usersController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new AppUsers;
+		$model=new Application_users;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['AppUsers']))
+		if(isset($_POST['Application_users']))
 		{
-			$model->attributes=$_POST['AppUsers'];
+			$model->attributes=$_POST['Application_users'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->device_token));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
@@ -85,11 +84,11 @@ class Application_usersController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['AppUsers']))
+		if(isset($_POST['Application_users']))
 		{
-			$model->attributes=$_POST['AppUsers'];
+			$model->attributes=$_POST['Application_users'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->device_token));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('update',array(
@@ -122,7 +121,7 @@ class Application_usersController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('AppUsers');
+		$dataProvider=new CActiveDataProvider('Application_users');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -133,10 +132,10 @@ class Application_usersController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new AppUsers('search');
+		$model=new Application_users('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['AppUsers']))
-			$model->attributes=$_GET['AppUsers'];
+		if(isset($_GET['Application_users']))
+			$model->attributes=$_GET['Application_users'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -150,7 +149,7 @@ class Application_usersController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=AppUsers::model()->findByPk($id);
+		$model=Application_users::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -162,7 +161,7 @@ class Application_usersController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='app-users-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='application-users-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

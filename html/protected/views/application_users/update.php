@@ -1,18 +1,18 @@
 <?php
 $this->breadcrumbs=array(
-	'App Users'=>array('index'),
-	$model->device_token=>array('view','id'=>$model->device_token),
+	'Application Users'=>array('index'),
+	$model->id=>array('view','id'=>$model->id),
 	'Update',
 );
 
 $this->menu=array(
-	array('label'=>'List AppUsers', 'url'=>array('index')),
-	array('label'=>'Create AppUsers', 'url'=>array('create')),
-	array('label'=>'View AppUsers', 'url'=>array('view', 'id'=>$model->device_token)),
-	array('label'=>'Manage AppUsers', 'url'=>array('admin')),
+	array('label'=>'List application users', 'url'=>array('index')),
+	array('label'=>'Create an application user', 'url'=>array('create')),
+	array('label'=>'View application users', 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>'Manage application users', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update AppUsers <?php echo $model->device_token; ?></h1>
+<h1>Updat application user:<?php echo $model->id; ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

@@ -16,9 +16,5 @@
 	<?php echo CHtml::encode($data->email); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('level')); ?>:</b>
-	<?php echo CHtml::encode($data->level); ?>
-	<br />
-
 
 </div>

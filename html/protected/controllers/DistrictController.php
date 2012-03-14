@@ -28,7 +28,7 @@ class DistrictController extends Controller
 		return array(
 	
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','view', 'create','update', 'admin','delete'),
+				'actions'=>array('index','view', 'create','update', 'admin','delete', 'dynamicdistrict'),
 				'users'=>array('@'),
 			),
 	
@@ -167,4 +167,22 @@ class DistrictController extends Controller
 			Yii::app()->end();
 		}
 	}
+        
+            /**
+	 * Dynamic Dropdown for state/district
+	*/
+        public function actionDynamicDistrict(){
+         
+            $model= $_GET['model'];
+            
+            $data = District::model()->findAllByAttributes( array('state_abbr'=> $_POST[$model]['state_abbr'] )) ;
+          
+
+            
+            $data = CHtml::listData($data,'id','number');
+
+            foreach($data as $id=>$district){
+                echo $t = CHtml::tag('option', array('value'=>$id),CHtml::encode($district),true);
+            }
+        }
 }

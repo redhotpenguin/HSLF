@@ -1,12 +1,12 @@
 <?php
 $this->breadcrumbs=array(
-	'App Users'=>array('index'),
+	'Application Users'=>array('index'),
 	'Manage',
 );
 
 $this->menu=array(
-	array('label'=>'List AppUsers', 'url'=>array('index')),
-	array('label'=>'Create AppUsers', 'url'=>array('create')),
+	array('label'=>'List application users', 'url'=>array('index')),
+	array('label'=>'Create application users', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -15,7 +15,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$.fn.yiiGridView.update('app-users-grid', {
+	$.fn.yiiGridView.update('application-users-grid', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -23,7 +23,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage App Users</h1>
+<h1>Manage Application Users</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -38,7 +38,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 </div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'app-users-grid',
+	'id'=>'application-users-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
@@ -47,9 +47,13 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'latitude',
 		'longitude',
 		'state_abbr',
-		'district_number',
+		  array(
+                        'name' => 'district',
+                        'value' => '$data->district0->number'
+                 ),
 		/*
 		'registration',
+		'type',
 		'user_agent',
 		*/
 		array(

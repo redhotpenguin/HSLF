@@ -9,7 +9,7 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-        <div class="row">
+       <div class="row">
                <?php
                echo $form->labelEx($model,'endorsement');
                
@@ -28,9 +28,8 @@
 		 echo $form->error($model,'endorsement'); 
                  ?>
 	</div>
-	
 
-	<div class="row">
+		<div class="row">
 		<?php echo $form->labelEx($model,'state_abbr'); ?>
 		<?php $state_list = CHtml::listData(State::model()->findAll(), 'abbr', 'name');
                    
@@ -39,35 +38,37 @@
                          'tabindex' => '0',
                          'ajax' => array(
                          'type'=>'POST', //request type
-                         'url'=>CController::createUrl('candidate/dynamicdistrict'), //url to call.  
-                         'update'=>'#Candidate_district_number', //selector to update      
+                         'url'=>CController::createUrl('district/dynamicdistrict?model=Candidate'), //url to call.  
+                         'update'=>'#Candidate_district_id', //selector to update      
                         )
                     );
                     echo $form->dropDownList($model,'state_abbr', $state_list, $options); 
                  ?>
 		<?php echo $form->error($model,'state_abbr'); ?>
 	</div>
-        
-        <div class="row">
-		<?php echo $form->labelEx($model,'district_number'); ?>
-		<?php 
-        echo $form->dropDownList($model,'district_number',  CHtml::listData( District::model()->findAllByAttributes( array('state_abbr'=> $model->state_abbr )), 'number', 'number' ) ) ;
-
-                ?>
-		<?php echo $form->error($model,'district_number'); ?>
-	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'type'); ?>
-		<?php 
-                  $options = array(
-                         'tabindex' => '0',
-                          'empty' => '(not set)',
-                    );
-               
-                 echo $form->dropDownList($model,'type', $model->getTypeOptions() , $options); 
+		<?php echo $form->labelEx($model,'district_id'); 
+      
+                    echo $form->dropDownList($model,'district_id',
+                     CHtml::listData( 
+                             District::model()->findAllByAttributes(
+                             array('state_abbr'=> $model->state_abbr )
+                            ), 
+                            'id', 'number' ) 
+                     );
                 ?>
-		<?php echo $form->error($model,'type'); ?>
+            
+		<?php echo $form->error($model,'district'); ?>
+	</div>
+        
+
+	<div class="row">
+		<?php 
+                echo $form->labelEx($model,'type'); 
+		echo $form->dropDownList($model,'type', $model->getTypeOptions() , $options); 
+		echo $form->error($model,'type'); 
+                ?>
 	</div>
 
 	<div class="row">
@@ -80,6 +81,12 @@
 		<?php echo $form->labelEx($model,'party'); ?>
 		<?php echo $form->textField($model,'party',array('size'=>60,'maxlength'=>128)); ?>
 		<?php echo $form->error($model,'party'); ?>
+	</div>
+        
+        <div class="row">
+		<?php echo $form->labelEx($model,'scorecard'); ?>
+		<?php echo $form->textField($model,'scorecard',array('size'=>60,'maxlength'=>256)); ?>
+		<?php echo $form->error($model,'scorecard'); ?>
 	</div>
 
 	<div class="row">
@@ -107,12 +114,12 @@
 		<?php  echo $form->dropDownList($model,'publish', array('yes'=>'Yes', 'no'=>'No') , $options);  ?>
 		<?php echo $form->error($model,'publish'); ?>
 	</div>
+        
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
-        
-        
+
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->

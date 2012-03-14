@@ -1,19 +1,19 @@
 <?php
 $this->breadcrumbs=array(
-	'App Users'=>array('index'),
-	$model->device_token,
+	'Application Users'=>array('index'),
+	$model->id,
 );
 
 $this->menu=array(
-	array('label'=>'List AppUsers', 'url'=>array('index')),
-	array('label'=>'Create AppUsers', 'url'=>array('create')),
-	array('label'=>'Update AppUsers', 'url'=>array('update', 'id'=>$model->device_token)),
-	array('label'=>'Delete AppUsers', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->device_token),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage AppUsers', 'url'=>array('admin')),
+	array('label'=>'List Application_users', 'url'=>array('index')),
+	array('label'=>'Create Application_users', 'url'=>array('create')),
+	array('label'=>'Update Application_users', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Delete Application_users', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Manage Application_users', 'url'=>array('admin')),
 );
 ?>
 
-<h1>View AppUsers #<?php echo $model->device_token; ?></h1>
+<h1>View application user #<?php echo $model->id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -23,9 +23,9 @@ $this->menu=array(
 		'latitude',
 		'longitude',
 		'state_abbr',
-		'district_number',
+		'district',
 		'registration',
-                'type',
+		'type',
 		'user_agent',
 	),
 )); ?>

@@ -43,16 +43,20 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'district_number',
 		'state_abbr',
+		    array(
+                        'name' => 'district_id',
+                        'value' => '$data->district->number'
+                    ),
 		'type',
 		'endorsement',
 		'full_name',
-		/*
+		
 		'party',
+                'scorecard',
 		'date_published',
 		'publish',
-		*/
+		
 		array(
 			'class'=>'CButtonColumn',
 		),

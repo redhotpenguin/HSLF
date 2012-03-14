@@ -1,7 +1,7 @@
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'app-users-form',
+	'id'=>'application-users-form',
 	'enableAjaxValidation'=>false,
 )); ?>
 
@@ -29,14 +29,35 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'state_abbr'); ?>
-		<?php echo $form->textField($model,'state_abbr',array('size'=>2,'maxlength'=>2)); ?>
+		<?php $state_list = CHtml::listData(State::model()->findAll(), 'abbr', 'name');
+                   
+                $options = array(
+                     'empty' => '(not set)',
+                         'tabindex' => '0',
+                         'ajax' => array(
+                         'type'=>'POST', //request type
+                         'url'=>CController::createUrl('district/dynamicdistrict?model=Application_users'), //url to call.  
+                         'update'=>'#Application_users_district', //selector to update      
+                        )
+                    );
+                    echo $form->dropDownList($model,'state_abbr', $state_list, $options); 
+                 ?>
 		<?php echo $form->error($model,'state_abbr'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'district_number'); ?>
-		<?php echo $form->textField($model,'district_number'); ?>
-		<?php echo $form->error($model,'district_number'); ?>
+		<?php echo $form->labelEx($model,'district'); 
+      
+                    echo $form->dropDownList($model,'district',
+                     CHtml::listData( 
+                             District::model()->findAllByAttributes(
+                             array('state_abbr'=> $model->state_abbr )
+                            ), 
+                            'id', 'number' ) 
+                     );
+                ?>
+            
+		<?php echo $form->error($model,'district'); ?>
 	</div>
 
 	<div class="row">
@@ -44,10 +65,10 @@
 		<?php echo $form->textField($model,'registration'); ?>
 		<?php echo $form->error($model,'registration'); ?>
 	</div>
-        
-        <div class="row">
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'type'); ?>
-		<?php echo $form->textField($model,'type',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->textArea($model,'type',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'type'); ?>
 	</div>
 

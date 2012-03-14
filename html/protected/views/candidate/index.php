@@ -10,19 +10,25 @@ $this->menu=array(
 ?>
 
 <h1>Candidates</h1>
+
+
 <?php
 $this->widget('zii.widgets.grid.CGridView', array(
     'dataProvider'=>$dataProvider,
-    'columns'=>array(        
-        'district_number',  
+    'columns'=>array(          
         'state_abbr',
-        'type',
         array(
-            'header'=> 'endorsement',
-            'value' => 'substr( $data->endorsement, 0, 300 )."..."',
-            ),
+            'header' => 'District',
+            'value' => '$data->district->number'
+        ),
+        'type',
         'full_name',
         'party',
+         array(
+            'header' => 'endorsement',
+            'value' => 'substr( $data->endorsement, 0, 300 )."..."',
+        ),
+        'scorecard',
         'date_published',
         'publish',
         array(            // display a column with "view", "update" and "delete" buttons

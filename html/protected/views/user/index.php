@@ -11,17 +11,16 @@ $this->menu=array(
 
 <h1>Users</h1>
 
-<?php
+<?php 
+
 $this->widget('zii.widgets.grid.CGridView', array(
     'dataProvider'=>$dataProvider,
     'columns'=>array(        
         'username',  
         'email',
-        'level',
         array(            // display a column with "view", "update" and "delete" buttons
             'class'=>'CButtonColumn',
         ),
     ),
 ));
-
 ?>

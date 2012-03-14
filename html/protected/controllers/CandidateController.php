@@ -167,16 +167,4 @@ class CandidateController extends Controller
 			Yii::app()->end();
 		}
 	}
-        
-        /**
-	 * Dynamic Dropdown for state/district
-	 */
-        public function actionDynamicDistrict(){
-            $data = District::model()->findAllByAttributes( array('state_abbr'=> $_POST['Candidate']['state_abbr'] )) ;
-            $data = CHtml::listData($data,'number','number');
-            foreach($data as $value=>$name){
-                echo CHtml::tag('option', array('value'=>$value),CHtml::encode($name),true);
-            }
-        }
-       
 }

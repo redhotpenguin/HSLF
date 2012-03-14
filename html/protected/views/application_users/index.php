@@ -1,22 +1,29 @@
 <?php
 $this->breadcrumbs=array(
-	'App Users',
+	'Application Users',
 );
 
 $this->menu=array(
-	array('label'=>'Create AppUsers', 'url'=>array('create')),
-	array('label'=>'Manage AppUsers', 'url'=>array('admin')),
+	array('label'=>'Create an application user', 'url'=>array('create')),
+	array('label'=>'Manage application users', 'url'=>array('admin')),
 );
 ?>
 
 <h1>Application Users</h1>
-<?php
+
+<?php 
+
+
+
 $this->widget('zii.widgets.grid.CGridView', array(
     'dataProvider'=>$dataProvider,
     'columns'=>array(        
         'device_token',  
         'state_abbr',
-        'district_number',
+        array(
+            'name' => 'district',
+            'value' => '$data->district0->number',
+          ),
         'type',
         'registration',
         array(            // display a column with "view", "update" and "delete" buttons
@@ -24,7 +31,5 @@ $this->widget('zii.widgets.grid.CGridView', array(
         ),
     ),
 ));
-
-
 
 ?>
