@@ -118,7 +118,11 @@ class Application_users extends CActiveRecord
         public function beforeSave(){
               if ($this->isNewRecord){
                      $this->registration = new CDbExpression('NOW()');
-                     $this->user_agent = $_SERVER['HTTP_USER_AGENT']; //should really be in the controller
+                     
+                     if(isset($_SERVER['HTTP_USER_AGENT']))
+                         $this->user_agent = $_SERVER['HTTP_USER_AGENT']; //should really be in the controller\
+                     else
+                          $this->user_agent = 'UNAVALAIBLE';
               }
 
  
