@@ -21,7 +21,7 @@ $form=$this->beginWidget('CActiveForm', array(
 	</div>
         
     <?php 
-    $options= array('id'=>'districts');
+    $options= array('id'=>'district_ids');
     
     $this->widget('ext.DistrictTreeView.DistrictTreeView', array( 'options'=>$options ));
    
