@@ -66,7 +66,7 @@ class ApiController extends Controller
     
      public function actionView() {
          switch( $_GET['model'] ){
-             case 'candidates':echo 
+             case 'candidates': 
                 $this->_sendResponse(200, $this->_getCandidates($_GET) ); 
                 break;
              
@@ -86,7 +86,7 @@ class ApiController extends Controller
     
     private function _getCandidates($param){
         $search_attributes = array();
-
+   
        if(isset($param['state_abbr']))
             $search_attributes['state_abbr'] = $param['state_abbr'];
          else
@@ -106,9 +106,8 @@ class ApiController extends Controller
         foreach($candidates as $candidate) {
             $candidate->district_id =  $candidate->district->number;
         }
-
+    
         return $candidates;
-
         }
  
  
@@ -149,8 +148,13 @@ class ApiController extends Controller
         switch($_GET['model']){
             case 'app_users': //insert/update  user record
                 $device_token = $_POST['device_token'];
-                $user_lat = $_POST['user_lat'];
-                $user_long = $_POST['user_long'];
+                
+                if (isset($_POST['user_lat']))
+                    $user_lat = $_POST['user_lat'];
+                
+                if (isset($_POST['user_long']))
+                   $user_long = $_POST['user_long'];
+                
                 $user_state = $_POST['state_abbr'];
                 $district_number = $_POST['district_number'];
                 $user_type = $_POST['type']; 
@@ -209,7 +213,9 @@ class ApiController extends Controller
         
         $json_encoded_result =   CJSON::encode($container);
         
-       $json_encoded_result =  str_replace('district_id', 'district_number', $json_encoded_result);
+        // API consumers really want a district_name, not a district_id 
+        $json_encoded_result =  str_replace('district_id', 'district_number', $json_encoded_result);
+        
         echo $json_encoded_result;
         exit;
     }
@@ -246,4 +252,3 @@ class ApiController extends Controller
     }
 
 }
-
