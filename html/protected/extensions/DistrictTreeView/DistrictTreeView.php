@@ -51,7 +51,7 @@ class DistrictTreeView extends CJuiWidget {
                    $finalList.= "<label>  $state->name  </label> ";
                    
                    foreach($districts as $district){
-                       $finalList.= '<input type="checkbox" name="districts[]" value="'.$district->state_abbr.''.$district->number.'"> '.$district->number.' <br/>';
+                       $finalList.= '<input type="checkbox" name="district_ids[]" value="'.$district->id.'"> '.$district->number.' <br/>';
                    }
                }
  
