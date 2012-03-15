@@ -1,5 +1,4 @@
 <?php
-
 Yii::import('application.vendors.*');
 require_once('urbanairship/urbanairship.php');
 
@@ -29,7 +28,7 @@ class PushNotificationsController extends Controller {
 
         return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete', 'sendnotification', 'notificationsent'),
+                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete', 'sendNotification', 'notificationsent'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -150,7 +149,7 @@ class PushNotificationsController extends Controller {
             
             $device_tokens = Application_users::model()->findAll($criteria);
 
-            $airship = new Airship(Yii::app()->params['urbanairship_app_key'], Yii::app()->params['urbanairship_app_master_secret']);
+           // $airship = new Airship(Yii::app()->params['urbanairship_app_key'], Yii::app()->params['urbanairship_app_master_secret']);
 
             $message = array('aps' => array('alert' => 'hello from the Yii PHP backend'));
             //  $airship->push($message, array('0974BC876666E2BF7400BC8FED62D3FAE1B249E0702974B16C00FC62495AA9CC') , array('testTag'));
