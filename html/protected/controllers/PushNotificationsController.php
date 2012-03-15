@@ -1,8 +1,5 @@
 <?php
 
-Yii::import('application.vendors.*');
-require_once('urbanairship/urbanairship.php');
-
 class PushNotificationsController extends Controller {
 
     /**
@@ -126,43 +123,27 @@ class PushNotificationsController extends Controller {
      */
     public function actionSendNotification($id) {
         $model = $this->loadModel($id);
-
-        if (isset($_POST['PushNotifications'])) {
-            $criteria = new CDbCriteria();
-            
-              $states_abbr = array();
-               $district_numbers = array();
-
-            if (isset($_POST['districts'])) {
-                $district_name_number = $_POST['districts'];
-
-              
-                foreach ($district_name_number as $name_number) {
-                    array_push($states_abbr, substr($name_number, 0, 2));
-                    array_push($district_numbers, substr($name_number, 2));
-                }
-
-
-                $criteria->addInCondition("state_abbr", $states_abbr);
-                $criteria->addInCondition("district_number", $district_numbers);
-            }
-
-            
-            $device_tokens = Application_users::model()->findAll($criteria);
-
-            $airship = new Airship(Yii::app()->params['urbanairship_app_key'], Yii::app()->params['urbanairship_app_master_secret']);
-
-            $message = array('aps' => array('alert' => 'hello from the Yii PHP backend'));
-            //  $airship->push($message, array('0974BC876666E2BF7400BC8FED62D3FAE1B249E0702974B16C00FC62495AA9CC') , array('testTag'));
-
-
+        if (isset($_POST['PushNotifications']) && $_POST['district_ids'] ) {
+            // update model with latest data
             $model->attributes = $_POST['PushNotifications'];
-            $model->setAttribute('sent', 'yes');
-
-            $model->save();
+           
+            $district_ids = $_POST['district_ids'];
+            $criteria = new CDbCriteria();
+            $criteria->addInCondition("district", $district_ids);
+            
+            $application_users = Application_users::model()->findAll($criteria, array ('order' => 'type DESC') );
+      
+            $notification_result =  UrbanAirshipNotifier::send_push_notifications($application_users, $model->message);
+            
+            if($notification_result === true){
+                $model->sent = 'yes';
+            }
+             $model->save();
+             
+                  return;
             
             //print confirmation page
-            $this->actionNotificationSent($model->id, count($device_tokens));
+            $this->actionNotificationSent($model->id, count($application_users));
             return false;   
         }
         else{
@@ -172,7 +153,7 @@ class PushNotificationsController extends Controller {
         }
     }
     
-    
+
      /**
      *  Notifcation Sent Confirmation
      */
