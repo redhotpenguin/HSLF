@@ -67,7 +67,11 @@ return array(
 		'db'=>array(
 			'connectionString' => 'pgsql:host=localhost;port=5432;dbname=voterguide',
 			'emulatePrepare' => true,
+<<<<<<< HEAD
+			'username' => 'root',
+=======
 			'username' => 'postgres',
+>>>>>>> 36eb23babc8cf9c023f6390e28061d4985f993c2
 			'password' => 'pengu1n',
 			'charset' => 'utf8',
 		),
