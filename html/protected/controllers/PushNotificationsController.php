@@ -140,7 +140,7 @@ class PushNotificationsController extends Controller {
             }
              $model->save();
              
-                  return;
+       
             
             //print confirmation page
             $this->actionNotificationSent($model->id, count($application_users));
