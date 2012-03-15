@@ -8,6 +8,7 @@ define('SERVER', 'go.urbanairship.com');
 define('BASE_URL', 'https://go.urbanairship.com/api');
 define('DEVICE_TOKEN_URL', BASE_URL . '/device_tokens/');
 define('PUSH_URL', BASE_URL . '/push/');
+define('BATCH_PUSH_URL', PUSH_URL.'batch/');
 define('BROADCAST_URL',  BASE_URL . '/push/broadcast/');
 define('FEEDBACK_URL', BASE_URL . '/device_tokens/feedback/');
 
@@ -177,6 +178,84 @@ class Airship {
             throw new AirshipFailure($response[1], $response_code);
         }
     }
+    
+    // Batch push (JP)
+    public function batch_push($payload ){
+        
+          $json_payload =  CJSON::encode($payload);
+        
+         /*
+         $response = $this->_request(BATCH_PUSH_URL, 'POST', $body, 'application/json');
+        
+        $response_code = $response[0];
+        if ($response_code != 200) {
+            throw new AirshipFailure($response[1], $response_code);
+        }
+        
+          */
+      
+       
+        /*
+         * HTTP POST to : /api/push/batch/
+         * application/json encode it
+{"device_tokens":["1414","7457y4456","fgwesgt3426"],"aps":{"badge":"the badge","alert":"the alert","sound":"whut"}}
+         
+         *
+          * ios:
+         * [
+    {
+        "device_tokens": [
+            "some_device_token",
+            "another_device_token"
+        ],
+        "aps": {
+             "badge": 15,
+             "alert": "Hello from Urban Airship!",
+             "sound": "cat.caf"
+        }
+    },
+    {
+        "device_tokens": [
+            "yet_another_device_token"
+        ],
+        "aliases": [
+            "some_alias",
+            "another_alias"
+        ],
+        "aps": {
+            "badge": 12
+        }
+    }
+]
+         * 
+         * 
+         * 
+         * Androids:
+         * 
+         * [
+    {
+        "apids": [
+            "some APID",
+        ],
+        "android": {
+             "alert": "Hello from Urban Airship!",
+             "extra": {"data":"optional extra data"}
+        }
+    },
+    {
+        "apids": [
+            "yet another APID"
+        ],
+        "android": {
+             "alert": "Goodbye from Urban Airship!"
+             "extra": {"data":"optional extra data"}
+        }
+    }
+]
+         */
+         return true;
+    }
+    
 
     // Broadcast this payload to all users.
     public function broadcast($payload, $exclude_tokens=null) {
