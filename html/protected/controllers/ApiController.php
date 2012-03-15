@@ -27,7 +27,6 @@ class ApiController extends Controller {
             case 'candidates' :
                 // list ALL candidates
                 //$candidates = Candidate::model()->findAll();
-
                 break;
 
             case 'alerts':
