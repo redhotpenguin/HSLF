@@ -182,8 +182,8 @@ class Airship {
     // Batch push (JP)
     public function batch_push($payload ){
         
-          $json_payload =  CJSON::encode($payload);
-        
+         $json_payload =  CJSON::encode($payload);
+  
          /*
          $response = $this->_request(BATCH_PUSH_URL, 'POST', $body, 'application/json');
         
