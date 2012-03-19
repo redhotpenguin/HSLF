@@ -49,8 +49,6 @@ class Application_users extends CActiveRecord {
             array('state_abbr', 'length', 'max' => 3),
             array('user_agent', 'length', 'max' => 1024),
             array('latitude, longitude, registration, type', 'safe'),
-            // The following rule is used by search().
-            // Please remove those attributes that should not be searched.
             array('id, device_token, latitude, longitude, state_abbr, district, registration, type, user_agent', 'safe', 'on' => 'search'),
         );
     }
