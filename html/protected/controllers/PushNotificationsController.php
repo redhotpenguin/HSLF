@@ -29,7 +29,7 @@ class PushNotificationsController extends Controller {
 
         return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete', 'sendnotification', 'notificationsent'),
+                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete', 'sendnotification', 'notificationsent', 'updateajax'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -125,10 +125,12 @@ class PushNotificationsController extends Controller {
      * Send a Push Notifcation
      */
     public function actionSendNotification($id) {
+        
         $model = $this->loadModel($id);
      
-
+        $data["pushNotificationResult"] = "Content";
         if (isset($_POST['PushNotifications']) && isset($_POST['district_ids'])) {
+            /*
             $criteria = new CDbCriteria();
             $model->attributes = $_POST['PushNotifications'];
   
@@ -151,14 +153,26 @@ class PushNotificationsController extends Controller {
             //print confirmation page
             $this->actionNotificationSent($model->id, count($application_users));
             return false;   
-        }
+       */
+              }
+     
         else{
             $this->render('sendNotification', array(
                 'model' => $model,
+                'data' => $data,
             ));
         }
     }
     
+    public function actionUpdateAjax()
+    {
+        error_log('ajax controller');
+        $data = array();
+       error_log( print_r($_REQUEST, true));
+        $data["pushNotificationResult"] = "Notification successfuly sent!";
+ 
+        $this->renderPartial('_ajaxPushResultContent', $data, false, true);
+    }
     
      /**
      *  Notifcation Sent Confirmation

@@ -28,8 +28,17 @@ $form=$this->beginWidget('CActiveForm', array(
             ?>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Send'); ?>
+		<?php
+                 echo CHtml::ajaxButton ("Send Notification",
+                              CController::createUrl('pushNotifications/UpdateAjax'), 
+                              array('update' => '#notificationResult', 'type' =>'POST' ));
+                ?>
 	</div>
+       
+        <div id="notificationResult">
+             <?php 
+             $this->renderPartial('_ajaxPushResultContent', array('pushNotificationResult'=>  $data['pushNotificationResult'] )); ?>
+            </div>
 
 <?php $this->endWidget(); ?>
 
