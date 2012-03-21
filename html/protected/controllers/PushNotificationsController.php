@@ -125,64 +125,56 @@ class PushNotificationsController extends Controller {
      * Send a Push Notifcation
      */
     public function actionSendNotification($id) {
-        
+
+
         $model = $this->loadModel($id);
-     
-        $data["pushNotificationResult"] = "Content";
+        $data["pushNotificationResult"] = "";
+        $this->render('sendNotification', array(
+            'model' => $model,
+            'data' => $data,
+        ));
+    }
+
+    public function actionUpdateAjax($id) { // handle ajax submission of districts
+        $data = array();
+        $model = $this->loadModel($id);
+
         if (isset($_POST['PushNotifications']) && isset($_POST['district_ids'])) {
-            /*
+           
             $criteria = new CDbCriteria();
             $model->attributes = $_POST['PushNotifications'];
-  
             $district_numbers = $_POST['district_ids'];
-  
-             $criteria->addInCondition("district", $district_numbers);
-           
+            $criteria->addInCondition("district", $district_numbers);
 
             $application_users = Application_users::model()->findAll($criteria);
 
- 
-            $push_result = UrbanAirshipNotifier::send_push_notifications($application_users, $model->message );
-            
-            if($push_result === true){
-             $model->setAttribute('sent', 'yes');
+            if ( ($application_users_number = count($application_users) ) > 0 ) { // application_users found
+                $push_result = UrbanAirshipNotifier::send_push_notifications($application_users, $model->message);
+
+                if ($push_result === true) {
+                    $model->setAttribute('sent', 'yes');
+                     $data["pushNotificationResult"] = "$application_users_number notifications successfuly sent!";
+                }else{
+                     $data["pushNotificationResult"] = "An error has occured";
+                }   
+              
+           
+             }else{
+                 $data["pushNotificationResult"] = 'No users in that district';
             }
 
+
+
             $model->save();
-            
-            //print confirmation page
-            $this->actionNotificationSent($model->id, count($application_users));
-            return false;   
-       */
-              }
-     
-        else{
-            $this->render('sendNotification', array(
-                'model' => $model,
-                'data' => $data,
-            ));
+
+           
+        } else {
+            $data["pushNotificationResult"] = "Please select a district!";
         }
-    }
-    
-    public function actionUpdateAjax()
-    {
-        error_log('ajax controller');
-        $data = array();
-       error_log( print_r($_REQUEST, true));
-        $data["pushNotificationResult"] = "Notification successfuly sent!";
- 
+
+
+
         $this->renderPartial('_ajaxPushResultContent', $data, false, true);
-    }
-    
-     /**
-     *  Notifcation Sent Confirmation
-     */
-    public function actionNotificationSent($id, $notifcation_total){
-        $model = $this->loadModel($id);
-         $this->render('notificationSent', array(
-                'model' => $model,
-                'total' => $notifcation_total,
-            ));
     }
 
     /**

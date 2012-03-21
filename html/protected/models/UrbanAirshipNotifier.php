@@ -10,6 +10,7 @@ class UrbanAirshipNotifier extends CModel{
     }
     
     public static function send_push_notifications($application_users, $message ){
+        error_log('model notifier');
             $android_apids = array();
             $ios_device_tokens = array();
             $ios_push_result = false;

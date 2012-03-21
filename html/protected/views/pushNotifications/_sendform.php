@@ -29,9 +29,8 @@ $form=$this->beginWidget('CActiveForm', array(
 
 	<div class="row buttons">
 		<?php
-                 echo CHtml::ajaxButton ("Send Notification",
-                              CController::createUrl('pushNotifications/UpdateAjax'), 
-                              array('update' => '#notificationResult', 'type' =>'POST' ));
+                 $controllerAjaxUrl = CController::createUrl('pushNotifications/UpdateAjax', array('id'=> $model->id )); 
+                 echo CHtml::ajaxButton ("Send Notification", $controllerAjaxUrl, array('update' => '#notificationResult', 'type' =>'POST' ));
                 ?>
 	</div>
        
