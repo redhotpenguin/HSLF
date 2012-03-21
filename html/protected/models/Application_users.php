@@ -108,6 +108,7 @@ class Application_users extends CActiveRecord {
     }
 
     public function beforeSave() {
+    
         if ($this->isNewRecord) {
             $this->registration = new CDbExpression('NOW()');
 
@@ -117,6 +118,9 @@ class Application_users extends CActiveRecord {
                 $this->user_agent = 'UNAVALAIBLE';
         }
 
+        
+           if(!$this->latitude)  $this->latitude = NULL;
+           if(!$this->longitude) $this->longitude = NULL;
 
         return parent::beforeSave();
     }
