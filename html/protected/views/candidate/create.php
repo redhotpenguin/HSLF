@@ -10,6 +10,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create Candidate</h1>
+<h1>Create a candidate</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

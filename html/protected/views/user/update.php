@@ -13,7 +13,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Update User <?php echo $model->id; ?></h1>
+<h1>Update User: <?php echo $model->username; ?></h1>
 
 <?php 
 $model->password='';

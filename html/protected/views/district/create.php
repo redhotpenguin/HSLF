@@ -10,7 +10,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create District</h1>
+<h1>Add a district</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); 
 
