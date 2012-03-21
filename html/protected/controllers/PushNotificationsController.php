@@ -158,7 +158,6 @@ class PushNotificationsController extends Controller {
                      $data["pushNotificationResult"] = "An error has occured";
                 }   
               
-           
              }else{
                  $data["pushNotificationResult"] = 'No users in that district';
             }

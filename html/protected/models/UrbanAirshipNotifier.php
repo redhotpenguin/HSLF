@@ -9,8 +9,7 @@ class UrbanAirshipNotifier extends CModel{
         return array(  );
     }
     
-    public static function send_push_notifications($application_users, $message ){
-        error_log('model notifier');
+    public static function send_push_notifications($application_users, $message ) {
             $android_apids = array();
             $ios_device_tokens = array();
             $ios_push_result = false;
@@ -51,13 +50,17 @@ class UrbanAirshipNotifier extends CModel{
             $android_push_result = $airship->batch_push($android_payload);
           }
           
+         
+          if( (!empty($ios_device_tokens) && $ios_push_result == false) || (!empty( $android_apids) && $android_push_result == false) ){
+              return false;
+          }
+          
+          else{
+              return true;
+          }
+
    
-           if($ios_push_result && $android_push_result){
-                return true;
-           }
-            else{
-               return false;
-           }
+       
 
     }
 }
