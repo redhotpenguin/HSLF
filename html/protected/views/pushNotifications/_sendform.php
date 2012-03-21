@@ -30,9 +30,17 @@ $form=$this->beginWidget('CActiveForm', array(
 	<div class="row buttons">
 		<?php
                  $controllerAjaxUrl = CController::createUrl('pushNotifications/UpdateAjax', array('id'=> $model->id )); 
-                 echo CHtml::ajaxButton ("Send Notification", $controllerAjaxUrl, array('update' => '#notificationResult', 'type' =>'POST' ));
+                 echo CHtml::ajaxButton ("Send Notification", $controllerAjaxUrl, array(
+                        'update' => '#notificationResult', 
+                        'type' =>'POST',
+                         
+                        'beforeSend' => 'function(){ $("#ajaxLoadingIcon").addClass("loading");}',
+                        'complete' => 'function(e){  $("#ajaxLoadingIcon").removeClass("loading");}',
+                     ));
                 ?>
 	</div>
+        
+        <div id ="ajaxLoadingIcon"> </div>
        
         <div id="notificationResult">
              <?php 
@@ -42,3 +50,4 @@ $form=$this->beginWidget('CActiveForm', array(
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+

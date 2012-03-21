@@ -233,3 +233,17 @@ div.search-form
 {
 	background: #80CFFF;
 }
+
+div.loading {
+    background-color: #eee;
+    background-image: url('ajax-loader.gif');
+    background-position:  center center;
+    background-repeat: no-repeat;
+    opacity: 1;
+    display:block;
+    width:20px;
+    height:20px;
+}
+div.loading * {
+    opacity: .8;
+}

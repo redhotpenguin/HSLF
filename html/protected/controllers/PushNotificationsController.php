@@ -63,7 +63,7 @@ class PushNotificationsController extends Controller {
         if (isset($_POST['PushNotifications'])) {
             $model->attributes = $_POST['PushNotifications'];
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+                $this->redirect(array('sendNotification', 'id' => $model->id));
         }
 
         $this->render('create', array(
@@ -138,7 +138,6 @@ class PushNotificationsController extends Controller {
     public function actionUpdateAjax($id) { // handle ajax submission of districts
         $data = array();
         $model = $this->loadModel($id);
-
         if (isset($_POST['PushNotifications']) && isset($_POST['district_ids'])) {
            
             $criteria = new CDbCriteria();
