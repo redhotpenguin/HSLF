@@ -108,7 +108,7 @@ return array(
 		'adminEmail'=>'jonas@winningmark.com',
                 'api_username' => 'secretname',
                 'api_password' => 'secretpassword',
-                'api_salt' => '1qV2453L674133',
+                'api_salt' => '1qV2453L674133', //never changes this value once in production!
                 'urbanairship_app_key'=> 'ouRCLPaBRRasv4K1AIw-xA',
                 'urbanairship_app_master_secret' => '7hd19C6rSzyrbKM3k6KqDg',
 	),
