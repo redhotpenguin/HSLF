@@ -71,7 +71,7 @@ return array(
 			'username' => 'postgres',
 			'password' => 'pengu1n',
 			'charset' => 'utf8',
-                         'schemaCachingDuration' => '300',
+                         'schemaCachingDuration' => '600',
 		),
                      'cache'=>array(
                         'class'=>'system.caching.CApcCache',
