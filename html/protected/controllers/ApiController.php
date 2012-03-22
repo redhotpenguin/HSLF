@@ -137,69 +137,77 @@ class ApiController extends Controller {
             return false;
         }
 
-        switch ($_GET['model']) { 
+        switch ($_GET['model']) {
             case 'app_users': //insert/update  user record
-                $save_result = 0;
-                if (!isset($_POST['device_token']) || !isset($_POST['state_abbr']) || !isset($_POST['district_number']) || !isset($_POST['type'])) {
-                    break;
-                }
-
-                $device_token = $_POST['device_token'];
-                $user_state = $_POST['state_abbr'];
-                $user_district_number = $_POST['district_number'];
-
-                $app_user = Application_users::model()->findByAttributes(array('device_token' => $device_token));
-
-                if (!$app_user) { // if user is not already saved in the DB, create a new one
-                    $app_user = new Application_users();
-                    $app_user->device_token = $device_token;
-                }
-
-                if (isset($_POST['user_lat']) && preg_match('/^[-+]?[0-9]*\,?[0-9]+$/', $_POST['user_lat'] ) && isset($_POST['user_long']) && preg_match('/^[-+]?[0-9]*\,?[0-9]+$/', $_POST['user_long'] )  ) {
-                    // lat & long are not mandatory but should only be saved if both are valid.
-                    $app_user->latitude = $_POST['user_lat'];
-                    $app_user->longitude = $_POST['user_long'];
-                }
-                else exit;
-
-                if(preg_match('/^[a-z]{2,3}$/',  $_POST['state_abbr'] ) ){ // state abbr input must be between 2 or 3 characters (lowercase)
-                 $app_user->state_abbr = $_POST['state_abbr'];
-                }
-                else exit;
-
-                
-                if( preg_match('/^[0-9]{1,}$/', $user_district_number) ){ // check that $user_district number is only made of numbers
-                   $app_user->district = District::getIdByStateAndDistrict($user_state, $user_district_number);
-                }
-                else exit;
-                
-
-                switch($_POST['type']){
-                    case 'android':
-                    case 'ios':
-                         $app_user->type = $_POST['type'];
-                         break;
-                     
-                    default: error_log('app_user: wrong type given'); exit; 
-                }
-               
-
-                try {
-                    $save_result = $app_user->save();
-                } catch (Exception $exception) {
-                    error_log('API actionCreate app_users: ' . $exception->getMessage());
-                }
-
+                $save_result = $this->_add_appicationUsers();
                 if ($save_result == 1) {
                     $this->_sendResponse($status = 200, $body = 'insert_ok');
                 } else {
                     $this->_sendResponse($status = 200, $body = 'insert_failed');
                 }
-
                 break;
 
             default:exit;
         }
+    }
+
+    private function _add_appicationUsers() {
+        $save_result = 0;
+        if (!isset($_POST['device_token']) || !isset($_POST['state_abbr']) || !isset($_POST['district_number']) || !isset($_POST['type'])) {
+            break;
+        }
+
+        $device_token = $_POST['device_token'];
+        $user_state = $_POST['state_abbr'];
+        $user_district_number = $_POST['district_number'];
+
+        $app_user = Application_users::model()->findByAttributes(array('device_token' => $device_token));
+
+        if (!$app_user) { // if user is not already saved in the DB, create a new one
+            $app_user = new Application_users();
+            $app_user->device_token = $device_token;
+        }
+
+        if (isset($_POST['user_lat']) && preg_match('/^[-+]?[0-9]*\,?[0-9]+$/', $_POST['user_lat']) && isset($_POST['user_long']) && preg_match('/^[-+]?[0-9]*\,?[0-9]+$/', $_POST['user_long'])) {
+            // lat & long are not mandatory but should only be saved if both are valid.
+            $app_user->latitude = $_POST['user_lat'];
+            $app_user->longitude = $_POST['user_long'];
+        }
+        else
+            exit;
+
+        if (preg_match('/^[a-z]{2,3}$/', $_POST['state_abbr'])) { // state abbr input must be between 2 or 3 characters (lowercase)
+            $app_user->state_abbr = $_POST['state_abbr'];
+        }
+        else
+            exit;
+
+
+        if (preg_match('/^[0-9]{1,}$/', $user_district_number)) { // check that $user_district number is only made of numbers
+            $app_user->district = District::getIdByStateAndDistrict($user_state, $user_district_number);
+        }
+        else
+            exit;
+
+
+        switch ($_POST['type']) {
+            case 'android':
+            case 'ios':
+                $app_user->type = $_POST['type'];
+                break;
+
+            default: error_log('app_user: wrong type given');
+                exit;
+        }
+
+
+        try {
+            $save_result = $app_user->save();
+        } catch (Exception $exception) {
+            error_log('API actionCreate app_users: ' . $exception->getMessage());
+        }
+
+        return $save_result;
     }
 
     private function _sendResponse($status = 200, $body = '') {
@@ -247,14 +255,11 @@ class ApiController extends Controller {
         $api_username = Yii::app()->params['api_username'];
         $api_password = Yii::app()->params['api_password'];
 
-        if ( isset($_POST['username']) and isset($_POST['password']) ) {
-           return ( ($api_username == $_POST['username']) && (md5($api_password . $api_salt) == md5($_POST['password'] . $api_salt)) );
-
-        }
-        else{
+        if (isset($_POST['username']) and isset($_POST['password'])) {
+            return ( ($api_username == $_POST['username']) && (md5($api_password . $api_salt) == md5($_POST['password'] . $api_salt)) );
+        } else {
             return false;
         }
-
     }
 
 }
