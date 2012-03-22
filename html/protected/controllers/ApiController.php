@@ -154,7 +154,7 @@ class ApiController extends Controller {
     private function _add_appicationUsers() {
         $save_result = 0;
         if (!isset($_POST['device_token']) || !isset($_POST['state_abbr']) || !isset($_POST['district_number']) || !isset($_POST['type'])) {
-            break;
+            exit;
         }
 
         $device_token = $_POST['device_token'];
@@ -189,7 +189,6 @@ class ApiController extends Controller {
         else
             exit;
 
-
         switch ($_POST['type']) {
             case 'android':
             case 'ios':
@@ -199,8 +198,6 @@ class ApiController extends Controller {
             default: error_log('app_user: wrong type given');
                 exit;
         }
-
-
         try {
             $save_result = $app_user->save();
         } catch (Exception $exception) {
