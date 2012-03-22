@@ -71,11 +71,11 @@ return array(
 			'username' => 'postgres',
 			'password' => 'pengu1n',
 			'charset' => 'utf8',
-                         'schemaCachingDuration' => '600',
+                        // 'schemaCachingDuration' => '600',
 		),
-                     'cache'=>array(
+                   /*  'cache'=>array(
                         'class'=>'system.caching.CApcCache',
-                      ),
+                      ),*/
 		
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
