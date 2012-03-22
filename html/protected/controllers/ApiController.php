@@ -168,7 +168,15 @@ class ApiController extends Controller {
 
                 $app_user->district = District::getIdByStateAndDistrict($user_state, $user_district_number);
 
-                $app_user->type = $_POST['type'];
+                switch($_POST['type']){
+                    case 'android':
+                    case 'ios':
+                         $app_user->type = $_POST['type'];
+                         break;
+                     
+                    default: error_log('app_user: wrong type given'); exit; 
+                }
+               
 
                 try {
                     $save_result = $app_user->save();
