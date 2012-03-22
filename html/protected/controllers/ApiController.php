@@ -137,7 +137,7 @@ class ApiController extends Controller {
             return false;
         }
 
-        switch ($_GET['model']) { // todo: sanitize!
+        switch ($_GET['model']) { 
             case 'app_users': //insert/update  user record
                 $save_result = 0;
                 if (!isset($_POST['device_token']) || !isset($_POST['state_abbr']) || !isset($_POST['district_number']) || !isset($_POST['type'])) {
@@ -155,18 +155,24 @@ class ApiController extends Controller {
                     $app_user->device_token = $device_token;
                 }
 
-                if (isset($_POST['user_lat'])) {
+                if (isset($_POST['user_lat']) && preg_match('/^[-+]?[0-9]*\,?[0-9]+$/', $_POST['user_lat'] ) && isset($_POST['user_long']) && preg_match('/^[-+]?[0-9]*\,?[0-9]+$/', $_POST['user_long'] )  ) {
+                    // lat & long are not mandatory but should only be saved if both are valid.
                     $app_user->latitude = $_POST['user_lat'];
-                }
-
-                if (isset($_POST['user_long'])) {
                     $app_user->longitude = $_POST['user_long'];
                 }
+                else exit;
 
-                $app_user->state_abbr = $_POST['state_abbr'];
+                if(preg_match('/^[a-z]{2,3}$/',  $_POST['state_abbr'] ) ){ // state abbr input must be between 2 or 3 characters (lowercase)
+                 $app_user->state_abbr = $_POST['state_abbr'];
+                }
+                else exit;
 
-
-                $app_user->district = District::getIdByStateAndDistrict($user_state, $user_district_number);
+                
+                if( preg_match('/^[0-9]{1,}$/', $user_district_number) ){ // check that $user_district number is only made of numbers
+                   $app_user->district = District::getIdByStateAndDistrict($user_state, $user_district_number);
+                }
+                else exit;
+                
 
                 switch($_POST['type']){
                     case 'android':
