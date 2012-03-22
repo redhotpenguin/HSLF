@@ -37,7 +37,6 @@ class ApiController extends Controller {
 
                 $district_id = District::getIdByStateAndDistrict('na', '0');
 
-
                 $attributes = array(
                     'state_abbr' => 'na',
                     'district_id' => $district_id,
@@ -198,6 +197,7 @@ class ApiController extends Controller {
             default: error_log('app_user: wrong type given');
                 exit;
         }
+        
         try {
             $save_result = $app_user->save();
         } catch (Exception $exception) {
