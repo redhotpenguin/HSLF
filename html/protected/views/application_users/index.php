@@ -14,7 +14,7 @@ $this->menu=array(
 <?php 
 
 
-
+$dataProvider->pagination->pageSize = 50;
 $this->widget('zii.widgets.grid.CGridView', array(
     'dataProvider'=>$dataProvider,
     'columns'=>array(        
