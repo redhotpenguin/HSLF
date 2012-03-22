@@ -3,8 +3,8 @@ body
     margin: 0;
     padding: 0;
     color: #555;
-    font: normal 10pt Arial,Helvetica,sans-serif;
-    background:url('dinpattern-stripe.gif') repeat 1px 1px; min-height:5px;
+    font: normal 10pt Arial, sans-serif;
+    background-color:#EBB928;
 }
 
 li{
@@ -17,7 +17,7 @@ a{
 {
     margin-top: 25px;
     margin-bottom: 5px;
-    background: white;
+    background: #efefef;
     border: 1px solid #C9E0ED;
     -webkit-border-radius: 10px;
     -webkit-border-bottom-right-radius: 15px;
@@ -74,11 +74,13 @@ a{
 {
     margin-top:28px;
     float:left;
+    padding-right:15px;
+    border-right: 1px solid #D1D1D1;
 }
 
 #column_menu > div{
-    border:1px solid #eee;
-    margin-bottom:15px;
+
+    margin-bottom:30px;
 }
 
 #column_menu ul
@@ -104,8 +106,11 @@ a{
     padding: 0;
     margin: 10px 0 0 7px;
     font-weight: bold;
-    font-size: 15px;
-    color: #555;
+    font-size: 14px;
+    color: #999;
+    font-style: italic;
+    text-shadow: 1px 1px 0px #F7F7F7;
+    font-family: Georgia, "Times New Roman", Times, serif;
 }
 
 #column_menu ul li a:hover, #column_menu ul li.active a
@@ -209,15 +214,15 @@ div.search-form
     font-weight: bold;
     padding: 0;
     margin: 0;
-    color: #298dcd;
+    color: #fff;
 }
 
 .portlet-content
 {
-    font-size:0.9em;
+    font-size: 0.9em;
     margin: 0 0 15px 0;
-    padding: 5px 8px;
-    background:#EFFDFF;
+    padding: 5px 0px;
+    border: 1px solid #DDD;
 }
 
 .portlet-content ul

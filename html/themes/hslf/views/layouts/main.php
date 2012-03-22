@@ -44,7 +44,7 @@
                     ?>
 
                     <div id="menu_publishing">
-                        <p class="header_menu">Publishing</p>
+                        <p class="header_menu">Publishing:</p>
                         <?php
                         $this->widget('zii.widgets.CMenu', array(
                             'items' => array(
@@ -58,7 +58,7 @@
 
 
                     <div id="menu_messaging">
-                        <p class="header_menu">Messaging center</p>
+                        <p class="header_menu">Messaging center:</p>
                         <?php
                         $this->widget('zii.widgets.CMenu', array(
                             'items' => array(
@@ -70,7 +70,7 @@
                     </div>
 
                     <div id="menu_admin">
-                        <p class="header_menu">Administration</p>
+                        <p class="header_menu">Administration:</p>
                         <?php
                         $this->widget('zii.widgets.CMenu', array(
                             'items' => array(
