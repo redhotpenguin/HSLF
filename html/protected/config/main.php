@@ -112,5 +112,5 @@ return array(
                 'urbanairship_app_key'=> 'ouRCLPaBRRasv4K1AIw-xA',
                 'urbanairship_app_master_secret' => '7hd19C6rSzyrbKM3k6KqDg',
 	),
-        
+        'theme' => 'hslf'
 );
