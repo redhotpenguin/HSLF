@@ -38,7 +38,7 @@
             </div><!-- header -->
 
 
-            <div id="menu-top">
+            <div id="menu-top" class="clearfix">
                 <?php
                 $this->widget('zii.widgets.CMenu', array(
                     'activeCssClass' => 'active',
@@ -47,6 +47,9 @@
                         array(
                             'label' => 'Publishing',
                             'itemOptions' => array('id' => 'itemPublishing'),
+                            'url'=> array('/site/publishing'),
+                            'visible' => !Yii::app()->user->isGuest,
+                            
                             'items' => array(
                                 array('label' => 'State', 'url' => array('/state'), 'visible' => !Yii::app()->user->isGuest),
                                 array('label' => 'District', 'url' => array('/district'), 'visible' => !Yii::app()->user->isGuest),
@@ -56,6 +59,9 @@
                       
                         array(
                             'label' => 'Messaging Center',
+                             'url'=> array('/site/messaging'),
+                            'visible' => !Yii::app()->user->isGuest,
+                            
                             'itemOptions' => array('id' => 'itemMessaging'),
                             'items' => array(
                                 array('label' => 'User Alerts', 'url' => array('/user_alert'), 'visible' => !Yii::app()->user->isGuest),
@@ -65,6 +71,8 @@
                       
                         array(
                             'label' => 'Administration',
+                            'url'=> array('/site/administration'),
+                            'visible' => !Yii::app()->user->isGuest,
                             'itemOptions' => array('id' => 'itemMessaging'),
                             'items' => array(
                                 array('label' => 'Application Users', 'url' => array('/application_users'), 'visible' => !Yii::app()->user->isGuest),
