@@ -8,12 +8,8 @@ class SiteController extends Controller {
      */
     public function actionIndex() {
 
-        if (Yii::app()->user->isGuest)
-            $content = 'guest';
-        else
-            $content = 'logged in';
-
-        $this->render('index', array('content' => $content));
+  
+        $this->render('index');
     }
 
     /**
