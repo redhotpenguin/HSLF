@@ -4,7 +4,7 @@
 
 <p>Welcome to the publishing center, you can:</p>
 
-<ul>
+<ul class="index_option_list">
     <li><a href="/state">manage states</a></li>
     <li><a href="/district">manage districts</a></li>
     <li><a href="/candidate">add a candidate</a></li>

@@ -16,14 +16,14 @@ a{
 
 .clearfix:after
 {
-	clear: both;
-	content: ' ';
-	display: block;
-	font-size: 0;
-	line-height: 0;
-	visibility: hidden;
-	width: 0;
-	height: 0;
+    clear: both;
+    content: ' ';
+    display: block;
+    font-size: 0;
+    line-height: 0;
+    visibility: hidden;
+    width: 0;
+    height: 0;
 }
 
 
@@ -361,4 +361,32 @@ div.loading * {
 #menu-top > ul > li > a:focus,
 #menu-top > ul > li > a{
     background-color:#fff !important;
+}
+
+
+.index_option_list li{
+    width: 710px;
+    height: 40px;
+    margin: 0 0 18px 20px;
+    background: #F1F1F1;
+    border: 1px solid #CFCFCF;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0px 0px 5px #dfdfdf;
+    -webkit-box-shadow: 0px 0px 5px #dfdfdf;
+    box-shadow: 0px 0px 5px #dfdfdf;
+    font-weight: bold;
+}
+
+.index_option_list li a{
+    height: 27px;
+    padding-top: 12px;
+    display: block;
+    padding-left: 15px;
+}
+
+
+.index_option_list li:hover{
+    background-color:#ddd;
 }
