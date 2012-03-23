@@ -1,17 +1,10 @@
 <?php $this->pageTitle=Yii::app()->name; ?>
 
-<h1>Messaging</h1>
+<h1>Messaging center</h1>
 
+<p>Welcome to the messaging center, you can:</p>
 
-
-    
-    
-<?php
-
-
-echo $content;
-
-
-?>
-    
-    
+<ul>
+    <li><a href="/user_alert">Create a new Alert</a></li>
+    <li><a href="/pushNotifications">Send a push notifcation</a></li>
+</ul>
