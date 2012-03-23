@@ -7,9 +7,13 @@ class SiteController extends Controller {
      * when an action is not explicitly requested by users.
      */
     public function actionIndex() {
-
+        $data = array(
+             'last_candidate'=> Candidate::model()->findBySql('select * from candidate order by ID desc limit 1;'),
+             'last_alert' => User_alert::model()->findBySql('select * from user_alerts order by ID desc limit 1;'),
+             'last_push' => PushNotifications::model()->findBySql('select * from push_notifications order by ID desc limit 1;'),
+            );
   
-        $this->render('index');
+        $this->render('index', $data);
     }
 
     /**
