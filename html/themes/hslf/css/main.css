@@ -287,8 +287,14 @@ div.loading * {
 
 .grid-view{
     width:640px;
+    padding: 0!important;
+
 }
 
-.grid-view {
-    padding: 0!important;
+.grid-view table.items{
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    border: 3px #fff solid !important;
+
 }
