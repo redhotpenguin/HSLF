@@ -390,3 +390,9 @@ div.loading * {
 .index_option_list li:hover{
     background-color:#ddd;
 }
+
+.last_entry{
+    border: 1px solid #CCC;
+    padding: 10px;
+    margin-top: 25px;
+}
