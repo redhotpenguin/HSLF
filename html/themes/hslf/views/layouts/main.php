@@ -37,64 +37,48 @@
 
             </div><!-- header -->
 
-            <div id="column_menu">
 
+            <div id="menu-top">
                 <?php
-                if (!Yii::app()->user->isGuest):
-                    ?>
-
-                    <div id="menu_publishing">
-                        <p class="header_menu">Publishing:</p>
-                        <?php
-                        $this->widget('zii.widgets.CMenu', array(
+                $this->widget('zii.widgets.CMenu', array(
+                    'activeCssClass' => 'active',
+                    'activateParents' => true,
+                    'items' => array(
+                        array(
+                            'label' => 'Publishing',
+                            'itemOptions' => array('id' => 'itemPublishing'),
                             'items' => array(
                                 array('label' => 'State', 'url' => array('/state'), 'visible' => !Yii::app()->user->isGuest),
                                 array('label' => 'District', 'url' => array('/district'), 'visible' => !Yii::app()->user->isGuest),
                                 array('label' => 'Candidate', 'url' => array('/candidate'), 'visible' => !Yii::app()->user->isGuest),
                             ),
-                        ));
-                        ?>
-                    </div>
-
-
-                    <div id="menu_messaging">
-                        <p class="header_menu">Messaging center:</p>
-                        <?php
-                        $this->widget('zii.widgets.CMenu', array(
+                        ),
+                      
+                        array(
+                            'label' => 'Messaging Center',
+                            'itemOptions' => array('id' => 'itemMessaging'),
                             'items' => array(
                                 array('label' => 'User Alerts', 'url' => array('/user_alert'), 'visible' => !Yii::app()->user->isGuest),
                                 array('label' => 'Push Notifications', 'url' => array('/pushNotifications'), 'visible' => !Yii::app()->user->isGuest),
                             ),
-                        ));
-                        ?>
-                    </div>
-
-                    <div id="menu_admin">
-                        <p class="header_menu">Administration:</p>
-                        <?php
-                        $this->widget('zii.widgets.CMenu', array(
+                        ),
+                      
+                        array(
+                            'label' => 'Administration',
+                            'itemOptions' => array('id' => 'itemMessaging'),
                             'items' => array(
                                 array('label' => 'Application Users', 'url' => array('/application_users'), 'visible' => !Yii::app()->user->isGuest),
                                 array('label' => 'Users', 'url' => array('/user'), 'visible' => !Yii::app()->user->isGuest),
                             ),
-                        ));
-                        ?>
-                    </div>
-
-                    <?php
-                endif;
-                ?>   
-
-            </div><!-- mainmenu -->
-            <?php if (isset($this->breadcrumbs) && !Yii::app()->user->isGuest): ?>
-                <?php
-                $this->widget('zii.widgets.CBreadcrumbs', array(
-                    'links' => $this->breadcrumbs,
+                        ),
+                    ),
                 ));
-                ?><!-- breadcrumbs -->
-            <?php endif ?>
+                ?>
+            </div>
 
-            <?php echo $content; ?>
+          
+            
+<?php echo $content; ?>
 
             <div class="clear"></div>
 

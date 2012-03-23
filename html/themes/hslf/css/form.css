@@ -45,6 +45,8 @@ div.form
     -moz-box-shadow: 4px 2px 10px rgba(0, 0, 0, 0.41);
     -webkit-box-shadow: 4px 2px 10px rgba(0, 0, 0, 0.41);
     background-color:#fff;
+    width: 700px;
+    margin-top:15px;
 }
 
 div.form input,
