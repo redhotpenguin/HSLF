@@ -29,6 +29,9 @@ class DistrictTreeView extends CJuiWidget {
 
 
     public function run(){
+
+        
+        
          $this->publishAssets();
          $this->registerClientScripts();
          $ul_id = $this->options['id'];
@@ -39,9 +42,10 @@ class DistrictTreeView extends CJuiWidget {
 
                $state_district = array();
                foreach($states as $state){
-                  if( strtolower( $state->abbr ) == 'na' )
-                      continue;
-         
+                   
+                   
+                  $finalList.='<div class="state_group">';
+                
                      $params = array(
                      'order' => 'number ASC',
                     );
@@ -53,6 +57,8 @@ class DistrictTreeView extends CJuiWidget {
                    foreach($districts as $district){
                        $finalList.= '<input type="checkbox" name="district_ids[]" value="'.$district->id.'"> '.$district->number.' <br/>';
                    }
+               
+                     $finalList.= '</div>';
                }
  
         ?>
