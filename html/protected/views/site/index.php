@@ -2,16 +2,6 @@
 
 <h1>Welcome to the MVG Administration site</h1>
 
-<?php
-
-if(Yii::app()->user->checkAccess('createCandidate'))
-{
-   echo 'can create a candidate';
-}
-else echo 'cant create a candidate';
-
-?>
-
 <div style="height:600px;">
 <?php
 if(Yii::app()->user->id):

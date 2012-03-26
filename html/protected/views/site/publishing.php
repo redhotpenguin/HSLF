@@ -7,5 +7,5 @@
 <ul class="index_option_list">
     <li><a href="/state">manage states</a></li>
     <li><a href="/district">manage districts</a></li>
-    <li><a href="/candidate">add a candidate</a></li>
+    <li><a href="/candidate/create">add a candidate</a></li>
 </ul>

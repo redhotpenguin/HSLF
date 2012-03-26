@@ -13,6 +13,7 @@ return array(
     'import' => array(
         'application.models.*',
         'application.components.*',
+    //    'application.modules.srbac.controllers.SBaseController',
     ),
     'modules' => array(
         'gii' => array(
