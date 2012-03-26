@@ -4,7 +4,9 @@
 
 
 <div style="height:600px;">
-
+<?php
+if(Yii::app()->user->id):
+?>
     <div class="last_entry candidate">
         <h3>Last Candidate:</h3>
          <h6><?php echo $last_candidate->full_name; ?></h6>
@@ -33,11 +35,11 @@
         <div><?php echo $last_alert->content; ?> </div>
         <div>Published <?php echo $last_alert->create_time; ?> </div>
         <div>State: <?php echo $last_alert->state_abbr; ?> </div>
-        
-        
-    
     </div>
+<?php
+endif;
 
+?>
 
 
 
