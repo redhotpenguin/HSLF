@@ -284,10 +284,8 @@ div.loading * {
 
 #menu-top {
     background: #fff; /* Show a solid color for older browsers */
-    display: block;
     margin: auto;
-    width: 1024px;
-    margin-bottom:30px;
+    margin-bottom:15px;
 }
 
 #menu-top ul {
