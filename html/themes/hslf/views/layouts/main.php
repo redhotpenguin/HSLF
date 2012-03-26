@@ -36,7 +36,9 @@
                 </div>
 
             </div><!-- header -->
-
+<?php
+if(Yii::app()->user->id):
+?>
 
             <div id="menu-top" class="clearfix">
                 <?php
@@ -73,7 +75,7 @@
                             'label' => 'Administration',
                             'url'=> array('/site/administration'),
                             'visible' => !Yii::app()->user->isGuest,
-                            'itemOptions' => array('id' => 'itemMessaging'),
+                            'itemOptions' => array('id' => 'itemAdministration'),
                             'items' => array(
                                 array('label' => 'Application Users', 'url' => array('/application_users'), 'visible' => !Yii::app()->user->isGuest),
                                 array('label' => 'Users', 'url' => array('/user'), 'visible' => !Yii::app()->user->isGuest),
@@ -83,7 +85,9 @@
                 ));
                 ?>
             </div>
-
+<?php
+    endif;
+?>
           
             
 <?php echo $content; ?>

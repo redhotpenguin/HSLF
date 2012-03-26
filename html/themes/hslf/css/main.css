@@ -49,7 +49,6 @@ a{
     margin: 0;
     padding: 0;
     border-bottom: 1px solid #CCC;
-    margin-bottom: 30px;
     background-color: #333;
     -webkit-border-top-left-radius: 15px;
     -webkit-border-top-right-radius: 15px;
@@ -85,10 +84,20 @@ a{
     font-size: 200%;
 }
 
+#logo a, #menu_auth a {
+    color:#efefef;
+}
+
+
+#logo a{
+    font-family: arial-black;
+    font-weight: bold;
+}
+
 #menu_auth{
     float:right;
     position: relative;
-    top: -37px;
+    top: -33px;
 }
 
 
@@ -274,8 +283,7 @@ div.loading * {
 }
 
 #menu-top {
-    background: #efefef; /* Show a solid color for older browsers */
-    clear: both;
+    background: #fff; /* Show a solid color for older browsers */
     display: block;
     margin: auto;
     width: 1024px;
@@ -304,13 +312,12 @@ div.loading * {
     padding-top: 11px;
     font-size: 14px;
     cursor:pointer;
-    border-bottom: 1px solid #CCC;
+    border-right: 1px dotted #DDD;
 }
 
 
 #menu-top a {
     display: block;
-    line-height: 1.8em;
     padding: 0 1.2125em;
     text-decoration: none;
 }
@@ -340,6 +347,7 @@ div.loading * {
     font-size: 12px;
     text-shadow: #002B2C -1px -1px 0px;
     text-align: left;
+    line-height: 2.8em;
 
 }
 
@@ -350,12 +358,12 @@ div.loading * {
 }
 
 #menu-top ul ul a:hover{
-
+    background-color:#EBB928;
 }
 
 #menu-top li:hover > a,
 #menu-top a:focus {
-    background: #EBB928;
+
     color: #004345;
     text-shadow:none;
 }
