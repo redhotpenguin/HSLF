@@ -13,8 +13,24 @@
 
         <link rel="stylesheet" type="text/css" href="/themes/hslf/css/main.css" />
         <link rel="stylesheet" type="text/css" href="/themes/hslf/css/form.css" />
-
+        <?php
+        $cs = Yii::app()->clientScript;
+        $cs->registerScriptFile('/js/superfish.js', CClientScript::POS_HEAD);
+        $cs->registerScriptFile('/js/jquery.hoverIntent.minified.js', CClientScript::POS_HEAD);
+        ?>
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
+        <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
+
+
+        <script type="text/javascript"> 
+            jQuery(document).ready(function($){
+                $('ul#yw1').superfish({
+                    autoArrows: false
+                });
+ 
+            });
+        </script>
+
     </head>
 
     <body>
@@ -25,22 +41,22 @@
                 <div id="logo"><a href="/"><?php echo CHtml::encode(Yii::app()->name); ?></a></div>
 
                 <div id="menu_auth">
-                    <?php
-                    $this->widget('zii.widgets.CMenu', array(
-                        'items' => array(
-                            array('label' => 'Login', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
-                            array('label' => 'Logout (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest),
-                        ),
-                    ));
-                    ?>
+<?php
+$this->widget('zii.widgets.CMenu', array(
+    'items' => array(
+        array('label' => 'Login', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
+        array('label' => 'Logout (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest),
+    ),
+));
+?>
                 </div>
 
             </div><!-- header -->
 <?php
-if(Yii::app()->user->id):
-?>
+if (Yii::app()->user->id):
+    ?>
 
-            <div id="menu-top" class="clearfix">
+                <div id="menu-top" class="clearfix">
                 <?php
                 $this->widget('zii.widgets.CMenu', array(
                     'activeCssClass' => 'active',
@@ -49,31 +65,27 @@ if(Yii::app()->user->id):
                         array(
                             'label' => 'Publishing',
                             'itemOptions' => array('id' => 'itemPublishing'),
-                            'url'=> array('/site/publishing'),
+                            'url' => array('/site/publishing'),
                             'visible' => !Yii::app()->user->isGuest,
-                            
                             'items' => array(
                                 array('label' => 'State', 'url' => array('/state'), 'visible' => !Yii::app()->user->isGuest),
                                 array('label' => 'District', 'url' => array('/district'), 'visible' => !Yii::app()->user->isGuest),
                                 array('label' => 'Candidate', 'url' => array('/candidate'), 'visible' => !Yii::app()->user->isGuest),
                             ),
                         ),
-                      
                         array(
                             'label' => 'Messaging Center',
-                             'url'=> array('/site/messaging'),
+                            'url' => array('/site/messaging'),
                             'visible' => !Yii::app()->user->isGuest,
-                            
                             'itemOptions' => array('id' => 'itemMessaging'),
                             'items' => array(
                                 array('label' => 'User Alerts', 'url' => array('/user_alert'), 'visible' => !Yii::app()->user->isGuest),
                                 array('label' => 'Push Notifications', 'url' => array('/pushNotifications'), 'visible' => !Yii::app()->user->isGuest),
                             ),
                         ),
-                      
                         array(
                             'label' => 'Administration',
-                            'url'=> array('/site/administration'),
+                            'url' => array('/site/administration'),
                             'visible' => !Yii::app()->user->isGuest,
                             'itemOptions' => array('id' => 'itemAdministration'),
                             'items' => array(
@@ -84,13 +96,13 @@ if(Yii::app()->user->id):
                     ),
                 ));
                 ?>
-            </div>
-<?php
-    endif;
-?>
-          
-            
-<?php echo $content; ?>
+                </div>
+                    <?php
+                endif;
+                ?>
+
+
+            <?php echo $content; ?>
 
             <div class="clear"></div>
 
