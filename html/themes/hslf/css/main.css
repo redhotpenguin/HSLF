@@ -371,10 +371,16 @@ div.loading * {
     display: block;
 }
 
-#menu-top > ul > li > a:hover,
-#menu-top > ul > li > a:focus,
-#menu-top > ul > li > a{
-    background-color:#fff !important;
+#menu-top > ul > li:hover{
+
+    background-color:#ddd;
+
+}
+
+#menu-top > ul > li.active{
+    -webkit-box-shadow: 1px 1px 8px #666;
+    box-shadow: 1px 1px 8px #666;
+    -moz-box-shadow: 1px 1px 8px #666;
 }
 
 
