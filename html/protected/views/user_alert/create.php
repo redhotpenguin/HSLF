@@ -5,7 +5,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List user_alerts', 'url'=>array('index')),
+	array('label'=>'List user alerts', 'url'=>array('index')),
 	array('label'=>'Manage user alerts', 'url'=>array('admin')),
 );
 ?>
