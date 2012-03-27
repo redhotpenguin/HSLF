@@ -1,3 +1,4 @@
 nbproject/*
 html/protected/config/*
 html/assets/*
+html/protected/runtime/application.log
