@@ -189,7 +189,8 @@ class DistrictController extends Controller
         }
         
         public function actionGetTreeView(){
-            $options = array('id' => 'district_ids');
-            $this->widget('ext.DistrictTreeView.DistrictTreeView', array('options' => $options));
+            //$options = array('id' => 'district_ids');
+           // $this->widget('ext.DistrictTreeView.DistrictTreeView', array('options' => $options));
+             $this->renderPartial('_ajaxTreeView', array() , false, true);
         }
 }
