@@ -2,7 +2,7 @@ jQuery(document).ready(function($){
   
     var audience_selector = $("input[name='audience_type']");
     var audience_target = $("#audience_target");
-    var confirm_broadcast = $('<label>Confirm broadcast:</label><input type="checkbox" name="confirm_broadcast">');
+    var confirm_broadcast = $('<label>*Confirm broadcast:</label><input type="checkbox" name="confirm_broadcast">');
 
 
 
@@ -39,5 +39,5 @@ jQuery(document).ready(function($){
     }
 
     //simulate event when page is first loaded
-   // $('input[name=audience_type]:checked').change(); 
+    $('input[name=audience_type]:checked').change(); 
 });

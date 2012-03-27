@@ -27,14 +27,6 @@
 
 
     <div class="row">
-        <h3>Districts:</h3>
-        <?php
-        // $options = array('id' => 'district_ids');
-        // $this->widget('ext.DistrictTreeView.DistrictTreeView', array('options' => $options));
-        ?>
-    </div>
-
-    <div class="row">
         <h3>Audience:</h3>
         <?php
         $options = array(
@@ -52,7 +44,7 @@
             'separator'=> '<br/>',
             'labelOptions' => array('class'=> 'audience_type_label'),
         );
-        echo CHtml::radioButtonList('audience_type', 'broadcast', array('district' => 'District', 'broadcast' => 'Broadcast'), $htmlOptions);
+        echo CHtml::radioButtonList('audience_type', 'district', array('district' => 'District', 'broadcast' => 'Broadcast'), $htmlOptions);
         
         ?>
         

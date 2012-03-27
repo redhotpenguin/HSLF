@@ -136,134 +136,75 @@ class PushNotificationsController extends Controller {
     }
 
     public function actionUpdateAjax($id) { // handle ajax submission of districts
+        $model = $this->loadModel($id);
         $data = array();
 
         $audience_type = $_POST['audience_type'];
+        $model->attributes = $_POST['PushNotifications'];
+
 
         switch ($audience_type) {
             case 'broadcast':
                 if (isset($_POST['confirm_broadcast'])) {
-                    $message = 'broadcast confirmed';
+                    $notifier = new UrbanAirshipNotifier();
+                    $broadcast_result = $notifier->sendBroadcastNotification('hello world');
+                    if ($broadcast_result) {
+                        $model->sent = 'yes';
+                        $message = 'Broadcast message successfuly sent';
+                    } else {
+                        $message = 'Couldn\'t send the broadcast message';
+                    }
                 } else {
-                    $message = 'please confirm broadcast';
+                    $message = 'Broadcast confirmation required.';
                 }
                 break;
 
             case 'district':
-                if( isset($_POST['district_ids']) &&  count($_POST['district_ids'])  > 0  ){
-                    $message = 'District selected';
-                }else{
+                if (isset($_POST['district_ids']) && count($_POST['district_ids']) > 0) {
+                    $notifier = new UrbanAirshipNotifier();
+
+                    $push_result = $this->notify_district_users($_POST['district_ids'], $model->message);
+                    if ($push_result == 'success') {
+                        $model->sent = 'yes';
+                    }
+
+                    $message = $push_result;
+                } else {
                     $message = 'Please select a district';
                 }
                 break;
         }
 
+        $model->save();
 
 
-
-        $message .= '<br>' . print_r($_POST, true);
-
-        /*
-
-          if ($audience_type == 'broadcast' && ! isset($_POST['district_ids'])  ) { // sending broadcast type
-          $message = 'broadcasting';
-          } elseif ($audience_type == 'district' && isset($_POST['district_ids']) && count($_POST['district_ids']) > 0) {
-          $district_numbers = $_POST['district_ids'];
-
-
-          $message = ' district selected' . count($district_numbers);
-
-          }
-          elseif($audience_type == 'broadcast' && isset($_POST['district_ids'])) { // cant select both districts and broadcast
-          $message = 'select an audience';
-          }else{ // no districts have been selected
-          $message = 'select a district';
-          }
-
-
-
-
-
-          if (isset($_POST['broadcast']) && isset($_POST['district_ids'])) {
-          $message = 'Can\'t select both broadcast and district.';
-          } elseif (isset($_POST['district_ids'])) {
-          $criteria = new CDbCriteria();
-
-          $model->attributes = $_POST['PushNotifications'];
-          $district_numbers = $_POST['district_ids'];
-          $criteria->addInCondition("district", $district_numbers);
-
-          $application_users = Application_users::model()->findAll($criteria);
-
-          $message = $application_users_number = count($application_users);
-
-
-          if ( ($application_users_number = count($application_users) ) > 0 ) { // application_users found
-          $push_result = UrbanAirshipNotifier::send_push_notifications($application_users, $model->message);
-
-          if ($push_result === true) {
-          $model->setAttribute('sent', 'yes');
-          $message = "$application_users_number notifications successfuly sent!";
-          }else{
-          $message= "An error has occured";
-          }
-          }
-          } elseif (isset($_POST['broadcast'])) {
-          $message = 'sending broadcast message';
-          }
-
-
-          $data = array();
-
-          $model = $this->loadModel($id);
-          error_log(print_r($_POST, true));
-          if(   empty($_POST['broadcast']) ) {
-
-          error_log('abc');
-
-          }
-
-          if ( empty($_POST['district_ids']) && empty($_POST['broadcast']) ){
-          $data["pushNotificationResult"] = 'Select a district or broadcast';
-          }
-
-          elseif ( !empty($_POST['PushNotifications']) ) {
-          $criteria = new CDbCriteria();
-
-          $model->attributes = $_POST['PushNotifications'];
-          $district_numbers = $_POST['district_ids'];
-          $criteria->addInCondition("district", $district_numbers);
-
-          $application_users = Application_users::model()->findAll($criteria);
-
-          if ( ($application_users_number = count($application_users) ) > 0 ) { // application_users found
-          $push_result = UrbanAirshipNotifier::send_push_notifications($application_users, $model->message);
-
-          if ($push_result === true) {
-          $model->setAttribute('sent', 'yes');
-          $data["pushNotificationResult"] = "$application_users_number notifications successfuly sent!";
-          }else{
-          $data["pushNotificationResult"] = "An error has occured";
-          }
-
-          }else{
-          $data["pushNotificationResult"] = 'No users in that district';
-          }
-
-
-
-          $model->save();
-
-          }
-          elseif( !empty($_POST['broadcast']) ){
-          error_log('broadcast');
-          $data["pushNotificationResult"] = 'sending broadcast message';
-          }
-
-         */
-
+        //  $message .= '<br>' . print_r($_POST, true);
         $data['pushNotificationResult'] = $message;
         $this->renderPartial('_ajaxPushResultContent', $data, false, true);
+    }
+
+    private function notify_district_users($district_ids, $message) {
+        if (empty($district_ids)) {
+            return 'Please select a district.';
+        }
+        if (empty($message)) {
+            return 'Please enter a valid message;';
+        }
+
+        $criteria = new CDbCriteria();
+        $criteria->addInCondition("district", $district_ids);
+        $application_users = Application_users::model()->findAll($criteria);
+
+        if (count($application_users) <= 0) {
+            return 'No users found in these districts.';
+        }
+
+        $notifier = new UrbanAirshipNotifier();
+        if ($notifier->sendPushNotifications($application_users, $message)) {
+            return 'success';
+        } else {
+            return 'failure';
+        }
     }
 
     /**
