@@ -28,7 +28,7 @@ class DistrictController extends Controller
 		return array(
 	
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','view', 'create','update', 'admin','delete', 'dynamicdistrict'),
+				'actions'=>array('index','view', 'create','update', 'admin','delete', 'dynamicdistrict', 'gettreeview'),
 				'users'=>array('@'),
 			),
 	
@@ -186,5 +186,10 @@ class DistrictController extends Controller
             foreach($data as $id=>$district){
                 echo $t = CHtml::tag('option', array('value'=>$id),CHtml::encode($district),true);
             }
+        }
+        
+        public function actionGetTreeView(){
+            $options = array('id' => 'district_ids');
+            $this->widget('ext.DistrictTreeView.DistrictTreeView', array('options' => $options));
         }
 }
