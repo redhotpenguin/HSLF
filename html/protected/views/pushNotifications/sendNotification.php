@@ -8,7 +8,7 @@ $this->breadcrumbs = array(
 <h1>Send a push notification</h1>
 <?php
 if ($model->sent == 'yes') {
-    echo '<div class="important_alert_box">This notifications was already sent!</div>';
+    echo '<div class="important_alert_box">This notification was already sent!</div>';
 }
 ?>
 <?php
