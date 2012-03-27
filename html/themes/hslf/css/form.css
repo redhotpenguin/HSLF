@@ -175,3 +175,11 @@ div.wide.form .buttons, div.wide.form .hint, div.wide.form .errorMessage
     float:left;
     width:100px;
 }
+
+.important_alert_box{
+    border: 2px solid #ff0000;
+    padding: 15px;
+    font-size: 25px;
+    background-color: #fff;
+    color: red;
+}

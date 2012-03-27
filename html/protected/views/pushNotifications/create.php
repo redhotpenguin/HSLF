@@ -5,7 +5,6 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Push Notifications', 'url'=>array('index')),
 	array('label'=>'Manage Push Notifications', 'url'=>array('admin')),
 );
 ?>

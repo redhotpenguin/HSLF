@@ -6,10 +6,10 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List PushNotifications', 'url'=>array('index')),
-	array('label'=>'Create PushNotifications', 'url'=>array('create')),
-	array('label'=>'View PushNotifications', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage PushNotifications', 'url'=>array('admin')),
+        array('label'=>'Manage Push Notifications', 'url'=>array('admin')),	
+ 
+  	array('label'=>'Delete', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
+        array('label'=>'Send', 'url'=>array('sendnotification', 'id'=>$model->id)),
 );
 ?>
 
