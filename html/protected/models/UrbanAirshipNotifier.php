@@ -8,6 +8,26 @@ class UrbanAirshipNotifier extends CModel {
     public function attributeNames() {
         return array();
     }
+    
+     public function notify_district_users($district_ids, $message) {
+        if (empty($district_ids) || empty($message) ) {
+            return 'INVALID_PARAMETERS';
+        }
+
+        $criteria = new CDbCriteria();
+        $criteria->addInCondition("district", $district_ids);
+        $application_users = Application_users::model()->findAll($criteria);
+
+        if (count($application_users) <= 0) {
+            return 'NO_USER_FOUND';
+        }
+
+        if ($this->sendPushNotifications($application_users, $message)) {
+            return 'SUCCESS';
+        } else {
+            return 'FAILURE';
+        }
+    }
 
     public function sendPushNotifications($application_users, $message) {
         $android_apids = array();
@@ -65,7 +85,7 @@ class UrbanAirshipNotifier extends CModel {
 
        // $airship->broadcast($broadcast_message, array($TEST_DEVICE_TOKEN));
 
-        return true;
+        return 'SUCCESS';
     }
 
 }

@@ -56,7 +56,7 @@
 
     <div class="row buttons">
         <?php
-        $controllerAjaxUrl = CController::createUrl('pushNotifications/UpdateAjax', array('id' => $model->id));
+        $controllerAjaxUrl = CController::createUrl('pushNotifications/validatePush', array('id' => $model->id));
         echo CHtml::ajaxButton("Send Notification", $controllerAjaxUrl, array(
             'update' => '#notificationResult',
             'type' => 'POST',
