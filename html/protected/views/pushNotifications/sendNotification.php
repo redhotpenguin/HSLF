@@ -4,7 +4,7 @@ $this->breadcrumbs = array(
     'Send',
 );
 ?>
-
+ 
 <h1>Send a push notification</h1>
 <?php
 if ($model->sent == 'yes') {
