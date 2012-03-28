@@ -49,12 +49,3 @@
     ?>
 
 </div>
-
-<?php
-if( Yii::app()->user->checkAccess('createCandidate') ){
-  echo 'ok';
-}else echo 'fail';
-        
-
-
-?>
