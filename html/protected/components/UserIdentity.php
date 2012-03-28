@@ -9,10 +9,7 @@ class UserIdentity extends CUserIdentity
 {
 	/**
 	 * Authenticates a user.
-	 * The example implementation makes sure if the username and password
-	 * are both 'demo'.
-	 * In practical applications, this should be changed to authenticate
-	 * against some persistent user identity storage (e.g. database).
+
 	 * @return boolean whether authentication succeeds.
 	 */
 	public function authenticate() 
@@ -29,6 +26,7 @@ class UserIdentity extends CUserIdentity
 		
 		} else { // Okay!
 			$this->errorCode=self::ERROR_NONE;
+                        $this->setState('role', $user->role);
 		}
 		
 		return !$this->errorCode;

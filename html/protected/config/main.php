@@ -83,13 +83,7 @@ return array(
              */
             ),
         ),
-        'authManager' => array(
-            'class' => 'CDbAuthManager',
-            'connectionID' => 'db',
-            'assignmentTable' => 'authassignment',
-            'itemChildTable' => 'authitemchild',
-            'itemTable' => 'authitem',
-        ),
+   
     ),
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']

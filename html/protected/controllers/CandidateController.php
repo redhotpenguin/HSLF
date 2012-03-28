@@ -29,7 +29,7 @@ class CandidateController extends Controller
 	
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('index','view', 'create','update', 'admin','delete', 'dynamicdistrict'),
-				'users'=>array('@'),
+				'users'=>array('@'), 
 			),
 	
 			array('deny',  // deny all users
