@@ -47,7 +47,10 @@ $this->widget('zii.widgets.grid.CGridView', array(
     'columns' => array(
         'id',
         'state_abbr',
-        'district_id',
+        array('name' => 'district_number',
+            'header' => 'District number',
+            'value' => '$data->district->number'
+        ),
         'type',
         'endorsement',
         'full_name',
@@ -55,11 +58,6 @@ $this->widget('zii.widgets.grid.CGridView', array(
         'scorecard',
         'date_published',
         'publish',
-        
-        array('name' => 'district_number',
-            'header' => 'District number',
-            'value' => '$data->district->number'),
-        
         array(
             'class' => 'CButtonColumn',
         ),

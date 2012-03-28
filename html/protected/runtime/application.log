@@ -5368,3 +5368,347 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/favicon.ico
 ---
+2012/03/28 10:39:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/03/28 10:40:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/03/28 10:40:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/03/28 10:41:07 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  invalid input syntax for integer: "40\"
+LINE 1: ...district_id"="district"."id")  WHERE (district.number='40\')
+                                                                 ^. The SQL statement executed was: SELECT COUNT(DISTINCT "t"."id") FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE (district.number=:ycp0).
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php (65)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (142)
+in C:\xampp\htdocs\HSLF\html\index.php (13)
+2012/03/28 10:41:07 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  invalid input syntax for integer: "40\"
+LINE 1: ...district_id"="district"."id")  WHERE (district.number='40\')
+                                                                 ^. The SQL statement executed was: SELECT COUNT(DISTINCT "t"."id") FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE (district.number=:ycp0)' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8615): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(762): CDbCommand->queryScalar()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(155): CJoinElement->count(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(7352): CActiveFinder->count(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(179): CActiveRecord->count(Object(CDbCriteria))
+#5 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(193): CActiveDataProvider->calculateTotalItemCount()
+#6 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(129): CDataProvider->getTotalItemCount()
+#7 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(137): CActiveDataProvider->fetchData()
+#8 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(105): CDataProvider->getData()
+#9 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(269): CBaseListView->init()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3133): CGridView->init()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('zii.widgets.gri...', Array)
+#12 C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php(65): CBaseController->widget('zii.widgets.gri...', Array)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('admin', Array, true)
+#17 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(142): CController->render('admin', Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionAdmin()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('admin')
+#28 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/admin')
+#29 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#30 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#31 {main}
+REQUEST_URI=/candidate/admin?Candidate%5Bid%5D=&Candidate%5Bstate_abbr%5D=&Candidate%5Bdistrict_number%5D=40%5C&Candidate%5Btype%5D=&Candidate%5Bendorsement%5D=&Candidate%5Bfull_name%5D=&Candidate%5Bparty%5D=&Candidate%5Bscorecard%5D=&Candidate%5Bdate_published%5D=&Candidate%5Bpublish%5D=&Candidate_page=1&ajax=candidate-grid
+HTTP_REFERER=http://www.voterguide.com/candidate/admin
+---
+2012/03/28 10:41:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/03/28 10:41:52 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[42P01]: Undefined table: 7 ERROR:  invalid reference to FROM-clause entry for table "candidate"
+LINE 1: ...istrict"."id")  WHERE ((district.number='1') AND (candidate....
+                                                             ^
+HINT:  Perhaps you meant to reference the table alias "t".. The SQL statement executed was: SELECT COUNT(DISTINCT "t"."id") FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE ((district.number=:ycp0) AND (candidate.type=:ycp1)).
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php (65)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (142)
+in C:\xampp\htdocs\HSLF\html\index.php (13)
+2012/03/28 10:41:52 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42P01]: Undefined table: 7 ERROR:  invalid reference to FROM-clause entry for table "candidate"
+LINE 1: ...istrict"."id")  WHERE ((district.number='1') AND (candidate....
+                                                             ^
+HINT:  Perhaps you meant to reference the table alias "t".. The SQL statement executed was: SELECT COUNT(DISTINCT "t"."id") FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE ((district.number=:ycp0) AND (candidate.type=:ycp1))' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8615): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(762): CDbCommand->queryScalar()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(155): CJoinElement->count(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(7352): CActiveFinder->count(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(179): CActiveRecord->count(Object(CDbCriteria))
+#5 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(193): CActiveDataProvider->calculateTotalItemCount()
+#6 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(129): CDataProvider->getTotalItemCount()
+#7 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(137): CActiveDataProvider->fetchData()
+#8 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(105): CDataProvider->getData()
+#9 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(269): CBaseListView->init()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3133): CGridView->init()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('zii.widgets.gri...', Array)
+#12 C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php(65): CBaseController->widget('zii.widgets.gri...', Array)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('admin', Array, true)
+#17 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(142): CController->render('admin', Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionAdmin()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('admin')
+#28 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/admin')
+#29 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#30 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#31 {main}
+REQUEST_URI=/candidate/admin?Candidate%5Bid%5D=&Candidate%5Bstate_abbr%5D=&Candidate%5Bdistrict_number%5D=1&Candidate%5Btype%5D=representative&Candidate%5Bendorsement%5D=&Candidate%5Bfull_name%5D=&Candidate%5Bparty%5D=&Candidate%5Bscorecard%5D=&Candidate%5Bdate_published%5D=&Candidate%5Bpublish%5D=&Candidate_page=1&ajax=candidate-grid
+HTTP_REFERER=http://www.voterguide.com/candidate/admin
+---
+2012/03/28 10:42:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/03/28 10:42:51 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[42703]: Undefined column: 7 ERROR:  column district.type does not exist
+LINE 1: ...istrict"."id")  WHERE ((district.number='4') AND (district.t...
+                                                             ^. The SQL statement executed was: SELECT COUNT(DISTINCT "t"."id") FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE ((district.number=:ycp0) AND (district.type=:ycp1)).
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php (65)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (142)
+in C:\xampp\htdocs\HSLF\html\index.php (13)
+2012/03/28 10:42:51 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42703]: Undefined column: 7 ERROR:  column district.type does not exist
+LINE 1: ...istrict"."id")  WHERE ((district.number='4') AND (district.t...
+                                                             ^. The SQL statement executed was: SELECT COUNT(DISTINCT "t"."id") FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE ((district.number=:ycp0) AND (district.type=:ycp1))' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8615): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(762): CDbCommand->queryScalar()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(155): CJoinElement->count(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(7352): CActiveFinder->count(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(179): CActiveRecord->count(Object(CDbCriteria))
+#5 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(193): CActiveDataProvider->calculateTotalItemCount()
+#6 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(129): CDataProvider->getTotalItemCount()
+#7 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(137): CActiveDataProvider->fetchData()
+#8 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(105): CDataProvider->getData()
+#9 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(269): CBaseListView->init()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3133): CGridView->init()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('zii.widgets.gri...', Array)
+#12 C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php(65): CBaseController->widget('zii.widgets.gri...', Array)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('admin', Array, true)
+#17 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(142): CController->render('admin', Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionAdmin()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('admin')
+#28 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/admin')
+#29 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#30 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#31 {main}
+REQUEST_URI=/candidate/admin?Candidate%5Bid%5D=&Candidate%5Bstate_abbr%5D=&Candidate%5Bdistrict_number%5D=4&Candidate%5Btype%5D=representative&Candidate%5Bendorsement%5D=&Candidate%5Bfull_name%5D=&Candidate%5Bparty%5D=&Candidate%5Bscorecard%5D=&Candidate%5Bdate_published%5D=&Candidate%5Bpublish%5D=&Candidate_page=1&ajax=candidate-grid
+HTTP_REFERER=http://www.voterguide.com/candidate/admin
+---
+2012/03/28 10:43:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/03/28 10:43:56 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  invalid input syntax for integer: "4."
+LINE 1: ..."district_id"="district"."id")  WHERE (district.number='4.')
+                                                                  ^. The SQL statement executed was: SELECT COUNT(DISTINCT "t"."id") FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE (district.number=:ycp0).
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php (65)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (142)
+in C:\xampp\htdocs\HSLF\html\index.php (13)
+2012/03/28 10:43:56 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  invalid input syntax for integer: "4."
+LINE 1: ..."district_id"="district"."id")  WHERE (district.number='4.')
+                                                                  ^. The SQL statement executed was: SELECT COUNT(DISTINCT "t"."id") FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE (district.number=:ycp0)' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8615): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(762): CDbCommand->queryScalar()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(155): CJoinElement->count(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(7352): CActiveFinder->count(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(179): CActiveRecord->count(Object(CDbCriteria))
+#5 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(193): CActiveDataProvider->calculateTotalItemCount()
+#6 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(129): CDataProvider->getTotalItemCount()
+#7 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(137): CActiveDataProvider->fetchData()
+#8 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(105): CDataProvider->getData()
+#9 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(269): CBaseListView->init()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3133): CGridView->init()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('zii.widgets.gri...', Array)
+#12 C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php(65): CBaseController->widget('zii.widgets.gri...', Array)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('admin', Array, true)
+#17 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(142): CController->render('admin', Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionAdmin()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('admin')
+#28 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/admin')
+#29 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#30 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#31 {main}
+REQUEST_URI=/candidate/admin?Candidate%5Bid%5D=&Candidate%5Bstate_abbr%5D=&Candidate%5Bdistrict_number%5D=4.&Candidate%5Btype%5D=&Candidate%5Bendorsement%5D=&Candidate%5Bfull_name%5D=&Candidate%5Bparty%5D=&Candidate%5Bscorecard%5D=&Candidate%5Bdate_published%5D=&Candidate%5Bpublish%5D=&Candidate_page=1&ajax=candidate-grid
+HTTP_REFERER=http://www.voterguide.com/candidate/admin
+---
+2012/03/28 10:44:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/03/28 10:45:19 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[42702]: Ambiguous column: 7 ERROR:  column reference "state_abbr" is ambiguous
+LINE 1: ...='4') AND (district.state_abbr LIKE '%az%')) AND (state_abbr...
+                                                             ^. The SQL statement executed was: SELECT COUNT(DISTINCT "t"."id") FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE (((((district.number=:ycp0) AND (district.state_abbr LIKE :ycp1)) AND (state_abbr LIKE :ycp2)) AND (type LIKE :ycp3)) AND (party LIKE :ycp4)).
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php (65)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (142)
+in C:\xampp\htdocs\HSLF\html\index.php (13)
+2012/03/28 10:45:19 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42702]: Ambiguous column: 7 ERROR:  column reference "state_abbr" is ambiguous
+LINE 1: ...='4') AND (district.state_abbr LIKE '%az%')) AND (state_abbr...
+                                                             ^. The SQL statement executed was: SELECT COUNT(DISTINCT "t"."id") FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE (((((district.number=:ycp0) AND (district.state_abbr LIKE :ycp1)) AND (state_abbr LIKE :ycp2)) AND (type LIKE :ycp3)) AND (party LIKE :ycp4))' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8615): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(762): CDbCommand->queryScalar()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(155): CJoinElement->count(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(7352): CActiveFinder->count(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(179): CActiveRecord->count(Object(CDbCriteria))
+#5 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(193): CActiveDataProvider->calculateTotalItemCount()
+#6 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(129): CDataProvider->getTotalItemCount()
+#7 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(137): CActiveDataProvider->fetchData()
+#8 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(105): CDataProvider->getData()
+#9 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(269): CBaseListView->init()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3133): CGridView->init()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('zii.widgets.gri...', Array)
+#12 C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php(65): CBaseController->widget('zii.widgets.gri...', Array)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('admin', Array, true)
+#17 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(142): CController->render('admin', Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionAdmin()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('admin')
+#28 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/admin')
+#29 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#30 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#31 {main}
+REQUEST_URI=/candidate/admin?Candidate%5Bid%5D=&Candidate%5Bstate_abbr%5D=az&Candidate%5Bdistrict_number%5D=4&Candidate%5Btype%5D=senator&Candidate%5Bendorsement%5D=&Candidate%5Bfull_name%5D=&Candidate%5Bparty%5D=D&Candidate%5Bscorecard%5D=5&Candidate%5Bdate_published%5D=&Candidate%5Bpublish%5D=&Candidate_page=1&ajax=candidate-grid
+HTTP_REFERER=http://www.voterguide.com/candidate/admin
+---
+2012/03/28 10:45:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/03/28 10:45:32 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[42702]: Ambiguous column: 7 ERROR:  column reference "state_abbr" is ambiguous
+LINE 1: ...='4') AND (district.state_abbr LIKE '%az%')) AND (state_abbr...
+                                                             ^. The SQL statement executed was: SELECT COUNT(DISTINCT "t"."id") FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE (((district.number=:ycp0) AND (district.state_abbr LIKE :ycp1)) AND (state_abbr LIKE :ycp2)).
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php (65)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (142)
+in C:\xampp\htdocs\HSLF\html\index.php (13)
+2012/03/28 10:45:32 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42702]: Ambiguous column: 7 ERROR:  column reference "state_abbr" is ambiguous
+LINE 1: ...='4') AND (district.state_abbr LIKE '%az%')) AND (state_abbr...
+                                                             ^. The SQL statement executed was: SELECT COUNT(DISTINCT "t"."id") FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE (((district.number=:ycp0) AND (district.state_abbr LIKE :ycp1)) AND (state_abbr LIKE :ycp2))' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8615): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(762): CDbCommand->queryScalar()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(155): CJoinElement->count(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(7352): CActiveFinder->count(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(179): CActiveRecord->count(Object(CDbCriteria))
+#5 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(193): CActiveDataProvider->calculateTotalItemCount()
+#6 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(129): CDataProvider->getTotalItemCount()
+#7 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(137): CActiveDataProvider->fetchData()
+#8 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(105): CDataProvider->getData()
+#9 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(269): CBaseListView->init()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3133): CGridView->init()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('zii.widgets.gri...', Array)
+#12 C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php(65): CBaseController->widget('zii.widgets.gri...', Array)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('admin', Array, true)
+#17 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(142): CController->render('admin', Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionAdmin()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('admin')
+#28 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/admin')
+#29 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#30 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#31 {main}
+REQUEST_URI=/candidate/admin?Candidate%5Bid%5D=&Candidate%5Bstate_abbr%5D=az&Candidate%5Bdistrict_number%5D=4&Candidate%5Btype%5D=&Candidate%5Bendorsement%5D=&Candidate%5Bfull_name%5D=&Candidate%5Bparty%5D=&Candidate%5Bscorecard%5D=&Candidate%5Bdate_published%5D=&Candidate%5Bpublish%5D=&Candidate_page=1&ajax=candidate-grid
+HTTP_REFERER=http://www.voterguide.com/candidate/admin
+---
+2012/03/28 10:46:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---

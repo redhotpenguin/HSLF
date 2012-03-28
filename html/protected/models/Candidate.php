@@ -106,21 +106,22 @@ class Candidate extends CActiveRecord {
             $criteria->with = array('district');
             $criteria->compare('district.number', $this->district_number, false);
             $criteria->compare('district.state_abbr', $this->state_abbr, true);
-          //  $criteria->compare('candidate.type', $this->type, false);
+            
         } else {
             $criteria->together = false;
             $criteria->with = array();
+            
+             $criteria->compare('state_abbr', $this->state_abbr, true);
+        }
 
-            $criteria->compare('id', $this->id);
-            $criteria->compare('state_abbr', $this->state_abbr, true);
-            $criteria->compare('district_id', $this->district_id);
+            $criteria->compare('id', $this->id);  
             $criteria->compare('type', $this->type, true);
             $criteria->compare('endorsement', $this->endorsement, true);
             $criteria->compare('full_name', $this->full_name, true);
             $criteria->compare('party', $this->party, true);
             $criteria->compare('date_published', $this->date_published, true);
             $criteria->compare('publish', $this->publish, true);
-        }
+        
 
 
 
