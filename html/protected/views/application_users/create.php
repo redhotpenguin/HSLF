@@ -5,8 +5,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Application_users', 'url'=>array('index')),
-	array('label'=>'Manage Application_users', 'url'=>array('admin')),
+	array('label'=>'List application users', 'url'=>array('index')),
+	array('label'=>'Manage application users', 'url'=>array('admin')),
 );
 ?>
 

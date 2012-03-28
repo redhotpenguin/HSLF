@@ -13,6 +13,13 @@ $this->menu=array(
 
 <?php 
 
+if( Yii::app()->user->getState('role') == 'admin'){
+    $button_template = '{view} {update} {delete} ';
+}
+else{
+    $button_template = '{view}';
+}
+
 
 $dataProvider->pagination->pageSize = 50;
 $this->widget('zii.widgets.grid.CGridView', array(
@@ -28,6 +35,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
         'registration',
         array(            // display a column with "view", "update" and "delete" buttons
             'class'=>'CButtonColumn',
+            'template' => $button_template,
         ),
     ),
 ));
