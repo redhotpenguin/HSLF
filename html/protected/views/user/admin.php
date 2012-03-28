@@ -6,7 +6,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'List User', 'url'=>array('index')),
-	array('label'=>'Create User', 'url'=>array('create')),
+	array('label'=>'Create User', 'url'=>array('create'),  'visible'=>  isset($user->role) && ($user->role==="admin")),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -44,7 +44,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'columns'=>array(
 		'id',
 		'username',
-		'password',
 		'email',
 		array(
 			'class'=>'CButtonColumn',
