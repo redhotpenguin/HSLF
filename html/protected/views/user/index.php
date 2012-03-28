@@ -4,8 +4,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Create User', 'url'=>array('create'),  'visible'=>  isset($user->role) && ($user->role==="admin")),
-	array('label'=>'Manage User', 'url'=>array('admin') ),
+	array('label'=>'Create User', 'url'=>array('create'), 'visible'=>Yii::app()->user->getState('role') == 'admin'),
+	array('label'=>'Manage User', 'url'=>array('admin'), 'visible'=>Yii::app()->user->getState('role') == 'admin'),
 );
 ?>
 

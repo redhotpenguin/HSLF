@@ -25,12 +25,12 @@ class UserController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'view', 'admin'),
+                'actions' => array('index', 'view'),
                 'users' => array('@'),
             ),
             array(
                 'allow',
-                'actions' => array('create', 'delete', 'update'),
+                'actions' => array('create', 'delete', 'update', 'admin'),
                 'users' => array('@'),
                 'expression' => 'isset($user->role) && ($user->role==="admin")'
             ),
