@@ -26,6 +26,14 @@
 		<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>128)); ?>
 		<?php echo $form->error($model,'email'); ?>
 	</div>
+        
+        <div class="row">
+		<?php 
+                echo $form->labelEx($model,'role'); 
+		echo $form->dropDownList($model,'role', $model->getRoleOptions() ); 
+		echo $form->error($model,'role'); 
+                ?>
+	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
