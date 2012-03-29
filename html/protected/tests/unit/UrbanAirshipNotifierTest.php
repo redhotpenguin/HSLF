@@ -2,11 +2,12 @@
 
 class UrbanAirshipNotifierTest extends CTestCase {
 
+    private $notifier;
+
     public function __construct() {
-        
+        $this->notifier = new UrbanAirshipNotifier();
     }
 
-    /*
     public function testSendPushNotifications_DROID_IOS() {
         $notifier = new UrbanAirshipNotifier();
 
@@ -70,20 +71,28 @@ class UrbanAirshipNotifierTest extends CTestCase {
         $this->assertEquals(-1, $result['PUSH_ANDROID']);
         $this->assertEquals(true, $result['PUSH_IOS']);
     }
-    */
-    
-    public function testNotify_district_users(){
-        
+
+    public function testNotify_district_users() {
+
         $district_ids = array(1, 4);
         $message = 'Testing Notify District Users';
         $notifier = new UrbanAirshipNotifier();
-        
+
         $result = $notifier->notify_district_users($district_ids, $message);
-        
+
         error_log(print_r($result, true));
-        
-        
+
+
         $this->assertEquals(true, $result);
+    }
+
+    public function testSendBroadcastNotification() {
+        $message = 'broadcasting to both ios and droids';
+
+        $result = $this->notifier->sendBroadcastNotification($message);
+        error_log(print_r($result, true));
+        $this->assertEquals(true, $result['BROADCAST_IOS']);
+        $this->assertEquals(true, $result['BROADCAST_ANDROID']);
     }
 
 }

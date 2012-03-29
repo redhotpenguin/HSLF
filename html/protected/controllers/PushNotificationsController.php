@@ -146,7 +146,7 @@ class PushNotificationsController extends Controller {
                 if (isset($_POST['confirm_broadcast'])) {
                     $notifier = new UrbanAirshipNotifier();
                     $broadcast_result = $notifier->sendBroadcastNotification('hello world');
-                    if ($broadcast_result == 'SUCCESS') {
+                    if (  $broadcast_result['BROADCAST_IOS'] == true &&   $broadcast_result['BROADCAST_ANDROID'] == true ) {
                         $model->sent = 'yes';
                         $message = 'Broadcast message successfuly sent';
                     } else {

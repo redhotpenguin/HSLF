@@ -2,28 +2,29 @@
 
 // Php module for using the Urban Airship API
 
-require_once(dirname(__FILE__).'/RESTClient.php');
+require_once(dirname(__FILE__) . '/RESTClient.php');
 
 define('SERVER', 'go.urbanairship.com');
 define('BASE_URL', 'https://go.urbanairship.com/api');
 define('DEVICE_TOKEN_URL', BASE_URL . '/device_tokens/');
 define('APID_URL', BASE_URL . '/apids/');
 define('PUSH_URL', BASE_URL . '/push/');
-define('BROADCAST_URL',  BASE_URL . '/push/broadcast/');
+define('BROADCAST_URL', BASE_URL . '/push/broadcast/');
 define('FEEDBACK_URL', BASE_URL . '/device_tokens/feedback/');
-
 
 // Raise when we get a 401 from the server.
 class Unauthorized extends Exception {
+    
 }
 
 // Raise when we get an error response from the server.
 // args are (status code, message).
 class AirshipFailure extends Exception {
+    
 }
 
-
 class AirshipDeviceList implements Iterator, Countable {
+
     private $_airship = null;
     private $_page = null;
     private $_position = 0;
@@ -73,7 +74,7 @@ class AirshipDeviceList implements Iterator, Countable {
 
     function valid() {
         if (!isset($this->_page->device_tokens[$this->_position])) {
-            $next_page =  isset($this->_page->next_page) ? $this->_page->next_page : null;
+            $next_page = isset($this->_page->next_page) ? $this->_page->next_page : null;
             if ($next_page == null) {
                 return false;
             } else {
@@ -83,9 +84,11 @@ class AirshipDeviceList implements Iterator, Countable {
         }
         return true;
     }
+
 }
 
 class Airship {
+
     private $key = '';
     private $secret = '';
 
@@ -95,7 +98,7 @@ class Airship {
         return true;
     }
 
-    public function _request($url, $method, $body, $content_type=null) {
+    public function _request($url, $method, $body, $content_type = null) {
         $rest = new RESTClient($this->key, $this->secret, $content_type);
         $rest->createRequest($url, $method, $body);
         $rest->sendRequest();
@@ -107,7 +110,7 @@ class Airship {
     }
 
     // Register the device token with UA.
-    public function register_ios($device_token, $alias=null, $tags=null, $badge=null) {
+    public function register_ios($device_token, $alias = null, $tags = null, $badge = null) {
         $url = DEVICE_TOKEN_URL . $device_token;
         $payload = array();
         if ($alias != null) {
@@ -133,9 +136,9 @@ class Airship {
         }
         return ($response_code == 201);
     }
-	
-	  // Register the device token with UA.
-    public function register_android($device_token, $alias=null, $tags=null) {
+
+    // Register the device token with UA.
+    public function register_android($device_token, $alias = null, $tags = null) {
         $url = APID_URL . $device_token;
         $payload = array();
         if ($alias != null) {
@@ -144,7 +147,7 @@ class Airship {
         if ($tags != null) {
             $payload['tags'] = $tags;
         }
-     
+
         if (count($payload) != 0) {
             $body = json_encode($payload);
             $content_type = 'application/json';
@@ -181,14 +184,13 @@ class Airship {
         return json_decode($response[1]);
     }
 
-
     public function get_device_tokens() {
         return new AirshipDeviceList($this);
     }
 
     // Push this payload to the specified device tokens and tags.
-    public function push_ios($payload, array $device_tokens=null,  array $aliases=null, array $tags=null) {
-  
+    public function push_ios($payload, array $device_tokens = null, array $aliases = null, array $tags = null) {
+
         if ($device_tokens != null) {
             $payload['device_tokens'] = $device_tokens;
         }
@@ -201,50 +203,47 @@ class Airship {
         $body = json_encode($payload);
         $response = $this->_request(PUSH_URL, 'POST', $body, 'application/json');
         $response_code = $response[0];
-       
+
         if ($response_code != 200) {
             throw new AirshipFailure($response[1], $response_code);
         }
-      
+
         return $response_code;
     }
-	
 
-	
-	
-	   // Push this payload to the specified device tokens and tags.
-    public function push_android($alert, array $apids,  array $tags = NULL, array $aliases = NULL, $extra = NULL) {
-	   $payload = array();
-	   $payload['apids'] = $apids;
-	   
-	   
-	   if( $aliases  ){
-		$payload['aliases'] = $aliases;
-	   }
-	   
-	   if( $tags  ){
-		$payload['tags'] = $tags;
-	   }
-	   
-	   if( $extra ){
-		$payload['android']['extra'] = $extra;
-	   }
-	   
-	   $payload['android']['alert'] = $alert;
-		
-       $body = json_encode($payload);
+    // Push this payload to the specified device tokens and tags.
+    public function push_android($alert, array $apids, array $tags = NULL, array $aliases = NULL, $extra = NULL) {
+        $payload = array();
+        $payload['apids'] = $apids;
 
-       $response = $this->_request(PUSH_URL, 'POST', $body, 'application/json');
-       $response_code = $response[0];
+
+        if ($aliases) {
+            $payload['aliases'] = $aliases;
+        }
+
+        if ($tags) {
+            $payload['tags'] = $tags;
+        }
+
+        if ($extra) {
+            $payload['android']['extra'] = $extra;
+        }
+
+        $payload['android']['alert'] = $alert;
+
+        $body = json_encode($payload);
+
+        $response = $this->_request(PUSH_URL, 'POST', $body, 'application/json');
+        $response_code = $response[0];
         if ($response_code != 200) {
             throw new AirshipFailure($response[1], $response_code);
         }
-        
+
         return $response_code;
     }
 
     // Broadcast this payload to all users.
-    public function broadcast($payload, $exclude_tokens=null) {
+    public function broadcast_ios($payload, array $exclude_tokens = null) {
         if ($exclude_tokens != null) {
             $payload['exclude_tokens'] = $exclude_tokens;
         }
@@ -254,12 +253,32 @@ class Airship {
         if ($response_code != 200) {
             throw new AirshipFailure($response[1], $response_code);
         }
+
+        return $response_code;
+    }
+
+    public function broadcast_android($alert, $extra = null) {
+        $payload['android']['alert'] = $alert;
+        if ($extra) {
+            $payload['android']['extra'] = $extra;
+        }
+        
+        $body = json_encode($payload);
+        
+        $response = $this->_request(BROADCAST_URL, 'POST', $body, 'application/json');
+        $response_code = $response[0];
+        if ($response_code != 200) {
+            throw new AirshipFailure($response[1], $response_code);
+        }
+
+        return $response_code;
     }
 
     /*
-     Return device tokens marked as inactive since this timestamp
-     Return a list of (device token, timestamp, alias) functions.
+      Return device tokens marked as inactive since this timestamp
+      Return a list of (device token, timestamp, alias) functions.
      */
+
     public function feedback($since) {
         $url = FEEDBACK_URL . '?' . 'since=' . rawurlencode($since->format('c'));
         $response = $this->_request($url, 'GET', null, null);
@@ -270,7 +289,7 @@ class Airship {
         $results = json_decode($response[1]);
         foreach ($results as $item) {
             $item->marked_inactive_on = new DateTime($item->marked_inactive_on,
-                                                       new DateTimeZone('UTC'));
+                            new DateTimeZone('UTC'));
         }
         return $results;
     }

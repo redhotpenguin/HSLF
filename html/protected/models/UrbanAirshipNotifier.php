@@ -112,19 +112,32 @@ class UrbanAirshipNotifier extends CModel {
      * @param string $message the alert message
      * @return true or false
      */
-    public function sendBroadcastNotification($message) { // to be tested
+    public function sendBroadcastNotification($message) {
+        $broadcast_result = array(
+            'BROADCAST_IOS' => false,
+            'BROADCAST_ANDROID' => false
+        );
+
         $airship = new Airship(Yii::app()->params['urbanairship_app_key'], Yii::app()->params['urbanairship_app_master_secret']);
 
-        $broadcast_message = array(
+        $ios_payload = array(
             'aps' => array('alert' => $message)
         );
 
-        $response = $airship->broadcast($broadcast_message, array($TEST_DEVICE_TOKEN));
-        if ($response == 200) {
-            return 'SUCCESS';
-        } else {
-            return 'FAILURE';
+        $response_ios_broadcast = $airship->broadcast_ios($ios_payload);
+        $response_android_broadcast = $airship->broadcast_android($message);
+
+
+        if ($response_ios_broadcast == 200) {
+            $broadcast_result['BROADCAST_IOS'] = true;  
+        } 
+       
+        if($response_android_broadcast == 200){
+            $broadcast_result['BROADCAST_ANDROID'] = true;
         }
+        
+        return $broadcast_result;
+       
     }
 
 }
