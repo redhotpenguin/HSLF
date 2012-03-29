@@ -7,8 +7,8 @@ require_once(dirname(__FILE__).'/RESTClient.php');
 define('SERVER', 'go.urbanairship.com');
 define('BASE_URL', 'https://go.urbanairship.com/api');
 define('DEVICE_TOKEN_URL', BASE_URL . '/device_tokens/');
+define('APID_URL', BASE_URL . '/apids/');
 define('PUSH_URL', BASE_URL . '/push/');
-define('BATCH_PUSH_URL', PUSH_URL.'batch/');
 define('BROADCAST_URL',  BASE_URL . '/push/broadcast/');
 define('FEEDBACK_URL', BASE_URL . '/device_tokens/feedback/');
 
@@ -107,7 +107,7 @@ class Airship {
     }
 
     // Register the device token with UA.
-    public function register($device_token, $alias=null, $tags=null, $badge=null) {
+    public function register_ios($device_token, $alias=null, $tags=null, $badge=null) {
         $url = DEVICE_TOKEN_URL . $device_token;
         $payload = array();
         if ($alias != null) {
@@ -119,6 +119,32 @@ class Airship {
         if ($badge != null) {
             $payload['badge'] = $badge;
         }
+        if (count($payload) != 0) {
+            $body = json_encode($payload);
+            $content_type = 'application/json';
+        } else {
+            $body = '';
+            $content_type = null;
+        }
+        $response = $this->_request($url, 'PUT', $body, $content_type);
+        $response_code = $response[0];
+        if ($response_code != 201 && $response_code != 200) {
+            throw new AirshipFailure($response[1], $response_code);
+        }
+        return ($response_code == 201);
+    }
+	
+	  // Register the device token with UA.
+    public function register_android($device_token, $alias=null, $tags=null) {
+        $url = APID_URL . $device_token;
+        $payload = array();
+        if ($alias != null) {
+            $payload['alias'] = $alias;
+        }
+        if ($tags != null) {
+            $payload['tags'] = $tags;
+        }
+     
         if (count($payload) != 0) {
             $body = json_encode($payload);
             $content_type = 'application/json';
@@ -161,7 +187,8 @@ class Airship {
     }
 
     // Push this payload to the specified device tokens and tags.
-    public function push($payload, $device_tokens=null, $aliases=null, $tags=null) {
+    public function push_ios($payload, array $device_tokens=null,  array $aliases=null, array $tags=null) {
+  
         if ($device_tokens != null) {
             $payload['device_tokens'] = $device_tokens;
         }
@@ -174,87 +201,47 @@ class Airship {
         $body = json_encode($payload);
         $response = $this->_request(PUSH_URL, 'POST', $body, 'application/json');
         $response_code = $response[0];
-        if ($response_code != 200) {
-            throw new AirshipFailure($response[1], $response_code);
-        }
-    }
-    
-    // Batch push (JP)
-    public function batch_push($payload ){
-         $json_payload =  CJSON::encode($payload);
-  
-         /*
-         $response = $this->_request(BATCH_PUSH_URL, 'POST', $body, 'application/json');
-        
-        $response_code = $response[0];
-        if ($response_code != 200) {
-            throw new AirshipFailure($response[1], $response_code);
-        }
-        
-          */
-      
        
-        /*
-         * HTTP POST to : /api/push/batch/
-         * application/json encode it
-{"device_tokens":["1414","7457y4456","fgwesgt3426"],"aps":{"badge":"the badge","alert":"the alert","sound":"whut"}}
-         
-         *
-          * ios:
-         * [
-    {
-        "device_tokens": [
-            "some_device_token",
-            "another_device_token"
-        ],
-        "aps": {
-             "badge": 15,
-             "alert": "Hello from Urban Airship!",
-             "sound": "cat.caf"
+        if ($response_code != 200) {
+            throw new AirshipFailure($response[1], $response_code);
         }
-    },
-    {
-        "device_tokens": [
-            "yet_another_device_token"
-        ],
-        "aliases": [
-            "some_alias",
-            "another_alias"
-        ],
-        "aps": {
-            "badge": 12
-        }
+      
+        return $response_code;
     }
-]
-         * 
-         * 
-         * 
-         * Androids:
-         * 
-         * [
-    {
-        "apids": [
-            "some APID",
-        ],
-        "android": {
-             "alert": "Hello from Urban Airship!",
-             "extra": {"data":"optional extra data"}
+	
+
+	
+	
+	   // Push this payload to the specified device tokens and tags.
+    public function push_android($alert, array $apids,  array $tags = NULL, array $aliases = NULL, $extra = NULL) {
+	   $payload = array();
+	   $payload['apids'] = $apids;
+	   
+	   
+	   if( $aliases  ){
+		$payload['aliases'] = $aliases;
+	   }
+	   
+	   if( $tags  ){
+		$payload['tags'] = $tags;
+	   }
+	   
+	   if( $extra ){
+		$payload['android']['extra'] = $extra;
+	   }
+	   
+	   $payload['android']['alert'] = $alert;
+		
+       $body = json_encode($payload);
+
+       $response = $this->_request(PUSH_URL, 'POST', $body, 'application/json');
+       $response_code = $response[0];
+        if ($response_code != 200) {
+            throw new AirshipFailure($response[1], $response_code);
         }
-    },
-    {
-        "apids": [
-            "yet another APID"
-        ],
-        "android": {
-             "alert": "Goodbye from Urban Airship!"
-             "extra": {"data":"optional extra data"}
-        }
+        
+        return $response_code;
     }
-]
-         */
-         return true;
-    }
-    
 
     // Broadcast this payload to all users.
     public function broadcast($payload, $exclude_tokens=null) {

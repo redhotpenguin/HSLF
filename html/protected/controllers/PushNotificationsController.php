@@ -160,11 +160,11 @@ class PushNotificationsController extends Controller {
             case 'district':
                 if (isset($_POST['district_ids']) && count($_POST['district_ids']) > 0) {
                     $notifier = new UrbanAirshipNotifier();
-
+                       
                     $push_result = $notifier->notify_district_users($_POST['district_ids'], $model->message);
-                    if ($push_result == 'SUCCESS') {
+                    if ($push_result > 0) {
                         $model->sent = 'yes';
-                        $message = 'Notification successfuly sent';
+                        $message = $push_result. ' notifications successfuly sent';
                     } elseif ($push_result == 'NO_USER_FOUND') {
                         $message = 'No users in that district';
                     } else {
