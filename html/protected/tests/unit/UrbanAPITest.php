@@ -31,17 +31,17 @@ class UrbanAPITest extends CTestCase {
 
       $this->assertEquals(200, $result);
       }
-
+*/
+    
       public function testPushAndroid() {
-      $droid_token = array('fec7e94a-c9b6-4874-a5b3-c1626cd70355');
+      $droid_token = array('cf2b078f-3c8f-40fe-a165-d28ea7e0d062');
 
-      $tags = array('tag1', 'tag2');
-      $alias = array('alias');
+      
 
-      $alert = 'hello world';
+      $alert = 'hello from unit testing';
 
       try {
-      $result = $this->airship->push_android($alert, $droid_token, $tags, $alias, 'extra!');
+      $result = $this->airship->push_android($alert, $droid_token);
       } catch (Exception $e) {
       $result = $e->getMessage();
       }
@@ -50,7 +50,7 @@ class UrbanAPITest extends CTestCase {
       }
 
 
-
+/*
       public function testBroadcastIos() {
       $message = 'Did you get that broadcast message?';
       $broadcast_message = array(
@@ -69,9 +69,8 @@ class UrbanAPITest extends CTestCase {
 
       $this->assertEquals(200, $result);
       }
-
      */
-
+/*
     public function testBroadcastAndroid() {
         $message = 'broadcasting to android';
 
@@ -83,6 +82,8 @@ class UrbanAPITest extends CTestCase {
         
         $this->assertEquals(200, $result);
     }
+ * */
+ 
 
 }
 
