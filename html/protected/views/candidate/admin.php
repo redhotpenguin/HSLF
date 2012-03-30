@@ -52,7 +52,6 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'value' => '$data->district->number'
         ),
         'type',
-        'endorsement',
         'full_name',
         'party',
         'scorecard',

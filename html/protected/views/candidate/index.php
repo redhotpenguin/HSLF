@@ -26,10 +26,6 @@ $this->widget('zii.widgets.grid.CGridView', array(
         'type',
         'full_name',
         'party',
-         array(
-            'header' => 'endorsement',
-            'value' => 'substr( $data->endorsement, 0, 300 )."..."',
-        ),
         'scorecard',
         'date_published',
         'publish',
