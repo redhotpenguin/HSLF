@@ -2311,3 +2311,43 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/favicon.ico
 ---
+2012/03/30 14:23:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/03/30 14:23:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/03/30 14:23:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/03/30 14:23:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/03/30 14:24:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
