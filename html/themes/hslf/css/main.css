@@ -422,16 +422,10 @@ div.loading * {
     position: fixed;
     margin: auto auto;
     top: 270px;
-    right: 172px;
-    background-color: white;
-    width: 500px;
-    border: 1px solid #CCC;
-    min-height: 350px;
-}
+    right: 370px;
+    background: url('iphone_template.png') no-repeat;
+    background-size:270px;
+    width: 300px;
 
-#candidate_preview .header{
-    background-color: #333;
-    color: white;
-    padding: 5px;
-    font-weight: bold;
+    min-height: 500px;
 }

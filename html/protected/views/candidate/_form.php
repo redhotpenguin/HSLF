@@ -134,7 +134,7 @@ $fields = array(
         array('Candidate_full_name'),
         array('Candidate_state_abbr'),
         array('Candidate_district_id'),
-        array('Candidate_type','to_upper_case'),
+        array('Candidate_type', 'to_upper_case'),
         array('Candidate_party'),
         array('Candidate_scorecard'),
         array('Candidate_date_published'),
@@ -142,7 +142,7 @@ $fields = array(
     ),
 );
 
-$this->widget('ext.FormPreview.FormPreview', array('fields' => $fields, 'form_id'=>'candidate-form'));
+$this->widget('ext.FormPreview.FormPreview', array('fields' => $fields, 'form_id' => 'candidate-form'));
 ?>
 
 <script type="text/javascript">
@@ -152,24 +152,25 @@ $this->widget('ext.FormPreview.FormPreview', array('fields' => $fields, 'form_id
     }
 
     // cledit doesnt play nice with formpreview, simulate keyup
-   function force_refresh() {
-       $('#Candidate_endorsement').keyup();
-       $('#Candidate_date_published').keyup();
-       $('#Candidate_district_id').change();
+    function force_refresh() {
+        $('#Candidate_endorsement').keyup();
+        $('#Candidate_date_published').keyup();
+        $('#Candidate_district_id').change();
     }
-   var check_form_result = setInterval(force_refresh, 1000);
+    var check_form_result = setInterval(force_refresh, 1000);
 
 </script>
 
 
 <div id="candidate_preview">
-    <div class="header">Application preview</div>
-    <div id="Candidate_full_name_preview" class="input_preview"></div>
-    <div id="Candidate_state_abbr_preview" class="list_preview"></div>
-    <div id="Candidate_district_id_preview" class="list_preview"></div>
-    <div id="Candidate_type_preview" class="list_preview"></div>
-    <div id="Candidate_party_preview" class="list_preview"></div>
-    <div id="Candidate_scorecard_preview" class="input_preview"></div>
-    <div id="Candidate_date_published_preview" class="input_preview"></div>
-    <div id="Candidate_endorsement_preview" class="input_preview"></div>
+    <div id="iphone_bg">
+        <div id="Candidate_full_name_preview" class="input_preview"></div>
+        <div id="Candidate_state_abbr_preview" class="list_preview"></div>
+        <div id="Candidate_district_id_preview" class="list_preview"></div>
+        <div id="Candidate_type_preview" class="list_preview"></div>
+        <div id="Candidate_party_preview" class="list_preview"></div>
+        <div id="Candidate_scorecard_preview" class="input_preview"></div>
+        <div id="Candidate_date_published_preview" class="input_preview"></div>
+        <div id="Candidate_endorsement_preview" class="input_preview"></div>
+    </div>
 </div>
