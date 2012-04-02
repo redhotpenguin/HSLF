@@ -176,14 +176,25 @@ class ApiController extends Controller {
             exit;
 
         if (preg_match('/^[a-z]{2,3}$/', $_POST['state_abbr'])) { // state abbr input must be between 2 or 3 characters (lowercase)
-            $app_user->state_abbr = $_POST['state_abbr'];
+            $app_user->state_abbr = strtolower( $_POST['state_abbr'] ) ;
         }
         else
             exit;
 
 
         if (preg_match('/^[0-9]{1,}$/', $user_district_number)) { // check that $user_district number is only made of numbers
-            $app_user->district = District::getIdByStateAndDistrict($user_state, $user_district_number);
+            $district_id = District::getIdByStateAndDistrict($user_state, $user_district_number);
+
+            if (!$district_id) { // the district isn't saved in the database, insert a new one
+                $district = new District;
+                $district->state_abbr = $user_state;
+                $district->number = $user_district_number;
+                $district->save();
+                $district->id;
+                $district_id = $district->id;  
+           }
+
+            $app_user->district = $district_id;
         }
         else
             exit;
@@ -197,7 +208,7 @@ class ApiController extends Controller {
             default: error_log('app_user: wrong type given');
                 exit;
         }
-        
+
         try {
             $save_result = $app_user->save();
         } catch (Exception $exception) {

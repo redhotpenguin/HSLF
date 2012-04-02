@@ -163,6 +163,7 @@ $this->widget('ext.FormPreview.FormPreview', array('fields' => $fields, 'form_id
 
 
 <div id="candidate_preview">
+    <div class="header">Application preview</div>
     <div id="Candidate_full_name_preview" class="input_preview"></div>
     <div id="Candidate_state_abbr_preview" class="list_preview"></div>
     <div id="Candidate_district_id_preview" class="list_preview"></div>

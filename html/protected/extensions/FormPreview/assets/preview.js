@@ -33,19 +33,5 @@ jQuery(document).ready(function($) {
             });
             this.change();
         }
-	
-	
     };
-
-
-    function force_refresh() {
-        inputs = $('#candidate-form :input');
-        inputs.each(function(index,field){
-            $('#'+field.id).add_preview();
-        });    
-    }
-
- //   var check_form_result = setInterval(force_refresh, 1000);
-
 });
-

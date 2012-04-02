@@ -425,7 +425,13 @@ div.loading * {
     right: 172px;
     background-color: white;
     width: 500px;
-    padding: 5px;
     border: 1px solid #CCC;
     min-height: 350px;
+}
+
+#candidate_preview .header{
+    background-color: #333;
+    color: white;
+    padding: 5px;
+    font-weight: bold;
 }

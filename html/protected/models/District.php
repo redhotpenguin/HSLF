@@ -99,7 +99,7 @@ class District extends CActiveRecord
 	 */
      
       
-         static function getIdByStateAndDistrict($state, $district_number){
+         public static function getIdByStateAndDistrict($state, $district_number){
             $district =  District::model()->findByAttributes( array ( 'state_abbr' => $state,'number' => $district_number ) );
             if($district)
                 return $district->id;
