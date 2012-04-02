@@ -95,18 +95,10 @@
     <div class="row">
         <?php
         echo $form->labelEx($model, 'endorsement');
-
-        $this->widget('application.extensions.cleditor.ECLEditor', array(
+        $this->widget('ext.TinyMce.TinyMce', array(
             'model' => $model,
-            'attribute' => 'endorsement', //Model attribute name. Nome do atributo do modelo.
-            'options' => array(
-                'width' => '650',
-                'height' => 350,
-                'useCSS' => true
-            ),
-            'value' => $model->endorsement, //If you want pass a value for the widget. I think you will. Se você precisar passar um valor para o gadget. Eu acho irá.
+            'attribute' => 'endorsement'
         ));
-
 
         echo $form->error($model, 'endorsement');
         ?>
