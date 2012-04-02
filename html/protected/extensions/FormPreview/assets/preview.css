@@ -16,5 +16,6 @@
     top: 92px;
     position: relative;
     left: 27px;
-    height: 320px
+    height: 325px;
+    overflow: auto;
 }
