@@ -95,10 +95,10 @@
     <div class="row">
         <?php
         echo $form->labelEx($model, 'endorsement');
-        $this->widget('ext.TinyMce.TinyMce', array(
+        /*$this->widget('ext.TinyMce.TinyMce', array(
             'model' => $model,
             'attribute' => 'endorsement'
-        ));
+        ));*/
 
         echo $form->error($model, 'endorsement');
         ?>
