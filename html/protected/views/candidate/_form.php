@@ -129,8 +129,9 @@
 
 
 <?php
-$previewOptions = array(
-    'fields' => array('Candidate_full_name',
+$fields = array(
+    'fields' => array(
+        'Candidate_full_name',
         'Candidate_state_abbr',
         'Candidate_district_id',
         'Candidate_type',
@@ -140,8 +141,38 @@ $previewOptions = array(
         'Candidate_endorsement',
     ),
 );
-$this->widget('ext.FormPreview.FormPreview', array('options' => $previewOptions));
+
+$fields = array(
+    'fields' => array(
+        array('Candidate_full_name', 'to_upper_case'),
+        array('Candidate_state_abbr'),
+        array('Candidate_district_id'),
+        array('Candidate_type','to_upper_case'),
+        array('Candidate_party'),
+        array('Candidate_scorecard'),
+        array('Candidate_date_published'),
+        array('Candidate_endorsement'),
+    ),
+);
+
+$this->widget('ext.FormPreview.FormPreview', array('fields' => $fields, 'form_id'=>'candidate-form'));
 ?>
+
+<script type="text/javascript">
+    // filters
+    function to_upper_case(data){
+        return data.toUpperCase();
+    }
+
+    // cledit doesnt play nice with formpreview, simulate keyup
+   function force_refresh() {
+       $('#Candidate_endorsement').keyup();
+       $('#Candidate_district_id').change();
+    }
+   var check_form_result = setInterval(force_refresh, 1000);
+
+</script>
+
 
 <div id="candidate_preview">
     <div id="Candidate_full_name_preview" class="input_preview"></div>
