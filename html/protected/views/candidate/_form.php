@@ -131,20 +131,7 @@
 <?php
 $fields = array(
     'fields' => array(
-        'Candidate_full_name',
-        'Candidate_state_abbr',
-        'Candidate_district_id',
-        'Candidate_type',
-        'Candidate_party',
-        'Candidate_scorecard',
-        'Candidate_date_published',
-        'Candidate_endorsement',
-    ),
-);
-
-$fields = array(
-    'fields' => array(
-        array('Candidate_full_name', 'to_upper_case'),
+        array('Candidate_full_name'),
         array('Candidate_state_abbr'),
         array('Candidate_district_id'),
         array('Candidate_type','to_upper_case'),
@@ -167,6 +154,7 @@ $this->widget('ext.FormPreview.FormPreview', array('fields' => $fields, 'form_id
     // cledit doesnt play nice with formpreview, simulate keyup
    function force_refresh() {
        $('#Candidate_endorsement').keyup();
+       $('#Candidate_date_published').keyup();
        $('#Candidate_district_id').change();
     }
    var check_form_result = setInterval(force_refresh, 1000);
