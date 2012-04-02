@@ -128,3 +128,17 @@
     <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+
+
+
+<?php
+$previewOptions = array(
+    'fields' => array('Candidate_full_name', 'Candidate_state_abbr'),
+);
+$this->widget('ext.FormPreview.FormPreview', array('options' => $previewOptions));
+?>
+
+<div id="candidate_preview">
+    <div id="Candidate_full_name_preview" class="input_preview"></div>
+    <div id="Candidate_state_abbr_preview" class="list_preview"></div>
+</div>

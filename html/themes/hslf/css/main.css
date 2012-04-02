@@ -417,3 +417,15 @@ div.loading * {
     padding: 10px;
     margin-top: 25px;
 }
+
+#candidate_preview{
+    position: fixed;
+    margin: auto auto;
+    top: 220px;
+    right: 171px;
+    background-color: white;
+    width: 500px;
+    padding: 5px;
+    border: 1px solid #CCC;
+    height: 350px;
+}
