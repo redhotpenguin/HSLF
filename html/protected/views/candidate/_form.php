@@ -95,11 +95,13 @@
     <div class="row">
         <?php
         echo $form->labelEx($model, 'endorsement');
+        echo $form->textArea($model, 'endorsement', array('rows' => 6, 'cols' => 85));
 
-        $this->widget('ext.TinyMce.TinyMce', array(
-            'model' => $model,
-            'attribute' => 'endorsement'
-        ));
+
+        /* $this->widget('ext.TinyMce.TinyMce', array(
+          'model' => $model,
+          'attribute' => 'endorsement'
+          )); */
 
         echo $form->error($model, 'endorsement');
         ?>
