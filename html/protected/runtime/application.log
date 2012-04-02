@@ -12603,3 +12603,303 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/favicon.ico
 ---
+2012/04/02 16:46:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/02 16:48:57 [error] [exception.CException] exception 'CException' with message 'Alias "ext.TinyMce.TineyMce" is invalid. Make sure it points to an existing PHP file.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:159
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(5413): YiiBase::import('ext.TinyMce.Tin...', true)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3132): CWidgetFactory->createWidget(Object(CandidateController), 'ext.TinyMce.Tin...', Array)
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('ext.TinyMce.Tin...', Array)
+#3 C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php(104): CBaseController->widget('ext.TinyMce.Tin...', Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#7 C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php(18): CController->renderPartial('_form', Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('update', Array, true)
+#12 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(96): CController->render('update', Array)
+#13 [internal function]: CandidateController->actionUpdate('2')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs(Object(CandidateController), Array)
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CAction->runWithParamsInternal(Object(CandidateController), Object(ReflectionMethod), Array)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('update')
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/updat...')
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#27 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#28 {main}
+REQUEST_URI=/candidate/update?id=2
+HTTP_REFERER=http://www.voterguide.com/candidate/view?id=2
+---
+2012/04/02 16:48:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/02 16:49:14 [error] [exception.CException] exception 'CException' with message 'Alias "ext.TinyMce.TinyMcee" is invalid. Make sure it points to an existing PHP file.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:159
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(5413): YiiBase::import('ext.TinyMce.Tin...', true)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3132): CWidgetFactory->createWidget(Object(CandidateController), 'ext.TinyMce.Tin...', Array)
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('ext.TinyMce.Tin...', Array)
+#3 C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php(104): CBaseController->widget('ext.TinyMce.Tin...', Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#7 C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php(18): CController->renderPartial('_form', Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('update', Array, true)
+#12 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(96): CController->render('update', Array)
+#13 [internal function]: CandidateController->actionUpdate('2')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs(Object(CandidateController), Array)
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CAction->runWithParamsInternal(Object(CandidateController), Object(ReflectionMethod), Array)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('update')
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/updat...')
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#27 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#28 {main}
+REQUEST_URI=/candidate/update?id=2
+HTTP_REFERER=http://www.voterguide.com/candidate/view?id=2
+---
+2012/04/02 16:49:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/02 16:49:14 [error] [exception.CException] exception 'CException' with message 'Alias "ext.TinyMce.TinyMcee" is invalid. Make sure it points to an existing PHP file.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:159
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(5413): YiiBase::import('ext.TinyMce.Tin...', true)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3132): CWidgetFactory->createWidget(Object(CandidateController), 'ext.TinyMce.Tin...', Array)
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('ext.TinyMce.Tin...', Array)
+#3 C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php(104): CBaseController->widget('ext.TinyMce.Tin...', Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#7 C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php(18): CController->renderPartial('_form', Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('update', Array, true)
+#12 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(96): CController->render('update', Array)
+#13 [internal function]: CandidateController->actionUpdate('2')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs(Object(CandidateController), Array)
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CAction->runWithParamsInternal(Object(CandidateController), Object(ReflectionMethod), Array)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('update')
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/updat...')
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#27 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#28 {main}
+REQUEST_URI=/candidate/update?id=2
+HTTP_REFERER=http://www.voterguide.com/candidate/view?id=2
+---
+2012/04/02 16:49:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/02 16:49:15 [error] [exception.CException] exception 'CException' with message 'Alias "ext.TinyMce.TinyMcee" is invalid. Make sure it points to an existing PHP file.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:159
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(5413): YiiBase::import('ext.TinyMce.Tin...', true)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3132): CWidgetFactory->createWidget(Object(CandidateController), 'ext.TinyMce.Tin...', Array)
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('ext.TinyMce.Tin...', Array)
+#3 C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php(104): CBaseController->widget('ext.TinyMce.Tin...', Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#7 C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php(18): CController->renderPartial('_form', Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('update', Array, true)
+#12 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(96): CController->render('update', Array)
+#13 [internal function]: CandidateController->actionUpdate('2')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs(Object(CandidateController), Array)
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CAction->runWithParamsInternal(Object(CandidateController), Object(ReflectionMethod), Array)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('update')
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/updat...')
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#27 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#28 {main}
+REQUEST_URI=/candidate/update?id=2
+HTTP_REFERER=http://www.voterguide.com/candidate/view?id=2
+---
+2012/04/02 16:49:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/02 16:49:23 [error] [php] include(TinyMce.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\HSLF\framework\yiilite.php:233)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(5414): spl_autoload_call()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3132): CWidgetFactory->createWidget()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CandidateController->createWidget()
+#3 C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php(104): CandidateController->widget()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#7 C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php(18): CandidateController->renderPartial()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CandidateController->renderPartial()
+#12 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(96): CandidateController->render()
+#13 unknown(0): CandidateController->actionUpdate()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CInlineAction->runWithParamsInternal()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CandidateController->runAction()
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CandidateController->filterAccessControl()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CandidateController->runActionWithFilters()
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CandidateController->run()
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#27 C:\xampp\htdocs\HSLF\html\index.php(13): CWebApplication->run()
+REQUEST_URI=/candidate/update?id=2
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php (104)
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php (18)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (96)
+2012/04/02 16:49:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/02 16:49:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/02 16:50:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/02 16:50:13 [error] [exception.CException] exception 'CException' with message 'Alias "ext.TinyMce.TinyMcee" is invalid. Make sure it points to an existing PHP file.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:159
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(5413): YiiBase::import('ext.TinyMce.Tin...', true)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3132): CWidgetFactory->createWidget(Object(CandidateController), 'ext.TinyMce.Tin...', Array)
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('ext.TinyMce.Tin...', Array)
+#3 C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php(104): CBaseController->widget('ext.TinyMce.Tin...', Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#7 C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php(18): CController->renderPartial('_form', Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('update', Array, true)
+#12 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(96): CController->render('update', Array)
+#13 [internal function]: CandidateController->actionUpdate('2')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs(Object(CandidateController), Array)
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CAction->runWithParamsInternal(Object(CandidateController), Object(ReflectionMethod), Array)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('update')
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/updat...')
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#27 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#28 {main}
+REQUEST_URI=/candidate/update?id=2
+HTTP_REFERER=http://www.voterguide.com/candidate/view?id=2
+---
+2012/04/02 16:50:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/02 16:50:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/02 16:51:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/02 16:51:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
