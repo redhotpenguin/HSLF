@@ -18,7 +18,7 @@ class UrbanAPITest extends CTestCase {
       public function testPushIOS() {
 
 
-      $device_tokens = array('0974BC876666E2BF7400BC8FED62D3FAE1B249E0702974B16C00FC62495AA9CC');
+      $device_tokens = array('1374BC876666E2BF7400BC8FED62D3FAE1B249E0702974B16C00FC62495AA9CC');
       $alert = 'Hello WOrld';
       $payload = array('aps' => array('alert' => $alert));
       $result = '';

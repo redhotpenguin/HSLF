@@ -79,7 +79,7 @@ class Candidate extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'state_abbr' => 'State Abbr',
+            'state_abbr' => 'State',
             'district_id' => 'District',
             'type' => 'Type',
             'endorsement' => 'Endorsement',

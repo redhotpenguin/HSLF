@@ -17,7 +17,7 @@ class UrbanAirshipNotifierTest extends CTestCase {
 
         $app_user2 = new Application_users();
         $app_user2->setAttribute('type', 'ios');
-        $app_user2->setAttribute('device_token', '0974BC876666E2BF7400BC8FED62D3FAE1B249E0702974B16C00FC62495AA9CC');
+        $app_user2->setAttribute('device_token', '1374BC876666E2BF7400BC8FED62D3FAE1B249E0702974B16C00FC62495AA9CC');
 
         $application_users = array(
             $app_user1,
@@ -58,7 +58,7 @@ class UrbanAirshipNotifierTest extends CTestCase {
 
         $app_user2 = new Application_users();
         $app_user2->setAttribute('type', 'ios');
-        $app_user2->setAttribute('device_token', '0974BC876666E2BF7400BC8FED62D3FAE1B249E0702974B16C00FC62495AA9CC');
+        $app_user2->setAttribute('device_token', '1374BC876666E2BF7400BC8FED62D3FAE1B249E0702974B16C00FC62495AA9CC');
 
         $application_users = array(
             $app_user2,

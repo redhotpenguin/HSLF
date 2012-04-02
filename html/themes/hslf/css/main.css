@@ -446,10 +446,10 @@ div.loading * {
 
 #iphone_bg{
     background-color: white;
-    width: 220px;
+    width: 221px;
     top: 96px;
     position: relative;
-    left: 27px;
+    left: 25px;
     height: 320px;
     overflow: auto;
 }
