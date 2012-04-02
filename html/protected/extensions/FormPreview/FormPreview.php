@@ -23,7 +23,6 @@ class FormPreview extends CWidget {
         if (is_dir($assets)) {
             Yii::app()->clientScript->registerCoreScript('jquery');
             Yii::app()->clientScript->registerScriptFile($baseUrl . '/preview.js', CClientScript::POS_HEAD);
-            Yii::app()->clientScript->registerCssFile($baseUrl . '/preview.css');
         } else {
             throw new Exception('EClEditor - Error: Couldn\'t find assets to publish.');
         }
