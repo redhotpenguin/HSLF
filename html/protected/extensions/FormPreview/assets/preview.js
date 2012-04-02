@@ -26,6 +26,14 @@ jQuery.fn.add_preview = function() {
 };
 
 
+function force_refresh() {
+    var inputs = $('#candidate-form :input');
+    inputs.each(function(index,field){
+      $('#'+field.id).add_preview();
+    });    
+}
 
+var check_form_result = setInterval(force_refresh, 1000);
 
 });
+

@@ -1,5 +1,4 @@
 .list_preview{
-    width:200px;
     min-height:10px;
     border:1px solid #ccc; 
     padding:5px;
@@ -7,8 +6,7 @@
 }
 
 .input_preview{
-    width:200px;
-    min-height:30px;
+    min-height:20px;
     border:1px solid #ccc; 
     padding:5px;
     margin:5px;

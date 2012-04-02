@@ -93,15 +93,6 @@
     </div>
 
     <div class="row">
-        <?php echo $form->labelEx($model, 'publish'); ?>
-        <?php echo $form->dropDownList($model, 'publish', array('yes' => 'Yes', 'no' => 'No'), $options); ?>
-        <?php echo $form->error($model, 'publish'); ?>
-    </div>
-
-
-
-
-    <div class="row">
         <?php
         echo $form->labelEx($model, 'endorsement');
 
@@ -111,7 +102,7 @@
             'options' => array(
                 'width' => '650',
                 'height' => 350,
-                'useCSS' => true,
+                'useCSS' => true
             ),
             'value' => $model->endorsement, //If you want pass a value for the widget. I think you will. Se você precisar passar um valor para o gadget. Eu acho irá.
         ));
@@ -119,6 +110,12 @@
 
         echo $form->error($model, 'endorsement');
         ?>
+    </div>
+
+    <div class="row">
+        <?php echo $form->labelEx($model, 'publish'); ?>
+        <?php echo $form->dropDownList($model, 'publish', array('yes' => 'Yes', 'no' => 'No'), $options); ?>
+        <?php echo $form->error($model, 'publish'); ?>
     </div>
 
     <div class="row buttons">
@@ -133,7 +130,15 @@
 
 <?php
 $previewOptions = array(
-    'fields' => array('Candidate_full_name', 'Candidate_state_abbr'),
+    'fields' => array('Candidate_full_name',
+        'Candidate_state_abbr',
+        'Candidate_district_id',
+        'Candidate_type',
+        'Candidate_party',
+        'Candidate_scorecard',
+        'Candidate_date_published',
+        'Candidate_endorsement',
+    ),
 );
 $this->widget('ext.FormPreview.FormPreview', array('options' => $previewOptions));
 ?>
@@ -141,4 +146,10 @@ $this->widget('ext.FormPreview.FormPreview', array('options' => $previewOptions)
 <div id="candidate_preview">
     <div id="Candidate_full_name_preview" class="input_preview"></div>
     <div id="Candidate_state_abbr_preview" class="list_preview"></div>
+    <div id="Candidate_district_id_preview" class="list_preview"></div>
+    <div id="Candidate_type_preview" class="list_preview"></div>
+    <div id="Candidate_party_preview" class="list_preview"></div>
+    <div id="Candidate_scorecard_preview" class="input_preview"></div>
+    <div id="Candidate_date_published_preview" class="input_preview"></div>
+    <div id="Candidate_endorsement_preview" class="input_preview"></div>
 </div>
