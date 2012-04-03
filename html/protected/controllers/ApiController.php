@@ -85,9 +85,11 @@ class ApiController extends Controller {
             return false;
 
         if (isset($param['district_number'])) {
+            
+          $senator_candidate_district_id = District::getIdByStateAndDistrict($param['state_abbr'], 0);
+            
             $district_id = District::getIdByStateAndDistrict($param['state_abbr'], $param['district_number']);
-
-            $search_attributes['district_id'] = $district_id;
+            $search_attributes['district_id'] = array( $district_id, $senator_candidate_district_id ) ;
         }
 
 

@@ -106,7 +106,7 @@
 
     <div class="row">
         <?php echo $form->labelEx($model, 'publish'); ?>
-        <?php echo $form->dropDownList($model, 'publish', array('yes' => 'Yes', 'no' => 'No'), $options); ?>
+        <?php echo $form->dropDownList($model, 'publish', array('yes' => 'Yes', 'no' => 'No')); ?>
         <?php echo $form->error($model, 'publish'); ?>
     </div>
 
