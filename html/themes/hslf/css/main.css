@@ -157,7 +157,7 @@ div.view
 {
     padding: 10px;
     margin: 10px 0;
-    border: 1px solid #C9E0ED;
+    /* border: 1px solid #C9E0ED;*/
 }
 
 div.breadcrumbs
@@ -419,8 +419,9 @@ div.loading * {
 }
 
 
-/*Candidate preview */
-#candidate_preview{
+/*Candidate */
+.candidate .update #candidate_preview,
+.candidate .create #candidate_preview{
     position: fixed;
     margin: auto auto;
     top: 270px;
@@ -430,6 +431,22 @@ div.loading * {
     width: 300px;
     min-height: 500px;
     left: 64%;
+}
+
+.candidate .view #candidate_preview{
+    background: url('iphone_template.png') no-repeat;
+    background-size: 270px;
+    width: 300px;
+    min-height: 500px;
+    float: right;
+}
+
+.view .detail-view{
+    background: white;
+    border-collapse: collapse;
+    width: 57%;
+    margin: 0;
+    float: left;
 }
 
 .list_preview{
@@ -444,7 +461,17 @@ div.loading * {
     margin:5px;
 }
 
-#iphone_bg{
+.update #iphone_bg, .create #iphone_bg{
+    background-color: white;
+    width: 221px;
+    top: 96px;
+    position: relative;
+    left: 25px;
+    height: 320px;
+    overflow: auto;
+}
+
+.view #iphone_bg{
     background-color: white;
     width: 221px;
     top: 96px;
@@ -457,4 +484,3 @@ div.loading * {
 #iphone_bg li{
     list-style-type: disc;
 }
-
