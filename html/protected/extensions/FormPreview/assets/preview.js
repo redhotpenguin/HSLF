@@ -13,7 +13,7 @@ jQuery(document).ready(function($) {
                     content = filter(content);
                 }
                         
-                target.html( content.replace(/\n/g, '<br />') ); 
+                target.html( content  ); 
             } );
             this.keyup();
         }

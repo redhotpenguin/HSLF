@@ -138,6 +138,7 @@ class ApiController extends Controller {
 
         switch ($_GET['model']) {
             case 'app_users': //insert/update  user record
+                error_log(print_r($_REQUEST, true));
                 $save_result = $this->_add_appicationUsers();
                 if ($save_result == 1) {
                     $this->_sendResponse($status = 200, $body = 'insert_ok');

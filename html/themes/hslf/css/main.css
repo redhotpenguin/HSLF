@@ -482,6 +482,10 @@ div.loading * {
     overflow: auto;
 }
 
-#iphone_bg li{
+#iphone_bg ul li{
     list-style-type: disc;
+}
+
+#iphone_bg ol li{
+    list-style-type: decimal;
 }
