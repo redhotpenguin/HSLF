@@ -444,9 +444,10 @@ div.loading * {
 .candidate .view .detail-view{
     background: white;
     border-collapse: collapse;
-    width: 54%;
+    width: 420px;
     margin: 0;
     float: left;
+    margin-right: 20px;
 }
 
 .list_preview{
