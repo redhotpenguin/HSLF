@@ -90,8 +90,8 @@ return array(
     'params' => array(
         'dateFormat' => 'Y-m-d H:i:s',
         'adminEmail' => 'jonas@winningmark.com',
-        'user' => 'secretuser',
-        'password' => 'secretpassword',
+        'api_username' => 'secretuser',
+        'api_password' => 'secretpassword',
         'api_salt' => '1qV2453L674133', //never changes this value once in production!
         'urbanairship_app_key' => 'ouRCLPaBRRasv4K1AIw-xA',
         'urbanairship_app_master_secret' => '7hd19C6rSzyrbKM3k6KqDg',
