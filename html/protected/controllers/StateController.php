@@ -80,7 +80,6 @@ class StateController extends Controller {
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id the ID of the model to be updated
      */
-    
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
 
