@@ -428,7 +428,7 @@ div.loading * {
     right: 50%;
     background: url('iphone_template.png') no-repeat;
     background-size: 270px;
-    width: 300px;
+    width: 275px;
     min-height: 500px;
     left: 64%;
 }
@@ -441,10 +441,10 @@ div.loading * {
     float: right;
 }
 
-.view .detail-view{
+.candidate .view .detail-view{
     background: white;
     border-collapse: collapse;
-    width: 57%;
+    width: 54%;
     margin: 0;
     float: left;
 }
@@ -461,7 +461,7 @@ div.loading * {
     margin:5px;
 }
 
-.update #iphone_bg, .create #iphone_bg{
+.candidate .update #iphone_bg, .candidate .create #iphone_bg{
     background-color: white;
     width: 221px;
     top: 96px;
@@ -471,7 +471,7 @@ div.loading * {
     overflow: auto;
 }
 
-.view #iphone_bg{
+.candidate .view #iphone_bg{
     background-color: white;
     width: 221px;
     top: 96px;
