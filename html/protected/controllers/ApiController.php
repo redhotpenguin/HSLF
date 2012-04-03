@@ -173,8 +173,7 @@ class ApiController extends Controller {
             $app_user->latitude = $_POST['user_lat'];
             $app_user->longitude = $_POST['user_long'];
         }
-        else
-            exit;
+     
 
         if (preg_match('/^[a-z]{2,3}$/', $_POST['state_abbr'])) { // state abbr input must be between 2 or 3 characters (lowercase)
             $app_user->state_abbr = strtolower( $_POST['state_abbr'] ) ;
