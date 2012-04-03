@@ -264,8 +264,8 @@ class ApiController extends Controller {
         $api_username = Yii::app()->params['api_username'];
         $api_password = Yii::app()->params['api_password'];
 
-        if (isset($_POST['username']) and isset($_POST['password'])) {
-            return ( ($api_username == $_POST['username']) && (md5($api_password . $api_salt) == md5($_POST['password'] . $api_salt)) );
+        if (isset($_POST['user']) and isset($_POST['password'])) {
+            return ( ($api_username == $_POST['user']) && (md5($api_password . $api_salt) == md5($_POST['password'] . $api_salt)) );
         } else {
             return false;
         }
