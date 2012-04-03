@@ -95,7 +95,6 @@
     <div class="row">
         <?php
         echo $form->labelEx($model, 'endorsement');
-        
          $this->widget('ext.tinymce.TinyMce', array(
           'model' => $model,
           'attribute' => 'endorsement'
@@ -150,7 +149,7 @@ $this->widget('ext.FormPreview.FormPreview', array('fields' => $fields, 'form_id
         $('#Candidate_date_published').keyup();
         $('#Candidate_district_id').change();
     }
-    var check_form_result = setInterval(force_refresh, 1000);
+   var check_form_result = setInterval(force_refresh, 300);
 
 </script>
 

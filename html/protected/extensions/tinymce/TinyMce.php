@@ -33,10 +33,8 @@ class TinyMce extends CInputWidget {
         $assets = dirname(__FILE__) . '/assets';
 
         $baseUrl = Yii::app()->assetManager->publish($assets);
-        
-        list($name,$id)=  $this->resolveNameID();
-        
-  
+
+        list($name, $id) = $this->resolveNameID();
         ?>
 
 
@@ -63,13 +61,12 @@ class TinyMce extends CInputWidget {
 
 
                     content_css : "<?php echo $baseUrl . '/css/'; ?>content.css"
-
-                		
+     		
                 });
             });
         </script>
-   
- <textarea id="<?php echo $id; ?>" name="<?php echo $name; ?>" rows="25" cols="100" style="width: 95%" class="tinymce"><?php print_r($this->model->endorsement); ?></textarea>
+
+        <textarea id="<?php echo $id; ?>" name="<?php echo $name; ?>" rows="25" cols="100" style="width: 95%" class="tinymce"><?php print_r($this->model->endorsement); ?></textarea>
 
 
 

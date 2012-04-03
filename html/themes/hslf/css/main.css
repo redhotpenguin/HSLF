@@ -424,12 +424,12 @@ div.loading * {
     position: fixed;
     margin: auto auto;
     top: 270px;
-    right: 370px;
+    right: 50%;
     background: url('iphone_template.png') no-repeat;
-    background-size:270px;
+    background-size: 270px;
     width: 300px;
-
     min-height: 500px;
+    left: 64%;
 }
 
 .list_preview{
@@ -453,3 +453,8 @@ div.loading * {
     height: 320px;
     overflow: auto;
 }
+
+#iphone_bg li{
+    list-style-type: disc;
+}
+
