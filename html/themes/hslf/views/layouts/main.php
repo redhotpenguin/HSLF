@@ -24,7 +24,7 @@
 
         <script type="text/javascript"> 
             jQuery(document).ready(function($){
-                $('ul#yw1').superfish({
+                $('ul#main_menu').superfish({
                     autoArrows: false
                 });
  
@@ -64,6 +64,7 @@
                             $this->widget('zii.widgets.CMenu', array(
                                 'activeCssClass' => 'active',
                                 'activateParents' => true,
+                                'id' => 'main_menu',
                                 'items' => array(
                                     array(
                                         'label' => 'Publishing',

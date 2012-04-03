@@ -63,9 +63,9 @@ a{
 
 #content
 {
-    float: left;
     margin-top: 15px;
     padding:15px;
+    width: 97%;
 }
 
 #sidebar
