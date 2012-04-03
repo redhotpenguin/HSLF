@@ -45,7 +45,6 @@ class DistrictTreeView extends CJuiWidget {
     }
 
     private function getData() {
-
         $i = 0;
         $states = State::model()->findAll(array('order' => 'abbr ASC'));
         $data = array();

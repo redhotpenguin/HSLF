@@ -1,3 +1,4 @@
+.htaccess
 nbproject/*
 html/protected/config/*
 html/assets/*
