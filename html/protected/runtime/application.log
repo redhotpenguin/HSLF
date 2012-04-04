@@ -2698,3 +2698,2248 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/favicon.ico
 ---
+2012/04/03 15:47:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 09:46:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 09:46:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 09:46:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 09:46:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 09:46:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:44:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:45:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:45:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:45:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:45:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:45:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:45:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:45:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:46:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:46:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:47:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:47:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:47:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:48:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:48:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:48:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:48:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:48:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:48:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:48:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:48:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:49:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:49:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:49:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:50:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:50:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:50:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:50:39 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  invalid input syntax for integer: ""
+LINE 1: ...1_c2" FROM "district" "district"  WHERE ("district"."id"='')
+                                                                    ^. The SQL statement executed was: SELECT "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2" FROM "district" "district"  WHERE ("district"."id"=:ypl0).
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (90)
+in C:\xampp\htdocs\HSLF\html\index.php (13)
+2012/04/04 10:50:39 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  invalid input syntax for integer: ""
+LINE 1: ...1_c2" FROM "district" "district"  WHERE ("district"."id"='')
+                                                                    ^. The SQL statement executed was: SELECT "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2" FROM "district" "district"  WHERE ("district"."id"=:ypl0)' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(529): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(167): CJoinElement->lazyFind(Object(Candidate))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(6744): CActiveFinder->lazyFind(Object(Candidate))
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6669): CActiveRecord->getRelated('district')
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(9404): CActiveRecord->__get('district')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(9287): CRequiredValidator->validateAttribute(Object(Candidate), 'district')
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6392): CValidator->validate(Object(Candidate), NULL)
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6950): CModel->validate(NULL)
+#10 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(90): CActiveRecord->save()
+#11 [internal function]: CandidateController->actionUpdate('4')
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs(Object(CandidateController), Array)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CAction->runWithParamsInternal(Object(CandidateController), Object(ReflectionMethod), Array)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('update')
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/updat...')
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#25 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#26 {main}
+REQUEST_URI=/candidate/update?id=4
+HTTP_REFERER=http://www.voterguide.com/candidate/update?id=4
+---
+2012/04/04 10:50:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:50:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:50:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:50:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:50:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:50:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:51:10 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  invalid input syntax for integer: " "
+LINE 1: ..._c2" FROM "district" "district"  WHERE ("district"."id"=' ')
+                                                                   ^. The SQL statement executed was: SELECT "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2" FROM "district" "district"  WHERE ("district"."id"=:ypl0).
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (90)
+in C:\xampp\htdocs\HSLF\html\index.php (13)
+2012/04/04 10:51:10 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  invalid input syntax for integer: " "
+LINE 1: ..._c2" FROM "district" "district"  WHERE ("district"."id"=' ')
+                                                                   ^. The SQL statement executed was: SELECT "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2" FROM "district" "district"  WHERE ("district"."id"=:ypl0)' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(529): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(167): CJoinElement->lazyFind(Object(Candidate))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(6744): CActiveFinder->lazyFind(Object(Candidate))
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6669): CActiveRecord->getRelated('district')
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(9404): CActiveRecord->__get('district')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(9287): CRequiredValidator->validateAttribute(Object(Candidate), 'district')
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6392): CValidator->validate(Object(Candidate), NULL)
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6950): CModel->validate(NULL)
+#10 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(90): CActiveRecord->save()
+#11 [internal function]: CandidateController->actionUpdate('4')
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs(Object(CandidateController), Array)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CAction->runWithParamsInternal(Object(CandidateController), Object(ReflectionMethod), Array)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('update')
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/updat...')
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#25 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#26 {main}
+REQUEST_URI=/candidate/update?id=4
+HTTP_REFERER=http://www.voterguide.com/candidate/update?id=4
+---
+2012/04/04 10:51:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:51:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:51:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:51:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:51:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:51:40 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  invalid input syntax for integer: " "
+LINE 1: ..._c2" FROM "district" "district"  WHERE ("district"."id"=' ')
+                                                                   ^. The SQL statement executed was: SELECT "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2" FROM "district" "district"  WHERE ("district"."id"=:ypl0).
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (66)
+in C:\xampp\htdocs\HSLF\html\index.php (13)
+2012/04/04 10:51:40 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  invalid input syntax for integer: " "
+LINE 1: ..._c2" FROM "district" "district"  WHERE ("district"."id"=' ')
+                                                                   ^. The SQL statement executed was: SELECT "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2" FROM "district" "district"  WHERE ("district"."id"=:ypl0)' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(529): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(167): CJoinElement->lazyFind(Object(Candidate))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(6744): CActiveFinder->lazyFind(Object(Candidate))
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6669): CActiveRecord->getRelated('district')
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(9404): CActiveRecord->__get('district')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(9287): CRequiredValidator->validateAttribute(Object(Candidate), 'district')
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6392): CValidator->validate(Object(Candidate), NULL)
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6950): CModel->validate(NULL)
+#10 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(66): CActiveRecord->save()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionCreate()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('create')
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/creat...')
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/candidate/create
+HTTP_REFERER=http://www.voterguide.com/candidate/create
+---
+2012/04/04 10:51:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:51:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:51:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:51:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:51:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:51:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:51:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:51:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:52:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:52:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:52:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:52:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:52:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:52:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:53:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:53:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:54:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:54:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:55:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:56:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:56:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:56:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:57:51 [error] [php] include(DistrictController.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\HSLF\framework\yiilite.php:233)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php(43): spl_autoload_call()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#4 C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php(18): CandidateController->renderPartial()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CandidateController->renderPartial()
+#9 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(96): CandidateController->render()
+#10 unknown(0): CandidateController->actionUpdate()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CInlineAction->runWithParamsInternal()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CandidateController->runAction()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CandidateController->filterAccessControl()
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CandidateController->runActionWithFilters()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CandidateController->run()
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#24 C:\xampp\htdocs\HSLF\html\index.php(13): CWebApplication->run()
+REQUEST_URI=/candidate/update?id=12
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php (43)
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php (18)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (96)
+2012/04/04 10:57:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:57:54 [error] [php] include(DistrictController.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\HSLF\framework\yiilite.php:233)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php(43): spl_autoload_call()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#4 C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php(18): CandidateController->renderPartial()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CandidateController->renderPartial()
+#9 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(96): CandidateController->render()
+#10 unknown(0): CandidateController->actionUpdate()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CInlineAction->runWithParamsInternal()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CandidateController->runAction()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CandidateController->filterAccessControl()
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CandidateController->runActionWithFilters()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CandidateController->run()
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#24 C:\xampp\htdocs\HSLF\html\index.php(13): CWebApplication->run()
+REQUEST_URI=/candidate/update?id=12
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php (43)
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php (18)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (96)
+2012/04/04 10:57:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:58:05 [error] [php] include(DistrictController.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\HSLF\framework\yiilite.php:233)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php(43): spl_autoload_call()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#4 C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php(18): CandidateController->renderPartial()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CandidateController->renderPartial()
+#9 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(96): CandidateController->render()
+#10 unknown(0): CandidateController->actionUpdate()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CInlineAction->runWithParamsInternal()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CandidateController->runAction()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CandidateController->filterAccessControl()
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CandidateController->runActionWithFilters()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CandidateController->run()
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#24 C:\xampp\htdocs\HSLF\html\index.php(13): CWebApplication->run()
+REQUEST_URI=/candidate/update?id=12
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php (43)
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php (18)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (96)
+2012/04/04 10:58:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:58:10 [error] [php] include(DistrictController.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\HSLF\framework\yiilite.php:233)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php(43): spl_autoload_call()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#4 C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php(18): CandidateController->renderPartial()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CandidateController->renderPartial()
+#9 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(96): CandidateController->render()
+#10 unknown(0): CandidateController->actionUpdate()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CInlineAction->runWithParamsInternal()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CandidateController->runAction()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CandidateController->filterAccessControl()
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CandidateController->runActionWithFilters()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CandidateController->run()
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#24 C:\xampp\htdocs\HSLF\html\index.php(13): CWebApplication->run()
+REQUEST_URI=/candidate/update?id=12
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php (43)
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php (18)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (96)
+2012/04/04 10:58:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:58:24 [error] [php] include(DistrictController.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\HSLF\framework\yiilite.php:233)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php(43): spl_autoload_call()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#4 C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php(18): CandidateController->renderPartial()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CandidateController->renderPartial()
+#9 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(96): CandidateController->render()
+#10 unknown(0): CandidateController->actionUpdate()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CInlineAction->runWithParamsInternal()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CandidateController->runAction()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CandidateController->filterAccessControl()
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CandidateController->runActionWithFilters()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CandidateController->run()
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#24 C:\xampp\htdocs\HSLF\html\index.php(13): CWebApplication->run()
+REQUEST_URI=/candidate/update?id=12
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php (43)
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php (18)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (96)
+2012/04/04 10:58:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:58:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:58:43 [error] [php] include(DistrictController.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\HSLF\framework\yiilite.php:233)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php(43): spl_autoload_call()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#4 C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php(18): CandidateController->renderPartial()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CandidateController->renderPartial()
+#9 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(96): CandidateController->render()
+#10 unknown(0): CandidateController->actionUpdate()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CInlineAction->runWithParamsInternal()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CandidateController->runAction()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CandidateController->filterAccessControl()
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CandidateController->runActionWithFilters()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CandidateController->run()
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#24 C:\xampp\htdocs\HSLF\html\index.php(13): CWebApplication->run()
+REQUEST_URI=/candidate/update?id=12
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php (43)
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php (18)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (96)
+2012/04/04 10:58:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:59:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:59:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:59:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:59:24 [error] [php] include(DistrictController.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\HSLF\framework\yiilite.php:233)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php(43): spl_autoload_call()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#4 C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php(18): CandidateController->renderPartial()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CandidateController->renderPartial()
+#9 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(96): CandidateController->render()
+#10 unknown(0): CandidateController->actionUpdate()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CInlineAction->runWithParamsInternal()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CandidateController->runAction()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CandidateController->filterAccessControl()
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CandidateController->runActionWithFilters()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CandidateController->run()
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#24 C:\xampp\htdocs\HSLF\html\index.php(13): CWebApplication->run()
+REQUEST_URI=/candidate/update?id=12
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php (43)
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php (18)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (96)
+2012/04/04 10:59:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:59:34 [error] [php] Undefined index: model (C:\xampp\htdocs\HSLF\html\protected\controllers\DistrictController.php:168)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#2 C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php(18): CandidateController->renderPartial()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CandidateController->renderPartial()
+#7 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(96): CandidateController->render()
+#8 unknown(0): CandidateController->actionUpdate()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CInlineAction->runWithParamsInternal()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CandidateController->runAction()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CandidateController->filterAccessControl()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CandidateController->runActionWithFilters()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CandidateController->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#22 C:\xampp\htdocs\HSLF\html\index.php(13): CWebApplication->run()
+REQUEST_URI=/candidate/update?id=12
+in C:\xampp\htdocs\HSLF\html\protected\controllers\DistrictController.php (168)
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php (43)
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php (18)
+2012/04/04 10:59:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:59:43 [error] [php] Undefined index: Candidate (C:\xampp\htdocs\HSLF\html\protected\controllers\DistrictController.php:173)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#2 C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php(18): CandidateController->renderPartial()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CandidateController->renderPartial()
+#7 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(96): CandidateController->render()
+#8 unknown(0): CandidateController->actionUpdate()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CInlineAction->runWithParamsInternal()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CandidateController->runAction()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CandidateController->filterAccessControl()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CandidateController->runActionWithFilters()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CandidateController->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#22 C:\xampp\htdocs\HSLF\html\index.php(13): CWebApplication->run()
+REQUEST_URI=/candidate/update?id=12
+in C:\xampp\htdocs\HSLF\html\protected\controllers\DistrictController.php (173)
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php (43)
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php (18)
+2012/04/04 10:59:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:59:54 [error] [php] Undefined index: Candidate (C:\xampp\htdocs\HSLF\html\protected\controllers\DistrictController.php:173)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#2 C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php(18): CandidateController->renderPartial()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CandidateController->renderPartial()
+#7 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(96): CandidateController->render()
+#8 unknown(0): CandidateController->actionUpdate()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CInlineAction->runWithParamsInternal()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CandidateController->runAction()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CandidateController->filterAccessControl()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CandidateController->runActionWithFilters()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CandidateController->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#22 C:\xampp\htdocs\HSLF\html\index.php(13): CWebApplication->run()
+REQUEST_URI=/candidate/update?id=12
+in C:\xampp\htdocs\HSLF\html\protected\controllers\DistrictController.php (173)
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php (43)
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php (18)
+2012/04/04 10:59:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 10:59:56 [error] [php] Undefined index: Candidate (C:\xampp\htdocs\HSLF\html\protected\controllers\DistrictController.php:173)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#2 C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php(18): CandidateController->renderPartial()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CandidateController->renderPartial()
+#7 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(96): CandidateController->render()
+#8 unknown(0): CandidateController->actionUpdate()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CInlineAction->runWithParamsInternal()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CandidateController->runAction()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CandidateController->filterAccessControl()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CandidateController->runActionWithFilters()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CandidateController->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#22 C:\xampp\htdocs\HSLF\html\index.php(13): CWebApplication->run()
+REQUEST_URI=/candidate/update?id=12
+in C:\xampp\htdocs\HSLF\html\protected\controllers\DistrictController.php (173)
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php (43)
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php (18)
+2012/04/04 10:59:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:00:06 [error] [php] Undefined index: Candidate (C:\xampp\htdocs\HSLF\html\protected\controllers\DistrictController.php:174)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#2 C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php(18): CandidateController->renderPartial()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CandidateController->renderPartial()
+#7 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(96): CandidateController->render()
+#8 unknown(0): CandidateController->actionUpdate()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CInlineAction->runWithParamsInternal()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CandidateController->runAction()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CandidateController->filterAccessControl()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CandidateController->runActionWithFilters()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CandidateController->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#22 C:\xampp\htdocs\HSLF\html\index.php(13): CWebApplication->run()
+REQUEST_URI=/candidate/update?id=12
+in C:\xampp\htdocs\HSLF\html\protected\controllers\DistrictController.php (174)
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php (43)
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php (18)
+2012/04/04 11:00:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:00:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:00:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:00:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:00:41 [error] [php] Undefined index: Candidate (C:\xampp\htdocs\HSLF\html\protected\controllers\DistrictController.php:175)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#2 C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php(18): CandidateController->renderPartial()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CandidateController->renderPartial()
+#7 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(96): CandidateController->render()
+#8 unknown(0): CandidateController->actionUpdate()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CInlineAction->runWithParamsInternal()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CandidateController->runAction()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CandidateController->filterAccessControl()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CandidateController->runActionWithFilters()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CandidateController->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#22 C:\xampp\htdocs\HSLF\html\index.php(13): CWebApplication->run()
+REQUEST_URI=/candidate/update?id=12
+in C:\xampp\htdocs\HSLF\html\protected\controllers\DistrictController.php (175)
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php (43)
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php (18)
+2012/04/04 11:00:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:01:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:02:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:02:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:03:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:05:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:05:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:08:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:09:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:09:13 [error] [php] Undefined variable: id (C:\xampp\htdocs\HSLF\html\protected\models\District.php:106)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#2 C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php(18): CandidateController->renderPartial()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CandidateController->renderPartial()
+#7 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(96): CandidateController->render()
+#8 unknown(0): CandidateController->actionUpdate()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CInlineAction->runWithParamsInternal()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CandidateController->runAction()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CandidateController->filterAccessControl()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CandidateController->runActionWithFilters()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CandidateController->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#22 C:\xampp\htdocs\HSLF\html\index.php(13): CWebApplication->run()
+REQUEST_URI=/candidate/update?id=12
+in C:\xampp\htdocs\HSLF\html\protected\models\District.php (106)
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php (43)
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php (18)
+2012/04/04 11:09:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:13:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:13:57 [error] [php] htmlspecialchars() expects parameter 1 to be string, object given (C:\xampp\htdocs\HSLF\framework\yiilite.php:4399)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php(43): getTagDistrictsByState()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#4 C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php(18): CandidateController->renderPartial()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CandidateController->renderPartial()
+#9 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(96): CandidateController->render()
+#10 unknown(0): CandidateController->actionUpdate()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CInlineAction->runWithParamsInternal()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CandidateController->runAction()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CandidateController->filterAccessControl()
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CandidateController->runActionWithFilters()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CandidateController->run()
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#24 C:\xampp\htdocs\HSLF\html\index.php(13): CWebApplication->run()
+REQUEST_URI=/candidate/update?id=12
+in C:\xampp\htdocs\HSLF\html\protected\models\District.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php (43)
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php (18)
+2012/04/04 11:13:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:14:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:14:57 [error] [php] Undefined variable: tag_list (C:\xampp\htdocs\HSLF\html\protected\models\District.php:117)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#2 C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php(18): CandidateController->renderPartial()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CandidateController->renderPartial()
+#7 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(96): CandidateController->render()
+#8 unknown(0): CandidateController->actionUpdate()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CInlineAction->runWithParamsInternal()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CandidateController->runAction()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CandidateController->filterAccessControl()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CandidateController->runActionWithFilters()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CandidateController->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#22 C:\xampp\htdocs\HSLF\html\index.php(13): CWebApplication->run()
+REQUEST_URI=/candidate/update?id=12
+in C:\xampp\htdocs\HSLF\html\protected\models\District.php (117)
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php (43)
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php (18)
+2012/04/04 11:14:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:15:05 [error] [php] Invalid argument supplied for foreach() (C:\xampp\htdocs\HSLF\framework\yiilite.php:5199)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php(44): CActiveForm->dropDownList()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#4 C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php(18): CandidateController->renderPartial()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CandidateController->renderPartial()
+#9 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(96): CandidateController->render()
+#10 unknown(0): CandidateController->actionUpdate()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CInlineAction->runWithParamsInternal()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CandidateController->runAction()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CandidateController->filterAccessControl()
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CandidateController->runActionWithFilters()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CandidateController->run()
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#24 C:\xampp\htdocs\HSLF\html\index.php(13): CWebApplication->run()
+REQUEST_URI=/candidate/update?id=12
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php (18)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (96)
+2012/04/04 11:15:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:15:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:16:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:17:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:17:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:17:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:17:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:18:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:18:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:18:17 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  invalid input syntax for integer: ""
+LINE 1: ...1_c2" FROM "district" "district"  WHERE ("district"."id"='')
+                                                                    ^. The SQL statement executed was: SELECT "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2" FROM "district" "district"  WHERE ("district"."id"=:ypl0).
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (90)
+in C:\xampp\htdocs\HSLF\html\index.php (13)
+2012/04/04 11:18:17 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  invalid input syntax for integer: ""
+LINE 1: ...1_c2" FROM "district" "district"  WHERE ("district"."id"='')
+                                                                    ^. The SQL statement executed was: SELECT "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2" FROM "district" "district"  WHERE ("district"."id"=:ypl0)' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(529): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(167): CJoinElement->lazyFind(Object(Candidate))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(6744): CActiveFinder->lazyFind(Object(Candidate))
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6669): CActiveRecord->getRelated('district')
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(9404): CActiveRecord->__get('district')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(9287): CRequiredValidator->validateAttribute(Object(Candidate), 'district')
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6392): CValidator->validate(Object(Candidate), NULL)
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6950): CModel->validate(NULL)
+#10 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(90): CActiveRecord->save()
+#11 [internal function]: CandidateController->actionUpdate('12')
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs(Object(CandidateController), Array)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CAction->runWithParamsInternal(Object(CandidateController), Object(ReflectionMethod), Array)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('update')
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/updat...')
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#25 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#26 {main}
+REQUEST_URI=/candidate/update?id=12
+HTTP_REFERER=http://www.voterguide.com/candidate/update?id=12
+---
+2012/04/04 11:18:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:18:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:18:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:18:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:18:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:18:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:18:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:18:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:19:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:19:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:19:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:19:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:19:51 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  invalid input syntax for integer: ""
+LINE 1: ...1_c2" FROM "district" "district"  WHERE ("district"."id"='')
+                                                                    ^. The SQL statement executed was: SELECT "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2" FROM "district" "district"  WHERE ("district"."id"=:ypl0).
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (66)
+in C:\xampp\htdocs\HSLF\html\index.php (13)
+2012/04/04 11:19:51 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  invalid input syntax for integer: ""
+LINE 1: ...1_c2" FROM "district" "district"  WHERE ("district"."id"='')
+                                                                    ^. The SQL statement executed was: SELECT "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2" FROM "district" "district"  WHERE ("district"."id"=:ypl0)' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(529): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(167): CJoinElement->lazyFind(Object(Candidate))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(6744): CActiveFinder->lazyFind(Object(Candidate))
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6669): CActiveRecord->getRelated('district')
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(9404): CActiveRecord->__get('district')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(9287): CRequiredValidator->validateAttribute(Object(Candidate), 'district')
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6392): CValidator->validate(Object(Candidate), NULL)
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6950): CModel->validate(NULL)
+#10 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(66): CActiveRecord->save()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionCreate()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('create')
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/creat...')
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/candidate/create
+HTTP_REFERER=http://www.voterguide.com/candidate/create
+---
+2012/04/04 11:19:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:20:30 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  invalid input syntax for integer: ""
+LINE 1: ...1_c2" FROM "district" "district"  WHERE ("district"."id"='')
+                                                                    ^. The SQL statement executed was: SELECT "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2" FROM "district" "district"  WHERE ("district"."id"=:ypl0).
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (66)
+in C:\xampp\htdocs\HSLF\html\index.php (13)
+2012/04/04 11:20:30 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  invalid input syntax for integer: ""
+LINE 1: ...1_c2" FROM "district" "district"  WHERE ("district"."id"='')
+                                                                    ^. The SQL statement executed was: SELECT "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2" FROM "district" "district"  WHERE ("district"."id"=:ypl0)' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(529): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(167): CJoinElement->lazyFind(Object(Candidate))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(6744): CActiveFinder->lazyFind(Object(Candidate))
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6669): CActiveRecord->getRelated('district')
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(9404): CActiveRecord->__get('district')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(9287): CRequiredValidator->validateAttribute(Object(Candidate), 'district')
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6392): CValidator->validate(Object(Candidate), NULL)
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6950): CModel->validate(NULL)
+#10 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(66): CActiveRecord->save()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionCreate()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('create')
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/creat...')
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/candidate/create
+HTTP_REFERER=http://www.voterguide.com/candidate/create
+---
+2012/04/04 11:20:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:20:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:20:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:20:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:22:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:22:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:22:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:22:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:22:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:22:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:22:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:22:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:22:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:23:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:23:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:23:08 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\HSLF\html\protected\views\candidate\view.php:22)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CandidateController->renderPartial()
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(49): CandidateController->render()
+#3 unknown(0): CandidateController->actionView()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CInlineAction->runWithParamsInternal()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CandidateController->runAction()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CandidateController->filterAccessControl()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CandidateController->runActionWithFilters()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CandidateController->run()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\HSLF\html\index.php(13): CWebApplication->run()
+REQUEST_URI=/candidate/view?id=5
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\view.php (22)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (49)
+in C:\xampp\htdocs\HSLF\html\index.php (13)
+2012/04/04 11:23:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:23:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:23:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:23:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:23:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:23:27 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\HSLF\framework\yiilite.php(834) : eval()'d code:1)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridColumn.php(138): CDataColumn->renderDataCellContent()
+#1 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(517): CDataColumn->renderDataCell()
+#2 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(490): CGridView->renderTableRow()
+#3 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(400): CGridView->renderTableBody()
+#4 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(158): CGridView->renderItems()
+#5 unknown(0): CGridView->renderSection()
+#6 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(141): preg_replace_callback()
+#7 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(126): CGridView->renderContent()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3149): CGridView->run()
+#9 C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php(64): CandidateController->widget()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CandidateController->renderPartial()
+#14 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(142): CandidateController->render()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionAdmin()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CandidateController->runAction()
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CandidateController->filterAccessControl()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CandidateController->runActionWithFilters()
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CandidateController->run()
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#27 C:\xampp\htdocs\HSLF\html\index.php(13): CWebApplication->run()
+REQUEST_URI=/candidate/admin?Candidate%5Bid%5D=&Candidate%5Bstate_abbr%5D=az&Candidate%5Bdistrict_number%5D=&Candidate%5Btype%5D=&Candidate%5Bfull_name%5D=&Candidate%5Bparty%5D=&Candidate%5Bscorecard%5D=&Candidate%5Bdate_published%5D=&Candidate%5Bpublish%5D=&Candidate_page=1&ajax=candidate-grid
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php (64)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (142)
+in C:\xampp\htdocs\HSLF\html\index.php (13)
+2012/04/04 11:23:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:23:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:23:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:23:47 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\HSLF\html\protected\views\candidate\view.php:22)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CandidateController->renderPartial()
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(49): CandidateController->render()
+#3 unknown(0): CandidateController->actionView()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CInlineAction->runWithParamsInternal()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CandidateController->runAction()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CandidateController->filterAccessControl()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CandidateController->runActionWithFilters()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CandidateController->run()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\HSLF\html\index.php(13): CWebApplication->run()
+REQUEST_URI=/candidate/view?id=5
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\view.php (22)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (49)
+in C:\xampp\htdocs\HSLF\html\index.php (13)
+2012/04/04 11:23:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:23:53 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\HSLF\html\protected\views\candidate\view.php:22)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CandidateController->renderPartial()
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(49): CandidateController->render()
+#3 unknown(0): CandidateController->actionView()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CInlineAction->runWithParamsInternal()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CandidateController->runAction()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CandidateController->filterAccessControl()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CandidateController->runActionWithFilters()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CandidateController->run()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\HSLF\html\index.php(13): CWebApplication->run()
+REQUEST_URI=/candidate/view?id=5
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\view.php (22)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (49)
+in C:\xampp\htdocs\HSLF\html\index.php (13)
+2012/04/04 11:23:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:23:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:23:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:23:56 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\HSLF\html\protected\views\candidate\view.php:22)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CandidateController->renderPartial()
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(49): CandidateController->render()
+#3 unknown(0): CandidateController->actionView()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CInlineAction->runWithParamsInternal()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CandidateController->runAction()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CandidateController->filterAccessControl()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CandidateController->runActionWithFilters()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CandidateController->run()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\HSLF\html\index.php(13): CWebApplication->run()
+REQUEST_URI=/candidate/view?id=5
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\view.php (22)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (49)
+in C:\xampp\htdocs\HSLF\html\index.php (13)
+2012/04/04 11:23:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:24:42 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\HSLF\html\protected\views\candidate\view.php:22)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CandidateController->renderFile()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CandidateController->renderPartial()
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(49): CandidateController->render()
+#3 unknown(0): CandidateController->actionView()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CInlineAction->runWithParamsInternal()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CandidateController->runAction()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CandidateController->filterAccessControl()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CandidateController->runActionWithFilters()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CandidateController->run()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\HSLF\html\index.php(13): CWebApplication->run()
+REQUEST_URI=/candidate/view?id=5
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\view.php (22)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (49)
+in C:\xampp\htdocs\HSLF\html\index.php (13)
+2012/04/04 11:24:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:24:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:24:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:24:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:24:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:24:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:24:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:25:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:25:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:25:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:25:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:25:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:25:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:25:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:25:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:25:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:25:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:26:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:26:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2012/04/04 11:26:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---

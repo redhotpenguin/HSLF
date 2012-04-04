@@ -36,7 +36,7 @@ class District extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('state_abbr, number', 'required'),
+            array('state_abbr', 'required'),
             array('number', 'numerical', 'integerOnly' => true),
             array('state_abbr', 'length', 'max' => 3),
             // The following rule is used by search().
@@ -97,6 +97,16 @@ class District extends CActiveRecord {
             return $district->id;
         else
             return false;
+    }
+    
+    public static function getTagDistrictsByState($state_abbr){
+
+      $districts = District::model()->findAllByAttributes(array('state_abbr' =>  $state_abbr), array( 'order' => 'number ASC' ));
+          
+
+      return CHtml::listData($districts, 'id', 'number');
+       
+ 
     }
 
 }

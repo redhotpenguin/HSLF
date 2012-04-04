@@ -112,10 +112,10 @@ class Candidate extends CActiveRecord {
             $criteria->compare('state_abbr', $this->state_abbr, true);
         }
 
-        if(!is_numeric($this->id ) ){
+        if (!is_numeric($this->id)) {
             $this->id = '';
         }
-        
+
         $criteria->compare('id', $this->id);
         $criteria->compare('type', $this->type, true);
         $criteria->compare('endorsement', $this->endorsement, true);

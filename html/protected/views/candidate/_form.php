@@ -39,11 +39,8 @@
     <div class="row">
         <?php
         echo $form->labelEx($model, 'district_id');
-
-        echo $form->dropDownList($model, 'district_id', CHtml::listData(
-                        District::model()->findAllByAttributes(
-                                array('state_abbr' => $model->state_abbr)
-                        ), 'id', 'number')
+        
+        echo $form->dropDownList($model, 'district_id', District::getTagDistrictsByState($model->state_abbr)
         );
         ?>
 
