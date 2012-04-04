@@ -6,10 +6,10 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List User_alert', 'url'=>array('index')),
-	array('label'=>'Create User_alert', 'url'=>array('create')),
-	array('label'=>'View User_alert', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage User_alert', 'url'=>array('admin')),
+	array('label'=>'List user alerts', 'url'=>array('index')),
+	array('label'=>'Create user an alert', 'url'=>array('create')),
+	array('label'=>'View user alert', 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>'Manage user alerts', 'url'=>array('admin')),
 );
 ?>
 

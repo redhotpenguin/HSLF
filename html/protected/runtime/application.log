@@ -7101,3 +7101,29 @@ Stack trace:
 REQUEST_URI=/user_alert/update?id=3
 HTTP_REFERER=http://www.voterguide.com/user_alert/view?id=3
 ---
+2012/04/04 16:18:13 [error] [php] Undefined variable: fields (C:\xampp\htdocs\HSLF\html\protected\views\user_alert\_form.php:102)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): User_alertController->renderFile()
+#1 C:\xampp\htdocs\HSLF\html\protected\views\user_alert\create.php(15): User_alertController->renderPartial()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): User_alertController->renderInternal()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): User_alertController->renderFile()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): User_alertController->renderPartial()
+#6 C:\xampp\htdocs\HSLF\html\protected\controllers\User_alertController.php(72): User_alertController->render()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): User_alertController->actionCreate()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): User_alertController->runAction()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): User_alertController->filterAccessControl()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): User_alertController->runActionWithFilters()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): User_alertController->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#19 C:\xampp\htdocs\HSLF\html\index.php(13): CWebApplication->run()
+REQUEST_URI=/user_alert/create
+in C:\xampp\htdocs\HSLF\html\protected\views\user_alert\_form.php (102)
+in C:\xampp\htdocs\HSLF\html\protected\views\user_alert\create.php (15)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\User_alertController.php (72)
