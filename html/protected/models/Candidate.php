@@ -50,7 +50,7 @@ class Candidate extends CActiveRecord {
         // will receive user inputs.
         return array(
             array('state_abbr,district, full_name, party,type,endorsement,date_published, publish , scorecard', 'required'),
-            array('district_id', 'numerical', 'integerOnly' => true),
+            array('district_id, scorecard', 'numerical', 'integerOnly' => true),
             array('state_abbr', 'length', 'max' => 3),
             array('full_name', 'length', 'max' => 256),
             array('party, publish', 'length', 'max' => 128),

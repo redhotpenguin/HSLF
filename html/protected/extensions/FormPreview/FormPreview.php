@@ -54,7 +54,7 @@ class FormPreview extends CWidget {
               
                 for(var field in fields_to_preview) {
                     var filter = fields_to_preview[field];
-                    $('#'+field).add_preview(filter);    
+                    $('#'+field).add_preview(filter);
                 }
             });
         </script>

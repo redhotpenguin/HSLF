@@ -5,11 +5,10 @@ $this->breadcrumbs = array(
 );
 
 $this->menu = array(
-    array('label' => 'List Candidate', 'url' => array('index')),
-    array('label' => 'Create Candidate', 'url' => array('create')),
-    array('label' => 'Update Candidate', 'url' => array('update', 'id' => $model->id)),
-    array('label' => 'Delete Candidate', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this item?')),
-    array('label' => 'Manage Candidate', 'url' => array('admin')),
+    array('label' => 'Add another candidate', 'url' => array('create')),
+    array('label' => 'Manage other candidates', 'url' => array('admin')),
+    array('label' => 'Update this candidate', 'url' => array('update', 'id' => $model->id)),
+    array('label' => 'Delete this candidate', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this candidate?')),
 );
 ?>
 
@@ -41,7 +40,7 @@ $this->widget('zii.widgets.CDetailView', array(
         ),
         'type',
         array(
-            'name'=>'endorsement',
+            'name' => 'endorsement',
             'header' => 'endorsement',
             'value' => substr(strip_tags($model->endorsement), 0, 300) . '...',
         ),

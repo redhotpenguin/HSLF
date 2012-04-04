@@ -6,10 +6,9 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Candidate', 'url'=>array('index')),
-	array('label'=>'Create Candidate', 'url'=>array('create')),
-	array('label'=>'View Candidate', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Candidate', 'url'=>array('admin')),
+	array('label'=>'Add a candidate', 'url'=>array('create')),
+	array('label'=>'Manage candidates', 'url'=>array('admin')),
+        array('label' => 'Delete', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this candidate?')),
 );
 ?>
 

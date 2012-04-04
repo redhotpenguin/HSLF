@@ -464,6 +464,7 @@ div.loading * {
     left: 25px;
     height: 320px;
     overflow: auto;
+    color: black;
 }
 
 .candidate .view #iphone_bg{
@@ -474,6 +475,7 @@ div.loading * {
     left: 25px;
     height: 320px;
     overflow: auto;
+    color: black;
 }
 
 #iphone_bg ul li{

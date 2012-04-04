@@ -125,7 +125,7 @@ $fields = array(
         array('Candidate_district_id'),
         array('Candidate_type', 'to_upper_case'),
         array('Candidate_party'),
-        array('Candidate_scorecard'),
+        array('Candidate_scorecard', 'color_code'),
         array('Candidate_date_published'),
         array('Candidate_endorsement'),
     ),
@@ -146,6 +146,21 @@ $this->widget('ext.FormPreview.FormPreview', array('fields' => $fields, 'form_id
             return ''
         
         return data;
+    }
+    
+    function color_code(score){
+         var style='';
+         if(score<20){
+           style = 'color:red;';
+         }
+         else if(score<50){
+           style = 'color:blue;';
+         }
+         else{
+             style = 'color:green';
+         }
+
+        return '<span style="'+style+'">'+score+'</span>';
     }
 
     // cledit doesnt play nice with formpreview, simulate keyup
