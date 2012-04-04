@@ -41,6 +41,7 @@ $this->widget('zii.widgets.CDetailView', array(
         ),
         'type',
         array(
+            'name'=>'endorsement',
             'header' => 'endorsement',
             'value' => substr(strip_tags($model->endorsement), 0, 300) . '...',
         ),

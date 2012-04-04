@@ -121,7 +121,7 @@
 $fields = array(
     'fields' => array(
         array('Candidate_full_name'),
-        array('Candidate_state_abbr'),
+        array('Candidate_state_abbr', 'remove_not_set'),
         array('Candidate_district_id'),
         array('Candidate_type', 'to_upper_case'),
         array('Candidate_party'),
@@ -137,7 +137,15 @@ $this->widget('ext.FormPreview.FormPreview', array('fields' => $fields, 'form_id
 <script type="text/javascript">
     // filters
     function to_upper_case(data){
+        data = remove_not_set(data);
         return data.toUpperCase();
+    }
+    
+    function remove_not_set(data){
+        if(data.toLowerCase() == '(not set)')
+            return ''
+        
+        return data;
     }
 
     // cledit doesnt play nice with formpreview, simulate keyup
