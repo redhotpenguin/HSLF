@@ -39,7 +39,7 @@
     <div class="row">
         <?php
         echo $form->labelEx($model, 'district_id');
-        
+
         echo $form->dropDownList($model, 'district_id', District::getTagDistrictsByState($model->state_abbr)
         );
         ?>
@@ -92,10 +92,14 @@
     <div class="row">
         <?php
         echo $form->labelEx($model, 'endorsement');
-         $this->widget('ext.tinymce.TinyMce', array(
-          'model' => $model,
-          'attribute' => 'endorsement'
-          )); 
+        $this->widget('ext.tinymce.TinyMce', array(
+            'model' => $model,
+            'attribute' => 'endorsement',
+            'htmlOptions' => array(
+                'rows' => 30,
+                'cols' => 80,
+            ),
+        ));
 
         echo $form->error($model, 'endorsement');
         ?>
@@ -149,16 +153,16 @@ $this->widget('ext.FormPreview.FormPreview', array('fields' => $fields, 'form_id
     }
     
     function color_code(score){
-         var style='';
-         if(score<20){
-           style = 'color:red;';
-         }
-         else if(score<50){
-           style = 'color:blue;';
-         }
-         else{
-             style = 'color:green';
-         }
+        var style='';
+        if(score<20){
+            style = 'color:red;';
+        }
+        else if(score<50){
+            style = 'color:blue;';
+        }
+        else{
+            style = 'color:green';
+        }
 
         return '<span style="'+style+'">'+score+'</span>';
     }
@@ -169,7 +173,7 @@ $this->widget('ext.FormPreview.FormPreview', array('fields' => $fields, 'form_id
         $('#Candidate_date_published').keyup();
         $('#Candidate_district_id').change();
     }
-   var check_form_result = setInterval(force_refresh, 300);
+    var check_form_result = setInterval(force_refresh, 300);
 
 </script>
 

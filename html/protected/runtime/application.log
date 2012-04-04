@@ -7006,3 +7006,98 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/favicon.ico
 ---
+2012/04/04 15:30:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "alerts".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('alerts')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('alerts')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/alerts/ca')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/alerts/ca
+---
+2012/04/04 15:30:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "alerts".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('alerts')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('alerts')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/alerts/stat...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/alerts/state/ca/1
+---
+2012/04/04 15:30:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "alerts".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('alerts')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('alerts')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/alerts/stat...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/alerts/state/ca/district/
+---
+2012/04/04 15:34:39 [error] [exception.CException] exception 'CException' with message 'Property "User_alert.endorsement" is not defined.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:587
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6671): CComponent->__get('endorsement')
+#1 C:\xampp\htdocs\HSLF\html\protected\extensions\tinymce\TinyMce.php(69): CActiveRecord->__get('endorsement')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3149): TinyMce->run()
+#3 C:\xampp\htdocs\HSLF\html\protected\views\user_alert\_form.php(33): CBaseController->widget('ext.tinymce.Tin...', Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#7 C:\xampp\htdocs\HSLF\html\protected\views\user_alert\create.php(15): CController->renderPartial('_form', Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('create', Array, true)
+#12 C:\xampp\htdocs\HSLF\html\protected\controllers\User_alertController.php(72): CController->render('create', Array)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): User_alertController->actionCreate()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('create')
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('user_alert/crea...')
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#25 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#26 {main}
+REQUEST_URI=/user_alert/create
+---
+2012/04/04 15:36:24 [error] [exception.CException] exception 'CException' with message 'Property "User_alert.endorsement" is not defined.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:587
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6671): CComponent->__get('endorsement')
+#1 C:\xampp\htdocs\HSLF\html\protected\extensions\tinymce\TinyMce.php(69): CActiveRecord->__get('endorsement')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3149): TinyMce->run()
+#3 C:\xampp\htdocs\HSLF\html\protected\views\user_alert\_form.php(33): CBaseController->widget('ext.tinymce.Tin...', Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#7 C:\xampp\htdocs\HSLF\html\protected\views\user_alert\update.php(18): CController->renderPartial('_form', Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('update', Array, true)
+#12 C:\xampp\htdocs\HSLF\html\protected\controllers\User_alertController.php(96): CController->render('update', Array)
+#13 [internal function]: User_alertController->actionUpdate('3')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs(Object(User_alertController), Array)
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CAction->runWithParamsInternal(Object(User_alertController), Object(ReflectionMethod), Array)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('update')
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('user_alert/upda...')
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#27 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#28 {main}
+REQUEST_URI=/user_alert/update?id=3
+HTTP_REFERER=http://www.voterguide.com/user_alert/view?id=3
+---

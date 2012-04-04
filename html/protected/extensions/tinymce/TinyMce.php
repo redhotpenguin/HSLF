@@ -40,7 +40,7 @@ class TinyMce extends CInputWidget {
 
         <script type="text/javascript">
             $().ready(function() {
-                $('textarea.tinymce').tinymce({
+                $('#<?php echo $id?>').tinymce({
                     // Location of TinyMCE script
                     script_url : '<?php echo $baseUrl . '/jscripts/tiny_mce/'; ?>tiny_mce.js',
                     elements:'<?php echo $id; ?>',
@@ -61,18 +61,22 @@ class TinyMce extends CInputWidget {
 
 
                     content_css : "<?php echo $baseUrl . '/css/'; ?>content.css"
-     		
+             		
                 });
             });
         </script>
 
-        <textarea id="<?php echo $id; ?>" name="<?php echo $name; ?>" rows="25" cols="100" style="width: 95%" class="tinymce"><?php print_r($this->model->endorsement); ?></textarea>
-
-
-
 
 
         <?php
+   
+        if ($this->hasModel()) {
+            $textarea = CHtml::activeTextArea($this->model, $this->attribute, $this->htmlOptions);
+        } else {
+            $textarea = CHtml::textArea($name, $this->value, $this->htmlOptions);
+        }
+        
+        echo $textarea;
     }
 
 }
