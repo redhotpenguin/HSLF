@@ -413,7 +413,7 @@ div.loading * {
 }
 
 
-/*Candidate */
+/*iphone preview */
 .candidate .update #candidate_preview,
 .candidate .create #candidate_preview,
 .user_alert  #user_alert_preview
@@ -469,6 +469,7 @@ div.loading * {
     height: 320px;
     overflow: auto;
     color: black;
+    word-wrap: break-word;
 }
 
 .candidate .view #iphone_bg{
