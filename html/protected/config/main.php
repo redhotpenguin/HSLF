@@ -62,9 +62,11 @@ return array(
             'charset' => 'utf8',
             'schemaCachingDuration' => '600',
         ),
+		/*
         'cache' => array(
             'class' => 'system.caching.CApcCache',
         ),
+		*/
         'errorHandler' => array(
             // use 'site/error' action to display errors
             'errorAction' => 'site/error',
