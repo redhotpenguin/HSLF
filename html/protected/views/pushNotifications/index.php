@@ -12,7 +12,7 @@ $this->menu=array(
 <h1>Push Notifications</h1>
 
 <?php
-
+$dataProvider->pagination->pageSize = 50;
 $this->widget('zii.widgets.grid.CGridView', array(
     'dataProvider'=>$dataProvider,
     'columns'=>array(        

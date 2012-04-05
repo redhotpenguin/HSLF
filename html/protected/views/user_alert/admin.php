@@ -6,7 +6,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'List user alerts', 'url'=>array('index')),
-	array('label'=>'Create an ser alert', 'url'=>array('create')),
+	array('label'=>'Create an user alert', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "

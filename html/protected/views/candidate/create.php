@@ -5,8 +5,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Candidate', 'url'=>array('index')),
-	array('label'=>'Manage Candidate', 'url'=>array('admin')),
+	array('label'=>'List candidates', 'url'=>array('index')),
+	array('label'=>'Manage candidates', 'url'=>array('admin')),
 );
 ?>
 

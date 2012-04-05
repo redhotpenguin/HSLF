@@ -5,8 +5,8 @@ $this->breadcrumbs = array(
 );
 
 $this->menu = array(
-    array('label' => 'List Candidate', 'url' => array('index')),
-    array('label' => 'Create Candidate', 'url' => array('create')),
+    array('label' => 'List candidates', 'url' => array('index')),
+    array('label' => 'Add a candidate', 'url' => array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "

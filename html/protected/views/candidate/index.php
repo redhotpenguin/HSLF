@@ -4,8 +4,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Create Candidate', 'url'=>array('create')),
-	array('label'=>'Manage Candidate', 'url'=>array('admin')),
+	array('label'=>'Add a candidate', 'url'=>array('create')),
+	array('label'=>'Manage candidates', 'url'=>array('admin')),
 );
 ?>
 
