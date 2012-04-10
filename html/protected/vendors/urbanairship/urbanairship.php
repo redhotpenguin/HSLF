@@ -11,6 +11,7 @@ define('APID_URL', BASE_URL . '/apids/');
 define('PUSH_URL', BASE_URL . '/push/');
 define('BROADCAST_URL', BASE_URL . '/push/broadcast/');
 define('FEEDBACK_URL', BASE_URL . '/device_tokens/feedback/');
+define('TAGS', BASE_URL . '/tags/');
 
 // Raise when we get a 401 from the server.
 class Unauthorized extends Exception {
@@ -29,9 +30,9 @@ class AirshipDeviceList implements Iterator, Countable {
     private $_page = null;
     private $_position = 0;
 
-    public function __construct($airship) {
+    public function __construct($airship, $url) {
         $this->_airship = $airship;
-        $this->_load_page(DEVICE_TOKEN_URL);
+        $this->_load_page($url);
         $this->_position = 0;
     }
 
@@ -98,7 +99,11 @@ class Airship {
         return true;
     }
 
-    public function _request($url, $method, $body, $content_type = null) {
+    public function _request($url, $method, $body = null, $content_type = null) {
+
+        //   echo $url;
+        //   echo '<br>';
+
         $rest = new RESTClient($this->key, $this->secret, $content_type);
         $rest->createRequest($url, $method, $body);
         $rest->sendRequest();
@@ -185,7 +190,11 @@ class Airship {
     }
 
     public function get_device_tokens() {
-        return new AirshipDeviceList($this);
+        return new AirshipDeviceList($this, DEVICE_TOKEN_URL);
+    }
+
+    public function get_apids() {
+        return new AirshipDeviceList($this, APID_URL);
     }
 
     // Push this payload to the specified device tokens and tags.
@@ -262,9 +271,9 @@ class Airship {
         if ($extra) {
             $payload['android']['extra'] = $extra;
         }
-        
+
         $body = json_encode($payload);
-        
+
         $response = $this->_request(BROADCAST_URL, 'POST', $body, 'application/json');
         $response_code = $response[0];
         if ($response_code != 200) {
@@ -292,6 +301,131 @@ class Airship {
                             new DateTimeZone('UTC'));
         }
         return $results;
+    }
+
+    /* TAGS */
+
+    public function get_json_tags() {
+        $response = $this->_request(TAGS, 'GET');
+
+        $response_code = $response[0];
+        if ($response_code != 200) {
+            throw new AirshipFailure($response[1], $response_code);
+        }
+        else
+            return $response[1];
+    }
+
+    public function create_tag($tag_name) {
+
+        $response = $this->_request(TAGS . $tag_name, 'PUT');
+
+        $response_code = $response[0];
+        if ($response_code != 200) {
+            throw new AirshipFailure($response[1], $response_code);
+        }
+        return $response_code;
+    }
+
+    public function add_device_tag($tag, $device, $type = 'ios') {
+        if ($type == 'ios') {
+            $request_url = DEVICE_TOKEN_URL . $device . '/tags/' . $tag;
+            $response = $this->_request($request_url, 'PUT');
+            $response_code = $response[0];
+            if ($response_code == 'Not Found') {
+                throw new AirshipFailure($response[1], $response_code);
+            }
+            return $this->_validate_http_code($response_code);
+        } elseif ($type == 'android') {
+            $payload = array(
+                'apids' => array(
+                    'add' => array($device),
+                ),
+            );
+            return $r = $this->update_devices_tag($tag, $payload);
+        } else {
+            return false;
+        }
+    }
+
+    public function delete_device_tag($tag, $device, $type = 'ios') {
+        if ($type == 'ios') {
+            $request_url = DEVICE_TOKEN_URL . $device . '/tags/' . $tag;
+            $response = $this->_request($request_url, 'DELETE');
+            $response_code = $response[0];
+            if ($response_code != 200) {
+                throw new AirshipFailure($response[1], $response_code);
+            }
+
+            return $response_code;
+        } elseif ($type == 'android') {
+            $payload = array(
+                'apids' => array(
+                    'remove' => array($device),
+                ),
+            );
+            return $this->update_devices_tag($tag, $payload);
+        }
+    }
+
+    public function update_devices_tag($tag, $payload) {
+        /*
+          $payload = array(
+          'device_tokens' => array(
+          'add' => array(),
+          'remove' => array(),
+          ),
+          'apids' => array(
+          'add' => array('b13de54c-7478-49cc-8db3-3f284209ed4f'),
+          'remove' => array(),
+          ),
+          );
+         */
+        $json_payload = json_encode($payload);
+
+        $request_url = TAGS . $tag;
+
+        $response = $this->_request($request_url, 'POST', $json_payload, 'application/json');
+        $response_code = $response[0];
+        if ($response_code != 200) {
+            throw new AirshipFailure($response[1], $response_code);
+        }
+
+        return $response_code;
+    }
+
+    public function push_to_tags($alert, array $tags) {
+        $payload = array();
+
+        $payload['aps'] = array(
+            'alert' => $alert
+        );
+
+        $payload['android'] = array(
+            'alert' => $alert
+        );
+
+        $payload['tags'] = $tags;
+
+        $json_payload = json_encode($payload);
+
+        $response = $this->_request(PUSH_URL, 'POST', $json_payload, 'application/json');
+        $response_code = $response[0];
+
+        if ($response_code != 200) {
+            throw new AirshipFailure($response[1], $response_code);
+        }
+
+        return $response_code;
+    }
+
+    /*
+      return true when code = 200, 201, or 204
+      else return false
+     */
+
+    private function _validate_http_code($code) {
+        return ($code == 200 || $code == 201 || $code == 204);
     }
 
 }
