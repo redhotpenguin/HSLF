@@ -9,7 +9,7 @@ jQuery(document).ready(function($){
 
     audience_selector.change(function(){
         switch(this.value){
-            case 'district':
+            case 'state_district':
                 audience_target.addDistrictTree();
                 break;
        
@@ -30,7 +30,7 @@ jQuery(document).ready(function($){
         var o = $(this[0]);
     
         $.ajax({
-            url: "/district/getTreeView",
+            url: "/pushNotifications/getTreeView",
             success: function(data) {
                 o.html(data);
             }

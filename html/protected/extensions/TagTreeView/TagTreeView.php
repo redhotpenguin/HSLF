@@ -2,7 +2,7 @@
 
 Yii::import('zii.widgets.jui.CJuiWidget');
 
-class DistrictTreeView extends CJuiWidget {
+class TagTreeView extends CJuiWidget {
 
     protected $baseUrl;
     public $version = '0.1';
@@ -55,7 +55,7 @@ class DistrictTreeView extends CJuiWidget {
         foreach ($states as $state) {
              $row = array();
              $row['id'] = $state->abbr;
-             $row['text'] = $state->name;
+             $row['text'] = '<input type="checkbox" value="'.$state->abbr.'" name="tags[]" /> '.$state->name;
 
             $districts = District::model()->findAllByAttributes(array('state_abbr' => $state->abbr), $params);
 
@@ -68,7 +68,7 @@ class DistrictTreeView extends CJuiWidget {
                 $child = array();
               
                 $child['id']= $district->id;
-                $child['text']= '<input type="checkbox" name="district_ids[]" value="' . $district->id . '"> <span class="district_number"> '.$district->number.'</span>';
+                $child['text']= '<input type="checkbox" name="tags[]" value="'.$state->abbr . $district->number . '"> <span class="district_number"> '.$district->number.'</span>';
                 
                 array_push($children, $child);
             }

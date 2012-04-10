@@ -7127,3 +7127,571 @@ REQUEST_URI=/user_alert/create
 in C:\xampp\htdocs\HSLF\html\protected\views\user_alert\_form.php (102)
 in C:\xampp\htdocs\HSLF\html\protected\views\user_alert\create.php (15)
 in C:\xampp\htdocs\HSLF\html\protected\controllers\User_alertController.php (72)
+2012/04/11 00:44:05 [error] [exception.CException] exception 'CException' with message 'Theme directory "C:\xampp\htdocs\HSLF\html\themes" does not exist.' in C:\xampp\htdocs\HSLF\framework\web\CThemeManager.php:111
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\web\CThemeManager.php(99): CThemeManager->setBasePath('C:\xampp\htdocs...')
+#1 C:\xampp\htdocs\HSLF\framework\web\CThemeManager.php(61): CThemeManager->getBasePath()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1674): CThemeManager->getTheme('hslf')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3411): CWebApplication->getTheme()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3525): CController->getViewFile('index')
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('index', Array, true)
+#6 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(16): CController->render('index', Array)
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#19 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/
+---
+2012/04/11 00:44:06 [error] [exception.CException] exception 'CException' with message 'CAssetManager.basePath "C:\xampp\htdocs\HSLF\html\assets" is invalid. Please make sure the directory exists and is writable by the Web server process.' in C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php:116
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php(101): CAssetManager->setBasePath('C:\xampp\htdocs...')
+#1 C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php(219): CAssetManager->getBasePath()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(5798): CAssetManager->publish('C:\xampp\htdocs...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(5819): CClientScript->getCoreScriptUrl()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(5678): CClientScript->getPackageBaseUrl('jquery')
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(5590): CClientScript->renderCoreScripts()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3292): CClientScript->render('<!DOCTYPE html ...')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3499): CController->processOutput('<!DOCTYPE html ...')
+#8 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(16): CController->render('index', Array)
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/
+---
+2012/04/11 00:44:07 [error] [exception.CException] exception 'CException' with message 'CAssetManager.basePath "C:\xampp\htdocs\HSLF\html\assets" is invalid. Please make sure the directory exists and is writable by the Web server process.' in C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php:116
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php(101): CAssetManager->setBasePath('C:\xampp\htdocs...')
+#1 C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php(219): CAssetManager->getBasePath()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(5798): CAssetManager->publish('C:\xampp\htdocs...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(5819): CClientScript->getCoreScriptUrl()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(5678): CClientScript->getPackageBaseUrl('jquery')
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(5590): CClientScript->renderCoreScripts()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3292): CClientScript->render('<!DOCTYPE html ...')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3499): CController->processOutput('<!DOCTYPE html ...')
+#8 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(16): CController->render('index', Array)
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/
+---
+2012/04/11 00:44:07 [error] [exception.CException] exception 'CException' with message 'CAssetManager.basePath "C:\xampp\htdocs\HSLF\html\assets" is invalid. Please make sure the directory exists and is writable by the Web server process.' in C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php:116
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php(101): CAssetManager->setBasePath('C:\xampp\htdocs...')
+#1 C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php(219): CAssetManager->getBasePath()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(5798): CAssetManager->publish('C:\xampp\htdocs...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(5819): CClientScript->getCoreScriptUrl()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(5678): CClientScript->getPackageBaseUrl('jquery')
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(5590): CClientScript->renderCoreScripts()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3292): CClientScript->render('<!DOCTYPE html ...')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3499): CController->processOutput('<!DOCTYPE html ...')
+#8 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(16): CController->render('index', Array)
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/
+---
+2012/04/11 00:44:07 [error] [exception.CException] exception 'CException' with message 'CAssetManager.basePath "C:\xampp\htdocs\HSLF\html\assets" is invalid. Please make sure the directory exists and is writable by the Web server process.' in C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php:116
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php(101): CAssetManager->setBasePath('C:\xampp\htdocs...')
+#1 C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php(219): CAssetManager->getBasePath()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(5798): CAssetManager->publish('C:\xampp\htdocs...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(5819): CClientScript->getCoreScriptUrl()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(5678): CClientScript->getPackageBaseUrl('jquery')
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(5590): CClientScript->renderCoreScripts()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3292): CClientScript->render('<!DOCTYPE html ...')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3499): CController->processOutput('<!DOCTYPE html ...')
+#8 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(16): CController->render('index', Array)
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/
+---
+2012/04/11 00:44:07 [error] [exception.CException] exception 'CException' with message 'CAssetManager.basePath "C:\xampp\htdocs\HSLF\html\assets" is invalid. Please make sure the directory exists and is writable by the Web server process.' in C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php:116
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php(101): CAssetManager->setBasePath('C:\xampp\htdocs...')
+#1 C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php(219): CAssetManager->getBasePath()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(5798): CAssetManager->publish('C:\xampp\htdocs...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(5819): CClientScript->getCoreScriptUrl()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(5678): CClientScript->getPackageBaseUrl('jquery')
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(5590): CClientScript->renderCoreScripts()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3292): CClientScript->render('<!DOCTYPE html ...')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3499): CController->processOutput('<!DOCTYPE html ...')
+#8 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(16): CController->render('index', Array)
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/
+---
+2012/04/11 00:44:09 [error] [exception.CException] exception 'CException' with message 'CAssetManager.basePath "C:\xampp\htdocs\HSLF\html\assets" is invalid. Please make sure the directory exists and is writable by the Web server process.' in C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php:116
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php(101): CAssetManager->setBasePath('C:\xampp\htdocs...')
+#1 C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php(219): CAssetManager->getBasePath()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(5798): CAssetManager->publish('C:\xampp\htdocs...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(5819): CClientScript->getCoreScriptUrl()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(5678): CClientScript->getPackageBaseUrl('jquery')
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(5590): CClientScript->renderCoreScripts()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3292): CClientScript->render('<!DOCTYPE html ...')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3499): CController->processOutput('<!DOCTYPE html ...')
+#8 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(16): CController->render('index', Array)
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/
+---
+2012/04/11 00:44:09 [error] [exception.CException] exception 'CException' with message 'CAssetManager.basePath "C:\xampp\htdocs\HSLF\html\assets" is invalid. Please make sure the directory exists and is writable by the Web server process.' in C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php:116
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php(101): CAssetManager->setBasePath('C:\xampp\htdocs...')
+#1 C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php(219): CAssetManager->getBasePath()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(5798): CAssetManager->publish('C:\xampp\htdocs...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(5819): CClientScript->getCoreScriptUrl()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(5678): CClientScript->getPackageBaseUrl('jquery')
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(5590): CClientScript->renderCoreScripts()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3292): CClientScript->render('<!DOCTYPE html ...')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3499): CController->processOutput('<!DOCTYPE html ...')
+#8 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(16): CController->render('index', Array)
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/
+---
+2012/04/11 00:44:10 [error] [exception.CException] exception 'CException' with message 'CAssetManager.basePath "C:\xampp\htdocs\HSLF\html\assets" is invalid. Please make sure the directory exists and is writable by the Web server process.' in C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php:116
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php(101): CAssetManager->setBasePath('C:\xampp\htdocs...')
+#1 C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php(219): CAssetManager->getBasePath()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(5798): CAssetManager->publish('C:\xampp\htdocs...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(5819): CClientScript->getCoreScriptUrl()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(5678): CClientScript->getPackageBaseUrl('jquery')
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(5590): CClientScript->renderCoreScripts()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3292): CClientScript->render('<!DOCTYPE html ...')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3499): CController->processOutput('<!DOCTYPE html ...')
+#8 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(16): CController->render('index', Array)
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/
+---
+2012/04/11 00:44:10 [error] [exception.CException] exception 'CException' with message 'CAssetManager.basePath "C:\xampp\htdocs\HSLF\html\assets" is invalid. Please make sure the directory exists and is writable by the Web server process.' in C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php:116
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php(101): CAssetManager->setBasePath('C:\xampp\htdocs...')
+#1 C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php(219): CAssetManager->getBasePath()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(5798): CAssetManager->publish('C:\xampp\htdocs...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(5819): CClientScript->getCoreScriptUrl()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(5678): CClientScript->getPackageBaseUrl('jquery')
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(5590): CClientScript->renderCoreScripts()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3292): CClientScript->render('<!DOCTYPE html ...')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3499): CController->processOutput('<!DOCTYPE html ...')
+#8 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(16): CController->render('index', Array)
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/
+---
+2012/04/11 00:44:10 [error] [exception.CException] exception 'CException' with message 'CAssetManager.basePath "C:\xampp\htdocs\HSLF\html\assets" is invalid. Please make sure the directory exists and is writable by the Web server process.' in C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php:116
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php(101): CAssetManager->setBasePath('C:\xampp\htdocs...')
+#1 C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php(219): CAssetManager->getBasePath()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(5798): CAssetManager->publish('C:\xampp\htdocs...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(5819): CClientScript->getCoreScriptUrl()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(5678): CClientScript->getPackageBaseUrl('jquery')
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(5590): CClientScript->renderCoreScripts()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3292): CClientScript->render('<!DOCTYPE html ...')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3499): CController->processOutput('<!DOCTYPE html ...')
+#8 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(16): CController->render('index', Array)
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/
+---
+2012/04/11 00:44:13 [error] [exception.CException] exception 'CException' with message 'CAssetManager.basePath "C:\xampp\htdocs\HSLF\html\assets" is invalid. Please make sure the directory exists and is writable by the Web server process.' in C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php:116
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php(101): CAssetManager->setBasePath('C:\xampp\htdocs...')
+#1 C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php(219): CAssetManager->getBasePath()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(5798): CAssetManager->publish('C:\xampp\htdocs...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(5819): CClientScript->getCoreScriptUrl()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(5678): CClientScript->getPackageBaseUrl('jquery')
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(5590): CClientScript->renderCoreScripts()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3292): CClientScript->render('<!DOCTYPE html ...')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3499): CController->processOutput('<!DOCTYPE html ...')
+#8 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(16): CController->render('index', Array)
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/
+---
+2012/04/11 00:44:15 [error] [exception.CException] exception 'CException' with message 'CAssetManager.basePath "C:\xampp\htdocs\HSLF\html\assets" is invalid. Please make sure the directory exists and is writable by the Web server process.' in C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php:116
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php(101): CAssetManager->setBasePath('C:\xampp\htdocs...')
+#1 C:\xampp\htdocs\HSLF\framework\web\CAssetManager.php(219): CAssetManager->getBasePath()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(5798): CAssetManager->publish('C:\xampp\htdocs...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(5819): CClientScript->getCoreScriptUrl()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(5678): CClientScript->getPackageBaseUrl('jquery')
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(5590): CClientScript->renderCoreScripts()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3292): CClientScript->render('<!DOCTYPE html ...')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3499): CController->processOutput('<!DOCTYPE html ...')
+#8 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(16): CController->render('index', Array)
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/
+---
+2012/04/11 01:39:17 [error] [exception.CException] exception 'CException' with message 'UrbanAirshipNotifier and its behaviors do not have a method or closure named "notify_district_users".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:681
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\controllers\PushNotificationsController.php(165): CComponent->__call('notify_district...', Array)
+#1 C:\xampp\htdocs\HSLF\html\protected\controllers\PushNotificationsController.php(165): UrbanAirshipNotifier->notify_district_users(Array, 'New new')
+#2 [internal function]: PushNotificationsController->actionValidatePush('18')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs(Object(PushNotificationsController), Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CAction->runWithParamsInternal(Object(PushNotificationsController), Object(ReflectionMethod), Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('validatePush')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('pushNotificatio...')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#16 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/pushNotifications/validatePush?id=18
+HTTP_REFERER=http://www.voterguide.com/pushNotifications/sendNotification?id=18
+---
+2012/04/11 01:39:25 [error] [exception.CException] exception 'CException' with message 'UrbanAirshipNotifier and its behaviors do not have a method or closure named "notify_district_users".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:681
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\controllers\PushNotificationsController.php(165): CComponent->__call('notify_district...', Array)
+#1 C:\xampp\htdocs\HSLF\html\protected\controllers\PushNotificationsController.php(165): UrbanAirshipNotifier->notify_district_users(Array, 'New new')
+#2 [internal function]: PushNotificationsController->actionValidatePush('18')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs(Object(PushNotificationsController), Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CAction->runWithParamsInternal(Object(PushNotificationsController), Object(ReflectionMethod), Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('validatePush')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('pushNotificatio...')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#16 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/pushNotifications/validatePush?id=18
+HTTP_REFERER=http://www.voterguide.com/pushNotifications/sendNotification?id=18
+---
+2012/04/11 01:39:59 [error] [exception.CException] exception 'CException' with message 'UrbanAirshipNotifier and its behaviors do not have a method or closure named "notify_district_users".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:681
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\controllers\PushNotificationsController.php(165): CComponent->__call('notify_district...', Array)
+#1 C:\xampp\htdocs\HSLF\html\protected\controllers\PushNotificationsController.php(165): UrbanAirshipNotifier->notify_district_users(Array, 'New new')
+#2 [internal function]: PushNotificationsController->actionValidatePush('18')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs(Object(PushNotificationsController), Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CAction->runWithParamsInternal(Object(PushNotificationsController), Object(ReflectionMethod), Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('validatePush')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('pushNotificatio...')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#16 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/pushNotifications/validatePush?id=18
+HTTP_REFERER=http://www.voterguide.com/pushNotifications/sendNotification?id=18
+---
+2012/04/11 01:41:46 [error] [exception.CException] exception 'CException' with message 'Alias "ext.DistrictTreeView.DistrictTreeView" is invalid. Make sure it points to an existing PHP file.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:159
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(5413): YiiBase::import('ext.DistrictTre...', true)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3132): CWidgetFactory->createWidget(Object(DistrictController), 'ext.DistrictTre...', Array)
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('ext.DistrictTre...', Array)
+#3 C:\xampp\htdocs\HSLF\html\protected\views\district\_ajaxTreeView.php(4): CBaseController->widget('ext.DistrictTre...', Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#7 C:\xampp\htdocs\HSLF\html\protected\controllers\DistrictController.php(184): CController->renderPartial('_ajaxTreeView', Array, false, true)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): DistrictController->actionGetTreeView()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('getTreeView')
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('district/getTre...')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#20 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#21 {main}
+REQUEST_URI=/district/getTreeView
+HTTP_REFERER=http://www.voterguide.com/pushNotifications/sendNotification?id=18
+---
+2012/04/11 01:44:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "getTreeView".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('getTreeView')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('getTreeView')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('district/getTre...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/district/getTreeView
+HTTP_REFERER=http://www.voterguide.com/pushNotifications/sendNotification?id=18
+---
+2012/04/11 01:44:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "getTreeView".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('getTreeView')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('getTreeView')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('district/getTre...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/district/getTreeView
+HTTP_REFERER=http://www.voterguide.com/pushNotifications/sendNotification?id=18
+---
+2012/04/11 01:44:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "getTreeView".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('getTreeView')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('getTreeView')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('district/getTre...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/district/getTreeView
+HTTP_REFERER=http://www.voterguide.com/pushNotifications/sendNotification?id=18
+---
+2012/04/11 01:45:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "pushNotifications".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('pushNotificatio...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('pushNotificatio...')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('pushNotificatio...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/pushNotifications/pushNotifications/
+---
+2012/04/11 01:45:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "pushNotifications".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('pushNotificatio...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('pushNotificatio...')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('pushNotificatio...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/pushNotifications/pushNotifications/
+---
+2012/04/11 01:45:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "pushNotifications".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('pushNotificatio...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('pushNotificatio...')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('pushNotificatio...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/pushNotifications/pushNotifications/
+---
+2012/04/11 01:45:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "getTreeView".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('getTreeView')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('getTreeView')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('district/getTre...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/district/getTreeView
+HTTP_REFERER=http://www.voterguide.com/pushNotifications/sendNotification?id=18
+---
+2012/04/11 01:45:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "getTreeView".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('getTreeView')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('getTreeView')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('district/getTre...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/district/getTreeView
+HTTP_REFERER=http://www.voterguide.com/pushNotifications/sendNotification?id=18
+---
+2012/04/11 01:45:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "getTreeView".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('getTreeView')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('getTreeView')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('district/getTre...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/district/getTreeView
+HTTP_REFERER=http://www.voterguide.com/pushNotifications/sendNotification?id=18
+---
+2012/04/11 01:46:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "pushNotificationsgetTreeView".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('pushNotificatio...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/pushNotificationsgetTreeView
+HTTP_REFERER=http://www.voterguide.com/pushNotifications/sendNotification?id=18
+---
+2012/04/11 01:46:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "pushNotificationsgetTreeView".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('pushNotificatio...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/pushNotificationsgetTreeView
+HTTP_REFERER=http://www.voterguide.com/pushNotifications/sendNotification?id=18
+---
+2012/04/11 01:46:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "pushNotificationsgetTreeView".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('pushNotificatio...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/pushNotificationsgetTreeView
+HTTP_REFERER=http://www.voterguide.com/pushNotifications/sendNotification?id=18
+---

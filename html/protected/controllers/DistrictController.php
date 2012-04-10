@@ -25,7 +25,7 @@ class DistrictController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'view', 'create', 'update', 'admin', 'dynamicdistrict', 'gettreeview'),
+                'actions' => array('index', 'view', 'create', 'update', 'admin', 'dynamicdistrict'),
                 'users' => array('@'),
             ),
             array(
@@ -178,10 +178,5 @@ class DistrictController extends Controller {
 
     }
 
-    public function actionGetTreeView() {
-        //$options = array('id' => 'district_ids');
-        // $this->widget('ext.DistrictTreeView.DistrictTreeView', array('options' => $options));
-        $this->renderPartial('_ajaxTreeView', array(), false, true);
-    }
 
 }

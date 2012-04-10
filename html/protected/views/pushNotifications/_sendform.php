@@ -34,7 +34,7 @@
             'tabindex' => '0',
             'ajax' => array(
                 'type' => 'POST', //request type
-                'url' => CController::createUrl('district/GetTreeView'), //url to call.  
+                'url' => CController::createUrl('pushNotifications/GetTreeView'), //url to call.  
                 'update' => '#audience_target', //selector to update      
             )
         );
@@ -44,7 +44,7 @@
             'separator'=> '<br/>',
             'labelOptions' => array('class'=> 'audience_type_label'),
         );
-        echo CHtml::radioButtonList('audience_type', 'district', array('district' => 'District', 'broadcast' => 'Broadcast'), $htmlOptions);
+        echo CHtml::radioButtonList('audience_type', 'state_district', array('state_district' => 'State/District', 'broadcast' => 'Broadcast'), $htmlOptions);
         
         ?>
         

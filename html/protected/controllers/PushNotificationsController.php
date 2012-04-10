@@ -29,7 +29,7 @@ class PushNotificationsController extends Controller {
 
         return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete', 'sendnotification', 'notificationsent', 'validatepush'),
+                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete', 'sendnotification', 'notificationsent', 'validatepush', 'gettreeview'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -146,7 +146,7 @@ class PushNotificationsController extends Controller {
                 if (isset($_POST['confirm_broadcast'])) {
                     $notifier = new UrbanAirshipNotifier();
                     $broadcast_result = $notifier->sendBroadcastNotification($model->message);
-                    if (  $broadcast_result['BROADCAST_IOS'] == true &&   $broadcast_result['BROADCAST_ANDROID'] == true ) {
+                    if ($broadcast_result['BROADCAST_IOS'] == true && $broadcast_result['BROADCAST_ANDROID'] == true) {
                         $model->sent = 'yes';
                         $message = 'Broadcast message successfuly sent';
                     } else {
@@ -157,14 +157,16 @@ class PushNotificationsController extends Controller {
                 }
                 break;
 
-            case 'district':
+            case 'state_district':
+                error_log(print_r($_POST, true));
                 if (isset($_POST['district_ids']) && count($_POST['district_ids']) > 0) {
                     $notifier = new UrbanAirshipNotifier();
-                       
-                    $push_result = $notifier->notify_district_users($_POST['district_ids'], $model->message);
+                    $tags = array();
+
+                    $push_result = $notifier->sendPushNotifications($model->message, $tags);
                     if ($push_result > 0) {
                         $model->sent = 'yes';
-                        $message = $push_result. ' notifications successfuly sent';
+                        $message = $push_result . ' notifications successfuly sent';
                     } elseif ($push_result == 'NO_USER_FOUND') {
                         $message = 'No users in that district';
                     } else {
@@ -219,6 +221,10 @@ class PushNotificationsController extends Controller {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
+    }
+
+    public function actionGetTreeView() {
+        $this->renderPartial('_ajaxTreeView', array(), false, true);
     }
 
 }
