@@ -68,7 +68,7 @@ class TagTreeView extends CJuiWidget {
                 $child = array();
               
                 $child['id']= $district->id;
-                $child['text']= '<input type="checkbox" name="tags[]" value="'.$state->abbr . $district->number . '"> <span class="district_number"> '.$district->number.'</span>';
+                $child['text']= '<input type="checkbox" name="tags[]" value="'.$state->abbr .'_'. $district->number . '"> <span class="district_number"> '.$district->number.'</span>';
                 
                 array_push($children, $child);
             }
