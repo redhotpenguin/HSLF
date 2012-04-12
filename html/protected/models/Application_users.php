@@ -136,21 +136,7 @@ class Application_users extends CActiveRecord {
             }
         }
         
-        if( isset($_POST['Application_users']['tags'][0]) && !empty($_POST['Application_users']['tags'][0])  ){
-           
-           
-            $app_user_id = $this->id;
-            $tag_id = Tag::model()->findByAttributes(array('name'=>$_POST['Application_users']['tags'][0]))->id;
-            
-            $connection=Yii::app()->db;
-            $sql = "INSERT INTO tag_appuser  VALUES ($app_user_id, $tag_id)";
-            $command=$connection->createCommand($sql);
-            $rowCount=$command->execute(); 
-           
-            
-          
-        }
-
+  
 
         if (!$this->latitude)
             $this->latitude = NULL;
