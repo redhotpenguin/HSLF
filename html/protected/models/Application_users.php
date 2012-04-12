@@ -97,15 +97,6 @@ class Application_users extends CActiveRecord {
 
         $criteria = new CDbCriteria;
 
-        if ($this->tags[0]) {
-            $criteria->together = true;
-            // Join the 'district' table
-            $criteria->with = array('tags');
-
-            $criteria->compare('tags.name', $this->tags, false);
-        }
-
-
         $criteria->compare('id', $this->id);
         $criteria->compare('device_token', $this->device_token, true);
         $criteria->compare('latitude', $this->latitude, true);
@@ -115,8 +106,6 @@ class Application_users extends CActiveRecord {
         $criteria->compare('registration', $this->registration, true);
         $criteria->compare('type', $this->type, true);
         $criteria->compare('user_agent', $this->user_agent, true);
-
-
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria

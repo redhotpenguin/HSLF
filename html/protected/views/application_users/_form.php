@@ -77,7 +77,7 @@
 		<?php echo $form->textField($model,'user_agent',array('size'=>60,'maxlength'=>1024)); ?>
 		<?php echo $form->error($model,'user_agent'); ?>
 	</div>
-
+       
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
