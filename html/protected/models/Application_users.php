@@ -1,5 +1,8 @@
 <?php
 
+Yii::import('application.vendors.*');
+require_once('urbanairship/urbanairship.php');
+
 /**
  * This is the model class for table "app_users".
  *
@@ -49,7 +52,7 @@ class Application_users extends CActiveRecord {
             array('state_abbr', 'length', 'max' => 3),
             array('user_agent', 'length', 'max' => 1024),
             array('latitude, longitude, registration, type', 'safe'),
-            array('id, device_token, latitude, longitude, state_abbr, district, registration, type, user_agent', 'safe', 'on' => 'search'),
+            array('id, device_token, latitude, longitude, state_abbr, district, registration, type, user_agent, tags', 'safe', 'on' => 'search'),
         );
     }
 
@@ -62,6 +65,7 @@ class Application_users extends CActiveRecord {
         return array(
             'stateAbbr' => array(self::BELONGS_TO, 'State', 'state_abbr'),
             'district0' => array(self::BELONGS_TO, 'District', 'district'),
+            'tags' => array(self::MANY_MANY, 'Tag', 'tag_appuser(app_users_id,tag_id)'),
         );
     }
 
@@ -79,6 +83,7 @@ class Application_users extends CActiveRecord {
             'registration' => 'Registration',
             'type' => 'Type',
             'user_agent' => 'User Agent',
+            'tags' => 'Tags'
         );
     }
 
@@ -92,6 +97,15 @@ class Application_users extends CActiveRecord {
 
         $criteria = new CDbCriteria;
 
+        if ($this->tags[0]) {
+            $criteria->together = true;
+            // Join the 'district' table
+            $criteria->with = array('tags');
+
+            $criteria->compare('tags.name', $this->tags, false);
+        }
+
+
         $criteria->compare('id', $this->id);
         $criteria->compare('device_token', $this->device_token, true);
         $criteria->compare('latitude', $this->latitude, true);
@@ -102,13 +116,15 @@ class Application_users extends CActiveRecord {
         $criteria->compare('type', $this->type, true);
         $criteria->compare('user_agent', $this->user_agent, true);
 
+
+
         return new CActiveDataProvider($this, array(
-                    'criteria' => $criteria,
+                    'criteria' => $criteria
                 ));
     }
 
     public function beforeSave() {
-    
+
         if ($this->isNewRecord) {
             $this->registration = new CDbExpression('NOW()');
 
@@ -116,13 +132,45 @@ class Application_users extends CActiveRecord {
                 $this->user_agent = $_SERVER['HTTP_USER_AGENT']; //should really be in the controller\
             else
                 $this->user_agent = 'UNAVALAIBLE';
+
+
+            $airship = new Airship(Yii::app()->params['urbanairship_app_key'], Yii::app()->params['urbanairship_app_master_secret']);
+            // associate Urban Airship tags (state and state.district_number)
+            try {
+               $state_district_tag = $this->stateAbbr->abbr . '_' . $this->district0->number;
+
+                $airship->add_device_tag($this->stateAbbr->abbr, $this->device_token, $this->type);
+
+               $airship->add_device_tag($state_district_tag, $this->device_token, $this->type);
+            } catch (Exception $e) {
+                error_log($e->getMessage());
+            }
+        }
+        
+        if( isset($_POST['Application_users']['tags'][0]) && !empty($_POST['Application_users']['tags'][0])  ){
+           
+           
+            $app_user_id = $this->id;
+            $tag_id = Tag::model()->findByAttributes(array('name'=>$_POST['Application_users']['tags'][0]))->id;
+            
+            $connection=Yii::app()->db;
+            $sql = "INSERT INTO tag_appuser  VALUES ($app_user_id, $tag_id)";
+            $command=$connection->createCommand($sql);
+            $rowCount=$command->execute(); 
+           
+            
+          
         }
 
-        
-           if(!$this->latitude)  $this->latitude = NULL;
-           if(!$this->longitude) $this->longitude = NULL;
+
+        if (!$this->latitude)
+            $this->latitude = NULL;
+        if (!$this->longitude)
+            $this->longitude = NULL;
 
         return parent::beforeSave();
     }
 
+
 }
+
