@@ -121,22 +121,22 @@ class Application_users extends CActiveRecord {
                 $this->user_agent = $_SERVER['HTTP_USER_AGENT']; //should really be in the controller\
             else
                 $this->user_agent = 'UNAVALAIBLE';
-
-
-            $airship = new Airship(Yii::app()->params['urbanairship_app_key'], Yii::app()->params['urbanairship_app_master_secret']);
-            // associate Urban Airship tags (state and state.district_number)
-            try {
-               $state_district_tag = $this->stateAbbr->abbr . '_' . $this->district0->number;
-
-                $airship->add_device_tag($this->stateAbbr->abbr, $this->device_token, $this->type);
-
-               $airship->add_device_tag($state_district_tag, $this->device_token, $this->type);
-            } catch (Exception $e) {
-                error_log($e->getMessage());
-            }
         }
-        
-  
+
+
+
+        $airship = new Airship(Yii::app()->params['urbanairship_app_key'], Yii::app()->params['urbanairship_app_master_secret']);
+        // associate Urban Airship tags (state and state.district_number)
+        try {
+            $state_district_tag = $this->stateAbbr->abbr . '_' . $this->district0->number;
+
+            $airship->add_device_tag($this->stateAbbr->abbr, $this->device_token, $this->type);
+
+            $airship->add_device_tag($state_district_tag, $this->device_token, $this->type);
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+        }
+
 
         if (!$this->latitude)
             $this->latitude = NULL;
@@ -145,7 +145,6 @@ class Application_users extends CActiveRecord {
 
         return parent::beforeSave();
     }
-
 
 }
 
