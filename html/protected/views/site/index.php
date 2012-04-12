@@ -2,7 +2,7 @@
 
 <h1>Welcome to the MVG Administration site</h1>
 
-<div style="height:600px;">
+<div>
     <?php
     if (Yii::app()->user->id):
         ?>
