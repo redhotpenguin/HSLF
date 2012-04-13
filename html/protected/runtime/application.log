@@ -1176,3 +1176,11 @@ Stack trace:
 REQUEST_URI=/application_users/admin?Application_users%5Bid%5D=&Application_users%5Blatitude%5D=&Application_users%5Blongitude%5D=&Application_users%5Bstate_abbr%5D=or&Application_users%5Bdistrict_number%5D=21&Application_users_page=1&ajax=application-users-grid
 HTTP_REFERER=http://www.voterguide.com/application_users/admin
 ---
+2012/04/13 19:45:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/models/UrbanAirshipNotifier.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/models/UrbanAirshipNotifier.php
+---

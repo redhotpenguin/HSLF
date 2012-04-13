@@ -5,10 +5,15 @@ require_once('urbanairship/urbanairship.php');
 
 class UrbanAirshipNotifier extends CModel {
 
+    private $airship;
+
+    public function __construct() {
+        $this->airship = new Airship(Yii::app()->params['urbanairship_app_key'], Yii::app()->params['urbanairship_app_master_secret']);
+    }
+
     public function attributeNames() {
         return array();
     }
-
 
     /**
      * Request a notification to specifiesd application_users
@@ -18,10 +23,9 @@ class UrbanAirshipNotifier extends CModel {
      */
     public function sendPushNotifications($alert, array $tags) {
 
-        $airship = new Airship(Yii::app()->params['urbanairship_app_key'], Yii::app()->params['urbanairship_app_master_secret']);
 
         try {
-            $result = $airship->push_to_tags($alert, $tags);
+            $result = $this->airship->push_to_tags($alert, $tags);
         } catch (Exception $e) {
             error_log($e->getMessage());
         }
@@ -40,14 +44,13 @@ class UrbanAirshipNotifier extends CModel {
             'BROADCAST_ANDROID' => false
         );
 
-        $airship = new Airship(Yii::app()->params['urbanairship_app_key'], Yii::app()->params['urbanairship_app_master_secret']);
 
         $ios_payload = array(
             'aps' => array('alert' => $message)
         );
 
-        $response_ios_broadcast = $airship->broadcast_ios($ios_payload);
-        $response_android_broadcast = $airship->broadcast_android($message);
+        $response_ios_broadcast = $this->airship->broadcast_ios($ios_payload);
+        $response_android_broadcast = $this->airship->broadcast_android($message);
 
 
         if ($response_ios_broadcast == 200) {
@@ -59,6 +62,28 @@ class UrbanAirshipNotifier extends CModel {
         }
 
         return $broadcast_result;
+    }
+
+    public function delete_device_tag($tag, $device_token, $device_type) {
+
+        try {
+            $r = $this->airship->delete_device_tag($tag, $device_token, $device_type);
+        } catch (Excetpion $e) {
+            error_log('UrbanAIrshipNotifier error deleting tag: ' . $e->getMessage());
+        }
+
+        return $r;
+    }
+
+    public function add_device_tag($tag, $device_token, $device_type) {
+        try {
+            $r = $this->airship->add_device_tag($tag, $device_token, $device_type);
+            error_log("test: ".$r);
+        } catch (Excetpion $e) {
+            error_log('UrbanAIrshipNotifier error adding tag '.$tag.': ' . $e->getMessage());
+        }
+
+        return $r;
     }
 
 }

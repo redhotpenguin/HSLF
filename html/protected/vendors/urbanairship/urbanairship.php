@@ -328,10 +328,15 @@ class Airship {
     }
 
     public function add_device_tag($tag, $device, $type = 'ios') {
+        error_log($tag);
+        error_log($device);
+        error_log($type);
         if ($type == 'ios') {
             $request_url = DEVICE_TOKEN_URL . $device . '/tags/' . $tag;
             $response = $this->_request($request_url, 'PUT');
             $response_code = $response[0];
+            error_log('add device');
+            error_log(  print_r($response, true) );
             if ($response_code == 'Not Found') {
                 throw new AirshipFailure($response[1], $response_code);
             }
@@ -352,12 +357,16 @@ class Airship {
         if ($type == 'ios') {
             $request_url = DEVICE_TOKEN_URL . $device . '/tags/' . $tag;
             $response = $this->_request($request_url, 'DELETE');
+   
+        
             $response_code = $response[0];
-            if ($response_code != 200) {
+      
+
+            if ($response_code != true) {
                 throw new AirshipFailure($response[1], $response_code);
             }
 
-            return $response_code;
+            return $this->_validate_http_code($response_code);
         } elseif ($type == 'android') {
             $payload = array(
                 'apids' => array(

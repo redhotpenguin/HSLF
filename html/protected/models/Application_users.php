@@ -92,19 +92,18 @@ class Application_users extends CActiveRecord {
     public function search() {
         $criteria = new CDbCriteria;
 
-        
+
         if ($this->district_number) {
             $criteria->together = true;
             // Join the 'district' table
             $criteria->with = array('district');
-     
+
             $criteria->compare('district.number', $this->district_number, false);
             $criteria->compare('district.state_abbr', $this->state_abbr, false);
         } else {
             $criteria->together = false;
             $criteria->with = array();
             $criteria->compare('state_abbr', $this->state_abbr, true);
- 
         }
 
         $criteria->compare('id', $this->id);
@@ -133,19 +132,22 @@ class Application_users extends CActiveRecord {
             else
                 $this->user_agent = 'UNAVALAIBLE';
         }
-
-
-
-        $airship = new Airship(Yii::app()->params['urbanairship_app_key'], Yii::app()->params['urbanairship_app_master_secret']);
-        // associate Urban Airship tags (state and state.district_number)
-        try {
-            $state_district_tag = $this->stateAbbr->abbr . '_' . $this->district->number;
-
-            //  $airship->add_device_tag($this->stateAbbr->abbr, $this->device_token, $this->type);
-            // $airship->add_device_tag($state_district_tag, $this->device_token, $this->type);
-        } catch (Exception $e) {
-            error_log($e->getMessage());
-        }
+        
+        
+        // Update tags on Urban Airship
+        
+        $current = self::findByPk($this->id); // get the model before it gets updated
+        $current_state = $current->state_abbr;
+        $current_district_number = $current->district->number;
+        
+        $uap_notifier = new UrbanAirshipNotifier();
+        // delete previous tags
+        $uap_notifier->delete_device_tag($current_state, $this->device_token, $this->type);
+        $uap_notifier->delete_device_tag($current_state . '_' . $current_district_number, $this->device_token, $this->type);
+       
+        // add new tags
+        $uap_notifier->add_device_tag($this->stateAbbr->abbr, $this->device_token, $this->type);
+        $uap_notifier->add_device_tag($this->stateAbbr->abbr.'_'.$this->district->number, $this->device_token, $this->type);
 
 
         if (!$this->latitude)
