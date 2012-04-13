@@ -332,8 +332,7 @@ class Airship {
             $request_url = DEVICE_TOKEN_URL . $device . '/tags/' . $tag;
             $response = $this->_request($request_url, 'PUT');
             $response_code = $response[0];
-            error_log('add device');
-            error_log(  print_r($response, true) );
+     
             if ($response_code == 'Not Found') {
                 throw new AirshipFailure($response[1], $response_code);
             }

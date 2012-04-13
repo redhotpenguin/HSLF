@@ -78,7 +78,6 @@ class UrbanAirshipNotifier extends CModel {
     public function add_device_tag($tag, $device_token, $device_type) {
         try {
             $r = $this->airship->add_device_tag($tag, $device_token, $device_type);
-            error_log("test: ".$r);
         } catch (Excetpion $e) {
             error_log('UrbanAIrshipNotifier error adding tag '.$tag.': ' . $e->getMessage());
         }
