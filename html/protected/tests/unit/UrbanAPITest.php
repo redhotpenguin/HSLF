@@ -89,7 +89,7 @@ class UrbanAPITest extends CTestCase {
     public function testDeleteDeviceToken() {
 
         try {
-            $result = $this->airship->delete_device_tag('az_4', $this->device_token, 'ios');
+            $result = $this->airship->delete_device_tag('ri_2', $this->device_token, 'ios');
             error_log("test result:" . $result);
         } catch (Exception $e) {
             error_log($e->getMessage);

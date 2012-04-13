@@ -328,9 +328,6 @@ class Airship {
     }
 
     public function add_device_tag($tag, $device, $type = 'ios') {
-        error_log($tag);
-        error_log($device);
-        error_log($type);
         if ($type == 'ios') {
             $request_url = DEVICE_TOKEN_URL . $device . '/tags/' . $tag;
             $response = $this->_request($request_url, 'PUT');
