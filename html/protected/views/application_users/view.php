@@ -24,7 +24,10 @@ $this->widget('zii.widgets.CDetailView', array(
         'latitude',
         'longitude',
         'state_abbr',
-        'district',
+        array(
+            'name' => 'district_id',
+            'value' => $model->district->number,
+        ),
         'registration',
         'type',
         'user_agent',

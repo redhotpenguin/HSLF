@@ -37,7 +37,7 @@
                          'ajax' => array(
                          'type'=>'POST', //request type
                          'url'=>CController::createUrl('district/dynamicdistrict?model=Application_users'), //url to call.  
-                         'update'=>'#Application_users_district', //selector to update      
+                         'update'=>'#Application_users_district_id', //selector to update      
                         )
                     );
                     echo $form->dropDownList($model,'state_abbr', $state_list, $options); 
@@ -46,9 +46,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'district'); 
+		<?php echo $form->labelEx($model,'district_id'); 
       
-                    echo $form->dropDownList($model,'district',
+                    echo $form->dropDownList($model,'district_id',
                      CHtml::listData( 
                              District::model()->findAllByAttributes(
                              array('state_abbr'=> $model->state_abbr )
@@ -57,7 +57,7 @@
                      );
                 ?>
             
-		<?php echo $form->error($model,'district'); ?>
+		<?php echo $form->error($model,'district_id'); ?>
 	</div>
 
 	<div class="row">

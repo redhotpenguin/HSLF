@@ -85,17 +85,20 @@ class ApiController extends Controller {
             return false;
 
         if (isset($param['district_number'])) {
-            
-          $senator_candidate_district_id = District::getIdByStateAndDistrict($param['state_abbr'], 0);
-            
+
+            $senator_candidate_district_id = District::getIdByStateAndDistrict($param['state_abbr'], 0);
+
             $district_id = District::getIdByStateAndDistrict($param['state_abbr'], $param['district_number']);
-            $search_attributes['district_id'] = array( $district_id, $senator_candidate_district_id ) ;
+            $search_attributes['district_id'] = array($district_id, $senator_candidate_district_id);
         }
+
 
 
         $search_attributes['publish'] = 'yes';
 
         $candidates = Candidate::model()->with('district')->findAllByAttributes($search_attributes);
+
+
 
         foreach ($candidates as $candidate) {
             $candidate->district_id = $candidate->district->number;
@@ -175,10 +178,10 @@ class ApiController extends Controller {
             $app_user->latitude = $_POST['user_lat'];
             $app_user->longitude = $_POST['user_long'];
         }
-     
+
 
         if (preg_match('/^[a-z]{2,3}$/', $_POST['state_abbr'])) { // state abbr input must be between 2 or 3 characters (lowercase)
-            $app_user->state_abbr = strtolower( $_POST['state_abbr'] ) ;
+            $app_user->state_abbr = strtolower($_POST['state_abbr']);
         }
         else
             exit;
@@ -193,10 +196,10 @@ class ApiController extends Controller {
                 $district->number = $user_district_number;
                 $district->save();
                 $district->id;
-                $district_id = $district->id;  
-           }
+                $district_id = $district->id;
+            }
 
-            $app_user->district = $district_id;
+            $app_user->district_id = $district_id;
         }
         else
             exit;
@@ -234,6 +237,8 @@ class ApiController extends Controller {
             $container['results'] = 'no_results';
         }
 
+       
+       
         $json_encoded_result = CJSON::encode($container);
 
         // API consumers really want a district_name, not a district_id 

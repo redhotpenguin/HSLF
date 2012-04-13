@@ -53,6 +53,7 @@ class District extends CActiveRecord {
         // class name for the relations automatically generated below.
         return array(
             'candidates' => array(self::HAS_MANY, 'Candidate', 'district_id'),
+            'Application_users' => array(self::HAS_MANY, 'Application_users', 'district_id'),
             'user_alerts' => array(self::HAS_MANY, 'User_alert', 'district_id'),
             'stateAbbr' => array(self::BELONGS_TO, 'State', 'state_abbr'),
         );

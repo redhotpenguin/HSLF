@@ -19,7 +19,6 @@ if (Yii::app()->user->getState('role') == 'admin') {
 }
 
 
-$arr = array(1, 2);
 
 $dataProvider->pagination->pageSize = 50;
 $this->widget('zii.widgets.grid.CGridView', array(
@@ -29,7 +28,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
         'state_abbr',
         array(
             'name' => 'district',
-            'value' => '$data->district0->number',
+            'value' => '$data->district->number',
         ),
         'type',
         'registration',

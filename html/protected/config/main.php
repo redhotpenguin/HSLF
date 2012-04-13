@@ -58,7 +58,7 @@ return array(
             'username' => 'root',
             'username' => 'postgres',
             'password' => 'pengu1n',
-            'charset' => 'utf8',
+            'charset' => 'UTF-8',
             'schemaCachingDuration' => '600',
         ),
 		/*

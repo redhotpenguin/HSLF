@@ -168,10 +168,12 @@ class DistrictController extends Controller {
         $params = array(
             'order' => 'number ASC',
         );
+        
+      
         $data = District::model()->findAllByAttributes(array('state_abbr' => $_POST[$model]['state_abbr']), $params);
 
         $data = CHtml::listData($data, 'id', 'number');
-            
+        
         foreach ($data as $id => $district) {
             echo $t = CHtml::tag('option', array('value' => $id), CHtml::encode($district), true);
         }
