@@ -43,11 +43,12 @@ class User_alert extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, content', 'required'),
+			array('title, content, create_time', 'required'),
 			array('district_id', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>1024),
 			array('state_abbr', 'length', 'max'=>3),
 			array('create_time', 'safe'),
+                         array('create_time', 'date', 'format'=>'yyyy-M-d H:m:s'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, title, content, state_abbr, district_id, create_time', 'safe', 'on'=>'search'),

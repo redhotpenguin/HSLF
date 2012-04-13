@@ -1184,3 +1184,123 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/html/protected/models/UrbanAirshipNotifier.php
 ---
+2012/04/14 00:03:38 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[22007]: Invalid datetime format: 7 ERROR:  invalid input syntax for type timestamp: ""
+LINE 1: ...his is a second alert', '<p>the content</p>', 'na', 309, '')
+                                                                    ^. The SQL statement executed was: INSERT INTO "user_alerts" ("title", "content", "state_abbr", "district_id", "create_time") VALUES (:yp0, :yp1, :yp2, :yp3, :yp4).
+in C:\xampp\htdocs\HSLF\html\protected\controllers\User_alertController.php (66)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/14 00:03:38 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[22007]: Invalid datetime format: 7 ERROR:  invalid input syntax for type timestamp: ""
+LINE 1: ...his is a second alert', '<p>the content</p>', 'na', 309, '')
+                                                                    ^. The SQL statement executed was: INSERT INTO "user_alerts" ("title", "content", "state_abbr", "district_id", "create_time") VALUES (:yp0, :yp1, :yp2, :yp3, :yp4)' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8597
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(7051): CDbCommand->execute()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(6951): CActiveRecord->insert(NULL)
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\User_alertController.php(66): CActiveRecord->save()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): User_alertController->actionCreate()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('create')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('user_alert/crea...')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/user_alert/create
+HTTP_REFERER=http://www.voterguide.com/user_alert/create
+---
+2012/04/14 00:05:31 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[22007]: Invalid datetime format: 7 ERROR:  invalid input syntax for type timestamp: "2012-04-"
+LINE 1: ...tate_abbr"='na', "district_id"=309, "create_time"='2012-04-'...
+                                                             ^. The SQL statement executed was: UPDATE "user_alerts" SET "id"=:yp0, "title"=:yp1, "content"=:yp2, "state_abbr"=:yp3, "district_id"=:yp4, "create_time"=:yp5 WHERE "user_alerts"."id"=2.
+in C:\xampp\htdocs\HSLF\html\protected\controllers\User_alertController.php (90)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/14 00:05:31 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[22007]: Invalid datetime format: 7 ERROR:  invalid input syntax for type timestamp: "2012-04-"
+LINE 1: ...tate_abbr"='na', "district_id"=309, "create_time"='2012-04-'...
+                                                             ^. The SQL statement executed was: UPDATE "user_alerts" SET "id"=:yp0, "title"=:yp1, "content"=:yp2, "state_abbr"=:yp3, "district_id"=:yp4, "create_time"=:yp5 WHERE "user_alerts"."id"=2' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8597
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(7413): CDbCommand->execute()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7087): CActiveRecord->updateByPk(2, Array)
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(6951): CActiveRecord->update(NULL)
+#3 C:\xampp\htdocs\HSLF\html\protected\controllers\User_alertController.php(90): CActiveRecord->save()
+#4 [internal function]: User_alertController->actionUpdate('2')
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs(Object(User_alertController), Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CAction->runWithParamsInternal(Object(User_alertController), Object(ReflectionMethod), Array)
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('update')
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('user_alert/upda...')
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#18 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#19 {main}
+REQUEST_URI=/user_alert/update?id=2
+HTTP_REFERER=http://www.voterguide.com/user_alert/update?id=2
+---
+2012/04/14 00:08:49 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[22007]: Invalid datetime format: 7 ERROR:  invalid input syntax for type timestamp: "2012-04-04 12"
+LINE 1: ...as ú Test', "party"='the party', "date_published"='2012-04-0...
+                                                             ^. The SQL statement executed was: UPDATE "candidate" SET "id"=:yp0, "state_abbr"=:yp1, "district_id"=:yp2, "type"=:yp3, "endorsement"=:yp4, "full_name"=:yp5, "party"=:yp6, "date_published"=:yp7, "publish"=:yp8, "scorecard"=:yp9 WHERE "candidate"."id"=810.
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (90)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/14 00:08:49 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[22007]: Invalid datetime format: 7 ERROR:  invalid input syntax for type timestamp: "2012-04-04 12"
+LINE 1: ...as ú Test', "party"='the party', "date_published"='2012-04-0...
+                                                             ^. The SQL statement executed was: UPDATE "candidate" SET "id"=:yp0, "state_abbr"=:yp1, "district_id"=:yp2, "type"=:yp3, "endorsement"=:yp4, "full_name"=:yp5, "party"=:yp6, "date_published"=:yp7, "publish"=:yp8, "scorecard"=:yp9 WHERE "candidate"."id"=810' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8597
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(7413): CDbCommand->execute()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7087): CActiveRecord->updateByPk(810, Array)
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(6951): CActiveRecord->update(NULL)
+#3 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(90): CActiveRecord->save()
+#4 [internal function]: CandidateController->actionUpdate('810')
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs(Object(CandidateController), Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CAction->runWithParamsInternal(Object(CandidateController), Object(ReflectionMethod), Array)
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('update')
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/updat...')
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#18 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#19 {main}
+REQUEST_URI=/candidate/update?id=810
+HTTP_REFERER=http://www.voterguide.com/candidate/update?id=810
+---
+2012/04/14 00:09:03 [error] [exception.CException] exception 'CException' with message 'Property "Candidate.create_time" is not defined.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:587
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6671): CComponent->__get('create_time')
+#1 C:\xampp\htdocs\HSLF\framework\validators\CDateValidator.php(51): CActiveRecord->__get('create_time')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(9287): CDateValidator->validateAttribute(Object(Candidate), 'create_time')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(6392): CValidator->validate(Object(Candidate), NULL)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(6950): CModel->validate(NULL)
+#5 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(90): CActiveRecord->save()
+#6 [internal function]: CandidateController->actionUpdate('810')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs(Object(CandidateController), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CAction->runWithParamsInternal(Object(CandidateController), Object(ReflectionMethod), Array)
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('update')
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/updat...')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#20 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#21 {main}
+REQUEST_URI=/candidate/update?id=810
+HTTP_REFERER=http://www.voterguide.com/candidate/update?id=810
+---

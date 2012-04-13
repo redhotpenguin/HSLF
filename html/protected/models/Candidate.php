@@ -55,6 +55,7 @@ class Candidate extends CActiveRecord {
             array('full_name', 'length', 'max' => 256),
             array('party, publish', 'length', 'max' => 128),
             array('type, endorsement, date_published, scorecard', 'safe'),
+            array('date_published', 'date', 'format'=>'yyyy-M-d H:m:s'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, state_abbr, district_id, type, endorsement, full_name, party, date_published, publish, district_number', 'safe', 'on' => 'search'),

@@ -20,16 +20,24 @@ class ApiController extends Controller {
         return array();
     }
 
+     
+    
+    /*
+     * @Description: /api/candidates/
+     */
     public function actionList() {
         $result = '';
+        echo 'list';
         switch ($_GET['model']) {
 
-            case 'candidates' :
+            case 'candidates' :echo 'ok';
+                //  /api/candidates/
                 // list ALL candidates
                 //$candidates = Candidate::model()->findAll();
                 break;
 
             case 'alerts':
+                // /api/alerts/
                 if (isset($_GET['limit']) && is_numeric($_GET['limit']) && $_GET['limit'] > 0)
                     $limit = $_GET['limit'];
                 else

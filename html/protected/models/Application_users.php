@@ -46,12 +46,13 @@ class Application_users extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('device_token, state_abbr, district_id, type', 'required'),
+            array('device_token, state_abbr, district_id, type, registration', 'required'),
             array('district_id', 'numerical', 'integerOnly' => true),
             array('device_token', 'length', 'max' => 128),
             array('state_abbr', 'length', 'max' => 3),
             array('user_agent', 'length', 'max' => 1024),
             array('latitude, longitude, registration, type', 'safe'),
+            array('registration', 'date', 'format'=>'yyyy-M-d H:m:s'),
             array('id, device_token, latitude, longitude, state_abbr, district_number, registration, type, user_agent', 'safe', 'on' => 'search'),
         );
     }
@@ -77,10 +78,10 @@ class Application_users extends CActiveRecord {
             'device_token' => 'Device Token',
             'latitude' => 'Latitude',
             'longitude' => 'Longitude',
-            'state_abbr' => 'State Abbr',
-            'district_id' => 'District ID',
+            'state_abbr' => 'State',
+            'district_id' => 'District',
             'registration' => 'Registration',
-            'type' => 'Type',
+            'type' => 'Device Type',
             'user_agent' => 'User Agent',
         );
     }
@@ -122,6 +123,8 @@ class Application_users extends CActiveRecord {
                 ));
     }
 
+ 
+
     public function beforeSave() {
 
         if ($this->isNewRecord) {
@@ -132,22 +135,23 @@ class Application_users extends CActiveRecord {
             else
                 $this->user_agent = 'UNAVALAIBLE';
         }
-        
-        
+
+
         // Update tags on Urban Airship
-        
+        // tood: error handling
+
         $current = self::findByPk($this->id); // get the model before it gets updated
         $current_state = $current->state_abbr;
         $current_district_number = $current->district->number;
-        
+
         $uap_notifier = new UrbanAirshipNotifier();
         // delete previous tags
         $uap_notifier->delete_device_tag($current_state, $this->device_token, $this->type);
         $uap_notifier->delete_device_tag($current_state . '_' . $current_district_number, $this->device_token, $this->type);
-       
+
         // add new tags
         $uap_notifier->add_device_tag($this->stateAbbr->abbr, $this->device_token, $this->type);
-        $uap_notifier->add_device_tag($this->stateAbbr->abbr.'_'.$this->district->number, $this->device_token, $this->type);
+        $uap_notifier->add_device_tag($this->stateAbbr->abbr . '_' . $this->district->number, $this->device_token, $this->type);
 
 
         if (!$this->latitude)

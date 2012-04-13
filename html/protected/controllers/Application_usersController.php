@@ -81,8 +81,6 @@ class Application_usersController extends Controller {
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
 
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
 
         if (isset($_POST['Application_users'])) {
             $model->attributes = $_POST['Application_users'];
