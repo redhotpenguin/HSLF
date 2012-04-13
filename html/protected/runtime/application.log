@@ -1304,3 +1304,13 @@ Stack trace:
 REQUEST_URI=/candidate/update?id=810
 HTTP_REFERER=http://www.voterguide.com/candidate/update?id=810
 ---
+2012/04/14 01:09:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/state/nmi
+---

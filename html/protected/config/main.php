@@ -37,8 +37,8 @@ return array(
             'showScriptName' => false,
             'rules' => array(
                 array('api/list', 'pattern' => 'api/<model:\w+>', 'verb' => 'GET'),
-                array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2}>', 'verb' => 'GET'),
-                array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2}>/district/<district_number:\d+>', 'verb' => 'GET'),
+                array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{3}>', 'verb' => 'GET'),
+                array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{3}>/district/<district_number:\d+>', 'verb' => 'GET'),
                 array('api/create', 'pattern' => 'api/<model:\w+>', 'verb' => 'POST'),
                 // Other controllers
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',

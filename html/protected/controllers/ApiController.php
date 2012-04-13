@@ -70,7 +70,7 @@ class ApiController extends Controller {
 
     public function actionView() {
         switch ($_GET['model']) {
-            case 'candidates':
+            case 'candidates': //api/candidates/state/s{3}/d+
                 $this->_sendResponse(200, $this->_getCandidates($_GET));
                 break;
 
