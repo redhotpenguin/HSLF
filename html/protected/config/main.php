@@ -15,14 +15,12 @@ return array(
         'application.components.*',
     ),
     'modules' => array(
-        
         'gii' => array(
             'class' => 'system.gii.GiiModule',
             'password' => 'giipass',
             // If removed, Gii defaults to localhost only. Edit carefully to taste.
             'ipFilters' => array('127.0.0.1', '::1'),
         ),
-         
     ),
     // application components
     'components' => array(
@@ -37,8 +35,8 @@ return array(
             'showScriptName' => false,
             'rules' => array(
                 array('api/list', 'pattern' => 'api/<model:\w+>', 'verb' => 'GET'),
-                array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{3}>', 'verb' => 'GET'),
-                array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{3}>/district/<district_number:\d+>', 'verb' => 'GET'),
+                array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>', 'verb' => 'GET'),
+                array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>/district/<district_number:\d+>', 'verb' => 'GET'),
                 array('api/create', 'pattern' => 'api/<model:\w+>', 'verb' => 'POST'),
                 // Other controllers
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
@@ -61,11 +59,11 @@ return array(
             'charset' => 'UTF-8',
             'schemaCachingDuration' => '600',
         ),
-		/*
-        'cache' => array(
-            'class' => 'system.caching.CApcCache',
-        ),
-		*/
+        /*
+          'cache' => array(
+          'class' => 'system.caching.CApcCache',
+          ),
+         */
         'errorHandler' => array(
             // use 'site/error' action to display errors
             'errorAction' => 'site/error',
@@ -86,7 +84,6 @@ return array(
              */
             ),
         ),
-   
     ),
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']

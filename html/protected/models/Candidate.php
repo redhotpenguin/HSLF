@@ -125,6 +125,11 @@ class Candidate extends CActiveRecord {
      
         $criteria->compare('publish', $this->publish, true);
         
+       $criteria->compare("date_published",$this->date_published, false);
+       // error_log($this->date_published);
+        //$criteria->addCondition("date_published = to_date( '".$this->date_published."', 'YYYY') ");
+        
+        //SELECT * FROM candidate WHERE date_published < to_date('2012', 'YYYY');
 
 
         return new CActiveDataProvider($this, array(

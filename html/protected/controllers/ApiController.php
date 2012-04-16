@@ -27,10 +27,9 @@ class ApiController extends Controller {
      */
     public function actionList() {
         $result = '';
-        echo 'list';
         switch ($_GET['model']) {
 
-            case 'candidates' :echo 'ok';
+            case 'candidates':
                 //  /api/candidates/
                 // list ALL candidates
                 //$candidates = Candidate::model()->findAll();
@@ -69,6 +68,7 @@ class ApiController extends Controller {
     }
 
     public function actionView() {
+                error_log('view ');
         switch ($_GET['model']) {
             case 'candidates': //api/candidates/state/w{3}/d+
                 $this->_sendResponse(200, $this->_getCandidates($_GET));
@@ -86,7 +86,6 @@ class ApiController extends Controller {
 
     private function _getCandidates($param) {
         $search_attributes = array();
-
         if (isset($param['state_abbr']))
             $search_attributes['state_abbr'] = $param['state_abbr'];
         else

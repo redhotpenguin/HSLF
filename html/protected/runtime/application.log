@@ -2590,3 +2590,1142 @@ Stack trace:
 REQUEST_URI=/candidate/admin
 HTTP_REFERER=http://www.voterguide.com/candidate
 ---
+2012/04/16 18:42:52 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[42883]: Undefined function: 7 ERROR:  function date_format(timestamp without time zone, unknown) does not exist
+LINE 1: SELECT COUNT(*) FROM "candidate" "t" WHERE DATE_FORMAT(date_...
+                                                   ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE DATE_FORMAT(date_published, '%m/%d/%Y') LIKE :ycp0.
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php (65)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (144)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/16 18:42:52 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42883]: Undefined function: 7 ERROR:  function date_format(timestamp without time zone, unknown) does not exist
+LINE 1: SELECT COUNT(*) FROM "candidate" "t" WHERE DATE_FORMAT(date_...
+                                                   ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE DATE_FORMAT(date_published, '%m/%d/%Y') LIKE :ycp0' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8615): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7348): CDbCommand->queryScalar()
+#2 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(179): CActiveRecord->count(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(193): CActiveDataProvider->calculateTotalItemCount()
+#4 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(129): CDataProvider->getTotalItemCount()
+#5 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(137): CActiveDataProvider->fetchData()
+#6 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(105): CDataProvider->getData()
+#7 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(269): CBaseListView->init()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3133): CGridView->init()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('zii.widgets.gri...', Array)
+#10 C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php(65): CBaseController->widget('zii.widgets.gri...', Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('admin', Array, true)
+#15 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(144): CController->render('admin', Array)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionAdmin()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('admin')
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/admin')
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#28 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#29 {main}
+REQUEST_URI=/candidate/admin?Candidate%5Bid%5D=&Candidate%5Bstate_abbr%5D=&Candidate%5Bdistrict_number%5D=&Candidate%5Btype%5D=&Candidate%5Bfull_name%5D=&Candidate%5Bparty%5D=&Candidate%5Bscorecard%5D=&Candidate%5Bdate_published%5D=2012-04-05+15%3A20%3A44.129&Candidate%5Bpublish%5D=&Candidate_page=1&ajax=candidate-grid
+HTTP_REFERER=http://www.voterguide.com/candidate/admin
+---
+2012/04/16 18:43:01 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[42883]: Undefined function: 7 ERROR:  function date_format(timestamp without time zone, unknown) does not exist
+LINE 1: SELECT COUNT(*) FROM "candidate" "t" WHERE DATE_FORMAT(date_...
+                                                   ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE DATE_FORMAT(date_published, '%m/%d/%Y') LIKE :ycp0.
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php (65)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (144)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/16 18:43:01 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42883]: Undefined function: 7 ERROR:  function date_format(timestamp without time zone, unknown) does not exist
+LINE 1: SELECT COUNT(*) FROM "candidate" "t" WHERE DATE_FORMAT(date_...
+                                                   ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE DATE_FORMAT(date_published, '%m/%d/%Y') LIKE :ycp0' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8615): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7348): CDbCommand->queryScalar()
+#2 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(179): CActiveRecord->count(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(193): CActiveDataProvider->calculateTotalItemCount()
+#4 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(129): CDataProvider->getTotalItemCount()
+#5 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(137): CActiveDataProvider->fetchData()
+#6 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(105): CDataProvider->getData()
+#7 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(269): CBaseListView->init()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3133): CGridView->init()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('zii.widgets.gri...', Array)
+#10 C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php(65): CBaseController->widget('zii.widgets.gri...', Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('admin', Array, true)
+#15 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(144): CController->render('admin', Array)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionAdmin()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('admin')
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/admin')
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#28 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#29 {main}
+REQUEST_URI=/candidate/admin?Candidate%5Bid%5D=&Candidate%5Bstate_abbr%5D=&Candidate%5Bdistrict_number%5D=&Candidate%5Btype%5D=&Candidate%5Bfull_name%5D=&Candidate%5Bparty%5D=&Candidate%5Bscorecard%5D=&Candidate%5Bdate_published%5D=2012-04-05+15%3A20%3A44&Candidate%5Bpublish%5D=&Candidate_page=1&ajax=candidate-grid
+HTTP_REFERER=http://www.voterguide.com/candidate/admin
+---
+2012/04/16 18:43:05 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[42883]: Undefined function: 7 ERROR:  function date_format(timestamp without time zone, unknown) does not exist
+LINE 1: SELECT COUNT(*) FROM "candidate" "t" WHERE DATE_FORMAT(date_...
+                                                   ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE DATE_FORMAT(date_published, '%m/%d/%Y') LIKE :ycp0.
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php (65)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (144)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/16 18:43:05 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42883]: Undefined function: 7 ERROR:  function date_format(timestamp without time zone, unknown) does not exist
+LINE 1: SELECT COUNT(*) FROM "candidate" "t" WHERE DATE_FORMAT(date_...
+                                                   ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE DATE_FORMAT(date_published, '%m/%d/%Y') LIKE :ycp0' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8615): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7348): CDbCommand->queryScalar()
+#2 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(179): CActiveRecord->count(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(193): CActiveDataProvider->calculateTotalItemCount()
+#4 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(129): CDataProvider->getTotalItemCount()
+#5 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(137): CActiveDataProvider->fetchData()
+#6 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(105): CDataProvider->getData()
+#7 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(269): CBaseListView->init()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3133): CGridView->init()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('zii.widgets.gri...', Array)
+#10 C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php(65): CBaseController->widget('zii.widgets.gri...', Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('admin', Array, true)
+#15 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(144): CController->render('admin', Array)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionAdmin()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('admin')
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/admin')
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#28 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#29 {main}
+REQUEST_URI=/candidate/admin?Candidate%5Bid%5D=&Candidate%5Bstate_abbr%5D=&Candidate%5Bdistrict_number%5D=&Candidate%5Btype%5D=&Candidate%5Bfull_name%5D=&Candidate%5Bparty%5D=&Candidate%5Bscorecard%5D=&Candidate%5Bdate_published%5D=2012-04-05+&Candidate%5Bpublish%5D=&Candidate_page=1&ajax=candidate-grid
+HTTP_REFERER=http://www.voterguide.com/candidate/admin
+---
+2012/04/16 18:44:50 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[42883]: Undefined function: 7 ERROR:  function to_date(timestamp without time zone, unknown) does not exist
+LINE 1: SELECT COUNT(*) FROM "candidate" "t" WHERE to_date(date_publ...
+                                                   ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE to_date(date_published, '%m/%d/%Y') LIKE :ycp0.
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php (65)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (144)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/16 18:44:50 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42883]: Undefined function: 7 ERROR:  function to_date(timestamp without time zone, unknown) does not exist
+LINE 1: SELECT COUNT(*) FROM "candidate" "t" WHERE to_date(date_publ...
+                                                   ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE to_date(date_published, '%m/%d/%Y') LIKE :ycp0' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8615): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7348): CDbCommand->queryScalar()
+#2 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(179): CActiveRecord->count(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(193): CActiveDataProvider->calculateTotalItemCount()
+#4 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(129): CDataProvider->getTotalItemCount()
+#5 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(137): CActiveDataProvider->fetchData()
+#6 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(105): CDataProvider->getData()
+#7 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(269): CBaseListView->init()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3133): CGridView->init()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('zii.widgets.gri...', Array)
+#10 C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php(65): CBaseController->widget('zii.widgets.gri...', Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('admin', Array, true)
+#15 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(144): CController->render('admin', Array)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionAdmin()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('admin')
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/admin')
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#28 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#29 {main}
+REQUEST_URI=/candidate/admin?Candidate%5Bid%5D=&Candidate%5Bstate_abbr%5D=&Candidate%5Bdistrict_number%5D=&Candidate%5Btype%5D=&Candidate%5Bfull_name%5D=&Candidate%5Bparty%5D=&Candidate%5Bscorecard%5D=&Candidate%5Bdate_published%5D=1&Candidate%5Bpublish%5D=&Candidate_page=1&ajax=candidate-grid
+HTTP_REFERER=http://www.voterguide.com/candidate/admin
+---
+2012/04/16 18:56:21 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: date ~~ unknown
+LINE 1: ... "candidate" "t" WHERE  to_date('2012', 'YYYY')   LIKE '%jk%...
+                                                             ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE  to_date('2012', 'YYYY')   LIKE :ycp0.
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php (65)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (144)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/16 18:56:21 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: date ~~ unknown
+LINE 1: ... "candidate" "t" WHERE  to_date('2012', 'YYYY')   LIKE '%jk%...
+                                                             ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE  to_date('2012', 'YYYY')   LIKE :ycp0' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8615): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7348): CDbCommand->queryScalar()
+#2 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(179): CActiveRecord->count(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(193): CActiveDataProvider->calculateTotalItemCount()
+#4 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(129): CDataProvider->getTotalItemCount()
+#5 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(137): CActiveDataProvider->fetchData()
+#6 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(105): CDataProvider->getData()
+#7 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(269): CBaseListView->init()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3133): CGridView->init()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('zii.widgets.gri...', Array)
+#10 C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php(65): CBaseController->widget('zii.widgets.gri...', Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('admin', Array, true)
+#15 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(144): CController->render('admin', Array)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionAdmin()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('admin')
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/admin')
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#28 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#29 {main}
+REQUEST_URI=/candidate/admin?Candidate%5Bid%5D=&Candidate%5Bstate_abbr%5D=&Candidate%5Bdistrict_number%5D=&Candidate%5Btype%5D=&Candidate%5Bfull_name%5D=&Candidate%5Bparty%5D=&Candidate%5Bscorecard%5D=&Candidate%5Bdate_published%5D=jk&Candidate%5Bpublish%5D=&Candidate_page=1&ajax=candidate-grid
+HTTP_REFERER=http://www.voterguide.com/candidate/admin
+---
+2012/04/16 18:56:39 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: date ~~ unknown
+LINE 1: ...WHERE  date_published < to_date('2012', 'YYYY')   LIKE '%a%'
+                                                             ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE  date_published < to_date('2012', 'YYYY')   LIKE :ycp0.
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php (65)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (144)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/16 18:56:39 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: date ~~ unknown
+LINE 1: ...WHERE  date_published < to_date('2012', 'YYYY')   LIKE '%a%'
+                                                             ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE  date_published < to_date('2012', 'YYYY')   LIKE :ycp0' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8615): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7348): CDbCommand->queryScalar()
+#2 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(179): CActiveRecord->count(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(193): CActiveDataProvider->calculateTotalItemCount()
+#4 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(129): CDataProvider->getTotalItemCount()
+#5 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(137): CActiveDataProvider->fetchData()
+#6 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(105): CDataProvider->getData()
+#7 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(269): CBaseListView->init()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3133): CGridView->init()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('zii.widgets.gri...', Array)
+#10 C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php(65): CBaseController->widget('zii.widgets.gri...', Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('admin', Array, true)
+#15 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(144): CController->render('admin', Array)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionAdmin()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('admin')
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/admin')
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#28 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#29 {main}
+REQUEST_URI=/candidate/admin?Candidate%5Bid%5D=&Candidate%5Bstate_abbr%5D=&Candidate%5Bdistrict_number%5D=&Candidate%5Btype%5D=&Candidate%5Bfull_name%5D=&Candidate%5Bparty%5D=&Candidate%5Bscorecard%5D=&Candidate%5Bdate_published%5D=a&Candidate%5Bpublish%5D=&Candidate_page=1&ajax=candidate-grid
+HTTP_REFERER=http://www.voterguide.com/candidate/admin
+---
+2012/04/16 18:56:53 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  invalid input syntax for type boolean: "j\"
+LINE 1: ..." "t" WHERE  date_published < to_date('2012', 'YYYY')  ='j\'
+                                                                   ^. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE  date_published < to_date('2012', 'YYYY')  =:ycp0.
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php (65)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (144)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/16 18:56:53 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  invalid input syntax for type boolean: "j\"
+LINE 1: ..." "t" WHERE  date_published < to_date('2012', 'YYYY')  ='j\'
+                                                                   ^. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE  date_published < to_date('2012', 'YYYY')  =:ycp0' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8615): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7348): CDbCommand->queryScalar()
+#2 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(179): CActiveRecord->count(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(193): CActiveDataProvider->calculateTotalItemCount()
+#4 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(129): CDataProvider->getTotalItemCount()
+#5 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(137): CActiveDataProvider->fetchData()
+#6 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(105): CDataProvider->getData()
+#7 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(269): CBaseListView->init()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3133): CGridView->init()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('zii.widgets.gri...', Array)
+#10 C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php(65): CBaseController->widget('zii.widgets.gri...', Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('admin', Array, true)
+#15 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(144): CController->render('admin', Array)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionAdmin()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('admin')
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/admin')
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#28 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#29 {main}
+REQUEST_URI=/candidate/admin?Candidate%5Bid%5D=&Candidate%5Bstate_abbr%5D=&Candidate%5Bdistrict_number%5D=&Candidate%5Btype%5D=&Candidate%5Bfull_name%5D=&Candidate%5Bparty%5D=&Candidate%5Bscorecard%5D=&Candidate%5Bdate_published%5D=j%5C&Candidate%5Bpublish%5D=&Candidate_page=1&ajax=candidate-grid
+HTTP_REFERER=http://www.voterguide.com/candidate/admin
+---
+2012/04/16 18:57:08 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  invalid input syntax for type boolean: "2011"
+LINE 1: ..."t" WHERE  date_published < to_date('2012', 'YYYY')  ='2011'
+                                                                 ^. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE  date_published < to_date('2012', 'YYYY')  =:ycp0.
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php (65)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (144)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/16 18:57:08 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  invalid input syntax for type boolean: "2011"
+LINE 1: ..."t" WHERE  date_published < to_date('2012', 'YYYY')  ='2011'
+                                                                 ^. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE  date_published < to_date('2012', 'YYYY')  =:ycp0' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8615): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7348): CDbCommand->queryScalar()
+#2 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(179): CActiveRecord->count(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(193): CActiveDataProvider->calculateTotalItemCount()
+#4 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(129): CDataProvider->getTotalItemCount()
+#5 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(137): CActiveDataProvider->fetchData()
+#6 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(105): CDataProvider->getData()
+#7 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(269): CBaseListView->init()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3133): CGridView->init()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('zii.widgets.gri...', Array)
+#10 C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php(65): CBaseController->widget('zii.widgets.gri...', Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('admin', Array, true)
+#15 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(144): CController->render('admin', Array)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionAdmin()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('admin')
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/admin')
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#28 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#29 {main}
+REQUEST_URI=/candidate/admin?Candidate%5Bid%5D=&Candidate%5Bstate_abbr%5D=&Candidate%5Bdistrict_number%5D=&Candidate%5Btype%5D=&Candidate%5Bfull_name%5D=&Candidate%5Bparty%5D=&Candidate%5Bscorecard%5D=&Candidate%5Bdate_published%5D=2011&Candidate%5Bpublish%5D=&Candidate_page=1&ajax=candidate-grid
+HTTP_REFERER=http://www.voterguide.com/candidate/admin
+---
+2012/04/16 19:00:13 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "15"
+LINE 1: ...M "candidate" "t" WHERE date_published > 2012-04-05 15:20:44
+                                                               ^. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE date_published > 2012-04-05 15:20:44.
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php (65)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (144)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/16 19:00:13 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "15"
+LINE 1: ...M "candidate" "t" WHERE date_published > 2012-04-05 15:20:44
+                                                               ^. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE date_published > 2012-04-05 15:20:44' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8615): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7348): CDbCommand->queryScalar()
+#2 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(179): CActiveRecord->count(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(193): CActiveDataProvider->calculateTotalItemCount()
+#4 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(129): CDataProvider->getTotalItemCount()
+#5 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(137): CActiveDataProvider->fetchData()
+#6 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(105): CDataProvider->getData()
+#7 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(269): CBaseListView->init()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3133): CGridView->init()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('zii.widgets.gri...', Array)
+#10 C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php(65): CBaseController->widget('zii.widgets.gri...', Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('admin', Array, true)
+#15 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(144): CController->render('admin', Array)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionAdmin()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('admin')
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/admin')
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#28 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#29 {main}
+REQUEST_URI=/candidate/admin
+HTTP_REFERER=http://www.voterguide.com/candidate/view?id=518
+---
+2012/04/16 19:00:13 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "15"
+LINE 1: ...M "candidate" "t" WHERE date_published > 2012-04-05 15:20:44
+                                                               ^. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE date_published > 2012-04-05 15:20:44.
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php (65)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (144)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/16 19:00:13 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "15"
+LINE 1: ...M "candidate" "t" WHERE date_published > 2012-04-05 15:20:44
+                                                               ^. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE date_published > 2012-04-05 15:20:44' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8615): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7348): CDbCommand->queryScalar()
+#2 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(179): CActiveRecord->count(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(193): CActiveDataProvider->calculateTotalItemCount()
+#4 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(129): CDataProvider->getTotalItemCount()
+#5 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(137): CActiveDataProvider->fetchData()
+#6 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(105): CDataProvider->getData()
+#7 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(269): CBaseListView->init()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3133): CGridView->init()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('zii.widgets.gri...', Array)
+#10 C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php(65): CBaseController->widget('zii.widgets.gri...', Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('admin', Array, true)
+#15 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(144): CController->render('admin', Array)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionAdmin()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('admin')
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/admin')
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#28 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#29 {main}
+REQUEST_URI=/candidate/admin
+HTTP_REFERER=http://www.voterguide.com/candidate/view?id=518
+---
+2012/04/16 19:00:32 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "15"
+LINE 1: ...M "candidate" "t" WHERE date_published > 2012-04-05 15:20:44
+                                                               ^. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE date_published > 2012-04-05 15:20:44.
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php (65)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (144)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/16 19:00:32 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "15"
+LINE 1: ...M "candidate" "t" WHERE date_published > 2012-04-05 15:20:44
+                                                               ^. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE date_published > 2012-04-05 15:20:44' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8615): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7348): CDbCommand->queryScalar()
+#2 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(179): CActiveRecord->count(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(193): CActiveDataProvider->calculateTotalItemCount()
+#4 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(129): CDataProvider->getTotalItemCount()
+#5 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(137): CActiveDataProvider->fetchData()
+#6 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(105): CDataProvider->getData()
+#7 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(269): CBaseListView->init()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3133): CGridView->init()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('zii.widgets.gri...', Array)
+#10 C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php(65): CBaseController->widget('zii.widgets.gri...', Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('admin', Array, true)
+#15 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(144): CController->render('admin', Array)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionAdmin()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('admin')
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/admin')
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#28 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#29 {main}
+REQUEST_URI=/candidate/admin
+HTTP_REFERER=http://www.voterguide.com/candidate/view?id=518
+---
+2012/04/16 19:00:32 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "15"
+LINE 1: ...M "candidate" "t" WHERE date_published > 2012-04-05 15:20:44
+                                                               ^. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE date_published > 2012-04-05 15:20:44.
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php (65)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (144)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/16 19:00:32 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "15"
+LINE 1: ...M "candidate" "t" WHERE date_published > 2012-04-05 15:20:44
+                                                               ^. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE date_published > 2012-04-05 15:20:44' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8615): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7348): CDbCommand->queryScalar()
+#2 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(179): CActiveRecord->count(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(193): CActiveDataProvider->calculateTotalItemCount()
+#4 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(129): CDataProvider->getTotalItemCount()
+#5 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(137): CActiveDataProvider->fetchData()
+#6 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(105): CDataProvider->getData()
+#7 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(269): CBaseListView->init()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3133): CGridView->init()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('zii.widgets.gri...', Array)
+#10 C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php(65): CBaseController->widget('zii.widgets.gri...', Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('admin', Array, true)
+#15 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(144): CController->render('admin', Array)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionAdmin()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('admin')
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/admin')
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#28 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#29 {main}
+REQUEST_URI=/candidate/admin
+HTTP_REFERER=http://www.voterguide.com/candidate/view?id=518
+---
+2012/04/16 19:00:32 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "15"
+LINE 1: ...M "candidate" "t" WHERE date_published > 2012-04-05 15:20:44
+                                                               ^. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE date_published > 2012-04-05 15:20:44.
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php (65)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (144)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/16 19:00:32 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "15"
+LINE 1: ...M "candidate" "t" WHERE date_published > 2012-04-05 15:20:44
+                                                               ^. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE date_published > 2012-04-05 15:20:44' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8615): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7348): CDbCommand->queryScalar()
+#2 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(179): CActiveRecord->count(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(193): CActiveDataProvider->calculateTotalItemCount()
+#4 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(129): CDataProvider->getTotalItemCount()
+#5 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(137): CActiveDataProvider->fetchData()
+#6 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(105): CDataProvider->getData()
+#7 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(269): CBaseListView->init()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3133): CGridView->init()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('zii.widgets.gri...', Array)
+#10 C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php(65): CBaseController->widget('zii.widgets.gri...', Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('admin', Array, true)
+#15 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(144): CController->render('admin', Array)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionAdmin()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('admin')
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/admin')
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#28 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#29 {main}
+REQUEST_URI=/candidate/admin
+HTTP_REFERER=http://www.voterguide.com/candidate/view?id=518
+---
+2012/04/16 19:00:32 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "15"
+LINE 1: ...M "candidate" "t" WHERE date_published > 2012-04-05 15:20:44
+                                                               ^. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE date_published > 2012-04-05 15:20:44.
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php (65)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (144)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/16 19:00:32 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "15"
+LINE 1: ...M "candidate" "t" WHERE date_published > 2012-04-05 15:20:44
+                                                               ^. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE date_published > 2012-04-05 15:20:44' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8615): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7348): CDbCommand->queryScalar()
+#2 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(179): CActiveRecord->count(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(193): CActiveDataProvider->calculateTotalItemCount()
+#4 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(129): CDataProvider->getTotalItemCount()
+#5 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(137): CActiveDataProvider->fetchData()
+#6 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(105): CDataProvider->getData()
+#7 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(269): CBaseListView->init()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3133): CGridView->init()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('zii.widgets.gri...', Array)
+#10 C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php(65): CBaseController->widget('zii.widgets.gri...', Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('admin', Array, true)
+#15 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(144): CController->render('admin', Array)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionAdmin()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('admin')
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/admin')
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#28 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#29 {main}
+REQUEST_URI=/candidate/admin
+HTTP_REFERER=http://www.voterguide.com/candidate/view?id=518
+---
+2012/04/16 19:00:48 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[42703]: Undefined column: 7 ERROR:  column "2012-04-05 15:20:44" does not exist
+LINE 1: ...NT(*) FROM "candidate" "t" WHERE date_published > "2012-04-0...
+                                                             ^. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE date_published > "2012-04-05 15:20:44".
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php (65)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (144)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/16 19:00:48 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42703]: Undefined column: 7 ERROR:  column "2012-04-05 15:20:44" does not exist
+LINE 1: ...NT(*) FROM "candidate" "t" WHERE date_published > "2012-04-0...
+                                                             ^. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE date_published > "2012-04-05 15:20:44"' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8615): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7348): CDbCommand->queryScalar()
+#2 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(179): CActiveRecord->count(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(193): CActiveDataProvider->calculateTotalItemCount()
+#4 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(129): CDataProvider->getTotalItemCount()
+#5 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(137): CActiveDataProvider->fetchData()
+#6 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(105): CDataProvider->getData()
+#7 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(269): CBaseListView->init()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3133): CGridView->init()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('zii.widgets.gri...', Array)
+#10 C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php(65): CBaseController->widget('zii.widgets.gri...', Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('admin', Array, true)
+#15 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(144): CController->render('admin', Array)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionAdmin()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('admin')
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/admin')
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#28 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#29 {main}
+REQUEST_URI=/candidate/admin
+HTTP_REFERER=http://www.voterguide.com/candidate/view?id=518
+---
+2012/04/16 19:04:49 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[22007]: Invalid datetime format: 7 ERROR:  invalid input syntax for type timestamp: "lo"
+LINE 1: ...UNT(*) FROM "candidate" "t" WHERE (date_published='lo') AND ...
+                                                             ^. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE (date_published=:ycp0) AND (date_published > '2012-04-05 15:20:44').
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php (65)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (144)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/16 19:04:49 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[22007]: Invalid datetime format: 7 ERROR:  invalid input syntax for type timestamp: "lo"
+LINE 1: ...UNT(*) FROM "candidate" "t" WHERE (date_published='lo') AND ...
+                                                             ^. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE (date_published=:ycp0) AND (date_published > '2012-04-05 15:20:44')' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8615): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7348): CDbCommand->queryScalar()
+#2 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(179): CActiveRecord->count(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(193): CActiveDataProvider->calculateTotalItemCount()
+#4 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(129): CDataProvider->getTotalItemCount()
+#5 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(137): CActiveDataProvider->fetchData()
+#6 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(105): CDataProvider->getData()
+#7 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(269): CBaseListView->init()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3133): CGridView->init()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('zii.widgets.gri...', Array)
+#10 C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php(65): CBaseController->widget('zii.widgets.gri...', Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('admin', Array, true)
+#15 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(144): CController->render('admin', Array)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionAdmin()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('admin')
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/admin')
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#28 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#29 {main}
+REQUEST_URI=/candidate/admin?Candidate%5Bid%5D=&Candidate%5Bstate_abbr%5D=&Candidate%5Bdistrict_number%5D=&Candidate%5Btype%5D=&Candidate%5Bfull_name%5D=&Candidate%5Bparty%5D=&Candidate%5Bscorecard%5D=&Candidate%5Bdate_published%5D=lo&Candidate%5Bpublish%5D=&Candidate_page=1&ajax=candidate-grid
+HTTP_REFERER=http://www.voterguide.com/candidate/admin
+---
+2012/04/16 19:05:02 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[22007]: Invalid datetime format: 7 ERROR:  invalid input syntax for type timestamp: "a"
+LINE 1: ...UNT(*) FROM "candidate" "t" WHERE (date_published='a') AND (...
+                                                             ^. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE (date_published=:ycp0) AND (date_published > '2012-04-05 15:20:44').
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php (65)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (144)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/16 19:05:02 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[22007]: Invalid datetime format: 7 ERROR:  invalid input syntax for type timestamp: "a"
+LINE 1: ...UNT(*) FROM "candidate" "t" WHERE (date_published='a') AND (...
+                                                             ^. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE (date_published=:ycp0) AND (date_published > '2012-04-05 15:20:44')' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8615): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7348): CDbCommand->queryScalar()
+#2 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(179): CActiveRecord->count(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(193): CActiveDataProvider->calculateTotalItemCount()
+#4 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(129): CDataProvider->getTotalItemCount()
+#5 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(137): CActiveDataProvider->fetchData()
+#6 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(105): CDataProvider->getData()
+#7 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(269): CBaseListView->init()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3133): CGridView->init()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('zii.widgets.gri...', Array)
+#10 C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php(65): CBaseController->widget('zii.widgets.gri...', Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('admin', Array, true)
+#15 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(144): CController->render('admin', Array)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionAdmin()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('admin')
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/admin')
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#28 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#29 {main}
+REQUEST_URI=/candidate/admin?Candidate%5Bid%5D=&Candidate%5Bstate_abbr%5D=&Candidate%5Bdistrict_number%5D=&Candidate%5Btype%5D=&Candidate%5Bfull_name%5D=&Candidate%5Bparty%5D=&Candidate%5Bscorecard%5D=&Candidate%5Bdate_published%5D=a&Candidate%5Bpublish%5D=&Candidate_page=1&ajax=candidate-grid
+HTTP_REFERER=http://www.voterguide.com/candidate/admin
+---
+2012/04/16 19:06:50 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near ")"
+LINE 1: ...HERE date_published < to_date( '2012 04 05', 'YYYY MM DD') )
+                                                                      ^. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE date_published < to_date( '2012 04 05', 'YYYY MM DD') ).
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php (65)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (144)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/16 19:06:50 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near ")"
+LINE 1: ...HERE date_published < to_date( '2012 04 05', 'YYYY MM DD') )
+                                                                      ^. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE date_published < to_date( '2012 04 05', 'YYYY MM DD') )' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8615): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7348): CDbCommand->queryScalar()
+#2 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(179): CActiveRecord->count(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(193): CActiveDataProvider->calculateTotalItemCount()
+#4 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(129): CDataProvider->getTotalItemCount()
+#5 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(137): CActiveDataProvider->fetchData()
+#6 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(105): CDataProvider->getData()
+#7 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(269): CBaseListView->init()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3133): CGridView->init()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('zii.widgets.gri...', Array)
+#10 C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php(65): CBaseController->widget('zii.widgets.gri...', Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('admin', Array, true)
+#15 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(144): CController->render('admin', Array)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionAdmin()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('admin')
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/admin')
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#28 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#29 {main}
+REQUEST_URI=/candidate/admin
+HTTP_REFERER=http://www.voterguide.com/candidate/view?id=518
+---
+2012/04/16 19:06:50 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near ")"
+LINE 1: ...HERE date_published < to_date( '2012 04 05', 'YYYY MM DD') )
+                                                                      ^. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE date_published < to_date( '2012 04 05', 'YYYY MM DD') ).
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php (65)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (144)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/16 19:06:50 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near ")"
+LINE 1: ...HERE date_published < to_date( '2012 04 05', 'YYYY MM DD') )
+                                                                      ^. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE date_published < to_date( '2012 04 05', 'YYYY MM DD') )' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8615): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7348): CDbCommand->queryScalar()
+#2 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(179): CActiveRecord->count(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(193): CActiveDataProvider->calculateTotalItemCount()
+#4 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(129): CDataProvider->getTotalItemCount()
+#5 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(137): CActiveDataProvider->fetchData()
+#6 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(105): CDataProvider->getData()
+#7 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(269): CBaseListView->init()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3133): CGridView->init()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('zii.widgets.gri...', Array)
+#10 C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php(65): CBaseController->widget('zii.widgets.gri...', Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('admin', Array, true)
+#15 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(144): CController->render('admin', Array)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionAdmin()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('admin')
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/admin')
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#28 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#29 {main}
+REQUEST_URI=/candidate/admin
+HTTP_REFERER=http://www.voterguide.com/candidate/view?id=518
+---
+2012/04/16 20:26:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/state/al
+---
+2012/04/16 20:26:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/state/al
+---
+2012/04/16 20:26:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/state/al
+---
+2012/04/16 20:26:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/state/al
+---
+2012/04/16 20:26:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/state/al
+---
+2012/04/16 20:26:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/state/al
+---
+2012/04/16 20:26:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/state/al
+---
+2012/04/16 20:26:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/state/al
+---
+2012/04/16 20:26:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "alerts".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('alerts')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('alerts')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/alerts/stat...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/alerts/state/ca
+---
+2012/04/16 20:27:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "alerts".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('alerts')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('alerts')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/alerts/stat...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/alerts/state/ca
+---
+2012/04/16 20:27:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "alerts".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('alerts')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('alerts')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/alerts/stat...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/alerts/state/ca
+---
+2012/04/16 20:27:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "alerts".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('alerts')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('alerts')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/alerts/stat...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/alerts/state/ca
+---
+2012/04/16 20:27:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/state/ca/
+---
+2012/04/16 20:27:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/state/ca/
+---
+2012/04/16 20:27:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/state/ca/
+---
+2012/04/16 20:27:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/state/ca/
+---
+2012/04/16 20:28:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/state/ca/
+---
+2012/04/16 20:28:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/state/ca/
+---
+2012/04/16 20:28:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/state/ca/
+---
+2012/04/16 20:28:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/state/ca/
+---
+2012/04/16 20:28:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/state/ca/
+---
+2012/04/16 20:28:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/state/ca/
+---
+2012/04/16 20:29:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/state/ca/
+---
+2012/04/16 20:29:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/state/ca/
+---
+2012/04/16 20:29:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/state/ca/
+---
+2012/04/16 20:29:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/state/ca/
+---
+2012/04/16 20:30:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/state/ca/
+---
+2012/04/16 20:31:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/state/caa
+---
+2012/04/16 20:31:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/state/caa
+---
+2012/04/16 20:31:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/state/ca
+---
+2012/04/16 20:31:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/state/caa
+---
