@@ -3729,3 +3729,46 @@ Stack trace:
 #5 {main}
 REQUEST_URI=/api/candidates/state/caa
 ---
+2012/04/16 23:14:01 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[22007]: Invalid datetime format: 7 ERROR:  invalid input syntax for type timestamp: "2011"
+LINE 1: ...CT COUNT(*) FROM "candidate" "t" WHERE date_published='2011'
+                                                                 ^. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE date_published=:ycp0.
+in C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php (65)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (144)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/16 23:14:01 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[22007]: Invalid datetime format: 7 ERROR:  invalid input syntax for type timestamp: "2011"
+LINE 1: ...CT COUNT(*) FROM "candidate" "t" WHERE date_published='2011'
+                                                                 ^. The SQL statement executed was: SELECT COUNT(*) FROM "candidate" "t" WHERE date_published=:ycp0' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8615): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7348): CDbCommand->queryScalar()
+#2 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(179): CActiveRecord->count(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(193): CActiveDataProvider->calculateTotalItemCount()
+#4 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(129): CDataProvider->getTotalItemCount()
+#5 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(137): CActiveDataProvider->fetchData()
+#6 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(105): CDataProvider->getData()
+#7 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(269): CBaseListView->init()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3133): CGridView->init()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('zii.widgets.gri...', Array)
+#10 C:\xampp\htdocs\HSLF\html\protected\views\candidate\admin.php(65): CBaseController->widget('zii.widgets.gri...', Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('admin', Array, true)
+#15 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(144): CController->render('admin', Array)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionAdmin()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('admin')
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/admin')
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#28 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#29 {main}
+REQUEST_URI=/candidate/admin?Candidate%5Bid%5D=&Candidate%5Bstate_abbr%5D=&Candidate%5Bdistrict_number%5D=&Candidate%5Btype%5D=&Candidate%5Bfull_name%5D=&Candidate%5Bparty%5D=&Candidate%5Bscorecard%5D=&Candidate%5Bdate_published%5D=2011&Candidate%5Bpublish%5D=&Candidate_page=1&ajax=candidate-grid
+HTTP_REFERER=http://www.voterguide.com/candidate/admin
+---

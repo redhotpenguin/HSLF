@@ -20,11 +20,10 @@ class ApiController extends Controller {
         return array();
     }
 
-     
-    
     /*
      * @Description: /api/candidates/
      */
+
     public function actionList() {
         $result = '';
         switch ($_GET['model']) {
@@ -68,7 +67,6 @@ class ApiController extends Controller {
     }
 
     public function actionView() {
-                error_log('view ');
         switch ($_GET['model']) {
             case 'candidates': //api/candidates/state/w{3}/d+
                 $this->_sendResponse(200, $this->_getCandidates($_GET));
@@ -148,6 +146,8 @@ class ApiController extends Controller {
             return false;
         }
 
+
+
         switch ($_GET['model']) {
             case 'app_users': //insert/update  user record
                 error_log(print_r($_REQUEST, true));
@@ -164,10 +164,12 @@ class ApiController extends Controller {
     }
 
     private function _add_appicationUsers() {
+
         $save_result = 0;
         if (!isset($_POST['device_token']) || !isset($_POST['state_abbr']) || !isset($_POST['district_number']) || !isset($_POST['type'])) {
             exit;
         }
+
 
         $device_token = $_POST['device_token'];
         $user_state = $_POST['state_abbr'];
@@ -202,7 +204,6 @@ class ApiController extends Controller {
                 $district->state_abbr = $user_state;
                 $district->number = $user_district_number;
                 $district->save();
-                $district->id;
                 $district_id = $district->id;
             }
 
@@ -210,6 +211,7 @@ class ApiController extends Controller {
         }
         else
             exit;
+
 
         switch ($_POST['type']) {
             case 'android':
@@ -220,6 +222,8 @@ class ApiController extends Controller {
             default: error_log('app_user: wrong type given');
                 exit;
         }
+
+        $app_user->registration  = date('Y-m-d H:i:s');
 
         try {
             $save_result = $app_user->save();
@@ -244,8 +248,8 @@ class ApiController extends Controller {
             $container['results'] = 'no_results';
         }
 
-       
-       
+
+
         $json_encoded_result = CJSON::encode($container);
 
         // API consumers really want a district_name, not a district_id 
