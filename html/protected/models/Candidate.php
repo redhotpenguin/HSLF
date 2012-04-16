@@ -122,10 +122,9 @@ class Candidate extends CActiveRecord {
         $criteria->compare('endorsement', $this->endorsement, true);
         $criteria->compare('full_name', $this->full_name, true);
         $criteria->compare('party', $this->party, true);
-        $criteria->compare('date_published', $this->date_published, true);
+     
         $criteria->compare('publish', $this->publish, true);
-
-
+        
 
 
         return new CActiveDataProvider($this, array(
