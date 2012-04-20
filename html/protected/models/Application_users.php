@@ -126,7 +126,7 @@ class Application_users extends CActiveRecord {
     public function beforeSave() {
         $uap_notifier = new UrbanAirshipNotifier();
         if ($this->isNewRecord) {
-            $this->registration = new CDbExpression('NOW()');
+            $this->registration = date('Y-m-d H:i:s');
 
             if (isset($_SERVER['HTTP_USER_AGENT']))
                 $this->user_agent = $_SERVER['HTTP_USER_AGENT']; //should really be in the controller\

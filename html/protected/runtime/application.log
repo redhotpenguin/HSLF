@@ -3772,3 +3772,236 @@ Stack trace:
 REQUEST_URI=/candidate/admin?Candidate%5Bid%5D=&Candidate%5Bstate_abbr%5D=&Candidate%5Bdistrict_number%5D=&Candidate%5Btype%5D=&Candidate%5Bfull_name%5D=&Candidate%5Bparty%5D=&Candidate%5Bscorecard%5D=&Candidate%5Bdate_published%5D=2011&Candidate%5Bpublish%5D=&Candidate_page=1&ajax=candidate-grid
 HTTP_REFERER=http://www.voterguide.com/candidate/admin
 ---
+2012/04/17 00:55:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php:155
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(74): CandidateController->loadModel('1')
+#1 [internal function]: CandidateController->actionUpdate('1')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs(Object(CandidateController), Array)
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CAction->runWithParamsInternal(Object(CandidateController), Object(ReflectionMethod), Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('update')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/updat...')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/candidate/update?id=1
+---
+2012/04/17 00:58:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "states".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('states')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('states')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/states/az/d...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/states/az/district/1
+---
+2012/04/17 00:58:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/states/az/district/1
+---
+2012/04/17 01:08:42 [error] [exception.CException] exception 'CException' with message 'ApiController cannot find the requested view "".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3536
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php(65): CController->renderPartial(NULL)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionList()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('list')
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/list')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#8 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#9 {main}
+REQUEST_URI=/api/alerts
+---
+2012/04/17 01:08:43 [error] [exception.CException] exception 'CException' with message 'ApiController cannot find the requested view "".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3536
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php(65): CController->renderPartial(NULL)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionList()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('list')
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/list')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#8 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#9 {main}
+REQUEST_URI=/api/alerts
+---
+2012/04/17 01:09:18 [error] [exception.CException] exception 'CException' with message 'Property "ApiController.result" is not defined.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:587
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\views\api\list.php(2): CComponent->__get('result')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#4 C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php(65): CController->renderPartial('list', Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionList()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('list')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/list')
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#12 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#13 {main}
+REQUEST_URI=/api/alerts
+---
+2012/04/17 01:09:30 [error] [exception.CException] exception 'CException' with message 'Property "ApiController.result" is not defined.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:587
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\views\api\list.php(2): CComponent->__get('result')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', 123, true)
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', 123, true)
+#4 C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php(65): CController->renderPartial('list', 123)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionList()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('list')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/list')
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#12 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#13 {main}
+REQUEST_URI=/api/alerts
+---
+2012/04/17 01:12:13 [error] [exception.CException] exception 'CException' with message 'Property "ApiController.result_list" is not defined.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:615
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php(67): CComponent->__set('result_list', Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionList()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('list')
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/list')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#8 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#9 {main}
+REQUEST_URI=/api/alerts
+---
+2012/04/17 01:12:22 [error] [exception.CException] exception 'CException' with message 'Property "ApiController.result_list" is not defined.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:615
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php(67): CComponent->__set('result_list', Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionList()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('list')
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/list')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#8 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#9 {main}
+REQUEST_URI=/api/alerts
+---
+2012/04/17 01:12:22 [error] [exception.CException] exception 'CException' with message 'Property "ApiController.result_list" is not defined.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:615
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php(67): CComponent->__set('result_list', Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionList()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('list')
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/list')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#8 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#9 {main}
+REQUEST_URI=/api/alerts
+---
+2012/04/18 23:12:35 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:6281
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6261): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(6183): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('delete')
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('state/delete')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#11 {main}
+REQUEST_URI=/state/delete?id=al&ajax=yw0
+HTTP_REFERER=http://www.voterguide.com/state
+---
+2012/04/18 23:12:41 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:6281
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6261): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(6183): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('delete')
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('district/delete')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#11 {main}
+REQUEST_URI=/district/delete?id=307&ajax=yw0
+HTTP_REFERER=http://www.voterguide.com/district
+---
+2012/04/18 23:12:50 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:6281
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6261): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(6183): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('delete')
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('user/delete')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#11 {main}
+REQUEST_URI=/user/delete?id=3&ajax=yw0
+HTTP_REFERER=http://www.voterguide.com/user
+---
+2012/04/18 23:12:53 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:6281
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6261): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(6183): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('delete')
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('user/delete')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#11 {main}
+REQUEST_URI=/user/delete?id=4&ajax=yw0
+HTTP_REFERER=http://www.voterguide.com/user
+---
+2012/04/19 00:04:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidates".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('candidates')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('candidates')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/candidates/...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/candidates/AL
+---
+2012/04/20 17:49:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/vendors/urbanairship/RESTClient.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/vendors/urbanairship/RESTClient.php
+---
