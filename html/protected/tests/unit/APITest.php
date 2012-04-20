@@ -21,21 +21,19 @@ class APITest extends CDbTestCase {
         PHPUnit_Framework_Error_Notice::$enabled = false;
     }
 
-    public function testGetCandidates() {
+    public function testGetCandidate() {
 
         // we use the reflection api to test private methods
         $method = $this->api_reflection->getMethod('_getCandidates');
         $method->setAccessible(true);
 
         $method_params = array(
-            'state_abbr' => 'AL',
-            'district_number' => 4
+            'state_abbr' => 'az',
+            'district_number' => 1
         );
 
-
         $method_result = $method->invokeArgs($this->api_controller, array($method_params, 'test'));
-
-        $this->assertEquals('Robert Aderholt', $method_result[0]->full_name);
+        $this->assertEquals('Ann Kirkpatrick', $method_result[0]->full_name);
     }
 
     public function testRegisterAppUser() {
@@ -43,27 +41,56 @@ class APITest extends CDbTestCase {
 
         $method = $this->api_reflection->getMethod('actionCreate');
 
-
-        $_POST = array(
-            'state_abbr' => 'AL',
-            'district_number' => 4
+        $post_data  = array(
+            'device_token' => $test_token,
+            'state_abbr' => 'ca',
+            'district_number' => '14',
+            'type' => 'ios',
+            'user' => 'secretuser',
+            'password' => 'secretpassword',
         );
-
-        $_GET['model'] = 'app_users';
-        $_POST['device_token'] = $test_token;
-        $_POST['state_abbr'] = 'AL';
-        $_POST['district_number'] = 4;
-        $_POST['type'] = 'android';
-
-
-       // $method->invokeArgs($this->api_controller, array());
-
-        //todo: test that app_user can get updated
+        
+        $this->pushPostData('http://www.voterguide.com/api/app_users/', $post_data);
 
         $application_user = Application_users::model()->findByAttributes(array('device_token' => $test_token));
 
-        $this->assertEquals('android', $application_user->type);
+        $this->assertEquals('ios', $application_user->type);
     }
 
+    public function testUpdateAppUser(){
+        $test_token = '666';
+
+        $method = $this->api_reflection->getMethod('actionCreate');
+
+        $post_data  = array(
+            'device_token' => $test_token,
+            'state_abbr' => 'ca',
+            'district_number' => '13',
+            'type' => 'ios',
+            'user' => 'secretuser',
+            'password' => 'secretpassword',
+        );
+        
+        $this->pushPostData('http://www.voterguide.com/api/app_users/', $post_data);
+
+        $application_user = Application_users::model()->findByAttributes(array('device_token' => $test_token));
+        $this->assertEquals('ios', $application_user->type);
+        $this->assertEquals('13', $application_user->district->number);
+        
+    }
+    
+    
+    public function pushPostData($url, array $data) {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POST, true);
+
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        $output = curl_exec($ch);
+        $info = curl_getinfo($ch);
+        curl_close($ch);
+    }
 }
+
 ?>
