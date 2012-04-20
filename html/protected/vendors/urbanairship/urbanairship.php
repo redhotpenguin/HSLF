@@ -420,7 +420,6 @@ class Airship {
         if ($response_code != 200) {
             throw new AirshipFailure($response[1], $response_code);
         }
-
         return $response_code;
     }
 
