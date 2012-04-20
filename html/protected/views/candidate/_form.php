@@ -127,10 +127,7 @@ $fields = array(
         array('Candidate_full_name'),
         array('Candidate_state_abbr', 'remove_not_set'),
         array('Candidate_district_id'),
-        array('Candidate_type', 'to_upper_case'),
-        array('Candidate_party'),
         array('Candidate_scorecard', 'color_code'),
-        array('Candidate_date_published'),
         array('Candidate_endorsement'),
     ),
 );
@@ -183,10 +180,7 @@ $this->widget('ext.FormPreview.FormPreview', array('fields' => $fields, 'form_id
         <div id="Candidate_full_name_preview" class="input_preview"></div>
         <div id="Candidate_state_abbr_preview" class="list_preview"></div>
         <div id="Candidate_district_id_preview" class="list_preview"></div>
-        <div id="Candidate_type_preview" class="list_preview"></div>
-        <div id="Candidate_party_preview" class="list_preview"></div>
         <div id="Candidate_scorecard_preview" class="input_preview"></div>
-        <div id="Candidate_date_published_preview" class="input_preview"></div>
         <div id="Candidate_endorsement_preview" class="input_preview"></div>
     </div>
 </div>
