@@ -224,6 +224,7 @@ class ApiController extends Controller {
         }
 
         $app_user->registration  = date('Y-m-d H:i:s');
+        
 
         try {
             $save_result = $app_user->save();
