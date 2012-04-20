@@ -52,7 +52,7 @@ class Application_users extends CActiveRecord {
             array('state_abbr', 'length', 'max' => 3),
             array('user_agent', 'length', 'max' => 1024),
             array('latitude, longitude, registration, type', 'safe'),
-            array('registration', 'date', 'format'=>'yyyy-M-d H:m:s'),
+            array('registration', 'date', 'format' => 'yyyy-M-d H:m:s'),
             array('id, device_token, latitude, longitude, state_abbr, district_number, registration, type, user_agent', 'safe', 'on' => 'search'),
         );
     }
@@ -123,10 +123,8 @@ class Application_users extends CActiveRecord {
                 ));
     }
 
- 
-
     public function beforeSave() {
-
+        $uap_notifier = new UrbanAirshipNotifier();
         if ($this->isNewRecord) {
             $this->registration = new CDbExpression('NOW()');
 
@@ -134,21 +132,18 @@ class Application_users extends CActiveRecord {
                 $this->user_agent = $_SERVER['HTTP_USER_AGENT']; //should really be in the controller\
             else
                 $this->user_agent = 'UNAVALAIBLE';
+        }else {
+            $current = self::findByPk($this->id); // get the model before it gets updated
+            $current_state = $current->state_abbr;
+            $current_district_number = $current->district->number;
+
+            // delete previous tags
+            $uap_notifier->delete_device_tag($current_state, $this->device_token, $this->type);
+            $uap_notifier->delete_device_tag($current_state . '_' . $current_district_number, $this->device_token, $this->type);
         }
 
 
-        // Update tags on Urban Airship
-        // tood: error handling
-
-        $current = self::findByPk($this->id); // get the model before it gets updated
-        $current_state = $current->state_abbr;
-        $current_district_number = $current->district->number;
-
-        $uap_notifier = new UrbanAirshipNotifier();
-        // delete previous tags
-        $uap_notifier->delete_device_tag($current_state, $this->device_token, $this->type);
-        $uap_notifier->delete_device_tag($current_state . '_' . $current_district_number, $this->device_token, $this->type);
-
+        // todo: error handling
         // add new tags
         $uap_notifier->add_device_tag($this->stateAbbr->abbr, $this->device_token, $this->type);
         $uap_notifier->add_device_tag($this->stateAbbr->abbr . '_' . $this->district->number, $this->device_token, $this->type);
