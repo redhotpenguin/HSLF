@@ -28,14 +28,7 @@ class ApiController extends Controller {
         $result = '';
         switch ($_GET['model']) {
 
-            case 'candidates':
-                //  /api/candidates/
-                // list ALL candidates
-                //$candidates = Candidate::model()->findAll();
-                break;
-
-            case 'alerts':
-                // /api/alerts/
+            case 'alerts': // /api/alerts
                 if (isset($_GET['limit']) && is_numeric($_GET['limit']) && $_GET['limit'] > 0)
                     $limit = $_GET['limit'];
                 else
@@ -57,7 +50,7 @@ class ApiController extends Controller {
                 $result = $alerts;
                 break;
                 
-            case 'options':
+            case 'options': // /api/options
                 $result = Option::model()->findAll();
                 break;
 

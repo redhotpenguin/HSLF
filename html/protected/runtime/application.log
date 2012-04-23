@@ -4106,3 +4106,63 @@ Stack trace:
 REQUEST_URI=/option
 HTTP_REFERER=http://www.voterguide.com/option/view?id=2
 ---
+2012/04/24 00:57:07 [error] [exception.CException] exception 'CException' with message 'OptionController cannot find the requested view "_update_form".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3536
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\views\option\update.php(18): CController->renderPartial('_update_form', Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('update', Array, true)
+#5 C:\xampp\htdocs\HSLF\html\protected\controllers\OptionController.php(86): CController->render('update', Array)
+#6 [internal function]: OptionController->actionUpdate('1')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs(Object(OptionController), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CAction->runWithParamsInternal(Object(OptionController), Object(ReflectionMethod), Array)
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('update')
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('option/update')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#20 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#21 {main}
+REQUEST_URI=/option/update?id=1
+HTTP_REFERER=http://www.voterguide.com/option
+---
+2012/04/24 00:58:32 [error] [php] strpos() expects parameter 1 to be string, array given (C:\xampp\htdocs\HSLF\framework\yiilite.php:5294)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(4907): resolveNameID()
+#1 C:\xampp\htdocs\HSLF\framework\web\widgets\CActiveForm.php(575): activeTextField()
+#2 C:\xampp\htdocs\HSLF\html\protected\views\option\_update_form.php(14): CActiveForm->textField()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): OptionController->renderInternal()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): OptionController->renderFile()
+#6 C:\xampp\htdocs\HSLF\html\protected\views\option\update.php(18): OptionController->renderPartial()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): OptionController->renderInternal()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): OptionController->renderFile()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): OptionController->renderPartial()
+#11 C:\xampp\htdocs\HSLF\html\protected\controllers\OptionController.php(86): OptionController->render()
+#12 unknown(0): OptionController->actionUpdate()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CInlineAction->runWithParamsInternal()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): OptionController->runAction()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): OptionController->filterAccessControl()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): OptionController->runActionWithFilters()
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): OptionController->run()
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#26 C:\xampp\htdocs\HSLF\html\index.php(14): CWebApplication->run()
+REQUEST_URI=/option/update?id=1
+in C:\xampp\htdocs\HSLF\html\protected\views\option\_update_form.php (14)
+in C:\xampp\htdocs\HSLF\html\protected\views\option\update.php (18)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\OptionController.php (86)
