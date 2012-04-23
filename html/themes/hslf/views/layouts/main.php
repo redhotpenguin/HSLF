@@ -44,69 +44,70 @@
                         <div id="logo"><a href="/"><?php echo CHtml::encode(Yii::app()->name); ?></a></div>
 
                         <div id="menu_auth">
-<?php
-$this->widget('zii.widgets.CMenu', array(
-    'items' => array(
-        array('label' => 'Login', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
-        array('label' => 'Logout (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest),
-    ),
-));
-?>
+                            <?php
+                            $this->widget('zii.widgets.CMenu', array(
+                                'items' => array(
+                                    array('label' => 'Login', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
+                                    array('label' => 'Logout (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest),
+                                ),
+                            ));
+                            ?>
                         </div>
 
                     </div><!-- header -->
-<?php
-if (Yii::app()->user->id):
-    ?>
-
-                        <div id="menu-top" class="clearfix">
-    <?php
-    $this->widget('zii.widgets.CMenu', array(
-        'activeCssClass' => 'active',
-        'activateParents' => true,
-        'id' => 'main_menu',
-        'items' => array(
-            array(
-                'label' => 'Publishing',
-                'itemOptions' => array('id' => 'itemPublishing'),
-                'url' => array('/site/publishing'),
-                'visible' => !Yii::app()->user->isGuest,
-                'items' => array(
-                    array('label' => 'State', 'url' => array('/state'), 'visible' => !Yii::app()->user->isGuest),
-                    array('label' => 'District', 'url' => array('/district'), 'visible' => !Yii::app()->user->isGuest),
-                    array('label' => 'Candidate', 'url' => array('/candidate'), 'visible' => !Yii::app()->user->isGuest),
-                ),
-            ),
-            array(
-                'label' => 'Messaging Center',
-                'url' => array('/site/messaging'),
-                'visible' => !Yii::app()->user->isGuest,
-                'itemOptions' => array('id' => 'itemMessaging'),
-                'items' => array(
-                    array('label' => 'User Alerts', 'url' => array('/user_alert'), 'visible' => !Yii::app()->user->isGuest),
-                    array('label' => 'Push Notifications', 'url' => array('/pushNotifications'), 'visible' => !Yii::app()->user->isGuest),
-                ),
-            ),
-            array(
-                'label' => 'Administration',
-                'url' => array('/site/administration'),
-                'visible' => !Yii::app()->user->isGuest,
-                'itemOptions' => array('id' => 'itemAdministration'),
-                'items' => array(
-                    array('label' => 'Application Users', 'url' => array('/application_users'), 'visible' => !Yii::app()->user->isGuest),
-                    array('label' => 'Users', 'url' => array('/user'), 'visible' => !Yii::app()->user->isGuest),
-                ),
-            ),
-        ),
-    ));
-    ?>
-                        </div>
-                            <?php
-                        endif;
+                    <?php
+                    if (Yii::app()->user->id):
                         ?>
 
+                        <div id="menu-top" class="clearfix">
+                            <?php
+                            $this->widget('zii.widgets.CMenu', array(
+                                'activeCssClass' => 'active',
+                                'activateParents' => true,
+                                'id' => 'main_menu',
+                                'items' => array(
+                                    array(
+                                        'label' => 'Publishing',
+                                        'itemOptions' => array('id' => 'itemPublishing'),
+                                        'url' => array('/site/publishing'),
+                                        'visible' => !Yii::app()->user->isGuest,
+                                        'items' => array(
+                                            array('label' => 'State', 'url' => array('/state'), 'visible' => !Yii::app()->user->isGuest),
+                                            array('label' => 'District', 'url' => array('/district'), 'visible' => !Yii::app()->user->isGuest),
+                                            array('label' => 'Candidate', 'url' => array('/candidate'), 'visible' => !Yii::app()->user->isGuest),
+                                        ),
+                                    ),
+                                    array(
+                                        'label' => 'Messaging Center',
+                                        'url' => array('/site/messaging'),
+                                        'visible' => !Yii::app()->user->isGuest,
+                                        'itemOptions' => array('id' => 'itemMessaging'),
+                                        'items' => array(
+                                            array('label' => 'User Alerts', 'url' => array('/user_alert'), 'visible' => !Yii::app()->user->isGuest),
+                                            array('label' => 'Push Notifications', 'url' => array('/pushNotifications'), 'visible' => !Yii::app()->user->isGuest),
+                                        ),
+                                    ),
+                                    array(
+                                        'label' => 'Administration',
+                                        'url' => array('/site/administration'),
+                                        'visible' => !Yii::app()->user->isGuest,
+                                        'itemOptions' => array('id' => 'itemAdministration'),
+                                        'items' => array(
+                                            array('label' => 'Application Users', 'url' => array('/application_users'), 'visible' => !Yii::app()->user->isGuest),
+                                            array('label' => 'Users', 'url' => array('/user'), 'visible' => !Yii::app()->user->isGuest),
+                                            array('label' => 'Options', 'url' => array('/option'), 'visible' => !Yii::app()->user->isGuest),
+                                        ),
+                                    ),
+                                ),
+                            ));
+                            ?>
+                        </div>
+                        <?php
+                    endif;
+                    ?>
 
-<?php echo $content; ?>
+
+                    <?php echo $content; ?>
 
                     <div class="clear"></div>
 

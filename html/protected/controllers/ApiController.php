@@ -56,7 +56,10 @@ class ApiController extends Controller {
                 $alerts = User_alert::model()->findAllByAttributes($attributes, $params);
                 $result = $alerts;
                 break;
-
+                
+            case 'options':
+                $result = Option::model()->findAll();
+                break;
 
             default:
                 $this->_sendResponse(404, $this->_getStatusCodeMessage(404));

@@ -4005,3 +4005,104 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/html/protected/vendors/urbanairship/RESTClient.php
 ---
+2012/04/23 19:56:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "phppgadmin".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('phppgadmin')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/phppgadmin
+---
+2012/04/23 20:26:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/models/Application_users.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/models/Application_users.php
+---
+2012/04/23 20:29:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/models/Application_users.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/models/Application_users.php
+---
+2012/04/23 20:45:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/models/Application_users.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/models/Application_users.php
+---
+2012/04/23 22:45:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/models/Application_users.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/models/Application_users.php
+---
+2012/04/23 22:45:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/models/Application_users.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/models/Application_users.php
+---
+2012/04/23 22:56:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/models/Application_users.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/models/Application_users.php
+---
+2012/04/23 23:16:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/models/Application_users.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/models/Application_users.php
+---
+2012/04/24 00:38:10 [error] [exception.CException] exception 'CException' with message 'Property "Option.name" is not defined.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:587
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6671): CComponent->__get('name')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(5116): CActiveRecord->__get('name')
+#2 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CDataColumn.php(141): CHtml::value(Object(Option), 'name')
+#3 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridColumn.php(138): CDataColumn->renderDataCellContent(0, Object(Option))
+#4 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(517): CGridColumn->renderDataCell(0)
+#5 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(490): CGridView->renderTableRow(0)
+#6 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(400): CGridView->renderTableBody()
+#7 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(158): CGridView->renderItems()
+#8 [internal function]: CBaseListView->renderSection(Array)
+#9 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(141): preg_replace_callback('/{(\w+)}/', Array, '{summary}?{item...')
+#10 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(126): CBaseListView->renderContent()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3149): CBaseListView->run()
+#12 C:\xampp\htdocs\HSLF\html\protected\views\option\index.php(26): CBaseController->widget('zii.widgets.gri...', Array)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('index', Array, true)
+#17 C:\xampp\htdocs\HSLF\html\protected\controllers\OptionController.php(121): CController->render('index', Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): OptionController->actionIndex()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#28 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('option')
+#29 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#30 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#31 {main}
+REQUEST_URI=/option
+HTTP_REFERER=http://www.voterguide.com/option/view?id=2
+---

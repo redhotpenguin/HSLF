@@ -6,7 +6,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'List push notifications', 'url'=>array('index')),
-	array('label'=>'Create push notifications', 'url'=>array('create')),
+	array('label'=>'Send a push notification', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
