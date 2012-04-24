@@ -43,13 +43,20 @@ class ApiController extends Controller {
 
                 $params = array(
                     'limit' => $limit,
-                    'order' => 'id DESC',
+                    'order' => 'create_time DESC',
                 );
+                
+                
+                // get all alerts and perform a join on district (see eager loding)
+                $alerts = User_alert::model()->with('district')->findAllByAttributes($attributes, $params);
 
-                $alerts = User_alert::model()->findAllByAttributes($attributes, $params);
+                foreach ($alerts as $alert)
+                    $alert->district_id = $alert->district->number;
+                
+             
                 $result = $alerts;
                 break;
-                
+
             case 'options': // /api/options
                 $result = Option::model()->findAll();
                 break;
@@ -219,7 +226,7 @@ class ApiController extends Controller {
                 exit;
         }
 
-        $app_user->registration  = date('Y-m-d H:i:s');
+        $app_user->registration = date('Y-m-d H:i:s');
 
         try {
             $save_result = $app_user->save();
