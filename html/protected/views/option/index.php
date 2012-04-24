@@ -4,8 +4,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Create Option', 'url'=>array('create')),
-	array('label'=>'Manage Option', 'url'=>array('admin')),
+	array('label'=>'Add an option', 'url'=>array('create')),
+	array('label'=>'Manage options', 'url'=>array('admin')),
 );
 ?>
 

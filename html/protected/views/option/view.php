@@ -5,11 +5,9 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Option', 'url'=>array('index')),
-	array('label'=>'Create Option', 'url'=>array('create')),
-	array('label'=>'Update Option', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete Option', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Option', 'url'=>array('admin')),
+	array('label'=>'Update', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Delete', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this option?')),
+	array('label'=>'Manage options', 'url'=>array('admin')),
 );
 ?>
 

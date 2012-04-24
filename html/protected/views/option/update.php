@@ -6,13 +6,12 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Option', 'url'=>array('index')),
-	array('label'=>'Create Option', 'url'=>array('create')),
-	array('label'=>'View Option', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Option', 'url'=>array('admin')),
+	array('label'=>'List options', 'url'=>array('index')),
+	array('label'=>'Add a new option', 'url'=>array('create')),
+	array('label'=>'Manage options', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update Option <?php echo $model->id; ?></h1>
+<h1>Update option <?php echo $model->name; ?></h1>
 
 <?php echo $this->renderPartial('_update_form', array('model'=>$model)); ?>
