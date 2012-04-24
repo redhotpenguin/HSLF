@@ -125,8 +125,8 @@
 $fields = array(
     'fields' => array(
         array('Candidate_full_name'),
-        array('Candidate_state_abbr', 'remove_not_set'),
-        array('Candidate_district_id'),
+        array('Candidate_state_abbr', 'to_abbr'),
+        array('Candidate_district_id', 'to_district'),
         array('Candidate_scorecard', 'color_code'),
         array('Candidate_endorsement'),
     ),
@@ -142,12 +142,20 @@ $this->widget('ext.FormPreview.FormPreview', array('fields' => $fields, 'form_id
         return data.toUpperCase();
     }
     
-    function remove_not_set(data){
+    function to_abbr(data){
         if(data.toLowerCase() == '(not set)')
             return ''
         
+        data = data.substr(0,2);
+        data = '(' + data +'-';
+        data = data.toUpperCase();
         return data;
     }
+    
+    function to_district(data){
+        return data+')';
+    }
+    
     
     function color_code(score){
         var style='';
@@ -177,9 +185,21 @@ $this->widget('ext.FormPreview.FormPreview', array('fields' => $fields, 'form_id
 
 <div id="candidate_preview">
     <div id="iphone_bg">
-        <div id="Candidate_full_name_preview" class="input_preview"></div>
-        <div id="Candidate_state_abbr_preview" class="list_preview"></div>
-        <div id="Candidate_district_id_preview" class="list_preview"></div>
+        <div id="iphone_header">   
+            <img class="iphone_back_btn" src='/themes/hslf/css/iphone_back_btn.png'/>
+            <div id="Candidate_full_name_preview" class="input_preview"></div>
+
+     
+        
+        <span id="iphone_state_district">
+             <label id="Candidate_state_abbr_preview" class="list_preview"></label>
+             <label id="Candidate_district_id_preview" class="list_preview"></span>
+        </span>
+            
+        </div>
+        
+        
+        
         <div id="Candidate_scorecard_preview" class="input_preview"></div>
         <div id="Candidate_endorsement_preview" class="input_preview"></div>
     </div>

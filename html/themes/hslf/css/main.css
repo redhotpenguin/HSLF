@@ -429,6 +429,25 @@ div.loading * {
     left: 64%;
 }
 
+.candidate #candidate_preview #iphone_header{
+    background: url('iphone_header_bg.png') repeat-x;
+    height:44px;
+    margin-top: -5px;
+}
+
+.candidate .iphone_back_btn {
+    margin-top: 8px;
+    margin-left: 8px;
+    float: left;
+}
+
+.candidate #Candidate_district_id_preview,
+.candidate #Candidate_state_abbr_preview{
+    margin:0;
+    padding:0;
+}
+
+
 .candidate .view #candidate_preview{
     background: url('iphone_template.png') no-repeat;
     background-size: 270px;
@@ -460,7 +479,7 @@ div.loading * {
 
 .candidate .update #iphone_bg, .candidate .create #iphone_bg,
 .user_alert .update #iphone_bg, .user_alert .create #iphone_bg{
-    
+
     background-color: white;
     width: 221px;
     top: 96px;
@@ -470,6 +489,24 @@ div.loading * {
     overflow: auto;
     color: black;
     word-wrap: break-word;
+}
+
+.candidate #Candidate_full_name_preview {
+    font-weight: bold;
+    color: white;
+    font-size: 16px;
+    padding-left: 1px;
+    float: left;
+    padding-top: 9px;
+}
+
+.candidate #iphone_state_district{
+    float: left;
+    margin-top: 14px;
+    font-weight: bold;
+    color: white;
+    font-size: 15px;
+    margin-left: -3px;
 }
 
 .candidate .view #iphone_bg{
