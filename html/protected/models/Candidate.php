@@ -14,6 +14,7 @@
  * @property string $date_published
  * @property string $publish
  * @property integer $scorecard
+ * @property string $url	
  *
  * The followings are the available model relations:
  * @property State $stateAbbr
@@ -54,11 +55,11 @@ class Candidate extends CActiveRecord {
             array('state_abbr', 'length', 'max' => 3),
             array('full_name', 'length', 'max' => 256),
             array('party, publish', 'length', 'max' => 128),
-            array('type, endorsement, date_published, scorecard', 'safe'),
+            array('type, endorsement, date_published, scorecard, url', 'safe'),
             array('date_published', 'date', 'format'=>'yyyy-M-d H:m:s'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, state_abbr, district_id, type, endorsement, full_name, party, date_published, publish, district_number', 'safe', 'on' => 'search'),
+            array('id, state_abbr, district_id, type, endorsement, full_name, party, date_published, publish, district_number, url', 'safe', 'on' => 'search'),
         );
     }
 
@@ -88,7 +89,8 @@ class Candidate extends CActiveRecord {
             'party' => 'Party',
             'date_published' => 'Date Published',
             'publish' => 'Publish',
-            'district_number' => 'District number'
+            'district_number' => 'District number',
+            'candidate_url_field'=> 'Candidate url',
         );
     }
 

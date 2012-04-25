@@ -4592,3 +4592,48 @@ Stack trace:
 #12 {main}
 REQUEST_URI=/api/alerts
 ---
+2012/04/25 21:18:08 [error] [exception.CException] exception 'CException' with message 'Property "Candidate.candidate_url_field" is not defined.' in C:\xampp\htdocs\HSLF\framework\base\CComponent.php:131
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(144): CComponent->__get('candidate_url_f...')
+#1 C:\xampp\htdocs\HSLF\framework\web\helpers\CHtml.php(2044): CActiveRecord->__get('candidate_url_f...')
+#2 C:\xampp\htdocs\HSLF\framework\web\helpers\CHtml.php(1774): CHtml::resolveValue(Object(Candidate), 'candidate_url_f...')
+#3 C:\xampp\htdocs\HSLF\framework\web\helpers\CHtml.php(1205): CHtml::activeInputField('text', Object(Candidate), 'candidate_url_f...', Array)
+#4 C:\xampp\htdocs\HSLF\framework\web\widgets\CActiveForm.php(575): CHtml::activeTextField(Object(Candidate), 'candidate_url_f...', Array)
+#5 C:\xampp\htdocs\HSLF\html\protected\views\candidate\_form.php(75): CActiveForm->textField(Object(Candidate), 'candidate_url_f...', Array)
+#6 C:\xampp\htdocs\HSLF\framework\web\CBaseController.php(127): require('C:\xampp\htdocs...')
+#7 C:\xampp\htdocs\HSLF\framework\web\CBaseController.php(96): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#8 C:\xampp\htdocs\HSLF\framework\web\CController.php(870): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#9 C:\xampp\htdocs\HSLF\html\protected\views\candidate\update.php(17): CController->renderPartial('_form', Array)
+#10 C:\xampp\htdocs\HSLF\framework\web\CBaseController.php(127): require('C:\xampp\htdocs...')
+#11 C:\xampp\htdocs\HSLF\framework\web\CBaseController.php(96): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#12 C:\xampp\htdocs\HSLF\framework\web\CController.php(870): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#13 C:\xampp\htdocs\HSLF\framework\web\CController.php(783): CController->renderPartial('update', Array, true)
+#14 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(87): CController->render('update', Array)
+#15 [internal function]: CandidateController->actionUpdate('812')
+#16 C:\xampp\htdocs\HSLF\framework\web\actions\CAction.php(107): ReflectionMethod->invokeArgs(Object(CandidateController), Array)
+#17 C:\xampp\htdocs\HSLF\framework\web\actions\CInlineAction.php(48): CAction->runWithParamsInternal(Object(CandidateController), Object(ReflectionMethod), Array)
+#18 C:\xampp\htdocs\HSLF\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#19 C:\xampp\htdocs\HSLF\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#20 C:\xampp\htdocs\HSLF\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#21 C:\xampp\htdocs\HSLF\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#22 C:\xampp\htdocs\HSLF\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#23 C:\xampp\htdocs\HSLF\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#24 C:\xampp\htdocs\HSLF\framework\web\CController.php(292): CFilterChain->run()
+#25 C:\xampp\htdocs\HSLF\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#26 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(276): CController->run('update')
+#27 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(135): CWebApplication->runController('candidate/updat...')
+#28 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#29 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#30 {main}
+REQUEST_URI=/candidate/update?id=812
+HTTP_REFERER=http://www.voterguide.com/candidate/view?id=812
+---
+2012/04/25 21:19:26 [warning] [application] Failed to set unsafe attribute "url" of "Candidate".
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (80)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/25 21:20:28 [warning] [application] Failed to set unsafe attribute "url" of "Candidate".
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (80)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/25 21:21:35 [warning] [application] Failed to set unsafe attribute "url" of "Candidate".
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (80)
+in C:\xampp\htdocs\HSLF\html\index.php (14)

@@ -69,7 +69,14 @@
         <?php echo $form->textField($model, 'scorecard', array('size' => 60, 'maxlength' => 256)); ?>
         <?php echo $form->error($model, 'scorecard'); ?>
     </div>
-
+    
+    <div class="row">
+        <?php echo $form->labelEx($model, 'url'); ?>
+        <?php echo $form->textField($model, 'url', array('size' => 60) ); ?>
+        <?php echo $form->error($model, 'url'); ?>
+    </div>
+    
+ 
     <div class="row">
         <?php echo $form->labelEx($model, 'date_published'); ?>
         <?php
@@ -153,6 +160,9 @@ $this->widget('ext.FormPreview.FormPreview', array('fields' => $fields, 'form_id
     }
     
     function to_district(data){
+        if (data=='')
+            return;
+            
         return data+')';
     }
     
