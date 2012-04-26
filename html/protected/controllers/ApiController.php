@@ -79,6 +79,10 @@ class ApiController extends Controller {
                 $this->_sendResponse(200, $this->_getAlerts($_GET));
                 break;
 
+            case 'options': //api/options/type/w+
+               $this->_sendResponse(200, $this->_getOptions($_GET));
+            break;
+                
             default:
                 $this->_sendResponse(404, $this->_getStatusCodeMessage(404));
                 break;
@@ -143,6 +147,13 @@ class ApiController extends Controller {
         return $alerts;
     }
 
+    private function _getOptions($param){
+        $type_filter = $_GET['type']; //already sanitized in main.php, see regex
+        $search_attributes['name'] = $type_filter;
+        $filtered_options = Option::model()->findAllByAttributes($search_attributes);
+        return $filtered_options;
+    }
+    
     public function actionCreate() {
         if (!$this->_checkAuth()) {
             $this->_sendResponse(401, $this->_getStatusCodeMessage(401));
