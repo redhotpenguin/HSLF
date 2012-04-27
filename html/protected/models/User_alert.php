@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This is the model class for table "user_alerts".
+ * This is the model class for table "user_alert".
  *
- * The followings are the available columns in table 'user_alerts':
+ * The followings are the available columns in table 'user_alert':
  * @property integer $id
  * @property string $title
  * @property string $content
@@ -32,7 +32,7 @@ class User_alert extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'user_alerts';
+		return 'user_alert';
 	}
 
 	/**

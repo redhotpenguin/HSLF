@@ -189,10 +189,10 @@ class ApiController extends Controller {
         $user_state = $_POST['state_abbr'];
         $user_district_number = $_POST['district_number'];
 
-        $app_user = Application_users::model()->findByAttributes(array('device_token' => $device_token));
+        $app_user = Application_user::model()->findByAttributes(array('device_token' => $device_token));
 
         if (!$app_user) { // if user is not already saved in the DB, create a new one
-            $app_user = new Application_users();
+            $app_user = new Application_user();
             $app_user->device_token = $device_token;
         }
 

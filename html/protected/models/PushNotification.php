@@ -1,20 +1,20 @@
 <?php
 
 /**
- * This is the model class for table "push_notifications".
+ * This is the model class for table "push_notification".
  *
- * The followings are the available columns in table 'push_notifications':
+ * The followings are the available columns in table 'push_notification':
  * @property integer $id
  * @property string $message
  * @property string $sent
  * @property string $create_time
  */
-class PushNotifications extends CActiveRecord {
+class PushNotification extends CActiveRecord {
 
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
-     * @return PushNotifications the static model class
+     * @return PushNotification the static model class
      */
     public static function model($className = __CLASS__) {
         return parent::model($className);
@@ -24,7 +24,7 @@ class PushNotifications extends CActiveRecord {
      * @return string the associated database table name
      */
     public function tableName() {
-        return 'push_notifications';
+        return 'push_notification';
     }
 
     /**
@@ -35,8 +35,6 @@ class PushNotifications extends CActiveRecord {
         // will receive user inputs.
         return array(
             array('message', 'required'),
-            // The following rule is used by search().
-            // Please remove those attributes that should not be searched.
             array('id, message, sent, create_time', 'safe', 'on' => 'search'),
         );
     }
@@ -45,8 +43,6 @@ class PushNotifications extends CActiveRecord {
      * @return array relational rules.
      */
     public function relations() {
-        // NOTE: you may need to adjust the relation name and the related
-        // class name for the relations automatically generated below.
         return array(
         );
     }
@@ -68,8 +64,6 @@ class PushNotifications extends CActiveRecord {
      * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
      */
     public function search() {
-        // Warning: Please modify the following code to remove attributes that
-        // should not be searched.
 
         $criteria = new CDbCriteria;
 

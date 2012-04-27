@@ -57,13 +57,13 @@ class Application_usersController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new Application_users;
+        $model = new Application_user;
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['Application_users'])) {
-            $model->attributes = $_POST['Application_users'];
+        if (isset($_POST['Application_user'])) {
+            $model->attributes = $_POST['Application_user'];
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->id));
         }
@@ -82,8 +82,8 @@ class Application_usersController extends Controller {
         $model = $this->loadModel($id);
 
 
-        if (isset($_POST['Application_users'])) {
-            $model->attributes = $_POST['Application_users'];
+        if (isset($_POST['Application_user'])) {
+            $model->attributes = $_POST['Application_user'];
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->id));
         }
@@ -115,7 +115,7 @@ class Application_usersController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('Application_users');
+        $dataProvider = new CActiveDataProvider('Application_user');
         $this->render('index', array(
             'dataProvider' => $dataProvider,
         ));
@@ -125,10 +125,10 @@ class Application_usersController extends Controller {
      * Manages all models.
      */
     public function actionAdmin() {
-        $model = new Application_users('search');
+        $model = new Application_user('search');
         $model->unsetAttributes();  // clear any default values
         if (isset($_GET['Application_users']))
-            $model->attributes = $_GET['Application_users'];
+            $model->attributes = $_GET['Application_user'];
 
         $this->render('admin', array(
             'model' => $model,
@@ -141,7 +141,7 @@ class Application_usersController extends Controller {
      * @param integer the ID of the model to be loaded
      */
     public function loadModel($id) {
-        $model = Application_users::model()->findByPk($id);
+        $model = Application_user::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;

@@ -4737,3 +4737,632 @@ Stack trace:
 #5 {main}
 REQUEST_URI=/api/options/type/alert_type
 ---
+2012/04/28 00:20:41 [error] [exception.CDbException] exception 'CDbException' with message 'The table "push_notifications" for active record class "PushNotifications" cannot be found in the database.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7670
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(PushNotifications))
+#1 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(75): CActiveRecord::model('PushNotificatio...')
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\PushNotificationsController.php(118): CActiveDataProvider->__construct('PushNotificatio...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): PushNotificationsController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('pushNotificatio...')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/pushNotifications
+HTTP_REFERER=http://www.voterguide.com/user_alert
+---
+2012/04/28 00:21:12 [error] [php] include(PushNotifications.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\HSLF\framework\yiilite.php:233)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6798): spl_autoload_call()
+#1 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(75): model()
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\PushNotificationsController.php(118): CActiveDataProvider->__construct()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): PushNotificationsController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): PushNotificationsController->runAction()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): PushNotificationsController->filterAccessControl()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): PushNotificationsController->runActionWithFilters()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): PushNotificationsController->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CWebApplication->run()
+REQUEST_URI=/pushNotifications
+in C:\xampp\htdocs\HSLF\html\protected\controllers\PushNotificationsController.php (118)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/28 00:21:17 [error] [php] include(PushNotifications.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\HSLF\framework\yiilite.php:233)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6798): spl_autoload_call()
+#1 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(75): model()
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\PushNotificationsController.php(118): CActiveDataProvider->__construct()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): PushNotificationsController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): PushNotificationsController->runAction()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): PushNotificationsController->filterAccessControl()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): PushNotificationsController->runActionWithFilters()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): PushNotificationsController->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CWebApplication->run()
+REQUEST_URI=/pushNotifications
+in C:\xampp\htdocs\HSLF\html\protected\controllers\PushNotificationsController.php (118)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/28 00:21:17 [error] [php] include(PushNotifications.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\HSLF\framework\yiilite.php:233)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6798): spl_autoload_call()
+#1 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(75): model()
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\PushNotificationsController.php(118): CActiveDataProvider->__construct()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): PushNotificationsController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): PushNotificationsController->runAction()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): PushNotificationsController->filterAccessControl()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): PushNotificationsController->runActionWithFilters()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): PushNotificationsController->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CWebApplication->run()
+REQUEST_URI=/pushNotifications
+in C:\xampp\htdocs\HSLF\html\protected\controllers\PushNotificationsController.php (118)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/28 00:21:18 [error] [php] include(PushNotifications.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\HSLF\framework\yiilite.php:233)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6798): spl_autoload_call()
+#1 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(75): model()
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\PushNotificationsController.php(118): CActiveDataProvider->__construct()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): PushNotificationsController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): PushNotificationsController->runAction()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): PushNotificationsController->filterAccessControl()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): PushNotificationsController->runActionWithFilters()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): PushNotificationsController->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CWebApplication->run()
+REQUEST_URI=/pushNotifications
+in C:\xampp\htdocs\HSLF\html\protected\controllers\PushNotificationsController.php (118)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/28 00:21:18 [error] [php] include(PushNotifications.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\HSLF\framework\yiilite.php:233)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6798): spl_autoload_call()
+#1 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(75): model()
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\PushNotificationsController.php(118): CActiveDataProvider->__construct()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): PushNotificationsController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): PushNotificationsController->runAction()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): PushNotificationsController->filterAccessControl()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): PushNotificationsController->runActionWithFilters()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): PushNotificationsController->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CWebApplication->run()
+REQUEST_URI=/pushNotifications
+in C:\xampp\htdocs\HSLF\html\protected\controllers\PushNotificationsController.php (118)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/28 00:21:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "pushNotification".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('pushNotificatio...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/pushNotification
+---
+2012/04/28 00:21:36 [error] [php] include(PushNotifications.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\HSLF\framework\yiilite.php:233)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6798): spl_autoload_call()
+#1 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(75): model()
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\PushNotificationsController.php(118): CActiveDataProvider->__construct()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): PushNotificationsController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): PushNotificationsController->runAction()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): PushNotificationsController->filterAccessControl()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): PushNotificationsController->runActionWithFilters()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): PushNotificationsController->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CWebApplication->run()
+REQUEST_URI=/pushNotifications
+in C:\xampp\htdocs\HSLF\html\protected\controllers\PushNotificationsController.php (118)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/28 00:22:34 [error] [php] include(PushNotifications.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\HSLF\framework\yiilite.php:233)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\controllers\PushNotificationsController.php(56): spl_autoload_call()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): PushNotificationsController->actionCreate()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): PushNotificationsController->runAction()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): PushNotificationsController->filterAccessControl()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): PushNotificationsController->runActionWithFilters()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): PushNotificationsController->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#13 C:\xampp\htdocs\HSLF\html\index.php(14): CWebApplication->run()
+REQUEST_URI=/pushNotifications/create
+in C:\xampp\htdocs\HSLF\html\protected\controllers\PushNotificationsController.php (56)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/28 00:24:47 [error] [php] include(PushNotifications.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\HSLF\framework\yiilite.php:233)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\controllers\PushNotificationsController.php(194): spl_autoload_call()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): PushNotificationsController->actionAdmin()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): PushNotificationsController->runAction()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): PushNotificationsController->filterAccessControl()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): PushNotificationsController->runActionWithFilters()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): PushNotificationsController->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#13 C:\xampp\htdocs\HSLF\html\index.php(14): CWebApplication->run()
+REQUEST_URI=/pushNotifications/admin
+in C:\xampp\htdocs\HSLF\html\protected\controllers\PushNotificationsController.php (194)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/28 00:28:21 [error] [exception.CDbException] exception 'CDbException' with message 'The table "user_alerts" for active record class "User_alert" cannot be found in the database.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7670
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(User_alert))
+#1 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(75): CActiveRecord::model('User_alert')
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\User_alertController.php(124): CActiveDataProvider->__construct('User_alert')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): User_alertController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('user_alert')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/user_alert
+HTTP_REFERER=http://www.voterguide.com/pushNotifications/sendNotification?id=25
+---
+2012/04/28 00:29:14 [error] [exception.CDbException] exception 'CDbException' with message 'The table "user_alerts" for active record class "User_alert" cannot be found in the database.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7670
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(User_alert))
+#1 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(75): CActiveRecord::model('User_alert')
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\User_alertController.php(124): CActiveDataProvider->__construct('User_alert')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): User_alertController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('user_alert')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/user_alert
+HTTP_REFERER=http://www.voterguide.com/pushNotifications/sendNotification?id=25
+---
+2012/04/28 00:29:14 [error] [exception.CDbException] exception 'CDbException' with message 'The table "user_alerts" for active record class "User_alert" cannot be found in the database.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7670
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(User_alert))
+#1 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(75): CActiveRecord::model('User_alert')
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\User_alertController.php(124): CActiveDataProvider->__construct('User_alert')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): User_alertController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('user_alert')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/user_alert
+HTTP_REFERER=http://www.voterguide.com/pushNotifications/sendNotification?id=25
+---
+2012/04/28 00:29:26 [warning] [application] Failed to set unsafe attribute "district" of "User_alert".
+in C:\xampp\htdocs\HSLF\html\protected\controllers\User_alertController.php (138)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/28 00:29:28 [warning] [application] Failed to set unsafe attribute "district" of "User_alert".
+in C:\xampp\htdocs\HSLF\html\protected\controllers\User_alertController.php (138)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/28 00:30:29 [error] [exception.CDbException] exception 'CDbException' with message 'The table "users" for active record class "User" cannot be found in the database.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7670
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(User))
+#1 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(75): CActiveRecord::model('User')
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\UserController.php(125): CActiveDataProvider->__construct('User')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): UserController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('user')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/user
+HTTP_REFERER=http://www.voterguide.com/user_alert
+---
+2012/04/28 00:30:46 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42P01]: Undefined table: 7 ERROR:  relation "user_alerts" does not exist
+LINE 1: select * from user_alerts order by ID desc limit 1;
+                      ^. The SQL statement executed was: select * from user_alerts order by ID desc limit 1;.
+in C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php (12)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/28 00:30:46 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42P01]: Undefined table: 7 ERROR:  relation "user_alerts" does not exist
+LINE 1: select * from user_alerts order by ID desc limit 1;
+                      ^. The SQL statement executed was: select * from user_alerts order by ID desc limit 1;' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8611): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7324): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(12): CActiveRecord->findBySql('select * from u...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/
+HTTP_REFERER=http://www.voterguide.com/user/admin
+---
+2012/04/28 00:30:57 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42P01]: Undefined table: 7 ERROR:  relation "user_alerts" does not exist
+LINE 1: select * from user_alerts order by ID desc limit 1;
+                      ^. The SQL statement executed was: select * from user_alerts order by ID desc limit 1;.
+in C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php (12)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/28 00:30:57 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42P01]: Undefined table: 7 ERROR:  relation "user_alerts" does not exist
+LINE 1: select * from user_alerts order by ID desc limit 1;
+                      ^. The SQL statement executed was: select * from user_alerts order by ID desc limit 1;' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8611): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7324): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(12): CActiveRecord->findBySql('select * from u...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/
+HTTP_REFERER=http://www.voterguide.com/user/admin
+---
+2012/04/28 00:30:57 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42P01]: Undefined table: 7 ERROR:  relation "user_alerts" does not exist
+LINE 1: select * from user_alerts order by ID desc limit 1;
+                      ^. The SQL statement executed was: select * from user_alerts order by ID desc limit 1;.
+in C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php (12)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/28 00:30:57 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42P01]: Undefined table: 7 ERROR:  relation "user_alerts" does not exist
+LINE 1: select * from user_alerts order by ID desc limit 1;
+                      ^. The SQL statement executed was: select * from user_alerts order by ID desc limit 1;' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8611): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7324): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(12): CActiveRecord->findBySql('select * from u...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/
+HTTP_REFERER=http://www.voterguide.com/user/admin
+---
+2012/04/28 00:30:58 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42P01]: Undefined table: 7 ERROR:  relation "user_alerts" does not exist
+LINE 1: select * from user_alerts order by ID desc limit 1;
+                      ^. The SQL statement executed was: select * from user_alerts order by ID desc limit 1;.
+in C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php (12)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/28 00:30:58 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42P01]: Undefined table: 7 ERROR:  relation "user_alerts" does not exist
+LINE 1: select * from user_alerts order by ID desc limit 1;
+                      ^. The SQL statement executed was: select * from user_alerts order by ID desc limit 1;' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8611): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7324): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(12): CActiveRecord->findBySql('select * from u...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/
+HTTP_REFERER=http://www.voterguide.com/user/admin
+---
+2012/04/28 00:30:58 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42P01]: Undefined table: 7 ERROR:  relation "user_alerts" does not exist
+LINE 1: select * from user_alerts order by ID desc limit 1;
+                      ^. The SQL statement executed was: select * from user_alerts order by ID desc limit 1;.
+in C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php (12)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/28 00:30:58 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42P01]: Undefined table: 7 ERROR:  relation "user_alerts" does not exist
+LINE 1: select * from user_alerts order by ID desc limit 1;
+                      ^. The SQL statement executed was: select * from user_alerts order by ID desc limit 1;' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8611): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7324): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(12): CActiveRecord->findBySql('select * from u...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/
+HTTP_REFERER=http://www.voterguide.com/user/admin
+---
+2012/04/28 00:30:59 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42P01]: Undefined table: 7 ERROR:  relation "user_alerts" does not exist
+LINE 1: select * from user_alerts order by ID desc limit 1;
+                      ^. The SQL statement executed was: select * from user_alerts order by ID desc limit 1;.
+in C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php (12)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/28 00:30:59 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42P01]: Undefined table: 7 ERROR:  relation "user_alerts" does not exist
+LINE 1: select * from user_alerts order by ID desc limit 1;
+                      ^. The SQL statement executed was: select * from user_alerts order by ID desc limit 1;' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8611): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7324): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(12): CActiveRecord->findBySql('select * from u...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/
+HTTP_REFERER=http://www.voterguide.com/user/admin
+---
+2012/04/28 00:31:00 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42P01]: Undefined table: 7 ERROR:  relation "user_alerts" does not exist
+LINE 1: select * from user_alerts order by ID desc limit 1;
+                      ^. The SQL statement executed was: select * from user_alerts order by ID desc limit 1;.
+in C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php (12)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/28 00:31:00 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42P01]: Undefined table: 7 ERROR:  relation "user_alerts" does not exist
+LINE 1: select * from user_alerts order by ID desc limit 1;
+                      ^. The SQL statement executed was: select * from user_alerts order by ID desc limit 1;' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8611): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7324): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(12): CActiveRecord->findBySql('select * from u...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/
+---
+2012/04/28 00:32:59 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42P01]: Undefined table: 7 ERROR:  relation "user_alerts" does not exist
+LINE 1: select * from user_alerts order by ID desc limit 1;
+                      ^. The SQL statement executed was: select * from user_alerts order by ID desc limit 1;.
+in C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/28 00:32:59 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42P01]: Undefined table: 7 ERROR:  relation "user_alerts" does not exist
+LINE 1: select * from user_alerts order by ID desc limit 1;
+                      ^. The SQL statement executed was: select * from user_alerts order by ID desc limit 1;' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8611): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7324): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(14): CActiveRecord->findBySql('select * from u...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/index.php
+HTTP_REFERER=http://www.voterguide.com/site/login
+---
+2012/04/28 00:32:59 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42P01]: Undefined table: 7 ERROR:  relation "user_alerts" does not exist
+LINE 1: select * from user_alerts order by ID desc limit 1;
+                      ^. The SQL statement executed was: select * from user_alerts order by ID desc limit 1;.
+in C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/28 00:32:59 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42P01]: Undefined table: 7 ERROR:  relation "user_alerts" does not exist
+LINE 1: select * from user_alerts order by ID desc limit 1;
+                      ^. The SQL statement executed was: select * from user_alerts order by ID desc limit 1;' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8611): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7324): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(14): CActiveRecord->findBySql('select * from u...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/index.php
+HTTP_REFERER=http://www.voterguide.com/site/login
+---
+2012/04/28 00:33:05 [error] [php] include(PushNotifications.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\HSLF\framework\yiilite.php:233)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(15): spl_autoload_call()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): SiteController->runAction()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): SiteController->filterAccessControl()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): SiteController->runActionWithFilters()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): SiteController->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#13 C:\xampp\htdocs\HSLF\html\index.php(14): CWebApplication->run()
+REQUEST_URI=/index.php
+in C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php (15)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/28 00:33:06 [error] [php] include(PushNotifications.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\HSLF\framework\yiilite.php:233)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(15): spl_autoload_call()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): SiteController->runAction()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): SiteController->filterAccessControl()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): SiteController->runActionWithFilters()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): SiteController->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#13 C:\xampp\htdocs\HSLF\html\index.php(14): CWebApplication->run()
+REQUEST_URI=/index.php
+in C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php (15)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/04/28 00:33:51 [error] [exception.CDbException] exception 'CDbException' with message 'The table "app_users" for active record class "Application_users" cannot be found in the database.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7670
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(Application_users))
+#1 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(75): CActiveRecord::model('Application_use...')
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\Application_usersController.php(118): CActiveDataProvider->__construct('Application_use...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): Application_usersController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('application_use...')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/application_users
+HTTP_REFERER=http://www.voterguide.com/index.php
+---
+2012/04/28 00:34:11 [error] [php] include(Application_users.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\HSLF\framework\yiilite.php:233)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6798): spl_autoload_call()
+#1 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(75): model()
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\Application_usersController.php(118): CActiveDataProvider->__construct()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): Application_usersController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): Application_usersController->runAction()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): Application_usersController->filterAccessControl()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): Application_usersController->runActionWithFilters()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): Application_usersController->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CWebApplication->run()
+REQUEST_URI=/application_users
+in C:\xampp\htdocs\HSLF\html\protected\controllers\Application_usersController.php (118)
+in C:\xampp\htdocs\HSLF\html\index.php (14)

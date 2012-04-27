@@ -4,7 +4,7 @@ Yii::import('application.vendors.*');
 require_once('urbanairship/urbanairship.php');
 
 /**
- * This is the model class for table "app_users".
+ * This is the model class for table "app_user".
  *
  * The followings are the available columns in table 'app_users':
  * @property integer $id
@@ -18,14 +18,14 @@ require_once('urbanairship/urbanairship.php');
  * @property string $user_agent
  *
  */
-class Application_users extends CActiveRecord {
+class Application_user extends CActiveRecord {
 
     public $district_number; // not part of the model, here for cgridview
 
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
-     * @return Application_users the static model class
+     * @return Application_user the static model class
      */
 
     public static function model($className = __CLASS__) {
@@ -36,7 +36,7 @@ class Application_users extends CActiveRecord {
      * @return string the associated database table name
      */
     public function tableName() {
-        return 'app_users';
+        return 'app_user';
     }
 
     /**
