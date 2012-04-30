@@ -6,7 +6,7 @@
 // CWebApplication properties can be configured here.
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
-    'name' => 'MVG Application - HSLF',
+    'name' => 'Winning Mark Mobile',
     // preloading 'log' component
     'preload' => array('log'),
     // autoloading model and component classes
@@ -37,6 +37,7 @@ return array(
                 array('api/list', 'pattern' => 'api/<model:\w+>', 'verb' => 'GET'),
                 array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>', 'verb' => 'GET'),
                 array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>/district/<district_number:\d+>', 'verb' => 'GET'),
+                array('api/view', 'pattern' => 'api/<model:\w+>/name/<type:\w+>', 'verb' => 'GET'),
                 array('api/create', 'pattern' => 'api/<model:\w+>', 'verb' => 'POST'),
                 // Other controllers
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
@@ -71,22 +72,21 @@ return array(
             // use 'site/error' action to display errors
             'errorAction' => 'site/error',
         ),
-        'log' => array(
-            'class' => 'CLogRouter',
-            'routes' => array(
-                array(
-                    'class' => 'CFileLogRoute',
-                    'levels' => 'error, warning',
-                ),
-            // uncomment the following to show log messages on web pages
-            /*
-              array(
-              'class'=>'CWebLogRoute',
-              ),
-             * 
-             */
-            ),
-        ),
+           'log'=>array(
+			'class'=>'CLogRouter',
+			'routes'=>array(
+				array(
+					'class'=>'CFileLogRoute',
+					'levels'=>'error, warning',
+				),
+				// uncomment the following to show log messages on web pages
+				
+				/*array(
+					'class'=>'CWebLogRoute',
+				),*/
+				
+			),
+		),
     ),
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']

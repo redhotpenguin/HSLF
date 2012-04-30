@@ -28,14 +28,7 @@ class ApiController extends Controller {
         $result = '';
         switch ($_GET['model']) {
 
-            case 'candidates':
-                //  /api/candidates/
-                // list ALL candidates
-                //$candidates = Candidate::model()->findAll();
-                break;
-
-            case 'alerts':
-                // /api/alerts/
+            case 'alerts': // /api/alerts
                 if (isset($_GET['limit']) && is_numeric($_GET['limit']) && $_GET['limit'] > 0)
                     $limit = $_GET['limit'];
                 else
@@ -50,13 +43,23 @@ class ApiController extends Controller {
 
                 $params = array(
                     'limit' => $limit,
-                    'order' => 'id DESC',
+                    'order' => 'create_time DESC',
                 );
+                
+                
+                // get all alerts and perform a join on district (see eager loding)
+                $alerts = User_alert::model()->with('district')->findAllByAttributes($attributes, $params);
 
-                $alerts = User_alert::model()->findAllByAttributes($attributes, $params);
+                foreach ($alerts as $alert)
+                    $alert->district_id = $alert->district->number;
+                
+             
                 $result = $alerts;
                 break;
 
+            case 'options': // /api/options
+                $result = Option::model()->findAll();
+                break;
 
             default:
                 $this->_sendResponse(404, $this->_getStatusCodeMessage(404));
@@ -76,6 +79,10 @@ class ApiController extends Controller {
                 $this->_sendResponse(200, $this->_getAlerts($_GET));
                 break;
 
+            case 'options': //api/options/type/w+
+               $this->_sendResponse(200, $this->_getOptions($_GET));
+            break;
+                
             default:
                 $this->_sendResponse(404, $this->_getStatusCodeMessage(404));
                 break;
@@ -140,6 +147,13 @@ class ApiController extends Controller {
         return $alerts;
     }
 
+    private function _getOptions($param){
+        $type_filter = $_GET['type']; //already sanitized in main.php, see regex
+        $search_attributes['name'] = $type_filter;
+        $filtered_options = Option::model()->findAllByAttributes($search_attributes);
+        return $filtered_options;
+    }
+    
     public function actionCreate() {
         if (!$this->_checkAuth()) {
             $this->_sendResponse(401, $this->_getStatusCodeMessage(401));
@@ -223,7 +237,7 @@ class ApiController extends Controller {
                 exit;
         }
 
-        $app_user->registration  = date('Y-m-d H:i:s');
+        $app_user->registration = date('Y-m-d H:i:s');
 
         try {
             $save_result = $app_user->save();

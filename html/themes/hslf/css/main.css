@@ -4,7 +4,7 @@ body
     padding: 0;
     color: #555;
     font: normal 10pt Arial, sans-serif;
-    background-color:#EBB928;
+    background-color:#efefef;
 }
 
 li{
@@ -31,7 +31,7 @@ a{
 {
     margin-top: 25px;
     margin-bottom: 5px;
-    background: #EFEFEF;
+    background: #fff;
     -webkit-border-radius: 10px;
     -webkit-border-bottom-right-radius: 15px;
     -webkit-border-bottom-left-radius: 15px;
@@ -42,9 +42,9 @@ a{
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
     padding: 0px;
-    -moz-box-shadow: 0px 0px 4px #c09821;
-    -webkit-box-shadow: 0px 0px 4px #c09821;
-    box-shadow: 0px 0px 4px #c09821;
+    -moz-box-shadow: 0px 0px 4px #ccc;
+    -webkit-box-shadow: 0px 0px 4px #ccc;
+    box-shadow: 0px 0px 4px #ccc;
 }
 
 #header
@@ -52,7 +52,7 @@ a{
     margin: 0;
     padding: 0;
     border-bottom: 1px solid #CCC;
-    background-color: #333;
+    background-color: #537678;
     -webkit-border-top-left-radius: 15px;
     -webkit-border-top-right-radius: 15px;
     -moz-border-radius-topleft: 15px;
@@ -280,7 +280,7 @@ div.loading * {
 }
 
 #menu-top {
-    background: #fff; /* Show a solid color for older browsers */
+    background: #DD5336; /* Show a solid color for older browsers */
     margin: auto;
     margin-bottom:15px;
 }
@@ -297,7 +297,7 @@ div.loading * {
     width: 250px;
     text-align: center;
     font-weight: bold;
-    background-color: white;
+    background-color: #DD5336;
     margin-right:1px;
 }
 
@@ -307,7 +307,6 @@ div.loading * {
     padding-top: 11px;
     font-size: 14px;
     cursor:pointer;
-    border-right: 1px dotted #DDD;
 }
 
 
@@ -315,6 +314,7 @@ div.loading * {
     display: block;
     padding: 0 1.2125em;
     text-decoration: none;
+    color:#fff;
 }
 
 
@@ -330,17 +330,16 @@ div.loading * {
 }
 
 #menu-top ul ul a {
-    background: #005355;
+    background: #DD5336;
     border-bottom: 1px solid #ddd;
     color: #fff;
-    font-weight: normal;
     height: auto;
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     border-radius: 0px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
-    text-shadow: #002B2C -1px -1px 0px;
+    font-weight:bold;
     text-align: left;
     line-height: 2.8em;
 
@@ -353,7 +352,7 @@ div.loading * {
 }
 
 #menu-top ul ul a:hover{
-    background-color:#EBB928;
+    background-color:#eee;
 }
 
 #menu-top li:hover > a,
@@ -373,9 +372,7 @@ div.loading * {
 }
 
 #menu-top > ul > li.active{
-    -webkit-box-shadow: 1px 1px 8px #666;
-    box-shadow: 1px 1px 8px #666;
-    -moz-box-shadow: 1px 1px 8px #666;
+  
 }
 
 
@@ -388,9 +385,7 @@ div.loading * {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    -moz-box-shadow: 0px 0px 5px #dfdfdf;
-    -webkit-box-shadow: 0px 0px 5px #dfdfdf;
-    box-shadow: 0px 0px 5px #dfdfdf;
+
     font-weight: bold;
 }
 
@@ -429,6 +424,25 @@ div.loading * {
     left: 64%;
 }
 
+.candidate #candidate_preview #iphone_header{
+    background: url('iphone_header_bg.png') repeat-x;
+    height:44px;
+    margin-top: -5px;
+}
+
+.candidate .iphone_back_btn {
+    margin-top: 8px;
+    margin-left: 8px;
+    float: left;
+}
+
+.candidate #Candidate_district_id_preview,
+.candidate #Candidate_state_abbr_preview{
+    margin:0;
+    padding:0;
+}
+
+
 .candidate .view #candidate_preview{
     background: url('iphone_template.png') no-repeat;
     background-size: 270px;
@@ -460,7 +474,7 @@ div.loading * {
 
 .candidate .update #iphone_bg, .candidate .create #iphone_bg,
 .user_alert .update #iphone_bg, .user_alert .create #iphone_bg{
-    
+
     background-color: white;
     width: 221px;
     top: 96px;
@@ -470,6 +484,24 @@ div.loading * {
     overflow: auto;
     color: black;
     word-wrap: break-word;
+}
+
+.candidate #Candidate_full_name_preview {
+    font-weight: bold;
+    color: white;
+    font-size: 16px;
+    padding-left: 1px;
+    float: left;
+    padding-top: 9px;
+}
+
+.candidate #iphone_state_district{
+    float: left;
+    margin-top: 14px;
+    font-weight: bold;
+    color: white;
+    font-size: 15px;
+    margin-left: -3px;
 }
 
 .candidate .view #iphone_bg{

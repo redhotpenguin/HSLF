@@ -157,5 +157,117 @@ class Application_users extends CActiveRecord {
         return parent::beforeSave();
     }
 
+    /**
+     * Retrieves a list of meta values associated to an application user
+     * @param string $meta_key meta key
+     * @param integer $app_user_id application user primary key
+     * @param boolean $unique if set to true, return one match
+     * @return Meta value or false.
+     */
+    public function getMeta($meta_key, $unique = false, $app_user_id = null) {
+        $connection = Yii::app()->db;
+        $command = $connection->createCommand($sql);
+
+        if (empty($app_user_id))
+            $app_user_id = $this->id;
+
+        $meta_query = Yii::app()->db->createCommand()
+                ->select('id, meta_key, meta_value')
+                ->from('app_user_meta')
+                ->where('app_user_id=:app_user_id AND meta_key=:meta_key', array(':app_user_id' => $app_user_id, ':meta_key' => $meta_key));
+
+        if ($unique == true) {
+            $result = $meta_query->queryRow();
+        } else {
+            $result = $meta_query->queryAll();
+        }
+
+        if (empty($result))
+            return false;
+        else
+            return $result;
+    }
+
+    public function addMeta($meta_key, $meta_value, $app_user_id = null) {
+        $connection = Yii::app()->db;
+        $command = $connection->createCommand($sql);
+
+        if (empty($app_user_id))
+            $app_user_id = $this->id;
+
+
+        $meta_add_result = $command->insert('app_user_meta', array(
+            'app_user_id' => $app_user_id,
+            'meta_key' => $meta_key,
+            'meta_value' => $meta_value,
+                ));
+
+       error_log($meta_add_result);
+        
+        if ($meta_add_result > 0) {
+            return true;
+        }
+        else
+            return false;
+    }
+
+    public function updateMeta($meta_key, $meta_value, $existing_meta_value, $app_user_id = null) {
+        $connection = Yii::app()->db;
+        $command = $connection->createCommand($sql);
+
+        if (empty($app_user_id))
+            $app_user_id = $this->id;
+
+        if (isset($existing_meta_value)) {
+            $meta_update_result = $command->update('app_user_meta', array(
+                'meta_value' => $meta_value,
+                    ), 'app_user_id=:app_user_id AND meta_key=:meta_key AND meta_value=:old_meta_value', array(
+                ':app_user_id' => $app_user_id,
+                ':meta_key' => $meta_key,
+                ':old_meta_value' => $existing_meta_value,
+                    ));
+        } else {
+            $meta_update_result = $command->update('app_user_meta', array(
+                'meta_value' => $meta_value,
+                    ), 'app_user_id=:app_user_id AND meta_key=:meta_key', array(
+                ':app_user_id' => $app_user_id,
+                ':meta_key' => $meta_key,
+                    ));
+        }
+
+
+
+        if ($meta_update_result > 0) {
+            return true;
+        }
+        else
+            return false;
+    }
+
+    public function deleteMeta($meta_key, $meta_value = null, $app_user_id = null) {
+        $connection = Yii::app()->db;
+        $command = $connection->createCommand($sql);
+        
+        if (empty($app_user_id)) {
+            $app_user_id = $this->id;
+        }
+
+        if (isset($meta_value)) {
+           
+            $meta_delete_result = $command->delete('app_user_meta', 'app_user_id=:app_user_id AND meta_key=:meta_key AND meta_value=:meta_value', array(':app_user_id' => $app_user_id, ':meta_key' => $meta_key, ':meta_value' => $meta_value));
+        } else {
+       
+            $meta_delete_result = $command->delete('app_user_meta', 'app_user_id=:app_user_id AND meta_key=:meta_key', array(':app_user_id' => $app_user_id, ':meta_key' => $meta_key));
+        }
+        
+         error_log($meta_delete_result);
+        
+        if ($meta_delete_result > 0) {
+            return true;
+        }
+        else
+            return false;
+    }
+
 }
 
