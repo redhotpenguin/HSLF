@@ -45,15 +45,15 @@ class ApiController extends Controller {
                     'limit' => $limit,
                     'order' => 'create_time DESC',
                 );
-                
-                
+
+
                 // get all alerts and perform a join on district (see eager loding)
                 $alerts = User_alert::model()->with('district')->findAllByAttributes($attributes, $params);
 
                 foreach ($alerts as $alert)
                     $alert->district_id = $alert->district->number;
-                
-             
+
+
                 $result = $alerts;
                 break;
 
@@ -80,9 +80,9 @@ class ApiController extends Controller {
                 break;
 
             case 'options': //api/options/type/w+
-               $this->_sendResponse(200, $this->_getOptions($_GET));
-            break;
-                
+                $this->_sendResponse(200, $this->_getOptions($_GET));
+                break;
+
             default:
                 $this->_sendResponse(404, $this->_getStatusCodeMessage(404));
                 break;
@@ -147,13 +147,13 @@ class ApiController extends Controller {
         return $alerts;
     }
 
-    private function _getOptions($param){
+    private function _getOptions($param) {
         $type_filter = $_GET['type']; //already sanitized in main.php, see regex
         $search_attributes['name'] = $type_filter;
         $filtered_options = Option::model()->findAllByAttributes($search_attributes);
         return $filtered_options;
     }
-    
+
     public function actionCreate() {
         if (!$this->_checkAuth()) {
             $this->_sendResponse(401, $this->_getStatusCodeMessage(401));
@@ -239,10 +239,20 @@ class ApiController extends Controller {
 
         $app_user->registration = date('Y-m-d H:i:s');
 
+
         try {
             $save_result = $app_user->save();
         } catch (Exception $exception) {
             error_log('API actionCreate app_users: ' . $exception->getMessage());
+        }
+        
+        
+        //save user meta after the user is saved/updated
+        if (isset($_POST['meta']) && is_array($_POST['meta'])) {
+            error_log('updating metas');
+            foreach ($_POST['meta'] as $meta_key => $meta_value) {
+                $app_user->updateMeta($meta_key, $meta_value);
+            }
         }
 
         return $save_result;

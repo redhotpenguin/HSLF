@@ -202,7 +202,6 @@ class Application_user extends CActiveRecord {
             'meta_value' => $meta_value,
                 ));
 
-       error_log($meta_add_result);
         
         if ($meta_add_result > 0) {
             return true;
@@ -211,12 +210,17 @@ class Application_user extends CActiveRecord {
             return false;
     }
 
-    public function updateMeta($meta_key, $meta_value, $existing_meta_value, $app_user_id = null) {
+    public function updateMeta($meta_key, $meta_value, $existing_meta_value = null, $app_user_id = null) {
         $connection = Yii::app()->db;
         $command = $connection->createCommand($sql);
 
         if (empty($app_user_id))
             $app_user_id = $this->id;
+        
+        // meta key doesn't exist, create a new one.
+        if( !$this->getMeta($meta_key, true) ){
+               return $this->addMeta ($meta_key, $meta_value);
+        }
 
         if (isset($existing_meta_value)) {
             $meta_update_result = $command->update('app_user_meta', array(
@@ -260,7 +264,6 @@ class Application_user extends CActiveRecord {
             $meta_delete_result = $command->delete('app_user_meta', 'app_user_id=:app_user_id AND meta_key=:meta_key', array(':app_user_id' => $app_user_id, ':meta_key' => $meta_key));
         }
         
-         error_log($meta_delete_result);
         
         if ($meta_delete_result > 0) {
             return true;
