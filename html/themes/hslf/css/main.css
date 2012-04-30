@@ -14,8 +14,7 @@ a{
     text-decoration:none;
 }
 
-.clearfix:after
-{
+.clearfix:after{
     clear: both;
     content: ' ';
     display: block;
