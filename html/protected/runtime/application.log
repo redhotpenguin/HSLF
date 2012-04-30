@@ -4785,3 +4785,30 @@ Stack trace:
 #16 {main}
 REQUEST_URI=/
 ---
+2012/04/30 20:37:00 [error] [exception.CDbException] exception 'CDbException' with message 'The table "users" for active record class "User" cannot be found in the database.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7670
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(User))
+#1 C:\xampp\htdocs\HSLF\html\protected\models\User.php(24): CActiveRecord::model('User')
+#2 C:\xampp\htdocs\HSLF\html\protected\components\UserIdentity.php(18): User::model()
+#3 C:\xampp\htdocs\HSLF\html\protected\models\LoginForm.php(52): UserIdentity->authenticate()
+#4 C:\xampp\htdocs\HSLF\framework\validators\CInlineValidator.php(43): LoginForm->authenticate('password', Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(9287): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6392): CValidator->validate(Object(LoginForm), NULL)
+#7 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(47): CModel->validate()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionLogin()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('login')
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('site/login')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#20 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#21 {main}
+REQUEST_URI=/site/login
+HTTP_REFERER=http://www.voterguide.com/site/login
+---
