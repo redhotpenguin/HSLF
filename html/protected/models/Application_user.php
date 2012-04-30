@@ -143,7 +143,6 @@ class Application_user extends CActiveRecord {
         }
 
 
-        // todo: error handling
         // add new tags
         $uap_notifier->add_device_tag($this->stateAbbr->abbr, $this->device_token, $this->type);
         $uap_notifier->add_device_tag($this->stateAbbr->abbr . '_' . $this->district->number, $this->device_token, $this->type);
@@ -188,6 +187,21 @@ class Application_user extends CActiveRecord {
             return $result;
     }
 
+    public function getAllMeta($app_user_id = null) {
+        $connection = Yii::app()->db;
+        $command = $connection->createCommand($sql);
+
+        if (empty($app_user_id))
+            $app_user_id = $this->id;
+
+        $meta_query = Yii::app()->db->createCommand()
+                ->select('id, meta_key, meta_value')
+                ->from('app_user_meta')
+                ->where('app_user_id=:app_user_id', array(':app_user_id' => $app_user_id));
+        
+        return $meta_query->queryAll();
+    }
+
     public function addMeta($meta_key, $meta_value, $app_user_id = null) {
         $connection = Yii::app()->db;
         $command = $connection->createCommand($sql);
@@ -202,7 +216,7 @@ class Application_user extends CActiveRecord {
             'meta_value' => $meta_value,
                 ));
 
-        
+
         if ($meta_add_result > 0) {
             return true;
         }
@@ -216,10 +230,10 @@ class Application_user extends CActiveRecord {
 
         if (empty($app_user_id))
             $app_user_id = $this->id;
-        
+
         // meta key doesn't exist, create a new one.
-        if( !$this->getMeta($meta_key, true) ){
-               return $this->addMeta ($meta_key, $meta_value);
+        if (!$this->getMeta($meta_key, true)) {
+            return $this->addMeta($meta_key, $meta_value);
         }
 
         if (isset($existing_meta_value)) {
@@ -251,20 +265,20 @@ class Application_user extends CActiveRecord {
     public function deleteMeta($meta_key, $meta_value = null, $app_user_id = null) {
         $connection = Yii::app()->db;
         $command = $connection->createCommand($sql);
-        
+
         if (empty($app_user_id)) {
             $app_user_id = $this->id;
         }
 
         if (isset($meta_value)) {
-           
+
             $meta_delete_result = $command->delete('app_user_meta', 'app_user_id=:app_user_id AND meta_key=:meta_key AND meta_value=:meta_value', array(':app_user_id' => $app_user_id, ':meta_key' => $meta_key, ':meta_value' => $meta_value));
         } else {
-       
+
             $meta_delete_result = $command->delete('app_user_meta', 'app_user_id=:app_user_id AND meta_key=:meta_key', array(':app_user_id' => $app_user_id, ':meta_key' => $meta_key));
         }
-        
-        
+
+
         if ($meta_delete_result > 0) {
             return true;
         }

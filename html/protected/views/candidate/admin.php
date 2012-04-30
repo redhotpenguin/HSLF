@@ -44,7 +44,6 @@ $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'candidate-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
-    'cssFile' => Yii::app()->baseUrl . '/css/gridview/styles.css',
     'columns' => array(
         'id',
         'state_abbr',
