@@ -249,7 +249,6 @@ class ApiController extends Controller {
         
         //save user meta after the user is saved/updated
         if (isset($_POST['meta']) && is_array($_POST['meta'])) {
-            error_log('updating metas');
             foreach ($_POST['meta'] as $meta_key => $meta_value) {
                 $app_user->updateMeta($meta_key, $meta_value);
             }

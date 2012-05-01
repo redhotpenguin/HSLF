@@ -52,7 +52,7 @@ return array(
         // uncomment the following to use a MySQL database
 
         'db' => array(
-            'connectionString' => 'pgsql:host=localhost;port=5432;dbname=voterguide',
+            'connectionString' => 'pgsql:host=localhost;port=5432;dbname=dev',
             'emulatePrepare' => true,
             'username' => 'root',
             'username' => 'postgres',
