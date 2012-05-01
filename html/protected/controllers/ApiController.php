@@ -212,16 +212,6 @@ class ApiController extends Controller {
 
         if (preg_match('/^[0-9]{1,}$/', $user_district_number)) { // check that $user_district number is only made of numbers
             $district_id = District::getIdByStateAndDistrict($user_state, $user_district_number);
-
-            if (!$district_id) { // the district isn't saved in the database, insert a new one
-                $district = new District;
-                $district->state_abbr = $user_state;
-                $district->number = $user_district_number;
-                $district->save();
-                $district_id = $district->id;
-            }
-
-            $app_user->district_id = $district_id;
         }
         else
             exit;
@@ -241,12 +231,21 @@ class ApiController extends Controller {
 
 
         try {
+            if (!$district_id) { // the district isn't saved in the database, insert a new one
+                $district = new District;
+                $district->state_abbr = $user_state;
+                $district->number = $user_district_number;
+                $district->save();
+                $district_id = $district->id;
+            }
+
+            $app_user->district_id = $district_id;
             $save_result = $app_user->save();
         } catch (Exception $exception) {
             error_log('API actionCreate app_users: ' . $exception->getMessage());
         }
-        
-        
+
+
         //save user meta after the user is saved/updated
         if (isset($_POST['meta']) && is_array($_POST['meta'])) {
             foreach ($_POST['meta'] as $meta_key => $meta_value) {
