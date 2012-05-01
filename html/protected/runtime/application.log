@@ -5431,3 +5431,26 @@ Stack trace:
 REQUEST_URI=/pushNotifications
 HTTP_REFERER=http://www.voterguide.com/site/login
 ---
+2012/05/01 18:13:49 [error] [exception.CDbException] exception 'CDbException' with message 'The table "user_alert" for active record class "User_alert" cannot be found in the database.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7670
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(User_alert))
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(6809): CActiveRecord::model('User_alert')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(6642): CActiveRecord->getMetaData()
+#3 C:\xampp\htdocs\HSLF\html\protected\controllers\User_alertController.php(58): CActiveRecord->__construct()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): User_alertController->actionCreate()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('create')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('user_alert/crea...')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#16 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#17 {main}
+REQUEST_URI=/user_alert/create
+HTTP_REFERER=http://www.voterguide.com/site/messaging
+---
