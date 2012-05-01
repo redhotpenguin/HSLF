@@ -4812,3 +4812,24 @@ Stack trace:
 REQUEST_URI=/site/login
 HTTP_REFERER=http://www.voterguide.com/site/login
 ---
+2012/05/01 17:54:14 [error] [exception.CDbException] exception 'CDbException' with message 'The table "user_alerts" for active record class "User_alert" cannot be found in the database.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7670
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(User_alert))
+#1 C:\xampp\htdocs\HSLF\html\protected\models\User_alert.php(27): CActiveRecord::model('User_alert')
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(12): User_alert::model()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/
+---
