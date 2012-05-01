@@ -4833,3 +4833,203 @@ Stack trace:
 #16 {main}
 REQUEST_URI=/
 ---
+2012/05/01 18:14:21 [error] [exception.CDbException] exception 'CDbException' with message 'The table "user_alerts" for active record class "User_alert" cannot be found in the database.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7670
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(User_alert))
+#1 C:\xampp\htdocs\HSLF\html\protected\models\User_alert.php(27): CActiveRecord::model('User_alert')
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(12): User_alert::model()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/
+HTTP_REFERER=http://www.voterguide.com/user_alert/create
+---
+2012/05/01 18:16:40 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23502]: Not null violation: 7 ERROR:  null value in column "id" violates not-null constraint. The SQL statement executed was: INSERT INTO "district" ("state_abbr", "number") VALUES (:yp0, :yp1).
+in C:\xampp\htdocs\HSLF\html\protected\controllers\DistrictController.php (65)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/05/01 18:16:40 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23502]: Not null violation: 7 ERROR:  null value in column "id" violates not-null constraint. The SQL statement executed was: INSERT INTO "district" ("state_abbr", "number") VALUES (:yp0, :yp1)' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8597
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(7051): CDbCommand->execute()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(6951): CActiveRecord->insert(NULL)
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\DistrictController.php(65): CActiveRecord->save()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): DistrictController->actionCreate()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('create')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('district/create')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/district/create
+HTTP_REFERER=http://www.voterguide.com/district/create
+---
+2012/05/01 18:19:04 [error] [exception.CDbException] exception 'CDbException' with message 'The table "app_users" for active record class "Application_users" cannot be found in the database.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7670
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(Application_users))
+#1 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(75): CActiveRecord::model('Application_use...')
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\Application_usersController.php(118): CActiveDataProvider->__construct('Application_use...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): Application_usersController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('application_use...')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/application_users
+HTTP_REFERER=http://www.voterguide.com/user_alert
+---
+2012/05/01 18:19:31 [error] [exception.CDbException] exception 'CDbException' with message 'The table "app_users" for active record class "Application_users" cannot be found in the database.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7670
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(Application_users))
+#1 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(75): CActiveRecord::model('Application_use...')
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\Application_usersController.php(118): CActiveDataProvider->__construct('Application_use...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): Application_usersController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('application_use...')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/application_users
+HTTP_REFERER=http://www.voterguide.com/district/view?id=1
+---
+2012/05/01 18:19:47 [error] [exception.CDbException] exception 'CDbException' with message 'The table "app_users" for active record class "Application_users" cannot be found in the database.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7670
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(Application_users))
+#1 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(75): CActiveRecord::model('Application_use...')
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\Application_usersController.php(118): CActiveDataProvider->__construct('Application_use...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): Application_usersController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('application_use...')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/application_users
+HTTP_REFERER=http://www.voterguide.com/candidate/create
+---
+2012/05/01 18:23:30 [error] [exception.CDbException] exception 'CDbException' with message 'The table "app_users" for active record class "Application_users" cannot be found in the database.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7670
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(Application_users))
+#1 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(75): CActiveRecord::model('Application_use...')
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\Application_usersController.php(118): CActiveDataProvider->__construct('Application_use...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): Application_usersController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('application_use...')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/application_users
+HTTP_REFERER=http://www.voterguide.com/candidate/create
+---
+2012/05/01 18:23:31 [error] [exception.CDbException] exception 'CDbException' with message 'The table "app_users" for active record class "Application_users" cannot be found in the database.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7670
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(Application_users))
+#1 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(75): CActiveRecord::model('Application_use...')
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\Application_usersController.php(118): CActiveDataProvider->__construct('Application_use...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): Application_usersController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('application_use...')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/application_users
+HTTP_REFERER=http://www.voterguide.com/candidate/create
+---
+2012/05/01 18:23:32 [error] [exception.CDbException] exception 'CDbException' with message 'The table "app_users" for active record class "Application_users" cannot be found in the database.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7670
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(Application_users))
+#1 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(75): CActiveRecord::model('Application_use...')
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\Application_usersController.php(118): CActiveDataProvider->__construct('Application_use...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): Application_usersController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('application_use...')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/application_users
+HTTP_REFERER=http://www.voterguide.com/candidate/create
+---
+2012/05/01 18:23:33 [error] [exception.CDbException] exception 'CDbException' with message 'The table "user_alerts" for active record class "User_alert" cannot be found in the database.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7670
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(User_alert))
+#1 C:\xampp\htdocs\HSLF\html\protected\models\User_alert.php(27): CActiveRecord::model('User_alert')
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(12): User_alert::model()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/
+---
