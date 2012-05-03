@@ -25,7 +25,7 @@ class RichUrbanAPITest extends CTestCase {
     public function testAddDeviceTag() {
         try {
             $user_id = 'UwsN1BVESquaXdLA56QzSA';
-            $result = $this->rich_airship->update_device_tags(array( 'tag1', 'tag4'), $this->device_token, $user_id,'ios', 'rich_alias');
+            $result = $this->rich_airship->update_device_tags(array( 'tag_me'), $this->device_token, $user_id,'ios');
             error_log("test result:" . $result);    
         } catch (Exception $e) {
             error_log($e->getMessage);
@@ -35,16 +35,6 @@ class RichUrbanAPITest extends CTestCase {
         $this->assertEquals(true, $result);
     }
     
-    public function testRegistration(){
-        
-           // $result = $this->airship->register_ios($this->device_token,  'my_alias');
-        
-        $result = $this->rich_airship->update_alias_tags($this->device_token, 'rich_alias', array('tag'));
-          $this->assertEquals(true, $result);
-        
-        
-        // $this->assertEquals(true, $result);
-    }
     
     public function _testGetUsers(){
         

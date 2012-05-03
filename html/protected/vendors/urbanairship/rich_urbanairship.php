@@ -42,19 +42,20 @@ class Rich_Airship {
         return $response;
     }
 
-    public function update_device_tags(array $tags, $device_token, $user_id, $device_type = 'ios', $alias = null) {
+    public function update_device_tags(array $tags, $device_token, $user_id, $device_type = 'ios') {
         if ($device_type == 'ios') {
             $url = USER_URL . '/' . $user_id . '/';
 
             $body = array(
                 'tags' => $tags,
                 'device_tokens' => array($device_token),
-                'alias' => $alias
             );
 
             $body = json_encode($body);
+            
+            error_log($body);
 
-            $response = $this->_request($url, 'PUT', $body, 'application/json');
+            $response = $this->_request($url, 'POST', $body, 'application/json');
 
             return $this->_validate_http_code($response[0]);
         } else {
@@ -79,47 +80,7 @@ class Rich_Airship {
         return json_decode($response[1]);
     }
 
-    public function update_alias_tags($device_token, $alias = null, array $tags = null) {
-        // put  /api/user/alias/<alias>/.
-
-        /*
-          {
-          "tags": ["a", "list", "of", "tags", "plus"],
-          "device_tokens": ["FE66489F304DC75B8D6E8200DFF8A456E8DAEACEC428B427E9518741C92C6660"],
-          "alias": "an_alias"
-          }
-         * 
-         */
-
-        $url = ALIAS_URL . '/' . $alias . '/';
-        $payload = array();
-
-
-        if ($tags != null) {
-            $payload['tags'] = $tags;
-        }
-
-        $payload['device_tokens'] = array($device_token);
-
-        if ($alias != null) {
-            $payload['alias'] = $alias;
-        }
-        
-        $content_type = 'application/json';
-
-        $body = json_encode($payload);
-
-        error_log($body);
-
-        $response = $this->_request($url, 'PUT', $body, $content_type);
-        $response_code = $response[0];
-        error_log($url);
-        error_log(print_r($response, true));
-        if ($response_code != 201 && $response_code != 200) {
-            throw new AirshipFailure($response[1], $response_code);
-        }
-        return ($response_code == 201);
-    }
+  
 
     private function _validate_http_code($code) {
         return ($code == 200 || $code == 201 || $code == 204);
