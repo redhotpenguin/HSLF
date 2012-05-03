@@ -11,7 +11,6 @@ class SiteController extends Controller {
         if (Yii::app()->user->id) {
             $data = array(
                 'last_candidate' => Candidate::model()->findBySql('select * from candidate order by ID desc limit 1;'),
-                'last_alert' => User_alert::model()->findBySql('select * from user_alert order by ID desc limit 1;'),
                 'last_push' => PushNotification::model()->findBySql('select * from push_notification order by ID desc limit 1;'),
             );
         }

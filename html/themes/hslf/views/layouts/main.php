@@ -83,7 +83,6 @@
                                         'visible' => !Yii::app()->user->isGuest,
                                         'itemOptions' => array('id' => 'itemMessaging'),
                                         'items' => array(
-                                            array('label' => 'User Alerts', 'url' => array('/user_alert'), 'visible' => !Yii::app()->user->isGuest),
                                             array('label' => 'Push Notifications', 'url' => array('/pushNotifications'), 'visible' => !Yii::app()->user->isGuest),
                                             array('label' => 'Tags', 'url' => array('/tag'), 'visible' => !Yii::app()->user->isGuest),
                                         ),

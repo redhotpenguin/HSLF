@@ -34,17 +34,8 @@
         </div>
 
 
-        <div class="last_entry alert">
-            <h3>Last Alert:</h3>
-            <h6><?php 
-            if($last_alert):
-            echo $last_alert->title; ?></h6>
-            <div><?php echo $last_alert->content; ?> </div>
-            <div>Published <?php echo $last_alert->create_time; ?> </div>
-            <div>State: <?php echo $last_alert->state_abbr; ?> </div>
-        </div>
+ 
         <?php
-        endif;
     endif; //end test is user logged in
     ?>
 

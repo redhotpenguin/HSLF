@@ -27,36 +27,6 @@ class ApiController extends Controller {
     public function actionList() {
         $result = '';
         switch ($_GET['model']) {
-
-            case 'alerts': // /api/alerts
-                if (isset($_GET['limit']) && is_numeric($_GET['limit']) && $_GET['limit'] > 0)
-                    $limit = $_GET['limit'];
-                else
-                    $limit = 10;
-
-                $district_id = District::getIdByStateAndDistrict('na', '0');
-
-                $attributes = array(
-                    'state_abbr' => 'na',
-                    'district_id' => $district_id,
-                );
-
-                $params = array(
-                    'limit' => $limit,
-                    'order' => 'create_time DESC',
-                );
-
-
-                // get all alerts and perform a join on district (see eager loding)
-                $alerts = User_alert::model()->with('district')->findAllByAttributes($attributes, $params);
-
-                foreach ($alerts as $alert)
-                    $alert->district_id = $alert->district->number;
-
-
-                $result = $alerts;
-                break;
-
             case 'options': // /api/options
                 $result = Option::model()->findAll();
                 break;
@@ -89,10 +59,6 @@ class ApiController extends Controller {
         switch ($_GET['model']) {
             case 'candidates': //api/candidates/state/w{3}/d+
                 $this->_sendResponse(200, $this->_getCandidates($_GET));
-                break;
-
-            case 'alerts': //api/alerts/state/w{3}/d+
-                $this->_sendResponse(200, $this->_getAlerts($_GET));
                 break;
 
             case 'options': //api/options/type/w+
@@ -137,34 +103,6 @@ class ApiController extends Controller {
         }
 
         return $candidates;
-    }
-
-    private function _getAlerts($param) {
-        $search_attributes = array();
-
-        if (isset($param['state_abbr'])) {
-            $search_attributes['state_abbr'] = array($param['state_abbr'], 'na');
-        }
-        else
-            return false;
-
-        if (isset($param['district_number'])) {
-            $district_id = District::getIdByStateAndDistrict($param['state_abbr'], $param['district_number']);
-            $global_alert_district_id = District::getIdByStateAndDistrict('na', 0);
-            $state_level_district_id = District::getIdByStateAndDistrict($param['state_abbr'], 0);
-            $search_attributes['district_id'] = array($district_id, $global_alert_district_id, $state_level_district_id);
-        }
-
-        $params = array(
-            'order' => 'create_time DESC',
-        );
-
-
-        $alerts = User_alert::model()->with('district')->findAllByAttributes($search_attributes, $params);
-        foreach ($alerts as $alert)
-            $alert->district_id = $alert->district->number;
-
-        return $alerts;
     }
 
     private function _getOptions($param) {
