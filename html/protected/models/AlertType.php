@@ -13,7 +13,7 @@
  */
 class AlertType extends CActiveRecord {
 
-    private $tag_name; // doesn't belong to table alert_type. This field purpose is to enable tag search in the admin view
+    public $tag_name; // doesn't belong to table alert_type. This field purpose is to enable tag search in the admin view
 
     /**
      * Returns the static model of the specified AR class.
@@ -41,7 +41,7 @@ class AlertType extends CActiveRecord {
             array('display_name', 'length', 'max' => 1024),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, display_name, tag_id', 'safe', 'on' => 'search'),
+            array('id, display_name, tag_id, tag_name', 'safe', 'on' => 'search'),
         );
     }
 
@@ -63,7 +63,8 @@ class AlertType extends CActiveRecord {
         return array(
             'id' => 'ID',
             'display_name' => 'Display Name',
-            'tag_id' => 'Tag',
+            'tag_id' => 'Tag ID',
+            'Tag' => 'Tag',
         );
     }
 
@@ -74,19 +75,18 @@ class AlertType extends CActiveRecord {
     public function search() {
         // Warning: Please modify the following code to remove attributes that
         // should not be searched.
-
-       error_log(print_r($this, true));
+          //error_log(print_r($_REQUEST, true));
         $criteria = new CDbCriteria;
         error_log($this->tag_name);
-        
-        
-        
-        
-        if ( $this->tag_name !='' ) {
+
+
+
+
+        if ($this->tag_name != '') {
             $criteria->together = true;
             $criteria->with = array('tag');
             $criteria->compare('tag.name', $this->tag_name, false);
-           error_log('tag searching');
+           
         }
 
         $criteria->compare('id', $this->id);

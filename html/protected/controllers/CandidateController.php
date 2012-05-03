@@ -130,12 +130,6 @@ class CandidateController extends Controller {
         }
 
 
-        if (isset($_GET['Candidate']['date_published']) && !preg_match('/\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}/', $_GET['Candidate']['date_published'])) {
-            //throw new CHttpException(400, 'Please enter a valid  date.');
-            ;;;
-            
-        }
-
         if (isset($_GET['Candidate']))
             $model->attributes = $_GET['Candidate'];
 
