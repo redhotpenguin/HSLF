@@ -61,6 +61,22 @@ class ApiController extends Controller {
                 $result = Option::model()->findAll();
                 break;
 
+            case 'tags': // /api/tags
+                $result = Tag::model()->findAll();
+                break;
+            
+            case 'alert_types':
+                $alert_types =  AlertType::model()->with('tag')->findAll();
+                foreach($alert_types as $alert_type){
+                    $alert_type->tag_id = $alert_type->tag->name;
+                }
+                
+                
+ 
+                
+                $result = $alert_types;
+                break;
+
             default:
                 $this->_sendResponse(404, $this->_getStatusCodeMessage(404));
                 break;
@@ -81,6 +97,10 @@ class ApiController extends Controller {
 
             case 'options': //api/options/type/w+
                 $this->_sendResponse(200, $this->_getOptions($_GET));
+                break;
+
+            case 'tags':
+                $this->_sendResponse(200, $this->_getTags($_GET));
                 break;
 
             default:
@@ -151,6 +171,20 @@ class ApiController extends Controller {
         $type_filter = $_GET['type']; //already sanitized in main.php, see regex
         $search_attributes['name'] = $type_filter;
         $filtered_options = Option::model()->findAllByAttributes($search_attributes);
+       
+        $tag = new Tag();
+        $tag->tag='test';
+        $tag->type='the_type';
+        $tag->id = 'name';
+        
+        return $tag;
+        
+        return $filtered_options;
+    }
+
+    private function _getTags($param) {
+        $search_attributes['type'] =  $_GET['type']; //already sanitized in main.php, see regex
+        $filtered_options = Tag::model()->findAllByAttributes($search_attributes);
         return $filtered_options;
     }
 

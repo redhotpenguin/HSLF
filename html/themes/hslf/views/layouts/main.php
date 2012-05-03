@@ -85,6 +85,7 @@
                                         'items' => array(
                                             array('label' => 'User Alerts', 'url' => array('/user_alert'), 'visible' => !Yii::app()->user->isGuest),
                                             array('label' => 'Push Notifications', 'url' => array('/pushNotifications'), 'visible' => !Yii::app()->user->isGuest),
+                                            array('label' => 'Tags', 'url' => array('/tag'), 'visible' => !Yii::app()->user->isGuest),
                                         ),
                                     ),
                                     array(
@@ -96,6 +97,7 @@
                                             array('label' => 'Application Users', 'url' => array('/application_users'), 'visible' => !Yii::app()->user->isGuest),
                                             array('label' => 'Users', 'url' => array('/user'), 'visible' => !Yii::app()->user->isGuest),
                                             array('label' => 'Options', 'url' => array('/option'), 'visible' => !Yii::app()->user->isGuest),
+                                            array('label' => 'Alert Types', 'url' => array('/alertType'), 'visible' => !Yii::app()->user->isGuest),
                                         ),
                                     ),
                                 ),
