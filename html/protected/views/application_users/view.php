@@ -34,3 +34,23 @@ $this->widget('zii.widgets.CDetailView', array(
     ),
 ));
 ?>
+
+<br/>
+<h1>Extra user data:</h1>
+
+
+<?php
+$user_metas = $model->getAllMeta();
+
+if (!empty($user_metas)) {
+    echo '<table>';
+    foreach ($user_metas as $meta) {
+        echo '<tr>';
+        echo '<td>'.  $meta['meta_key']   .'</td>';
+ echo '<td>'.  $meta['meta_value']   .'</td>';
+        echo '</tr>';
+    }
+
+    echo '</table>';
+}
+?>

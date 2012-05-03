@@ -39,8 +39,8 @@
             'tabindex' => '0',
             'ajax' => array(
                 'type' => 'POST', //request type
-                'url' => CController::createUrl('district/dynamicdistrict?model=Application_users'), //url to call.  
-                'update' => '#Application_users_district_id', //selector to update      
+                'url' => CController::createUrl('district/dynamicdistrict?model=Application_user'), //url to call.  
+                'update' => '#Application_user_district_id', //selector to update      
             )
         );
         echo $form->dropDownList($model, 'state_abbr', $state_list, $options);
@@ -66,7 +66,7 @@
         <?php echo $form->labelEx($model, 'registration'); ?>
         <?php
         $this->widget('zii.widgets.jui.CJuiDatePicker', array(
-            'name' => 'Application_users[registration]',
+            'name' => 'Application_user[registration]',
             'value' => $model->registration,
             // additional javascript options for the date picker plugin
             'options' => array(

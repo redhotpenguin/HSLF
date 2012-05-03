@@ -4,7 +4,7 @@ Yii::import('application.vendors.*');
 require_once('urbanairship/urbanairship.php');
 
 /**
- * This is the model class for table "app_users".
+ * This is the model class for table "app_user".
  *
  * The followings are the available columns in table 'app_users':
  * @property integer $id
@@ -18,14 +18,14 @@ require_once('urbanairship/urbanairship.php');
  * @property string $user_agent
  *
  */
-class Application_users extends CActiveRecord {
+class Application_user extends CActiveRecord {
 
     public $district_number; // not part of the model, here for cgridview
 
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
-     * @return Application_users the static model class
+     * @return Application_user the static model class
      */
 
     public static function model($className = __CLASS__) {
@@ -36,7 +36,7 @@ class Application_users extends CActiveRecord {
      * @return string the associated database table name
      */
     public function tableName() {
-        return 'app_users';
+        return 'app_user';
     }
 
     /**
@@ -143,7 +143,6 @@ class Application_users extends CActiveRecord {
         }
 
 
-        // todo: error handling
         // add new tags
         $uap_notifier->add_device_tag($this->stateAbbr->abbr, $this->device_token, $this->type);
         $uap_notifier->add_device_tag($this->stateAbbr->abbr . '_' . $this->district->number, $this->device_token, $this->type);
@@ -188,6 +187,21 @@ class Application_users extends CActiveRecord {
             return $result;
     }
 
+    public function getAllMeta($app_user_id = null) {
+        $connection = Yii::app()->db;
+        $command = $connection->createCommand($sql);
+
+        if (empty($app_user_id))
+            $app_user_id = $this->id;
+
+        $meta_query = Yii::app()->db->createCommand()
+                ->select('id, meta_key, meta_value')
+                ->from('app_user_meta')
+                ->where('app_user_id=:app_user_id', array(':app_user_id' => $app_user_id));
+        
+        return $meta_query->queryAll();
+    }
+
     public function addMeta($meta_key, $meta_value, $app_user_id = null) {
         $connection = Yii::app()->db;
         $command = $connection->createCommand($sql);
@@ -202,8 +216,7 @@ class Application_users extends CActiveRecord {
             'meta_value' => $meta_value,
                 ));
 
-       error_log($meta_add_result);
-        
+
         if ($meta_add_result > 0) {
             return true;
         }
@@ -211,12 +224,17 @@ class Application_users extends CActiveRecord {
             return false;
     }
 
-    public function updateMeta($meta_key, $meta_value, $existing_meta_value, $app_user_id = null) {
+    public function updateMeta($meta_key, $meta_value, $existing_meta_value = null, $app_user_id = null) {
         $connection = Yii::app()->db;
         $command = $connection->createCommand($sql);
 
         if (empty($app_user_id))
             $app_user_id = $this->id;
+
+        // meta key doesn't exist, create a new one.
+        if (!$this->getMeta($meta_key, true)) {
+            return $this->addMeta($meta_key, $meta_value);
+        }
 
         if (isset($existing_meta_value)) {
             $meta_update_result = $command->update('app_user_meta', array(
@@ -247,21 +265,20 @@ class Application_users extends CActiveRecord {
     public function deleteMeta($meta_key, $meta_value = null, $app_user_id = null) {
         $connection = Yii::app()->db;
         $command = $connection->createCommand($sql);
-        
+
         if (empty($app_user_id)) {
             $app_user_id = $this->id;
         }
 
         if (isset($meta_value)) {
-           
+
             $meta_delete_result = $command->delete('app_user_meta', 'app_user_id=:app_user_id AND meta_key=:meta_key AND meta_value=:meta_value', array(':app_user_id' => $app_user_id, ':meta_key' => $meta_key, ':meta_value' => $meta_value));
         } else {
-       
+
             $meta_delete_result = $command->delete('app_user_meta', 'app_user_id=:app_user_id AND meta_key=:meta_key', array(':app_user_id' => $app_user_id, ':meta_key' => $meta_key));
         }
-        
-         error_log($meta_delete_result);
-        
+
+
         if ($meta_delete_result > 0) {
             return true;
         }

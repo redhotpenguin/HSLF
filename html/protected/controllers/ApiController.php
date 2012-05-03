@@ -45,15 +45,15 @@ class ApiController extends Controller {
                     'limit' => $limit,
                     'order' => 'create_time DESC',
                 );
-                
-                
+
+
                 // get all alerts and perform a join on district (see eager loding)
                 $alerts = User_alert::model()->with('district')->findAllByAttributes($attributes, $params);
 
                 foreach ($alerts as $alert)
                     $alert->district_id = $alert->district->number;
-                
-             
+
+
                 $result = $alerts;
                 break;
 
@@ -80,9 +80,9 @@ class ApiController extends Controller {
                 break;
 
             case 'options': //api/options/type/w+
-               $this->_sendResponse(200, $this->_getOptions($_GET));
-            break;
-                
+                $this->_sendResponse(200, $this->_getOptions($_GET));
+                break;
+
             default:
                 $this->_sendResponse(404, $this->_getStatusCodeMessage(404));
                 break;
@@ -147,13 +147,13 @@ class ApiController extends Controller {
         return $alerts;
     }
 
-    private function _getOptions($param){
+    private function _getOptions($param) {
         $type_filter = $_GET['type']; //already sanitized in main.php, see regex
         $search_attributes['name'] = $type_filter;
         $filtered_options = Option::model()->findAllByAttributes($search_attributes);
         return $filtered_options;
     }
-    
+
     public function actionCreate() {
         if (!$this->_checkAuth()) {
             $this->_sendResponse(401, $this->_getStatusCodeMessage(401));
@@ -189,10 +189,10 @@ class ApiController extends Controller {
         $user_state = $_POST['state_abbr'];
         $user_district_number = $_POST['district_number'];
 
-        $app_user = Application_users::model()->findByAttributes(array('device_token' => $device_token));
+        $app_user = Application_user::model()->findByAttributes(array('device_token' => $device_token));
 
         if (!$app_user) { // if user is not already saved in the DB, create a new one
-            $app_user = new Application_users();
+            $app_user = new Application_user();
             $app_user->device_token = $device_token;
         }
 
@@ -212,16 +212,6 @@ class ApiController extends Controller {
 
         if (preg_match('/^[0-9]{1,}$/', $user_district_number)) { // check that $user_district number is only made of numbers
             $district_id = District::getIdByStateAndDistrict($user_state, $user_district_number);
-
-            if (!$district_id) { // the district isn't saved in the database, insert a new one
-                $district = new District;
-                $district->state_abbr = $user_state;
-                $district->number = $user_district_number;
-                $district->save();
-                $district_id = $district->id;
-            }
-
-            $app_user->district_id = $district_id;
         }
         else
             exit;
@@ -239,10 +229,28 @@ class ApiController extends Controller {
 
         $app_user->registration = date('Y-m-d H:i:s');
 
+
         try {
+            if (!$district_id) { // the district isn't saved in the database, insert a new one
+                $district = new District;
+                $district->state_abbr = $user_state;
+                $district->number = $user_district_number;
+                $district->save();
+                $district_id = $district->id;
+            }
+
+            $app_user->district_id = $district_id;
             $save_result = $app_user->save();
         } catch (Exception $exception) {
             error_log('API actionCreate app_users: ' . $exception->getMessage());
+        }
+
+
+        //save user meta after the user is saved/updated
+        if (isset($_POST['meta']) && is_array($_POST['meta'])) {
+            foreach ($_POST['meta'] as $meta_key => $meta_value) {
+                $app_user->updateMeta($meta_key, $meta_value);
+            }
         }
 
         return $save_result;

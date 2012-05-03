@@ -53,15 +53,15 @@ class PushNotificationsController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new PushNotifications;
+        $model = new PushNotification;
         $model->create_time = date('Y-m-d H:i:s');
         $model->setAttribute('sent', 'no');
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['PushNotifications'])) {
-            $model->attributes = $_POST['PushNotifications'];
+        if (isset($_POST['PushNotification'])) {
+            $model->attributes = $_POST['PushNotification'];
             if ($model->save())
                 $this->redirect(array('sendNotification', 'id' => $model->id));
         }
@@ -82,8 +82,8 @@ class PushNotificationsController extends Controller {
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['PushNotifications'])) {
-            $model->attributes = $_POST['PushNotifications'];
+        if (isset($_POST['PushNotification'])) {
+            $model->attributes = $_POST['PushNotification'];
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->id));
         }
@@ -115,7 +115,7 @@ class PushNotificationsController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('PushNotifications');
+        $dataProvider = new CActiveDataProvider('PushNotification');
         $this->render('index', array(
             'dataProvider' => $dataProvider,
         ));
@@ -191,10 +191,10 @@ class PushNotificationsController extends Controller {
      * Manages all models.
      */
     public function actionAdmin() {
-        $model = new PushNotifications('search');
+        $model = new PushNotification('search');
         $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['PushNotifications']))
-            $model->attributes = $_GET['PushNotifications'];
+        if (isset($_GET['PushNotification']))
+            $model->attributes = $_GET['PushNotification'];
 
         $this->render('admin', array(
             'model' => $model,
@@ -207,7 +207,7 @@ class PushNotificationsController extends Controller {
      * @param integer the ID of the model to be loaded
      */
     public function loadModel($id) {
-        $model = PushNotifications::model()->findByPk($id);
+        $model = PushNotification::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;

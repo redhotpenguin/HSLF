@@ -16,7 +16,6 @@ $this->menu=array(
 $dataProvider->pagination->pageSize = 50;
 $this->widget('zii.widgets.grid.CGridView', array(
     'dataProvider'=>$dataProvider,
-    'cssFile' => Yii::app()->baseUrl . '/css/gridview/styles.css',
     'columns'=>array(          
         'state_abbr',
         array(
