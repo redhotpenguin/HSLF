@@ -5763,3 +5763,59 @@ Stack trace:
 #12 {main}
 REQUEST_URI=/api/app_users/
 ---
+2012/05/02 22:27:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/vendors/urbanairship/rich_urbanairship.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/vendors/urbanairship/rich_urbanairship.php
+---
+2012/05/02 22:36:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/vendors/urbanairship/RESTClient.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/vendors/urbanairship/RESTClient.php
+---
+2012/05/03 00:38:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/vendors/urbanairship/rich_urbanairship.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/vendors/urbanairship/rich_urbanairship.php
+---
+2012/05/03 00:41:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/vendors/urbanairship/rich_urbanairship.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/vendors/urbanairship/rich_urbanairship.php
+---
+2012/05/03 00:44:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/vendors/urbanairship/rich_urbanairship.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/vendors/urbanairship/rich_urbanairship.php
+---
+2012/05/03 00:44:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/vendors/urbanairship/rich_urbanairship.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/vendors/urbanairship/rich_urbanairship.php
+---
+2012/05/03 00:54:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/vendors/urbanairship/rich_urbanairship.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/vendors/urbanairship/rich_urbanairship.php
+---

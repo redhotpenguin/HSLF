@@ -67,7 +67,7 @@ class UrbanAPITest extends CTestCase {
         $this->assertEquals(true, $result);
     }
 
-    public function testDeleteDeviceToken() {
+    public function _testDeleteDeviceToken() {
 
         try {
             $result = $this->airship->delete_device_tag('in', $this->device_token, 'ios');
@@ -80,7 +80,7 @@ class UrbanAPITest extends CTestCase {
         $this->assertEquals(true, $result);
     }
 
-    public function testDeleteAlreadyDeletedTag() {
+    public function _testDeleteAlreadyDeletedTag() {
 
         try {
             $result = $this->airship->delete_device_tag('in', $this->device_token, 'ios');
