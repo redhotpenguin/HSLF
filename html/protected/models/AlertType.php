@@ -11,83 +11,91 @@
  * The followings are the available model relations:
  * @property Tag $tag
  */
-class AlertType extends CActiveRecord
-{
-	/**
-	 * Returns the static model of the specified AR class.
-	 * @param string $className active record class name.
-	 * @return AlertType the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
+class AlertType extends CActiveRecord {
 
-	/**
-	 * @return string the associated database table name
-	 */
-	public function tableName()
-	{
-		return 'alert_type';
-	}
+    private $tag_name; // doesn't belong to table alert_type. This field purpose is to enable tag search in the admin view
 
-	/**
-	 * @return array validation rules for model attributes.
-	 */
-	public function rules()
-	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
-		return array(
-			array('tag_id', 'numerical', 'integerOnly'=>true),
-			array('display_name', 'length', 'max'=>1024),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, display_name, tag_id', 'safe', 'on'=>'search'),
-		);
-	}
+    /**
+     * Returns the static model of the specified AR class.
+     * @param string $className active record class name.
+     * @return AlertType the static model class
+     */
 
-	/**
-	 * @return array relational rules.
-	 */
-	public function relations()
-	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
-		return array(
-			'tag' => array(self::BELONGS_TO, 'Tag', 'tag_id'),
-		);
-	}
+    public static function model($className = __CLASS__) {
+        return parent::model($className);
+    }
 
-	/**
-	 * @return array customized attribute labels (name=>label)
-	 */
-	public function attributeLabels()
-	{
-		return array(
-			'id' => 'ID',
-			'display_name' => 'Display Name',
-			'tag_id' => 'Tag',
-		);
-	}
+    /**
+     * @return string the associated database table name
+     */
+    public function tableName() {
+        return 'alert_type';
+    }
 
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
+    /**
+     * @return array validation rules for model attributes.
+     */
+    public function rules() {
+        return array(
+            array('tag_id', 'numerical', 'integerOnly' => true),
+            array('display_name', 'length', 'max' => 1024),
+            // The following rule is used by search().
+            // Please remove those attributes that should not be searched.
+            array('id, display_name, tag_id', 'safe', 'on' => 'search'),
+        );
+    }
 
-		$criteria=new CDbCriteria;
+    /**
+     * @return array relational rules.
+     */
+    public function relations() {
+        // NOTE: you may need to adjust the relation name and the related
+        // class name for the relations automatically generated below.
+        return array(
+            'tag' => array(self::BELONGS_TO, 'Tag', 'tag_id'),
+        );
+    }
 
-		$criteria->compare('id',$this->id);
-		$criteria->compare('display_name',$this->display_name,true);
-		$criteria->compare('tag_id',$this->tag_id);
+    /**
+     * @return array customized attribute labels (name=>label)
+     */
+    public function attributeLabels() {
+        return array(
+            'id' => 'ID',
+            'display_name' => 'Display Name',
+            'tag_id' => 'Tag',
+        );
+    }
 
-		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
-		));
-	}
+    /**
+     * Retrieves a list of models based on the current search/filter conditions.
+     * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+     */
+    public function search() {
+        // Warning: Please modify the following code to remove attributes that
+        // should not be searched.
+
+       error_log(print_r($this, true));
+        $criteria = new CDbCriteria;
+        error_log($this->tag_name);
+        
+        
+        
+        
+        if ( $this->tag_name !='' ) {
+            $criteria->together = true;
+            $criteria->with = array('tag');
+            $criteria->compare('tag.name', $this->tag_name, false);
+           error_log('tag searching');
+        }
+
+        $criteria->compare('id', $this->id);
+        $criteria->compare('display_name', $this->display_name, true);
+        $criteria->compare('tag_id', $this->tag_id);
+
+        return new CActiveDataProvider($this, array(
+                    'criteria' => $criteria,
+                ));
+    }
+
 }
