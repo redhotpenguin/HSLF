@@ -49,14 +49,17 @@ return array(
         'db' => array(
             'connectionString' => 'sqlite:' . dirname(__FILE__) . '/../data/testdrive.db',
         ),
-        // uncomment the following to use a MySQL database
+        // uncomment the following to use a PostSQL database
+        $dbhost = $env['DOTCLOUD_DB_SQL_HOST'] || 'localhost';
+        $dbuser = $env['DOTCLOUD_DB_SQL_LOGIN'] || 'root';
+        $dbpass = $env['DOTCLOUD_DB_SQL_PASSWORD'] || 'pengu1n';
+        $dbport = $env['DOTCLOUD_DB_SQL_PORT'] || '5431';
 
         'db' => array(
-            'connectionString' => 'pgsql:host=localhost;port=5432;dbname=voterguide',
+            'connectionString' => "pgsql:host=$dbhost;port=$dbport;dbname=voterguide",
             'emulatePrepare' => true,
-            'username' => 'root',
-            'username' => 'postgres',
-            'password' => 'pengu1n',
+            'username' => $dbuser,
+            'password' => $dbpass,
             'charset' => 'UTF-8',
             'schemaCachingDuration' => '600',
         ),
