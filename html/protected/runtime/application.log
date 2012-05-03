@@ -5688,3 +5688,363 @@ REQUEST_URI=/user_alert/create
 HTTP_REFERER=http://www.voterguide.com/site/messaging
 >>>>>>> experimental
 ---
+2012/05/03 19:13:22 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[08006] [7] could not translate host name "1" to address: Unknown server error' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7808
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(7780): CDbConnection->open()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7769): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1037): CDbConnection->init()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1256): CModule->getComponent('db')
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(6866): CApplication->getDb()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7669): CActiveRecord->getDbConnection()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(Application_user))
+#7 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(75): CActiveRecord::model('Application_use...')
+#8 C:\xampp\htdocs\HSLF\html\protected\controllers\Application_usersController.php(118): CActiveDataProvider->__construct('Application_use...')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): Application_usersController->actionIndex()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('application_use...')
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/application_users
+HTTP_REFERER=http://www.voterguide.com/user
+---
+2012/05/03 19:13:27 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[08006] [7] could not translate host name "1" to address: Unknown server error' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7808
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(7780): CDbConnection->open()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7769): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1037): CDbConnection->init()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1256): CModule->getComponent('db')
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(6866): CApplication->getDb()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7669): CActiveRecord->getDbConnection()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(Candidate))
+#7 C:\xampp\htdocs\HSLF\html\protected\models\Candidate.php(36): CActiveRecord::model('Candidate')
+#8 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(13): Candidate::model()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/
+---
+2012/05/03 19:14:02 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[08006] [7] could not translate host name "1" to address: Unknown server error' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7808
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(7780): CDbConnection->open()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7769): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1037): CDbConnection->init()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1256): CModule->getComponent('db')
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(6866): CApplication->getDb()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7669): CActiveRecord->getDbConnection()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(Candidate))
+#7 C:\xampp\htdocs\HSLF\html\protected\models\Candidate.php(36): CActiveRecord::model('Candidate')
+#8 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(13): Candidate::model()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/
+---
+2012/05/03 19:16:08 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[08006] [7] could not translate host name "1" to address: Unknown server error' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7808
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(7780): CDbConnection->open()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7769): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1037): CDbConnection->init()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1256): CModule->getComponent('db')
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(6866): CApplication->getDb()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7669): CActiveRecord->getDbConnection()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(Candidate))
+#7 C:\xampp\htdocs\HSLF\html\protected\models\Candidate.php(36): CActiveRecord::model('Candidate')
+#8 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(13): Candidate::model()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/
+---
+2012/05/03 19:16:22 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[08006] [7] could not translate host name "port=1" to address: Unknown server error' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7808
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(7780): CDbConnection->open()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7769): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1037): CDbConnection->init()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1256): CModule->getComponent('db')
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(6866): CApplication->getDb()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7669): CActiveRecord->getDbConnection()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(Candidate))
+#7 C:\xampp\htdocs\HSLF\html\protected\models\Candidate.php(36): CActiveRecord::model('Candidate')
+#8 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(13): Candidate::model()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/
+---
+2012/05/03 19:16:30 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[08006] [7] could not connect to server: Connection refused (0x0000274D/10061)
+	Is the server running on host "localhost" and accepting
+	TCP/IP connections on port 1?' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7808
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(7780): CDbConnection->open()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7769): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1037): CDbConnection->init()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1256): CModule->getComponent('db')
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(6866): CApplication->getDb()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7669): CActiveRecord->getDbConnection()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(Candidate))
+#7 C:\xampp\htdocs\HSLF\html\protected\models\Candidate.php(36): CActiveRecord::model('Candidate')
+#8 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(13): Candidate::model()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/
+---
+2012/05/03 19:17:12 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[08006] [7] could not connect to server: Cannot assign requested address (0x00002741/10049)
+	Is the server running on host "localhost" and accepting
+	TCP/IP connections on port dbname=voterguide?' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7808
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(7780): CDbConnection->open()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7769): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1037): CDbConnection->init()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1256): CModule->getComponent('db')
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(6866): CApplication->getDb()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7669): CActiveRecord->getDbConnection()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(Candidate))
+#7 C:\xampp\htdocs\HSLF\html\protected\models\Candidate.php(36): CActiveRecord::model('Candidate')
+#8 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(13): Candidate::model()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/
+---
+2012/05/03 19:17:50 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[08006] [7] could not translate host name "5431" to address: Unknown server error' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7808
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(7780): CDbConnection->open()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7769): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1037): CDbConnection->init()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1256): CModule->getComponent('db')
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(6866): CApplication->getDb()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7669): CActiveRecord->getDbConnection()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(Candidate))
+#7 C:\xampp\htdocs\HSLF\html\protected\models\Candidate.php(36): CActiveRecord::model('Candidate')
+#8 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(13): Candidate::model()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/
+---
+2012/05/03 19:18:11 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[08006] [7] could not translate host name "pengu1n" to address: Unknown server error' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7808
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(7780): CDbConnection->open()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7769): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1037): CDbConnection->init()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1256): CModule->getComponent('db')
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(6866): CApplication->getDb()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7669): CActiveRecord->getDbConnection()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(Candidate))
+#7 C:\xampp\htdocs\HSLF\html\protected\models\Candidate.php(36): CActiveRecord::model('Candidate')
+#8 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(13): Candidate::model()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/
+---
+2012/05/03 19:18:25 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[08006] [7] could not connect to server: Connection refused (0x0000274D/10061)
+	Is the server running on host "localhost" and accepting
+	TCP/IP connections on port 5431?' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7808
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(7780): CDbConnection->open()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7769): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1037): CDbConnection->init()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1256): CModule->getComponent('db')
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(6866): CApplication->getDb()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7669): CActiveRecord->getDbConnection()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(Candidate))
+#7 C:\xampp\htdocs\HSLF\html\protected\models\Candidate.php(36): CActiveRecord::model('Candidate')
+#8 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(13): Candidate::model()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/
+---
+2012/05/03 19:18:56 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[08006] [7] could not connect to server: Connection refused (0x0000274D/10061)
+	Is the server running on host "localhost" and accepting
+	TCP/IP connections on port 5431?' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7808
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(7780): CDbConnection->open()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7769): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1037): CDbConnection->init()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1256): CModule->getComponent('db')
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(6866): CApplication->getDb()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7669): CActiveRecord->getDbConnection()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(Candidate))
+#7 C:\xampp\htdocs\HSLF\html\protected\models\Candidate.php(36): CActiveRecord::model('Candidate')
+#8 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(13): Candidate::model()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/
+---
+2012/05/03 19:19:18 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[08006] [7] FATAL:  password authentication failed for user "root"' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7808
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(7780): CDbConnection->open()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7769): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1037): CDbConnection->init()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1256): CModule->getComponent('db')
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(6866): CApplication->getDb()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7669): CActiveRecord->getDbConnection()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(Candidate))
+#7 C:\xampp\htdocs\HSLF\html\protected\models\Candidate.php(36): CActiveRecord::model('Candidate')
+#8 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(13): Candidate::model()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/
+---
+2012/05/03 19:19:19 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[08006] [7] FATAL:  password authentication failed for user "root"' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7808
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(7780): CDbConnection->open()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7769): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1037): CDbConnection->init()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1256): CModule->getComponent('db')
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(6866): CApplication->getDb()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7669): CActiveRecord->getDbConnection()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(Candidate))
+#7 C:\xampp\htdocs\HSLF\html\protected\models\Candidate.php(36): CActiveRecord::model('Candidate')
+#8 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(13): Candidate::model()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/
+---

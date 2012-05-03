@@ -4,6 +4,37 @@
 // Yii::setPathOfAlias('local','path/to/local-folder');
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
+
+
+        
+
+if (isset($env['DOTCLOUD_DB_SQL_HOST']))
+    $dbhost = $env['DOTCLOUD_DB_SQL_HOST'];
+else
+    $dbhost = 'localhost';
+
+if (isset($env['DOTCLOUD_DB_SQL_LOGIN']))
+    $dbuser = $env['DOTCLOUD_DB_SQL_LOGIN'];
+else
+    $dbuser = 'postgres';
+
+
+if (isset($env['DOTCLOUD_DB_SQL_PASSWORD']))
+    $dbpass = $env['DOTCLOUD_DB_SQL_PASSWORD'];
+else
+    $dbpass = 'pengu1n';
+
+
+
+if (isset($env['DOTCLOUD_DB_SQL_PORT']))
+    $dbport = $env['DOTCLOUD_DB_SQL_PORT'];
+else
+    $dbport = '5432';
+
+
+
+
+
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'name' => 'Winning Mark Mobile',
@@ -49,12 +80,6 @@ return array(
         'db' => array(
             'connectionString' => 'sqlite:' . dirname(__FILE__) . '/../data/testdrive.db',
         ),
-        // uncomment the following to use a PostSQL database
-        $dbhost = $env['DOTCLOUD_DB_SQL_HOST'] || 'localhost';
-        $dbuser = $env['DOTCLOUD_DB_SQL_LOGIN'] || 'root';
-        $dbpass = $env['DOTCLOUD_DB_SQL_PASSWORD'] || 'pengu1n';
-        $dbport = $env['DOTCLOUD_DB_SQL_PORT'] || '5431';
-
         'db' => array(
             'connectionString' => "pgsql:host=$dbhost;port=$dbport;dbname=voterguide",
             'emulatePrepare' => true,
@@ -72,21 +97,20 @@ return array(
             // use 'site/error' action to display errors
             'errorAction' => 'site/error',
         ),
-           'log'=>array(
-			'class'=>'CLogRouter',
-			'routes'=>array(
-				array(
-					'class'=>'CFileLogRoute',
-					'levels'=>'error, warning',
-				),
-				// uncomment the following to show log messages on web pages
-				
-				/*array(
-					'class'=>'CWebLogRoute',
-				),*/
-				
-			),
-		),
+        'log' => array(
+            'class' => 'CLogRouter',
+            'routes' => array(
+                array(
+                    'class' => 'CFileLogRoute',
+                    'levels' => 'error, warning',
+                ),
+            // uncomment the following to show log messages on web pages
+
+            /* array(
+              'class'=>'CWebLogRoute',
+              ), */
+            ),
+        ),
     ),
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']
