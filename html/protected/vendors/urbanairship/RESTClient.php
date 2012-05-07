@@ -61,7 +61,7 @@ class RESTClient {
                 $this->req->setBody($arr);
             } else {
                 foreach ($arr as $key => $value) {
-                    $this->req->addPostData($key, $value);
+                    $this->req->addPostParameter($key, $value);
                 }
             }
         }

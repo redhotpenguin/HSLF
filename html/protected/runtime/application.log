@@ -7930,3 +7930,376 @@ Stack trace:
 REQUEST_URI=/application_users/view?id=80
 HTTP_REFERER=http://www.voterguide.com/application_users/update?id=80
 ---
+2012/05/01 18:23:56 [error] [exception.CDbException] exception 'CDbException' with message 'The table "user_alert" for active record class "User_alert" cannot be found in the database.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7670
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(User_alert))
+#1 C:\xampp\htdocs\HSLF\html\protected\models\User_alert.php(27): CActiveRecord::model('User_alert')
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(14): User_alert::model()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/
+---
+2012/05/01 18:26:03 [error] [exception.CDbException] exception 'CDbException' with message 'The table "user_alert" for active record class "User_alert" cannot be found in the database.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7670
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(User_alert))
+#1 C:\xampp\htdocs\HSLF\html\protected\models\User_alert.php(27): CActiveRecord::model('User_alert')
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(14): User_alert::model()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/
+---
+2012/05/01 18:26:03 [error] [exception.CDbException] exception 'CDbException' with message 'The table "user_alert" for active record class "User_alert" cannot be found in the database.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7670
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(User_alert))
+#1 C:\xampp\htdocs\HSLF\html\protected\models\User_alert.php(27): CActiveRecord::model('User_alert')
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(14): User_alert::model()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/
+---
+2012/05/01 18:27:24 [error] [exception.CDbException] exception 'CDbException' with message 'The table "user" for active record class "User" cannot be found in the database.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7670
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(User))
+#1 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(75): CActiveRecord::model('User')
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\UserController.php(125): CActiveDataProvider->__construct('User')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): UserController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('user')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/user
+HTTP_REFERER=http://www.voterguide.com/site/messaging
+---
+2012/05/01 18:27:36 [error] [exception.CDbException] exception 'CDbException' with message 'The table "user" for active record class "User" cannot be found in the database.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7670
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(User))
+#1 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(75): CActiveRecord::model('User')
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\UserController.php(125): CActiveDataProvider->__construct('User')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): UserController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('user')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/user
+HTTP_REFERER=http://www.voterguide.com/application_users
+---
+2012/05/01 18:31:03 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23503]: Foreign key violation: 7 ERROR:  insert or update on table "district" violates foreign key constraint "district_state_abbr_fkey"
+DETAIL:  Key (state_abbr)=(or) is not present in table "state".. The SQL statement executed was: INSERT INTO "district" ("state_abbr", "number") VALUES (:yp0, :yp1).
+in C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php (220)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php (168)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/05/01 18:31:03 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23503]: Foreign key violation: 7 ERROR:  insert or update on table "district" violates foreign key constraint "district_state_abbr_fkey"
+DETAIL:  Key (state_abbr)=(or) is not present in table "state".. The SQL statement executed was: INSERT INTO "district" ("state_abbr", "number") VALUES (:yp0, :yp1)' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8597
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(7051): CDbCommand->execute()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(6951): CActiveRecord->insert(NULL)
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php(220): CActiveRecord->save()
+#3 C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php(168): ApiController->_add_appicationUsers()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionCreate()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('create')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/create')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/app_users/
+---
+2012/05/01 18:31:38 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42P01]: Undefined table: 7 ERROR:  relation "app_user_meta" does not exist
+LINE 2: FROM "app_user_meta"
+             ^. The SQL statement executed was: SELECT "id", "meta_key", "meta_value"
+FROM "app_user_meta"
+WHERE app_user_id=:app_user_id AND meta_key=:meta_key.
+in C:\xampp\htdocs\HSLF\html\protected\models\Application_user.php (179)
+in C:\xampp\htdocs\HSLF\html\protected\models\Application_user.php (235)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php (253)
+2012/05/01 18:31:38 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42P01]: Undefined table: 7 ERROR:  relation "app_user_meta" does not exist
+LINE 2: FROM "app_user_meta"
+             ^. The SQL statement executed was: SELECT "id", "meta_key", "meta_value"
+FROM "app_user_meta"
+WHERE app_user_id=:app_user_id AND meta_key=:meta_key' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8611): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\HSLF\html\protected\models\Application_user.php(179): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\HSLF\html\protected\models\Application_user.php(235): Application_user->getMeta('email', true)
+#3 C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php(253): Application_user->updateMeta('email', 'jonas@winningma...')
+#4 C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php(168): ApiController->_add_appicationUsers()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionCreate()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('create')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/create')
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#12 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#13 {main}
+REQUEST_URI=/api/app_users/
+---
+2012/05/01 18:31:55 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42P01]: Undefined table: 7 ERROR:  relation "app_user_meta" does not exist
+LINE 2: FROM "app_user_meta"
+             ^. The SQL statement executed was: SELECT "id", "meta_key", "meta_value"
+FROM "app_user_meta"
+WHERE app_user_id=:app_user_id AND meta_key=:meta_key.
+in C:\xampp\htdocs\HSLF\html\protected\models\Application_user.php (179)
+in C:\xampp\htdocs\HSLF\html\protected\models\Application_user.php (235)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php (253)
+2012/05/01 18:31:55 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42P01]: Undefined table: 7 ERROR:  relation "app_user_meta" does not exist
+LINE 2: FROM "app_user_meta"
+             ^. The SQL statement executed was: SELECT "id", "meta_key", "meta_value"
+FROM "app_user_meta"
+WHERE app_user_id=:app_user_id AND meta_key=:meta_key' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8611): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\HSLF\html\protected\models\Application_user.php(179): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\HSLF\html\protected\models\Application_user.php(235): Application_user->getMeta('email', true)
+#3 C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php(253): Application_user->updateMeta('email', 'jonas@winningma...')
+#4 C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php(168): ApiController->_add_appicationUsers()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionCreate()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('create')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/create')
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#12 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#13 {main}
+REQUEST_URI=/api/app_users/
+---
+2012/05/01 18:34:15 [error] [exception.CDbException] exception 'CDbException' with message 'The table "push_notification" for active record class "PushNotification" cannot be found in the database.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7670
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(PushNotification))
+#1 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(75): CActiveRecord::model('PushNotificatio...')
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\PushNotificationsController.php(118): CActiveDataProvider->__construct('PushNotificatio...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): PushNotificationsController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('pushNotificatio...')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/pushNotifications
+HTTP_REFERER=http://www.voterguide.com/user_alert
+---
+2012/05/01 18:35:06 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23503]: Foreign key violation: 7 ERROR:  insert or update on table "district" violates foreign key constraint "district_state_abbr_fkey"
+DETAIL:  Key (state_abbr)=(or) is not present in table "state".. The SQL statement executed was: INSERT INTO "district" ("state_abbr", "number") VALUES (:yp0, :yp1).
+in C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php (220)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php (168)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/05/01 18:35:06 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23503]: Foreign key violation: 7 ERROR:  insert or update on table "district" violates foreign key constraint "district_state_abbr_fkey"
+DETAIL:  Key (state_abbr)=(or) is not present in table "state".. The SQL statement executed was: INSERT INTO "district" ("state_abbr", "number") VALUES (:yp0, :yp1)' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8597
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(7051): CDbCommand->execute()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(6951): CActiveRecord->insert(NULL)
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php(220): CActiveRecord->save()
+#3 C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php(168): ApiController->_add_appicationUsers()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionCreate()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('create')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/create')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/app_users/
+---
+2012/05/01 18:35:24 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint "state_pkey"
+DETAIL:  Key (abbr)=(ca) already exists.. The SQL statement executed was: INSERT INTO "state" ("abbr", "name") VALUES (:yp0, :yp1).
+in C:\xampp\htdocs\HSLF\html\protected\controllers\StateController.php (66)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/05/01 18:35:26 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint "state_pkey"
+DETAIL:  Key (abbr)=(ca) already exists.. The SQL statement executed was: INSERT INTO "state" ("abbr", "name") VALUES (:yp0, :yp1).
+in C:\xampp\htdocs\HSLF\html\protected\controllers\StateController.php (66)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/05/01 18:46:34 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23503]: Foreign key violation: 7 ERROR:  insert or update on table "district" violates foreign key constraint "district_state_abbr_fkey"
+DETAIL:  Key (state_abbr)=(al) is not present in table "state".. The SQL statement executed was: INSERT INTO "district" ("state_abbr", "number") VALUES (:yp0, :yp1).
+in C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php (220)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php (168)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/05/01 18:46:34 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23503]: Foreign key violation: 7 ERROR:  insert or update on table "district" violates foreign key constraint "district_state_abbr_fkey"
+DETAIL:  Key (state_abbr)=(al) is not present in table "state".. The SQL statement executed was: INSERT INTO "district" ("state_abbr", "number") VALUES (:yp0, :yp1)' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8597
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(7051): CDbCommand->execute()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(6951): CActiveRecord->insert(NULL)
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php(220): CActiveRecord->save()
+#3 C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php(168): ApiController->_add_appicationUsers()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionCreate()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('create')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/create')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/app_users/
+---
+2012/05/01 18:46:46 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23503]: Foreign key violation: 7 ERROR:  insert or update on table "district" violates foreign key constraint "district_state_abbr_fkey"
+DETAIL:  Key (state_abbr)=(al) is not present in table "state".. The SQL statement executed was: INSERT INTO "district" ("state_abbr", "number") VALUES (:yp0, :yp1).
+2012/05/01 18:46:46 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23503]: Foreign key violation: 7 ERROR:  insert or update on table "district" violates foreign key constraint "district_state_abbr_fkey"
+DETAIL:  Key (state_abbr)=(al) is not present in table "state".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8597
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(7051): CDbCommand->execute()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(6951): CActiveRecord->insert(NULL)
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php(220): CActiveRecord->save()
+#3 C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php(168): ApiController->_add_appicationUsers()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionCreate()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('create')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/create')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\index.php(10): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/app_users/
+---
+2012/05/01 18:47:36 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23503]: Foreign key violation: 7 ERROR:  insert or update on table "district" violates foreign key constraint "district_state_abbr_fkey"
+DETAIL:  Key (state_abbr)=(al) is not present in table "state".. The SQL statement executed was: INSERT INTO "district" ("state_abbr", "number") VALUES (:yp0, :yp1).
+in C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php (220)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php (168)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/05/01 18:47:36 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23503]: Foreign key violation: 7 ERROR:  insert or update on table "district" violates foreign key constraint "district_state_abbr_fkey"
+DETAIL:  Key (state_abbr)=(al) is not present in table "state".. The SQL statement executed was: INSERT INTO "district" ("state_abbr", "number") VALUES (:yp0, :yp1)' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8597
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(7051): CDbCommand->execute()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(6951): CActiveRecord->insert(NULL)
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php(220): CActiveRecord->save()
+#3 C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php(168): ApiController->_add_appicationUsers()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionCreate()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('create')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/create')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/app_users/
+---
+2012/05/02 22:27:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/vendors/urbanairship/rich_urbanairship.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/vendors/urbanairship/rich_urbanairship.php
+---
+2012/05/02 22:36:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/vendors/urbanairship/RESTClient.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/vendors/urbanairship/RESTClient.php
+---
+2012/05/03 00:38:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/vendors/urbanairship/rich_urbanairship.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/vendors/urbanairship/rich_urbanairship.php
+---
+2012/05/03 00:41:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/vendors/urbanairship/rich_urbanairship.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/vendors/urbanairship/rich_urbanairship.php
+---
+2012/05/03 00:44:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/vendors/urbanairship/rich_urbanairship.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/vendors/urbanairship/rich_urbanairship.php
+---
+2012/05/03 00:44:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/vendors/urbanairship/rich_urbanairship.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/vendors/urbanairship/rich_urbanairship.php
+---
+2012/05/03 00:54:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/vendors/urbanairship/rich_urbanairship.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/vendors/urbanairship/rich_urbanairship.php
+---
+2012/05/03 23:28:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/vendors/urbanairship/rich_urbanairship.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/vendors/urbanairship/rich_urbanairship.php
+---
