@@ -31,6 +31,7 @@ $this->widget('zii.widgets.CDetailView', array(
         'registration',
         'type',
         'user_agent',
+        'uap_user_id',
     ),
 ));
 ?>

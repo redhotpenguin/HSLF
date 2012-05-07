@@ -170,7 +170,7 @@ class ApiController extends Controller {
     private function _add_applicationUsers() {
 
         $save_result = 0;
-        if (!isset($_POST['device_token']) || !isset($_POST['state_abbr']) || !isset($_POST['district_number']) || !isset($_POST['type'])) {
+        if (!isset($_POST['device_token']) || !isset($_POST['state_abbr']) || !isset($_POST['district_number']) || !isset($_POST['type']) ||  !isset($_POST['uap_user_id'])) {
             exit;
         }
 
@@ -184,6 +184,8 @@ class ApiController extends Controller {
             $app_user = new Application_user();
             $app_user->device_token = $device_token;
         }
+        
+        $app_user->uap_user_id = $_POST['uap_user_id'];
 
         if (isset($_POST['user_lat']) && preg_match('/^[-+]?[0-9]*\,?[0-9]+$/', $_POST['user_lat']) && isset($_POST['user_long']) && preg_match('/^[-+]?[0-9]*\,?[0-9]+$/', $_POST['user_long'])) {
             // lat & long are not mandatory but should only be saved if both are valid.

@@ -16,6 +16,7 @@ require_once('urbanairship/urbanairship.php');
  * @property string $registration
  * @property string $type
  * @property string $user_agent
+ * @property string $uap_user_id
  *
  */
 class Application_user extends CActiveRecord {

@@ -7858,3 +7858,75 @@ Stack trace:
 #5 {main}
 REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/metas/
 ---
+2012/05/07 22:57:53 [error] [exception.CException] exception 'CException' with message 'The attribute must be specified in the format of "Name:Type:Label", where "Type" and "Label" are optional.' in C:\xampp\htdocs\HSLF\framework\zii\widgets\CDetailView.php:179
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3149): CDetailView->run()
+#1 C:\xampp\htdocs\HSLF\html\protected\views\application_users\view.php(36): CBaseController->widget('zii.widgets.CDe...', Array)
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('view', Array, true)
+#6 C:\xampp\htdocs\HSLF\html\protected\controllers\Application_usersController.php(52): CController->render('view', Array)
+#7 [internal function]: Application_usersController->actionView('80')
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs(Object(Application_usersController), Array)
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CAction->runWithParamsInternal(Object(Application_usersController), Object(ReflectionMethod), Array)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('application_use...')
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/application_users/view?id=80
+HTTP_REFERER=http://www.voterguide.com/application_users/update?id=80
+---
+2012/05/07 23:00:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in C:\xampp\htdocs\HSLF\html\protected\controllers\Application_usersController.php:146
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\controllers\Application_usersController.php(51): Application_usersController->loadModel('80')
+#1 [internal function]: Application_usersController->actionView('80')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs(Object(Application_usersController), Array)
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CAction->runWithParamsInternal(Object(Application_usersController), Object(ReflectionMethod), Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('application_use...')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/application_users/view?id=80
+HTTP_REFERER=http://www.voterguide.com/application_users/update?id=80
+---
+2012/05/07 23:00:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in C:\xampp\htdocs\HSLF\html\protected\controllers\Application_usersController.php:146
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\controllers\Application_usersController.php(51): Application_usersController->loadModel('80')
+#1 [internal function]: Application_usersController->actionView('80')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs(Object(Application_usersController), Array)
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CAction->runWithParamsInternal(Object(Application_usersController), Object(ReflectionMethod), Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('application_use...')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/application_users/view?id=80
+HTTP_REFERER=http://www.voterguide.com/application_users/update?id=80
+---
