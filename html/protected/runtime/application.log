@@ -8303,3 +8303,37 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/html/protected/vendors/urbanairship/rich_urbanairship.php
 ---
+2012/05/07 23:32:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/models/Application_user.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/models/Application_user.php
+---
+2012/05/07 23:39:50 [error] [php] array_push() expects parameter 1 to be array, null given (C:\xampp\htdocs\HSLF\html\protected\models\Application_user.php:160)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6951): Application_user->update()
+#1 C:\xampp\htdocs\HSLF\html\protected\models\Application_user.php(445): Application_user->save()
+#2 C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php(276): Application_user->updateLocation()
+#3 C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php(157): ApiController->_update_applicationUserTag()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionUpdate()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): ApiController->runAction()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): ApiController->runActionWithFilters()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): ApiController->run()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\index.php(14): CWebApplication->run()
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tag/
+in C:\xampp\htdocs\HSLF\html\protected\models\Application_user.php (160)
+in C:\xampp\htdocs\HSLF\html\protected\models\Application_user.php (445)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php (276)
+2012/05/07 23:47:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/models/UrbanAirshipNotifier.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/models/UrbanAirshipNotifier.php
+---

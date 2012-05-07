@@ -19,7 +19,7 @@ class AppUserTagTest extends CDbTestCase {
 
 
 
-        $this->app_user = Application_user::model()->findByPk(76);
+        $this->app_user = Application_user::model()->findByPk(81);
     }
 
     public function _testAddAppUserTagUsingTagID() {
@@ -78,6 +78,17 @@ class AppUserTagTest extends CDbTestCase {
         $result = $this->app_user->updateLocation('al', 4);
              
         $this->assertEquals(true, $result); 
+        
+    }
+    
+    public function testGetTagsName(){
+       $result = $this->app_user->getTagsName();
+             
+       
+       error_log(print_r($result, true));
+      $this->assertEquals(true, is_array($result)); 
+        
+      
         
     }
 }

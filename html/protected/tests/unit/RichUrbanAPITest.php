@@ -25,7 +25,7 @@ class RichUrbanAPITest extends CTestCase {
     public function testAddDeviceTag() {
         try {
             $user_id = 'UwsN1BVESquaXdLA56QzSA';
-            $result = $this->rich_airship->update_device_tags(array( 'tag_me'), $this->device_token, $user_id,'ios');
+            $result = $this->rich_airship->update_device_tags(array( ''), $this->device_token, $user_id,'ios');
             error_log("test result:" . $result);    
         } catch (Exception $e) {
             error_log($e->getMessage);

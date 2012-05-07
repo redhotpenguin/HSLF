@@ -2,13 +2,16 @@
 
 Yii::import('application.vendors.*');
 require_once('urbanairship/urbanairship.php');
+require_once('urbanairship/rich_urbanairship.php');
 
 class UrbanAirshipNotifier extends CModel {
 
     private $airship;
+    private $rich_airship;
 
     public function __construct() {
         $this->airship = new Airship(Yii::app()->params['urbanairship_app_key'], Yii::app()->params['urbanairship_app_master_secret']);
+        $this->rich_airship = new Rich_Airship(Yii::app()->params['urbanairship_app_key'], Yii::app()->params['urbanairship_app_master_secret']);
     }
 
     public function attributeNames() {
@@ -79,7 +82,17 @@ class UrbanAirshipNotifier extends CModel {
         try {
             $r = $this->airship->add_device_tag($tag, $device_token, $device_type);
         } catch (Excetpion $e) {
-            error_log('UrbanAIrshipNotifier error adding tag '.$tag.': ' . $e->getMessage());
+            error_log('UrbanAIrshipNotifier error adding tag ' . $tag . ': ' . $e->getMessage());
+        }
+
+        return $r;
+    }
+
+    public function updateRichUserTags($uap_user_id, $device_token, array $tags) {
+        try {
+            $r = $this->rich_airship->update_device_tags($tags, $device_token, $uap_user_id, 'ios');
+        } catch (CExcetpion $ce) {
+            error_log('UrbanAIrshipNotifier error updating user tags: ' . $ce->getMessage());
         }
 
         return $r;

@@ -42,7 +42,7 @@ class Rich_Airship {
         return $response;
     }
 
-    public function update_device_tags(array $tags, $device_token, $user_id, $device_type = 'ios') {
+    public function update_device_tags(array $tags, $device_token, $user_id, $device_type = 'ios') {   
         if ($device_type == 'ios') {
             $url = USER_URL . '/' . $user_id . '/';
 
@@ -52,9 +52,6 @@ class Rich_Airship {
             );
 
             $body = json_encode($body);
-            
-            error_log($body);
-
             $response = $this->_request($url, 'POST', $body, 'application/json');
 
             return $this->_validate_http_code($response[0]);

@@ -123,7 +123,6 @@ class Application_user extends CActiveRecord {
     }
 
     public function beforeSave() {
-        // $uap_notifier = new UrbanAirshipNotifier();
         if ($this->isNewRecord) {
             $this->registration = date('Y-m-d H:i:s');
 
@@ -132,28 +131,15 @@ class Application_user extends CActiveRecord {
             else
                 $this->user_agent = 'UNAVALAIBLE';
         }
-        /*
-          else {
-          $current = self::findByPk($this->id); // get the model before it gets updated
-          $current_state = $current->state_abbr;
-          $current_district_number = $current->district->number;
-
-          // delete previous tags
-          $uap_notifier->delete_device_tag($current_state, $this->device_token, $this->type);
-          $uap_notifier->delete_device_tag($current_state . '_' . $current_district_number, $this->device_token, $this->type);
-          }
-
-
-          // add new tags
-          $uap_notifier->add_device_tag($this->stateAbbr->abbr, $this->device_token, $this->type);
-          $uap_notifier->add_device_tag($this->stateAbbr->abbr . '_' . $this->district->number, $this->device_token, $this->type);
-         */
 
         if (!$this->latitude)
             $this->latitude = NULL;
         if (!$this->longitude)
             $this->longitude = NULL;
-
+        
+        // synchronize tags with urban airship
+        $this->synchronizeUAPTags();
+        
         return parent::beforeSave();
     }
 
@@ -369,8 +355,6 @@ class Application_user extends CActiveRecord {
     public function findTag($tag) {
         $connection = Yii::app()->db;
         $command = $connection->createCommand();
-
-
         if (is_numeric($tag))
             $tag_id = $tag;
         else
@@ -383,6 +367,43 @@ class Application_user extends CActiveRecord {
                 ->queryRow();
 
         return $result['tag_id'];
+    }
+
+    /**
+     * Return all the tags associated to a user
+     * @return tag array object
+     */
+    public function getTagsName() {
+        $connection = Yii::app()->db;
+        $command = $connection->createCommand();
+
+        $result = $command->select('name')
+                ->from(array('app_user_tag', 'tag'))
+                ->where('app_user_id=:app_user_id AND tag.id=app_user_tag.tag_id', array(':app_user_id' => $this->id))
+                ->queryAll();
+
+
+
+        // return $result;
+        return array_map(array(&$this, 'extract_first_el'), $result);
+    }
+
+    private function extract_first_el($a) {
+        return $a['name'];
+    }
+
+    public function synchronizeUAPTags() {
+       $uap_notifier = new UrbanAirshipNotifier();
+
+        $uap_tags = array(
+            $this->stateAbbr->abbr,
+            $this->stateAbbr->abbr . '_' . $this->district->number,
+        );
+
+        foreach ($this->getTagsName() as $tag)
+            array_push($uap_tags, $tag);
+        
+        return $uap_notifier->updateRichUserTags($this->uap_user_id, $this->device_token, $uap_tags);
     }
 
     /**

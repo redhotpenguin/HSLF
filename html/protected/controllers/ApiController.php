@@ -170,7 +170,7 @@ class ApiController extends Controller {
     private function _add_applicationUsers() {
 
         $save_result = 0;
-        if (!isset($_POST['device_token']) || !isset($_POST['state_abbr']) || !isset($_POST['district_number']) || !isset($_POST['type']) ||  !isset($_POST['uap_user_id'])) {
+        if (!isset($_POST['device_token']) || !isset($_POST['state_abbr']) || !isset($_POST['district_number']) || !isset($_POST['type']) || !isset($_POST['uap_user_id'])) {
             exit;
         }
 
@@ -184,7 +184,7 @@ class ApiController extends Controller {
             $app_user = new Application_user();
             $app_user->device_token = $device_token;
         }
-        
+
         $app_user->uap_user_id = $_POST['uap_user_id'];
 
         if (isset($_POST['user_lat']) && preg_match('/^[-+]?[0-9]*\,?[0-9]+$/', $_POST['user_lat']) && isset($_POST['user_long']) && preg_match('/^[-+]?[0-9]*\,?[0-9]+$/', $_POST['user_long'])) {
@@ -242,7 +242,6 @@ class ApiController extends Controller {
                 $app_user->updateMeta($meta_key, $meta_value);
             }
         }
-        //todo: remove UAPstuff from beforeSave and call _update_applicationUserTag
         return $save_result;
     }
 
@@ -276,7 +275,8 @@ class ApiController extends Controller {
             $app_user->updateLocation($payload['state_abbr'], $payload['district_number']);
         }
 
-
+               
+        $app_user->synchronizeUAPTags();
         // todo:
         // get all tags for a user ( dont forget to generate tag for location)
         // transmit all those tags to UAP
@@ -285,16 +285,16 @@ class ApiController extends Controller {
 
     public function _update_applicationUserMeta($device_token, $payload) {
         $app_user = Application_user::model()->findByAttributes(array('device_token' => $device_token));
-        
+
         if (empty($app_user))
             return 'no_user_found';
-        
+
         if (isset($_POST['meta']) && is_array($_POST['meta'])) {
             foreach ($_POST['meta'] as $meta_key => $meta_value) {
                 $app_user->updateMeta($meta_key, $meta_value);
             }
         }
-        
+
         return 'meta_updated';
     }
 
