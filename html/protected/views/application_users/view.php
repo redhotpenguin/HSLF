@@ -54,3 +54,16 @@ if (!empty($user_metas)) {
     echo '</table>';
 }
 ?>
+
+
+<h1>User Tags:</h1>
+<?php
+$user_tags = $model->tags;
+
+if (!empty($user_tags)) {
+    foreach ($user_tags as $tag) {
+       echo $tag->name.',';
+    }
+
+}
+?>

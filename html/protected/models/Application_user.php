@@ -51,9 +51,9 @@ class Application_user extends CActiveRecord {
             array('device_token', 'length', 'max' => 128),
             array('state_abbr', 'length', 'max' => 3),
             array('user_agent', 'length', 'max' => 1024),
-            array('latitude, longitude, registration, type', 'safe'),
+            array('latitude, longitude, registration, type, tags', 'safe'),
             array('registration', 'date', 'format' => 'yyyy-M-d H:m:s'),
-            array('id, device_token, latitude, longitude, state_abbr, district_number, registration, type, user_agent', 'safe', 'on' => 'search'),
+            array('id, device_token, latitude, longitude, state_abbr, district_id, district_number, registration, type, user_agent', 'safe', 'on' => 'search'),
         );
     }
 
@@ -66,6 +66,7 @@ class Application_user extends CActiveRecord {
         return array(
             'stateAbbr' => array(self::BELONGS_TO, 'State', 'state_abbr'),
             'district' => array(self::BELONGS_TO, 'District', 'district_id'),
+            'tags' => array(self::MANY_MANY, 'Tag', 'app_user_tag(app_user_id, tag_id)'),
         );
     }
 
@@ -115,16 +116,13 @@ class Application_user extends CActiveRecord {
         $criteria->compare('type', $this->type, true);
         $criteria->compare('user_agent', $this->user_agent, true);
 
-
-
-
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria
                 ));
     }
 
     public function beforeSave() {
-        $uap_notifier = new UrbanAirshipNotifier();
+        // $uap_notifier = new UrbanAirshipNotifier();
         if ($this->isNewRecord) {
             $this->registration = date('Y-m-d H:i:s');
 
@@ -132,21 +130,23 @@ class Application_user extends CActiveRecord {
                 $this->user_agent = $_SERVER['HTTP_USER_AGENT']; //should really be in the controller\
             else
                 $this->user_agent = 'UNAVALAIBLE';
-        }else {
-            $current = self::findByPk($this->id); // get the model before it gets updated
-            $current_state = $current->state_abbr;
-            $current_district_number = $current->district->number;
-
-            // delete previous tags
-            $uap_notifier->delete_device_tag($current_state, $this->device_token, $this->type);
-            $uap_notifier->delete_device_tag($current_state . '_' . $current_district_number, $this->device_token, $this->type);
         }
+        /*
+          else {
+          $current = self::findByPk($this->id); // get the model before it gets updated
+          $current_state = $current->state_abbr;
+          $current_district_number = $current->district->number;
+
+          // delete previous tags
+          $uap_notifier->delete_device_tag($current_state, $this->device_token, $this->type);
+          $uap_notifier->delete_device_tag($current_state . '_' . $current_district_number, $this->device_token, $this->type);
+          }
 
 
-        // add new tags
-        $uap_notifier->add_device_tag($this->stateAbbr->abbr, $this->device_token, $this->type);
-        $uap_notifier->add_device_tag($this->stateAbbr->abbr . '_' . $this->district->number, $this->device_token, $this->type);
-
+          // add new tags
+          $uap_notifier->add_device_tag($this->stateAbbr->abbr, $this->device_token, $this->type);
+          $uap_notifier->add_device_tag($this->stateAbbr->abbr . '_' . $this->district->number, $this->device_token, $this->type);
+         */
 
         if (!$this->latitude)
             $this->latitude = NULL;
@@ -157,16 +157,13 @@ class Application_user extends CActiveRecord {
     }
 
     /**
-     * Retrieves a list of meta values associated to an application user
+     * Find  user meta
      * @param string $meta_key meta key
-     * @param integer $app_user_id application user primary key
-     * @param boolean $unique if set to true, return one match
+     * @param boolean $unique if true, only returns one record, if false, returns all match
+     * $param integer $app_user_id application user id
      * @return Meta value or false.
      */
     public function getMeta($meta_key, $unique = false, $app_user_id = null) {
-        $connection = Yii::app()->db;
-        $command = $connection->createCommand($sql);
-
         if (empty($app_user_id))
             $app_user_id = $this->id;
 
@@ -187,9 +184,12 @@ class Application_user extends CActiveRecord {
             return $result;
     }
 
+    /**
+     * Get all the meta data associated to an app user
+     * $param integer $app_user_id application user id
+     * @return array of metas
+     */
     public function getAllMeta($app_user_id = null) {
-        $connection = Yii::app()->db;
-        $command = $connection->createCommand($sql);
 
         if (empty($app_user_id))
             $app_user_id = $this->id;
@@ -198,13 +198,20 @@ class Application_user extends CActiveRecord {
                 ->select('id, meta_key, meta_value')
                 ->from('app_user_meta')
                 ->where('app_user_id=:app_user_id', array(':app_user_id' => $app_user_id));
-        
+
         return $meta_query->queryAll();
     }
 
+    /**
+     * Add  an app user meta data
+     * @param string $meta_key meta key
+     * @param string $meta_value meta meta_value
+     * $param integer $app_user_id application user id
+     * @return true for success. False for failure.
+     */
     public function addMeta($meta_key, $meta_value, $app_user_id = null) {
         $connection = Yii::app()->db;
-        $command = $connection->createCommand($sql);
+        $command = $connection->createCommand();
 
         if (empty($app_user_id))
             $app_user_id = $this->id;
@@ -224,9 +231,17 @@ class Application_user extends CActiveRecord {
             return false;
     }
 
+    /**
+     * Update an app user meta data
+     * @param string $meta_key meta key
+     * @param string $meta_value meta meta_value
+     * @param string $existing_meta_value  existing_meta_value
+     * $param integer $app_user_id application user id
+     * @return true for success. False for failure.
+     */
     public function updateMeta($meta_key, $meta_value, $existing_meta_value = null, $app_user_id = null) {
         $connection = Yii::app()->db;
-        $command = $connection->createCommand($sql);
+        $command = $connection->createCommand();
 
         if (empty($app_user_id))
             $app_user_id = $this->id;
@@ -262,9 +277,16 @@ class Application_user extends CActiveRecord {
             return false;
     }
 
+    /**
+     * Delete an appuser meta data
+     * @param string $meta_key meta key
+     * @param string $meta_value meta meta_value
+     * $param integer $app_user_id application user id
+     * @return true for success. False for failure.
+     */
     public function deleteMeta($meta_key, $meta_value = null, $app_user_id = null) {
         $connection = Yii::app()->db;
-        $command = $connection->createCommand($sql);
+        $command = $connection->createCommand();
 
         if (empty($app_user_id)) {
             $app_user_id = $this->id;
@@ -286,5 +308,103 @@ class Application_user extends CActiveRecord {
             return false;
     }
 
-}
+    /**
+     * Add a tag to an app_user, uses app_user_tag as the joining table
+     * @param integer $tag id of the tag or string $tag name of the tag
+     * @return true for success. False for failure.
+     */
+    public function addTag($tag) {
 
+        if (is_numeric($tag))
+            $tag_id = $tag;
+        elseif (is_string($tag))
+            $tag_id = Tag::model()->getTagId($tag);
+        else
+            return false;
+
+
+        // if the app user already has a tag, returns false;
+        if ($this->findTag($tag_id))
+            return false;
+
+        $connection = Yii::app()->db;
+
+        $command = $connection->createCommand($sql);
+
+        try {
+            $add_tag_result = $command->insert('app_user_tag', array(
+                'app_user_id' => $this->id,
+                'tag_id' => $tag_id
+                    ));
+        } catch (CException $ce) {
+            error_log("Could not add tag to app user_id $this->id" . $ce->getMessage());
+            $add_tag_result = false;
+        }
+
+        return $add_tag_result;
+    }
+
+    public function deleteTag($tag) {
+        if (is_numeric($tag))
+            $tag_id = $tag;
+        elseif (is_string($tag))
+            $tag_id = Tag::model()->getTagId($tag);
+        else
+            return false;
+
+        $connection = Yii::app()->db;
+        $command = $connection->createCommand();
+
+        $delete_tag_result = $command->delete('app_user_tag', 'app_user_id=:app_user_id AND tag_id=:tag_id', array(':app_user_id' => $this->id, ':tag_id' => $tag_id));
+
+        return $delete_tag_result;
+    }
+
+    /**
+     * Check if an application has the specified tag
+     * @param integer $tag id of the tag or string $tag name of the tag
+     * @return tag id for success. False for failure.
+     */
+    public function findTag($tag) {
+        $connection = Yii::app()->db;
+        $command = $connection->createCommand();
+
+
+        if (is_numeric($tag))
+            $tag_id = $tag;
+        else
+            $tag_id = Tag::model()->getTagId($tag);
+
+
+        $result = $command->select('tag_id')
+                ->from('app_user_tag')
+                ->where('app_user_id=:app_user_id AND tag_id=:tag_id', array(':app_user_id' => $this->id, ':tag_id' => $tag_id))
+                ->queryRow();
+
+        return $result['tag_id'];
+    }
+
+    /**
+     * Update the state and district of an application user
+     * @param string  $state_abbr state abbreviation
+     * @param integer $district_number  district number
+     * @return true or false
+     */
+    public function updateLocation($state_abbr, $district_number) {
+        $district_id = District::getIdByStateAndDistrict($state_abbr, $district_number);
+
+        if (!$district_id) { // the district isn't saved in the database, insert a new one
+            $district = new District;
+            $district->state_abbr = $state_abbr;
+            $district->number = $district_number;
+            $district->save();
+            $district_id = $district->id;
+        }
+
+        $this->state_abbr = $state_abbr;
+        $this->district_id = $district_id;
+
+        return $this->save();
+    }
+
+}

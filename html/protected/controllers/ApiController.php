@@ -34,16 +34,16 @@ class ApiController extends Controller {
             case 'tags': // /api/tags
                 $result = Tag::model()->findAll();
                 break;
-            
+
             case 'alert_types':
-                $alert_types =  AlertType::model()->with('tag')->findAll();
-                foreach($alert_types as $alert_type){
+                $alert_types = AlertType::model()->with('tag')->findAll();
+                foreach ($alert_types as $alert_type) {
                     $alert_type->tag_id = $alert_type->tag->name;
                 }
-                
-                
- 
-                
+
+
+
+
                 $result = $alert_types;
                 break;
 
@@ -109,19 +109,19 @@ class ApiController extends Controller {
         $type_filter = $_GET['type']; //already sanitized in main.php, see regex
         $search_attributes['name'] = $type_filter;
         $filtered_options = Option::model()->findAllByAttributes($search_attributes);
-       
+
         $tag = new Tag();
-        $tag->tag='test';
-        $tag->type='the_type';
+        $tag->tag = 'test';
+        $tag->type = 'the_type';
         $tag->id = 'name';
-        
+
         return $tag;
-        
+
         return $filtered_options;
     }
 
     private function _getTags($param) {
-        $search_attributes['type'] =  $_GET['type']; //already sanitized in main.php, see regex
+        $search_attributes['type'] = $_GET['type']; //already sanitized in main.php, see regex
         $filtered_options = Tag::model()->findAllByAttributes($search_attributes);
         return $filtered_options;
     }
@@ -131,13 +131,10 @@ class ApiController extends Controller {
             $this->_sendResponse(401, $this->_getStatusCodeMessage(401));
             return false;
         }
-
-
-
         switch ($_GET['model']) {
             case 'app_users': //insert/update  user record
                 error_log(print_r($_REQUEST, true));
-                $save_result = $this->_add_appicationUsers();
+                $save_result = $this->_add_applicationUsers();
                 if ($save_result == 1) {
                     $this->_sendResponse($status = 200, $body = 'insert_ok');
                 } else {
@@ -149,13 +146,33 @@ class ApiController extends Controller {
         }
     }
 
-    private function _add_appicationUsers() {
+    public function actionUpdate() {
+        if (!$this->_checkAuth()) {
+            $this->_sendResponse(401, $this->_getStatusCodeMessage(401));
+            return false;
+        }
+
+        switch ($_REQUEST['action']) {
+            case 'tag':
+                $update_result = $this->_update_applicationUserTag($_GET['device_token'], $_POST);
+                $this->_sendResponse($status = 200, $update_result);
+                break;
+
+            case 'meta':
+                $update_result = $this->_update_applicationUserMeta($_GET['device_token'], $_POST);
+                $this->_sendResponse($status = 200, $update_result);
+                break;
+
+            default:exit;
+        }
+    }
+
+    private function _add_applicationUsers() {
 
         $save_result = 0;
         if (!isset($_POST['device_token']) || !isset($_POST['state_abbr']) || !isset($_POST['district_number']) || !isset($_POST['type'])) {
             exit;
         }
-
 
         $device_token = $_POST['device_token'];
         $user_state = $_POST['state_abbr'];
@@ -201,7 +218,7 @@ class ApiController extends Controller {
 
         $app_user->registration = date('Y-m-d H:i:s');
 
-
+        //$app_user->updateLocation( $user_state, $user_district_number );
         try {
             if (!$district_id) { // the district isn't saved in the database, insert a new one
                 $district = new District;
@@ -217,15 +234,66 @@ class ApiController extends Controller {
             error_log('API actionCreate app_users: ' . $exception->getMessage());
         }
 
-
         //save user meta after the user is saved/updated
         if (isset($_POST['meta']) && is_array($_POST['meta'])) {
             foreach ($_POST['meta'] as $meta_key => $meta_value) {
                 $app_user->updateMeta($meta_key, $meta_value);
             }
         }
-
+        //todo: remove UAPstuff from beforeSave and call _update_applicationUserTag
         return $save_result;
+    }
+
+    private function _update_applicationUserTag($device_token, $payload) {
+
+        if (empty($device_token) || empty($payload['user_id']) || ( empty($payload['add_tags']) && empty($payload['delete_tags']) ))
+            return 'missing_parameters';
+
+
+        $app_user = Application_user::model()->findByAttributes(array('device_token' => $device_token));
+
+
+        if (empty($app_user))
+            return 'no_user_found';
+
+        // delete tags associated to the app user
+        if (!empty($payload['delete_tags'])) {
+            foreach ($payload['delete_tags'] as $tag) {
+                $app_user->deleteTag($tag);
+            }
+        }
+
+        // add tags associated to the app user
+        if (!empty($payload['add_tags'])) {
+            foreach ($payload['add_tags'] as $tag) {
+                $app_user->addTag($tag);
+            }
+        }
+
+        if (!empty($payload['state_abbr']) && !empty($payload['district_number'])) {
+            $app_user->updateLocation($payload['state_abbr'], $payload['district_number']);
+        }
+
+
+        // todo:
+        // get all tags for a user ( dont forget to generate tag for location)
+        // transmit all those tags to UAP
+        return 'tags_updated';
+    }
+
+    public function _update_applicationUserMeta($device_token, $payload) {
+        $app_user = Application_user::model()->findByAttributes(array('device_token' => $device_token));
+        
+        if (empty($app_user))
+            return 'no_user_found';
+        
+        if (isset($_POST['meta']) && is_array($_POST['meta'])) {
+            foreach ($_POST['meta'] as $meta_key => $meta_value) {
+                $app_user->updateMeta($meta_key, $meta_value);
+            }
+        }
+        
+        return 'meta_updated';
     }
 
     private function _sendResponse($status = 200, $body = '') {
@@ -241,8 +309,6 @@ class ApiController extends Controller {
         } else {
             $container['results'] = 'no_results';
         }
-
-
 
         $json_encoded_result = CJSON::encode($container);
 

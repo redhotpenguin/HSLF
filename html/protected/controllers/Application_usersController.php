@@ -127,7 +127,7 @@ class Application_usersController extends Controller {
     public function actionAdmin() {
         $model = new Application_user('search');
         $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['Application_users']))
+        if (isset($_GET['Application_user']))
             $model->attributes = $_GET['Application_user'];
 
         $this->render('admin', array(

@@ -67,7 +67,10 @@ return array(
                 array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>/district/<district_number:\d+>', 'verb' => 'GET'),
                 array('api/view', 'pattern' => 'api/<model:\w+>/name/<type:\w+>', 'verb' => 'GET'),
                 array('api/view', 'pattern' => 'api/<model:\w+>/type/<type:\w+>', 'verb' => 'GET'),
+                
                 array('api/create', 'pattern' => 'api/<model:\w+>', 'verb' => 'POST'),
+                array('api/update', 'pattern' => 'api/<model:\w+>/device_token/<device_token:\w+>/<action:\w+>', 'verb' => 'POST'),
+                
                 
                 // Other controllers
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',

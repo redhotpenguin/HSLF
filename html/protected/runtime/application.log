@@ -7234,3 +7234,627 @@ Stack trace:
 REQUEST_URI=/api/alerts
 in C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php (51)
 in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/05/04 20:51:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/models/Tag.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/models/Tag.php
+---
+2012/05/04 21:08:20 [error] [php] include(safe, application_users.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\HSLF\framework\yiilite.php:233)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(9270): import()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(6454): createValidator()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(6435): Tag->createValidators()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(6463): Tag->getValidators()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(4902): Tag->isAttributeRequired()
+#5 C:\xampp\htdocs\HSLF\framework\web\widgets\CActiveForm.php(560): activeLabelEx()
+#6 C:\xampp\htdocs\HSLF\html\protected\views\tag\_form.php(13): CActiveForm->labelEx()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): TagController->renderInternal()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): TagController->renderFile()
+#10 C:\xampp\htdocs\HSLF\html\protected\views\tag\create.php(15): TagController->renderPartial()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): TagController->renderInternal()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): TagController->renderFile()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): TagController->renderPartial()
+#15 C:\xampp\htdocs\HSLF\html\protected\controllers\TagController.php(71): TagController->render()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): TagController->actionCreate()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): TagController->runAction()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): TagController->filterAccessControl()
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): TagController->runActionWithFilters()
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): TagController->run()
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#28 C:\xampp\htdocs\HSLF\html\index.php(14): CWebApplication->run()
+REQUEST_URI=/tag/create
+in C:\xampp\htdocs\HSLF\html\protected\views\tag\_form.php (13)
+in C:\xampp\htdocs\HSLF\html\protected\views\tag\create.php (15)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\TagController.php (71)
+2012/05/04 21:09:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/models/Application_user.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/models/Application_user.php
+---
+2012/05/04 23:21:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/models/Application_user.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/models/Application_user.php
+---
+2012/05/05 00:09:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags/1
+---
+2012/05/05 00:09:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags/
+---
+2012/05/05 00:09:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags/
+---
+2012/05/05 00:09:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags/1
+---
+2012/05/05 00:09:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags/1
+---
+2012/05/05 00:10:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags/
+---
+2012/05/05 00:10:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags/1
+---
+2012/05/05 00:10:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags/
+---
+2012/05/05 00:10:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags/
+---
+2012/05/05 00:10:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags/
+---
+2012/05/05 00:10:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags/
+---
+2012/05/05 00:10:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags/1
+---
+2012/05/05 00:10:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags/1
+---
+2012/05/05 00:10:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags/1
+---
+2012/05/05 00:10:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags/
+---
+2012/05/05 00:10:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags/
+---
+2012/05/05 00:10:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags/
+---
+2012/05/05 00:10:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags/
+---
+2012/05/05 00:10:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags/
+---
+2012/05/05 00:11:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags/1
+---
+2012/05/05 00:12:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags/
+---
+2012/05/05 00:12:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags/
+---
+2012/05/05 00:14:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/update/tags
+---
+2012/05/05 00:23:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags
+---
+2012/05/05 00:24:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags
+---
+2012/05/05 00:24:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags
+---
+2012/05/05 00:24:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags
+---
+2012/05/05 00:25:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags
+---
+2012/05/05 00:25:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags
+---
+2012/05/05 00:26:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags
+---
+2012/05/05 00:27:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags?user=secretuser&password=secretpassword&user_id=1234&add_tags%5B%5D=tag1&add_tags%5B%5D=tag2&delete_tag%5B%5D=tag3
+---
+2012/05/05 00:28:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags?user=secretuser&password=secretpassword&user_id=1234&add_tags%5B%5D=tag1&add_tags%5B%5D=tag2&delete_tag%5B%5D=tag3
+---
+2012/05/05 00:43:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/
+---
+2012/05/05 00:43:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/
+---
+2012/05/05 01:16:48 [error] [exception.CException] exception 'CException' with message 'ApiController and its behaviors do not have a method or closure named "_update_applicationUserTag".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:681
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php(158): CComponent->__call('_update_applica...', Array)
+#1 C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php(158): ApiController->_update_applicationUserTag(Object(stdClass))
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionUpdate()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('update')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/update')
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#10 {main}
+REQUEST_URI=/api/app_user/device_token/414asdfawaf/tags
+---
+2012/05/05 01:24:37 [error] [php] Argument 1 passed to ApiController::_update_applicationUserTag() must be an array, object given, called in C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php on line 158 and defined (C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php:247)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): ApiController->runAction()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): ApiController->runActionWithFilters()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): ApiController->run()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\HSLF\html\index.php(14): CWebApplication->run()
+REQUEST_URI=/api/app_user/device_token/414asdfawaf/tags
+in C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php (247)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php (158)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/05/05 01:24:52 [error] [php] Argument 1 passed to ApiController::_update_applicationUserTag() must be an array, object given, called in C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php on line 158 and defined (C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php:247)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): ApiController->runAction()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): ApiController->runActionWithFilters()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): ApiController->run()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\HSLF\html\index.php(14): CWebApplication->run()
+REQUEST_URI=/api/app_user/device_token/414asdfawaf/tags
+in C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php (247)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php (158)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/05/05 01:25:40 [error] [php] Argument 1 passed to ApiController::_update_applicationUserTag() must be an instance of Object, instance of stdClass given, called in C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php on line 158 and defined (C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php:247)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): ApiController->runAction()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): ApiController->runActionWithFilters()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): ApiController->run()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\HSLF\html\index.php(14): CWebApplication->run()
+REQUEST_URI=/api/app_user/device_token/414asdfawaf/tags
+in C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php (247)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php (158)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/05/07 20:11:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232
+---
+2012/05/07 20:12:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags/
+---
+2012/05/07 20:12:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags
+---
+2012/05/07 20:12:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags
+---
+2012/05/07 20:12:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags/
+---
+2012/05/07 20:42:36 [error] [php] Invalid argument supplied for foreach() (C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php:252)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): ApiController->runAction()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): ApiController->runActionWithFilters()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): ApiController->run()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\HSLF\html\index.php(14): CWebApplication->run()
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags/
+in C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php (252)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php (157)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/05/07 20:50:18 [error] [php] Invalid argument supplied for foreach() (C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php:254)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): ApiController->runAction()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): ApiController->runActionWithFilters()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): ApiController->run()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\HSLF\html\index.php(14): CWebApplication->run()
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags/
+in C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php (254)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php (157)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/05/07 21:12:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/models/Application_user.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/models/Application_user.php
+---
+2012/05/07 21:26:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/models/Tag.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/models/Tag.php
+---
+2012/05/07 21:37:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/models/Application_user.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/models/Application_user.php
+---
+2012/05/07 22:08:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/models/Application_user.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/models/Application_user.php
+---
+2012/05/07 22:10:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "html/protected/controllers/ApiController.php".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('html/protected/...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/html/protected/controllers/ApiController.php
+---
+2012/05/07 22:11:30 [error] [exception.CException] exception 'CException' with message 'ApiController and its behaviors do not have a method or closure named "_update_applicationUserTag".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:681
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php(157): CComponent->__call('_update_applica...', Array)
+#1 C:\xampp\htdocs\HSLF\html\protected\controllers\ApiController.php(157): ApiController->_update_applicationUserTag('120231606E4C8C4...', Array)
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionUpdate()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('update')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/update')
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#10 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/tags/
+---
+2012/05/07 22:32:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/metas/
+---
+2012/05/07 22:35:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/metas/
+---
+2012/05/07 22:35:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/meta
+---
+2012/05/07 22:35:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "app_user".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('app_user')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('app_user')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/app_user/de...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/app_user/device_token/120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232/metas/
+---

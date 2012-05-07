@@ -92,4 +92,8 @@ class Tag extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
+        public function getTagId( $tag_name){
+            return $this->findByAttributes(array('name'=>$tag_name))->id;
+        }
 }
