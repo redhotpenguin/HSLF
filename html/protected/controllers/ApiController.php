@@ -20,10 +20,6 @@ class ApiController extends Controller {
         return array();
     }
 
-    /*
-     * @Description: /api/candidates/
-     */
-
     public function actionList() {
         $result = '';
         switch ($_GET['model']) {
@@ -35,15 +31,11 @@ class ApiController extends Controller {
                 $result = Tag::model()->findAll();
                 break;
 
-            case 'alert_types':
+            case 'alert_types': // /api/alert_types
                 $alert_types = AlertType::model()->with('tag')->findAll();
                 foreach ($alert_types as $alert_type) {
                     $alert_type->tag_id = $alert_type->tag->name;
                 }
-
-
-
-
                 $result = $alert_types;
                 break;
 
@@ -61,11 +53,16 @@ class ApiController extends Controller {
                 $this->_sendResponse(200, $this->_getCandidates($_GET));
                 break;
 
+            case 'candidate':
+                $this->_sendResponse(200, $this->_getCandidate($_GET['id'], $_GET['filter']));
+                break;
+
+
             case 'options': //api/options/type/w+
                 $this->_sendResponse(200, $this->_getOptions($_GET));
                 break;
 
-            case 'tags':
+            case 'tags': // /api/tags/
                 $this->_sendResponse(200, $this->_getTags($_GET));
                 break;
 
@@ -91,12 +88,8 @@ class ApiController extends Controller {
         }
 
 
-
         $search_attributes['publish'] = 'yes';
-
         $candidates = Candidate::model()->with('district')->findAllByAttributes($search_attributes);
-
-
 
         foreach ($candidates as $candidate) {
             $candidate->district_id = $candidate->district->number;
@@ -105,17 +98,31 @@ class ApiController extends Controller {
         return $candidates;
     }
 
+    private function _getCandidate($candidate_id, $filter) {
+        switch ($filter) {
+            case 'issue': // /api/candidate/<candidate_id>/issue/
+                $response = CandidateIssue::model()->getTemplatizedIssues($candidate_id);
+                
+                break;
+
+            default:
+                $candidate = Candidate::model()->with('district')->findByPk($candidate_id);
+                if (!empty($candidate)) {
+                    $candidate->district_id = $candidate->district->number; //return the district number instead of the district id
+                    $response = $candidate;
+                }
+                else
+                    $response = 'Candidate not found';
+        }
+
+        return $response;
+    }
+
     private function _getOptions($param) {
         $type_filter = $_GET['type']; //already sanitized in main.php, see regex
         $search_attributes['name'] = $type_filter;
         $filtered_options = Option::model()->findAllByAttributes($search_attributes);
 
-        $tag = new Tag();
-        $tag->tag = 'test';
-        $tag->type = 'the_type';
-        $tag->id = 'name';
-
-        return $tag;
 
         return $filtered_options;
     }
@@ -183,6 +190,7 @@ class ApiController extends Controller {
         if (!$app_user) { // if user is not already saved in the DB, create a new one
             $app_user = new Application_user();
             $app_user->device_token = $device_token;
+            $app_user->registration = date('Y-m-d H:i:s');
         }
 
         $app_user->uap_user_id = $_POST['uap_user_id'];
@@ -218,9 +226,8 @@ class ApiController extends Controller {
                 exit;
         }
 
-        $app_user->registration = date('Y-m-d H:i:s');
 
-        //$app_user->updateLocation( $user_state, $user_district_number );
+
         try {
             if (!$district_id) { // the district isn't saved in the database, insert a new one
                 $district = new District;
@@ -247,7 +254,7 @@ class ApiController extends Controller {
 
     private function _update_applicationUserTag($device_token, $payload) {
 
-        if (empty($device_token) || empty($payload['user_id']) || ( empty($payload['add_tags']) && empty($payload['delete_tags']) ))
+        if (empty($device_token) || ( empty($payload['add_tags']) && empty($payload['delete_tags']) ))
             return 'missing_parameters';
 
 
@@ -274,12 +281,8 @@ class ApiController extends Controller {
         if (!empty($payload['state_abbr']) && !empty($payload['district_number'])) {
             $app_user->updateLocation($payload['state_abbr'], $payload['district_number']);
         }
-
-               
+        
         $app_user->synchronizeUAPTags();
-        // todo:
-        // get all tags for a user ( dont forget to generate tag for location)
-        // transmit all those tags to UAP
         return 'tags_updated';
     }
 
@@ -298,7 +301,8 @@ class ApiController extends Controller {
         return 'meta_updated';
     }
 
-    private function _sendResponse($status = 200, $body = '') {
+    private function _sendResponse($status = 200, $body = '', $template = '') {
+
         $container = array('api_name' => self::APPLICATION_ID, 'api_version' => self::API_VERSION, 'status' => $status);
 
         $status_header = 'HTTP/1.1 ' . $status . ' ' . $this->_getStatusCodeMessage($status);
@@ -312,13 +316,17 @@ class ApiController extends Controller {
             $container['results'] = 'no_results';
         }
 
-        $json_encoded_result = CJSON::encode($container);
+        if ($template != '') {
+            $this->renderPartial('issue', array('data'=>$container));
+        } else {
 
-        // API consumers really want a district_name, not a district_id 
-        $json_encoded_result = str_replace('district_id', 'district_number', $json_encoded_result);
+            $json_encoded_result = CJSON::encode($container);
 
-        echo $json_encoded_result;
-        exit;
+            // API consumers really want a district_name, not a district_id 
+            $json_encoded_result = str_replace('district_id', 'district_number', $json_encoded_result);
+            echo $json_encoded_result;
+        }
+      exit;
     }
 
     private function _getStatusCodeMessage($status) {

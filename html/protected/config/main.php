@@ -6,7 +6,7 @@
 // CWebApplication properties can be configured here.
 
 
-        
+
 
 if (isset($env['DOTCLOUD_DB_SQL_HOST']))
     $dbhost = $env['DOTCLOUD_DB_SQL_HOST'];
@@ -41,6 +41,7 @@ return array(
     'import' => array(
         'application.models.*',
         'application.components.*',
+        'ext.multimodelform.MultiModelForm',
     ),
     'modules' => array(
         'gii' => array(
@@ -66,12 +67,11 @@ return array(
                 array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>', 'verb' => 'GET'),
                 array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>/district/<district_number:\d+>', 'verb' => 'GET'),
                 array('api/view', 'pattern' => 'api/<model:\w+>/name/<type:\w+>', 'verb' => 'GET'),
+                array('api/view', 'pattern' => 'api/<model:\w+>/<id:\d+>/', 'verb' => 'GET'), // ex: /api/candidate/12/
+                 array('api/view', 'pattern' => 'api/<model:\w+>/<id:\d+>/<filter:\w+>', 'verb' => 'GET'), // ex: /api/candidate/12/issue
                 array('api/view', 'pattern' => 'api/<model:\w+>/type/<type:\w+>', 'verb' => 'GET'),
-                
                 array('api/create', 'pattern' => 'api/<model:\w+>', 'verb' => 'POST'),
                 array('api/update', 'pattern' => 'api/<model:\w+>/device_token/<device_token:\w+>/<action:\w+>', 'verb' => 'POST'),
-                
-                
                 // Other controllers
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
