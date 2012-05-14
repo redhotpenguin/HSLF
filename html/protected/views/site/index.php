@@ -1,6 +1,6 @@
 <?php $this->pageTitle = Yii::app()->name; ?>
 
-<h1>Welcome to the MVG Administration site</h1>
+<h1>WM Mobile: HSLF </h1>
 
 <div>
     <?php

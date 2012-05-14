@@ -372,7 +372,7 @@ div.loading * {
 }
 
 #menu-top > ul > li.active{
-  
+
 }
 
 
@@ -489,7 +489,7 @@ div.loading * {
 .candidate #Candidate_full_name_preview {
     font-weight: bold;
     color: white;
-    font-size: 16px;
+    font-size: 13px;
     padding-left: 1px;
     float: left;
     padding-top: 9px;
@@ -500,7 +500,7 @@ div.loading * {
     margin-top: 14px;
     font-weight: bold;
     color: white;
-    font-size: 15px;
+    font-size: 13px;
     margin-left: -3px;
 }
 
@@ -513,6 +513,23 @@ div.loading * {
     height: 320px;
     overflow: auto;
     color: black;
+}
+
+.candidate .candidate_issue_item {
+    padding: 5px;
+    margin-bottom: 15px;
+    position: relative;
+    background-color: #EFEFEF;
+    border: 1px solid #DDD;
+}
+
+.candidate #id_candidate_issue {
+    border: 1px solid #CCC;
+    padding: 5px;
+    margin-bottom: 15px;
+    display: block;
+    text-align: center;
+    font-weight: bold;
 }
 
 #iphone_bg ul li{
