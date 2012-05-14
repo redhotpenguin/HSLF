@@ -101,8 +101,23 @@ class ApiController extends Controller {
     private function _getCandidate($candidate_id, $filter) {
         switch ($filter) {
             case 'issue': // /api/candidate/<candidate_id>/issue/
-                $response = CandidateIssue::model()->getTemplatizedIssues($candidate_id);
+                $candidate_issues = CandidateIssue::model()->findAllByAttributes(array('candidate_id' => $candidate_id));
+                $templetized_issues = array();
 
+                foreach ($candidate_issues as $candidate_issue) {
+                    ob_start();
+                    $this->renderPartial('/api/issue/issue_detail', array('candidate_issue'=>$candidate_issue));
+                    $detail = ob_get_contents();
+                    ob_end_clean();
+                    
+                    array_push($templetized_issues, array(
+                        'name' => $candidate_issue->name,
+                        'value' => $candidate_issue->value,
+                        'detail' => $detail,
+                    ));
+                }
+
+                $response = $templetized_issues;
                 break;
 
             default:

@@ -96,23 +96,5 @@ class CandidateIssue extends CActiveRecord
 		));
 	}
         
-        public function getTemplatizedIssues( $candidate_id )  {
-           $candidate_issues =  $this->findAllByAttributes(  array('candidate_id'=>$candidate_id) );
-           $templetized_issues = array();
-           
-           foreach($candidate_issues as $candidate_issue){
-            
-               array_push($templetized_issues, array(
-                   'name'=> $candidate_issue->name,
-                   'value'=>$candidate_issue->value,
-                   'detail'=>$candidate_issue->detail,
-               ));
-               
-               
-           }
-           
-           
-           
-           return $templetized_issues;
-        }
+         
 }
