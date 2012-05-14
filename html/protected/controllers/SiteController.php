@@ -63,7 +63,7 @@ class SiteController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'publishing', 'messaging', 'administration', 'logout'),
+                'actions' => array('index', 'publishing', 'messaging', 'administration', 'mobile', 'logout'),
                 'users' => array('@'),
             ),
             array('allow', // 
@@ -86,18 +86,19 @@ class SiteController extends Controller {
     }
 
     public function actionPublishing() {
-        $content = 'hey';
         $this->render('publishing', array('content' => $content));
     }
 
     public function actionMessaging() {
-        $content = 'hey';
         $this->render('messaging', array('content' => $content));
     }
 
     public function actionAdministration() {
-        $content = 'hey';
         $this->render('administration', array('content' => $content));
+    }
+    
+    public function actionMobile() {
+        $this->render('mobile');
     }
 
 }

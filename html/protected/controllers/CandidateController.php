@@ -50,18 +50,28 @@ class CandidateController extends Controller {
      */
     public function actionCreate() {
         $model = new Candidate;
+        $candidate_issue = new CandidateIssue;
+        $validate_candidate_issues = array();
+
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
         if (isset($_POST['Candidate'])) {
+
+            // handle candidate issues
             $model->attributes = $_POST['Candidate'];
-            if ($model->save())
+            $model->save(); // need to save the model (candidate before we can use its id
+            $masterValues = array('candidate_id' => $model->id,);
+
+
+            if (MultiModelForm::save($candidate_issue, $validate_candidate_issues, $a, $masterValues) && $model->save())
                 $this->redirect(array('view', 'id' => $model->id));
         }
 
         $this->render('create', array(
             'model' => $model,
+            'candidate_issue' => $candidate_issue
         ));
     }
 
@@ -72,18 +82,27 @@ class CandidateController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
+        $candidate_issue = new CandidateIssue;
+        $validate_candidate_issues = array();
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
         if (isset($_POST['Candidate'])) {
             $model->attributes = $_POST['Candidate'];
-            if ($model->save())
+
+
+            $masterValues = array('candidate_id' => $model->id,);
+
+
+            if (MultiModelForm::save($candidate_issue, $validate_candidate_issues, $deleted_candidate_issues, $masterValues) && $model->save())
                 $this->redirect(array('view', 'id' => $model->id));
         }
 
         $this->render('update', array(
             'model' => $model,
+            'candidate_issue' => $candidate_issue,
+            'validate_candidate_issues' => $validate_candidate_issues,
         ));
     }
 

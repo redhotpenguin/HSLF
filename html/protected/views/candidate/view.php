@@ -49,7 +49,14 @@ $this->widget('zii.widgets.CDetailView', array(
         'date_published',
         'publish',
         'scorecard',
+        array(
+            'type'=>'html',
+            'header'=>'Issues',
+            'name'=>'issues',
+            'value'=>$model->getHTMLIssues(),
+        ),
     ),
 ));
+
 ?>
 
