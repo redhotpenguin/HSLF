@@ -21,7 +21,7 @@
  * @property District $district
  */
 class Candidate extends CActiveRecord {
-
+    
     public $district_number; // not part of the model, here for cgridview
 
     const TYPE_SENATOR = 'senator';
@@ -55,11 +55,11 @@ class Candidate extends CActiveRecord {
             array('state_abbr', 'length', 'max' => 3),
             array('full_name', 'length', 'max' => 256),
             array('party, publish', 'length', 'max' => 128),
-            array('type, endorsement, date_published, scorecard, url', 'safe'),
-            array('date_published', 'date', 'format'=>'yyyy-M-d H:m:s'),
+            array('type, endorsement, date_published, scorecard, url, issues', 'safe'),
+            array('date_published', 'date', 'format' => 'yyyy-M-d H:m:s'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, state_abbr, district_id, type, endorsement, full_name, party, date_published, publish, district_number, url', 'safe', 'on' => 'search'),
+            array('id, state_abbr, district_id, type, endorsement, full_name, party, date_published, publish, district_number, issues, url', 'safe', 'on' => 'search'),
         );
     }
 
@@ -72,6 +72,7 @@ class Candidate extends CActiveRecord {
         return array(
             'stateAbbr' => array(self::BELONGS_TO, 'State', 'state_abbr'),
             'district' => array(self::BELONGS_TO, 'District', 'district_id'),
+            'issues' => array(self::HAS_MANY, 'CandidateIssue', 'candidate_id'),
         );
     }
 
@@ -90,7 +91,8 @@ class Candidate extends CActiveRecord {
             'date_published' => 'Date Published',
             'publish' => 'Publish',
             'district_number' => 'District number',
-            'candidate_url_field'=> 'Candidate url',
+            'candidate_url_field' => 'Candidate url',
+            'issues'=>'Issues'
         );
     }
 
@@ -124,13 +126,12 @@ class Candidate extends CActiveRecord {
         $criteria->compare('endorsement', $this->endorsement, true);
         $criteria->compare('full_name', $this->full_name, true);
         $criteria->compare('party', $this->party, true);
-     
+
         $criteria->compare('publish', $this->publish, true);
-        
-       $criteria->compare("date_published",$this->date_published, false);
-       // error_log($this->date_published);
+
+        $criteria->compare("date_published", $this->date_published, false);
+        // error_log($this->date_published);
         //$criteria->addCondition("date_published = to_date( '".$this->date_published."', 'YYYY') ");
-        
         //SELECT * FROM candidate WHERE date_published < to_date('2012', 'YYYY');
 
 
@@ -148,6 +149,25 @@ class Candidate extends CActiveRecord {
             self::TYPE_REPRESENTATIVE => 'Representative',
             self::TYPE_SENATOR => 'Senator',
         );
+    }
+
+    /**
+     * Generate an html view of the issues
+     * @return string
+     */
+    public function getHTMLIssues() {
+       $html_issues = '<ul>';
+       
+       foreach($this->issues as $issue){
+           $html_issues.='<li style="margin-bottom:15px;">';
+           $html_issues.=$issue->name.'<br/>';
+           $html_issues.=$issue->value.'<br/>';
+           $html_issues.=$issue->detail.'<br/>';
+           
+           $html_issues.='</li>';
+       }
+       
+       return $html_issues.'</ul>';
     }
 
 }

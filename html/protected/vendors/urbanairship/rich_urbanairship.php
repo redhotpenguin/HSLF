@@ -1,7 +1,5 @@
 <?php
 
-// Php module for using the Urban Airship API
-
 require_once(dirname(__FILE__) . '/RESTClient.php');
 
 define('SERVER', 'go.urbanairship.com');
@@ -9,6 +7,9 @@ define('BASE_URL', 'https://go.urbanairship.com/api');
 define('USER_URL', BASE_URL . '/user');
 
 define('ALIAS_URL', USER_URL . '/alias');
+
+define('AIRMAIL_URL', BASE_URL . '/airmail');
+define('AIRMAIL_SEND_URL', AIRMAIL_URL . '/send/');
 
 // Raise when we get a 401 from the server.
 class RichUnauthorized extends Exception {
@@ -42,7 +43,7 @@ class Rich_Airship {
         return $response;
     }
 
-    public function update_device_tags(array $tags, $device_token, $user_id, $device_type = 'ios') {   
+    public function update_device_tags(array $tags, $device_token, $user_id, $device_type = 'ios') {
         if ($device_type == 'ios') {
             $url = USER_URL . '/' . $user_id . '/';
 
@@ -61,23 +62,59 @@ class Rich_Airship {
         }
     }
 
-    public function getUsers() {
 
+    public function sendRichNotification(array $audience, array $airmail_payload, $alert = null, array $extra = null ) {
+        // at least one of tags, users or aliases must be specified.
+        if( !isset($audience['users']) && !isset($audience['tags']) && !isset($audience['users']) )
+            throw new Exception('An audience is required');
+        
+   
+        if(!isset($airmail_payload['message']))
+            throw new Exception('A message must be specified in the payload');
 
-        $url = BASE_URL;
-        $response = $this->_request($url, 'GET', null, null);
-        // error_log($url);
-        //  error_log(print_r($response, true));
+        $payload = array();
 
-        $response_code = $response[0];
-        if ($response_code != 200) {
-            throw new AirshipFailure($response[1], $response_code);
+        if (isset($audience['users']))
+            $payload['users'] = $audience['users'];
+
+        if (isset($audience['tags']))
+            $payload['tags'] = $audience['tags'];
+
+        if (isset($audience['aliases']))
+            $payload['aliases'] = $audience['aliases'];
+
+        
+        if (!empty($alert)) {
+            $payload['push'] = array(
+                'aps' => array(
+                    'alert' => $alert
+                )
+            );
+        }
+        if (!empty($airmail_payload)) {
+            $payload['title'] = $airmail_payload['title'];
+            $payload['message'] = $airmail_payload['message'];
+            $payload['content_type'] = 'text/html';
+        }
+        
+        if( !empty($extra)) {
+            $payload['extra'] = $extra;
         }
 
-        return json_decode($response[1]);
-    }
 
-  
+        $json_payload = json_encode($payload);
+
+        //error_log($json_payload);
+
+       $response = $this->_request(AIRMAIL_SEND_URL, 'POST', $json_payload, 'application/json');
+       $response_code = $response[0];
+       
+       if($response_code != 200)
+        throw new RichAirshipFailure($response[1], $response_code);
+       
+
+        return $this->_validate_http_code($response_code);
+    }
 
     private function _validate_http_code($code) {
         return ($code == 200 || $code == 201 || $code == 204);
