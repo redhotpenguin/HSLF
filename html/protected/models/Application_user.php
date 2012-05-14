@@ -68,6 +68,7 @@ class Application_user extends CActiveRecord {
             'stateAbbr' => array(self::BELONGS_TO, 'State', 'state_abbr'),
             'district' => array(self::BELONGS_TO, 'District', 'district_id'),
             'tags' => array(self::MANY_MANY, 'Tag', 'app_user_tag(app_user_id, tag_id)'),
+
         );
     }
 
