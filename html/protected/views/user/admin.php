@@ -5,8 +5,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List User', 'url'=>array('index')),
-	array('label'=>'Create User', 'url'=>array('create'),  'visible'=>Yii::app()->user->getState('role') == 'admin') ,
+	array('label'=>'Add a user', 'url'=>array('create'),  'visible'=>Yii::app()->user->getState('role') == 'admin') ,
 );
 
 Yii::app()->clientScript->registerScript('search', "

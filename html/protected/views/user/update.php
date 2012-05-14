@@ -6,10 +6,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List User', 'url'=>array('index')),
-	array('label'=>'Create User', 'url'=>array('create'),  'visible'=>  isset($user->role) && ($user->role==="admin")),
-	array('label'=>'View User', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage User', 'url'=>array('admin')),
+	array('label'=>'Add a user', 'url'=>array('create'),  'visible'=>  isset($user->role) && ($user->role==="admin")),
+	array('label'=>'Manage users', 'url'=>array('admin')),
 );
 ?>
 
@@ -17,5 +15,5 @@ $this->menu=array(
 
 <?php 
 $model->password='';
-echo $this->renderPartial('_form', array('model'=>$model));
+echo $this->renderPartial('_update_form', array('model'=>$model));
 ?>

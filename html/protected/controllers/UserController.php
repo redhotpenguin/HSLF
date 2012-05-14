@@ -81,9 +81,6 @@ class UserController extends Controller {
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
 
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
         if (isset($_POST['User'])) {
             $model->attributes = $_POST['User'];
 
@@ -108,7 +105,15 @@ class UserController extends Controller {
     public function actionDelete($id) {
         if (Yii::app()->request->isPostRequest) {
             // we only allow deletion via POST request
-            $this->loadModel($id)->delete();
+            
+            
+            $user = $this->loadModel($id);
+            
+            if($user->username == 'admin'){
+                throw new CHttpException(403, 'Deleting the admin account is forbidden.');
+            }
+            
+            $user->delete();
 
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
