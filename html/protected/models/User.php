@@ -39,6 +39,7 @@ class User extends CActiveRecord {
         // will receive user inputs.
         return array(
             array('username, password, email, role', 'required'),
+            array('email', 'email'),
             array('username, email', 'length', 'max' => 128),
             array('password', 'length', 'max' => 40),
             // The following rule is used by search().
