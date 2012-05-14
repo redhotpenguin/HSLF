@@ -102,7 +102,7 @@ class ApiController extends Controller {
         switch ($filter) {
             case 'issue': // /api/candidate/<candidate_id>/issue/
                 $response = CandidateIssue::model()->getTemplatizedIssues($candidate_id);
-                
+
                 break;
 
             default:
@@ -134,13 +134,15 @@ class ApiController extends Controller {
     }
 
     public function actionCreate() {
+        if (YII_DEBUG)
+            error_log(print_r($_REQUEST, true));
+
         if (!$this->_checkAuth()) {
             $this->_sendResponse(401, $this->_getStatusCodeMessage(401));
             return false;
         }
         switch ($_GET['model']) {
             case 'app_users': //insert/update  user record
-                error_log(print_r($_REQUEST, true));
                 $save_result = $this->_add_applicationUsers();
                 if ($save_result == 1) {
                     $this->_sendResponse($status = 200, $body = 'insert_ok');
@@ -154,6 +156,9 @@ class ApiController extends Controller {
     }
 
     public function actionUpdate() {
+        if (YII_DEBUG)
+            error_log(print_r($_REQUEST, true));
+
         if (!$this->_checkAuth()) {
             $this->_sendResponse(401, $this->_getStatusCodeMessage(401));
             return false;
@@ -281,7 +286,7 @@ class ApiController extends Controller {
         if (!empty($payload['state_abbr']) && !empty($payload['district_number'])) {
             $app_user->updateLocation($payload['state_abbr'], $payload['district_number']);
         }
-        
+
         $app_user->synchronizeUAPTags();
         return 'tags_updated';
     }
@@ -317,7 +322,7 @@ class ApiController extends Controller {
         }
 
         if ($template != '') {
-            $this->renderPartial('issue', array('data'=>$container));
+            $this->renderPartial('issue', array('data' => $container));
         } else {
 
             $json_encoded_result = CJSON::encode($container);
@@ -326,7 +331,7 @@ class ApiController extends Controller {
             $json_encoded_result = str_replace('district_id', 'district_number', $json_encoded_result);
             echo $json_encoded_result;
         }
-      exit;
+        exit;
     }
 
     private function _getStatusCodeMessage($status) {

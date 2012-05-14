@@ -4,7 +4,6 @@ $this->breadcrumbs = array(
 );
 
 $this->menu = array(
-    array('label' => 'Create an application user', 'url' => array('create')),
     array('label' => 'Manage application users', 'url' => array('admin')),
 );
 ?>

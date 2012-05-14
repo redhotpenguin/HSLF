@@ -75,7 +75,8 @@
                                             array('label' => 'States', 'url' => array('/state'), 'visible' => !Yii::app()->user->isGuest),
                                             array('label' => 'Districts', 'url' => array('/district'), 'visible' => !Yii::app()->user->isGuest),
                                             array('label' => 'Candidates', 'url' => array('/candidate'), 'visible' => !Yii::app()->user->isGuest),
-                                        ),
+                                            array('itemOptions'=>array( 'id'=>'external_item') , 'label'=>'Rich Push Notifications', 'linkOptions'=>array('target'=>'_blank'),'url'=> 'https://go.urbanairship.com/apps/ouRCLPaBRRasv4K1AIw-xA/composer/rich-push/'),
+                                            ),
                                     ),
                                     array(
                                         'label' => 'App Manager',

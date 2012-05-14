@@ -6,7 +6,6 @@ $this->breadcrumbs = array(
 
 $this->menu = array(
     array('label' => 'List application users', 'url' => array('index')),
-    array('label' => 'Create application users', 'url' => array('create')),
     array('label' => 'Update application users', 'url' => array('update', 'id' => $model->id)),
     array('label' => 'Delete application users', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this item?')),
     array('label' => 'Manage application users', 'url' => array('admin')),

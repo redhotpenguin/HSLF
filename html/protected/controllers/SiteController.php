@@ -10,8 +10,9 @@ class SiteController extends Controller {
         $data = null;
         if (Yii::app()->user->id) {
             $data = array(
-                'last_candidate' => Candidate::model()->findBySql('select * from candidate order by ID desc limit 1;'),
-                'last_push' => PushNotification::model()->findBySql('select * from push_notification order by ID desc limit 1;'),
+                'total_app_users'=> Application_user::model()->count(),
+                'total_candidate_page'=>  Candidate::model()->count(),
+                
             );
         }
         $this->render('index', $data);

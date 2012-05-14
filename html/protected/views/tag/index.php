@@ -4,8 +4,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Create Tag', 'url'=>array('create')),
-	array('label'=>'Manage Tag', 'url'=>array('admin')),
+	array('label'=>'Create a tag', 'url'=>array('create')),
+	array('label'=>'Manage tags', 'url'=>array('admin')),
 );
 ?>
 

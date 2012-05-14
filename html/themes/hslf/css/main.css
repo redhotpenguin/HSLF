@@ -301,7 +301,6 @@ div.loading * {
     margin-right:1px;
 }
 
-
 #menu-top >  ul>  li{
     height: 25px;
     padding-top: 11px;
@@ -345,11 +344,7 @@ div.loading * {
 
 }
 
-#menu-top li:hover > a,
-#menu-top ul ul :hover > a,
-#menu-top a:focus {
 
-}
 
 #menu-top ul ul a:hover{
     background-color:#eee;
@@ -370,10 +365,17 @@ div.loading * {
     background-color:#ddd;
 
 }
-
-#menu-top > ul > li.active{
-
+#menu-top li#external_item a:hover,
+#menu-top li#external_item a{
+    background-color:#1D4057;
 }
+
+
+#menu-top li#external_item a:hover{
+   color:#fff;
+}
+
+
 
 
 .index_option_list li{
