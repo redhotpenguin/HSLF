@@ -77,10 +77,24 @@
     </div>
 
 
-<?php 
-        echo $form->hiddenField($model,'date_published', array('value'=>date('Y-m-d H:i:s')));
- ?>
-
+    <div class="row">
+        <?php echo $form->labelEx($model, 'date_published'); ?>
+        <?php
+        $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+            'name' => 'Candidate[date_published]',
+            'value' => $model->date_published,
+            // additional javascript options for the date picker plugin
+            'options' => array(
+                'showAnim' => 'fold',
+                'dateFormat' => 'yy-mm-dd ' . date('h:i:s'),
+            ),
+            'htmlOptions' => array(
+                'style' => 'height:20px;'
+            ),
+        ));
+        ?>
+        <?php echo $form->error($model, 'date_published'); ?>
+    </div>
 
     <div class="row">
         <?php

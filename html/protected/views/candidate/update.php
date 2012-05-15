@@ -15,7 +15,7 @@ $this->menu = array(
 <h1>Update <?php echo $model->full_name; ?></h1>
 
 <?php
-echo $this->renderPartial('_form', array(
+echo $this->renderPartial('_update_form', array(
     'model' => $model,
     'candidate_issue' => $candidate_issue,
     'validate_candidate_issues' => $validate_candidate_issues
