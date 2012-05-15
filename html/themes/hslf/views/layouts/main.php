@@ -58,6 +58,13 @@
                     <?php
                     if (Yii::app()->user->id):
                         ?>
+                    
+                    <?php
+                
+          $this->widget('ext.Caption.Caption');
+
+                    
+                    ?>
 
                         <div id="menu-top" class="clearfix">
                             <?php
