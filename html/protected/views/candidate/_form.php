@@ -184,24 +184,26 @@
 
 
     <div id="candidate_preview">
-        <div id="iphone_bg">
-            <div id="iphone_header">   
-                <img class="iphone_back_btn" src='/themes/hslf/css/iphone_back_btn.png'/>
-                <div id="Candidate_full_name_preview" class="input_preview"></div>
+        <div id="iphone_wrapper">
+            <div id="iphone_bg">
+                <div id="iphone_header">   
+                    <img class="iphone_back_btn" src='/themes/hslf/css/iphone_back_btn.png'/>
+                    <div id="Candidate_full_name_preview" class="input_preview"></div>
 
 
 
-                <span id="iphone_state_district">
-                    <span id="Candidate_state_abbr_preview" class="list_preview"></span>
-                    <span id="Candidate_district_id_preview" class="list_preview"></span>
-                </span>
+                    <span id="iphone_state_district">
+                        <span id="Candidate_state_abbr_preview" class="list_preview"></span>
+                        <span id="Candidate_district_id_preview" class="list_preview"></span>
+                    </span>
 
+                </div>
+
+
+
+                <div id="Candidate_scorecard_preview" class="input_preview"></div>
+                <div id="Candidate_endorsement_preview" class="input_preview"></div>
             </div>
-
-
-
-            <div id="Candidate_scorecard_preview" class="input_preview"></div>
-            <div id="Candidate_endorsement_preview" class="input_preview"></div>
         </div>
     </div>
 
@@ -214,34 +216,34 @@
         'elements' => array(
             'name' => array(
                 'type' => 'dropdownlist',
-                'items' => array( //todo: move the following values to the candidate_issue model
-                    ''=>'-',
-                    'Puppy Mills Cosponsor'=>'Puppy Mills Cosponsor',
-                    'Chimps in Labs Cosponsor'=>'Chimps in Labs Cosponsor',
-                    'Animal Fighting Cosponsor'=>'Animal Fighting Cosponsor',
-                    'Horse Slaughter Cosponsor'=> 'Horse Slaughter Cosponsor',
-                    'Ag Subsidies Vote'=>'Ag Subsidies Vote',
-                    'Lethal Predator Control Vote'=>'Lethal Predator Control Vote',
-                    'ESA Vote'=>'ESA Vote',
-                    'Funding Letter'=>'Funding Letter',
-                    'Leaders'=>'Leaders',
+                'items' => array(//todo: move the following values to the candidate_issue model
+                    '' => '-',
+                    'Puppy Mills Cosponsor' => 'Puppy Mills Cosponsor',
+                    'Chimps in Labs Cosponsor' => 'Chimps in Labs Cosponsor',
+                    'Animal Fighting Cosponsor' => 'Animal Fighting Cosponsor',
+                    'Horse Slaughter Cosponsor' => 'Horse Slaughter Cosponsor',
+                    'Ag Subsidies Vote' => 'Ag Subsidies Vote',
+                    'Lethal Predator Control Vote' => 'Lethal Predator Control Vote',
+                    'ESA Vote' => 'ESA Vote',
+                    'Funding Letter' => 'Funding Letter',
+                    'Leaders' => 'Leaders',
                 ),
             ),
             'value' => array(
                 'type' => 'dropdownlist',
-                'items' => array(''=>'-', 'yes'=>'Yes','no'=>'No' ),
+                'items' => array('' => '-', 'yes' => 'Yes', 'no' => 'No'),
             ),
             'detail' => array(
                 'type' => 'textarea',
-                'rows'=>5,
-                'cols'=>80,
+                'rows' => 5,
+                'cols' => 80,
             ),
             ));
 
     $this->widget('ext.multimodelform.MultiModelForm', array(
         'id' => 'id_candidate_issue',
         'formConfig' => $candidateIssueFormConfig,
-        'addItemText'=>'Add an issue',
+        'addItemText' => 'Add an issue',
         'model' => $candidate_issue,
         'validatedItems' => $validate_candidate_issues,
         'data' => empty($validatedItems) ? $candidate_issue->findAll(
@@ -263,10 +265,10 @@
 
 
     <div class="row buttons">
-    <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
     </div>
 
-<?php $this->endWidget(); ?>
+    <?php $this->endWidget(); ?>
 
 </div>
 </div><!-- form -->

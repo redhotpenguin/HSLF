@@ -372,7 +372,7 @@ div.loading * {
 
 
 #menu-top li#external_item a:hover{
-   color:#fff;
+    color:#fff;
 }
 
 
@@ -432,6 +432,8 @@ div.loading * {
     margin-top: -5px;
 }
 
+
+
 .candidate .iphone_back_btn {
     margin-top: 8px;
     margin-left: 8px;
@@ -474,11 +476,17 @@ div.loading * {
     margin:5px;
 }
 
+.candidate #iphone_wrapper  { 
+    position: relative;
+    width: 246px;
+    overflow: hidden;
+    top: 0px;
+    height: 417px;
+}
 .candidate .update #iphone_bg, .candidate .create #iphone_bg,
 .user_alert .update #iphone_bg, .user_alert .create #iphone_bg{
-
     background-color: white;
-    width: 221px;
+    width: 238px;
     top: 96px;
     position: relative;
     left: 25px;
