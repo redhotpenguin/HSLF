@@ -23,6 +23,7 @@
     border-bottom: 1px solid #CCC;
     padding: 6px;
     font-size: 17px;
+    text-transform: capitalize ;
 }
 
 .controller_description {
@@ -32,4 +33,9 @@
 .action_description {
     margin-top: 15px;
     padding:5px;
+}
+
+.caption_wrapper a{
+    color:#0066A4;
+    font-weight: bold;
 }

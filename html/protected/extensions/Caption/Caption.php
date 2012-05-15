@@ -16,18 +16,19 @@ class Caption extends CWidget {
         $controller_action = Yii::app()->controller->getAction()->getId();
 
         $this->render('caption', array(
-            'caption_name' => $controller_name,
+
             'caption_data' => $this->getControllerCaption($controller_name, $controller_action),
         ));
     }
 
     private function getControllerCaption($controller_name, $action = null) {
         global $caption_dictonary;
-
+                
         if (array_key_exists($controller_name, $caption_dictonary))
             return array(
-                $caption_dictonary[$controller_name]['description'],
-                $caption_dictonary[$controller_name]['action'][$action],
+                'name'=>$caption_dictonary[$controller_name]['name'],
+                'description'=>$caption_dictonary[$controller_name]['description'],
+                'action'=>$caption_dictonary[$controller_name]['action'][$action],
             );
         else
             return false;
