@@ -62,7 +62,7 @@ class ApiController extends Controller {
                 $this->_sendResponse(200, $this->_getOptions($_GET));
                 break;
 
-            case 'tags': // /api/tags/
+            case 'tags': // /api/tags/type/w+
                 $this->_sendResponse(200, $this->_getTags($_GET));
                 break;
 
@@ -180,12 +180,12 @@ class ApiController extends Controller {
         }
 
         switch ($_REQUEST['action']) {
-            case 'tag':
+            case 'tag': // /api/app_user/device_token/<device_token>/tag/
                 $update_result = $this->_update_applicationUserTag($_GET['device_token'], $_POST);
                 $this->_sendResponse($status = 200, $update_result);
                 break;
 
-            case 'meta':
+            case 'meta': // /api/app_user/device_token/<device_token>/meta/
                 $update_result = $this->_update_applicationUserMeta($_GET['device_token'], $_POST);
                 $this->_sendResponse($status = 200, $update_result);
                 break;
@@ -359,15 +359,10 @@ class ApiController extends Controller {
     }
 
     private function _checkAuth() {
-        $api_salt = Yii::app()->params['api_salt'];
-        $api_username = Yii::app()->params['api_username'];
-        $api_password = Yii::app()->params['api_password'];
+        $api_key = Yii::app()->params['api_key'];
+        $api_pass = Yii::app()->params['api_secret'];
 
-        if (isset($_POST['user']) and isset($_POST['password'])) {
-            return ( ($api_username == $_POST['user']) && (md5($api_password . $api_salt) == md5($_POST['password'] . $api_salt)) );
-        } else {
-            return false;
-        }
+        return ( $api_key == $_POST['api_key'] && $api_pass == $_POST['api_secret'] );
     }
 
 }
