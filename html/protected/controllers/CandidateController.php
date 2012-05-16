@@ -96,7 +96,7 @@ class CandidateController extends Controller {
 
 
             if (MultiModelForm::save($candidate_issue, $validate_candidate_issues, $deleted_candidate_issues, $masterValues) && $model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id));
         }
 
         $this->render('update', array(

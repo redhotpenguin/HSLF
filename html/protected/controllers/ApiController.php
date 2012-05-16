@@ -106,10 +106,10 @@ class ApiController extends Controller {
 
                 foreach ($candidate_issues as $candidate_issue) {
                     ob_start();
-                    $this->renderPartial('/api/issue/issue_detail', array('candidate_issue'=>$candidate_issue));
+                    $this->renderPartial('/api/issue/issue_detail', array('candidate_issue' => $candidate_issue));
                     $detail = ob_get_contents();
                     ob_end_clean();
-                    
+
                     array_push($templetized_issues, array(
                         'name' => $candidate_issue->name,
                         'value' => $candidate_issue->value,
@@ -158,11 +158,11 @@ class ApiController extends Controller {
         }
         switch ($_GET['model']) {
             case 'app_users': //insert/update  user record
-                $save_result = $this->_add_applicationUsers();
+                $save_result = $this->_add_applicationUser();
                 if ($save_result == 1) {
-                    $this->_sendResponse($status = 200, $body = 'insert_ok');
+                    $this->_sendResponse(200, 'insert_ok');
                 } else {
-                    $this->_sendResponse($status = 200, $body = 'insert_failed');
+                    $this->_sendResponse(200, $save_result);
                 }
                 break;
 
@@ -194,12 +194,12 @@ class ApiController extends Controller {
         }
     }
 
-    private function _add_applicationUsers() {
-
+    private function _add_applicationUser() {
         $save_result = 0;
         if (!isset($_POST['device_token']) || !isset($_POST['state_abbr']) || !isset($_POST['district_number']) || !isset($_POST['type']) || !isset($_POST['uap_user_id'])) {
-            exit;
+            return 'missing_parameter';
         }
+
 
         $device_token = $_POST['device_token'];
         $user_state = $_POST['state_abbr'];
@@ -226,27 +226,19 @@ class ApiController extends Controller {
             $app_user->state_abbr = strtolower($_POST['state_abbr']);
         }
         else
-            exit;
+            return 'invalid_state';
 
 
         if (preg_match('/^[0-9]{1,}$/', $user_district_number)) { // check that $user_district number is only made of numbers
             $district_id = District::getIdByStateAndDistrict($user_state, $user_district_number);
         }
         else
-            exit;
+            return 'invalid_district';
 
-
-        switch ($_POST['type']) {
-            case 'android':
-            case 'ios':
-                $app_user->type = $_POST['type'];
-                break;
-
-            default: error_log('app_user: wrong type given');
-                exit;
-        }
-
-
+        if (in_array($_POST['type'], array('android', 'ios')))
+            $app_user->type = $_POST['type'];
+        else
+            return 'invalid_device_type';
 
         try {
             if (!$district_id) { // the district isn't saved in the database, insert a new one
@@ -256,11 +248,11 @@ class ApiController extends Controller {
                 $district->save();
                 $district_id = $district->id;
             }
-
             $app_user->district_id = $district_id;
             $save_result = $app_user->save();
         } catch (Exception $exception) {
-            error_log('API actionCreate app_users: ' . $exception->getMessage());
+            error_log('API: user registration error: ' . $exception->getMessage());
+            return 'insert_failed';
         }
 
         //save user meta after the user is saved/updated
