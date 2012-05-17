@@ -120,8 +120,8 @@ return array(
         'dateFormat' => 'Y-m-d H:i:s',
         'adminEmail' => 'jonas@winningmark.com',
         
-        'api_key' => '123',
-        'api_secret' => '456',
+        'api_key' => 'w-TCispEQW-MLev82TVyO_X',
+        'api_secret' => 'PqiW_IDKL3mFi_OirCqOe-u',
         
         'urbanairship_app_key' => 'ouRCLPaBRRasv4K1AIw-xA',
         'urbanairship_app_master_secret' => '7hd19C6rSzyrbKM3k6KqDg',
