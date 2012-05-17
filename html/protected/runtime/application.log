@@ -1753,3 +1753,51 @@ in C:\xampp\htdocs\HSLF\html\protected\extensions\multimodelform\MultiModelForm.
 in C:\xampp\htdocs\HSLF\html\protected\extensions\multimodelform\MultiModelForm.php (439)
 in C:\xampp\htdocs\HSLF\html\protected\extensions\multimodelform\MultiModelForm.php (372)
 in C:\xampp\htdocs\HSLF\html\protected\extensions\multimodelform\MultiModelForm.php (311)
+2012/05/16 23:37:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "editor".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('editor')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/editor/
+---
+2012/05/17 01:00:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "tags".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('tags')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('tags')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/tags/t')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/tags/t
+---
+2012/05/17 01:00:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "tags".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('tags')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('tags')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/tags/type')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/tags/type
+---
+2012/05/17 01:02:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "options".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('options')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('options')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/options/don...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/options/donate_form_link
+---
+2012/05/17 01:07:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "tags".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('tags')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('tags')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/tags/type')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/api/tags/type/
+---
