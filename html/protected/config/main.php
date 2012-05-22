@@ -1,12 +1,5 @@
 <?php
 
-// uncomment the following to define a path alias
-// Yii::setPathOfAlias('local','path/to/local-folder');
-// This is the main Web application configuration. Any writable
-// CWebApplication properties can be configured here.
-
-
-
 
 if (isset($env['DOTCLOUD_DB_SQL_HOST']))
     $dbhost = $env['DOTCLOUD_DB_SQL_HOST'];
@@ -34,7 +27,7 @@ else
 
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
-    'name' => 'Winning Mark Mobile',
+    'name' => 'Admin Dashboard - HSLF Mobile ',
     // preloading 'log' component
     'preload' => array('log'),
     // autoloading model and component classes

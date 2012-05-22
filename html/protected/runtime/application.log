@@ -1801,3 +1801,78 @@ Stack trace:
 #5 {main}
 REQUEST_URI=/api/tags/type/
 ---
+2012/05/18 02:06:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "editor".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('editor')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/editor/
+---
+2012/05/22 23:16:20 [error] [exception.CDbException] exception 'CDbException' with message 'The table "candidate_issue" for active record class "CandidateIssue" cannot be found in the database.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7670
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6799): CActiveRecordMetaData->__construct(Object(CandidateIssue))
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(6809): CActiveRecord::model('CandidateIssue')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(6642): CActiveRecord->getMetaData()
+#3 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(85): CActiveRecord->__construct()
+#4 [internal function]: CandidateController->actionUpdate('1')
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs(Object(CandidateController), Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CAction->runWithParamsInternal(Object(CandidateController), Object(ReflectionMethod), Array)
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('update')
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/updat...')
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#18 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#19 {main}
+REQUEST_URI=/candidate/update?id=1
+HTTP_REFERER=http://www.voterguide.com/candidate/admin
+---
+2012/05/23 00:32:51 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42703]: Undefined column: 7 ERROR:  column "state_abbr" does not exist
+LINE 1: SELECT * FROM "district" "t" ORDER BY state_abbr ASC LIMIT 6...
+                                              ^. The SQL statement executed was: SELECT * FROM "district" "t" ORDER BY state_abbr ASC LIMIT 60.
+in C:\xampp\htdocs\HSLF\html\protected\views\district\index.php (31)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\DistrictController.php (122)
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/05/23 00:32:51 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42703]: Undefined column: 7 ERROR:  column "state_abbr" does not exist
+LINE 1: SELECT * FROM "district" "t" ORDER BY state_abbr ASC LIMIT 6...
+                                              ^. The SQL statement executed was: SELECT * FROM "district" "t" ORDER BY state_abbr ASC LIMIT 60' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7217): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(7286): CActiveRecord->query(Object(CDbCriteria), true)
+#3 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(150): CActiveRecord->findAll(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\web\CDataProvider.php(137): CActiveDataProvider->fetchData()
+#5 C:\xampp\htdocs\HSLF\framework\zii\widgets\CBaseListView.php(105): CDataProvider->getData()
+#6 C:\xampp\htdocs\HSLF\framework\zii\widgets\grid\CGridView.php(269): CBaseListView->init()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3133): CGridView->init()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('zii.widgets.gri...', Array)
+#9 C:\xampp\htdocs\HSLF\html\protected\views\district\index.php(31): CBaseController->widget('zii.widgets.gri...', Array)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('index', Array, true)
+#14 C:\xampp\htdocs\HSLF\html\protected\controllers\DistrictController.php(122): CController->render('index', Array)
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): DistrictController->actionIndex()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('district')
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#27 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#28 {main}
+REQUEST_URI=/district
+HTTP_REFERER=http://www.voterguide.com/state
+---
