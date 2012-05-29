@@ -1876,3 +1876,370 @@ Stack trace:
 REQUEST_URI=/district
 HTTP_REFERER=http://www.voterguide.com/state
 ---
+2012/05/25 00:59:12 [error] [php] Object of class CBreadcrumbs could not be converted to string (C:\xampp\htdocs\HSLF\html\themes\hslf\views\layouts\main.php:40)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\web\widgets\CContentDecorator.php(77): CandidateController->renderFile()
+#1 C:\xampp\htdocs\HSLF\framework\web\widgets\CContentDecorator.php(55): CContentDecorator->decorate()
+#2 C:\xampp\htdocs\HSLF\framework\web\widgets\COutputProcessor.php(45): CContentDecorator->processOutput()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3163): CContentDecorator->run()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3201): CandidateController->endWidget()
+#5 C:\xampp\htdocs\HSLF\html\themes\hslf\views\layouts\column2.php(21): CandidateController->endContent()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3497): CandidateController->renderFile()
+#9 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(134): CandidateController->render()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionIndex()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CandidateController->runAction()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CandidateController->filterAccessControl()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CandidateController->runActionWithFilters()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CandidateController->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#22 C:\xampp\htdocs\HSLF\html\index.php(14): CWebApplication->run()
+REQUEST_URI=/candidate/index
+in C:\xampp\htdocs\HSLF\html\themes\hslf\views\layouts\main.php (40)
+in C:\xampp\htdocs\HSLF\html\themes\hslf\views\layouts\column2.php (21)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (134)
+2012/05/25 01:05:12 [error] [php] array_unshift() expects parameter 1 to be array, string given (C:\xampp\htdocs\HSLF\html\themes\hslf\views\layouts\main.php:119)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): DistrictController->renderInternal()
+#1 C:\xampp\htdocs\HSLF\framework\web\widgets\CContentDecorator.php(77): DistrictController->renderFile()
+#2 C:\xampp\htdocs\HSLF\framework\web\widgets\CContentDecorator.php(55): CContentDecorator->decorate()
+#3 C:\xampp\htdocs\HSLF\framework\web\widgets\COutputProcessor.php(45): CContentDecorator->processOutput()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3163): CContentDecorator->run()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3201): DistrictController->endWidget()
+#6 C:\xampp\htdocs\HSLF\html\themes\hslf\views\layouts\column2.php(21): DistrictController->endContent()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): DistrictController->renderInternal()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3497): DistrictController->renderFile()
+#10 C:\xampp\htdocs\HSLF\html\protected\controllers\DistrictController.php(136): DistrictController->render()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): DistrictController->actionAdmin()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): DistrictController->runAction()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): DistrictController->filterAccessControl()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): DistrictController->runActionWithFilters()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): DistrictController->run()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\HSLF\html\index.php(14): CWebApplication->run()
+REQUEST_URI=/district/admin
+in C:\xampp\htdocs\HSLF\html\themes\hslf\views\layouts\main.php (119)
+in C:\xampp\htdocs\HSLF\html\themes\hslf\views\layouts\column2.php (21)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\DistrictController.php (136)
+2012/05/25 01:06:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "publishing".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('publishing')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('publishing')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('district/publis...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/district/publishing?0=site%2Fpublishing
+HTTP_REFERER=http://www.voterguide.com/district
+---
+2012/05/25 01:06:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "publishing".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('publishing')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('publishing')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('district/publis...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/district/publishing?0=site
+HTTP_REFERER=http://www.voterguide.com/district
+---
+2012/05/25 01:07:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "publishing".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('publishing')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('publishing')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('district/publis...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/district/publishing?0%5B0%5D=test&0%5B1%5D=site
+HTTP_REFERER=http://www.voterguide.com/district
+---
+2012/05/25 01:20:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "bar".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('bar')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('bar')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('district/bar')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/district/bar
+HTTP_REFERER=http://www.voterguide.com/district/view?id=307
+---
+2012/05/25 01:20:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "bar".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('bar')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/bar
+HTTP_REFERER=http://www.voterguide.com/district/view?id=307
+---
+2012/05/25 01:23:18 [error] [exception.CException] exception 'CException' with message 'Property "CWebApplication.breadcrumbs" is not defined.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:615
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(2): CComponent->__set('breadcrumbs', '123')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1733): require('C:\xampp\htdocs...')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1683): CWebApplication->createController('candidate/creat...')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/creat...')
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#5 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#6 {main}
+REQUEST_URI=/candidate/create
+HTTP_REFERER=http://www.voterguide.com/site/publishing
+---
+2012/05/25 01:25:05 [error] [php] array_merge() [<a href='function.array-merge'>function.array-merge</a>]: Argument #1 is not an array (C:\xampp\htdocs\HSLF\html\themes\hslf\views\layouts\main.php:125)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#1 C:\xampp\htdocs\HSLF\framework\web\widgets\CContentDecorator.php(77): CandidateController->renderFile()
+#2 C:\xampp\htdocs\HSLF\framework\web\widgets\CContentDecorator.php(55): CContentDecorator->decorate()
+#3 C:\xampp\htdocs\HSLF\framework\web\widgets\COutputProcessor.php(45): CContentDecorator->processOutput()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3163): CContentDecorator->run()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3201): CandidateController->endWidget()
+#6 C:\xampp\htdocs\HSLF\html\themes\hslf\views\layouts\column2.php(21): CandidateController->endContent()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CandidateController->renderInternal()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3497): CandidateController->renderFile()
+#10 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(75): CandidateController->render()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionCreate()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CandidateController->runAction()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CandidateController->filterAccessControl()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CandidateController->runActionWithFilters()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CandidateController->run()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\HSLF\html\index.php(14): CWebApplication->run()
+REQUEST_URI=/candidate/create
+in C:\xampp\htdocs\HSLF\html\themes\hslf\views\layouts\main.php (125)
+in C:\xampp\htdocs\HSLF\html\themes\hslf\views\layouts\column2.php (21)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php (75)
+2012/05/25 01:25:58 [error] [exception.CException] exception 'CException' with message 'Property "CandidateController.foo" is not defined.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:587
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\themes\hslf\views\layouts\main.php(117): CComponent->__get('foo')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#3 C:\xampp\htdocs\HSLF\framework\web\widgets\CContentDecorator.php(77): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#4 C:\xampp\htdocs\HSLF\framework\web\widgets\CContentDecorator.php(55): CContentDecorator->decorate('<div class="spa...')
+#5 C:\xampp\htdocs\HSLF\framework\web\widgets\COutputProcessor.php(45): CContentDecorator->processOutput('<div class="spa...')
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3163): COutputProcessor->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3201): CBaseController->endWidget('CContentDecorat...')
+#8 C:\xampp\htdocs\HSLF\html\themes\hslf\views\layouts\column2.php(21): CBaseController->endContent()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3497): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#12 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(75): CController->render('create', Array)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionCreate()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('create')
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/creat...')
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#25 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#26 {main}
+REQUEST_URI=/candidate/create
+HTTP_REFERER=http://www.voterguide.com/site/publishing
+---
+2012/05/25 01:26:05 [error] [exception.CException] exception 'CException' with message 'Property "CandidateController.foo" is not defined.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:587
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\themes\hslf\views\layouts\main.php(117): CComponent->__get('foo')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#3 C:\xampp\htdocs\HSLF\framework\web\widgets\CContentDecorator.php(77): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#4 C:\xampp\htdocs\HSLF\framework\web\widgets\CContentDecorator.php(55): CContentDecorator->decorate('<div class="spa...')
+#5 C:\xampp\htdocs\HSLF\framework\web\widgets\COutputProcessor.php(45): CContentDecorator->processOutput('<div class="spa...')
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3163): COutputProcessor->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3201): CBaseController->endWidget('CContentDecorat...')
+#8 C:\xampp\htdocs\HSLF\html\themes\hslf\views\layouts\column2.php(21): CBaseController->endContent()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3497): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#12 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(75): CController->render('create', Array)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionCreate()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('create')
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/creat...')
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#25 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#26 {main}
+REQUEST_URI=/candidate/create
+HTTP_REFERER=http://www.voterguide.com/site/publishing
+---
+2012/05/25 01:26:06 [error] [exception.CException] exception 'CException' with message 'Property "CandidateController.foo" is not defined.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:587
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\themes\hslf\views\layouts\main.php(117): CComponent->__get('foo')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#3 C:\xampp\htdocs\HSLF\framework\web\widgets\CContentDecorator.php(77): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#4 C:\xampp\htdocs\HSLF\framework\web\widgets\CContentDecorator.php(55): CContentDecorator->decorate('<div class="spa...')
+#5 C:\xampp\htdocs\HSLF\framework\web\widgets\COutputProcessor.php(45): CContentDecorator->processOutput('<div class="spa...')
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3163): COutputProcessor->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3201): CBaseController->endWidget('CContentDecorat...')
+#8 C:\xampp\htdocs\HSLF\html\themes\hslf\views\layouts\column2.php(21): CBaseController->endContent()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3497): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#12 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(75): CController->render('create', Array)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionCreate()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('create')
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/creat...')
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#25 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#26 {main}
+REQUEST_URI=/candidate/create
+HTTP_REFERER=http://www.voterguide.com/site/publishing
+---
+2012/05/25 01:26:06 [error] [exception.CException] exception 'CException' with message 'Property "CandidateController.foo" is not defined.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:587
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\themes\hslf\views\layouts\main.php(117): CComponent->__get('foo')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#3 C:\xampp\htdocs\HSLF\framework\web\widgets\CContentDecorator.php(77): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#4 C:\xampp\htdocs\HSLF\framework\web\widgets\CContentDecorator.php(55): CContentDecorator->decorate('<div class="spa...')
+#5 C:\xampp\htdocs\HSLF\framework\web\widgets\COutputProcessor.php(45): CContentDecorator->processOutput('<div class="spa...')
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3163): COutputProcessor->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3201): CBaseController->endWidget('CContentDecorat...')
+#8 C:\xampp\htdocs\HSLF\html\themes\hslf\views\layouts\column2.php(21): CBaseController->endContent()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3497): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#12 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(75): CController->render('create', Array)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionCreate()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('create')
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/creat...')
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#25 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#26 {main}
+REQUEST_URI=/candidate/create
+HTTP_REFERER=http://www.voterguide.com/site/publishing
+---
+2012/05/25 01:26:06 [error] [exception.CException] exception 'CException' with message 'Property "CandidateController.foo" is not defined.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:587
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\themes\hslf\views\layouts\main.php(117): CComponent->__get('foo')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#3 C:\xampp\htdocs\HSLF\framework\web\widgets\CContentDecorator.php(77): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#4 C:\xampp\htdocs\HSLF\framework\web\widgets\CContentDecorator.php(55): CContentDecorator->decorate('<div class="spa...')
+#5 C:\xampp\htdocs\HSLF\framework\web\widgets\COutputProcessor.php(45): CContentDecorator->processOutput('<div class="spa...')
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3163): COutputProcessor->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3201): CBaseController->endWidget('CContentDecorat...')
+#8 C:\xampp\htdocs\HSLF\html\themes\hslf\views\layouts\column2.php(21): CBaseController->endContent()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3497): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#12 C:\xampp\htdocs\HSLF\html\protected\controllers\CandidateController.php(75): CController->render('create', Array)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): CandidateController->actionCreate()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('create')
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('candidate/creat...')
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#25 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#26 {main}
+REQUEST_URI=/candidate/create
+HTTP_REFERER=http://www.voterguide.com/site/publishing
+---
+2012/05/25 01:27:17 [error] [exception.CException] exception 'CException' with message 'Property "SiteController.category" is not defined.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:587
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\themes\hslf\views\layouts\main.php(117): CComponent->__get('category')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#3 C:\xampp\htdocs\HSLF\framework\web\widgets\CContentDecorator.php(77): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#4 C:\xampp\htdocs\HSLF\framework\web\widgets\CContentDecorator.php(55): CContentDecorator->decorate('<div id="conten...')
+#5 C:\xampp\htdocs\HSLF\framework\web\widgets\COutputProcessor.php(45): CContentDecorator->processOutput('<div id="conten...')
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3163): COutputProcessor->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3201): CBaseController->endWidget('CContentDecorat...')
+#8 C:\xampp\htdocs\HSLF\html\protected\views\layouts\column1.php(5): CBaseController->endContent()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3497): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#12 C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php(90): CController->render('publishing', Array)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SiteController->actionPublishing()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('publishing')
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('site/publishing')
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#25 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#26 {main}
+REQUEST_URI=/site/publishing
+HTTP_REFERER=http://www.voterguide.com/candidate/create
+---
+2012/05/25 01:37:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in C:\xampp\htdocs\HSLF\html\protected\controllers\DistrictController.php:147
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\controllers\DistrictController.php(80): DistrictController->loadModel('0')
+#1 [internal function]: DistrictController->actionUpdate('0')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs(Object(DistrictController), Array)
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CAction->runWithParamsInternal(Object(DistrictController), Object(ReflectionMethod), Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('update')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('district/update')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/district/update?id=0
+---

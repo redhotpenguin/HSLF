@@ -7,6 +7,8 @@ class Application_usersController extends Controller {
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
     public $layout = '//layouts/column2';
+    public $category = array( 'Application Manager'=>array('/site/mobile/')); // used by the breadcrumb
+
 
     /**
      * @return array action filters

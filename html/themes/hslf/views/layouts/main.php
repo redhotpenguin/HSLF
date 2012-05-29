@@ -58,13 +58,11 @@
                     <?php
                     if (Yii::app()->user->id):
                         ?>
-                    
-                    <?php
-                
-          $this->widget('ext.Caption.Caption');
 
-                    
-                    ?>
+
+                        <?php
+                        $this->widget('ext.Caption.Caption');
+                        ?>
 
                         <div id="menu-top" class="clearfix">
                             <?php
@@ -82,8 +80,8 @@
                                             array('label' => 'States', 'url' => array('/state'), 'visible' => !Yii::app()->user->isGuest),
                                             array('label' => 'Districts', 'url' => array('/district'), 'visible' => !Yii::app()->user->isGuest),
                                             array('label' => 'Candidates', 'url' => array('/candidate'), 'visible' => !Yii::app()->user->isGuest),
-                                            array('itemOptions'=>array( 'id'=>'external_item') , 'label'=>'Rich Push Notifications', 'linkOptions'=>array('target'=>'_blank'),'url'=> 'https://go.urbanairship.com/apps/ouRCLPaBRRasv4K1AIw-xA/composer/rich-push/'),
-                                            ),
+                                            array('itemOptions' => array('id' => 'external_item'), 'label' => 'Rich Push Notifications', 'linkOptions' => array('target' => '_blank'), 'url' => 'https://go.urbanairship.com/apps/ouRCLPaBRRasv4K1AIw-xA/composer/rich-push/'),
+                                        ),
                                     ),
                                     array(
                                         'label' => 'App Manager',
@@ -113,6 +111,27 @@
                         <?php
                     endif;
                     ?>
+
+                    <?php
+                    
+ 
+                    
+                    
+           
+                          
+                    
+                  if(isset($this->category))
+                       $breadcrumbs = $this->category + $this->breadcrumbs;
+                  else
+                      $breadcrumbs = $this->breadcrumbs;
+         
+              
+                    
+                    $this->widget('zii.widgets.CBreadcrumbs', array(
+                        'links' => $breadcrumbs,
+                    ));
+                    ?><!-- breadcrumbs -->
+
 
 
                     <?php echo $content; ?>

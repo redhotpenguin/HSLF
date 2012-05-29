@@ -156,18 +156,10 @@ div.form .rememberMe label
 
 div.breadcrumbs
 {
-    font-size: 0.9em;
-    padding: 5px 20px;
-    position: relative;
-    top: -26px;
-    left: 17px;
+  margin-left:15px;
 
 }
 
-div.breadcrumbs span
-{
-    font-weight: bold;
-}
 
 div.search-form
 {

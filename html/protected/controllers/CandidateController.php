@@ -1,5 +1,4 @@
 <?php
-
 class CandidateController extends Controller {
 
     /**
@@ -7,6 +6,7 @@ class CandidateController extends Controller {
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
     public $layout = '//layouts/column2';
+    public $category = array( 'Publishing'=>array('/site/publishing/')); // used by the breadcrumb
 
     /**
      * @return array action filters
@@ -71,7 +71,7 @@ class CandidateController extends Controller {
 
         $this->render('create', array(
             'model' => $model,
-            'candidate_issue' => $candidate_issue
+            'candidate_issue' => $candidate_issue,
         ));
     }
 
