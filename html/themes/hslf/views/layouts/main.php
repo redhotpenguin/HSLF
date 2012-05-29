@@ -108,33 +108,26 @@
                             ));
                             ?>
                         </div>
-                        <?php
-                    endif;
-                    ?>
 
-                    <?php
-                    
- 
-                    
-                    
-           
-                          
-                    
-                  if(isset($this->category))
-                       $breadcrumbs = $this->category + $this->breadcrumbs;
-                  else
-                      $breadcrumbs = $this->breadcrumbs;
-         
-              
-                    
-                    $this->widget('zii.widgets.CBreadcrumbs', array(
-                        'links' => $breadcrumbs,
-                    ));
+                        <?php
+                        if (isset($this->category))
+                            $breadcrumbs = $this->category + $this->breadcrumbs;
+                        else
+                            $breadcrumbs = $this->breadcrumbs;
+
+
+
+                        $this->widget('zii.widgets.CBreadcrumbs', array(
+                            'links' => $breadcrumbs,
+                        ));
+
+
+                    endif;
                     ?><!-- breadcrumbs -->
 
 
 
-                    <?php echo $content; ?>
+<?php echo $content; ?>
 
                     <div class="clear"></div>
 
