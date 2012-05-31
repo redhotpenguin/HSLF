@@ -383,3 +383,32 @@ Stack trace:
 #3 {main}
 REQUEST_URI=//district/dynamicdistrictnumber?model=BallotItem
 ---
+2012/05/31 21:51:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "publishing".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('publishing')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('publishing')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('site/publishing')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/publishing
+HTTP_REFERER=http://www.voterguide.com/
+---
+2012/05/31 22:42:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/db644557/jui/js/jquery-ui.min.js".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('assets/db644557...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/db644557/jui/js/jquery-ui.min.js
+HTTP_REFERER=http://www.voterguide.com/admin/ballotItem/update?id=10
+---
+2012/05/31 23:17:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/hslf_frontend/css/main.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/hslf_fro...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/hslf_frontend/css/main.css
+HTTP_REFERER=http://www.voterguide.com/
+---

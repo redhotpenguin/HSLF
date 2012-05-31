@@ -196,14 +196,10 @@ div.right_col{
 
 }
 
-span.calendar_icon{
-    display:block;
-    background:url('/themes/hslf/css/calendar.png') no-repeat;
-    float:left;
-    margin:3px;
-    height:20px;
-    width:20px;
-    
+.ui-datepicker-trigger {
+    margin-top: 5px;
+    margin-left: 5px;
+    cursor:pointer;
 }
 
 input{

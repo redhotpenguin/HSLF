@@ -7,34 +7,17 @@ class SiteController extends Controller {
      * when an action is not explicitly requested by users.
      */
     public function actionIndex() {
-        $data = null;
+           $data = null;
         if (Yii::app()->user->id) {
             $data = array(
                 'total_app_users'=> Application_user::model()->count(),
-                'total_candidate_page'=>  Candidate::model()->count(),
+                'total_ballot_page'=> BallotItem::model()->count(),
                 
             );
-        }
-        $this->render('index', $data);
-    }
-
-    /**
-     * This is the action to handle external exceptions.
-     */
-    public function actionError() {
-        if ($error = Yii::app()->errorHandler->error) {
-            if (Yii::app()->request->isAjaxRequest)
-                echo $error['message'];
-            else
-                $this->render('error', $error);
-        }
-    }
-
-    /**
-     * Displays the login page
-     */
-    public function actionLogin() {
-        $model = new LoginForm;
+              $this->render('index', $data);
+        }else{
+            
+            $model = new LoginForm;
 
         // if it is ajax validation request
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'login-form') {
@@ -51,14 +34,30 @@ class SiteController extends Controller {
         }
         // display the login form
         $this->render('login', array('model' => $model));
+            
+        }
+      
     }
+
+    /**
+     * This is the action to handle external exceptions.
+     */
+    public function actionError() {
+        if ($error = Yii::app()->errorHandler->error) {
+            if (Yii::app()->request->isAjaxRequest)
+                echo $error['message'];
+            else
+                $this->render('error', $error);
+        }
+    }
+
 
     /**
      * Logs out the current user and redirect to homepage.
      */
     public function actionLogout() {
         Yii::app()->user->logout();
-        $this->redirect(Yii::app()->homeUrl);
+        $this->redirect(Yii::app()->homeUrl.'admin/');
     }
 
     public function accessRules() {
@@ -97,7 +96,7 @@ class SiteController extends Controller {
     public function actionAdministration() {
         $this->render('administration', array('content' => $content));
     }
-    
+
     public function actionMobile() {
         $this->render('mobile');
     }

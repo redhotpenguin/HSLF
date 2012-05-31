@@ -49,20 +49,20 @@
     <div class="right_col">
         <div class="row">
             <?php echo $form->labelEx($model, 'party'); ?>
-<?php echo $form->textField($model, 'party', array('size' => 50, 'maxlength' => 128)); ?>
-<?php echo $form->error($model, 'party'); ?>
+            <?php echo $form->textField($model, 'party', array('size' => 50, 'maxlength' => 128)); ?>
+            <?php echo $form->error($model, 'party'); ?>
         </div>
 
         <div class="row">
             <?php echo $form->labelEx($model, 'url'); ?>
-<?php echo $form->textField($model, 'url', array('size' => 50, 'maxlength' => 1000, 'placeholder' => 'URL to share')); ?>
-<?php echo $form->error($model, 'url'); ?>
+            <?php echo $form->textField($model, 'url', array('size' => 50, 'maxlength' => 1000, 'placeholder' => 'URL to share')); ?>
+            <?php echo $form->error($model, 'url'); ?>
         </div>
 
         <div class="row">
             <?php echo $form->labelEx($model, 'image_url'); ?>
-<?php echo $form->textField($model, 'image_url', array('size' => 50, 'maxlength' => 1000)); ?>
-<?php echo $form->error($model, 'image_url'); ?>
+            <?php echo $form->textField($model, 'image_url', array('size' => 50, 'maxlength' => 1000)); ?>
+            <?php echo $form->error($model, 'image_url'); ?>
         </div>
 
         <div class="row">
@@ -75,14 +75,16 @@
                 'options' => array(
                     'showAnim' => 'fold',
                     'dateFormat' => 'yy-mm-dd ' . date('h:i:s'),
+                    'buttonImageOnly' => 'true',
+                    'buttonImage' => '/themes/hslf/img/calendar.png',
+                    'showOn' => 'button',
                 ),
                 'htmlOptions' => array(
                     'style' => 'height:20px;float:left;'
                 ),
             ));
             ?>
-            <span class="calendar_icon"></span>
-<?php echo $form->error($model, 'next_election_date'); ?>
+            <?php echo $form->error($model, 'next_election_date'); ?>
         </div>     
 
     </div>
@@ -140,17 +142,19 @@
             'name' => 'BallotItem[date_published]',
             'value' => $model->date_published,
             // additional javascript options for the date picker plugin
-            'options' => array(
-                'showAnim' => 'fold',
-                'dateFormat' => 'yy-mm-dd ' . date('h:i:s'),
-            ),
+           'options' => array(
+                    'showAnim' => 'fold',
+                    'dateFormat' => 'yy-mm-dd ' . date('h:i:s'),
+                    'buttonImageOnly' => 'true',
+                    'buttonImage' => '/themes/hslf/img/calendar.png',
+                    'showOn' => 'button',
+                ),
             'htmlOptions' => array(
                 'style' => 'height:20px;float:left;'
             ),
         ));
         ?>
-<?php echo $form->error($model, 'date_published'); ?>
-        <span class="calendar_icon"></span>
+        <?php echo $form->error($model, 'date_published'); ?>
     </div>
 
     <div style="clear:both;"></div>
@@ -158,16 +162,16 @@
 
     <div class="row">
         <?php echo $form->labelEx($model, 'published'); ?>
-<?php echo $form->dropDownList($model, 'published', array('yes' => 'Yes', 'no' => 'No')); ?>
-<?php echo $form->error($model, 'published'); ?>
+        <?php echo $form->dropDownList($model, 'published', array('yes' => 'Yes', 'no' => 'No')); ?>
+        <?php echo $form->error($model, 'published'); ?>
     </div>
 
 
 
     <div class="row buttons">
-    <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
     </div>
 
-<?php $this->endWidget(); ?>
+    <?php $this->endWidget(); ?>
 
 </div><!-- form -->

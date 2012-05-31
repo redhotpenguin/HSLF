@@ -27,7 +27,7 @@ else
 
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
-    'name' => 'Admin Dashboard - HSLF Mobile ',
+    'name' => 'HSLF Mobile',
     // preloading 'log' component
     'preload' => array('log'),
     // autoloading model and component classes
@@ -100,5 +100,5 @@ return array(
         'adminEmail' => 'jonas@winningmark.com',
         'site_url' => 'http://www.voterguide.com/',
     ),
-    'theme' => 'hslf'
+    'theme' => 'hslf_frontend'
 );

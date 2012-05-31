@@ -36,7 +36,7 @@ return array(
     'controllerPath' => $api . '/controllers',
     'viewPath' => $api . '/views/',
     'runtimePath' => $api . '/runtime',
-    'name' => 'Admin Dashboard - HSLF Mobile ',
+    'name' => 'API - HSLF Mobile ',
     // preloading 'log' component
     'preload' => array('log'),
     // autoloading model and component classes
