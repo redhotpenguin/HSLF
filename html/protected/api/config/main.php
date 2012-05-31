@@ -1,5 +1,10 @@
 <?php
 
+/* API specific config: */
+
+$api = dirname(dirname(__FILE__));
+$frontend = dirname($api);
+Yii::setPathOfAlias('admin', $api);
 
 if (isset($env['DOTCLOUD_DB_SQL_HOST']))
     $dbhost = $env['DOTCLOUD_DB_SQL_HOST'];
@@ -26,16 +31,21 @@ else
 
 
 return array(
-    'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
+    //'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
+    'basePath' => $frontend,
+    'controllerPath' => $api . '/controllers',
+    'viewPath' => $api . '/views/',
+    'runtimePath' => $api . '/runtime',
     'name' => 'Admin Dashboard - HSLF Mobile ',
     // preloading 'log' component
     'preload' => array('log'),
     // autoloading model and component classes
     'import' => array(
-        'application.models.*',
+        'admin.models.*',
         'application.shared.models.*',
+        'admin.components.*',
+        'application.models.*',
         'application.components.*',
-        'ext.multimodelform.MultiModelForm',
     ),
     'modules' => array(
         'gii' => array(
@@ -57,10 +67,17 @@ return array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'rules' => array(
-      
+                array('api/list', 'pattern' => 'api/<model:\w+>', 'verb' => 'GET'),
+                array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>', 'verb' => 'GET'),
+                array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>/district/<district_number:\d+>', 'verb' => 'GET'),
+                array('api/view', 'pattern' => 'api/<model:\w+>/name/<type:\w+>', 'verb' => 'GET'),
+                array('api/view', 'pattern' => 'api/<model:\w+>/<id:\d+>/', 'verb' => 'GET'), // ex: /api/candidate/12/
+                array('api/view', 'pattern' => 'api/<model:\w+>/<id:\d+>/<filter:\w+>', 'verb' => 'GET'), // ex: /api/candidate/12/issue
+                array('api/view', 'pattern' => 'api/<model:\w+>/type/<type:\w+>', 'verb' => 'GET'),
+                array('api/create', 'pattern' => 'api/<model:\w+>', 'verb' => 'POST'),
+                array('api/update', 'pattern' => 'api/<model:\w+>/device_token/<device_token:\w+>/<action:\w+>', 'verb' => 'POST'),
             ),
         ),
-     
         'db' => array(
             'connectionString' => "pgsql:host=$dbhost;port=$dbport;dbname=voterguide",
             'emulatePrepare' => true,
@@ -75,8 +92,8 @@ return array(
           ),
          */
         'errorHandler' => array(
-            // use 'site/error' action to display errors
-            'errorAction' => 'site/error',
+            // use 'api/error' action to display errors
+            'errorAction' => 'api/index',
         ),
         'log' => array(
             'class' => 'CLogRouter',
@@ -87,7 +104,7 @@ return array(
                 ),
             // uncomment the following to show log messages on web pages
 
-            /* array(
+           /*  array(
               'class'=>'CWebLogRoute',
               ), */
             ),
@@ -98,7 +115,10 @@ return array(
     'params' => array(
         'dateFormat' => 'Y-m-d H:i:s',
         'adminEmail' => 'jonas@winningmark.com',
+        'api_key' => 'w-TCispEQW-MLev82TVyO_X',
+        'api_secret' => 'PqiW_IDKL3mFi_OirCqOe-u',
+        'urbanairship_app_key' => 'ouRCLPaBRRasv4K1AIw-xA',
+        'urbanairship_app_master_secret' => '7hd19C6rSzyrbKM3k6KqDg',
         'site_url' => 'http://www.voterguide.com/',
     ),
-    'theme' => 'hslf'
 );

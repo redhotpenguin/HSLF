@@ -1,5 +1,10 @@
 <?php
 
+/* backend specific config: */
+
+$backend = dirname(dirname(__FILE__));
+$frontend = dirname($backend);
+Yii::setPathOfAlias('admin', $backend);
 
 if (isset($env['DOTCLOUD_DB_SQL_HOST']))
     $dbhost = $env['DOTCLOUD_DB_SQL_HOST'];
@@ -26,14 +31,20 @@ else
 
 
 return array(
-    'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
+    //'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
+    'basePath' => $frontend,
+    'controllerPath' => $backend . '/controllers',
+    'viewPath' => $backend . '/views/',
+    'runtimePath' => $backend . '/runtime',
     'name' => 'Admin Dashboard - HSLF Mobile ',
     // preloading 'log' component
     'preload' => array('log'),
     // autoloading model and component classes
     'import' => array(
-        'application.models.*',
+        'admin.models.*',
         'application.shared.models.*',
+        'admin.components.*',
+        'application.models.*',
         'application.components.*',
         'ext.multimodelform.MultiModelForm',
     ),
@@ -57,10 +68,11 @@ return array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'rules' => array(
-      
+                'admin' => 'site/index',
+                'admin/<_c>' => '<_c>',
+                'admin/<_c>/<_a>' => '<_c>/<_a>',
             ),
         ),
-     
         'db' => array(
             'connectionString' => "pgsql:host=$dbhost;port=$dbport;dbname=voterguide",
             'emulatePrepare' => true,
@@ -98,6 +110,10 @@ return array(
     'params' => array(
         'dateFormat' => 'Y-m-d H:i:s',
         'adminEmail' => 'jonas@winningmark.com',
+        'api_key' => 'w-TCispEQW-MLev82TVyO_X',
+        'api_secret' => 'PqiW_IDKL3mFi_OirCqOe-u',
+        'urbanairship_app_key' => 'ouRCLPaBRRasv4K1AIw-xA',
+        'urbanairship_app_master_secret' => '7hd19C6rSzyrbKM3k6KqDg',
         'site_url' => 'http://www.voterguide.com/',
     ),
     'theme' => 'hslf'

@@ -41,7 +41,7 @@
 
 
                     <div id="header">
-                        <div id="logo"><a href="/"><?php echo CHtml::encode(Yii::app()->name); ?></a></div>
+                        <div id="logo"><a href="/admin/"><?php echo CHtml::encode(Yii::app()->name); ?></a></div>
 
                         <div id="menu_auth">
                             <?php
@@ -79,7 +79,8 @@
                                         'items' => array(
                                             array('label' => 'States', 'url' => array('/state'), 'visible' => !Yii::app()->user->isGuest),
                                             array('label' => 'Districts', 'url' => array('/district'), 'visible' => !Yii::app()->user->isGuest),
-                                            array('label' => 'Candidates', 'url' => array('/candidate'), 'visible' => !Yii::app()->user->isGuest),
+                                            array('label' => 'Recommendations', 'url' => array('/recommendation'), 'visible' => !Yii::app()->user->isGuest),
+                                            array('label' => 'Ballot Items', 'url' => array('/ballotItem'), 'visible' => !Yii::app()->user->isGuest),
                                             array('itemOptions' => array('id' => 'external_item'), 'label' => 'Rich Push Notifications', 'linkOptions' => array('target' => '_blank'), 'url' => 'https://go.urbanairship.com/apps/ouRCLPaBRRasv4K1AIw-xA/composer/rich-push/'),
                                         ),
                                     ),
@@ -127,7 +128,7 @@
 
 
 
-<?php echo $content; ?>
+                    <?php echo $content; ?>
 
                     <div class="clear"></div>
 
