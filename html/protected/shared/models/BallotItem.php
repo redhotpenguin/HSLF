@@ -120,7 +120,7 @@ class BallotItem extends CActiveRecord {
             if ($this->state_abbr)
                 $criteria->compare('district.state_abbr', $this->state_abbr, true);
         }
-        
+
         $criteria->compare('id', $this->id);
         $criteria->compare('district_id', $this->district_id);
         $criteria->compare('item', $this->item, true);
@@ -157,6 +157,19 @@ class BallotItem extends CActiveRecord {
         // PostgresSql doesn't support empty strings for Timestamp type columns. Use NULL instead
         if ($this->next_election_date == '')
             $this->next_election_date = null;
+    }
+
+    public function findAllByDistrict($state_abbr, $district_type, $district) {
+        $district_id = District::model()->findByAttributes(array(
+                    'state_abbr' => $state_abbr,
+                    'type' => $district_type,
+                    'number' => $district,
+                ))->id;
+
+        if (!$district_id)
+            return false;
+       
+        return $this->findAllByAttributes(array('district_id' => $district_id));
     }
 
 }

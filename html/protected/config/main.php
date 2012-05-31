@@ -1,6 +1,5 @@
 <?php
 
-
 if (isset($env['DOTCLOUD_DB_SQL_HOST']))
     $dbhost = $env['DOTCLOUD_DB_SQL_HOST'];
 else
@@ -57,10 +56,11 @@ return array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'rules' => array(
-      
+                array('ballot/list', 'pattern' => 'ballot/<state_abbr:\w{2,3}>', 'verb' => 'GET'), //  /ballot/ca
+                array('ballot/list', 'pattern' => 'ballot/<state_abbr:\w{2,3}>/<district_type:\w{2,15}>', 'verb' => 'GET'), // /ballot/ca/congressional/
+                array('ballot/listbydistrict', 'pattern' => 'ballot/<state_abbr:\w{2,3}>/<district_type:\w{2,15}>/<district:\w+>', 'verb' => 'GET'), // /ballot/ca/congressional/14
             ),
         ),
-     
         'db' => array(
             'connectionString' => "pgsql:host=$dbhost;port=$dbport;dbname=voterguide",
             'emulatePrepare' => true,
@@ -75,7 +75,6 @@ return array(
           ),
          */
         'errorHandler' => array(
-            // use 'site/error' action to display errors
             'errorAction' => 'site/error',
         ),
         'log' => array(
@@ -100,5 +99,5 @@ return array(
         'adminEmail' => 'jonas@winningmark.com',
         'site_url' => 'http://www.voterguide.com/',
     ),
-    'theme' => 'hslf_frontend'
+        'theme' => 'hslf_frontend'
 );

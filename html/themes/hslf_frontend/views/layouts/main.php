@@ -17,7 +17,7 @@
 
                     <?php echo $content; ?>
 
-                    <div id="clear footer">a footer</div><!-- footer -->
+                    <div id="clear footer">  </div><!-- footer -->
 
                 </div>
             </div>
