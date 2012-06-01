@@ -134,6 +134,21 @@
 
     <hr/>
 
+    <div class="row">
+        <?php
+        echo $form->labelEx($model, 'slug');
+        echo $form->textField($model, 'slug', array('size' => 50, 'maxlength' => 200, 'placeholder' => 'Page slug'));
+        echo $form->error($model, 'slug');
+        ?>
+        <br/>
+        <?php
+        echo Yii::app()->params['site_url'].'/';
+        echo date('Y').'/';
+        ?>
+        
+        <br/> <br/> 
+    </div>
+
 
     <div class="row">
         <?php echo $form->labelEx($model, 'date_published'); ?>
@@ -142,19 +157,19 @@
             'name' => 'BallotItem[date_published]',
             'value' => $model->date_published,
             // additional javascript options for the date picker plugin
-           'options' => array(
-                    'showAnim' => 'fold',
-                    'dateFormat' => 'yy-mm-dd ' . date('h:i:s'),
-                    'buttonImageOnly' => 'true',
-                    'buttonImage' => '/themes/hslf/img/calendar.png',
-                    'showOn' => 'button',
-                ),
+            'options' => array(
+                'showAnim' => 'fold',
+                'dateFormat' => 'yy-mm-dd ' . date('h:i:s'),
+                'buttonImageOnly' => 'true',
+                'buttonImage' => '/themes/hslf/img/calendar.png',
+                'showOn' => 'button',
+            ),
             'htmlOptions' => array(
                 'style' => 'height:20px;float:left;'
             ),
         ));
         ?>
-        <?php echo $form->error($model, 'date_published'); ?>
+<?php echo $form->error($model, 'date_published'); ?>
     </div>
 
     <div style="clear:both;"></div>
@@ -162,16 +177,16 @@
 
     <div class="row">
         <?php echo $form->labelEx($model, 'published'); ?>
-        <?php echo $form->dropDownList($model, 'published', array('yes' => 'Yes', 'no' => 'No')); ?>
-        <?php echo $form->error($model, 'published'); ?>
+<?php echo $form->dropDownList($model, 'published', array('yes' => 'Yes', 'no' => 'No')); ?>
+<?php echo $form->error($model, 'published'); ?>
     </div>
 
 
 
     <div class="row buttons">
-        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+    <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
     </div>
 
-    <?php $this->endWidget(); ?>
+<?php $this->endWidget(); ?>
 
 </div><!-- form -->
