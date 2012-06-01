@@ -23,17 +23,12 @@ class BallotController extends Controller {
     }
 
     public function actionView() {
-        print_r($_GET);
-        $ballot_name = $_GET['name'];
-        $ballot = BallotItem::model()->findByAttributes(
-                array(
-                    'item' => $ballot_name,
-                    'published' => 'yes',
-                )
-        );
+        $year = $_GET['year'];
+        $slug = $_GET['slug'];
+        
+       
 
-
-        //  print_r($ballot);
+        $ballot = BallotItem::model()->findByElectionYearAndSlug($year, $slug);
 
         $this->render('view', array(
             'ballot' => $ballot,
@@ -47,6 +42,8 @@ class BallotController extends Controller {
 
     public function actionListByDistrict() { // /ballot/ca/congressional/12
         // todo: sanitize and validate get parameters
+        $this->setPageTitle('custom page title');
+        
         $state_abbr = $_GET['state_abbr'];
         $district_type = $_GET['district_type'];
         $district = $_GET['district'];

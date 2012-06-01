@@ -56,6 +56,7 @@ return array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'rules' => array(
+                array('ballot/view', 'pattern' => 'ballot/<year:\d{4}>/<slug:.*?>', 'verb' => 'GET'), //  /ballot/2012/puppy-mills/
                 array('ballot/list', 'pattern' => 'ballot/<state_abbr:\w{2,3}>', 'verb' => 'GET'), //  /ballot/ca
                 array('ballot/list', 'pattern' => 'ballot/<state_abbr:\w{2,3}>/<district_type:\w{2,15}>', 'verb' => 'GET'), // /ballot/ca/congressional/
                 array('ballot/listbydistrict', 'pattern' => 'ballot/<state_abbr:\w{2,3}>/<district_type:\w{2,15}>/<district:\w+>', 'verb' => 'GET'), // /ballot/ca/congressional/14
@@ -97,7 +98,7 @@ return array(
     'params' => array(
         'dateFormat' => 'Y-m-d H:i:s',
         'adminEmail' => 'jonas@winningmark.com',
-        'site_url' => 'http://www.voterguide.com/',
+        'site_url' => 'http://www.voterguide.com',
     ),
-        'theme' => 'hslf_frontend'
+    'theme' => 'hslf_frontend'
 );

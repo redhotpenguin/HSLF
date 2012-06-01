@@ -119,6 +119,6 @@ return array(
         'api_secret' => 'PqiW_IDKL3mFi_OirCqOe-u',
         'urbanairship_app_key' => 'ouRCLPaBRRasv4K1AIw-xA',
         'urbanairship_app_master_secret' => '7hd19C6rSzyrbKM3k6KqDg',
-        'site_url' => 'http://www.voterguide.com/',
+        'site_url' => 'http://www.voterguide.com',
     ),
 );
