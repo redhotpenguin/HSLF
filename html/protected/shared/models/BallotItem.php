@@ -18,6 +18,7 @@
  * @property string $url
  * @property string $image_url
  * @property integer $election_result_id
+ * @property string  $slug
  *
  * The followings are the available model relations:
  * @property District $district
@@ -54,14 +55,15 @@ class BallotItem extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('district_id, item, recommendation_id, priority, date_published, published, election_result_id', 'required'),
+            array('district_id, item, recommendation_id, priority, date_published, published, election_result_id, slug', 'required'),
             array('district_id, recommendation_id, priority, election_result_id', 'numerical', 'integerOnly' => true),
             array('item_type, party', 'length', 'max' => 128),
+            array('slug', 'length', 'max' => 200), // todo: block quotes and double quotes
             array('published', 'length', 'max' => 16),
             array('next_election_date, detail, url, image_url', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, district_id, item, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party, url, image_url, election_result_id, district_number, district_type, state_abbr', 'safe', 'on' => 'search'),
+            array('id, district_id, item, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party, url, image_url, election_result_id, district_number, district_type, state_abbr, slug', 'safe', 'on' => 'search'),
         );
     }
 
@@ -97,6 +99,7 @@ class BallotItem extends CActiveRecord {
             'url' => 'URL',
             'image_url' => 'Image URL',
             'election_result_id' => 'Election Result',
+            'slug' => 'Slug'
         );
     }
 
@@ -135,6 +138,7 @@ class BallotItem extends CActiveRecord {
         $criteria->compare('url', $this->url, true);
         $criteria->compare('image_url', $this->image_url, true);
         $criteria->compare('election_result_id', $this->election_result_id);
+        $criteria->compare('slug', $this->slug);
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
@@ -168,8 +172,17 @@ class BallotItem extends CActiveRecord {
 
         if (!$district_id)
             return false;
-       
+
         return $this->findAllByAttributes(array('district_id' => $district_id));
+    }
+
+    public function findByElectionYearAndSlug($year, $slug) {       
+        return $this->findByAttributes(
+            array(
+                'slug' => $slug,
+             ),
+            array('condition'=> "next_election_date BETWEEN '{$year}-01-01 00:00:00' AND '{$year}-12-31 23:59:59' " )
+        );
     }
 
 }
