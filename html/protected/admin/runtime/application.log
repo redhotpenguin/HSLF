@@ -6619,3 +6619,254 @@ Stack trace:
 REQUEST_URI=/admin/ballotItem/admin
 HTTP_REFERER=http://www.voterguide.com/admin/ballotItem/create
 ---
+2012/06/01 20:19:56 [error] [exception.CException] exception 'CException' with message 'Property "BallotItemController.next_election_date" is not defined.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:587
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\_form.php(72): CComponent->__get('next_election_d...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#4 C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\update.php(16): CController->renderPartial('_form', Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('update', Array, true)
+#9 C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php(87): CController->render('update', Array)
+#10 [internal function]: BallotItemController->actionUpdate('10')
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs(Object(BallotItemController), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CAction->runWithParamsInternal(Object(BallotItemController), Object(ReflectionMethod), Array)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('update')
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('ballotItem/upda...')
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#24 C:\xampp\htdocs\HSLF\html\admin.php(16): CApplication->run()
+#25 {main}
+REQUEST_URI=/admin/ballotItem/update?id=10
+HTTP_REFERER=http://www.voterguide.com/admin/ballotItem/admin
+---
+2012/06/01 20:29:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('admin')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/admin/admin
+HTTP_REFERER=http://www.voterguide.com/admin/state/admin
+---
+2012/06/01 20:30:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('admin')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/admin/admin
+HTTP_REFERER=http://www.voterguide.com/admin/state/admin
+---
+2012/06/04 19:18:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php:140
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php(74): BallotItemController->loadModel('144')
+#1 [internal function]: BallotItemController->actionUpdate('144')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs(Object(BallotItemController), Array)
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CAction->runWithParamsInternal(Object(BallotItemController), Object(ReflectionMethod), Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('update')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('ballotItem/upda...')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\admin.php(16): CApplication->run()
+#16 {main}
+REQUEST_URI=/admin/ballotItem/update?id=144
+HTTP_REFERER=http://www.voterguide.com/admin/ballotItem/admin
+---
+2012/06/04 19:42:23 [error] [php] Object of class District could not be converted to string (C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php:118)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3149): DistrictSelector->run()
+#1 C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\_form.php(42): BallotItemController->widget()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): BallotItemController->renderInternal()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): BallotItemController->renderFile()
+#5 C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\update.php(16): BallotItemController->renderPartial()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): BallotItemController->renderInternal()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): BallotItemController->renderFile()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): BallotItemController->renderPartial()
+#10 C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php(87): BallotItemController->render()
+#11 unknown(0): BallotItemController->actionUpdate()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CInlineAction->runWithParamsInternal()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): BallotItemController->runAction()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): BallotItemController->filterAccessControl()
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): BallotItemController->runActionWithFilters()
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): BallotItemController->run()
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#25 C:\xampp\htdocs\HSLF\html\admin.php(16): CWebApplication->run()
+REQUEST_URI=/admin/ballotItem/update?id=892
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\extensions\DistrictSelector\DistrictSelector.php (86)
+in C:\xampp\htdocs\HSLF\html\protected\extensions\DistrictSelector\DistrictSelector.php (31)
+2012/06/04 20:06:18 [error] [exception.CDbException] exception 'CDbException' with message 'Table "district" does not have a column named "order".' in C:\xampp\htdocs\HSLF\framework\db\schema\CDbCommandBuilder.php:570
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(7309): CDbCommandBuilder->createColumnCriteria(Object(CPgsqlTableSchema), Array, '', Array, '"t".')
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php(112): CActiveRecord->findAllByAttributes(Array)
+#2 C:\xampp\htdocs\HSLF\html\protected\extensions\DistrictSelector\DistrictSelector.php(86): District::getTagDistrictsByStateAndType('pa', 'congressional')
+#3 C:\xampp\htdocs\HSLF\html\protected\extensions\DistrictSelector\DistrictSelector.php(31): DistrictSelector->DistrictNumberSelector('pa', 'congressional', 436)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3149): DistrictSelector->run()
+#5 C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\_form.php(42): CBaseController->widget('ext.DistrictSel...', Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#9 C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\update.php(16): CController->renderPartial('_form', Array)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('update', Array, true)
+#14 C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php(87): CController->render('update', Array)
+#15 [internal function]: BallotItemController->actionUpdate('892')
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs(Object(BallotItemController), Array)
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CAction->runWithParamsInternal(Object(BallotItemController), Object(ReflectionMethod), Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('update')
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('ballotItem/upda...')
+#28 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#29 C:\xampp\htdocs\HSLF\html\admin.php(16): CApplication->run()
+#30 {main}
+REQUEST_URI=/admin/ballotItem/update?id=892
+HTTP_REFERER=http://www.voterguide.com/admin/ballotItem/view?id=892
+---
+2012/06/04 20:16:05 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  invalid input syntax for integer: "U.S. Senate". The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 ORDER BY cast(number as INTEGER) ASC.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (115)
+in C:\xampp\htdocs\HSLF\html\protected\extensions\DistrictSelector\DistrictSelector.php (86)
+in C:\xampp\htdocs\HSLF\html\protected\extensions\DistrictSelector\DistrictSelector.php (31)
+2012/06/04 20:16:05 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  invalid input syntax for integer: "U.S. Senate". The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 ORDER BY cast(number as INTEGER) ASC' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7217): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(7310): CActiveRecord->query(Object(CDbCriteria), true)
+#3 C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php(115): CActiveRecord->findAllByAttributes(Array, Array)
+#4 C:\xampp\htdocs\HSLF\html\protected\extensions\DistrictSelector\DistrictSelector.php(86): District::getTagDistrictsByStateAndType('nv', 'statewide')
+#5 C:\xampp\htdocs\HSLF\html\protected\extensions\DistrictSelector\DistrictSelector.php(31): DistrictSelector->DistrictNumberSelector('nv', 'statewide', 534)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3149): DistrictSelector->run()
+#7 C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\_form.php(42): CBaseController->widget('ext.DistrictSel...', Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#11 C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\update.php(16): CController->renderPartial('_form', Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('update', Array, true)
+#16 C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php(87): CController->render('update', Array)
+#17 [internal function]: BallotItemController->actionUpdate('990')
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs(Object(BallotItemController), Array)
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CAction->runWithParamsInternal(Object(BallotItemController), Object(ReflectionMethod), Array)
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#21 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#22 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#23 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#24 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#25 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#26 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#27 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#28 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('update')
+#29 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('ballotItem/upda...')
+#30 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#31 C:\xampp\htdocs\HSLF\html\admin.php(16): CApplication->run()
+#32 {main}
+REQUEST_URI=/admin/ballotItem/update?id=990
+HTTP_REFERER=http://www.voterguide.com/admin/ballotItem/index
+---
+2012/06/04 21:14:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\StateController.php:158
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\admin\controllers\StateController.php(51): StateController->loadModel('5')
+#1 [internal function]: StateController->actionView('5')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs(Object(StateController), Array)
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CAction->runWithParamsInternal(Object(StateController), Object(ReflectionMethod), Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('state/view')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\admin.php(16): CApplication->run()
+#16 {main}
+REQUEST_URI=/admin/state/view?id=5
+HTTP_REFERER=http://www.voterguide.com/admin/state/update?id=ca
+---
+2012/06/04 21:54:28 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (55)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (129)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/04 21:55:04 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (55)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (129)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/04 22:03:05 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (55)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (129)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/04 22:27:05 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (55)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (129)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/04 22:36:06 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (54)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (129)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/04 22:38:29 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (54)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (129)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/04 22:38:46 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (54)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (129)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/04 23:53:04 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (54)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (129)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/04 23:53:06 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (54)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (129)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/04 23:53:07 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (54)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (129)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/04 23:57:56 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (54)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (129)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/04 23:59:34 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (54)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (129)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)

@@ -38,7 +38,7 @@ class District extends CActiveRecord {
         // will receive user inputs.
         return array(
             array('state_abbr, type', 'required'),
-             array('number', 'length', 'max' => 512),
+            array('number', 'length', 'max' => 512),
             array('state_abbr', 'length', 'max' => 3),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
@@ -87,6 +87,9 @@ class District extends CActiveRecord {
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
+                    'pagination' => array(
+                        'pageSize' => 50,
+                    ),
                     'sort' => array(
                         'defaultOrder' => 'state_abbr ASC')
                 ));
@@ -107,18 +110,17 @@ class District extends CActiveRecord {
         $districts = District::model()->findAllByAttributes(array('state_abbr' => $state_abbr), array('order' => 'number ASC'));
         return CHtml::listData($districts, 'id', 'number');
     }
-    
+
     public static function getTagDistrictsByStateAndType($state_abbr, $district_type) {
-        $districts = District::model()->findAllByAttributes(array('state_abbr' => $state_abbr, 'type'=>$district_type), array('order' => 'number ASC'));
-        foreach($districts as $district){
-           if(empty($district->number) ){
-               $district->number = 'N/A';
-           }
+        $districts = District::model()->findAllByAttributes(array('state_abbr' => $state_abbr, 'type' => $district_type), array('order' => 'number ASC'));
+        foreach ($districts as $district) {
+            if (empty($district->number)) {
+                $district->number = 'N/A';
+            }
         }
-        
+
         return CHtml::listData($districts, 'id', 'number');
     }
-
 
     public function getTypeOptions() {
         return array(
@@ -129,6 +131,43 @@ class District extends CActiveRecord {
             'county' => 'County',
             'city' => 'City',
         );
+    }
+
+    public function getIdsByState($state_abbr) {
+        $command = Yii::app()->db->createCommand();
+
+        $result = $command->select('id')
+                ->from('district')
+                ->where('state_abbr=:state_abbr', array(':state_abbr' => $state_abbr))
+                ->queryAll();
+
+        return array_map(array(&$this, 'extract_id'), $result);
+    }
+
+    public function getIdsByDistrictType($state_abbr, $district_type) {
+        $command = Yii::app()->db->createCommand();
+
+        $result = $command->select('id')
+                ->from('district')
+                ->where('state_abbr=:state_abbr AND type=:district_type', array(':state_abbr' => $state_abbr, ':district_type' => $district_type))
+                ->queryAll();
+
+        return array_map(array(&$this, 'extract_id'), $result);
+    }
+
+    private function extract_id($a) {
+        return $a['id'];
+    }
+
+    public function getIdsByDistrict($state_abbr, $district_type, $district) {
+        $command = Yii::app()->db->createCommand();
+
+        $result = $command->select('id')
+                ->from('district')
+                ->where('state_abbr=:state_abbr AND type=:district_type AND number=:district_number', array(':state_abbr' => $state_abbr, ':district_type' => $district_type, ':district_number'=>$district))
+                ->queryAll();
+
+        return array_map(array(&$this, 'extract_id'), $result);
     }
 
 }

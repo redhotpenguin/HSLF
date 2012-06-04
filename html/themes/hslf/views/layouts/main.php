@@ -119,6 +119,7 @@
 
                         $this->widget('zii.widgets.CBreadcrumbs', array(
                             'links' => $breadcrumbs,
+                            'homeLink' => CHtml::link('Dashboard', array('./'))
                         ));
 
 

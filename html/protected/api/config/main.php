@@ -68,8 +68,17 @@ return array(
             'showScriptName' => false,
             'rules' => array(
                 array('api/list', 'pattern' => 'api/<model:\w+>', 'verb' => 'GET'),
+               
+                //ex: /api/ballot_items/state/or/
                 array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>', 'verb' => 'GET'),
+               
                 array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>/district/<district_number:\d+>', 'verb' => 'GET'),
+                
+                // ex: /api/ballot_items/state/or/district_type/congressional
+                array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>/district_type/<district_type:\w{2,15}>', 'verb' => 'GET'),
+                // ex: /api/ballot_items/state/or/district_type/congressional/district/1
+               
+                array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>/district_type/<district_type:\w{2,15}>/district/<district:\w+>', 'verb' => 'GET'),
                 array('api/view', 'pattern' => 'api/<model:\w+>/name/<type:\w+>', 'verb' => 'GET'),
                 array('api/view', 'pattern' => 'api/<model:\w+>/<id:\d+>/', 'verb' => 'GET'), // ex: /api/candidate/12/
                 array('api/view', 'pattern' => 'api/<model:\w+>/<id:\d+>/<filter:\w+>', 'verb' => 'GET'), // ex: /api/candidate/12/issue
@@ -104,7 +113,7 @@ return array(
                 ),
             // uncomment the following to show log messages on web pages
 
-           /*  array(
+            /*  array(
               'class'=>'CWebLogRoute',
               ), */
             ),

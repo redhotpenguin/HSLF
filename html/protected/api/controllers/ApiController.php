@@ -38,11 +38,11 @@ class ApiController extends Controller {
                 }
                 $result = $alert_types;
                 break;
-             
-            case 'ballot_items': // /api/recommendations/
-                  $result = BallotItem::model()->findAll();
-            break;
-                
+
+            case 'ballot_items': // /api/ballot_items/
+                $result = BallotItem::model()->findAll();
+                break;
+
             default:
                 $this->_sendResponse(404, $this->_getStatusCodeMessage(404));
                 break;
@@ -69,35 +69,34 @@ class ApiController extends Controller {
             case 'tags': // /api/tags/type/w+
                 $this->_sendResponse(200, $this->_getTags($_GET));
                 break;
-            
+
             case 'ballot_items': //api/ballot_items/w{3}/
                 $this->_sendResponse(200, $this->_getBallotItems($_GET));
-             break;
+                break;
 
             default:
                 $this->_sendResponse(404, $this->_getStatusCodeMessage(404));
                 break;
         }
     }
-    
-    private function _getBallotItems($param){
-        $search_attributes = array();
-     
-        $search_attributes['state_abbr'] = $param['state_abbr'];
-        
-        $query =  'SELECT * from ballot_item ';
-        
-        $options = array(
-            'order'=>'priority' // order ballot items by their priority (1 => top priority, 10=>lowest priority)
-        );
-        
-      //  $ballotItems = BallotItem::model()->with('district','recommendation', 'electionResult')->findAllBySql($query, $options);
-        $ballotItems = BallotItem::model()->with('district','recommendation', 'electionResult')->findAllBySql($query, $options);
-   
-  
-        return $ballotItems;
+
+    //api/ballot_items/w{3}/
+    private function _getBallotItems($param) {
+        // todo sanitize $param
+        $state_abbr = $param['state_abbr'];
+        $district_type = $param['district_type'];
+
+        if (isset($param['district'])) {
+            $district = $param['district'];
+            $ballot_items = BallotItem::model()->findAllByDistrict($state_abbr, $district_type, $district);
+        } elseif($district_type) {
+            $ballot_items = BallotItem::model()->findAllByDistrictType($state_abbr, $district_type);
+        }else{
+           $ballot_items = BallotItem::model()->findAllByState($state_abbr);
+        }
+
+        return $ballot_items;
     }
-    
 
     private function _getCandidates($param) {
         $search_attributes = array();
@@ -267,8 +266,8 @@ class ApiController extends Controller {
         else
             return 'invalid_device_type';
 
-        
-   
+
+
         try {
             if (!$district_id) { // the district isn't saved in the database, insert a new one
                 $district = new District;
@@ -291,8 +290,8 @@ class ApiController extends Controller {
                 $app_user->updateMeta($meta_key, $meta_value);
             }
         }
-        
-        
+
+
         return $save_result;
     }
 
@@ -364,8 +363,8 @@ class ApiController extends Controller {
             $this->renderPartial('issue', array('data' => $container));
         } else {
 
-            $json_encoded_result =  CJSON_Nested::encode($container);
-  
+            $json_encoded_result = CJSON_Nested::encode($container);
+
             // API consumers really want a district_name, not a district_id 
             $json_encoded_result = str_replace('district_id', 'district_number', $json_encoded_result);
             echo $json_encoded_result;

@@ -70,7 +70,7 @@
             <?php
             $this->widget('zii.widgets.jui.CJuiDatePicker', array(
                 'name' => 'BallotItem[next_election_date]',
-                'value' => $model->date_published,
+                'value' => $model->next_election_date,
                 // additional javascript options for the date picker plugin
                 'options' => array(
                     'showAnim' => 'fold',
@@ -142,8 +142,8 @@
         ?>
         <br/>
         <?php
-        echo Yii::app()->params['site_url'].'/';
-        echo date('Y').'/';
+        echo Yii::app()->params['site_url'];
+        echo '/ballot/'.date('Y').'/';
         ?>
         
         <br/> <br/> 

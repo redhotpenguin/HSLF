@@ -17,18 +17,16 @@ class BallotController extends Controller {
         $this->render('index', array('ballots' => $ballots));
     }
 
-    public function actionFoo() {
-        print_r($_GET);
-        echo 'bar';
-    }
 
     public function actionView() {
         $year = $_GET['year'];
         $slug = $_GET['slug'];
         
+        echo 'view';
+        print_r($_GET);
        
 
-        $ballot = BallotItem::model()->findByElectionYearAndSlug($year, $slug);
+        $ballot = BallotItem::model()->findByPublishedYearAndSlug($year, $slug);
 
         $this->render('view', array(
             'ballot' => $ballot,
@@ -36,6 +34,7 @@ class BallotController extends Controller {
     }
 
     public function actionList() {
+        echo 'list';
         print_r($_GET);
         echo 'list';
     }
@@ -55,6 +54,7 @@ class BallotController extends Controller {
             throw new CHttpException(404,'The specified post cannot be found.');
         }
        
+        echo 'list by district';
         
         $this->render('list', array(
             'state_abbr' => $state_abbr,

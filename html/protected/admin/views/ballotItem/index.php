@@ -23,10 +23,14 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'header' => 'District',
             'value' => '$data->district->state_abbr." ".$data->district->type." ".$data->district->number'
         ),
+        'slug',
+        array(
+            'header' => 'Election date',
+            'value' => '$data->next_election_date',
+        ),
         array(// display a column with "view", "update" and "delete" buttons
             'class' => 'CButtonColumn',
         ),
-        'slug',
     ),
 ));
 ?>

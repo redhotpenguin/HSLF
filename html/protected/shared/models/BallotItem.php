@@ -108,7 +108,6 @@ class BallotItem extends CActiveRecord {
      * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
      */
     public function search() {
-
         $criteria = new CDbCriteria;
         // search by relationship (district)
         if ($this->district_number || $this->district_type || $this->state_abbr) {
@@ -142,6 +141,9 @@ class BallotItem extends CActiveRecord {
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
+                    'pagination' => array(
+                        'pageSize' => 50,
+                    ),
                 ));
     }
 
@@ -163,25 +165,42 @@ class BallotItem extends CActiveRecord {
             $this->next_election_date = null;
     }
 
+    public function findAllByState($state_abbr) {
+        $district_ids = District::model()->getIdsByState($state_abbr);
+
+        return $this->with('district', 'recommendation', 'electionResult')->findAllByAttributes(array('district_id' => $district_ids));
+    }
+
+    public function findAllByDistrictType($state_abbr, $district_type) {
+
+        $district_ids = District::model()->getIdsByDistrictType($state_abbr, $district_type);
+
+        return $this->with('district', 'recommendation', 'electionResult')->findAllByAttributes(array('district_id' => $district_ids));
+    }
+
     public function findAllByDistrict($state_abbr, $district_type, $district) {
         $district_id = District::model()->findByAttributes(array(
                     'state_abbr' => $state_abbr,
                     'type' => $district_type,
                     'number' => $district,
                 ))->id;
-
+        /*
+         * todo: business logic
+         * include district ids where 
+         * district_type = statewide 
+         */
+        
         if (!$district_id)
             return false;
 
-        return $this->findAllByAttributes(array('district_id' => $district_id));
+        return $this->with('district', 'recommendation', 'electionResult')->findAllByAttributes(array('district_id' => $district_id));
     }
 
-    public function findByElectionYearAndSlug($year, $slug) {       
+    public function findByPublishedYearAndSlug($year, $slug) {
         return $this->findByAttributes(
-            array(
-                'slug' => $slug,
-             ),
-            array('condition'=> "next_election_date BETWEEN '{$year}-01-01 00:00:00' AND '{$year}-12-31 23:59:59' " )
+                        array(
+                    'slug' => $slug,
+                        ), array('condition' => "date_published BETWEEN '{$year}-01-01 00:00:00' AND '{$year}-12-31 23:59:59'")
         );
     }
 

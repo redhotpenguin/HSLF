@@ -31,14 +31,15 @@ $this->widget('zii.widgets.grid.CGridView', array(
         'priority',
         //'date_published',
 
+        'item',
         'party',
-        array('name' => 'district_type',
-            'header' => 'District type',
-            'value' => '$data->district->type'
-        ),
         array('name' => 'state_abbr',
             'header' => 'State',
             'value' => '$data->district->state_abbr'
+        ),
+        array('name' => 'district_type',
+            'header' => 'District type',
+            'value' => '$data->district->type'
         ),
         array('name' => 'district_number',
             'header' => 'District number',
