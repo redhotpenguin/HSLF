@@ -9,9 +9,7 @@ class BallotController extends Controller {
      * when an action is not explicitly requested by users.
      */
     public function actionIndex() {
-        echo 'index';
-        print_r($_GET);
-
+  
         $ballots = BallotItem::model()->findAll();
 
         $this->render('index', array('ballots' => $ballots));
@@ -22,9 +20,6 @@ class BallotController extends Controller {
         $year = $_GET['year'];
         $slug = $_GET['slug'];
         
-        echo 'view';
-        print_r($_GET);
-       
 
         $ballot = BallotItem::model()->findByPublishedYearAndSlug($year, $slug);
 
@@ -36,7 +31,7 @@ class BallotController extends Controller {
     public function actionList() {
         echo 'list';
         print_r($_GET);
-        echo 'list';
+   
     }
 
     public function actionListByDistrict() { // /ballot/ca/congressional/12
@@ -53,8 +48,7 @@ class BallotController extends Controller {
         if(empty($ballots)){
             throw new CHttpException(404,'The specified post cannot be found.');
         }
-       
-        echo 'list by district';
+
         
         $this->render('list', array(
             'state_abbr' => $state_abbr,
