@@ -2629,3 +2629,30 @@ in C:\xampp\htdocs\HSLF\html\index.php (14)
 2012/06/05 00:40:13 [trace] [system.CModule] Loading "assetManager" application component
 in C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php (13)
 in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/06/05 20:34:15 [trace] [system.CModule] Loading "log" application component
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/06/05 20:34:15 [trace] [system.CModule] Loading "request" application component
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/06/05 20:34:15 [trace] [system.CModule] Loading "urlManager" application component
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/06/05 20:34:15 [trace] [system.CModule] Loading "coreMessages" application component
+in C:\xampp\htdocs\HSLF\html\index.php (14)
+2012/06/05 20:34:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "search".' in C:\xampp\htdocs\HSLF\framework\web\CController.php:484
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\web\CController.php(271): CController->missingAction('search')
+#1 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(276): CController->run('search')
+#2 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(135): CWebApplication->runController('search/search')
+#3 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/search/search?q=victory&yt0=Search
+HTTP_REFERER=http://www.voterguide.com/search/search?q=findme&yt0=Search
+---
+2012/06/05 20:34:15 [trace] [system.CModule] Loading "errorHandler" application component
+2012/06/05 20:34:15 [trace] [system.CModule] Loading "themeManager" application component
+in C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php (24)
+2012/06/05 20:34:15 [trace] [system.CModule] Loading "clientScript" application component
+in C:\xampp\htdocs\HSLF\html\themes\hslf_frontend\views\layouts\main.php (9)
+in C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php (24)
+2012/06/05 20:34:15 [trace] [system.CModule] Loading "assetManager" application component
+in C:\xampp\htdocs\HSLF\html\protected\controllers\SiteController.php (24)
