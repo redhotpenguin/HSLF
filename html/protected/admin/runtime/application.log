@@ -6870,3 +6870,77 @@ in C:\xampp\htdocs\HSLF\html\admin.php (16)
 in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (54)
 in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (129)
 in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/05 18:12:31 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (54)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (129)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/05 20:20:04 [error] [exception.CException] exception 'CException' with message 'SearchController cannot find the requested view "index".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3536
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('index', NULL, true)
+#1 C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SearchController.php(13): CController->render('index')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SearchController->actionIndex()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('search')
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\HSLF\html\admin.php(16): CApplication->run()
+#10 {main}
+REQUEST_URI=/admin/search
+---
+2012/06/05 20:22:22 [error] [exception.CException] exception 'CException' with message 'SearchController and its behaviors do not have a method or closure named "sanitize".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:681
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SearchController.php(30): CComponent->__call('sanitize', Array)
+#1 C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SearchController.php(30): SearchController->sanitize(NULL)
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): SearchController->actionCreate()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('create')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('search/create')
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\HSLF\html\admin.php(16): CApplication->run()
+#10 {main}
+REQUEST_URI=/admin/search/create
+---
+2012/06/05 20:26:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "login".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('login')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('login')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('site/login')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\admin.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/admin/site/login
+---
+2012/06/05 20:26:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "index".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('search')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\admin.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/admin/search
+---
+2012/06/05 20:26:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "login".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('login')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('login')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('site/login')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\admin.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/admin/site/login
+---
+2012/06/05 20:27:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "login".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('login')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('login')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('site/login')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\admin.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/admin/site/login
+---

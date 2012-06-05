@@ -11,17 +11,28 @@
 
     <body>
 
-        <div class="container" id="page">
-            <div class="<?php echo $this->getId(); ?>">
-                <div class="<?php echo $this->getAction()->getId(); ?>" >
+        <div id ="header">
+            <?php
+            echo '<a href="/">'.Yii::app()->name.'</a>';
+            $this->widget('SearchBlock', array(
+            ));
+            ?>
 
-                    <?php echo $content; ?>
+        </div>
 
-                    <div id="clear footer">  </div><!-- footer -->
+        <div id="wrap">
 
-                </div>
+            <div id="content">
+                <?php echo $content; ?>
             </div>
-        </div><!-- page -->
+
+        </div>
+
+        <div id="footer">
+            Copyright © 2012
+        </div>
+
+
 
 
     </body>
