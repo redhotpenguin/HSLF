@@ -52,10 +52,28 @@ class BallotItemController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
+        // import FileUpload helper class
+        Yii::import('admin.models.helpers.FileUpload');
+        
+        
         $model = new BallotItem;
 
         if (isset($_POST['BallotItem'])) {
             $model->attributes = $_POST['BallotItem'];
+
+            // a file for image_url has been uploded
+            if (!empty($_FILES['image_url']['tmp_name'])) {
+                $fileUpload = new FileUpload('image_url', array('image/jpeg', 'image/gif', 'image/png'));
+
+                $year_month = date('Y_m');
+                $destPath = '/' . $year_month; //ex: /2012_06/
+
+                $saved_file_url = $fileUpload->save($_FILES['image_url'], $destPath);
+
+                if ($saved_file_url)
+                    $model->image_url = $saved_file_url;
+            }
+
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->id));
         }
@@ -71,13 +89,27 @@ class BallotItemController extends Controller {
      * @param integer $id the ID of the model to be updated
      */
     public function actionUpdate($id) {
-        $model = $this->loadModel($id);
+        // import FileUpload helper class
+        Yii::import('admin.models.helpers.FileUpload');
 
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
+        $model = $this->loadModel($id);
 
         if (isset($_POST['BallotItem'])) {
             $model->attributes = $_POST['BallotItem'];
+
+            // a file for image_url has been uploded
+            if (!empty($_FILES['image_url']['tmp_name'])) {
+                $fileUpload = new FileUpload('image_url', array('image/jpeg', 'image/gif', 'image/png'));
+
+                $year_month = date('Y_m');
+                $destPath = '/' . $year_month; //ex: /2012_06/
+
+                $saved_file_url = $fileUpload->save($_FILES['image_url'], $destPath);
+
+                if ($saved_file_url)
+                    $model->image_url = $saved_file_url;
+            }
+
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->id));
         }

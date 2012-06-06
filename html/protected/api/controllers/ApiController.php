@@ -88,9 +88,9 @@ class ApiController extends Controller {
 
         if (isset($param['district'])) {
             $district = $param['district'];
-            $ballot_items = BallotItem::model()->findAllByDistrict($state_abbr, $district_type, $district);
+            $ballot_items = BallotItem::model()->findAllByDistrict($state_abbr, $district_type, $district, true);
         } elseif($district_type) {
-            $ballot_items = BallotItem::model()->findAllByDistrictType($state_abbr, $district_type);
+            $ballot_items = BallotItem::model()->findAllByDistrictType($state_abbr, $district_type, true);
         }else{
            $ballot_items = BallotItem::model()->findAllByState($state_abbr);
         }
@@ -99,13 +99,17 @@ class ApiController extends Controller {
     }
 
     private function _getCandidates($param) {
+       
         $search_attributes = array();
         if (isset($param['state_abbr']))
             $search_attributes['state_abbr'] = $param['state_abbr'];
         else
             return false;
 
+        
+ 
         if (isset($param['district_number'])) {
+            
 
             $senator_candidate_district_id = District::getIdByStateAndDistrict($param['state_abbr'], 0);
 

@@ -1,9 +1,11 @@
 <div class="form">
 
     <?php
+
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'ballot-item-form',
         'enableAjaxValidation' => false,
+        'htmlOptions' => array('enctype' => 'multipart/form-data'),
             ));
     $recommendation_list = CHtml::listData(Recommendation::model()->findAll(), 'id', 'value');
     ?>
@@ -61,9 +63,12 @@
 
         <div class="row">
             <?php echo $form->labelEx($model, 'image_url'); ?>
-            <?php echo $form->textField($model, 'image_url', array('size' => 50, 'maxlength' => 1000)); ?>
+            <?php echo $form->textField($model, 'image_url', array('size' => 50) ); ?>
             <?php echo $form->error($model, 'image_url'); ?>
         </div>
+
+        <input type="file" name="image_url" />
+
 
         <div class="row">
             <?php echo $form->labelEx($model, 'next_election_date'); ?>
@@ -143,9 +148,9 @@
         <br/>
         <?php
         echo Yii::app()->params['site_url'];
-        echo '/ballot/'.date('Y').'/';
+        echo '/ballot/' . date('Y') . '/';
         ?>
-        
+
         <br/> <br/> 
     </div>
 
@@ -169,7 +174,7 @@
             ),
         ));
         ?>
-<?php echo $form->error($model, 'date_published'); ?>
+        <?php echo $form->error($model, 'date_published'); ?>
     </div>
 
     <div style="clear:both;"></div>
@@ -177,16 +182,16 @@
 
     <div class="row">
         <?php echo $form->labelEx($model, 'published'); ?>
-<?php echo $form->dropDownList($model, 'published', array('yes' => 'Yes', 'no' => 'No')); ?>
-<?php echo $form->error($model, 'published'); ?>
+        <?php echo $form->dropDownList($model, 'published', array('yes' => 'Yes', 'no' => 'No')); ?>
+        <?php echo $form->error($model, 'published'); ?>
     </div>
 
 
 
     <div class="row buttons">
-    <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
     </div>
 
-<?php $this->endWidget(); ?>
+    <?php $this->endWidget(); ?>
 
 </div><!-- form -->

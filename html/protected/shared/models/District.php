@@ -95,17 +95,6 @@ class District extends CActiveRecord {
                 ));
     }
 
-    /**
-     * Retrieve the District ID based on $state and $district_number
-     */
-    public static function getIdByStateAndDistrict($state, $district_number) {
-        $district = District::model()->findByAttributes(array('state_abbr' => $state, 'number' => $district_number));
-        if ($district)
-            return $district->id;
-        else
-            return false;
-    }
-
     public static function getTagDistrictsByState($state_abbr) {
         $districts = District::model()->findAllByAttributes(array('state_abbr' => $state_abbr), array('order' => 'number ASC'));
         return CHtml::listData($districts, 'id', 'number');
@@ -122,6 +111,10 @@ class District extends CActiveRecord {
         return CHtml::listData($districts, 'id', 'number');
     }
 
+    /**
+     * Return the different district type  options
+     * @return array array of type options
+     */
     public function getTypeOptions() {
         return array(
             'statewide' => 'Statewide',
@@ -133,6 +126,22 @@ class District extends CActiveRecord {
         );
     }
 
+    /**
+     * Retrieve the District ID based on $state and $district_number
+     */
+    public static function getIdByStateAndDistrict($state, $district_number) {
+        $district = District::model()->findByAttributes(array('state_abbr' => $state, 'number' => $district_number));
+        if ($district)
+            return $district->id;
+        else
+            return false;
+    }
+
+    /**
+     * Get all the district ids within a state
+     * @param integer $state_abbr  abbreviaiton of the state
+     * @return array array of district ids
+     */
     public function getIdsByState($state_abbr) {
         $command = Yii::app()->db->createCommand();
 
@@ -144,6 +153,12 @@ class District extends CActiveRecord {
         return array_map(array(&$this, 'extract_id'), $result);
     }
 
+    /**
+     * Get all the district ids within a state and of a specified type
+     * @param integer $state_abbr  abbreviaiton of the state
+     * @param integer $district  district type
+     * @return array array of district ids
+     */
     public function getIdsByDistrictType($state_abbr, $district_type) {
         $command = Yii::app()->db->createCommand();
 
@@ -159,12 +174,19 @@ class District extends CActiveRecord {
         return $a['id'];
     }
 
+    /**
+     * Get all the district ids that match a specified state, a specified type and a speficied district number
+     * @param integer $state_abbr  abbreviaiton of the state
+     * @param integer $type  district type
+     * * @param integer $district  district name
+     * @return array array of district ids
+     */
     public function getIdsByDistrict($state_abbr, $district_type, $district) {
         $command = Yii::app()->db->createCommand();
 
         $result = $command->select('id')
                 ->from('district')
-                ->where('state_abbr=:state_abbr AND type=:district_type AND number=:district_number', array(':state_abbr' => $state_abbr, ':district_type' => $district_type, ':district_number'=>$district))
+                ->where('state_abbr=:state_abbr AND type=:district_type AND number=:district_number', array(':state_abbr' => $state_abbr, ':district_type' => $district_type, ':district_number' => $district))
                 ->queryAll();
 
         return array_map(array(&$this, 'extract_id'), $result);

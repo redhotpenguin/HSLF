@@ -9000,3 +9000,2249 @@ Stack trace:
 REQUEST_URI=/api/ballot_items/state/or/district_type/congressional
 ---
 2012/06/04 22:25:41 [trace] [system.CModule] Loading "errorHandler" application component
+2012/06/05 21:25:32 [trace] [system.CModule] Loading "log" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:25:32 [trace] [system.CModule] Loading "request" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:25:32 [trace] [system.CModule] Loading "urlManager" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:25:32 [trace] [system.CModule] Loading "db" application component
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:25:32 [trace] [system.db.CDbConnection] Opening DB connection
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:25:32 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:25:32 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:25:32 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
+	attrelid=(
+		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
+			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
+		)
+	)
+    AND attnum IN (1)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:25:32 [trace] [system.db.ar.CActiveRecord] District.findByAttributes()
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:25:32 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."number"=:yp1 LIMIT 1
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:25:32 [trace] [system.CModule] Loading "coreMessages" application component
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:25:32 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
+LINE 1: ..." "t" WHERE "t"."state_abbr"='or' AND "t"."number"=0 LIMIT 1
+                                                             ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."number"=:yp1 LIMIT 1.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:25:32 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
+LINE 1: ..." "t" WHERE "t"."state_abbr"='or' AND "t"."number"=0 LIMIT 1
+                                                             ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."number"=:yp1 LIMIT 1' in C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php:528
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php(408): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1287): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1455): CActiveRecord->query(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php(133): CActiveRecord->findByAttributes(Array)
+#4 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(110): District::getIdByStateAndDistrict('or', 0)
+#5 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(57): ApiController->_getCandidates(Array)
+#6 C:\xampp\htdocs\HSLF\framework\web\actions\CInlineAction.php(50): ApiController->actionView()
+#7 C:\xampp\htdocs\HSLF\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#8 C:\xampp\htdocs\HSLF\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#9 C:\xampp\htdocs\HSLF\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(276): CController->run('view')
+#11 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(135): CWebApplication->runController('api/view')
+#12 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#13 C:\xampp\htdocs\HSLF\html\api.php(16): CApplication->run()
+#14 {main}
+REQUEST_URI=/api/candidates/state/or/district/3
+---
+2012/06/05 21:25:32 [trace] [system.CModule] Loading "errorHandler" application component
+2012/06/05 21:26:59 [trace] [system.CModule] Loading "log" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:26:59 [trace] [system.CModule] Loading "request" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:26:59 [trace] [system.CModule] Loading "urlManager" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:26:59 [error] [php] Missing argument 3 for District::getIdByStateAndDistrict(), called in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php on line 110 and defined (C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php:132)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\web\actions\CInlineAction.php(50): ApiController->actionView()
+#1 C:\xampp\htdocs\HSLF\framework\web\CController.php(309): CInlineAction->runWithParams()
+#2 C:\xampp\htdocs\HSLF\framework\web\CController.php(287): ApiController->runAction()
+#3 C:\xampp\htdocs\HSLF\framework\web\CController.php(266): ApiController->runActionWithFilters()
+#4 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(276): ApiController->run()
+#5 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(135): CWebApplication->runController()
+#6 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#7 C:\xampp\htdocs\HSLF\html\api.php(16): CWebApplication->run()
+REQUEST_URI=/api/candidates/state/or/district/3
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (132)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:26:59 [trace] [system.CModule] Loading "errorHandler" application component
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (132)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:27:25 [trace] [system.CModule] Loading "log" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:27:25 [trace] [system.CModule] Loading "request" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:27:25 [trace] [system.CModule] Loading "urlManager" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:27:25 [trace] [system.CModule] Loading "db" application component
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:27:25 [trace] [system.db.CDbConnection] Opening DB connection
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:27:25 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:27:25 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:27:25 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
+	attrelid=(
+		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
+			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
+		)
+	)
+    AND attnum IN (1)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:27:25 [trace] [system.db.ar.CActiveRecord] District.findByAttributes()
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:27:25 [trace] [system.CModule] Loading "coreMessages" application component
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:27:25 [error] [exception.CDbException] exception 'CDbException' with message 'Table "district" does not have a column named "district_type".' in C:\xampp\htdocs\HSLF\framework\db\schema\CDbCommandBuilder.php:570
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1454): CDbCommandBuilder->createColumnCriteria(Object(CPgsqlTableSchema), Array, '', Array, '"t".')
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php(133): CActiveRecord->findByAttributes(Array)
+#2 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(110): District::getIdByStateAndDistrict('or', 'congressional', 0)
+#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(57): ApiController->_getCandidates(Array)
+#4 C:\xampp\htdocs\HSLF\framework\web\actions\CInlineAction.php(50): ApiController->actionView()
+#5 C:\xampp\htdocs\HSLF\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(276): CController->run('view')
+#9 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(135): CWebApplication->runController('api/view')
+#10 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\api.php(16): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/candidates/state/or/district/3
+---
+2012/06/05 21:27:25 [trace] [system.CModule] Loading "errorHandler" application component
+2012/06/05 21:27:41 [trace] [system.CModule] Loading "log" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:27:41 [trace] [system.CModule] Loading "request" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:27:41 [trace] [system.CModule] Loading "urlManager" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:27:41 [trace] [system.CModule] Loading "db" application component
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:27:41 [trace] [system.db.CDbConnection] Opening DB connection
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:27:41 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:27:41 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:27:41 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
+	attrelid=(
+		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
+			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
+		)
+	)
+    AND attnum IN (1)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:27:41 [trace] [system.db.ar.CActiveRecord] District.findByAttributes()
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:27:41 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 AND "t"."number"=:yp2 LIMIT 1
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:27:41 [trace] [system.CModule] Loading "coreMessages" application component
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:27:41 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
+LINE 1: ...r' AND "t"."type"='congressional' AND "t"."number"=0 LIMIT 1
+                                                             ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 AND "t"."number"=:yp2 LIMIT 1.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:27:41 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
+LINE 1: ...r' AND "t"."type"='congressional' AND "t"."number"=0 LIMIT 1
+                                                             ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 AND "t"."number"=:yp2 LIMIT 1' in C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php:528
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php(408): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1287): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1455): CActiveRecord->query(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php(133): CActiveRecord->findByAttributes(Array)
+#4 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(110): District::getIdByStateAndDistrict('or', 'congressional', 0)
+#5 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(57): ApiController->_getCandidates(Array)
+#6 C:\xampp\htdocs\HSLF\framework\web\actions\CInlineAction.php(50): ApiController->actionView()
+#7 C:\xampp\htdocs\HSLF\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#8 C:\xampp\htdocs\HSLF\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#9 C:\xampp\htdocs\HSLF\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(276): CController->run('view')
+#11 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(135): CWebApplication->runController('api/view')
+#12 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#13 C:\xampp\htdocs\HSLF\html\api.php(16): CApplication->run()
+#14 {main}
+REQUEST_URI=/api/candidates/state/or/district/3
+---
+2012/06/05 21:27:41 [trace] [system.CModule] Loading "errorHandler" application component
+2012/06/05 21:29:18 [trace] [system.CModule] Loading "log" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:29:18 [trace] [system.CModule] Loading "request" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:29:18 [trace] [system.CModule] Loading "urlManager" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:29:18 [trace] [system.CModule] Loading "db" application component
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:18 [trace] [system.db.CDbConnection] Opening DB connection
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:18 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:18 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:18 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
+	attrelid=(
+		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
+			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
+		)
+	)
+    AND attnum IN (1)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:18 [trace] [system.db.ar.CActiveRecord] District.findByAttributes()
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:29:18 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 AND "t"."number"=:yp2 LIMIT 1
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:29:18 [trace] [system.CModule] Loading "coreMessages" application component
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:29:18 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
+LINE 1: ...r' AND "t"."type"='congressional' AND "t"."number"=0 LIMIT 1
+                                                             ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 AND "t"."number"=:yp2 LIMIT 1.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:29:18 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
+LINE 1: ...r' AND "t"."type"='congressional' AND "t"."number"=0 LIMIT 1
+                                                             ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 AND "t"."number"=:yp2 LIMIT 1' in C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php:528
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php(408): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1287): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1455): CActiveRecord->query(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php(133): CActiveRecord->findByAttributes(Array)
+#4 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(110): District::getIdByStateAndDistrict('or', 'congressional', 0)
+#5 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(57): ApiController->_getCandidates(Array)
+#6 C:\xampp\htdocs\HSLF\framework\web\actions\CInlineAction.php(50): ApiController->actionView()
+#7 C:\xampp\htdocs\HSLF\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#8 C:\xampp\htdocs\HSLF\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#9 C:\xampp\htdocs\HSLF\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(276): CController->run('view')
+#11 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(135): CWebApplication->runController('api/view')
+#12 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#13 C:\xampp\htdocs\HSLF\html\api.php(16): CApplication->run()
+#14 {main}
+REQUEST_URI=/api/candidates/state/or/district/3
+---
+2012/06/05 21:29:18 [trace] [system.CModule] Loading "errorHandler" application component
+2012/06/05 21:29:19 [trace] [system.CModule] Loading "log" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:29:19 [trace] [system.CModule] Loading "request" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:29:19 [trace] [system.CModule] Loading "urlManager" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:29:19 [trace] [system.CModule] Loading "db" application component
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:19 [trace] [system.db.CDbConnection] Opening DB connection
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:19 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:19 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:19 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
+	attrelid=(
+		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
+			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
+		)
+	)
+    AND attnum IN (1)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:19 [trace] [system.db.ar.CActiveRecord] District.findByAttributes()
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:29:19 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 AND "t"."number"=:yp2 LIMIT 1
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:29:19 [trace] [system.CModule] Loading "coreMessages" application component
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:29:19 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
+LINE 1: ...r' AND "t"."type"='congressional' AND "t"."number"=0 LIMIT 1
+                                                             ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 AND "t"."number"=:yp2 LIMIT 1.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:29:19 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
+LINE 1: ...r' AND "t"."type"='congressional' AND "t"."number"=0 LIMIT 1
+                                                             ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 AND "t"."number"=:yp2 LIMIT 1' in C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php:528
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php(408): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1287): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1455): CActiveRecord->query(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php(133): CActiveRecord->findByAttributes(Array)
+#4 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(110): District::getIdByStateAndDistrict('or', 'congressional', 0)
+#5 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(57): ApiController->_getCandidates(Array)
+#6 C:\xampp\htdocs\HSLF\framework\web\actions\CInlineAction.php(50): ApiController->actionView()
+#7 C:\xampp\htdocs\HSLF\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#8 C:\xampp\htdocs\HSLF\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#9 C:\xampp\htdocs\HSLF\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(276): CController->run('view')
+#11 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(135): CWebApplication->runController('api/view')
+#12 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#13 C:\xampp\htdocs\HSLF\html\api.php(16): CApplication->run()
+#14 {main}
+REQUEST_URI=/api/candidates/state/or/district/3
+---
+2012/06/05 21:29:19 [trace] [system.CModule] Loading "errorHandler" application component
+2012/06/05 21:29:19 [trace] [system.CModule] Loading "log" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:29:19 [trace] [system.CModule] Loading "request" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:29:19 [trace] [system.CModule] Loading "urlManager" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:29:19 [trace] [system.CModule] Loading "db" application component
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:19 [trace] [system.db.CDbConnection] Opening DB connection
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:19 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:19 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:19 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
+	attrelid=(
+		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
+			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
+		)
+	)
+    AND attnum IN (1)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:19 [trace] [system.db.ar.CActiveRecord] District.findByAttributes()
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:29:19 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 AND "t"."number"=:yp2 LIMIT 1
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:29:19 [trace] [system.CModule] Loading "coreMessages" application component
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:29:19 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
+LINE 1: ...r' AND "t"."type"='congressional' AND "t"."number"=0 LIMIT 1
+                                                             ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 AND "t"."number"=:yp2 LIMIT 1.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:29:19 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
+LINE 1: ...r' AND "t"."type"='congressional' AND "t"."number"=0 LIMIT 1
+                                                             ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 AND "t"."number"=:yp2 LIMIT 1' in C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php:528
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php(408): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1287): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1455): CActiveRecord->query(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php(133): CActiveRecord->findByAttributes(Array)
+#4 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(110): District::getIdByStateAndDistrict('or', 'congressional', 0)
+#5 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(57): ApiController->_getCandidates(Array)
+#6 C:\xampp\htdocs\HSLF\framework\web\actions\CInlineAction.php(50): ApiController->actionView()
+#7 C:\xampp\htdocs\HSLF\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#8 C:\xampp\htdocs\HSLF\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#9 C:\xampp\htdocs\HSLF\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(276): CController->run('view')
+#11 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(135): CWebApplication->runController('api/view')
+#12 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#13 C:\xampp\htdocs\HSLF\html\api.php(16): CApplication->run()
+#14 {main}
+REQUEST_URI=/api/candidates/state/or/district/3
+---
+2012/06/05 21:29:19 [trace] [system.CModule] Loading "errorHandler" application component
+2012/06/05 21:29:19 [trace] [system.CModule] Loading "log" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:29:19 [trace] [system.CModule] Loading "request" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:29:19 [trace] [system.CModule] Loading "urlManager" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:29:19 [trace] [system.CModule] Loading "db" application component
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:19 [trace] [system.db.CDbConnection] Opening DB connection
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:19 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:19 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:19 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
+	attrelid=(
+		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
+			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
+		)
+	)
+    AND attnum IN (1)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:19 [trace] [system.db.ar.CActiveRecord] District.findByAttributes()
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:29:19 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 AND "t"."number"=:yp2 LIMIT 1
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:29:19 [trace] [system.CModule] Loading "coreMessages" application component
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:29:19 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
+LINE 1: ...r' AND "t"."type"='congressional' AND "t"."number"=0 LIMIT 1
+                                                             ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 AND "t"."number"=:yp2 LIMIT 1.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:29:19 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
+LINE 1: ...r' AND "t"."type"='congressional' AND "t"."number"=0 LIMIT 1
+                                                             ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 AND "t"."number"=:yp2 LIMIT 1' in C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php:528
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php(408): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1287): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1455): CActiveRecord->query(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php(133): CActiveRecord->findByAttributes(Array)
+#4 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(110): District::getIdByStateAndDistrict('or', 'congressional', 0)
+#5 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(57): ApiController->_getCandidates(Array)
+#6 C:\xampp\htdocs\HSLF\framework\web\actions\CInlineAction.php(50): ApiController->actionView()
+#7 C:\xampp\htdocs\HSLF\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#8 C:\xampp\htdocs\HSLF\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#9 C:\xampp\htdocs\HSLF\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(276): CController->run('view')
+#11 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(135): CWebApplication->runController('api/view')
+#12 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#13 C:\xampp\htdocs\HSLF\html\api.php(16): CApplication->run()
+#14 {main}
+REQUEST_URI=/api/candidates/state/or/district/3
+---
+2012/06/05 21:29:19 [trace] [system.CModule] Loading "errorHandler" application component
+2012/06/05 21:29:23 [trace] [system.CModule] Loading "log" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:29:23 [trace] [system.CModule] Loading "request" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:29:23 [trace] [system.CModule] Loading "urlManager" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:29:23 [trace] [system.CModule] Loading "db" application component
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:23 [trace] [system.db.CDbConnection] Opening DB connection
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:23 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:23 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:23 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
+	attrelid=(
+		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
+			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
+		)
+	)
+    AND attnum IN (1)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:23 [trace] [system.db.ar.CActiveRecord] District.findByAttributes()
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:29:23 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 AND "t"."number"=:yp2 LIMIT 1
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:29:23 [trace] [system.CModule] Loading "coreMessages" application component
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:29:23 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
+LINE 1: ...r' AND "t"."type"='congressional' AND "t"."number"=0 LIMIT 1
+                                                             ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 AND "t"."number"=:yp2 LIMIT 1.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:29:23 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
+LINE 1: ...r' AND "t"."type"='congressional' AND "t"."number"=0 LIMIT 1
+                                                             ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 AND "t"."number"=:yp2 LIMIT 1' in C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php:528
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php(408): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1287): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1455): CActiveRecord->query(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php(133): CActiveRecord->findByAttributes(Array)
+#4 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(110): District::getIdByStateAndDistrict('or', 'congressional', 0)
+#5 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(57): ApiController->_getCandidates(Array)
+#6 C:\xampp\htdocs\HSLF\framework\web\actions\CInlineAction.php(50): ApiController->actionView()
+#7 C:\xampp\htdocs\HSLF\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#8 C:\xampp\htdocs\HSLF\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#9 C:\xampp\htdocs\HSLF\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(276): CController->run('view')
+#11 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(135): CWebApplication->runController('api/view')
+#12 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#13 C:\xampp\htdocs\HSLF\html\api.php(16): CApplication->run()
+#14 {main}
+REQUEST_URI=/api/candidates/state/or/district/3
+---
+2012/06/05 21:29:23 [trace] [system.CModule] Loading "errorHandler" application component
+2012/06/05 21:29:51 [trace] [system.CModule] Loading "log" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:29:51 [trace] [system.CModule] Loading "request" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:29:51 [trace] [system.CModule] Loading "urlManager" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:29:51 [trace] [system.CModule] Loading "db" application component
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:51 [trace] [system.db.CDbConnection] Opening DB connection
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:51 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:51 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:51 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
+	attrelid=(
+		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
+			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
+		)
+	)
+    AND attnum IN (1)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:29:51 [trace] [system.db.ar.CActiveRecord] District.findByAttributes()
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:29:51 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 AND "t"."number"=:yp2 LIMIT 1
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:29:51 [trace] [system.CModule] Loading "coreMessages" application component
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:29:51 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
+LINE 1: ...r' AND "t"."type"='congressional' AND "t"."number"=0 LIMIT 1
+                                                             ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 AND "t"."number"=:yp2 LIMIT 1.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:29:51 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
+LINE 1: ...r' AND "t"."type"='congressional' AND "t"."number"=0 LIMIT 1
+                                                             ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 AND "t"."number"=:yp2 LIMIT 1' in C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php:528
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php(408): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1287): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1455): CActiveRecord->query(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php(133): CActiveRecord->findByAttributes(Array)
+#4 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(110): District::getIdByStateAndDistrict('or', 'congressional', 0)
+#5 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(57): ApiController->_getCandidates(Array)
+#6 C:\xampp\htdocs\HSLF\framework\web\actions\CInlineAction.php(50): ApiController->actionView()
+#7 C:\xampp\htdocs\HSLF\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#8 C:\xampp\htdocs\HSLF\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#9 C:\xampp\htdocs\HSLF\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(276): CController->run('view')
+#11 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(135): CWebApplication->runController('api/view')
+#12 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#13 C:\xampp\htdocs\HSLF\html\api.php(16): CApplication->run()
+#14 {main}
+REQUEST_URI=/api/candidates/state/or/district/3
+---
+2012/06/05 21:29:51 [trace] [system.CModule] Loading "errorHandler" application component
+2012/06/05 21:30:24 [trace] [system.CModule] Loading "log" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:30:24 [trace] [system.CModule] Loading "request" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:30:24 [trace] [system.CModule] Loading "urlManager" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:30:24 [trace] [system.CModule] Loading "db" application component
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:30:24 [trace] [system.db.CDbConnection] Opening DB connection
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:30:24 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:30:24 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:30:24 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
+	attrelid=(
+		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
+			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
+		)
+	)
+    AND attnum IN (1)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:30:24 [trace] [system.db.ar.CActiveRecord] District.findByAttributes()
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:30:24 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 AND "t"."number"=:yp2 LIMIT 1
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:30:24 [trace] [system.CModule] Loading "coreMessages" application component
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:30:24 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
+LINE 1: ...r' AND "t"."type"='congressional' AND "t"."number"=0 LIMIT 1
+                                                             ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 AND "t"."number"=:yp2 LIMIT 1.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:30:24 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
+LINE 1: ...r' AND "t"."type"='congressional' AND "t"."number"=0 LIMIT 1
+                                                             ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 AND "t"."number"=:yp2 LIMIT 1' in C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php:528
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php(408): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1287): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1455): CActiveRecord->query(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php(133): CActiveRecord->findByAttributes(Array)
+#4 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(110): District::getIdByStateAndDistrict('or', 'congressional', 0)
+#5 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(57): ApiController->_getCandidates(Array)
+#6 C:\xampp\htdocs\HSLF\framework\web\actions\CInlineAction.php(50): ApiController->actionView()
+#7 C:\xampp\htdocs\HSLF\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#8 C:\xampp\htdocs\HSLF\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#9 C:\xampp\htdocs\HSLF\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(276): CController->run('view')
+#11 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(135): CWebApplication->runController('api/view')
+#12 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#13 C:\xampp\htdocs\HSLF\html\api.php(16): CApplication->run()
+#14 {main}
+REQUEST_URI=/api/candidates/state/or/district/3
+---
+2012/06/05 21:30:24 [trace] [system.CModule] Loading "errorHandler" application component
+2012/06/05 21:31:14 [trace] [system.CModule] Loading "log" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:14 [trace] [system.CModule] Loading "request" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:14 [trace] [system.CModule] Loading "urlManager" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:14 [trace] [system.CModule] Loading "db" application component
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+2012/06/05 21:31:14 [trace] [system.db.CDbConnection] Opening DB connection
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+2012/06/05 21:31:14 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+2012/06/05 21:31:14 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+2012/06/05 21:31:14 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
+	attrelid=(
+		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
+			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
+		)
+	)
+    AND attnum IN (1)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+2012/06/05 21:31:14 [trace] [system.db.ar.CActiveRecord] District.findByAttributes()
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:31:14 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 AND "t"."number"=:yp2 LIMIT 1
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:31:14 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\Candidate.php (36)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:31:14 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\Candidate.php (36)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:31:14 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
+	attrelid=(
+		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
+			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
+		)
+	)
+    AND attnum IN (1)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\Candidate.php (36)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:31:14 [trace] [system.db.ar.CActiveRecord] Candidate.findAllByAttributes()
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:14 [trace] [system.db.CDbCommand] Querying SQL: SELECT "t"."id" AS "t0_c0", "t"."state_abbr" AS "t0_c1", "t"."district_id" AS "t0_c2", "t"."type" AS "t0_c3", "t"."endorsement" AS "t0_c4", "t"."full_name" AS "t0_c5", "t"."party" AS "t0_c6", "t"."date_published" AS "t0_c7", "t"."publish" AS "t0_c8", "t"."scorecard" AS "t0_c9", "t"."url" AS "t0_c10", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3" FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE ("t"."state_abbr"=:yp0 AND "t"."district_id" IN (4615, ) AND "t"."publish"=:yp1)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:14 [trace] [system.CModule] Loading "coreMessages" application component
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:14 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near ")"
+LINE 1: ..."state_abbr"='or' AND "t"."district_id" IN (4615, ) AND "t"....
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."state_abbr" AS "t0_c1", "t"."district_id" AS "t0_c2", "t"."type" AS "t0_c3", "t"."endorsement" AS "t0_c4", "t"."full_name" AS "t0_c5", "t"."party" AS "t0_c6", "t"."date_published" AS "t0_c7", "t"."publish" AS "t0_c8", "t"."scorecard" AS "t0_c9", "t"."url" AS "t0_c10", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3" FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE ("t"."state_abbr"=:yp0 AND "t"."district_id" IN (4615, ) AND "t"."publish"=:yp1).
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:14 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near ")"
+LINE 1: ..."state_abbr"='or' AND "t"."district_id" IN (4615, ) AND "t"....
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."state_abbr" AS "t0_c1", "t"."district_id" AS "t0_c2", "t"."type" AS "t0_c3", "t"."endorsement" AS "t0_c4", "t"."full_name" AS "t0_c5", "t"."party" AS "t0_c6", "t"."date_published" AS "t0_c7", "t"."publish" AS "t0_c8", "t"."scorecard" AS "t0_c9", "t"."url" AS "t0_c10", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3" FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE ("t"."state_abbr"=:yp0 AND "t"."district_id" IN (4615, ) AND "t"."publish"=:yp1)' in C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php:528
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1292): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1472): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(118): CActiveRecord->findAllByAttributes(Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(57): ApiController->_getCandidates(Array)
+#8 C:\xampp\htdocs\HSLF\framework\web\actions\CInlineAction.php(50): ApiController->actionView()
+#9 C:\xampp\htdocs\HSLF\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#10 C:\xampp\htdocs\HSLF\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#11 C:\xampp\htdocs\HSLF\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(276): CController->run('view')
+#13 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(135): CWebApplication->runController('api/view')
+#14 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\api.php(16): CApplication->run()
+#16 {main}
+REQUEST_URI=/api/candidates/state/or/district/3
+---
+2012/06/05 21:31:14 [trace] [system.CModule] Loading "errorHandler" application component
+2012/06/05 21:31:15 [trace] [system.CModule] Loading "log" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:15 [trace] [system.CModule] Loading "request" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:15 [trace] [system.CModule] Loading "urlManager" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:15 [trace] [system.CModule] Loading "db" application component
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+2012/06/05 21:31:15 [trace] [system.db.CDbConnection] Opening DB connection
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
+	attrelid=(
+		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
+			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
+		)
+	)
+    AND attnum IN (1)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+2012/06/05 21:31:15 [trace] [system.db.ar.CActiveRecord] District.findByAttributes()
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 AND "t"."number"=:yp2 LIMIT 1
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\Candidate.php (36)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\Candidate.php (36)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
+	attrelid=(
+		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
+			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
+		)
+	)
+    AND attnum IN (1)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\Candidate.php (36)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:31:15 [trace] [system.db.ar.CActiveRecord] Candidate.findAllByAttributes()
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT "t"."id" AS "t0_c0", "t"."state_abbr" AS "t0_c1", "t"."district_id" AS "t0_c2", "t"."type" AS "t0_c3", "t"."endorsement" AS "t0_c4", "t"."full_name" AS "t0_c5", "t"."party" AS "t0_c6", "t"."date_published" AS "t0_c7", "t"."publish" AS "t0_c8", "t"."scorecard" AS "t0_c9", "t"."url" AS "t0_c10", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3" FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE ("t"."state_abbr"=:yp0 AND "t"."district_id" IN (4615, ) AND "t"."publish"=:yp1)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:15 [trace] [system.CModule] Loading "coreMessages" application component
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:15 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near ")"
+LINE 1: ..."state_abbr"='or' AND "t"."district_id" IN (4615, ) AND "t"....
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."state_abbr" AS "t0_c1", "t"."district_id" AS "t0_c2", "t"."type" AS "t0_c3", "t"."endorsement" AS "t0_c4", "t"."full_name" AS "t0_c5", "t"."party" AS "t0_c6", "t"."date_published" AS "t0_c7", "t"."publish" AS "t0_c8", "t"."scorecard" AS "t0_c9", "t"."url" AS "t0_c10", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3" FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE ("t"."state_abbr"=:yp0 AND "t"."district_id" IN (4615, ) AND "t"."publish"=:yp1).
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:15 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near ")"
+LINE 1: ..."state_abbr"='or' AND "t"."district_id" IN (4615, ) AND "t"....
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."state_abbr" AS "t0_c1", "t"."district_id" AS "t0_c2", "t"."type" AS "t0_c3", "t"."endorsement" AS "t0_c4", "t"."full_name" AS "t0_c5", "t"."party" AS "t0_c6", "t"."date_published" AS "t0_c7", "t"."publish" AS "t0_c8", "t"."scorecard" AS "t0_c9", "t"."url" AS "t0_c10", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3" FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE ("t"."state_abbr"=:yp0 AND "t"."district_id" IN (4615, ) AND "t"."publish"=:yp1)' in C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php:528
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1292): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1472): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(118): CActiveRecord->findAllByAttributes(Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(57): ApiController->_getCandidates(Array)
+#8 C:\xampp\htdocs\HSLF\framework\web\actions\CInlineAction.php(50): ApiController->actionView()
+#9 C:\xampp\htdocs\HSLF\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#10 C:\xampp\htdocs\HSLF\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#11 C:\xampp\htdocs\HSLF\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(276): CController->run('view')
+#13 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(135): CWebApplication->runController('api/view')
+#14 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\api.php(16): CApplication->run()
+#16 {main}
+REQUEST_URI=/api/candidates/state/or/district/3
+---
+2012/06/05 21:31:15 [trace] [system.CModule] Loading "errorHandler" application component
+2012/06/05 21:31:15 [trace] [system.CModule] Loading "log" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:15 [trace] [system.CModule] Loading "request" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:15 [trace] [system.CModule] Loading "urlManager" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:15 [trace] [system.CModule] Loading "db" application component
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+2012/06/05 21:31:15 [trace] [system.db.CDbConnection] Opening DB connection
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
+	attrelid=(
+		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
+			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
+		)
+	)
+    AND attnum IN (1)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+2012/06/05 21:31:15 [trace] [system.db.ar.CActiveRecord] District.findByAttributes()
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 AND "t"."number"=:yp2 LIMIT 1
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\Candidate.php (36)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\Candidate.php (36)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
+	attrelid=(
+		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
+			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
+		)
+	)
+    AND attnum IN (1)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\Candidate.php (36)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:31:15 [trace] [system.db.ar.CActiveRecord] Candidate.findAllByAttributes()
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT "t"."id" AS "t0_c0", "t"."state_abbr" AS "t0_c1", "t"."district_id" AS "t0_c2", "t"."type" AS "t0_c3", "t"."endorsement" AS "t0_c4", "t"."full_name" AS "t0_c5", "t"."party" AS "t0_c6", "t"."date_published" AS "t0_c7", "t"."publish" AS "t0_c8", "t"."scorecard" AS "t0_c9", "t"."url" AS "t0_c10", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3" FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE ("t"."state_abbr"=:yp0 AND "t"."district_id" IN (4615, ) AND "t"."publish"=:yp1)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:15 [trace] [system.CModule] Loading "coreMessages" application component
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:15 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near ")"
+LINE 1: ..."state_abbr"='or' AND "t"."district_id" IN (4615, ) AND "t"....
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."state_abbr" AS "t0_c1", "t"."district_id" AS "t0_c2", "t"."type" AS "t0_c3", "t"."endorsement" AS "t0_c4", "t"."full_name" AS "t0_c5", "t"."party" AS "t0_c6", "t"."date_published" AS "t0_c7", "t"."publish" AS "t0_c8", "t"."scorecard" AS "t0_c9", "t"."url" AS "t0_c10", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3" FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE ("t"."state_abbr"=:yp0 AND "t"."district_id" IN (4615, ) AND "t"."publish"=:yp1).
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:15 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near ")"
+LINE 1: ..."state_abbr"='or' AND "t"."district_id" IN (4615, ) AND "t"....
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."state_abbr" AS "t0_c1", "t"."district_id" AS "t0_c2", "t"."type" AS "t0_c3", "t"."endorsement" AS "t0_c4", "t"."full_name" AS "t0_c5", "t"."party" AS "t0_c6", "t"."date_published" AS "t0_c7", "t"."publish" AS "t0_c8", "t"."scorecard" AS "t0_c9", "t"."url" AS "t0_c10", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3" FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE ("t"."state_abbr"=:yp0 AND "t"."district_id" IN (4615, ) AND "t"."publish"=:yp1)' in C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php:528
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1292): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1472): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(118): CActiveRecord->findAllByAttributes(Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(57): ApiController->_getCandidates(Array)
+#8 C:\xampp\htdocs\HSLF\framework\web\actions\CInlineAction.php(50): ApiController->actionView()
+#9 C:\xampp\htdocs\HSLF\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#10 C:\xampp\htdocs\HSLF\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#11 C:\xampp\htdocs\HSLF\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(276): CController->run('view')
+#13 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(135): CWebApplication->runController('api/view')
+#14 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\api.php(16): CApplication->run()
+#16 {main}
+REQUEST_URI=/api/candidates/state/or/district/3
+---
+2012/06/05 21:31:15 [trace] [system.CModule] Loading "errorHandler" application component
+2012/06/05 21:31:15 [trace] [system.CModule] Loading "log" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:15 [trace] [system.CModule] Loading "request" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:15 [trace] [system.CModule] Loading "urlManager" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:15 [trace] [system.CModule] Loading "db" application component
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+2012/06/05 21:31:15 [trace] [system.db.CDbConnection] Opening DB connection
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
+	attrelid=(
+		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
+			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
+		)
+	)
+    AND attnum IN (1)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+2012/06/05 21:31:15 [trace] [system.db.ar.CActiveRecord] District.findByAttributes()
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 AND "t"."number"=:yp2 LIMIT 1
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\Candidate.php (36)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\Candidate.php (36)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
+	attrelid=(
+		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
+			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
+		)
+	)
+    AND attnum IN (1)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\Candidate.php (36)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:31:15 [trace] [system.db.ar.CActiveRecord] Candidate.findAllByAttributes()
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT "t"."id" AS "t0_c0", "t"."state_abbr" AS "t0_c1", "t"."district_id" AS "t0_c2", "t"."type" AS "t0_c3", "t"."endorsement" AS "t0_c4", "t"."full_name" AS "t0_c5", "t"."party" AS "t0_c6", "t"."date_published" AS "t0_c7", "t"."publish" AS "t0_c8", "t"."scorecard" AS "t0_c9", "t"."url" AS "t0_c10", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3" FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE ("t"."state_abbr"=:yp0 AND "t"."district_id" IN (4615, ) AND "t"."publish"=:yp1)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:15 [trace] [system.CModule] Loading "coreMessages" application component
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:15 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near ")"
+LINE 1: ..."state_abbr"='or' AND "t"."district_id" IN (4615, ) AND "t"....
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."state_abbr" AS "t0_c1", "t"."district_id" AS "t0_c2", "t"."type" AS "t0_c3", "t"."endorsement" AS "t0_c4", "t"."full_name" AS "t0_c5", "t"."party" AS "t0_c6", "t"."date_published" AS "t0_c7", "t"."publish" AS "t0_c8", "t"."scorecard" AS "t0_c9", "t"."url" AS "t0_c10", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3" FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE ("t"."state_abbr"=:yp0 AND "t"."district_id" IN (4615, ) AND "t"."publish"=:yp1).
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:15 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near ")"
+LINE 1: ..."state_abbr"='or' AND "t"."district_id" IN (4615, ) AND "t"....
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."state_abbr" AS "t0_c1", "t"."district_id" AS "t0_c2", "t"."type" AS "t0_c3", "t"."endorsement" AS "t0_c4", "t"."full_name" AS "t0_c5", "t"."party" AS "t0_c6", "t"."date_published" AS "t0_c7", "t"."publish" AS "t0_c8", "t"."scorecard" AS "t0_c9", "t"."url" AS "t0_c10", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3" FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE ("t"."state_abbr"=:yp0 AND "t"."district_id" IN (4615, ) AND "t"."publish"=:yp1)' in C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php:528
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1292): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1472): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(118): CActiveRecord->findAllByAttributes(Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(57): ApiController->_getCandidates(Array)
+#8 C:\xampp\htdocs\HSLF\framework\web\actions\CInlineAction.php(50): ApiController->actionView()
+#9 C:\xampp\htdocs\HSLF\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#10 C:\xampp\htdocs\HSLF\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#11 C:\xampp\htdocs\HSLF\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(276): CController->run('view')
+#13 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(135): CWebApplication->runController('api/view')
+#14 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\api.php(16): CApplication->run()
+#16 {main}
+REQUEST_URI=/api/candidates/state/or/district/3
+---
+2012/06/05 21:31:15 [trace] [system.CModule] Loading "errorHandler" application component
+2012/06/05 21:31:15 [trace] [system.CModule] Loading "log" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:15 [trace] [system.CModule] Loading "request" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:15 [trace] [system.CModule] Loading "urlManager" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:15 [trace] [system.CModule] Loading "db" application component
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+2012/06/05 21:31:15 [trace] [system.db.CDbConnection] Opening DB connection
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
+	attrelid=(
+		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
+			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
+		)
+	)
+    AND attnum IN (1)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+2012/06/05 21:31:15 [trace] [system.db.ar.CActiveRecord] District.findByAttributes()
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."type"=:yp1 AND "t"."number"=:yp2 LIMIT 1
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (112)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\Candidate.php (36)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\Candidate.php (36)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
+	attrelid=(
+		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
+			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
+		)
+	)
+    AND attnum IN (1)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\Candidate.php (36)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:31:15 [trace] [system.db.ar.CActiveRecord] Candidate.findAllByAttributes()
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT "t"."id" AS "t0_c0", "t"."state_abbr" AS "t0_c1", "t"."district_id" AS "t0_c2", "t"."type" AS "t0_c3", "t"."endorsement" AS "t0_c4", "t"."full_name" AS "t0_c5", "t"."party" AS "t0_c6", "t"."date_published" AS "t0_c7", "t"."publish" AS "t0_c8", "t"."scorecard" AS "t0_c9", "t"."url" AS "t0_c10", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3" FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE ("t"."state_abbr"=:yp0 AND "t"."district_id" IN (4615, ) AND "t"."publish"=:yp1)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:15 [trace] [system.CModule] Loading "coreMessages" application component
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:15 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near ")"
+LINE 1: ..."state_abbr"='or' AND "t"."district_id" IN (4615, ) AND "t"....
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."state_abbr" AS "t0_c1", "t"."district_id" AS "t0_c2", "t"."type" AS "t0_c3", "t"."endorsement" AS "t0_c4", "t"."full_name" AS "t0_c5", "t"."party" AS "t0_c6", "t"."date_published" AS "t0_c7", "t"."publish" AS "t0_c8", "t"."scorecard" AS "t0_c9", "t"."url" AS "t0_c10", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3" FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE ("t"."state_abbr"=:yp0 AND "t"."district_id" IN (4615, ) AND "t"."publish"=:yp1).
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (118)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:15 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near ")"
+LINE 1: ..."state_abbr"='or' AND "t"."district_id" IN (4615, ) AND "t"....
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."state_abbr" AS "t0_c1", "t"."district_id" AS "t0_c2", "t"."type" AS "t0_c3", "t"."endorsement" AS "t0_c4", "t"."full_name" AS "t0_c5", "t"."party" AS "t0_c6", "t"."date_published" AS "t0_c7", "t"."publish" AS "t0_c8", "t"."scorecard" AS "t0_c9", "t"."url" AS "t0_c10", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3" FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE ("t"."state_abbr"=:yp0 AND "t"."district_id" IN (4615, ) AND "t"."publish"=:yp1)' in C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php:528
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1292): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1472): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(118): CActiveRecord->findAllByAttributes(Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(57): ApiController->_getCandidates(Array)
+#8 C:\xampp\htdocs\HSLF\framework\web\actions\CInlineAction.php(50): ApiController->actionView()
+#9 C:\xampp\htdocs\HSLF\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#10 C:\xampp\htdocs\HSLF\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#11 C:\xampp\htdocs\HSLF\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(276): CController->run('view')
+#13 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(135): CWebApplication->runController('api/view')
+#14 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\api.php(16): CApplication->run()
+#16 {main}
+REQUEST_URI=/api/candidates/state/or/district/3
+---
+2012/06/05 21:31:15 [trace] [system.CModule] Loading "errorHandler" application component
+2012/06/05 21:31:52 [trace] [system.CModule] Loading "log" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:52 [trace] [system.CModule] Loading "request" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:52 [trace] [system.CModule] Loading "urlManager" application component
+in C:\xampp\htdocs\HSLF\html\api.php (16)
+2012/06/05 21:31:52 [trace] [system.CModule] Loading "db" application component
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:31:52 [trace] [system.db.CDbConnection] Opening DB connection
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:31:52 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
+FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+WHERE a.attnum > 0 AND NOT a.attisdropped
+	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
+ORDER BY a.attnum
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:31:52 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
+	SELECT
+		conname,
+		CASE WHEN contype='f' THEN
+			pg_catalog.pg_get_constraintdef(oid)
+		ELSE
+			'CHECK (' || consrc || ')'
+		END AS consrc,
+		contype,
+		conrelid AS relid,
+		NULL AS indkey
+	FROM
+		pg_catalog.pg_constraint
+	WHERE
+		contype IN ('f', 'c')
+	UNION ALL
+	SELECT
+		pc.relname,
+		NULL,
+		CASE WHEN indisprimary THEN
+				'p'
+		ELSE
+				'u'
+		END,
+		pi.indrelid,
+		indkey
+	FROM
+		pg_catalog.pg_class pc,
+		pg_catalog.pg_index pi
+	WHERE
+		pc.oid=pi.indexrelid
+		AND EXISTS (
+			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
+			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
+			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
+	)
+) AS sub
+WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
+	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
+	WHERE nspname=:schema))
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:31:52 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
+	attrelid=(
+		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
+			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
+		)
+	)
+    AND attnum IN (1)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+2012/06/05 21:31:52 [trace] [system.db.ar.CActiveRecord] District.findByAttributes()
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:31:52 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."number"=:yp1 LIMIT 1
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:31:52 [trace] [system.CModule] Loading "coreMessages" application component
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:31:52 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
+LINE 1: ..." "t" WHERE "t"."state_abbr"='or' AND "t"."number"=0 LIMIT 1
+                                                             ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."number"=:yp1 LIMIT 1.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (133)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (110)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (57)
+2012/06/05 21:31:52 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
+LINE 1: ..." "t" WHERE "t"."state_abbr"='or' AND "t"."number"=0 LIMIT 1
+                                                             ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."number"=:yp1 LIMIT 1' in C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php:528
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php(408): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1287): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1455): CActiveRecord->query(Object(CDbCriteria))
+#3 C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php(133): CActiveRecord->findByAttributes(Array)
+#4 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(110): District::getIdByStateAndDistrict('or', 0)
+#5 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(57): ApiController->_getCandidates(Array)
+#6 C:\xampp\htdocs\HSLF\framework\web\actions\CInlineAction.php(50): ApiController->actionView()
+#7 C:\xampp\htdocs\HSLF\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#8 C:\xampp\htdocs\HSLF\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#9 C:\xampp\htdocs\HSLF\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(276): CController->run('view')
+#11 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(135): CWebApplication->runController('api/view')
+#12 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#13 C:\xampp\htdocs\HSLF\html\api.php(16): CApplication->run()
+#14 {main}
+REQUEST_URI=/api/candidates/state/or/district/3
+---
+2012/06/05 21:31:52 [trace] [system.CModule] Loading "errorHandler" application component

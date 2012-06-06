@@ -7,6 +7,9 @@ $this->breadcrumbs = array(
 $this->menu = array(
     array('label' => 'Create a ballot item', 'url' => array('create')),
 );
+
+
+
 ?>
 
 <h1>Manage Ballot Items</h1>

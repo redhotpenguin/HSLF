@@ -36,8 +36,14 @@ $this->widget('zii.widgets.CDetailView', array(
         'date_published',
         'published',
         'party',
+        array(
+            'name'=>'image_url',
+            'label'=> 'Image',
+            'value'=> "<a href='$model->image_url' target='_blank'> $model->image_url </a>",
+            'type'=>'raw',
+            
+        ),
         'url',
-        'image_url',
         'election_result_id',
         'slug',
         array(

@@ -27,9 +27,9 @@
  */
 class BallotItem extends CActiveRecord {
 
-    public $district_number; // not part of the model, here for cgridview (admin search)
-    public $district_type; // not part of the model, here for cgridview (admin search)
     public $state_abbr; // not part of the model, here for cgridview (admin search)
+    public $district_type; // not part of the model, here for cgridview (admin search)
+    public $district_number; // not part of the model, here for cgridview (admin search)
 
     /**
      * Returns the static model of the specified AR class.
@@ -109,11 +109,14 @@ class BallotItem extends CActiveRecord {
      */
     public function search() {
         $criteria = new CDbCriteria;
+
+        $criteria->with = array('district');
+
+
         // search by relationship (district)
         if ($this->district_number || $this->district_type || $this->state_abbr) {
             $criteria->together = true;
             // Join the 'district' table
-            $criteria->with = array('district');
 
             if ($this->district_number)
                 $criteria->compare('district.number', $this->district_number, false);
@@ -144,13 +147,37 @@ class BallotItem extends CActiveRecord {
                     'pagination' => array(
                         'pageSize' => 50,
                     ),
+                    'sort' => array(
+                        'attributes' => array(
+                            'state_abbr' => array(
+                                'asc' => 'district.state_abbr',
+                                'desc' => 'district.state_abbr DESC',
+                            ),
+                            'district_type' => array(
+                                'asc' => 'district.type',
+                                'desc' => 'district.type DESC',
+                            ),
+                            'district_number' => array(
+                                'asc' => 'district.number',
+                                'desc' => 'district.number DESC',
+                            ),
+                            '*',
+                    ))
                 ));
     }
 
+    /**
+     * Return the different priority options
+     * @return array array of priority options
+     */
     public function getPriorityOptions() {
         return array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10);
     }
 
+    /**
+     * Return the different item options
+     * @return array array of item options
+     */
     public function getItemTypeOptions() {
         return array(
             'candidate' => 'Candidate',
@@ -158,49 +185,85 @@ class BallotItem extends CActiveRecord {
         );
     }
 
-    // executed after the form is validated
+    /**
+     *  Executed after the form is submitted. Set the next_election_date to null if empty (required by the DB)
+     */
     protected function afterValidate() {
         // PostgresSql doesn't support empty strings for Timestamp type columns. Use NULL instead
         if ($this->next_election_date == '')
             $this->next_election_date = null;
     }
 
+    /**
+     * Find all the ballot models by state
+     * @param string $state_abbr abbreviation of the state
+     * @return array return array of ballot items
+     */
     public function findAllByState($state_abbr) {
         $district_ids = District::model()->getIdsByState($state_abbr);
 
         return $this->with('district', 'recommendation', 'electionResult')->findAllByAttributes(array('district_id' => $district_ids));
     }
 
-    public function findAllByDistrictType($state_abbr, $district_type) {
-
+    /**
+     * Find all the ballot models by state and by type. Can also include statewide districts
+     * @param string $state_abbr abbreviation of the state
+     * @param string $district_type type of the district
+     * @param bool  $include_state_wide_district if true, include state wide districts
+     * @return array return array of ballot items
+     */
+    public function findAllByDistrictType($state_abbr, $district_type, $include_state_wide_district = false) {
         $district_ids = District::model()->getIdsByDistrictType($state_abbr, $district_type);
 
-        return $this->with('district', 'recommendation', 'electionResult')->findAllByAttributes(array('district_id' => $district_ids));
+        if ($include_state_wide_district) {
+            $state_district_ids = District::model()->getIdsByDistrictType($state_abbr, 'statewide');
+            // include state wide districts    
+            $district_ids = array_merge($district_ids, $state_district_ids);
+        }
+
+
+        return $this->with('district', 'recommendation', 'electionResult')->findAllByAttributes(array('district_id' => $district_ids, 'published' => 'yes'));
     }
 
-    public function findAllByDistrict($state_abbr, $district_type, $district) {
+    /**
+     * Find all the ballot models by state, by type and by district name. Can also include statewide districts
+     * @param string $state_abbr abbreviation of the state
+     * @param string $district_type type of the district
+     * @param string $district name of the district
+     * @param bool  $include_state_wide_district if true, include state wide districts
+     * @return array return array of ballot items
+     */
+    public function findAllByDistrict($state_abbr, $district_type, $district, $include_state_wide_district = false) {
         $district_id = District::model()->findByAttributes(array(
                     'state_abbr' => $state_abbr,
                     'type' => $district_type,
                     'number' => $district,
                 ))->id;
-        /*
-         * todo: business logic
-         * include district ids where 
-         * district_type = statewide 
-         */
-        
+
+        if ($include_state_wide_district) {
+            $state_district_ids = District::model()->getIdsByDistrictType($state_abbr, 'statewide');
+            // include state wide districts    
+            $districts = array_merge(array($district_id), $state_district_ids);
+        }else
+            $districts = array($district_id);
+
         if (!$district_id)
             return false;
 
-        return $this->with('district', 'recommendation', 'electionResult')->findAllByAttributes(array('district_id' => $district_id));
+        return $this->with('district', 'recommendation', 'electionResult')->findAllByAttributes(array('district_id' => $districts, 'published' => 'yes'));
     }
 
+    /**
+     * Find a unique  ballot model by the year and slug
+     * @param integer $year year of the ballot was published
+     * @param string $slug  slug of the ballot model
+     * @return object return a ballot_item object
+     */
     public function findByPublishedYearAndSlug($year, $slug) {
         return $this->findByAttributes(
                         array(
                     'slug' => $slug,
-                        ), array('condition' => "date_published BETWEEN '{$year}-01-01 00:00:00' AND '{$year}-12-31 23:59:59'")
+                        ), array('condition' => "date_published BETWEEN '{$year}-01-01 00:00:00' AND '{$year}-12-31 23:59:59' AND published='yes' ")
         );
     }
 

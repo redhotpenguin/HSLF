@@ -4,6 +4,8 @@
 
 $backend = dirname(dirname(__FILE__));
 $frontend = dirname($backend);
+$site_url = 'http://www.voterguide.com';
+
 Yii::setPathOfAlias('admin', $backend);
 
 if (isset($env['DOTCLOUD_DB_SQL_HOST']))
@@ -114,7 +116,9 @@ return array(
         'api_secret' => 'PqiW_IDKL3mFi_OirCqOe-u',
         'urbanairship_app_key' => 'ouRCLPaBRRasv4K1AIw-xA',
         'urbanairship_app_master_secret' => '7hd19C6rSzyrbKM3k6KqDg',
-        'site_url' => 'http://www.voterguide.com',
+        'site_url' => $site_url,
+        'upload_path' => $site_url . '/content/upload',
+        'upload_dir' => '/../content/upload',
     ),
     'theme' => 'hslf'
 );

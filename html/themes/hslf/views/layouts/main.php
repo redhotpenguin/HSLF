@@ -3,6 +3,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="language" content="en" />
+        <meta name="robots" content="noindex" />
+
 
         <!-- blueprint CSS framework -->
         <link rel="stylesheet" type="text/css" href="/themes/hslf/css/screen.css" media="screen, projection" />
