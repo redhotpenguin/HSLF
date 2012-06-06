@@ -82,7 +82,7 @@ class ApiController extends Controller {
 
     //api/ballot_items/w{3}/
     private function _getBallotItems($param) {
-  
+
         // todo sanitize $param
         $state_abbr = $param['state_abbr'];
         $district_type = $param['district_type'];
