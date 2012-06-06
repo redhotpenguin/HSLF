@@ -78,7 +78,7 @@ return array(
                 array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>/district_type/<district_type:\w{2,15}>', 'verb' => 'GET'),
                 // ex: /api/ballot_items/state/or/district_type/congressional/district/1
                
-                array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>/district_type/<district_type:\w{2,15}>/district/<district:\w+>', 'verb' => 'GET'),
+                array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>/district_type/<district_type:\w{2,15}>/district/<district:\[^\/]+>', 'verb' => 'GET'),
                 array('api/view', 'pattern' => 'api/<model:\w+>/name/<type:\w+>', 'verb' => 'GET'),
                 array('api/view', 'pattern' => 'api/<model:\w+>/<id:\d+>/', 'verb' => 'GET'), // ex: /api/candidate/12/
                 array('api/view', 'pattern' => 'api/<model:\w+>/<id:\d+>/<filter:\w+>', 'verb' => 'GET'), // ex: /api/candidate/12/issue
@@ -129,5 +129,6 @@ return array(
         'urbanairship_app_key' => 'ouRCLPaBRRasv4K1AIw-xA',
         'urbanairship_app_master_secret' => '7hd19C6rSzyrbKM3k6KqDg',
         'site_url' => 'http://www.voterguide.com',
+        'share_url'=> 'http://www.voterguide.com' // in case we want to store the shared urls in another server
     ),
 );

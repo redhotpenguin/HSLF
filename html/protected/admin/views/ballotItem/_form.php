@@ -141,9 +141,9 @@
 
     <div class="row">
         <?php
-        echo $form->labelEx($model, 'slug');
-        echo $form->textField($model, 'slug', array('size' => 50, 'maxlength' => 200, 'placeholder' => 'Page slug'));
-        echo $form->error($model, 'slug');
+        echo $form->labelEx($model, 'url');
+        echo $form->textField($model, 'url', array('size' => 50, 'maxlength' => 500, 'placeholder' => 'Page url'));
+        echo $form->error($model, 'url');
         ?>
         <br/>
         <?php

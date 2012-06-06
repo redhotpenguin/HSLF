@@ -18,8 +18,6 @@
  * @property string $url
  * @property string $image_url
  * @property integer $election_result_id
- * @property string  $slug
- *
  * The followings are the available model relations:
  * @property District $district
  * @property Recommendation $recommendation
@@ -30,13 +28,13 @@ class BallotItem extends CActiveRecord {
     public $state_abbr; // not part of the model, here for cgridview (admin search)
     public $district_type; // not part of the model, here for cgridview (admin search)
     public $district_number; // not part of the model, here for cgridview (admin search)
+    private $all_district_types = array('statewide', 'congressional', 'upper_house', 'lower_house', 'county', 'city');
 
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
      * @return BallotItem the static model class
      */
-
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
@@ -55,15 +53,15 @@ class BallotItem extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('district_id, item, recommendation_id, priority, date_published, published, election_result_id, slug', 'required'),
+            array('district_id, item, recommendation_id, priority, date_published, published, election_result_id', 'required'),
             array('district_id, recommendation_id, priority, election_result_id', 'numerical', 'integerOnly' => true),
             array('item_type, party', 'length', 'max' => 128),
-            array('slug', 'length', 'max' => 200), // todo: block quotes and double quotes
+            array('url', 'length', 'max' => 500),
             array('published', 'length', 'max' => 16),
             array('next_election_date, detail, url, image_url', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, district_id, item, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party, url, image_url, election_result_id, district_number, district_type, state_abbr, slug', 'safe', 'on' => 'search'),
+            array('id, district_id, item, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party, url, image_url, election_result_id, district_number, district_type, state_abbr', 'safe', 'on' => 'search'),
         );
     }
 
@@ -99,7 +97,6 @@ class BallotItem extends CActiveRecord {
             'url' => 'URL',
             'image_url' => 'Image URL',
             'election_result_id' => 'Election Result',
-            'slug' => 'Slug'
         );
     }
 
@@ -140,7 +137,6 @@ class BallotItem extends CActiveRecord {
         $criteria->compare('url', $this->url, true);
         $criteria->compare('image_url', $this->image_url, true);
         $criteria->compare('election_result_id', $this->election_result_id);
-        $criteria->compare('slug', $this->slug);
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
@@ -202,7 +198,9 @@ class BallotItem extends CActiveRecord {
     public function findAllByState($state_abbr) {
         $district_ids = District::model()->getIdsByState($state_abbr);
 
-        return $this->with('district', 'recommendation', 'electionResult')->findAllByAttributes(array('district_id' => $district_ids));
+        $ballots = $this->with('district', 'recommendation', 'electionResult')->findAllByAttributes(array('district_id' => $district_ids));
+
+        return self::applyFilter($ballots);
     }
 
     /**
@@ -221,8 +219,8 @@ class BallotItem extends CActiveRecord {
             $district_ids = array_merge($district_ids, $state_district_ids);
         }
 
-
-        return $this->with('district', 'recommendation', 'electionResult')->findAllByAttributes(array('district_id' => $district_ids, 'published' => 'yes'));
+        $ballots = $this->with('district', 'recommendation', 'electionResult')->findAllByAttributes(array('district_id' => $district_ids, 'published' => 'yes'));
+        return self::applyFilter($ballots);
     }
 
     /**
@@ -233,38 +231,80 @@ class BallotItem extends CActiveRecord {
      * @param bool  $include_state_wide_district if true, include state wide districts
      * @return array return array of ballot items
      */
-    public function findAllByDistrict($state_abbr, $district_type, $district, $include_state_wide_district = false) {
+    public function findAllByDistrict($state_abbr, $district_type, $district, $include_larger_districts = false) {
+
         $district_id = District::model()->findByAttributes(array(
                     'state_abbr' => $state_abbr,
                     'type' => $district_type,
                     'number' => $district,
                 ))->id;
 
-        if ($include_state_wide_district) {
-            $state_district_ids = District::model()->getIdsByDistrictType($state_abbr, 'statewide');
-            // include state wide districts    
-            $districts = array_merge(array($district_id), $state_district_ids);
+        if ($include_larger_districts) {
+
+            // find the district types larger (or equal) than $district_type (cant be superior than statewide yet)
+            if ($district_type != 'statewide') {
+                $position = array_search($district_type, $this->all_district_types);
+                $larger_district_types = array_slice($this->all_district_types, 0, $position);
+
+                // include the request district_type
+                $larger_district_types = array_merge ($larger_district_types, array($district_type));
+            } else {
+                $larger_district_types = array('statewide');
+            }
+
+            $districts = District::model()->getIdsByDistrictTypes($state_abbr, $larger_district_types);
+            
         }else
             $districts = array($district_id);
 
         if (!$district_id)
             return false;
 
-        return $this->with('district', 'recommendation', 'electionResult')->findAllByAttributes(array('district_id' => $districts, 'published' => 'yes'));
+        $ballots = $this->with('district', 'recommendation', 'electionResult')->findAllByAttributes(array('district_id' => $districts, 'published' => 'yes'));
+
+        return self::applyFilter($ballots);
     }
 
     /**
-     * Find a unique  ballot model by the year and slug
+     * Find a unique  ballot model by the year and url
      * @param integer $year year of the ballot was published
-     * @param string $slug  slug of the ballot model
+     * @param string url  url of the ballot model
      * @return object return a ballot_item object
      */
-    public function findByPublishedYearAndSlug($year, $slug) {
+    public function findByPublishedYearAndUrl($year, $url) {
         return $this->findByAttributes(
                         array(
-                    'slug' => $slug,
+                    'url' => $url,
                         ), array('condition' => "date_published BETWEEN '{$year}-01-01 00:00:00' AND '{$year}-12-31 23:59:59' AND published='yes' ")
         );
+    }
+
+    /**
+     * Apply set of filters to an array of ballot items
+     * @param array $ballots array of ballotItem
+     * @return array of filtered ballotItem
+     */
+    private static function applyFilter($ballots) {
+        if (is_array($ballots)) {
+            foreach ($ballots as $ballot) {
+                $ballot->url = BallotItem::addSiteUrlFilter($ballot->url);
+            }
+        } else {
+            $ballots->url = BallotItem::addSiteUrlFilter($ballot->url);
+        }
+
+        return $ballots;
+    }
+
+    /**
+     * Prepend the share_url option to the url field
+     * @param object $BallotItem BallotITem object
+     * @return string filtered ballot item
+     */
+    private static function addSiteUrlFilter($ballot_url) {
+        $share_url = Yii::app()->params['share_url'] . '/ballot';
+
+        return $share_url . '/' . date('Y') . '/' . $ballot_url;
     }
 
 }

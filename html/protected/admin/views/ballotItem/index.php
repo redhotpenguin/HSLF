@@ -23,7 +23,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'header' => 'District',
             'value' => '$data->district->state_abbr." ".$data->district->type." ".$data->district->number'
         ),
-        'slug',
+        'url',
         array(
             'header' => 'Election date',
             'value' => '$data->next_election_date',

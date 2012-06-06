@@ -82,6 +82,7 @@ class ApiController extends Controller {
 
     //api/ballot_items/w{3}/
     private function _getBallotItems($param) {
+  
         // todo sanitize $param
         $state_abbr = $param['state_abbr'];
         $district_type = $param['district_type'];
@@ -89,27 +90,25 @@ class ApiController extends Controller {
         if (isset($param['district'])) {
             $district = $param['district'];
             $ballot_items = BallotItem::model()->findAllByDistrict($state_abbr, $district_type, $district, true);
-        } elseif($district_type) {
+        } elseif ($district_type) {
             $ballot_items = BallotItem::model()->findAllByDistrictType($state_abbr, $district_type, true);
-        }else{
-           $ballot_items = BallotItem::model()->findAllByState($state_abbr);
+        } else {
+            $ballot_items = BallotItem::model()->findAllByState($state_abbr);
         }
 
         return $ballot_items;
     }
 
     private function _getCandidates($param) {
-       
+
         $search_attributes = array();
         if (isset($param['state_abbr']))
             $search_attributes['state_abbr'] = $param['state_abbr'];
         else
             return false;
 
-        
- 
         if (isset($param['district_number'])) {
-            
+
 
             $senator_candidate_district_id = District::getIdByStateAndDistrict($param['state_abbr'], 0);
 
@@ -369,8 +368,6 @@ class ApiController extends Controller {
 
             $json_encoded_result = CJSON_Nested::encode($container);
 
-            // API consumers really want a district_name, not a district_id 
-            $json_encoded_result = str_replace('district_id', 'district_number', $json_encoded_result);
             echo $json_encoded_result;
         }
         exit;

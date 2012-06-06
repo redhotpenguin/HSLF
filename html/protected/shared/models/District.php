@@ -192,4 +192,52 @@ class District extends CActiveRecord {
         return array_map(array(&$this, 'extract_id'), $result);
     }
 
+    /**
+     * Get all the district ids within a state and for multiple district types
+     * @param integer $state_abbr  abbreviaiton of the state
+     * @param $district_types  array of district types
+     * @return array array of district ids
+     */
+    public function getIdsByDistrictTypes($state_abbr, array $district_types) {
+        /*
+         * district_types = array('statewide,'congressional', 'upper_house', ... )
+         */
+        
+        $command = Yii::app()->db->createCommand();
+
+     
+         /*
+         * In order to query the district table using condition logic
+         * add they keyword 'type' in front of the district type
+         *  array( type='statewide', type='congressional', type='upper_house', .... )
+         */
+        $district_types = array_map(array(&$this, 'addType'), $district_types);
+        
+        
+        /*
+         *  add the element 'OR' on top of the array
+         *  array( 'OR ', type='statewide', type='congressional', type='upper_house', .... )
+         */
+        array_unshift($district_types, 'OR');
+
+
+        $result = $command->select('id')
+                ->from('district')
+                // ->where('state_abbr=:state_abbr AND type=:district_type', array(':state_abbr' => $state_abbr, ':district_type' => 'statewide'))
+                ->where(array('and', "state_abbr='$state_abbr'", $district_types ))
+                ->queryAll();
+
+        return array_map(array(&$this, 'extract_id'), $result);
+    }
+    
+      /**
+       * Prepend the keyword 'type' to an element
+       * @param type $a
+       * @return type 
+       */
+      function addType($a) {
+        return 'type=' . "'$a'";
+    }
+
+
 }

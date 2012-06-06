@@ -55,7 +55,6 @@ class BallotItemController extends Controller {
         // import FileUpload helper class
         Yii::import('admin.models.helpers.FileUpload');
         
-        
         $model = new BallotItem;
 
         if (isset($_POST['BallotItem'])) {

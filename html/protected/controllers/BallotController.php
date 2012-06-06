@@ -21,7 +21,7 @@ class BallotController extends Controller {
         $slug = $_GET['slug'];
         
 
-        $ballot = BallotItem::model()->findByPublishedYearAndSlug($year, $slug);
+        $ballot = BallotItem::model()->findByPublishedYearAndUrl($year, $slug);
 
         $this->render('view', array(
             'ballot' => $ballot,

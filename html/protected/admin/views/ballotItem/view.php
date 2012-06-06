@@ -45,7 +45,6 @@ $this->widget('zii.widgets.CDetailView', array(
         ),
         'url',
         'election_result_id',
-        'slug',
         array(
             'name' => 'district_id',
             'value' => $district

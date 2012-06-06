@@ -44,7 +44,7 @@ class SearchController extends Controller {
             $doc = new Zend_Search_Lucene_Document();
 
             $year = date("Y", strtotime($ballot->date_published));
-            $permalink = '/ballot/' . $year . '/' . $ballot->slug;
+            $permalink = '/ballot/'.date('Y').'/'.$ballot->url;
 
             $doc->addField(Zend_Search_Lucene_Field::Keyword('ballot_id', $ballot->id));
             $doc->addField(Zend_Search_Lucene_Field::Text('title', CHtml::encode($ballot->item), 'utf-8'));
