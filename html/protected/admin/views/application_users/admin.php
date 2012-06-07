@@ -46,11 +46,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
         //'device_token',
         'latitude',
         'longitude',
-        'state_abbr',
-    
-        
-        
-        
+  
          array('name' => 'state_abbr',
             'header' => 'State',
             'value' => '$data->district->state_abbr'
