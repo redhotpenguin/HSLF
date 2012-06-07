@@ -21,6 +21,8 @@ require_once('urbanairship/urbanairship.php');
  */
 class Application_user extends CActiveRecord {
 
+    public $state_abbr; // not part of the model, here for cgridview (admin search)
+    public $district_type; // not part of the model, here for cgridview (admin search)
     public $district_number; // not part of the model, here for cgridview
 
     /**
@@ -54,7 +56,7 @@ class Application_user extends CActiveRecord {
             array('user_agent', 'length', 'max' => 1024),
             array('latitude, longitude, registration, type, tags', 'safe'),
             array('registration', 'date', 'format' => 'yyyy-M-d H:m:s'),
-            array('id, device_token, latitude, longitude, state_abbr, district_id, district_number, registration, type, user_agent', 'safe', 'on' => 'search'),
+            array('id, device_token, latitude, longitude, state_abbr, district_id, district_type, district_number, registration, type, user_agent', 'safe', 'on' => 'search'),
         );
     }
 
@@ -68,7 +70,6 @@ class Application_user extends CActiveRecord {
             'stateAbbr' => array(self::BELONGS_TO, 'State', 'state_abbr'),
             'district' => array(self::BELONGS_TO, 'District', 'district_id'),
             'tags' => array(self::MANY_MANY, 'Tag', 'app_user_tag(app_user_id, tag_id)'),
-
         );
     }
 
@@ -96,18 +97,20 @@ class Application_user extends CActiveRecord {
     public function search() {
         $criteria = new CDbCriteria;
 
+        $criteria->with = array('district');
 
-        if ($this->district_number) {
+
+        // search by relationship (district)
+        if ($this->district_number || $this->district_type || $this->state_abbr) {
             $criteria->together = true;
             // Join the 'district' table
-            $criteria->with = array('district');
 
-            $criteria->compare('district.number', $this->district_number, false);
-            $criteria->compare('district.state_abbr', $this->state_abbr, false);
-        } else {
-            $criteria->together = false;
-            $criteria->with = array();
-            $criteria->compare('state_abbr', $this->state_abbr, true);
+            if ($this->district_number)
+                $criteria->compare('district.number', $this->district_number, false);
+            if ($this->district_type)
+                $criteria->compare('district.type', $this->district_type, true);
+            if ($this->state_abbr)
+                $criteria->compare('district.state_abbr', $this->state_abbr, true);
         }
 
         $criteria->compare('id', $this->id);
@@ -119,7 +122,26 @@ class Application_user extends CActiveRecord {
         $criteria->compare('user_agent', $this->user_agent, true);
 
         return new CActiveDataProvider($this, array(
-                    'criteria' => $criteria
+                    'criteria' => $criteria,
+                    'pagination' => array(
+                        'pageSize' => 50,
+                    ),
+                    'sort' => array(
+                        'attributes' => array(
+                            'state_abbr' => array(
+                                'asc' => 'district.state_abbr',
+                                'desc' => 'district.state_abbr DESC',
+                            ),
+                            'district_type' => array(
+                                'asc' => 'district.type',
+                                'desc' => 'district.type DESC',
+                            ),
+                            'district_number' => array(
+                                'asc' => 'district.number',
+                                'desc' => 'district.number DESC',
+                            ),
+                            '*',
+                    ))
                 ));
     }
 
@@ -137,10 +159,10 @@ class Application_user extends CActiveRecord {
             $this->latitude = NULL;
         if (!$this->longitude)
             $this->longitude = NULL;
-        
+
         // synchronize tags with urban airship
         $this->synchronizeUAPTags();
-        
+
         return parent::beforeSave();
     }
 
@@ -394,7 +416,7 @@ class Application_user extends CActiveRecord {
     }
 
     public function synchronizeUAPTags() {
-       $uap_notifier = new UrbanAirshipNotifier();
+        $uap_notifier = new UrbanAirshipNotifier();
 
         $uap_tags = array(
             $this->stateAbbr->abbr,
@@ -403,7 +425,7 @@ class Application_user extends CActiveRecord {
 
         foreach ($this->getTagsName() as $tag)
             array_push($uap_tags, $tag);
-        
+
         return $uap_notifier->updateRichUserTags($this->uap_user_id, $this->device_token, $uap_tags);
     }
 

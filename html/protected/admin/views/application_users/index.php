@@ -24,19 +24,16 @@ $this->widget('zii.widgets.grid.CGridView', array(
     'dataProvider' => $dataProvider,
     'columns' => array(
         'device_token',
-        'state_abbr',
         array(
-            'name' => 'district',
-            'value' => '$data->district->number',
+            'header' => 'District',
+            'value' => '$data->district->state_abbr." ".$data->district->type." ".$data->district->number'
         ),
         'type',
         'registration',
-
         array(// display a column with "view", "update" and "delete" buttons
             'class' => 'CButtonColumn',
             'template' => $button_template,
         ),
     ),
 ));
-           
 ?>

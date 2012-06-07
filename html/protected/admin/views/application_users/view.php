@@ -15,18 +15,24 @@ $this->menu = array(
 <h1>View application user #<?php echo $model->id; ?></h1>
 
 <?php
+$state_name = $model->district->stateAbbr->name;
+$district_type = $model->district->type;
+$district_number = $model->district->number;
+
+
+$district = $state_name . ' ' . $district_type . ' - ' . $district_number;
+
 $this->widget('zii.widgets.CDetailView', array(
     'data' => $model,
     'attributes' => array(
         'id',
+        array(
+            'name' => 'district_id',
+            'value' => $district
+        ),
         'device_token',
         'latitude',
         'longitude',
-        'state_abbr',
-        array(
-            'name' => 'district_id',
-            'value' => $model->district->number,
-        ),
         'registration',
         'type',
         'user_agent',
@@ -46,8 +52,8 @@ if (!empty($user_metas)) {
     echo '<table>';
     foreach ($user_metas as $meta) {
         echo '<tr>';
-        echo '<td>'.  $meta['meta_key']   .'</td>';
- echo '<td>'.  $meta['meta_value']   .'</td>';
+        echo '<td>' . $meta['meta_key'] . '</td>';
+        echo '<td>' . $meta['meta_value'] . '</td>';
         echo '</tr>';
     }
 
@@ -62,8 +68,7 @@ $user_tags = $model->tags;
 
 if (!empty($user_tags)) {
     foreach ($user_tags as $tag) {
-       echo $tag->name.',';
+        echo $tag->name . ',';
     }
-
 }
 ?>

@@ -47,10 +47,26 @@ $this->widget('zii.widgets.grid.CGridView', array(
         'latitude',
         'longitude',
         'state_abbr',
-       array('name' => 'district_number',
+    
+        
+        
+        
+         array('name' => 'state_abbr',
+            'header' => 'State',
+            'value' => '$data->district->state_abbr'
+        ),     
+        
+        array('name' => 'district_type',
+            'header' => 'District type',
+            'value' => '$data->district->type'
+        ),
+   
+        array('name' => 'district_number',
             'header' => 'District number',
             'value' => '$data->district->number'
         ),
+        
+        
         array(
             'class' => 'CButtonColumn',
             'template' => $button_template,
