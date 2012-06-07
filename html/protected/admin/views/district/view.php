@@ -5,11 +5,10 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List District', 'url'=>array('index')),
-	array('label'=>'Create District', 'url'=>array('create')),
-	array('label'=>'Update District', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete District', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage District', 'url'=>array('admin')),
+	array('label'=>'Add a district', 'url'=>array('create')),
+	array('label'=>'Update', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Delete', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Deleting this District will also delete every ballot items associated to it, continue?')),
+	array('label'=>'Manage districts', 'url'=>array('admin')),
 );
 ?>
 

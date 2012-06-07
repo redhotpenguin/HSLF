@@ -4,8 +4,8 @@ $this->breadcrumbs = array(
 );
 
 $this->menu = array(
-    array('label' => 'Create District', 'url' => array('create')),
-    array('label' => 'Manage District', 'url' => array('admin')),
+    array('label' => 'Add a district', 'url' => array('create')),
+    array('label' => 'Manage districts', 'url' => array('admin')),
 );
 ?>
 
@@ -19,14 +19,16 @@ $dataProvider->pagination->pageSize = 60;
 $this->widget('zii.widgets.grid.CGridView', array(
     'dataProvider' => $dataProvider,
     'columns' => array(
-        'number',
         array(
             'name' => 'State',
             'value' => '$data->stateAbbr->name',
         ),
         'type',
+        'number',
         array(// display a column with "view", "update" and "delete" buttons
             'class' => 'CButtonColumn',
+             'deleteConfirmation'=>"js:'Deleting this District will also delete every ballot items associated to it, continue?'",
+
         ),
     ),
 ));
