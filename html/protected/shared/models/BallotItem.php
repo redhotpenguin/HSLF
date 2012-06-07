@@ -228,10 +228,9 @@ class BallotItem extends CActiveRecord {
      * @param string $state_abbr abbreviation of the state
      * @param string $district_type type of the district
      * @param string $district name of the district
-     * @param bool  $include_state_wide_district if true, include state wide districts
      * @return array return array of ballot items
      */
-    public function findAllByDistrict($state_abbr, $district_type, $district, $include_larger_districts = false) {
+    public function findAllByDistrict($state_abbr, $district_type, $district) {
 
         $district_id = District::model()->findByAttributes(array(
                     'state_abbr' => $state_abbr,
@@ -239,29 +238,30 @@ class BallotItem extends CActiveRecord {
                     'number' => $district,
                 ))->id;
 
-        if ($include_larger_districts) {
-
-            // find the district types larger (or equal) than $district_type (cant be superior than statewide yet)
-            if ($district_type != 'statewide') {
-                $position = array_search($district_type, $this->all_district_types);
-                $larger_district_types = array_slice($this->all_district_types, 0, $position);
-
-                // include the request district_type
-                $larger_district_types = array_merge ($larger_district_types, array($district_type));
-            } else {
-                $larger_district_types = array('statewide');
-            }
-
-            $districts = District::model()->getIdsByDistrictTypes($state_abbr, $larger_district_types);
-            
-        }else
-            $districts = array($district_id);
 
         if (!$district_id)
             return false;
 
-        $ballots = $this->with('district', 'recommendation', 'electionResult')->findAllByAttributes(array('district_id' => $districts, 'published' => 'yes'));
+        $ballots = $this->with('district', 'recommendation', 'electionResult')->findAllByAttributes(array('district_id' => $district_id, 'published' => 'yes'));
 
+        return self::applyFilter($ballots);
+    }
+
+    /**
+     * Find all the ballot models fora state, by types and by district names. Can also include statewide districts
+     * @param string $state_abbr abbreviation of the state
+     * @param array $district_types types of the district
+     * @param array $district name of the district
+     * @return array return array of ballot items
+     */
+    public function findAllByDistricts($state_abbr, array $district_types, array $districts) {
+       
+        $district_ids = District::model()->getIdsByDistricts($state_abbr, $district_types, $districts);
+
+        $param = array('order'=>'priority ASC'); // order by ballot item priority
+        
+        $ballots = $this->with('district', 'recommendation', 'electionResult')->findAllByAttributes(array('district_id' => $district_ids), $param);
+        
         return self::applyFilter($ballots);
     }
 
