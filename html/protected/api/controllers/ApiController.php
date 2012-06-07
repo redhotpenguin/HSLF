@@ -80,23 +80,38 @@ class ApiController extends Controller {
         }
     }
 
-    //api/ballot_items/w{3}/
+    //ex: /api/ballot_items/state/or/?districts=county/clackamas,city/portland
     private function _getBallotItems($param) {
 
-        // todo sanitize $param
-        $state_abbr = $param['state_abbr'];
-        $district_type = $param['district_type'];
+        $state_abbr = $_GET['state_abbr']; // #TODO: FILTER THIS
 
-        if (isset($param['district'])) {
-            $district = $param['district'];
-            $ballot_items = BallotItem::model()->findAllByDistrict($state_abbr, $district_type, $district, true);
-        } elseif ($district_type) {
-            $ballot_items = BallotItem::model()->findAllByDistrictType($state_abbr, $district_type, true);
-        } else {
-            $ballot_items = BallotItem::model()->findAllByState($state_abbr);
+        $encoded_districts = $_GET['districts'];
+
+        $encoded_districts = explode(',', $encoded_districts);
+
+        $district_types = array();
+        $districts = array();
+
+        foreach ($encoded_districts as $encoded_district) {
+            $d = explode('/', $encoded_district);
+            array_push($district_types, $d[0]);
+            array_push($districts, $d[1]);
         }
 
-        return $ballot_items;
+        $ballots = BallotItem::model()->findAllByDistricts($state_abbr, $district_types, $districts);
+        return $ballots;
+
+
+
+
+
+
+        $district_types = explode(',', $_GET['district_types']);
+
+        $districts = explode(',', $_GET['districts']);
+
+        $ballots = BallotItem::model()->findAllByDistricts($state_abbr, $district_types, $districts);
+        return $ballots;
     }
 
     private function _getCandidates($param) {
@@ -224,16 +239,17 @@ class ApiController extends Controller {
     }
 
     private function _add_applicationUser() {
-        $save_result = 0;
         if (!isset($_POST['device_token']) || !isset($_POST['state_abbr']) || !isset($_POST['district_number']) || !isset($_POST['type']) || !isset($_POST['uap_user_id'])) {
             return 'missing_parameter';
         }
+        $save_result = 0;
 
 
         $device_token = $_POST['device_token'];
         $user_state = $_POST['state_abbr'];
         $user_district_number = $_POST['district_number'];
-
+        $user_district_type = $_POST['district_type'];
+        
         $app_user = Application_user::model()->findByAttributes(array('device_token' => $device_token));
 
         if (!$app_user) { // if user is not already saved in the DB, create a new one
@@ -257,12 +273,17 @@ class ApiController extends Controller {
         else
             return 'invalid_state';
 
+        if(!District::isValidDistrictType($user_district_type))
+            return 'invalid_district_type';
 
         if (preg_match('/^[0-9]{1,}$/', $user_district_number)) { // check that $user_district number is only made of numbers
-            $district_id = District::getIdByStateAndDistrict($user_state, $user_district_number);
+            $district_id = District::getDistrictId($user_state, $user_district_type, $user_district_number);
+            error_log($district_id);
         }
         else
             return 'invalid_district';
+        
+        
 
         if (in_array($_POST['type'], array('android', 'ios')))
             $app_user->type = $_POST['type'];
@@ -276,7 +297,7 @@ class ApiController extends Controller {
                 $district = new District;
                 $district->state_abbr = $user_state;
                 $district->number = $user_district_number;
-                $district->type = 'congressional';
+                $district->type = $user_district_type;
                 $district->save();
                 $district_id = $district->id;
             }
