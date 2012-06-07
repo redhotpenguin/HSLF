@@ -13,6 +13,17 @@
  * @property State $stateAbbr
  */
 class District extends CActiveRecord {
+    
+    
+    // district types. Please update getTypeOptions() as well if you modify this list
+    private static $district_types = array(
+        'statewide',
+        'congressional',
+        'upper_house',
+        'lower_house',
+        'county',
+        'city',
+    );
 
     /**
      * Returns the static model of the specified AR class.
@@ -34,8 +45,6 @@ class District extends CActiveRecord {
      * @return array validation rules for model attributes.
      */
     public function rules() {
-        // NOTE: you should only define rules for those attributes that
-        // will receive user inputs.
         return array(
             array('state_abbr, type', 'required'),
             array('number', 'length', 'max' => 512),
@@ -112,6 +121,23 @@ class District extends CActiveRecord {
     }
 
     /**
+     * Executed before a District is saved
+     * Check that there isn't already a district with the same state, type and number (this should be done in the DB)
+     */
+    public function beforeSave() {
+
+        if ($this->findByAttributes(array(
+                    "state_abbr" => $this->state_abbr,
+                    "type" => $this->type,
+                    "number" => $this->number
+                ))) {
+            $this->addError('number', "This district already exist");
+            return false;
+        }
+        return parent::beforeSave();
+    }
+
+    /**
      * Return the different district type  options
      * @return array array of type options
      */
@@ -131,6 +157,21 @@ class District extends CActiveRecord {
      */
     public static function getIdByStateAndDistrict($state, $district_number) {
         $district = District::model()->findByAttributes(array('state_abbr' => $state, 'number' => $district_number));
+        if ($district)
+            return $district->id;
+        else
+            return false;
+    }
+
+    /**
+     * Retrieve the District ID based on state, type and district name
+     * @param string $state_abbr  abbreviaton of the state
+     * @param string $type  district type
+     * @param string $district  district name
+     * return district id
+     */
+    public static function getDistrictId($state_abbr, $type, $district) {
+        $district = District::model()->findByAttributes(array('state_abbr' => $state_abbr, 'type' => $type, 'number' => $district));
         if ($district)
             return $district->id;
         else
@@ -176,9 +217,9 @@ class District extends CActiveRecord {
 
     /**
      * Get all the district ids that match a specified state, a specified type and a speficied district number
-     * @param integer $state_abbr  abbreviaiton of the state
-     * @param integer $type  district type
-     * * @param integer $district  district name
+     * @param string $state_abbr  abbreviaton of the state
+     * @param string $type  district type
+     * @param string $district  district name
      * @return array array of district ids
      */
     public function getIdsByDistrict($state_abbr, $district_type, $district) {
@@ -193,51 +234,81 @@ class District extends CActiveRecord {
     }
 
     /**
-     * Get all the district ids within a state and for multiple district types
-     * @param integer $state_abbr  abbreviaiton of the state
-     * @param $district_types  array of district types
+     * Get all the district ids that match a specified state,specified types and speficied district numbers
+     * @param string  $state_abbr  abbreviaton of the state
+     * @param array  $district_types  district types
+     * @param array $districts  district names
      * @return array array of district ids
      */
-    public function getIdsByDistrictTypes($state_abbr, array $district_types) {
-        /*
-         * district_types = array('statewide,'congressional', 'upper_house', ... )
-         */
-        
+    public function getIdsByDistricts($state_abbr, array $district_types, array $districts) {
         $command = Yii::app()->db->createCommand();
+        // verify that $district_types and $districts have the same number of elements
+        if (count($district_types) != count($districts))
+            return false;
 
-     
-         /*
-         * In order to query the district table using condition logic
-         * add they keyword 'type' in front of the district type
-         *  array( type='statewide', type='congressional', type='upper_house', .... )
-         */
-        $district_types = array_map(array(&$this, 'addType'), $district_types);
-        
-        
         /*
-         *  add the element 'OR' on top of the array
-         *  array( 'OR ', type='statewide', type='congressional', type='upper_house', .... )
+         * ex:
+         * $condistion_string = 'state_abbr=:state_abbr  AND type=:district_type0 AND number=:district0 OR type=:district_type1 AND number=:district1';
+         * 
+          $condition_values = array(
+          ':state_abbr' => $state_abbr,
+          ':district_type0' => 'city',
+          ':district0' => 'portland',
+          ':district_type1' => 'county',
+          ':district1' => 'clackamas'
+          );
+         * 
          */
-        array_unshift($district_types, 'OR');
+        // construct the parameters needed for the query (see example above)
+        $condition_string = 'state_abbr=:state_abbr ';
+        $condition_values = array(':state_abbr' => $state_abbr);
 
+        foreach ($district_types as $i => $district_type) {
+            if ($i > 0)
+                $condition_string .= ' OR state_abbr=:state_abbr AND type=:district_type' . $i . ' AND number=:district' . $i;
+            else
+                $condition_string .= ' AND state_abbr=:state_abbr AND type=:district_type' . $i . ' AND number=:district' . $i;
 
+            // needed because some district types don't have a district number. Ex: statewide
+            if (empty($districts[$i]))
+                $districts[$i] = '';
+
+            $condition_values[":district_type{$i}"] = $district_type;
+            $condition_values[":district{$i}"] = $districts[$i];
+        }
+
+        // execute the command
         $result = $command->select('id')
                 ->from('district')
-                // ->where('state_abbr=:state_abbr AND type=:district_type', array(':state_abbr' => $state_abbr, ':district_type' => 'statewide'))
-                ->where(array('and', "state_abbr='$state_abbr'", $district_types ))
+                //- WHERE state_abbr 
+                ->where($condition_string, $condition_values)
                 ->queryAll();
 
-        return array_map(array(&$this, 'extract_id'), $result);
+
+        if ($result)
+        // return flat array
+            return array_map(array(&$this, 'extract_id'), $result);
+
+        else
+            return false;
     }
-    
-      /**
-       * Prepend the keyword 'type' to an element
-       * @param type $a
-       * @return type 
-       */
-      function addType($a) {
+
+    /**
+     * Prepend the keyword 'type' to an element
+     * @param type $a
+     * @return type 
+     */
+    function addType($a) {
         return 'type=' . "'$a'";
     }
 
+    /**
+     * Check if the given district type is valid
+     * @param string $district_type district type
+     * @return true or false
+     */
+    public static function isValidDistrictType($district_type) {
+        return in_array($district_type, self::$district_types);
+    }
 
 }
