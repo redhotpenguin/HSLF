@@ -267,18 +267,11 @@ class ApiController extends Controller {
         }
 
 
-        if (preg_match('/^[a-z]{2,3}$/', $_POST['state_abbr'])) { // state abbr input must be between 2 or 3 characters (lowercase)
-            $app_user->state_abbr = strtolower($_POST['state_abbr']);
-        }
-        else
-            return 'invalid_state';
-
         if(!District::isValidDistrictType($user_district_type))
             return 'invalid_district_type';
 
         if (preg_match('/^[0-9]{1,}$/', $user_district_number)) { // check that $user_district number is only made of numbers
             $district_id = District::getDistrictId($user_state, $user_district_type, $user_district_number);
-            error_log($district_id);
         }
         else
             return 'invalid_district';
@@ -289,8 +282,6 @@ class ApiController extends Controller {
             $app_user->type = $_POST['type'];
         else
             return 'invalid_device_type';
-
-
 
         try {
             if (!$district_id) { // the district isn't saved in the database, insert a new one
@@ -308,7 +299,7 @@ class ApiController extends Controller {
             return 'insert_failed';
         }
 
-        //save user meta after the user is saved/updated
+               //save user meta after the user is saved/updated
         if (isset($_POST['meta']) && is_array($_POST['meta'])) {
             foreach ($_POST['meta'] as $meta_key => $meta_value) {
                 $app_user->updateMeta($meta_key, $meta_value);
@@ -343,10 +334,6 @@ class ApiController extends Controller {
             foreach ($payload['add_tags'] as $tag) {
                 $app_user->addTag($tag);
             }
-        }
-
-        if (!empty($payload['state_abbr']) && !empty($payload['district_number'])) {
-            $app_user->updateLocation($payload['state_abbr'], $payload['district_number']);
         }
 
         $app_user->synchronizeUAPTags();

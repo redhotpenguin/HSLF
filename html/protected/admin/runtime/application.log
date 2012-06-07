@@ -9611,3 +9611,79 @@ in C:\xampp\htdocs\HSLF\html\admin.php (16)
 in C:\xampp\htdocs\HSLF\html\protected\admin\views\application_users\admin.php (71)
 in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\Application_usersController.php (137)
 in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 00:52:07 [trace] [system.db.ar.CActiveRecord] Application_user.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\application_users\admin.php (71)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\Application_usersController.php (137)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 00:52:08 [trace] [system.db.ar.CActiveRecord] Application_user.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\application_users\admin.php (71)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\Application_usersController.php (137)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 00:52:08 [trace] [system.db.ar.CActiveRecord] Application_user.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\application_users\admin.php (71)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\Application_usersController.php (137)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 00:52:08 [trace] [system.db.ar.CActiveRecord] Application_user.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\application_users\admin.php (71)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\Application_usersController.php (137)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 00:52:12 [trace] [system.db.ar.CActiveRecord] Application_user.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\application_users\admin.php (71)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\Application_usersController.php (137)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 00:52:22 [trace] [system.db.ar.CActiveRecord] Application_user.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\application_users\admin.php (71)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\Application_usersController.php (137)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 00:52:23 [trace] [system.db.ar.CActiveRecord] Application_user.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\application_users\admin.php (71)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\Application_usersController.php (137)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 00:52:24 [trace] [system.db.ar.CActiveRecord] Application_user.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\application_users\admin.php (71)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\Application_usersController.php (137)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 00:55:18 [trace] [system.db.ar.CActiveRecord] Application_user.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\application_users\admin.php (71)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\Application_usersController.php (137)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 00:55:18 [trace] [system.db.ar.CActiveRecord] Application_user.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\application_users\admin.php (71)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\Application_usersController.php (137)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 00:55:18 [trace] [system.db.ar.CActiveRecord] Application_user.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\application_users\admin.php (71)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\Application_usersController.php (137)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 00:55:18 [trace] [system.db.ar.CActiveRecord] Application_user.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\application_users\admin.php (71)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\Application_usersController.php (137)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 00:56:21 [trace] [system.db.ar.CActiveRecord] Application_user.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\application_users\admin.php (71)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\Application_usersController.php (137)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 00:56:21 [trace] [system.db.ar.CActiveRecord] Application_user.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\application_users\admin.php (71)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\Application_usersController.php (137)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 00:56:49 [trace] [system.db.ar.CActiveRecord] Application_user.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\application_users\admin.php (71)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\Application_usersController.php (137)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 01:02:24 [trace] [system.db.ar.CActiveRecord] Application_user.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\application_users\admin.php (71)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\Application_usersController.php (137)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 01:02:25 [trace] [system.db.ar.CActiveRecord] Application_user.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\application_users\admin.php (71)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\Application_usersController.php (137)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 01:02:26 [trace] [system.db.ar.CActiveRecord] Application_user.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\application_users\admin.php (71)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\Application_usersController.php (137)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 01:02:26 [trace] [system.db.ar.CActiveRecord] Application_user.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\application_users\admin.php (71)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\Application_usersController.php (137)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)

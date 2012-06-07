@@ -11,7 +11,6 @@ require_once('urbanairship/urbanairship.php');
  * @property string $device_token
  * @property string $latitude
  * @property string $longitude
- * @property string $state_abbr
  * @property integer $district_id
  * @property string $registration
  * @property string $type
@@ -49,10 +48,9 @@ class Application_user extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('device_token, state_abbr, district_id, type, registration', 'required'),
+            array('device_token, district_id, type, registration', 'required'),
             array('district_id', 'numerical', 'integerOnly' => true),
             array('device_token', 'length', 'max' => 128),
-            array('state_abbr', 'length', 'max' => 3),
             array('user_agent', 'length', 'max' => 1024),
             array('latitude, longitude, registration, type, tags', 'safe'),
             array('registration', 'date', 'format' => 'yyyy-M-d H:m:s'),
@@ -67,7 +65,6 @@ class Application_user extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'stateAbbr' => array(self::BELONGS_TO, 'State', 'state_abbr'),
             'district' => array(self::BELONGS_TO, 'District', 'district_id'),
             'tags' => array(self::MANY_MANY, 'Tag', 'app_user_tag(app_user_id, tag_id)'),
         );
@@ -82,7 +79,6 @@ class Application_user extends CActiveRecord {
             'device_token' => 'Device Token',
             'latitude' => 'Latitude',
             'longitude' => 'Longitude',
-            'state_abbr' => 'State',
             'district_id' => 'District',
             'registration' => 'Registration',
             'type' => 'Device Type',
@@ -416,11 +412,12 @@ class Application_user extends CActiveRecord {
     }
 
     public function synchronizeUAPTags() {
+
         $uap_notifier = new UrbanAirshipNotifier();
 
         $uap_tags = array(
-            $this->stateAbbr->abbr,
-            $this->stateAbbr->abbr . '_' . $this->district->number,
+            $this->district->state_abbr,
+            $this->district->state_abbr . '_' . $this->district->type . '_' . $this->district->number,
         );
 
         foreach ($this->getTagsName() as $tag)
@@ -429,27 +426,5 @@ class Application_user extends CActiveRecord {
         return $uap_notifier->updateRichUserTags($this->uap_user_id, $this->device_token, $uap_tags);
     }
 
-    /**
-     * Update the state and district of an application user
-     * @param string  $state_abbr state abbreviation
-     * @param integer $district_number  district number
-     * @return true or false
-     */
-    public function updateLocation($state_abbr, $district_number) {
-        $district_id = District::getIdByStateAndDistrict($state_abbr, $district_number);
-
-        if (!$district_id) { // the district isn't saved in the database, insert a new one
-            $district = new District;
-            $district->state_abbr = $state_abbr;
-            $district->number = $district_number;
-            $district->save();
-            $district_id = $district->id;
-        }
-
-        $this->state_abbr = $state_abbr;
-        $this->district_id = $district_id;
-
-        return $this->save();
-    }
 
 }
