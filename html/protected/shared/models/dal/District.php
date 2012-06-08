@@ -13,8 +13,7 @@
  * @property State $stateAbbr
  */
 class District extends CActiveRecord {
-    
-    
+
     // district types. Please update getTypeOptions() as well if you modify this list
     private static $district_types = array(
         'statewide',
@@ -121,20 +120,36 @@ class District extends CActiveRecord {
     }
 
     /**
-     * Executed before a District is saved
-     * Check that there isn't already a district with the same state, type and number (this should be done in the DB)
+     * Executed before a District model is saved or updated
+     * Make sure that the district type is valid
      */
     public function beforeSave() {
-
-        if ($this->findByAttributes(array(
-                    "state_abbr" => $this->state_abbr,
-                    "type" => $this->type,
-                    "number" => $this->number
-                ))) {
-            $this->addError('number', "This district already exist");
+        if ($this->isValidDistrictType($this->type))
+            return parent::beforeSave();
+        else {
+            $this->addError('type', 'Invalid district type');
             return false;
         }
-        return parent::beforeSave();
+    }
+
+    /**
+     *   Save a District model
+     */
+    public function save() {
+        try {
+            $save_result = parent::save();
+        } catch (CDbException $cdbe) {
+            switch ($cdbe->getCode()) {
+                case 23505:
+                    $this->addError('number', 'This district already exist');
+                    break;
+
+                default: // we can't handle the error, rethrow it!
+                    throw $cdbe;
+            }
+        }
+
+        return $save_result;
     }
 
     /**
@@ -152,7 +167,6 @@ class District extends CActiveRecord {
         );
     }
 
-  
     /**
      * Check if the given district type is valid
      * @param string $district_type district type

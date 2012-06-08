@@ -1,12 +1,13 @@
 <?php
+
+
 $this->breadcrumbs = array(
     'Districts' => array('index'),
     'Manage',
 );
 
 $this->menu = array(
-    array('label' => 'List Districts', 'url' => array('index')),
-    array('label' => 'Add a District', 'url' => array('create')),
+    array('label' => 'Add a district', 'url' => array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -32,27 +33,27 @@ $('.search-form form').submit(function(){
 
 <?php echo CHtml::link('Advanced Search', '#', array('class' => 'search-button')); ?>
 <div class="search-form" style="display:none">
-    <?php
-    $this->renderPartial('_search', array(
-        'model' => $model,
-    ));
-    ?>
-</div><!-- search-form -->
-
 <?php
-$this->widget('zii.widgets.grid.CGridView', array(
-    'id' => 'district-grid',
-    'dataProvider' => $model->search(),
-    'filter' => $model,
-    'columns' => array(
-        'id',
-        'state_abbr',
-        'type',
-        'number',
-        array(
-            'class' => 'CButtonColumn',
-            'deleteConfirmation'=>"js:'Deleting this District will also delete every ballot items associated to it, continue?'",
-        ),
-    ),
+$this->renderPartial('_search', array(
+    'model' => $model,
 ));
 ?>
+</div><!-- search-form -->
+
+    <?php
+    $this->widget('zii.widgets.grid.CGridView', array(
+        'id' => 'district-grid',
+        'dataProvider' => $model->search(),
+        'filter' => $model,
+        'columns' => array(
+            'id',
+            'state_abbr',
+            'type',
+            'number',
+            array(
+                'class' => 'CButtonColumn',
+                'deleteConfirmation' => "js:'Deleting this District will also delete every ballot items associated to it, continue?'",
+            ),
+        ),
+    ));
+    ?>
