@@ -13,4 +13,9 @@ defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
 defined('YII_DEBUG_SHOW_PROFILER') or define('YII_DEBUG_SHOW_PROFILER',true);
 
 require_once($yii);
+
+require ( 'protected/helpers/globals.php' ) ;
+
+
+
 Yii::createWebApplication($config)->run();

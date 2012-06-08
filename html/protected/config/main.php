@@ -31,7 +31,8 @@ return array(
     // autoloading model and component classes
     'import' => array(
         'application.models.*',
-        'application.shared.models.*',
+        'application.shared.models.dal.*', // data access logic classes
+        'application.shared.models.bll.*', // business  logic classes
         'application.components.*',
         'ext.multimodelform.MultiModelForm',
     ),

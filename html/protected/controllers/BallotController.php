@@ -9,19 +9,16 @@ class BallotController extends Controller {
      * when an action is not explicitly requested by users.
      */
     public function actionIndex() {
-  
         $ballots = BallotItem::model()->findAll();
 
         $this->render('index', array('ballots' => $ballots));
     }
 
-
     public function actionView() {
         $year = $_GET['year'];
         $slug = $_GET['slug'];
         
-
-        $ballot = BallotItem::model()->findByPublishedYearAndUrl($year, $slug);
+        $ballot = BallotItemManager::findByPublishedYearAndUrl($year, $slug);
 
         $this->render('view', array(
             'ballot' => $ballot,
@@ -43,7 +40,7 @@ class BallotController extends Controller {
         $district = $_GET['district'];
 
 
-        $ballots = BallotItem::model()->findAllByDistrict($state_abbr, $district_type, $district);
+        $ballots = BallotItemManager::findAllByDistrict($state_abbr, $district_type, $district);
         
         if(empty($ballots)){
             throw new CHttpException(404,'The specified post cannot be found.');

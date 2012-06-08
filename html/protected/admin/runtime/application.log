@@ -9687,3 +9687,151 @@ in C:\xampp\htdocs\HSLF\html\admin.php (16)
 in C:\xampp\htdocs\HSLF\html\protected\admin\views\application_users\admin.php (71)
 in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\Application_usersController.php (137)
 in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 18:07:25 [error] [php] include(ActiveRecord.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\HSLF\framework\yiilite.php:233)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php(15): spl_autoload_call()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(233): include()
+#2 unknown(0): autoload()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(6798): spl_autoload_call()
+#4 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(75): model()
+#5 C:\xampp\htdocs\HSLF\html\protected\admin\controllers\DistrictController.php(119): CActiveDataProvider->__construct()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): DistrictController->actionIndex()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): DistrictController->runAction()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): DistrictController->filterAccessControl()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): DistrictController->runActionWithFilters()
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): DistrictController->run()
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#18 C:\xampp\htdocs\HSLF\html\admin.php(16): CWebApplication->run()
+REQUEST_URI=/admin/district
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\District.php (15)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\DistrictController.php (119)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 18:39:29 [error] [php] include(District.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\HSLF\framework\yiilite.php:233)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(6798): spl_autoload_call()
+#1 C:\xampp\htdocs\HSLF\framework\web\CActiveDataProvider.php(75): model()
+#2 C:\xampp\htdocs\HSLF\html\protected\admin\controllers\DistrictController.php(119): CActiveDataProvider->__construct()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): DistrictController->actionIndex()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): DistrictController->runAction()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CAccessControlFilter->filter()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): DistrictController->filterAccessControl()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): DistrictController->runActionWithFilters()
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): DistrictController->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\admin.php(16): CWebApplication->run()
+REQUEST_URI=/admin/district
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\DistrictController.php (119)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 18:58:36 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 19:03:21 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 19:03:23 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 19:04:56 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 19:05:52 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 19:05:55 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 19:06:10 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 19:06:12 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 19:10:57 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 19:10:59 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 19:12:08 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 19:12:10 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 19:12:12 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 19:16:25 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 19:16:27 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 19:16:29 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 19:16:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "index".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3373
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3255): CController->missingAction('')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('search')
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\HSLF\html\admin.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/admin/search
+---
+2012/06/08 19:43:00 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 19:44:46 [trace] [system.db.ar.CActiveRecord] Application_user.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\application_users\admin.php (71)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\Application_usersController.php (137)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 19:44:50 [trace] [system.db.ar.CActiveRecord] Application_user.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\application_users\admin.php (71)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\Application_usersController.php (137)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 19:44:51 [trace] [system.db.ar.CActiveRecord] Application_user.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\application_users\admin.php (71)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\Application_usersController.php (137)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 19:45:05 [trace] [system.db.ar.CActiveRecord] Application_user.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\application_users\admin.php (71)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\Application_usersController.php (137)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 19:45:10 [trace] [system.db.ar.CActiveRecord] Application_user.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\application_users\admin.php (71)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\Application_usersController.php (137)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 19:52:07 [trace] [system.db.ar.CActiveRecord] Application_user.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\application_users\admin.php (71)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\Application_usersController.php (137)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)

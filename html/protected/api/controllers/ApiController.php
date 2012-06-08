@@ -39,10 +39,6 @@ class ApiController extends Controller {
                 $result = $alert_types;
                 break;
 
-            case 'ballot_items': // /api/ballot_items/
-                $result = BallotItem::model()->findAll();
-                break;
-
             default:
                 $this->_sendResponse(404, $this->_getStatusCodeMessage(404));
                 break;
@@ -83,9 +79,9 @@ class ApiController extends Controller {
     //ex: /api/ballot_items/state/or/?districts=county/clackamas,city/portland
     private function _getBallotItems($param) {
 
-        $state_abbr = $_GET['state_abbr']; // #TODO: FILTER THIS
+        $state_abbr = $_GET['state_abbr'];  // already validated by the regex in main.php
 
-        $encoded_districts = $_GET['districts'];
+        $encoded_districts = $_GET['districts']; // #TODO: FILTER THIS
 
         $encoded_districts = explode(',', $encoded_districts);
 
@@ -98,19 +94,7 @@ class ApiController extends Controller {
             array_push($districts, $d[1]);
         }
 
-        $ballots = BallotItem::model()->findAllByDistricts($state_abbr, $district_types, $districts);
-        return $ballots;
-
-
-
-
-
-
-        $district_types = explode(',', $_GET['district_types']);
-
-        $districts = explode(',', $_GET['districts']);
-
-        $ballots = BallotItem::model()->findAllByDistricts($state_abbr, $district_types, $districts);
+        $ballots = BallotItemManager::findAllByDistricts($state_abbr, $district_types, $districts);
         return $ballots;
     }
 
@@ -239,17 +223,23 @@ class ApiController extends Controller {
     }
 
     private function _add_applicationUser() {
-        if (!isset($_POST['device_token']) || !isset($_POST['state_abbr']) || !isset($_POST['district_number']) || !isset($_POST['type']) || !isset($_POST['uap_user_id'])) {
+        if (
+                   getPost('device_token') == false
+                || getPost('state_abbr') == false
+                || getPost('district_number') == false
+                || getPost('type') == false
+                || getPost('uap_user_id') == false
+        ) {
             return 'missing_parameter';
         }
+
         $save_result = 0;
-
-
-        $device_token = $_POST['device_token'];
-        $user_state = $_POST['state_abbr'];
-        $user_district_number = $_POST['district_number'];
-        $user_district_type = $_POST['district_type'];
         
+        $device_token = getPost('device_token');
+        $user_state = getPost('state_abbr');
+        $user_district_number = getPost('district_number');
+        $user_district_type = getPost('district_type');
+
         $app_user = Application_user::model()->findByAttributes(array('device_token' => $device_token));
 
         if (!$app_user) { // if user is not already saved in the DB, create a new one
@@ -258,28 +248,26 @@ class ApiController extends Controller {
             $app_user->registration = date('Y-m-d H:i:s');
         }
 
-        $app_user->uap_user_id = $_POST['uap_user_id'];
+        $app_user->uap_user_id = getPost('uap_user_id');
 
-        if (isset($_POST['user_lat']) && preg_match('/^[-+]?[0-9]*\,?[0-9]+$/', $_POST['user_lat']) && isset($_POST['user_long']) && preg_match('/^[-+]?[0-9]*\,?[0-9]+$/', $_POST['user_long'])) {
+        if ( isPost('user_lat') && preg_match('/^[-+]?[0-9]*\,?[0-9]+$/', getPost('user_lat'))  && preg_match('/^[-+]?[0-9]*\,?[0-9]+$/', getPost('user_long'))) {
             // lat & long are not mandatory but should only be saved if both are valid.
-            $app_user->latitude = $_POST['user_lat'];
-            $app_user->longitude = $_POST['user_long'];
+            $app_user->latitude = getPost('user_lat');
+            $app_user->longitude = getPost('user_long');
         }
 
 
-        if(!District::isValidDistrictType($user_district_type))
+        if (!District::isValidDistrictType($user_district_type))
             return 'invalid_district_type';
 
         if (preg_match('/^[0-9]{1,}$/', $user_district_number)) { // check that $user_district number is only made of numbers
-            $district_id = District::getDistrictId($user_state, $user_district_type, $user_district_number);
+            $district_id = DistrictManager::getDistrictId($user_state, $user_district_type, $user_district_number);
         }
         else
             return 'invalid_district';
-        
-        
 
-        if (in_array($_POST['type'], array('android', 'ios')))
-            $app_user->type = $_POST['type'];
+        if (in_array(getPost('type'), array('android', 'ios', 'blackberry')))
+            $app_user->type = getPost('type');
         else
             return 'invalid_device_type';
 
@@ -299,9 +287,9 @@ class ApiController extends Controller {
             return 'insert_failed';
         }
 
-               //save user meta after the user is saved/updated
-        if (isset($_POST['meta']) && is_array($_POST['meta'])) {
-            foreach ($_POST['meta'] as $meta_key => $meta_value) {
+        //save user meta after the user is saved/updated
+        if (isPost('meta') && is_array(getPost('meta'))) {
+            foreach (getPost('meta') as $meta_key => $meta_value) {
                 $app_user->updateMeta($meta_key, $meta_value);
             }
         }

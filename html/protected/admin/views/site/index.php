@@ -13,13 +13,21 @@
 
         <p> <b><?php echo $total_app_users; ?></b> <a href="/admin/application_users">Application users</a></p>
         <p> <b><?php echo $total_ballot_page; ?></b> <a href="/admin/ballotItem">Ballot pages</a></p>
+        
+        
+        <?php
+echo 'foo';
+
+
+
+
+?>
 
         <?php
     else: // display login form if user not logged in
         ?>
 
     </div>
-
 
 
     <p>Please fill out the following form with your login credentials:</p>

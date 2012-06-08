@@ -44,11 +44,13 @@ return array(
     // autoloading model and component classes
     'import' => array(
         'admin.models.*',
-        'application.shared.models.*',
+        'application.shared.models.dal.*', // data access logic classes
+        'application.shared.models.bll.*', // business  logic classes
         'admin.components.*',
         'application.models.*',
         'application.components.*',
         'ext.multimodelform.MultiModelForm',
+        
     ),
     'modules' => array(
         'gii' => array(
