@@ -31,8 +31,10 @@ class BallotItemManager {
             );
         }
         
+        // find all the ballots including their relationship.
         $ballots = BallotItem::model()->with('district', 'recommendation', 'electionResult')->findAllByAttributes(array('district_id' => $district_ids), $criteria);
        
+        // return a filtered array of ballot items
         return self::applyFilter($ballots);
     }
 

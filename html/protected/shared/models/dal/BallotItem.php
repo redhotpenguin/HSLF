@@ -28,7 +28,6 @@ class BallotItem extends CActiveRecord {
     public $state_abbr; // not part of the model, here for cgridview (admin search)
     public $district_type; // not part of the model, here for cgridview (admin search)
     public $district_number; // not part of the model, here for cgridview (admin search)
-    private $all_district_types = array('statewide', 'congressional', 'upper_house', 'lower_house', 'county', 'city');
 
     /**
      * Returns the static model of the specified AR class.
