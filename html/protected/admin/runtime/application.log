@@ -9835,3 +9835,71 @@ in C:\xampp\htdocs\HSLF\html\admin.php (16)
 in C:\xampp\htdocs\HSLF\html\protected\admin\views\application_users\admin.php (71)
 in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\Application_usersController.php (137)
 in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 20:30:56 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 20:31:00 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 20:42:54 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 20:43:12 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 20:49:22 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 20:52:05 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 20:52:35 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 20:52:37 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 20:52:39 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 20:52:57 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 20:54:56 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 21:15:00 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 21:15:03 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 21:15:15 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 21:15:18 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 21:15:39 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)
+2012/06/08 21:15:41 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (57)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (16)

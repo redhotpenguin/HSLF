@@ -77,11 +77,13 @@ class ApiController extends Controller {
     }
 
     //ex: /api/ballot_items/state/or/?districts=county/clackamas,city/portland
-    private function _getBallotItems($param) {
+    private function _getBallotItems($params) {
+        
+        $year = $params['year'];
 
-        $state_abbr = $_GET['state_abbr'];  // already validated by the regex in main.php
+        $state_abbr = $params['state_abbr'];  // already validated by the regex in main.php
 
-        $encoded_districts = $_GET['districts']; // #TODO: FILTER THIS
+        $encoded_districts = $params['districts']; // #TODO: FILTER THIS
 
         $encoded_districts = explode(',', $encoded_districts);
 
@@ -94,7 +96,7 @@ class ApiController extends Controller {
             array_push($districts, $d[1]);
         }
 
-        $ballots = BallotItemManager::findAllByDistricts($state_abbr, $district_types, $districts);
+        $ballots = BallotItemManager::findAllByDistricts($state_abbr, $district_types, $districts, $year);
         return $ballots;
     }
 

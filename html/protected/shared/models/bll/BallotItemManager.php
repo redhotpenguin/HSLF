@@ -12,15 +12,27 @@ class BallotItemManager {
      * @param string $state_abbr abbreviation of the state
      * @param array $district_types types of the district
      * @param array $district name of the district
+     * @param integer $year year of the publication date
      * @return array return array of ballot items
      */
-    public function findAllByDistricts($state_abbr, array $district_types, array $districts) {
-
+    public function findAllByDistricts($state_abbr, array $district_types, array $districts, $year = null) {
         $district_ids = DistrictManager::getIdsByDistricts($state_abbr, $district_types, $districts);
-        $param = array('order' => 'priority ASC'); // order by ballot item priority
 
-        $ballots = BallotItem::model()->with('district', 'recommendation', 'electionResult')->findAllByAttributes(array('district_id' => $district_ids), $param);
+        $criteria = array(
+            'order' => 'priority ASC', // ballot where priority = 1 are on the top
+        );
 
+        //  if asked, return ballots by ear 
+        if ($year) {       
+            $criteria ['condition'] =  'date_published>=:year_start AND date_published <=:year_end';
+            $criteria['params'] =  array(
+                ':year_start' => $year . '-01-01 00:00:00', // could be improved
+                ':year_end' => $year . '-12-31 23:59:59'
+            );
+        }
+        
+        $ballots = BallotItem::model()->with('district', 'recommendation', 'electionResult')->findAllByAttributes(array('district_id' => $district_ids), $criteria);
+       
         return self::applyFilter($ballots);
     }
 
@@ -32,10 +44,10 @@ class BallotItemManager {
     private static function applyFilter($ballots) {
         if (is_array($ballots)) {
             foreach ($ballots as $ballot) {
-                $ballot->url = self::addSiteUrlFilter($ballot->url);
+                $ballot->url = self::addSiteUrlFilter($ballot->url,  $ballot->date_published);
             }
         } else {
-            $ballots->url = self::addSiteUrlFilter($ballot->url);
+            $ballots->url = self::addSiteUrlFilter($ballot->url, $ballot->date_published);
         }
 
         return $ballots;
@@ -43,16 +55,17 @@ class BallotItemManager {
 
     /**
      * Prepend the share_url option to the url field
-     * @param object $BallotItem BallotITem object
+     * @param string $ballot_url url field of the ballotItem 
+     * @param string $date_pub publication date of the ballot (format: YYYY-MM-DD HH:MM:SS)
      * @return string filtered ballot item
      */
-    private static function addSiteUrlFilter($ballot_url) {
+    private static function addSiteUrlFilter($ballot_url, $date_pub) {
         $share_url = Yii::app()->params['share_url'] . '/ballot';
 
-        return $share_url . '/' . date('Y') . '/' . $ballot_url;
+        return $share_url . '/' . substr($date_pub, 0, 4) . '/' . $ballot_url;
     }
-    
-        /**
+
+    /**
      * Find all the ballot models by state
      * @param string $state_abbr abbreviation of the state
      * @return array return array of ballot items
@@ -109,7 +122,6 @@ class BallotItemManager {
         return self::applyFilter($ballots);
     }
 
-
     /**
      * Find a unique  ballot model by the year and url
      * @param integer $year year of the ballot was published
@@ -123,7 +135,6 @@ class BallotItemManager {
                         ), array('condition' => "date_published BETWEEN '{$year}-01-01 00:00:00' AND '{$year}-12-31 23:59:59' AND published='yes' ")
         );
     }
-
 
 }
 
