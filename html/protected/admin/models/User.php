@@ -98,5 +98,25 @@ class User extends CActiveRecord {
             self::PUBLISHER_ROLE => 'Publisher',
         );
     }
+    
+     /**
+     *   Save a User model
+     */
+    public function save() {
+        try {
+            $save_result = parent::save();
+        } catch (CDbException $cdbe) {
+            switch ($cdbe->getCode()) {
+                case 23505:
+                    $this->addError("", 'A user with this username or with this email already exists.');
+                    break;
+
+                default: // we can't handle the error, rethrow it!
+                    throw $cdbe;
+            }
+        }
+
+        return $save_result;
+    }
 
 }

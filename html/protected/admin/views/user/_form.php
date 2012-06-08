@@ -3,7 +3,10 @@
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'user-form',
 	'enableAjaxValidation'=>false,
-)); ?>
+));
+
+$model->password = '';
+?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
