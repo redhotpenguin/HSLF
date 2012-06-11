@@ -34,6 +34,7 @@ class BallotItem extends CActiveRecord {
      * @param string $className active record class name.
      * @return BallotItem the static model class
      */
+
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
@@ -104,6 +105,7 @@ class BallotItem extends CActiveRecord {
      * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
      */
     public function search() {
+        error_log(print_r($_GET, true ));
         $criteria = new CDbCriteria;
 
         $criteria->with = array('district');
@@ -130,12 +132,31 @@ class BallotItem extends CActiveRecord {
         $criteria->compare('next_election_date', $this->next_election_date, true);
         $criteria->compare('priority', $this->priority);
         $criteria->compare('detail', $this->detail, true);
-        $criteria->compare('date_published', $this->date_published, true);
+
         $criteria->compare('published', $this->published, true);
         $criteria->compare('party', $this->party, true);
         $criteria->compare('url', $this->url, true);
         $criteria->compare('image_url', $this->image_url, true);
         $criteria->compare('election_result_id', $this->election_result_id);
+
+
+        // $criteria->compare('date_published', $this->date_published, false);
+        if ($this->date_published) {
+            // trim white spaces
+            $this->date_published = trim($this->date_published);
+            // handle users habit to uses / as a separator
+            $this->date_published = str_replace('/', '-', $this->date_published);
+            
+            // check that the format is yyyy-mm-dd. also checks that the values are correct
+            if (preg_match('/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/', $this->date_published)) {
+                $criteria->compare('date_published', '> ' . $this->date_published . ' 00:00:00', false);
+            } // else user has just entered a year 2012
+            elseif (preg_match('/^[0-9]{4}$/', $this->date_published)) {
+                $criteria->compare('date_published', '> ' . $this->date_published . ' 01-01 00:00:00', false);
+                $criteria->compare('date_published', '< ' . $this->date_published . ' 12-31 23:59:59', false, 'AND');
+            }
+        
+        }
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
@@ -188,8 +209,5 @@ class BallotItem extends CActiveRecord {
         if ($this->next_election_date == '')
             $this->next_election_date = null;
     }
-
-
-    
 
 }
