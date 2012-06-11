@@ -32,7 +32,7 @@ class ApiController extends Controller {
                 break;
 
             case 'alert_types': // /api/alert_types
-                $alert_types = AlertType::model()->with('tag')->findAll();     
+                $alert_types = AlertType::model()->with('tag')->findAll();
                 $result = $alert_types;
                 break;
 
@@ -75,13 +75,19 @@ class ApiController extends Controller {
 
     //ex: /api/ballot_items/state/or/?districts=county/clackamas,city/portland
     private function _getBallotItems($params) {
-        
+
         $year = $params['year'];
 
         $state_abbr = $params['state_abbr'];  // already validated by the regex in main.php
 
         $encoded_districts = $params['districts']; // #TODO: FILTER THIS
-
+        
+        if( $params['active'] === 'true')
+            $active = true;
+        else 
+            $active = false;
+        
+        
         $encoded_districts = explode(',', $encoded_districts);
 
         $district_types = array();
@@ -93,7 +99,7 @@ class ApiController extends Controller {
             array_push($districts, $d[1]);
         }
 
-        $ballots = BallotItemManager::findAllByDistricts($state_abbr, $district_types, $districts, $year);
+        $ballots = BallotItemManager::findAllByDistricts($state_abbr, $district_types, $districts, $year, $active);
         return $ballots;
     }
 
@@ -111,7 +117,6 @@ class ApiController extends Controller {
 
             $district_id = DistrictManager::getIdByStateAndDistrict($param['state_abbr'], $param['district_number']);
             $search_attributes['district_id'] = array($district_id, $senator_candidate_district_id);
-            
         }
 
 
@@ -223,7 +228,7 @@ class ApiController extends Controller {
 
     private function _add_applicationUser() {
         if (
-                   getPost('device_token') == false
+                getPost('device_token') == false
                 || getPost('state_abbr') == false
                 || getPost('district_number') == false
                 || getPost('type') == false
@@ -233,7 +238,7 @@ class ApiController extends Controller {
         }
 
         $save_result = 0;
-        
+
         $device_token = getPost('device_token');
         $user_state = getPost('state_abbr');
         $user_district_number = getPost('district_number');
@@ -249,7 +254,7 @@ class ApiController extends Controller {
 
         $app_user->uap_user_id = getPost('uap_user_id');
 
-        if ( isPost('user_lat') && preg_match('/^[-+]?[0-9]*\,?[0-9]+$/', getPost('user_lat'))  && preg_match('/^[-+]?[0-9]*\,?[0-9]+$/', getPost('user_long'))) {
+        if (isPost('user_lat') && preg_match('/^[-+]?[0-9]*\,?[0-9]+$/', getPost('user_lat')) && preg_match('/^[-+]?[0-9]*\,?[0-9]+$/', getPost('user_long'))) {
             // lat & long are not mandatory but should only be saved if both are valid.
             $app_user->latitude = getPost('user_lat');
             $app_user->longitude = getPost('user_long');

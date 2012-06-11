@@ -13,27 +13,37 @@ class BallotItemManager {
      * @param array $district_types types of the district
      * @param array $district name of the district
      * @param integer $year year of the publication date
+     * @param boolean $active  if true, return currently running ballot items
      * @return array return array of ballot items
      */
-    public function findAllByDistricts($state_abbr, array $district_types, array $districts, $year = null) {
+    public function findAllByDistricts($state_abbr, array $district_types, array $districts, $year = null, $active = false) {
         $district_ids = DistrictManager::getIdsByDistricts($state_abbr, $district_types, $districts);
 
         $criteria = array(
             'order' => 'priority ASC', // ballot where priority = 1 are on the top
         );
 
-        //  if asked, return ballots by ear 
-        if ($year) {       
-            $criteria ['condition'] =  'date_published>=:year_start AND date_published <=:year_end';
-            $criteria['params'] =  array(
+        //  if indicated, return ballots by ear 
+        if ($year) {
+            $condition = 'date_published>=:year_start AND date_published <=:year_end';
+            $criteria['params'] = array(
                 ':year_start' => $year . '-01-01 00:00:00', // could be improved
                 ':year_end' => $year . '-12-31 23:59:59'
             );
+
+            // include only ballot items whose next_election_date is superior to the current date
+            if ($active) {
+                $condition.= ' AND next_election_date >=:current_date';
+                $criteria['params'][':current_date'] = date('Y-m-d H:i:s');
+            }
+
+            $criteria ['condition'] = $condition;
         }
-        
+
+
         // find all the ballots including their relationship.
         $ballots = BallotItem::model()->with('district', 'recommendation', 'electionResult')->findAllByAttributes(array('district_id' => $district_ids), $criteria);
-       
+
         // return a filtered array of ballot items
         return self::applyFilter($ballots);
     }
@@ -46,7 +56,7 @@ class BallotItemManager {
     private static function applyFilter($ballots) {
         if (is_array($ballots)) {
             foreach ($ballots as $ballot) {
-                $ballot->url = self::addSiteUrlFilter($ballot->url,  $ballot->date_published);
+                $ballot->url = self::addSiteUrlFilter($ballot->url, $ballot->date_published);
             }
         } else {
             $ballots->url = self::addSiteUrlFilter($ballot->url, $ballot->date_published);
