@@ -2,11 +2,6 @@ Options +FollowSymLinks
 IndexIgnore */*
 RewriteEngine on
 
-
-#RewriteCond %{HTTPS} !=on
-#RewriteRule ^api(.*) https://www.voterguide.com/api/$1 [R,L, QSA]
-
-
 # Make the backend accessible via url: http://site/admin
 RewriteRule admin admin.php
 
