@@ -6,7 +6,6 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List options', 'url'=>array('index')),
 	array('label'=>'Add a new option', 'url'=>array('create')),
 	array('label'=>'Manage options', 'url'=>array('admin')),
 );

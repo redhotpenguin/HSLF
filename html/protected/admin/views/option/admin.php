@@ -5,8 +5,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Option', 'url'=>array('index')),
-	array('label'=>'Create Option', 'url'=>array('create')),
+	array('label'=>'Add an option', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
