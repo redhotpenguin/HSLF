@@ -32,10 +32,7 @@ class ApiController extends Controller {
                 break;
 
             case 'alert_types': // /api/alert_types
-                $alert_types = AlertType::model()->with('tag')->findAll();
-                foreach ($alert_types as $alert_type) {
-                    $alert_type->tag_id = $alert_type->tag->name;
-                }
+                $alert_types = AlertType::model()->with('tag')->findAll();     
                 $result = $alert_types;
                 break;
 
@@ -110,11 +107,11 @@ class ApiController extends Controller {
 
         if (isset($param['district_number'])) {
 
+            $senator_candidate_district_id = DistrictManager::getDistrictId($param['state_abbr'], 'statewide', 'U.S. Senate'); // this is a temporary fix
 
-            $senator_candidate_district_id = District::getIdByStateAndDistrict($param['state_abbr'], 0);
-
-            $district_id = District::getIdByStateAndDistrict($param['state_abbr'], $param['district_number']);
+            $district_id = DistrictManager::getIdByStateAndDistrict($param['state_abbr'], $param['district_number']);
             $search_attributes['district_id'] = array($district_id, $senator_candidate_district_id);
+            
         }
 
 
