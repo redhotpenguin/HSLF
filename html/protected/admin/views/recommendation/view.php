@@ -5,11 +5,10 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Recommendation', 'url'=>array('index')),
-	array('label'=>'Create Recommendation', 'url'=>array('create')),
-	array('label'=>'Update Recommendation', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete Recommendation', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Recommendation', 'url'=>array('admin')),
+	array('label'=>'Add another recommendation', 'url'=>array('create')),
+	array('label'=>'Update this recommendation', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Delete this recommendation', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Manage recommendations', 'url'=>array('admin')),
 );
 ?>
 

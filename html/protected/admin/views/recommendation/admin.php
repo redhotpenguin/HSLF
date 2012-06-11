@@ -5,7 +5,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Create a recommendations', 'url'=>array('create')),
+	array('label'=>'Add a recommendation', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "

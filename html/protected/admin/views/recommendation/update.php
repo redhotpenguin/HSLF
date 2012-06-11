@@ -6,7 +6,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Add a recommendation', 'url'=>array('create')),
+	array('label'=>'Add another recommendation', 'url'=>array('create')),
+    	array('label'=>'Delete this recommendation', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Manage recommendations', 'url'=>array('admin')),
 );
 ?>

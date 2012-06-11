@@ -5,9 +5,9 @@ $this->breadcrumbs = array(
 );
 
 $this->menu = array(
-    array('label' => 'Create', 'url' => array('create')),
-    array('label' => 'Update', 'url' => array('update', 'id' => $model->id)),
-    array('label' => 'Delete', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this item?')),
+    array('label' => 'Create another ballot item', 'url' => array('create')),
+    array('label' => 'Update this ballot item', 'url' => array('update', 'id' => $model->id)),
+    array('label' => 'Delete this ballot item', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this ballot item?')),
     array('label' => 'Manage ballot items', 'url' => array('admin')),
 );
 ?>
@@ -37,11 +37,10 @@ $this->widget('zii.widgets.CDetailView', array(
         'published',
         'party',
         array(
-            'name'=>'image_url',
-            'label'=> 'Image',
-            'value'=> "<a href='$model->image_url' target='_blank'> $model->image_url </a>",
-            'type'=>'raw',
-            
+            'name' => 'image_url',
+            'label' => 'Image',
+            'value' => "<a href='$model->image_url' target='_blank'> $model->image_url </a>",
+            'type' => 'raw',
         ),
         'url',
         'election_result_id',
