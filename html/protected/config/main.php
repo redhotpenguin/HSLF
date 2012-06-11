@@ -69,13 +69,13 @@ return array(
             'username' => $dbuser,
             'password' => $dbpass,
             'charset' => 'UTF-8',
-            'schemaCachingDuration' => '600',
+            'schemaCachingDuration' => '3600',
         ),
-        /*
+       
           'cache' => array(
           'class' => 'system.caching.CApcCache',
           ),
-         */
+     
         'errorHandler' => array(
             'errorAction' => 'site/error',
         ),
