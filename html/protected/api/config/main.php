@@ -69,16 +69,9 @@ return array(
                 array('api/list', 'pattern' => 'api/<model:\w+>', 'verb' => 'GET'),
                 //   ex: /api/ballot_items/state/or/?districts=...
                 array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>', 'verb' => 'GET'),
-                                
-                
                 array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>/district/<district_number:\d+>', 'verb' => 'GET'),
-
-                    
                 // ex: /api/ballot_itens/2012/state/or/?districts=...
                 array('api/view', 'pattern' => 'api/<model:\w+>/<year:\d{4}>/state/<state_abbr:\w{2,3}>', 'verb' => 'GET'),
-
-          
-                
                 array('api/view', 'pattern' => 'api/<model:\w+>/name/<type:\w+>', 'verb' => 'GET'),
                 array('api/view', 'pattern' => 'api/<model:\w+>/<id:\d+>/', 'verb' => 'GET'), // ex: /api/candidate/12/
                 array('api/view', 'pattern' => 'api/<model:\w+>/<id:\d+>/<filter:\w+>', 'verb' => 'GET'), // ex: /api/candidate/12/issue
@@ -93,13 +86,11 @@ return array(
             'username' => $dbuser,
             'password' => $dbpass,
             'charset' => 'UTF-8',
-            'schemaCachingDuration' => '600',
+            'schemaCachingDuration' => '3600',
         ),
-    
-          'cache' => array(
-          'class' => 'system.caching.CApcCache',
-          ),
-     
+        'cache' => array(
+            'class' => 'system.caching.CApcCache',
+        ),
         'errorHandler' => array(
             // use 'api/error' action to display errors
             'errorAction' => 'api/index',

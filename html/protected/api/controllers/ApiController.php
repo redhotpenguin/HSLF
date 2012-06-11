@@ -82,7 +82,9 @@ class ApiController extends Controller {
 
         $encoded_districts = $params['districts']; // #TODO: FILTER THIS
         
-        if( $params['active'] === 'true')
+        // if requested, return running ballot items
+        // can only be used if the year is set
+        if( $params['active'] === 'true' && !empty($year))
             $active = true;
         else 
             $active = false;
