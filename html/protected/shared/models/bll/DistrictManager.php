@@ -89,6 +89,7 @@ class DistrictManager {
     
      /**
      * Retrieve the District ID based on $state and $district_number
+     * DEPRECATED
      */
     public static function getIdByStateAndDistrict($state, $district_number) {
         $district = District::model()->findByAttributes(array('state_abbr' => $state, 'number' => $district_number));
