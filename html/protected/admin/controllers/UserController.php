@@ -7,11 +7,12 @@ class UserController extends Controller {
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
     public $layout = '//layouts/column2';
-    public $category = array( 'Administration'=>array('/site/administration/')); // used by the breadcrumb
+    public $category = array('Administration' => array('/site/administration/')); // used by the breadcrumb
 
     /**
      * @return array action filters
      */
+
     public function filters() {
         return array(
             'accessControl', // perform access control for CRUD operations
@@ -62,8 +63,9 @@ class UserController extends Controller {
         // $this->performAjaxValidation($model);
 
         if (isset($_POST['User'])) {
+
             $model->attributes = $_POST['User'];
-            $model->password = sha1($_POST['User']['password']);
+          //  $model->password = sha1($_POST['User']['password']);
 
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->id));
@@ -73,7 +75,10 @@ class UserController extends Controller {
             'model' => $model,
         ));
     }
+    
+    
 
+    
     /**
      * Updates a particular model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -82,12 +87,22 @@ class UserController extends Controller {
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
 
+        // hold the current password ( before it might gets updated)
+        $current_password = $model->password;
+        
+
         if (isset($_POST['User'])) {
             $model->attributes = $_POST['User'];
+            
+            // if a new password has been given
+            if($model->password)
+                $model->initial_password = $model->password;
+            
+            else
+                $model->initial_password = $current_password;
 
-            if ($_POST['User']['password']) {
-                $model->password = sha1($_POST['User']['password']);
-            }
+            
+            
 
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->id));
@@ -106,14 +121,14 @@ class UserController extends Controller {
     public function actionDelete($id) {
         if (Yii::app()->request->isPostRequest) {
             // we only allow deletion via POST request
-            
-            
+
+
             $user = $this->loadModel($id);
-            
-            if($user->username == 'admin'){
+
+            if ($user->username == 'admin') {
                 throw new CHttpException(403, 'Deleting the admin account is forbidden.');
             }
-            
+
             $user->delete();
 
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser

@@ -12,6 +12,9 @@
  */
 class User extends CActiveRecord {
 
+    public $repeat_password;
+    public $initial_password;
+
     const ADMIN_ROLE = 'admin';
     const PUBLISHER_ROLE = 'publisher';
 
@@ -36,13 +39,13 @@ class User extends CActiveRecord {
      */
     public function rules() {
         return array(
-            array('username, password, email, role', 'required'),
+            array('username,email, role', 'required', 'on' => 'update'),
+            array('password, username, email, role, repeat_password', 'required', 'on' => 'insert'),
+            array('repeat_password', 'compare', 'compareAttribute' => 'password', 'on' => 'insert'),
             array('email', 'email'),
             array('username, email', 'length', 'max' => 128),
             array('password', 'length', 'max' => 40),
-            // The following rule is used by search().
-            // Please remove those attributes that should not be searched.
-            array('id, username, password, email', 'safe', 'on' => 'search'),
+            array('id, username, email', 'safe', 'on' => 'search'),
         );
     }
 
@@ -86,20 +89,44 @@ class User extends CActiveRecord {
                     'criteria' => $criteria,
                 ));
     }
-    
-    
-      /**
+
+    /**
      * Retrieves a list of possible user roles.
      * @return array of roles
      */
-      public function getRoleOptions() {
+    public function getRoleOptions() {
         return array(
             self::ADMIN_ROLE => 'Administrator',
             self::PUBLISHER_ROLE => 'Publisher',
         );
     }
-    
-     /**
+
+    public function beforeSave() {
+
+        // a new record is added
+        if ($this->isNewRecord) {
+
+            $this->password = get_hash($this->password);
+        }
+        // an existing record is updated
+        else {
+
+            // a new password is given
+            if ($this->password) {
+                $password = get_hash($this->password);
+            }
+            
+            // no password given, restore the initial pass
+            else
+                $password = $this->initial_password;
+
+            $this->password = $password;
+        }
+
+        return parent::beforeSave();
+    }
+
+    /**
      *   Save a User model
      */
     public function save() {

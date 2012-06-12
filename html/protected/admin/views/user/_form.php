@@ -5,7 +5,6 @@
 	'enableAjaxValidation'=>false,
 ));
 
-$model->password = '';
 ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -20,9 +19,16 @@ $model->password = '';
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'password'); ?>
-		<?php echo $form->passwordField($model,'password',array('size'=>40,'maxlength'=>40)); ?>
+		<?php echo $form->passwordField($model,'password',array('size'=>60,'maxlength'=>40)); ?>
 		<?php echo $form->error($model,'password'); ?>
 	</div>
+        
+        <div class="row">
+		<?php echo $form->labelEx($model,'repeat_password'); ?>
+		<?php echo $form->passwordField($model,'repeat_password',array('size'=>60,'maxlength'=>40)); ?>
+		<?php echo $form->error($model,'repeat_password'); ?>
+	</div>
+        
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'email'); ?>
