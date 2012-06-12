@@ -1,7 +1,6 @@
 <div class="form">
 
     <?php
-
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'ballot-item-form',
         'enableAjaxValidation' => false,
@@ -50,21 +49,17 @@
 
     <div class="right_col">
         <div class="row">
-            <?php echo $form->labelEx($model, 'party'); ?>
-            <?php echo $form->textField($model, 'party', array('size' => 50, 'maxlength' => 128)); ?>
-            <?php echo $form->error($model, 'party'); ?>
-        </div>
-
-        <div class="row">
-            <?php echo $form->labelEx($model, 'url'); ?>
-            <?php echo $form->textField($model, 'url', array('size' => 50, 'maxlength' => 1000, 'placeholder' => 'URL to share')); ?>
-            <?php echo $form->error($model, 'url'); ?>
+            <?php
+            echo $form->labelEx($model, 'party');
+            echo $form->dropDownList($model, 'party', $model->getParties());
+            echo $form->error($model, 'party');
+            ?>
         </div>
 
         <div class="row">
             <?php echo $form->labelEx($model, 'image_url'); ?>
-            <?php echo $form->textField($model, 'image_url', array('size' => 50) ); ?>
-            <?php echo $form->error($model, 'image_url'); ?>
+            <?php echo $form->textField($model, 'image_url', array('size' => 50)); ?>
+<?php echo $form->error($model, 'image_url'); ?>
         </div>
 
         <input type="file" name="image_url" />
@@ -89,7 +84,7 @@
                 ),
             ));
             ?>
-            <?php echo $form->error($model, 'next_election_date'); ?>
+<?php echo $form->error($model, 'next_election_date'); ?>
         </div>     
 
     </div>
@@ -142,7 +137,7 @@
     <div class="row">
         <?php
         echo $form->labelEx($model, 'url');
-        echo $form->textField($model, 'url', array('size' => 50, 'maxlength' => 500, 'placeholder' => 'Page url'));
+        echo $form->textField($model, 'url', array('size' => 50, 'maxlength' => 1000, 'placeholder' => 'URL to share'));
         echo $form->error($model, 'url');
         ?>
         <br/>
@@ -174,7 +169,7 @@
             ),
         ));
         ?>
-        <?php echo $form->error($model, 'date_published'); ?>
+<?php echo $form->error($model, 'date_published'); ?>
     </div>
 
     <div style="clear:both;"></div>
@@ -183,15 +178,15 @@
     <div class="row">
         <?php echo $form->labelEx($model, 'published'); ?>
         <?php echo $form->dropDownList($model, 'published', array('yes' => 'Yes', 'no' => 'No')); ?>
-        <?php echo $form->error($model, 'published'); ?>
+<?php echo $form->error($model, 'published'); ?>
     </div>
 
 
 
     <div class="row buttons">
-        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
     </div>
 
-    <?php $this->endWidget(); ?>
+<?php $this->endWidget(); ?>
 
 </div><!-- form -->

@@ -49,12 +49,8 @@ $this->widget('zii.widgets.grid.CGridView', array(
         ),
         array(
             'name' => 'party',
-            'value' => '$data->party == "D" ? "Democratic" : "Republican"',
-            'filter' => CHtml::dropDownList('BallotItem[party]', $model->party, array(
-                '' => 'All',
-                'D' => 'Democratic',
-                'R' => 'Republican',
-            )),
+            'value' => '$data->party',
+            'filter' => CHtml::dropDownList('BallotItem[party]', $model->party, array(''=>'All')+$model->getParties() ),
         ),
         array('name' => 'state_abbr',
             'header' => 'State',
