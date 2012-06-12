@@ -105,11 +105,9 @@ class BallotItem extends CActiveRecord {
      * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
      */
     public function search() {
-        error_log(print_r($_GET, true ));
         $criteria = new CDbCriteria;
 
         $criteria->with = array('district');
-
 
         // search by relationship (district)
         if ($this->district_number || $this->district_type || $this->state_abbr) {
@@ -146,7 +144,7 @@ class BallotItem extends CActiveRecord {
             $this->date_published = trim($this->date_published);
             // handle users habit to uses / as a separator
             $this->date_published = str_replace('/', '-', $this->date_published);
-            
+
             // check that the format is yyyy-mm-dd. also checks that the values are correct
             if (preg_match('/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/', $this->date_published)) {
                 $criteria->compare('date_published', '> ' . $this->date_published . ' 00:00:00', false);
@@ -155,9 +153,8 @@ class BallotItem extends CActiveRecord {
                 $criteria->compare('date_published', '> ' . $this->date_published . ' 01-01 00:00:00', false);
                 $criteria->compare('date_published', '< ' . $this->date_published . ' 12-31 23:59:59', false, 'AND');
             }
-        
         }
-
+        
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
                     'pagination' => array(
@@ -174,7 +171,8 @@ class BallotItem extends CActiveRecord {
                                 'desc' => 'district.type DESC',
                             ),
                             'district_number' => array(
-                                'asc' => 'district.number',
+                              //  'asc' => "NULLIF(regexp_replace(number, E'\\D', '', 'g'), '')::int",
+                                'asc' => 'district.number ASC',
                                 'desc' => 'district.number DESC',
                             ),
                             '*',
