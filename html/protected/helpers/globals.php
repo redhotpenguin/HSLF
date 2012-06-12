@@ -42,3 +42,14 @@ function getParam($name) {
 function isParam($name) {
     return ( getParam($name) != false );
 }
+
+
+/**
+ * Return a hash version of the input
+ * @param  string $string string to be hashed
+ * @return string return the hashed input
+ */
+function get_hash($string){
+    return hash('sha1',$string);
+}
+
