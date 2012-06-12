@@ -93,6 +93,9 @@ div.form span.required
     color: red;
 }
 
+.errorMessage{
+    margin-top:10px;
+}
 div.form div.error label:first-child,
 div.form label.error,
 div.form span.error
