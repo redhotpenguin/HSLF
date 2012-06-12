@@ -28,13 +28,18 @@ class BallotItem extends CActiveRecord {
     public $state_abbr; // not part of the model, here for cgridview (admin search)
     public $district_type; // not part of the model, here for cgridview (admin search)
     public $district_number; // not part of the model, here for cgridview (admin search)
+    private $labelled_parties = array(
+        'N/A' => 'Not Avalaible',
+        'democratic' => 'Democratic',
+        'republican' => 'Republican',
+        'independant' => 'Independant',
+    );
 
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
      * @return BallotItem the static model class
      */
-
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
@@ -58,6 +63,7 @@ class BallotItem extends CActiveRecord {
             array('item_type, party', 'length', 'max' => 128),
             array('url', 'length', 'max' => 500),
             array('published', 'length', 'max' => 16),
+            array('date_published, next_election_date', 'date', 'format' => 'yyyy-M-d H:m:s'),
             array('next_election_date, detail, url, image_url', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
@@ -105,6 +111,7 @@ class BallotItem extends CActiveRecord {
      * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
      */
     public function search() {
+        error_log(print_r($_REQUEST, true));
         $criteria = new CDbCriteria;
 
         $criteria->with = array('district');
@@ -154,7 +161,7 @@ class BallotItem extends CActiveRecord {
                 $criteria->compare('date_published', '< ' . $this->date_published . ' 12-31 23:59:59', false, 'AND');
             }
         }
-        
+
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
                     'pagination' => array(
@@ -171,7 +178,7 @@ class BallotItem extends CActiveRecord {
                                 'desc' => 'district.type DESC',
                             ),
                             'district_number' => array(
-                              //  'asc' => "NULLIF(regexp_replace(number, E'\\D', '', 'g'), '')::int",
+                                //  'asc' => "NULLIF(regexp_replace(number, E'\\D', '', 'g'), '')::int",
                                 'asc' => 'district.number ASC',
                                 'desc' => 'district.number DESC',
                             ),
@@ -186,6 +193,14 @@ class BallotItem extends CActiveRecord {
      */
     public function getPriorityOptions() {
         return array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10);
+    }
+
+    /**
+     * Return the different parties options
+     * @return array array of party options
+     */
+    public function getParties() {
+        return $this->labelled_parties;
     }
 
     /**
