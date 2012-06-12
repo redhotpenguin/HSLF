@@ -19,17 +19,25 @@ class BallotItemManager {
     public function findAllByDistricts($state_abbr, array $district_types, array $districts, $year = null, $active = false) {
         $district_ids = DistrictManager::getIdsByDistricts($state_abbr, $district_types, $districts);
 
+        $condition = 'published =:published';
+
         $criteria = array(
             'order' => 'priority ASC', // ballot where priority = 1 are on the top
+            'condition' => $condition,
+            'params' => array(
+                ':published' => 'yes',
+            ),
         );
+
+
 
         //  if indicated, return ballots by ear 
         if ($year) {
-            $condition = 'date_published>=:year_start AND date_published <=:year_end';
-            $criteria['params'] = array(
-                ':year_start' => $year . '-01-01 00:00:00', // could be improved
-                ':year_end' => $year . '-12-31 23:59:59'
-            );
+            $condition .= ' AND date_published>=:year_start AND date_published <=:year_end';
+            $criteria['params'][':year_start'] = $year . '-01-01 00:00:00'; 
+            $criteria['params'][':year_end'] = $year . '-12-31 23:59:59';
+
+           
 
             // include only ballot items whose next_election_date is superior to the current date
             if ($active) {
@@ -39,7 +47,6 @@ class BallotItemManager {
 
             $criteria ['condition'] = $condition;
         }
-
 
         // find all the ballots including their relationship.
         $ballots = BallotItem::model()->with('district', 'recommendation', 'electionResult')->findAllByAttributes(array('district_id' => $district_ids), $criteria);
