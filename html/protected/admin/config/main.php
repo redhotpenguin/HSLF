@@ -1,6 +1,6 @@
 <?php
 
-/* backend specific config: */
+/* BACKEND CONFIG FILE */
 
 $backend = dirname(dirname(__FILE__));
 $frontend = dirname($backend);
@@ -50,7 +50,6 @@ return array(
         'application.models.*',
         'application.components.*',
         'ext.multimodelform.MultiModelForm',
-        
     ),
     'modules' => array(
         'gii' => array(
@@ -85,11 +84,9 @@ return array(
             'charset' => 'UTF-8',
             'schemaCachingDuration' => '3600',
         ),
-      
-          'cache' => array(
-          'class' => 'system.caching.CApcCache',
-          ),
-     
+        'cache' => array(
+            'class' => 'system.caching.CApcCache',
+        ),
         'errorHandler' => array(
             // use 'site/error' action to display errors
             'errorAction' => 'site/error',
@@ -101,8 +98,19 @@ return array(
                     'class' => 'CFileLogRoute',
                     'levels' => 'error, warning, info, trace',
                 ),
+                /*
+                array(
+                    'class' => 'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
+                    'ipFilters' => array('127.0.0.1'),
+                ),
+                array(
+                    'class' => 'CWebLogRoute',
+                    'enabled' => YII_DEBUG_SHOW_PROFILER,
+                    'categories' => 'system.db.*',
+                ),
             // uncomment the following to show log messages on web pages
-
+                
+*/
             /* array(
               'class'=>'CWebLogRoute',
               ), */

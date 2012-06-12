@@ -1,4 +1,6 @@
 <?php
+// API CONFIG FILE
+
 
 $api = dirname(dirname(__FILE__));
 $frontend = dirname($api);
