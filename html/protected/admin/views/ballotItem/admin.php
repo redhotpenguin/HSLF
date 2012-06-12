@@ -31,27 +31,28 @@ $this->widget('zii.widgets.grid.CGridView', array(
     'filter' => $model,
     'columns' => array(
         array(
+            'header' => 'Type',
             'name' => 'item_type',
             'value' => '$data->item_type',
             'filter' => CHtml::dropDownList('BallotItem[item_type]', $model->item_type, BallotItem::model()->getItemTypeOptions()),
-            'htmlOptions'=>array('width'=>'85px'),
+            'htmlOptions' => array('width' => '85px'),
         ),
-        //  'recommendation_id',
-        // 'next_election_date',
-        //'priority',
-
-        'item',
         array(
+            'header' => 'Item',
+            'name' => 'item',
+        ),
+        array(
+            'header' => 'Date',
             'name' => 'date_published',
             'value' => 'substr($data->date_published, 0, 10)', // get rid off the time stamp
-            'htmlOptions'=>array('width'=>'70px'),
+            'htmlOptions' => array('width' => '70px'),
         ),
         array(
             'name' => 'party',
-            'value' => '$data->party == "D" ? "Democrat" : "Republican"',
+            'value' => '$data->party == "D" ? "Democratic" : "Republican"',
             'filter' => CHtml::dropDownList('BallotItem[party]', $model->party, array(
                 '' => 'All',
-                'D' => 'Democrat',
+                'D' => 'Democratic',
                 'R' => 'Republican',
             )),
         ),
@@ -61,6 +62,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'filter' => CHtml::dropDownList('BallotItem[state_abbr]', $model->state_abbr, $state_list),
         ),
         array(
+            'header' => 'Level',
             'name' => 'district_type',
             'value' => '$data->district->type',
             'filter' => CHtml::dropDownList('BallotItem[district_type]', $model->district_type, array(
@@ -73,13 +75,9 @@ $this->widget('zii.widgets.grid.CGridView', array(
                 'city' => 'City',
             )),
         ),
-        /*
-          array('name' => 'district_type',
-          'header' => 'District type',
-          'value' => '$data->district->type'
-          ), */
-        array('name' => 'district_number',
-            'header' => 'District number',
+        array(
+            'header' => 'District',
+            'name' => 'district_number',
             'value' => '$data->district->number'
         ),
         // 'election_result_id',
