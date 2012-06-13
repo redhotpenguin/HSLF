@@ -5,8 +5,7 @@
  *
  * @author jonas
  */
-class BallotItemManager {
-
+class BallotItemManager {    
     /**
      * Find all the ballot models fora state, by types and by district names. Can also include statewide districts
      * @param string $state_abbr abbreviation of the state
@@ -16,42 +15,28 @@ class BallotItemManager {
      * @param boolean $active  if true, return currently running ballot items
      * @return array return array of ballot items
      */
-    public function findAllByDistricts($state_abbr, array $district_types, array $districts, $year = null, $active = false) {
+    public static function findAllByDistricts($state_abbr, array $district_types, array $districts, $year = null, $active = false) {
+          
         $district_ids = DistrictManager::getIdsByDistricts($state_abbr, $district_types, $districts);
+       
+        if(empty($district_ids))
+            return false;
+        
+        
+        $ballotItemFinder = new BallotItemFinder();
 
-        $condition = 'published =:published';
-
-        $criteria = array(
-            'order' => 'priority ASC', // ballot where priority = 1 are on the top
-            'condition' => $condition,
-            'params' => array(
-                ':published' => 'yes',
-            ),
-        );
-
-
-
-        //  if indicated, return ballots by ear 
-        if ($year) {
-            $condition .= ' AND date_published>=:year_start AND date_published <=:year_end';
-            $criteria['params'][':year_start'] = $year . '-01-01 00:00:00'; 
-            $criteria['params'][':year_end'] = $year . '-12-31 23:59:59';
-
+        $ballotItemFinder->setPublished('yes');
+        $ballotItemFinder->orderByHighestPriority();
+        $ballotItemFinder->setDistrictIds($district_ids);
+        
+        if($year){
+           $ballotItemFinder->setPublishedYear($year);
            
-
-            // include only ballot items whose next_election_date is superior to the current date
-            if ($active) {
-                $condition.= ' AND next_election_date >=:current_date';
-                $criteria['params'][':current_date'] = date('Y-m-d H:i:s');
-            }
-
-            $criteria ['condition'] = $condition;
+           if($active)
+               $ballotItemFinder->setRunningOnly(); 
         }
-
-        // find all the ballots including their relationship.
-        $ballots = BallotItem::model()->with('district', 'recommendation', 'electionResult')->findAllByAttributes(array('district_id' => $district_ids), $criteria);
-
-        // return a filtered array of ballot items
+       
+        $ballots = $ballotItemFinder->search();
         return self::applyFilter($ballots);
     }
 
