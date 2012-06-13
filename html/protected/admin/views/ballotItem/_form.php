@@ -97,6 +97,7 @@
         echo $form->dropDownList($model, 'priority', $model->getPriorityOptions());
         echo $form->error($model, 'priority');
         ?>
+        <p> 1 = Lowest, 10 = highest</p>
     </div>
 
     <div class="row">
