@@ -1,1917 +1,364 @@
-2012/06/08 21:17:59 [trace] [system.CModule] Loading "log" application component
+2012/06/13 00:00:33 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
 in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/08 21:17:59 [trace] [system.CModule] Loading "request" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/08 21:17:59 [trace] [system.CModule] Loading "urlManager" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/08 21:17:59 [trace] [system.CModule] Loading "db" application component
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (34)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (19)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/08 21:17:59 [trace] [system.db.CDbConnection] Opening DB connection
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (34)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (19)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/08 21:17:59 [trace] [system.db.CDbCommand] Querying SQL: SELECT "id"
-FROM "district"
-WHERE state_abbr=:state_abbr  AND state_abbr=:state_abbr AND type=:district_type0 AND number=:district0 OR state_abbr=:state_abbr AND type=:district_type1 AND number=:district1 OR state_abbr=:state_abbr AND type=:district_type2 AND number=:district2
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (75)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (19)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/08 21:17:59 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
-FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
-WHERE a.attnum > 0 AND NOT a.attisdropped
-	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
-ORDER BY a.attnum
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (39)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (34)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/08 21:17:59 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
-	SELECT
-		conname,
-		CASE WHEN contype='f' THEN
-			pg_catalog.pg_get_constraintdef(oid)
-		ELSE
-			'CHECK (' || consrc || ')'
-		END AS consrc,
-		contype,
-		conrelid AS relid,
-		NULL AS indkey
-	FROM
-		pg_catalog.pg_constraint
-	WHERE
-		contype IN ('f', 'c')
-	UNION ALL
-	SELECT
-		pc.relname,
-		NULL,
-		CASE WHEN indisprimary THEN
-				'p'
-		ELSE
-				'u'
-		END,
-		pi.indrelid,
-		indkey
-	FROM
-		pg_catalog.pg_class pc,
-		pg_catalog.pg_index pi
-	WHERE
-		pc.oid=pi.indexrelid
-		AND EXISTS (
-			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
-			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
-			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
-	)
-) AS sub
-WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
-	WHERE nspname=:schema))
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (39)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (34)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/08 21:17:59 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
-	attrelid=(
-		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
-			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
-		)
-	)
-    AND attnum IN (1)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (39)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (34)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/08 21:17:59 [trace] [system.db.ar.CActiveRecord] BallotItem.findAllByAttributes()
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (34)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (70)
-2012/06/08 21:17:59 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
-FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
-WHERE a.attnum > 0 AND NOT a.attisdropped
-	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
-ORDER BY a.attnum
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (34)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (70)
-2012/06/08 21:17:59 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
-	SELECT
-		conname,
-		CASE WHEN contype='f' THEN
-			pg_catalog.pg_get_constraintdef(oid)
-		ELSE
-			'CHECK (' || consrc || ')'
-		END AS consrc,
-		contype,
-		conrelid AS relid,
-		NULL AS indkey
-	FROM
-		pg_catalog.pg_constraint
-	WHERE
-		contype IN ('f', 'c')
-	UNION ALL
-	SELECT
-		pc.relname,
-		NULL,
-		CASE WHEN indisprimary THEN
-				'p'
-		ELSE
-				'u'
-		END,
-		pi.indrelid,
-		indkey
-	FROM
-		pg_catalog.pg_class pc,
-		pg_catalog.pg_index pi
-	WHERE
-		pc.oid=pi.indexrelid
-		AND EXISTS (
-			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
-			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
-			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
-	)
-) AS sub
-WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
-	WHERE nspname=:schema))
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (34)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (70)
-2012/06/08 21:17:59 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
-	attrelid=(
-		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
-			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
-		)
-	)
-    AND attnum IN (1)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (34)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (70)
-2012/06/08 21:17:59 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
-FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
-WHERE a.attnum > 0 AND NOT a.attisdropped
-	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
-ORDER BY a.attnum
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (34)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (70)
-2012/06/08 21:17:59 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
-	SELECT
-		conname,
-		CASE WHEN contype='f' THEN
-			pg_catalog.pg_get_constraintdef(oid)
-		ELSE
-			'CHECK (' || consrc || ')'
-		END AS consrc,
-		contype,
-		conrelid AS relid,
-		NULL AS indkey
-	FROM
-		pg_catalog.pg_constraint
-	WHERE
-		contype IN ('f', 'c')
-	UNION ALL
-	SELECT
-		pc.relname,
-		NULL,
-		CASE WHEN indisprimary THEN
-				'p'
-		ELSE
-				'u'
-		END,
-		pi.indrelid,
-		indkey
-	FROM
-		pg_catalog.pg_class pc,
-		pg_catalog.pg_index pi
-	WHERE
-		pc.oid=pi.indexrelid
-		AND EXISTS (
-			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
-			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
-			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
-	)
-) AS sub
-WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
-	WHERE nspname=:schema))
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (34)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (70)
-2012/06/08 21:17:59 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
-	attrelid=(
-		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
-			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
-		)
-	)
-    AND attnum IN (1)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (34)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (70)
-2012/06/08 21:17:59 [trace] [system.db.CDbCommand] Querying SQL: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "district"."name" AS "t1_c4", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  WHERE ("t"."district_id" IN (7436, 7498, 7499) AND (date_published>=:year_start AND date_published <=:year_end)) ORDER BY priority ASC
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (34)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (70)
-2012/06/08 21:17:59 [trace] [system.CModule] Loading "coreMessages" application component
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (47)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (36)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/08 21:17:59 [error] [exception.CException] exception 'CException' with message 'Property "BallotItem.published_date" is not defined.' in C:\xampp\htdocs\HSLF\framework\base\CComponent.php:131
+2012/06/13 00:00:33 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (50)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/13 00:00:33 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (50)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
+2012/06/13 00:00:33 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (50)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
+2012/06/13 00:00:33 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "AND"
+LINE 1: ...Result"."id")  WHERE ("t"."district_id"=212 AND ( AND date_p...
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  WHERE ("t"."district_id"=212 AND ( AND date_published>=:year_start AND date_published <=:year_end)) ORDER BY priority ASC.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (50)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
+2012/06/13 00:00:33 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "AND"
+LINE 1: ...Result"."id")  WHERE ("t"."district_id"=212 AND ( AND date_p...
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  WHERE ("t"."district_id"=212 AND ( AND date_published>=:year_start AND date_published <=:year_end)) ORDER BY priority ASC' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
 Stack trace:
-#0 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(144): CComponent->__get('published_date')
-#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(47): CActiveRecord->__get('published_date')
-#2 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(36): BallotItemManager::applyFilter(Array)
-#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(99): BallotItemManager->findAllByDistricts('or', Array, Array, '2013')
-#4 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(70): ApiController->_getBallotItems(Array)
-#5 C:\xampp\htdocs\HSLF\framework\web\actions\CInlineAction.php(50): ApiController->actionView()
-#6 C:\xampp\htdocs\HSLF\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
-#7 C:\xampp\htdocs\HSLF\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
-#8 C:\xampp\htdocs\HSLF\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
-#9 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(276): CController->run('view')
-#10 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(135): CWebApplication->runController('api/view')
-#11 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
-#12 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
-#13 {main}
-REQUEST_URI=/api/ballot_items/2013/state/or/?districts=city/portland,city/lake%20oswego,congressional/5
----
-2012/06/08 21:17:59 [trace] [system.CModule] Loading "errorHandler" application component
-2012/06/11 18:16:35 [trace] [system.CModule] Loading "log" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 18:16:35 [trace] [system.CModule] Loading "request" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 18:16:35 [trace] [system.CModule] Loading "urlManager" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 18:16:35 [trace] [system.CModule] Loading "db" application component
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-2012/06/11 18:16:35 [trace] [system.db.CDbConnection] Opening DB connection
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-2012/06/11 18:16:35 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
-FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
-WHERE a.attnum > 0 AND NOT a.attisdropped
-	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
-ORDER BY a.attnum
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-2012/06/11 18:16:35 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
-	SELECT
-		conname,
-		CASE WHEN contype='f' THEN
-			pg_catalog.pg_get_constraintdef(oid)
-		ELSE
-			'CHECK (' || consrc || ')'
-		END AS consrc,
-		contype,
-		conrelid AS relid,
-		NULL AS indkey
-	FROM
-		pg_catalog.pg_constraint
-	WHERE
-		contype IN ('f', 'c')
-	UNION ALL
-	SELECT
-		pc.relname,
-		NULL,
-		CASE WHEN indisprimary THEN
-				'p'
-		ELSE
-				'u'
-		END,
-		pi.indrelid,
-		indkey
-	FROM
-		pg_catalog.pg_class pc,
-		pg_catalog.pg_index pi
-	WHERE
-		pc.oid=pi.indexrelid
-		AND EXISTS (
-			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
-			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
-			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
-	)
-) AS sub
-WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
-	WHERE nspname=:schema))
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-2012/06/11 18:16:35 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
-	attrelid=(
-		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
-			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
-		)
-	)
-    AND attnum IN (1)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-2012/06/11 18:16:35 [trace] [system.db.ar.CActiveRecord] District.findByAttributes()
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (50)
-2012/06/11 18:16:35 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."number"=:yp1 LIMIT 1
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (50)
-2012/06/11 18:16:35 [trace] [system.CModule] Loading "coreMessages" application component
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (50)
-2012/06/11 18:16:35 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
-LINE 1: ..." "t" WHERE "t"."state_abbr"='ca' AND "t"."number"=0 LIMIT 1
-                                                             ^
-HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."number"=:yp1 LIMIT 1.
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (50)
-2012/06/11 18:16:35 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
-LINE 1: ..." "t" WHERE "t"."state_abbr"='ca' AND "t"."number"=0 LIMIT 1
-                                                             ^
-HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."number"=:yp1 LIMIT 1' in C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php:528
-Stack trace:
-#0 C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php(408): CDbCommand->queryInternal('fetch', Array, Array)
-#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1287): CDbCommand->queryRow()
-#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1455): CActiveRecord->query(Object(CDbCriteria))
-#3 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php(94): CActiveRecord->findByAttributes(Array)
-#4 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(111): DistrictManager::getIdByStateAndDistrict('ca', 0)
-#5 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(50): ApiController->_getCandidates(Array)
-#6 C:\xampp\htdocs\HSLF\framework\web\actions\CInlineAction.php(50): ApiController->actionView()
-#7 C:\xampp\htdocs\HSLF\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
-#8 C:\xampp\htdocs\HSLF\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
-#9 C:\xampp\htdocs\HSLF\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
-#10 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(276): CController->run('view')
-#11 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(135): CWebApplication->runController('api/view')
-#12 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
-#13 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
-#14 {main}
-REQUEST_URI=/api/candidates/state/ca/district/11
----
-2012/06/11 18:16:35 [trace] [system.CModule] Loading "errorHandler" application component
-2012/06/11 18:17:55 [trace] [system.CModule] Loading "log" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 18:17:55 [trace] [system.CModule] Loading "request" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 18:17:55 [trace] [system.CModule] Loading "urlManager" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 18:17:55 [trace] [system.CModule] Loading "db" application component
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (113)
-2012/06/11 18:17:55 [trace] [system.db.CDbConnection] Opening DB connection
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (113)
-2012/06/11 18:17:55 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
-FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
-WHERE a.attnum > 0 AND NOT a.attisdropped
-	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
-ORDER BY a.attnum
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (113)
-2012/06/11 18:17:55 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
-	SELECT
-		conname,
-		CASE WHEN contype='f' THEN
-			pg_catalog.pg_get_constraintdef(oid)
-		ELSE
-			'CHECK (' || consrc || ')'
-		END AS consrc,
-		contype,
-		conrelid AS relid,
-		NULL AS indkey
-	FROM
-		pg_catalog.pg_constraint
-	WHERE
-		contype IN ('f', 'c')
-	UNION ALL
-	SELECT
-		pc.relname,
-		NULL,
-		CASE WHEN indisprimary THEN
-				'p'
-		ELSE
-				'u'
-		END,
-		pi.indrelid,
-		indkey
-	FROM
-		pg_catalog.pg_class pc,
-		pg_catalog.pg_index pi
-	WHERE
-		pc.oid=pi.indexrelid
-		AND EXISTS (
-			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
-			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
-			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
-	)
-) AS sub
-WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
-	WHERE nspname=:schema))
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (113)
-2012/06/11 18:17:55 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
-	attrelid=(
-		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
-			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
-		)
-	)
-    AND attnum IN (1)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (113)
-2012/06/11 18:17:55 [trace] [system.db.ar.CActiveRecord] District.findByAttributes()
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (113)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (50)
-2012/06/11 18:17:55 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."number"=:yp1 LIMIT 1
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (113)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (50)
-2012/06/11 18:17:55 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
-FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
-WHERE a.attnum > 0 AND NOT a.attisdropped
-	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
-ORDER BY a.attnum
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Candidate.php (36)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (119)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (50)
-2012/06/11 18:17:55 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
-	SELECT
-		conname,
-		CASE WHEN contype='f' THEN
-			pg_catalog.pg_get_constraintdef(oid)
-		ELSE
-			'CHECK (' || consrc || ')'
-		END AS consrc,
-		contype,
-		conrelid AS relid,
-		NULL AS indkey
-	FROM
-		pg_catalog.pg_constraint
-	WHERE
-		contype IN ('f', 'c')
-	UNION ALL
-	SELECT
-		pc.relname,
-		NULL,
-		CASE WHEN indisprimary THEN
-				'p'
-		ELSE
-				'u'
-		END,
-		pi.indrelid,
-		indkey
-	FROM
-		pg_catalog.pg_class pc,
-		pg_catalog.pg_index pi
-	WHERE
-		pc.oid=pi.indexrelid
-		AND EXISTS (
-			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
-			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
-			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
-	)
-) AS sub
-WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
-	WHERE nspname=:schema))
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Candidate.php (36)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (119)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (50)
-2012/06/11 18:17:55 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
-	attrelid=(
-		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
-			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
-		)
-	)
-    AND attnum IN (1)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Candidate.php (36)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (119)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (50)
-2012/06/11 18:17:55 [trace] [system.db.ar.CActiveRecord] Candidate.findAllByAttributes()
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (119)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (50)
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 18:17:55 [trace] [system.db.CDbCommand] Querying SQL: SELECT "t"."id" AS "t0_c0", "t"."state_abbr" AS "t0_c1", "t"."district_id" AS "t0_c2", "t"."type" AS "t0_c3", "t"."endorsement" AS "t0_c4", "t"."full_name" AS "t0_c5", "t"."party" AS "t0_c6", "t"."date_published" AS "t0_c7", "t"."publish" AS "t0_c8", "t"."scorecard" AS "t0_c9", "t"."url" AS "t0_c10", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3" FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE ("t"."state_abbr"=:yp0 AND "t"."district_id" IN (1, ) AND "t"."publish"=:yp1)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (119)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (50)
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 18:17:55 [trace] [system.CModule] Loading "coreMessages" application component
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (119)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (50)
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 18:17:55 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near ")"
-LINE 1: ...t"."state_abbr"='ca' AND "t"."district_id" IN (1, ) AND "t"....
-                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."state_abbr" AS "t0_c1", "t"."district_id" AS "t0_c2", "t"."type" AS "t0_c3", "t"."endorsement" AS "t0_c4", "t"."full_name" AS "t0_c5", "t"."party" AS "t0_c6", "t"."date_published" AS "t0_c7", "t"."publish" AS "t0_c8", "t"."scorecard" AS "t0_c9", "t"."url" AS "t0_c10", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3" FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE ("t"."state_abbr"=:yp0 AND "t"."district_id" IN (1, ) AND "t"."publish"=:yp1).
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (119)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (50)
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 18:17:55 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near ")"
-LINE 1: ...t"."state_abbr"='ca' AND "t"."district_id" IN (1, ) AND "t"....
-                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."state_abbr" AS "t0_c1", "t"."district_id" AS "t0_c2", "t"."type" AS "t0_c3", "t"."endorsement" AS "t0_c4", "t"."full_name" AS "t0_c5", "t"."party" AS "t0_c6", "t"."date_published" AS "t0_c7", "t"."publish" AS "t0_c8", "t"."scorecard" AS "t0_c9", "t"."url" AS "t0_c10", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3" FROM "candidate" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  WHERE ("t"."state_abbr"=:yp0 AND "t"."district_id" IN (1, ) AND "t"."publish"=:yp1)' in C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php:528
-Stack trace:
-#0 C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
 #1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
 #2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
 #3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
-#4 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1292): CActiveFinder->query(Object(CDbCriteria), true)
-#5 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1472): CActiveRecord->query(Object(CDbCriteria), true)
-#6 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(119): CActiveRecord->findAllByAttributes(Array)
-#7 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(50): ApiController->_getCandidates(Array)
-#8 C:\xampp\htdocs\HSLF\framework\web\actions\CInlineAction.php(50): ApiController->actionView()
-#9 C:\xampp\htdocs\HSLF\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
-#10 C:\xampp\htdocs\HSLF\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
-#11 C:\xampp\htdocs\HSLF\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
-#12 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(276): CController->run('view')
-#13 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(135): CWebApplication->runController('api/view')
-#14 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
-#15 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
-#16 {main}
-REQUEST_URI=/api/candidates/state/ca/district/11
----
-2012/06/11 18:17:55 [trace] [system.CModule] Loading "errorHandler" application component
-2012/06/11 18:19:39 [trace] [system.CModule] Loading "log" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 18:19:39 [trace] [system.CModule] Loading "request" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 18:19:39 [trace] [system.CModule] Loading "urlManager" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 18:19:39 [trace] [system.CModule] Loading "db" application component
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-2012/06/11 18:19:39 [trace] [system.db.CDbConnection] Opening DB connection
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-2012/06/11 18:19:39 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
-FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
-WHERE a.attnum > 0 AND NOT a.attisdropped
-	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
-ORDER BY a.attnum
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-2012/06/11 18:19:39 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
-	SELECT
-		conname,
-		CASE WHEN contype='f' THEN
-			pg_catalog.pg_get_constraintdef(oid)
-		ELSE
-			'CHECK (' || consrc || ')'
-		END AS consrc,
-		contype,
-		conrelid AS relid,
-		NULL AS indkey
-	FROM
-		pg_catalog.pg_constraint
-	WHERE
-		contype IN ('f', 'c')
-	UNION ALL
-	SELECT
-		pc.relname,
-		NULL,
-		CASE WHEN indisprimary THEN
-				'p'
-		ELSE
-				'u'
-		END,
-		pi.indrelid,
-		indkey
-	FROM
-		pg_catalog.pg_class pc,
-		pg_catalog.pg_index pi
-	WHERE
-		pc.oid=pi.indexrelid
-		AND EXISTS (
-			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
-			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
-			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
-	)
-) AS sub
-WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
-	WHERE nspname=:schema))
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-2012/06/11 18:19:39 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
-	attrelid=(
-		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
-			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
-		)
-	)
-    AND attnum IN (1)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-2012/06/11 18:19:39 [trace] [system.db.ar.CActiveRecord] District.findByAttributes()
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (50)
-2012/06/11 18:19:39 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."number"=:yp1 LIMIT 1
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (50)
-2012/06/11 18:19:39 [trace] [system.CModule] Loading "coreMessages" application component
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (50)
-2012/06/11 18:19:39 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
-LINE 1: ..." "t" WHERE "t"."state_abbr"='ca' AND "t"."number"=0 LIMIT 1
-                                                             ^
-HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."number"=:yp1 LIMIT 1.
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (50)
-2012/06/11 18:19:39 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
-LINE 1: ..." "t" WHERE "t"."state_abbr"='ca' AND "t"."number"=0 LIMIT 1
-                                                             ^
-HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."number"=:yp1 LIMIT 1' in C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php:528
-Stack trace:
-#0 C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php(408): CDbCommand->queryInternal('fetch', Array, Array)
-#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1287): CDbCommand->queryRow()
-#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1455): CActiveRecord->query(Object(CDbCriteria))
-#3 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php(94): CActiveRecord->findByAttributes(Array)
-#4 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(111): DistrictManager::getIdByStateAndDistrict('ca', 0)
-#5 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(50): ApiController->_getCandidates(Array)
-#6 C:\xampp\htdocs\HSLF\framework\web\actions\CInlineAction.php(50): ApiController->actionView()
-#7 C:\xampp\htdocs\HSLF\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
-#8 C:\xampp\htdocs\HSLF\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
-#9 C:\xampp\htdocs\HSLF\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
-#10 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(276): CController->run('view')
-#11 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(135): CWebApplication->runController('api/view')
-#12 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
-#13 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
-#14 {main}
-REQUEST_URI=/api/candidates/state/ca/district/11
----
-2012/06/11 18:19:39 [trace] [system.CModule] Loading "errorHandler" application component
-2012/06/11 18:19:59 [trace] [system.CModule] Loading "log" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 18:19:59 [trace] [system.CModule] Loading "request" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 18:19:59 [trace] [system.CModule] Loading "urlManager" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 18:19:59 [trace] [system.CModule] Loading "db" application component
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-2012/06/11 18:19:59 [trace] [system.db.CDbConnection] Opening DB connection
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-2012/06/11 18:19:59 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
-FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
-WHERE a.attnum > 0 AND NOT a.attisdropped
-	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
-ORDER BY a.attnum
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-2012/06/11 18:19:59 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
-	SELECT
-		conname,
-		CASE WHEN contype='f' THEN
-			pg_catalog.pg_get_constraintdef(oid)
-		ELSE
-			'CHECK (' || consrc || ')'
-		END AS consrc,
-		contype,
-		conrelid AS relid,
-		NULL AS indkey
-	FROM
-		pg_catalog.pg_constraint
-	WHERE
-		contype IN ('f', 'c')
-	UNION ALL
-	SELECT
-		pc.relname,
-		NULL,
-		CASE WHEN indisprimary THEN
-				'p'
-		ELSE
-				'u'
-		END,
-		pi.indrelid,
-		indkey
-	FROM
-		pg_catalog.pg_class pc,
-		pg_catalog.pg_index pi
-	WHERE
-		pc.oid=pi.indexrelid
-		AND EXISTS (
-			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
-			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
-			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
-	)
-) AS sub
-WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
-	WHERE nspname=:schema))
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-2012/06/11 18:19:59 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
-	attrelid=(
-		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
-			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
-		)
-	)
-    AND attnum IN (1)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-2012/06/11 18:19:59 [trace] [system.db.ar.CActiveRecord] District.findByAttributes()
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (50)
-2012/06/11 18:19:59 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."number"=:yp1 LIMIT 1
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (50)
-2012/06/11 18:19:59 [trace] [system.CModule] Loading "coreMessages" application component
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (50)
-2012/06/11 18:19:59 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
-LINE 1: ..." "t" WHERE "t"."state_abbr"='ca' AND "t"."number"=0 LIMIT 1
-                                                             ^
-HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."number"=:yp1 LIMIT 1.
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (50)
-2012/06/11 18:19:59 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
-LINE 1: ..." "t" WHERE "t"."state_abbr"='ca' AND "t"."number"=0 LIMIT 1
-                                                             ^
-HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."number"=:yp1 LIMIT 1' in C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php:528
-Stack trace:
-#0 C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php(408): CDbCommand->queryInternal('fetch', Array, Array)
-#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1287): CDbCommand->queryRow()
-#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1455): CActiveRecord->query(Object(CDbCriteria))
-#3 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php(94): CActiveRecord->findByAttributes(Array)
-#4 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(111): DistrictManager::getIdByStateAndDistrict('ca', 0)
-#5 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(50): ApiController->_getCandidates(Array)
-#6 C:\xampp\htdocs\HSLF\framework\web\actions\CInlineAction.php(50): ApiController->actionView()
-#7 C:\xampp\htdocs\HSLF\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
-#8 C:\xampp\htdocs\HSLF\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
-#9 C:\xampp\htdocs\HSLF\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
-#10 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(276): CController->run('view')
-#11 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(135): CWebApplication->runController('api/view')
-#12 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
-#13 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
-#14 {main}
-REQUEST_URI=/api/candidates/state/ca/district/11
----
-2012/06/11 18:19:59 [trace] [system.CModule] Loading "errorHandler" application component
-2012/06/11 18:20:04 [trace] [system.CModule] Loading "log" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 18:20:04 [trace] [system.CModule] Loading "request" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 18:20:04 [trace] [system.CModule] Loading "urlManager" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 18:20:04 [trace] [system.CModule] Loading "db" application component
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-2012/06/11 18:20:04 [trace] [system.db.CDbConnection] Opening DB connection
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-2012/06/11 18:20:04 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
-FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
-WHERE a.attnum > 0 AND NOT a.attisdropped
-	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
-ORDER BY a.attnum
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-2012/06/11 18:20:04 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
-	SELECT
-		conname,
-		CASE WHEN contype='f' THEN
-			pg_catalog.pg_get_constraintdef(oid)
-		ELSE
-			'CHECK (' || consrc || ')'
-		END AS consrc,
-		contype,
-		conrelid AS relid,
-		NULL AS indkey
-	FROM
-		pg_catalog.pg_constraint
-	WHERE
-		contype IN ('f', 'c')
-	UNION ALL
-	SELECT
-		pc.relname,
-		NULL,
-		CASE WHEN indisprimary THEN
-				'p'
-		ELSE
-				'u'
-		END,
-		pi.indrelid,
-		indkey
-	FROM
-		pg_catalog.pg_class pc,
-		pg_catalog.pg_index pi
-	WHERE
-		pc.oid=pi.indexrelid
-		AND EXISTS (
-			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
-			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
-			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
-	)
-) AS sub
-WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
-	WHERE nspname=:schema))
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-2012/06/11 18:20:04 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
-	attrelid=(
-		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
-			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
-		)
-	)
-    AND attnum IN (1)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-2012/06/11 18:20:04 [trace] [system.db.ar.CActiveRecord] District.findByAttributes()
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (50)
-2012/06/11 18:20:04 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."number"=:yp1 LIMIT 1
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (50)
-2012/06/11 18:20:04 [trace] [system.CModule] Loading "coreMessages" application component
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (50)
-2012/06/11 18:20:04 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
-LINE 1: ..." "t" WHERE "t"."state_abbr"='ca' AND "t"."number"=0 LIMIT 1
-                                                             ^
-HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."number"=:yp1 LIMIT 1.
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (94)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (111)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (50)
-2012/06/11 18:20:04 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
-LINE 1: ..." "t" WHERE "t"."state_abbr"='ca' AND "t"."number"=0 LIMIT 1
-                                                             ^
-HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT * FROM "district" "t" WHERE "t"."state_abbr"=:yp0 AND "t"."number"=:yp1 LIMIT 1' in C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php:528
-Stack trace:
-#0 C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php(408): CDbCommand->queryInternal('fetch', Array, Array)
-#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1287): CDbCommand->queryRow()
-#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1455): CActiveRecord->query(Object(CDbCriteria))
-#3 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php(94): CActiveRecord->findByAttributes(Array)
-#4 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(111): DistrictManager::getIdByStateAndDistrict('ca', 0)
-#5 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(50): ApiController->_getCandidates(Array)
-#6 C:\xampp\htdocs\HSLF\framework\web\actions\CInlineAction.php(50): ApiController->actionView()
-#7 C:\xampp\htdocs\HSLF\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
-#8 C:\xampp\htdocs\HSLF\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
-#9 C:\xampp\htdocs\HSLF\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
-#10 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(276): CController->run('view')
-#11 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(135): CWebApplication->runController('api/view')
-#12 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
-#13 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
-#14 {main}
-REQUEST_URI=/api/candidates/state/ca/district/11
----
-2012/06/11 18:20:04 [trace] [system.CModule] Loading "errorHandler" application component
-2012/06/11 19:19:51 [trace] [system.CModule] Loading "log" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 19:19:51 [trace] [system.CModule] Loading "request" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 19:19:51 [trace] [system.CModule] Loading "urlManager" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 19:19:51 [trace] [system.CModule] Loading "db" application component
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (34)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (20)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/11 19:19:51 [trace] [system.db.CDbConnection] Opening DB connection
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (34)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (20)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/11 19:19:51 [trace] [system.db.CDbCommand] Querying SQL: SELECT "id"
-FROM "district"
-WHERE state_abbr=:state_abbr  AND state_abbr=:state_abbr AND type=:district_type0 AND number=:district0
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (75)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (20)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/11 19:19:51 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
-FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
-WHERE a.attnum > 0 AND NOT a.attisdropped
-	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
-ORDER BY a.attnum
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (38)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/11 19:19:51 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
-	SELECT
-		conname,
-		CASE WHEN contype='f' THEN
-			pg_catalog.pg_get_constraintdef(oid)
-		ELSE
-			'CHECK (' || consrc || ')'
-		END AS consrc,
-		contype,
-		conrelid AS relid,
-		NULL AS indkey
-	FROM
-		pg_catalog.pg_constraint
-	WHERE
-		contype IN ('f', 'c')
-	UNION ALL
-	SELECT
-		pc.relname,
-		NULL,
-		CASE WHEN indisprimary THEN
-				'p'
-		ELSE
-				'u'
-		END,
-		pi.indrelid,
-		indkey
-	FROM
-		pg_catalog.pg_class pc,
-		pg_catalog.pg_index pi
-	WHERE
-		pc.oid=pi.indexrelid
-		AND EXISTS (
-			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
-			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
-			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
-	)
-) AS sub
-WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
-	WHERE nspname=:schema))
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (38)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/11 19:19:51 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
-	attrelid=(
-		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
-			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
-		)
-	)
-    AND attnum IN (1)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (38)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/11 19:19:51 [trace] [system.db.ar.CActiveRecord] BallotItem.findAllByAttributes()
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:19:51 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
-FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
-WHERE a.attnum > 0 AND NOT a.attisdropped
-	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
-ORDER BY a.attnum
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:19:51 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
-	SELECT
-		conname,
-		CASE WHEN contype='f' THEN
-			pg_catalog.pg_get_constraintdef(oid)
-		ELSE
-			'CHECK (' || consrc || ')'
-		END AS consrc,
-		contype,
-		conrelid AS relid,
-		NULL AS indkey
-	FROM
-		pg_catalog.pg_constraint
-	WHERE
-		contype IN ('f', 'c')
-	UNION ALL
-	SELECT
-		pc.relname,
-		NULL,
-		CASE WHEN indisprimary THEN
-				'p'
-		ELSE
-				'u'
-		END,
-		pi.indrelid,
-		indkey
-	FROM
-		pg_catalog.pg_class pc,
-		pg_catalog.pg_index pi
-	WHERE
-		pc.oid=pi.indexrelid
-		AND EXISTS (
-			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
-			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
-			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
-	)
-) AS sub
-WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
-	WHERE nspname=:schema))
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:19:51 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
-	attrelid=(
-		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
-			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
-		)
-	)
-    AND attnum IN (1)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:19:51 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
-FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
-WHERE a.attnum > 0 AND NOT a.attisdropped
-	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
-ORDER BY a.attnum
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:19:51 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
-	SELECT
-		conname,
-		CASE WHEN contype='f' THEN
-			pg_catalog.pg_get_constraintdef(oid)
-		ELSE
-			'CHECK (' || consrc || ')'
-		END AS consrc,
-		contype,
-		conrelid AS relid,
-		NULL AS indkey
-	FROM
-		pg_catalog.pg_constraint
-	WHERE
-		contype IN ('f', 'c')
-	UNION ALL
-	SELECT
-		pc.relname,
-		NULL,
-		CASE WHEN indisprimary THEN
-				'p'
-		ELSE
-				'u'
-		END,
-		pi.indrelid,
-		indkey
-	FROM
-		pg_catalog.pg_class pc,
-		pg_catalog.pg_index pi
-	WHERE
-		pc.oid=pi.indexrelid
-		AND EXISTS (
-			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
-			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
-			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
-	)
-) AS sub
-WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
-	WHERE nspname=:schema))
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:19:51 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
-	attrelid=(
-		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
-			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
-		)
-	)
-    AND attnum IN (1)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:19:51 [trace] [system.db.CDbCommand] Querying SQL: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  WHERE ("t"."district_id"=129 AND (date_published>=:year_start AND date_published <=:year_end AND next_delection_date<=:current_date)) ORDER BY priority ASC
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:19:51 [trace] [system.CModule] Loading "coreMessages" application component
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:19:51 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42703]: Undefined column: 7 ERROR:  column "next_delection_date" does not exist
-LINE 1: ...0' AND date_published <='2012-12-31 23:59:59' AND next_delec...
-                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  WHERE ("t"."district_id"=129 AND (date_published>=:year_start AND date_published <=:year_end AND next_delection_date<=:current_date)) ORDER BY priority ASC.
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:19:51 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42703]: Undefined column: 7 ERROR:  column "next_delection_date" does not exist
-LINE 1: ...0' AND date_published <='2012-12-31 23:59:59' AND next_delec...
-                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  WHERE ("t"."district_id"=129 AND (date_published>=:year_start AND date_published <=:year_end AND next_delection_date<=:current_date)) ORDER BY priority ASC' in C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php:528
-Stack trace:
-#0 C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
-#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
-#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
-#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
-#4 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1292): CActiveFinder->query(Object(CDbCriteria), true)
-#5 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1472): CActiveRecord->query(Object(CDbCriteria), true)
-#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(48): CActiveRecord->findAllByAttributes(Array, Array)
-#7 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(99): BallotItemManager->findAllByDistricts('or', Array, Array, '2012', 'true')
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(7222): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7310): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(50): CActiveRecord->findAllByAttributes(Array, Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager->findAllByDistricts('ca', Array, Array, '2012', false)
 #8 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
-#9 C:\xampp\htdocs\HSLF\framework\web\actions\CInlineAction.php(50): ApiController->actionView()
-#10 C:\xampp\htdocs\HSLF\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
-#11 C:\xampp\htdocs\HSLF\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
-#12 C:\xampp\htdocs\HSLF\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
-#13 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(276): CController->run('view')
-#14 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(135): CWebApplication->runController('api/view')
-#15 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
 #16 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
 #17 {main}
-REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/4&active=true
+REQUEST_URI=/api/ballot_items/2012/state/ca/?districts=congressional/14
 ---
-2012/06/11 19:19:51 [trace] [system.CModule] Loading "errorHandler" application component
-2012/06/11 19:21:12 [trace] [system.CModule] Loading "log" application component
+2012/06/13 00:01:24 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
 in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 19:21:12 [trace] [system.CModule] Loading "request" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 19:21:12 [trace] [system.CModule] Loading "urlManager" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 19:21:12 [trace] [system.CModule] Loading "db" application component
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (34)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (20)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/11 19:21:12 [trace] [system.db.CDbConnection] Opening DB connection
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (34)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (20)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/11 19:21:12 [trace] [system.db.CDbCommand] Querying SQL: SELECT "id"
-FROM "district"
-WHERE state_abbr=:state_abbr  AND state_abbr=:state_abbr AND type=:district_type0 AND number=:district0
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (75)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (20)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/11 19:21:12 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
-FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
-WHERE a.attnum > 0 AND NOT a.attisdropped
-	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
-ORDER BY a.attnum
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (38)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/11 19:21:12 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
-	SELECT
-		conname,
-		CASE WHEN contype='f' THEN
-			pg_catalog.pg_get_constraintdef(oid)
-		ELSE
-			'CHECK (' || consrc || ')'
-		END AS consrc,
-		contype,
-		conrelid AS relid,
-		NULL AS indkey
-	FROM
-		pg_catalog.pg_constraint
-	WHERE
-		contype IN ('f', 'c')
-	UNION ALL
-	SELECT
-		pc.relname,
-		NULL,
-		CASE WHEN indisprimary THEN
-				'p'
-		ELSE
-				'u'
-		END,
-		pi.indrelid,
-		indkey
-	FROM
-		pg_catalog.pg_class pc,
-		pg_catalog.pg_index pi
-	WHERE
-		pc.oid=pi.indexrelid
-		AND EXISTS (
-			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
-			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
-			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
-	)
-) AS sub
-WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
-	WHERE nspname=:schema))
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (38)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/11 19:21:12 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
-	attrelid=(
-		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
-			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
-		)
-	)
-    AND attnum IN (1)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (38)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/11 19:21:12 [trace] [system.db.ar.CActiveRecord] BallotItem.findAllByAttributes()
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
+2012/06/13 00:01:24 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (53)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/13 00:01:24 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (53)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
 in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:21:12 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
-FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
-WHERE a.attnum > 0 AND NOT a.attisdropped
-	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
-ORDER BY a.attnum
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
+2012/06/13 00:01:24 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (53)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
 in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:21:12 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
-	SELECT
-		conname,
-		CASE WHEN contype='f' THEN
-			pg_catalog.pg_get_constraintdef(oid)
-		ELSE
-			'CHECK (' || consrc || ')'
-		END AS consrc,
-		contype,
-		conrelid AS relid,
-		NULL AS indkey
-	FROM
-		pg_catalog.pg_constraint
-	WHERE
-		contype IN ('f', 'c')
-	UNION ALL
-	SELECT
-		pc.relname,
-		NULL,
-		CASE WHEN indisprimary THEN
-				'p'
-		ELSE
-				'u'
-		END,
-		pi.indrelid,
-		indkey
-	FROM
-		pg_catalog.pg_class pc,
-		pg_catalog.pg_index pi
-	WHERE
-		pc.oid=pi.indexrelid
-		AND EXISTS (
-			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
-			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
-			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
-	)
-) AS sub
-WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
-	WHERE nspname=:schema))
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
+2012/06/13 00:01:24 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  WHERE ("t"."district_id"=212 AND (published =:published AND date_published>=:year_start AND date_published <=:year_end)) ORDER BY priority ASC.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (53)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
 in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:21:12 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
-	attrelid=(
-		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
-			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
-		)
-	)
-    AND attnum IN (1)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:21:12 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
-FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
-WHERE a.attnum > 0 AND NOT a.attisdropped
-	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
-ORDER BY a.attnum
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:21:12 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
-	SELECT
-		conname,
-		CASE WHEN contype='f' THEN
-			pg_catalog.pg_get_constraintdef(oid)
-		ELSE
-			'CHECK (' || consrc || ')'
-		END AS consrc,
-		contype,
-		conrelid AS relid,
-		NULL AS indkey
-	FROM
-		pg_catalog.pg_constraint
-	WHERE
-		contype IN ('f', 'c')
-	UNION ALL
-	SELECT
-		pc.relname,
-		NULL,
-		CASE WHEN indisprimary THEN
-				'p'
-		ELSE
-				'u'
-		END,
-		pi.indrelid,
-		indkey
-	FROM
-		pg_catalog.pg_class pc,
-		pg_catalog.pg_index pi
-	WHERE
-		pc.oid=pi.indexrelid
-		AND EXISTS (
-			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
-			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
-			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
-	)
-) AS sub
-WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
-	WHERE nspname=:schema))
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:21:12 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
-	attrelid=(
-		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
-			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
-		)
-	)
-    AND attnum IN (1)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:21:12 [trace] [system.db.CDbCommand] Querying SQL: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  WHERE ("t"."district_id"=129 AND (date_published>=:year_start AND date_published <=:year_end AND next_delection_date<=:current_date)) ORDER BY priority ASC
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:21:12 [trace] [system.CModule] Loading "coreMessages" application component
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:21:12 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42703]: Undefined column: 7 ERROR:  column "next_delection_date" does not exist
-LINE 1: ...0' AND date_published <='2012-12-31 23:59:59' AND next_delec...
-                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  WHERE ("t"."district_id"=129 AND (date_published>=:year_start AND date_published <=:year_end AND next_delection_date<=:current_date)) ORDER BY priority ASC.
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:21:12 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42703]: Undefined column: 7 ERROR:  column "next_delection_date" does not exist
-LINE 1: ...0' AND date_published <='2012-12-31 23:59:59' AND next_delec...
-                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  WHERE ("t"."district_id"=129 AND (date_published>=:year_start AND date_published <=:year_end AND next_delection_date<=:current_date)) ORDER BY priority ASC' in C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php:528
+2012/06/13 00:01:24 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  WHERE ("t"."district_id"=212 AND (published =:published AND date_published>=:year_start AND date_published <=:year_end)) ORDER BY priority ASC' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
 Stack trace:
-#0 C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
 #1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
 #2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
 #3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
-#4 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1292): CActiveFinder->query(Object(CDbCriteria), true)
-#5 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1472): CActiveRecord->query(Object(CDbCriteria), true)
-#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(48): CActiveRecord->findAllByAttributes(Array, Array)
-#7 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(99): BallotItemManager->findAllByDistricts('or', Array, Array, '2012', 'true')
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(7222): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7310): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(53): CActiveRecord->findAllByAttributes(Array, Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager->findAllByDistricts('ca', Array, Array, '2012', false)
 #8 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
-#9 C:\xampp\htdocs\HSLF\framework\web\actions\CInlineAction.php(50): ApiController->actionView()
-#10 C:\xampp\htdocs\HSLF\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
-#11 C:\xampp\htdocs\HSLF\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
-#12 C:\xampp\htdocs\HSLF\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
-#13 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(276): CController->run('view')
-#14 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(135): CWebApplication->runController('api/view')
-#15 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
 #16 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
 #17 {main}
-REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/4&active=true
+REQUEST_URI=/api/ballot_items/2012/state/ca/?districts=congressional/14
 ---
-2012/06/11 19:21:12 [trace] [system.CModule] Loading "errorHandler" application component
-2012/06/11 19:22:14 [trace] [system.CModule] Loading "log" application component
+2012/06/13 18:57:08 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
 in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 19:22:14 [trace] [system.CModule] Loading "request" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 19:22:14 [trace] [system.CModule] Loading "urlManager" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 19:22:14 [trace] [system.CModule] Loading "db" application component
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (34)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (20)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/11 19:22:14 [trace] [system.db.CDbConnection] Opening DB connection
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (34)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (20)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/11 19:22:14 [trace] [system.db.CDbCommand] Querying SQL: SELECT "id"
-FROM "district"
-WHERE state_abbr=:state_abbr  AND state_abbr=:state_abbr AND type=:district_type0 AND number=:district0
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (75)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (20)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/11 19:22:14 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
-FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
-WHERE a.attnum > 0 AND NOT a.attisdropped
-	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
-ORDER BY a.attnum
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (38)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/11 19:22:14 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
-	SELECT
-		conname,
-		CASE WHEN contype='f' THEN
-			pg_catalog.pg_get_constraintdef(oid)
-		ELSE
-			'CHECK (' || consrc || ')'
-		END AS consrc,
-		contype,
-		conrelid AS relid,
-		NULL AS indkey
-	FROM
-		pg_catalog.pg_constraint
-	WHERE
-		contype IN ('f', 'c')
-	UNION ALL
-	SELECT
-		pc.relname,
-		NULL,
-		CASE WHEN indisprimary THEN
-				'p'
-		ELSE
-				'u'
-		END,
-		pi.indrelid,
-		indkey
-	FROM
-		pg_catalog.pg_class pc,
-		pg_catalog.pg_index pi
-	WHERE
-		pc.oid=pi.indexrelid
-		AND EXISTS (
-			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
-			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
-			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
-	)
-) AS sub
-WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
-	WHERE nspname=:schema))
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (38)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/11 19:22:14 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
-	attrelid=(
-		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
-			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
-		)
-	)
-    AND attnum IN (1)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (38)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/11 19:22:14 [trace] [system.db.ar.CActiveRecord] BallotItem.findAllByAttributes()
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:22:14 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
-FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
-WHERE a.attnum > 0 AND NOT a.attisdropped
-	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
-ORDER BY a.attnum
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:22:14 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
-	SELECT
-		conname,
-		CASE WHEN contype='f' THEN
-			pg_catalog.pg_get_constraintdef(oid)
-		ELSE
-			'CHECK (' || consrc || ')'
-		END AS consrc,
-		contype,
-		conrelid AS relid,
-		NULL AS indkey
-	FROM
-		pg_catalog.pg_constraint
-	WHERE
-		contype IN ('f', 'c')
-	UNION ALL
-	SELECT
-		pc.relname,
-		NULL,
-		CASE WHEN indisprimary THEN
-				'p'
-		ELSE
-				'u'
-		END,
-		pi.indrelid,
-		indkey
-	FROM
-		pg_catalog.pg_class pc,
-		pg_catalog.pg_index pi
-	WHERE
-		pc.oid=pi.indexrelid
-		AND EXISTS (
-			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
-			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
-			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
-	)
-) AS sub
-WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
-	WHERE nspname=:schema))
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:22:14 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
-	attrelid=(
-		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
-			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
-		)
-	)
-    AND attnum IN (1)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:22:14 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
-FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
-WHERE a.attnum > 0 AND NOT a.attisdropped
-	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
-ORDER BY a.attnum
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:22:14 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
-	SELECT
-		conname,
-		CASE WHEN contype='f' THEN
-			pg_catalog.pg_get_constraintdef(oid)
-		ELSE
-			'CHECK (' || consrc || ')'
-		END AS consrc,
-		contype,
-		conrelid AS relid,
-		NULL AS indkey
-	FROM
-		pg_catalog.pg_constraint
-	WHERE
-		contype IN ('f', 'c')
-	UNION ALL
-	SELECT
-		pc.relname,
-		NULL,
-		CASE WHEN indisprimary THEN
-				'p'
-		ELSE
-				'u'
-		END,
-		pi.indrelid,
-		indkey
-	FROM
-		pg_catalog.pg_class pc,
-		pg_catalog.pg_index pi
-	WHERE
-		pc.oid=pi.indexrelid
-		AND EXISTS (
-			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
-			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
-			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
-	)
-) AS sub
-WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
-	WHERE nspname=:schema))
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:22:14 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
-	attrelid=(
-		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
-			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
-		)
-	)
-    AND attnum IN (1)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:22:14 [trace] [system.db.CDbCommand] Querying SQL: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  WHERE ("t"."district_id"=129 AND (date_published>=:year_start AND date_published <=:year_end AND next_delection_date <=:current_date)) ORDER BY priority ASC
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:22:14 [trace] [system.CModule] Loading "coreMessages" application component
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:22:14 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42703]: Undefined column: 7 ERROR:  column "next_delection_date" does not exist
-LINE 1: ...0' AND date_published <='2012-12-31 23:59:59' AND next_delec...
-                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  WHERE ("t"."district_id"=129 AND (date_published>=:year_start AND date_published <=:year_end AND next_delection_date <=:current_date)) ORDER BY priority ASC.
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:22:14 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42703]: Undefined column: 7 ERROR:  column "next_delection_date" does not exist
-LINE 1: ...0' AND date_published <='2012-12-31 23:59:59' AND next_delec...
-                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  WHERE ("t"."district_id"=129 AND (date_published>=:year_start AND date_published <=:year_end AND next_delection_date <=:current_date)) ORDER BY priority ASC' in C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php:528
+2012/06/13 18:57:08 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (58)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+2012/06/13 18:57:08 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (58)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/13 18:57:08 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (58)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/13 18:57:08 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "DESCe"
+LINE 1: ...e_published<='2012-12-31 23:59:59')) ORDER BY priority DESCe
+                                                                  ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id" IN (265, 408) AND (date_published>=:year_start and date_published<=:year_end)) ORDER BY priority DESCe.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (58)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/13 18:57:08 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "DESCe"
+LINE 1: ...e_published<='2012-12-31 23:59:59')) ORDER BY priority DESCe
+                                                                  ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id" IN (265, 408) AND (date_published>=:year_start and date_published<=:year_end)) ORDER BY priority DESCe' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
 Stack trace:
-#0 C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
 #1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
 #2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
 #3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
-#4 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1292): CActiveFinder->query(Object(CDbCriteria), true)
-#5 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1472): CActiveRecord->query(Object(CDbCriteria), true)
-#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(48): CActiveRecord->findAllByAttributes(Array, Array)
-#7 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(99): BallotItemManager->findAllByDistricts('or', Array, Array, '2012', 'true')
-#8 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
-#9 C:\xampp\htdocs\HSLF\framework\web\actions\CInlineAction.php(50): ApiController->actionView()
-#10 C:\xampp\htdocs\HSLF\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
-#11 C:\xampp\htdocs\HSLF\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
-#12 C:\xampp\htdocs\HSLF\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
-#13 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(276): CController->run('view')
-#14 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(135): CWebApplication->runController('api/view')
-#15 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
-#16 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
-#17 {main}
-REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/4&active=true
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(7222): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7310): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php(58): CActiveRecord->findAllByAttributes(Array, Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(39): ModelFinder->search()
+#8 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#9 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#18 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1,county/clackamas
 ---
-2012/06/11 19:22:14 [trace] [system.CModule] Loading "errorHandler" application component
-2012/06/11 19:22:15 [trace] [system.CModule] Loading "log" application component
+2012/06/13 19:03:12 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
 in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 19:22:15 [trace] [system.CModule] Loading "request" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 19:22:15 [trace] [system.CModule] Loading "urlManager" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 19:22:15 [trace] [system.CModule] Loading "db" application component
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (34)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (20)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/11 19:22:15 [trace] [system.db.CDbConnection] Opening DB connection
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (34)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (20)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/11 19:22:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT "id"
-FROM "district"
-WHERE state_abbr=:state_abbr  AND state_abbr=:state_abbr AND type=:district_type0 AND number=:district0
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (75)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (20)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/11 19:22:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
-FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
-WHERE a.attnum > 0 AND NOT a.attisdropped
-	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
-ORDER BY a.attnum
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (38)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/11 19:22:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
-	SELECT
-		conname,
-		CASE WHEN contype='f' THEN
-			pg_catalog.pg_get_constraintdef(oid)
-		ELSE
-			'CHECK (' || consrc || ')'
-		END AS consrc,
-		contype,
-		conrelid AS relid,
-		NULL AS indkey
-	FROM
-		pg_catalog.pg_constraint
-	WHERE
-		contype IN ('f', 'c')
-	UNION ALL
-	SELECT
-		pc.relname,
-		NULL,
-		CASE WHEN indisprimary THEN
-				'p'
-		ELSE
-				'u'
-		END,
-		pi.indrelid,
-		indkey
-	FROM
-		pg_catalog.pg_class pc,
-		pg_catalog.pg_index pi
-	WHERE
-		pc.oid=pi.indexrelid
-		AND EXISTS (
-			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
-			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
-			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
-	)
-) AS sub
-WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
-	WHERE nspname=:schema))
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (38)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/11 19:22:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
-	attrelid=(
-		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
-			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
-		)
-	)
-    AND attnum IN (1)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (38)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-2012/06/11 19:22:15 [trace] [system.db.ar.CActiveRecord] BallotItem.findAllByAttributes()
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:22:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
-FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
-WHERE a.attnum > 0 AND NOT a.attisdropped
-	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
-ORDER BY a.attnum
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:22:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
-	SELECT
-		conname,
-		CASE WHEN contype='f' THEN
-			pg_catalog.pg_get_constraintdef(oid)
-		ELSE
-			'CHECK (' || consrc || ')'
-		END AS consrc,
-		contype,
-		conrelid AS relid,
-		NULL AS indkey
-	FROM
-		pg_catalog.pg_constraint
-	WHERE
-		contype IN ('f', 'c')
-	UNION ALL
-	SELECT
-		pc.relname,
-		NULL,
-		CASE WHEN indisprimary THEN
-				'p'
-		ELSE
-				'u'
-		END,
-		pi.indrelid,
-		indkey
-	FROM
-		pg_catalog.pg_class pc,
-		pg_catalog.pg_index pi
-	WHERE
-		pc.oid=pi.indexrelid
-		AND EXISTS (
-			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
-			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
-			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
-	)
-) AS sub
-WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
-	WHERE nspname=:schema))
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:22:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
-	attrelid=(
-		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
-			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
-		)
-	)
-    AND attnum IN (1)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:22:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT a.attname, LOWER(format_type(a.atttypid, a.atttypmod)) AS type, d.adsrc, a.attnotnull, a.atthasdef
-FROM pg_attribute a LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
-WHERE a.attnum > 0 AND NOT a.attisdropped
-	AND a.attrelid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-		AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = :schema))
-ORDER BY a.attnum
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:22:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT conname, consrc, contype, indkey FROM (
-	SELECT
-		conname,
-		CASE WHEN contype='f' THEN
-			pg_catalog.pg_get_constraintdef(oid)
-		ELSE
-			'CHECK (' || consrc || ')'
-		END AS consrc,
-		contype,
-		conrelid AS relid,
-		NULL AS indkey
-	FROM
-		pg_catalog.pg_constraint
-	WHERE
-		contype IN ('f', 'c')
-	UNION ALL
-	SELECT
-		pc.relname,
-		NULL,
-		CASE WHEN indisprimary THEN
-				'p'
-		ELSE
-				'u'
-		END,
-		pi.indrelid,
-		indkey
-	FROM
-		pg_catalog.pg_class pc,
-		pg_catalog.pg_index pi
-	WHERE
-		pc.oid=pi.indexrelid
-		AND EXISTS (
-			SELECT 1 FROM pg_catalog.pg_depend d JOIN pg_catalog.pg_constraint c
-			ON (d.refclassid = c.tableoid AND d.refobjid = c.oid)
-			WHERE d.classid = pc.tableoid AND d.objid = pc.oid AND d.deptype = 'i' AND c.contype IN ('u', 'p')
-	)
-) AS sub
-WHERE relid = (SELECT oid FROM pg_catalog.pg_class WHERE relname=:table
-	AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace
-	WHERE nspname=:schema))
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:22:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT attnum, attname FROM pg_catalog.pg_attribute WHERE
-	attrelid=(
-		SELECT oid FROM pg_catalog.pg_class WHERE relname=:table AND relnamespace=(
-			SELECT oid FROM pg_catalog.pg_namespace WHERE nspname=:schema
-		)
-	)
-    AND attnum IN (1)
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:22:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  WHERE ("t"."district_id"=129 AND (date_published>=:year_start AND date_published <=:year_end AND next_delection_date <=:current_date)) ORDER BY priority ASC
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:22:15 [trace] [system.CModule] Loading "coreMessages" application component
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:22:15 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42703]: Undefined column: 7 ERROR:  column "next_delection_date" does not exist
-LINE 1: ...0' AND date_published <='2012-12-31 23:59:59' AND next_delec...
-                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  WHERE ("t"."district_id"=129 AND (date_published>=:year_start AND date_published <=:year_end AND next_delection_date <=:current_date)) ORDER BY priority ASC.
-in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (48)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (99)
-in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
-2012/06/11 19:22:15 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42703]: Undefined column: 7 ERROR:  column "next_delection_date" does not exist
-LINE 1: ...0' AND date_published <='2012-12-31 23:59:59' AND next_delec...
-                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  WHERE ("t"."district_id"=129 AND (date_published>=:year_start AND date_published <=:year_end AND next_delection_date <=:current_date)) ORDER BY priority ASC' in C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php:528
+2012/06/13 19:03:12 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (60)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+2012/06/13 19:03:12 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (60)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/13 19:03:12 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (60)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/13 19:03:12 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "123"
+LINE 1: ...ate_published<='2012-12-31 23:59:59')) ORDER BY priority 123
+                                                                    ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id" IN (265, 408) AND (date_published>=:year_start and date_published<=:year_end)) ORDER BY priority 123.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (60)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/13 19:03:12 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "123"
+LINE 1: ...ate_published<='2012-12-31 23:59:59')) ORDER BY priority 123
+                                                                    ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id" IN (265, 408) AND (date_published>=:year_start and date_published<=:year_end)) ORDER BY priority 123' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
 Stack trace:
-#0 C:\xampp\htdocs\HSLF\framework\db\CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
 #1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
 #2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
 #3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
-#4 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1292): CActiveFinder->query(Object(CDbCriteria), true)
-#5 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveRecord.php(1472): CActiveRecord->query(Object(CDbCriteria), true)
-#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(48): CActiveRecord->findAllByAttributes(Array, Array)
-#7 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(99): BallotItemManager->findAllByDistricts('or', Array, Array, '2012', 'true')
-#8 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
-#9 C:\xampp\htdocs\HSLF\framework\web\actions\CInlineAction.php(50): ApiController->actionView()
-#10 C:\xampp\htdocs\HSLF\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
-#11 C:\xampp\htdocs\HSLF\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
-#12 C:\xampp\htdocs\HSLF\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
-#13 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(276): CController->run('view')
-#14 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(135): CWebApplication->runController('api/view')
-#15 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
-#16 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
-#17 {main}
-REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/4&active=true
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(7222): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7310): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php(60): CActiveRecord->findAllByAttributes(Array, Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(39): ModelFinder->search()
+#8 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#9 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#18 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1,county/clackamas
 ---
-2012/06/11 19:22:15 [trace] [system.CModule] Loading "errorHandler" application component
-2012/06/11 19:38:52 [trace] [system.CModule] Loading "log" application component
+2012/06/13 19:03:50 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
 in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 19:38:52 [trace] [system.CModule] Loading "request" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 19:38:52 [trace] [system.CModule] Loading "urlManager" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 19:38:52 [trace] [system.CModule] Loading "cache" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 19:38:52 [trace] [system.CModule] Loading "coreMessages" application component
-in C:\xampp\htdocs\HSLF\html\api.php (21)
-2012/06/11 19:38:52 [error] [exception.CException] exception 'CException' with message 'CApcCache requires PHP apc extension to be loaded.' in C:\xampp\htdocs\HSLF\framework\caching\CApcCache.php:36
+2012/06/13 19:03:50 [error] [exception.InvalidArgumentException] exception 'InvalidArgumentException' in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:43
 Stack trace:
-#0 C:\xampp\htdocs\HSLF\framework\base\CModule.php(388): CApcCache->init()
-#1 C:\xampp\htdocs\HSLF\framework\web\CUrlManager.php(217): CModule->getComponent('cache')
-#2 C:\xampp\htdocs\HSLF\framework\web\CUrlManager.php(207): CUrlManager->processRules()
-#3 C:\xampp\htdocs\HSLF\framework\base\CModule.php(388): CUrlManager->init()
-#4 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(503): CModule->getComponent('urlManager')
-#5 C:\xampp\htdocs\HSLF\framework\web\CWebApplication.php(134): CApplication->getUrlManager()
-#6 C:\xampp\htdocs\HSLF\framework\base\CApplication.php(162): CWebApplication->processRequest()
-#7 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
-#8 {main}
-REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/4,city/Portland&active=truee
+#0 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php(40): ModelFinder->setOrder('priority', 123)
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(29): BallotItemFinder->orderByHighestPriority()
+#2 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1,county/clackamas
 ---
-2012/06/11 19:38:52 [trace] [system.CModule] Loading "errorHandler" application component
+2012/06/13 19:04:23 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/13 19:04:23 [error] [exception.InvalidArgumentException] exception 'InvalidArgumentException' with message 'Order type must be self::DESCENDANT ' in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:43
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php(40): ModelFinder->setOrder('priority', 123)
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(29): BallotItemFinder->orderByHighestPriority()
+#2 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1,county/clackamas
+---
+2012/06/13 19:04:30 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/13 19:04:30 [error] [exception.InvalidArgumentException] exception 'InvalidArgumentException' with message 'Order type must be {self::DESCENDANT} ' in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:43
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php(40): ModelFinder->setOrder('priority', 123)
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(29): BallotItemFinder->orderByHighestPriority()
+#2 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1,county/clackamas
+---
+2012/06/13 19:04:45 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/13 19:04:45 [error] [exception.InvalidArgumentException] exception 'InvalidArgumentException' with message 'Order type must beDESC' in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:43
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php(40): ModelFinder->setOrder('priority', 123)
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(29): BallotItemFinder->orderByHighestPriority()
+#2 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1,county/clackamas
+---
+2012/06/13 19:05:05 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/13 19:05:05 [error] [exception.InvalidArgumentException] exception 'InvalidArgumentException' with message 'Order type must be DESC or ASC' in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:43
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php(40): ModelFinder->setOrder('priority', 123)
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(29): BallotItemFinder->orderByHighestPriority()
+#2 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1,county/clackamas
+---
+2012/06/13 19:05:18 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/13 19:05:18 [error] [exception.InvalidArgumentException] exception 'InvalidArgumentException' with message 'Order type must be DESC or ASCType given: 123' in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:43
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php(40): ModelFinder->setOrder('priority', 123)
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(29): BallotItemFinder->orderByHighestPriority()
+#2 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1,county/clackamas
+---
+2012/06/13 19:05:22 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/13 19:05:22 [error] [exception.InvalidArgumentException] exception 'InvalidArgumentException' with message 'Order type must be DESC or ASC Type given: 123' in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:43
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php(40): ModelFinder->setOrder('priority', 123)
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(29): BallotItemFinder->orderByHighestPriority()
+#2 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1,county/clackamas
+---
+2012/06/13 19:05:27 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/13 19:05:27 [error] [exception.InvalidArgumentException] exception 'InvalidArgumentException' with message 'Order type must be DESC or ASC. Type given: 123' in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:43
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php(40): ModelFinder->setOrder('priority', 123)
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(29): BallotItemFinder->orderByHighestPriority()
+#2 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1,county/clackamas
+---
+2012/06/13 19:06:03 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/13 19:06:03 [error] [exception.InvalidArgumentException] exception 'InvalidArgumentException' with message 'Invalid Order type must be DESC or ASC. Type given: 123' in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:43
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php(40): ModelFinder->setOrder('priority', 123)
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(29): BallotItemFinder->orderByHighestPriority()
+#2 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1,county/clackamas
+---
+2012/06/13 19:06:12 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/13 19:06:12 [error] [exception.InvalidArgumentException] exception 'InvalidArgumentException' with message 'Order type must be DESC or ASC. Type given: 123' in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:43
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php(40): ModelFinder->setOrder('priority', 123)
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(29): BallotItemFinder->orderByHighestPriority()
+#2 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1,county/clackamas
+---
