@@ -198,6 +198,7 @@
     <h1>News updates:</h1>
 
     <?php
+  if($model->id):
     $new_ballot_item_news_url = CHtml::normalizeUrl(array('ballotItemNews/add', 'ballot_item_id' => $model->id));
 
     echo CHtml::link('Add a news update', $new_ballot_item_news_url, array('target' => '_blank'));
@@ -234,6 +235,10 @@
         else:
             echo 'No news updates';
         endif;
+       
+        else:
+            echo 'You must save an item before you can add a news.';
+        endif; // end test $model->BallotItemNews
         ?>
 
 
