@@ -7913,3 +7913,13 @@ in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\_form.php (43)
 in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\_form.php (210)
 in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\update.php (21)
 in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (118)
+2012/06/15 00:16:16 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/15 00:16:16 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/15 00:16:16 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)

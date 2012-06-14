@@ -2,36 +2,3 @@
     margin:0;
     padding:0;
 }
-html, body {height: 100%;}
-
-#wrap {min-height: 75%;}
-
-#header{
-    font-size: 1.5em;
-    height: 150px;
-    text-align: center;
-    padding-top: 50px;
-    background-color:#036;
-    color:#fff;
-}
-
-#header a{
-   text-decoration:none;
-   color:#fff;
-}
-
-#content{
-    padding:25px;
-}
-
-
-#footer{
-    font-size: 1em;
-    text-align: center;
-    padding-top: 50px;
-    background-color:#036;
-    color:#fff;
-    margin-top: -50px; /* negative value of footer height */
-    height: 50px;
-    clear:both;
-}
