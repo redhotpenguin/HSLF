@@ -16,7 +16,6 @@ class Caption extends CWidget {
         $controller_action = Yii::app()->controller->getAction()->getId();
 
         $this->render('Caption', array(
-
             'caption_data' => $this->getControllerCaption($controller_name, $controller_action),
         ));
     }
