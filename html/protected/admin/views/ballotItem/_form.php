@@ -59,7 +59,7 @@
         <div class="row">
             <?php echo $form->labelEx($model, 'image_url'); ?>
             <?php echo $form->textField($model, 'image_url', array('size' => 50)); ?>
-<?php echo $form->error($model, 'image_url'); ?>
+            <?php echo $form->error($model, 'image_url'); ?>
         </div>
 
         <input type="file" name="image_url" />
@@ -84,7 +84,7 @@
                 ),
             ));
             ?>
-<?php echo $form->error($model, 'next_election_date'); ?>
+            <?php echo $form->error($model, 'next_election_date'); ?>
         </div>     
 
     </div>
@@ -170,7 +170,7 @@
             ),
         ));
         ?>
-<?php echo $form->error($model, 'date_published'); ?>
+        <?php echo $form->error($model, 'date_published'); ?>
     </div>
 
     <div style="clear:both;"></div>
@@ -179,15 +179,62 @@
     <div class="row">
         <?php echo $form->labelEx($model, 'published'); ?>
         <?php echo $form->dropDownList($model, 'published', array('yes' => 'Yes', 'no' => 'No')); ?>
-<?php echo $form->error($model, 'published'); ?>
+        <?php echo $form->error($model, 'published'); ?>
     </div>
 
 
 
     <div class="row buttons">
-<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
     </div>
 
-<?php $this->endWidget(); ?>
+    <?php $this->endWidget(); ?>
+
+    <br/>
+
+
+
+
+    <h1>News updates:</h1>
+
+    <?php
+    $new_ballot_item_news_url = CHtml::normalizeUrl(array('ballotItemNews/add', 'ballot_item_id' => $model->id));
+
+    echo CHtml::link('Add a news update', $new_ballot_item_news_url, array('target' => '_blank'));
+    ?>
+    <br/>
+    <br/>
+
+    <?php
+    if ($model->BallotItemNews):
+
+        foreach ($model->BallotItemNews as $ballotItemNew) {
+            ?>
+
+            <div class="ballot_news_item">
+                <span class="pill_btn">
+
+                    
+        <?php
+        $edit_ballot_item_news_url = CHtml::normalizeUrl(array('ballotItemNews/update', 'id' => $ballotItemNew->id));
+        echo CHtml::link('Edit', $edit_ballot_item_news_url, array('target' => '_blank'));
+        ?>
+
+                </span>
+
+                <b> <?php echo $ballotItemNew->title; ?>:</b>
+                <br/>
+                <p><?php echo $ballotItemNew->getExcerpt() ?></p>
+
+        <?php ?> 
+            </div>
+                <?php
+            }
+
+        else:
+            echo 'No news updates';
+        endif;
+        ?>
+
 
 </div><!-- form -->

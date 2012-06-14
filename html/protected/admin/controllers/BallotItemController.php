@@ -54,7 +54,7 @@ class BallotItemController extends Controller {
     public function actionCreate() {
         // import FileUpload helper class
         Yii::import('admin.models.helpers.FileUpload');
-        
+
         $model = new BallotItem;
 
         if (isset($_POST['BallotItem'])) {
@@ -114,7 +114,7 @@ class BallotItemController extends Controller {
         }
 
         $this->render('update', array(
-            'model' => $model,
+            'model' => $model
         ));
     }
 

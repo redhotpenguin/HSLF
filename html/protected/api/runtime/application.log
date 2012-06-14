@@ -362,3 +362,79 @@ Stack trace:
 #12 {main}
 REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1,county/clackamas
 ---
+2012/06/14 20:07:26 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/14 20:07:26 [error] [exception.InvalidArgumentException] exception 'InvalidArgumentException' with message 'The parameter must be a CActiveRecord object' in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:25
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php(7): ModelFinder->__construct(123)
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(26): BallotItemFinder->__construct()
+#2 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('ca', Array, Array, NULL, false)
+#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/ballot_items/state/ca/?districts=congressional/18
+---
+2012/06/14 20:10:09 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/14 20:10:09 [error] [exception.InvalidArgumentException] exception 'InvalidArgumentException' with message 'The parameter must be an object that inherit the  CActiveRecord class' in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:27
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php(10): ModelFinder->__construct(Object(Foo))
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(26): BallotItemFinder->__construct()
+#2 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('ca', Array, Array, NULL, false)
+#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/ballot_items/state/ca/?districts=congressional/18
+---
+2012/06/14 20:10:23 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/14 20:10:23 [error] [exception.InvalidArgumentException] exception 'InvalidArgumentException' with message 'The  object must inherit the CActiveRecord class' in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:27
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php(10): ModelFinder->__construct(Object(Foo))
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(26): BallotItemFinder->__construct()
+#2 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('ca', Array, Array, NULL, false)
+#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/ballot_items/state/ca/?districts=congressional/18
+---
+2012/06/14 20:10:28 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/14 20:10:28 [error] [exception.InvalidArgumentException] exception 'InvalidArgumentException' with message 'The parameter must be an object that inherit the  CActiveRecord class' in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:25
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php(10): ModelFinder->__construct(123)
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(26): BallotItemFinder->__construct()
+#2 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('ca', Array, Array, NULL, false)
+#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/ballot_items/state/ca/?districts=congressional/18
+---

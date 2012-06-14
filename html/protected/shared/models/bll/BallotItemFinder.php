@@ -1,9 +1,14 @@
 <?php
 
+
+class Foo{}
 class BallotItemFinder extends ModelFinder {
 
     public function __construct() {
-        $this->setRelations(array('district', 'recommendation', 'electionResult'));
+        
+           
+      parent::__construct(new BallotItem);
+        $this->setRelations(array('district', 'recommendation', 'electionResult', 'BallotItemNews'));
     }
 
     public function setDistrictIds($district_ids) {

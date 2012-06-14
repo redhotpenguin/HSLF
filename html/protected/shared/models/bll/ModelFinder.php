@@ -18,6 +18,16 @@ abstract class ModelFinder {
     private $parameters = array();
     private $condition = "";
     private $order = "";
+    private $model;
+    
+    public function __construct($model){
+        if(!is_object($model))
+            throw new InvalidArgumentException('The parameter must be an object that inherit the  CActiveRecord class');
+        if( get_parent_class($model) != 'CActiveRecord' )
+            throw new InvalidArgumentException('The  object must inherit the CActiveRecord class');
+
+        $this->model = $model;
+    }
 
     protected final function addAttribute($attribute_key, $attribute_value) {
         $this->attributes[$attribute_key] = $attribute_value;
@@ -54,8 +64,10 @@ abstract class ModelFinder {
 
         if ($this->order)
             $criteria['order'] = $this->order;
+        // todo: dont call ballotItem directly'
 
-        return BallotItem::model()->with($this->relations)->findAllByAttributes($this->attributes, $criteria);
+        
+        return $this->model->with($this->relations)->findAllByAttributes($this->attributes, $criteria);
     }
 
 }

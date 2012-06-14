@@ -12,7 +12,7 @@
  * @copyright 2011 myticket it-solutions gmbh
  * @license New BSD License
  * @category User Interface
- * @version 3.0
+ * @version 3.2
  */
 class MultiModelForm extends CWidget
 {
@@ -71,11 +71,31 @@ class MultiModelForm extends CWidget
     public $addItemText = 'Add item';
 
     /**
+     * Alert text if options['limit']>0 and the limit is reached
+     * See the options property below
+     * @var string
+     */
+    public $limitText = 'The limit is reached';
+
+    /**
      * Show 'Add item' link and empty item in errormode
      *
      * @var boolean $allowAddOnError
      */
     public $showAddItemOnError = true;
+
+
+    /**
+     * If false, the addItem link and empty row will not be displayed
+     * @var bool
+     */
+    public $allowAddItem = true;
+
+    /**
+     * If false, the removeItem will not be displayed
+     * @var bool
+     */
+    public $allowRemoveItem = true;
 
     /**
      * The text for the remove link
@@ -177,6 +197,20 @@ class MultiModelForm extends CWidget
         'htmlOptions' => array(),
     );
 
+
+    /**
+     * Hide the empty copyTemplate, show on Add Item click
+     *
+     * @var bool
+     */
+    public $hideCopyTemplate = true;
+
+    /**
+     * Set a limit on adding items
+     * @var int
+     */
+    public $limit = 0;
+
     /**
      * The javascript code jsBeforeClone,jsAfterClone ...
      * This allows to handle widgets on cloning.
@@ -213,6 +247,12 @@ class MultiModelForm extends CWidget
      * @var string $_assets
      */
     private $_assets;
+
+    /**
+     * Internal record count
+     * @var integer
+     */
+    private $_recordCount;
 
     /**
      * Support for CJuiDatePicker
@@ -388,6 +428,8 @@ class MultiModelForm extends CWidget
     {
         if (!isset($formData))
             $formData = $_POST;
+
+        //print_r($formData);
 
         $result = true;
         $newItems = array();
@@ -599,17 +641,36 @@ class MultiModelForm extends CWidget
         }
     }
 
+
+    /**
+     * @since 3.2
+     * @return string
+     */
+    public function getCopyFieldsetId()
+    {
+        return $this->id .'_copytemplate';
+    }
+
     /**
      * The link for removing a fieldset
      *
      * @return string
      */
-    public function getRemoveLink()
+    public function getRemoveLink($isCopyTemplate=false)
     {
-        if (empty($this->removeText))
+        if($isCopyTemplate && !$this->hideCopyTemplate)
             return '';
 
-        $onClick = '$(this).parent().parent().remove(); return false;';
+        if (empty($this->removeText) || !$this->allowRemoveItem) //added v3.1
+            return '';
+
+        $onClick = '$(this).parent().parent().remove(); mmfRecordCount--; alert(mmfStartCount); false;';
+
+        if($isCopyTemplate && $this->hideCopyTemplate)
+        {
+             $copyId = $this->getCopyFieldsetId();
+             $onClick = 'if($(this).parent().parent().attr("id")=="'.$copyId.'") {clearAllInputs($("#'.$copyId.'"));$(this).parent().parent().hide()} else ' . $onClick;
+        }
 
         if (!empty($this->removeConfirm))
             $onClick = "if(confirm('{$this->removeConfirm}')) " . $onClick;
@@ -644,6 +705,8 @@ class MultiModelForm extends CWidget
             $this->rowWrapper = array('tag' => 'td', 'htmlOptions' => array('class' => self::CLASSPREFIX . 'cell'));
             $this->removeLinkWrapper = $this->rowWrapper;
         }
+
+        $this->_recordCount = 0;
 
         $this->checkModel();
         $this->registerClientScript();
@@ -700,6 +763,8 @@ class MultiModelForm extends CWidget
         if (!empty($this->jsAfterNewId))
             $this->options['afterNewId'] = $this->jsAfterNewId;
 
+        $this->options['limitText'] = $this->limitText;
+
         return CJavaScript::encode($this->options);
 
     }
@@ -714,6 +779,7 @@ class MultiModelForm extends CWidget
         return self::CLASSPREFIX . 'sortable';
     }
 
+
     /**
      * Registers the relcopy javascript file.
      */
@@ -724,7 +790,7 @@ class MultiModelForm extends CWidget
         $this->_assets = Yii::app()->assetManager->publish(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'assets');
 
         $cs->registerCoreScript('jquery');
-        $cs->registerScriptFile($this->_assets . '/js/jquery.relcopy.yii.1.0.js');
+        $cs->registerScriptFile($this->_assets . '/js/jquery.relcopy.yii.3.3.js');
 
         $options = $this->getClientOptions();
         $cs->registerScript(__CLASS__ . '#' . $this->id, "jQuery('#{$this->id}').relCopy($options);");
@@ -782,6 +848,17 @@ class MultiModelForm extends CWidget
         echo CHtml::tag('tbody', $tbodyOptions, false, false);
     }
 
+    /**
+     * Check if limit is set and reached
+     * @return bool
+     */
+    public function limitReached()
+    {
+       $limit = !empty($this->options['limit']) ? $this->options['limit'] : 0;
+
+       return $limit>0 ? ($limit - $this->_recordCount) <= 0 : false;
+    }
+
 
     /**
      * Renders the active form if a model and formConfig is set
@@ -794,7 +871,7 @@ class MultiModelForm extends CWidget
 
         //form is displayed again with some invalid models
         $isErrorMode = !empty($this->validatedItems);
-        $showAddLink = !$isErrorMode || ($isErrorMode && $this->showAddItemOnError);
+        $showAddLink = $this->allowAddItem && (!$isErrorMode || ($isErrorMode && $this->showAddItemOnError));
 
         $this->formConfig['activeForm'] = array('class' => 'MultiModelEmbeddedForm');
 
@@ -829,6 +906,8 @@ class MultiModelForm extends CWidget
         // existing records
         if (is_array($data) && !empty($data))
         {
+            $this->_recordCount = count($data);
+
             foreach ($data as $model)
             {
                 $form = new MultiModelRenderForm($this->formConfig, $model);
@@ -869,6 +948,8 @@ class MultiModelForm extends CWidget
 
             echo $form->render();
         }
+
+        echo CHtml::script('mmfRecordCount='.$this->_recordCount);
 
         if ($this->tableView)
         {
@@ -911,8 +992,17 @@ class MultiModelRenderForm extends CForm
      */
     protected function getWrappedFieldset($content)
     {
-        return CHtml::tag($this->parentWidget->fieldsetWrapper['tag'],
-            $this->parentWidget->fieldsetWrapper['htmlOptions'], $content);
+        $htmlOptions = $this->parentWidget->fieldsetWrapper['htmlOptions'];
+
+        if($this->isCopyTemplate)
+        {
+           $htmlOptions['id'] = $this->parentWidget->getCopyFieldsetId();
+
+           if($this->parentWidget->hideCopyTemplate)
+               $htmlOptions['style'] = !empty($htmlOptions['style'])? $htmlOptions['style'] . 'display:none;' : 'display:none;';
+        }
+
+        return CHtml::tag($this->parentWidget->fieldsetWrapper['tag'],$htmlOptions, $content);
     }
 
     /**
@@ -939,7 +1029,7 @@ class MultiModelRenderForm extends CForm
         $cells = '';
 
         foreach ($this->getElements() as $element)
-            if ($element->visible)
+            if ($element->visible && $element->type != 'hidden') //bugfix v3.1
             {
                 $text = empty($element->label) ? '&nbsp;' : $element->label;
                 $options = array();
@@ -993,7 +1083,7 @@ class MultiModelRenderForm extends CForm
 
         foreach ($elements as $element)
         {
-            if (isset($element->name))
+            if (isset($element->name)) //element is an attribute of the model
             {
                 $elemName = $element->name;
                 $elemLabel = $element->renderLabel(); //get the correct/nice label before changing name
@@ -1048,10 +1138,13 @@ class MultiModelRenderForm extends CForm
                     }
                 }
             }
+            else  //CFormStringElement...
+                $output .= $element->render();
         }
 
-        if (!$this->isCopyTemplate)
-            $output .= $this->parentWidget->getRemoveLink();
+
+        //if (!$this->isCopyTemplate)
+            $output .= $this->parentWidget->getRemoveLink($this->isCopyTemplate);
 
         return $output;
     }

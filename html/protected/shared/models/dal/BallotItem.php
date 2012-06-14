@@ -81,6 +81,8 @@ class BallotItem extends CActiveRecord {
             'district' => array(self::BELONGS_TO, 'District', 'district_id'),
             'recommendation' => array(self::BELONGS_TO, 'Recommendation', 'recommendation_id'),
             'electionResult' => array(self::BELONGS_TO, 'Recommendation', 'election_result_id'),
+            
+             'BallotItemNews'=>array(self::HAS_MANY, 'BallotItemNews', 'ballot_item_id'),
         );
     }
 

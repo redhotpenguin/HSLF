@@ -208,3 +208,12 @@ div.right_col{
 input{
     height:20px;
 }
+
+.pill_btn {
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 0 5px;
+    border: 1px solid #CCC;
+    font-weight: bold;
+    float: right;
+}
