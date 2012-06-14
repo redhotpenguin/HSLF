@@ -7664,3 +7664,252 @@ in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemNewsControlle
 in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItemNews\update.php (5)
 in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemNewsController.php (85)
 in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 22:37:57 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 22:37:57 [trace] [system.caching.CApcCache] Saving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide_integration:postgres:ballot_item" to cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (169)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (94)
+2012/06/14 22:37:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php:171
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php(94): BallotItemController->loadModel('403')
+#1 [internal function]: BallotItemController->actionUpdate('403')
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3744): ReflectionMethod->invokeArgs(Object(BallotItemController), Array)
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3761): CAction->runWithParamsInternal(Object(BallotItemController), Object(ReflectionMethod), Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('update')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('ballotItem/upda...')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#16 {main}
+REQUEST_URI=/admin/ballotItem/update?id=403
+HTTP_REFERER=http://www.voterguide.com/admin/ballotItem
+---
+2012/06/14 22:37:58 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 22:37:58 [trace] [system.caching.CApcCache] Saving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide_integration:postgres:app_user" to cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 22:37:58 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide_integration:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 22:37:59 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 22:37:59 [trace] [system.caching.CApcCache] Saving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide_integration:postgres:state" to cache
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\StateController.php (130)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 22:38:06 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 22:38:06 [trace] [system.caching.CApcCache] Saving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide_integration:postgres:user" to cache
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\UserController.php (146)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 22:38:07 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 22:38:07 [trace] [system.caching.CApcCache] Saving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide_integration:postgres:tag" to cache
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\TagController.php (119)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:29:36 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:29:36 [trace] [system.caching.CApcCache] Saving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" to cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:29:36 [trace] [system.caching.CApcCache] Saving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" to cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:29:39 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:29:39 [trace] [system.caching.CApcCache] Saving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:candidate" to cache
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\CandidateController.php (131)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:29:41 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:29:41 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:candidate" from cache
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\CandidateController.php (131)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:31:38 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:31:38 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:candidate" from cache
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\CandidateController.php (131)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:31:39 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:31:39 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:candidate" from cache
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\CandidateController.php (131)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:31:41 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:31:42 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:31:42 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (58)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:31:42 [trace] [system.caching.CApcCache] Saving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" to cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Recommendation.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\_form.php (9)
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\create.php (14)
+2012/06/14 23:31:42 [trace] [system.caching.CApcCache] Saving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:state" to cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\State.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\extensions\DistrictSelector\DistrictSelector.php (12)
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\_form.php (43)
+2012/06/14 23:31:42 [trace] [system.caching.CApcCache] Saving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" to cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
+in C:\xampp\htdocs\HSLF\html\protected\extensions\DistrictSelector\DistrictSelector.php (17)
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\_form.php (43)
+2012/06/14 23:31:52 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:31:52 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (153)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:31:52 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:state" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\State.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (22)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+2012/06/14 23:31:52 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (85)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:31:52 [trace] [system.db.ar.CActiveRecord] BallotItem.count() eagerly
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\admin.php (85)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (160)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:31:54 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:31:54 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (169)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (94)
+2012/06/14 23:31:54 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Recommendation.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\_form.php (9)
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\update.php (21)
+2012/06/14 23:31:54 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:state" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\State.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\extensions\DistrictSelector\DistrictSelector.php (12)
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\_form.php (43)
+2012/06/14 23:31:54 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
+in C:\xampp\htdocs\HSLF\html\protected\extensions\DistrictSelector\DistrictSelector.php (15)
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\_form.php (43)
+2012/06/14 23:31:54 [trace] [system.caching.CApcCache] Saving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item_news" to cache
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\_form.php (210)
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\update.php (21)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (118)
+2012/06/14 23:32:46 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:32:46 [trace] [system.caching.CApcCache] Saving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:user" to cache
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\UserController.php (146)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:45:57 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:45:57 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (143)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:45:57 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\index.php (35)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (146)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:45:58 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:45:58 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (58)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:45:58 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Recommendation.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\_form.php (9)
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\create.php (14)
+2012/06/14 23:45:58 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:state" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\State.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\extensions\DistrictSelector\DistrictSelector.php (12)
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\_form.php (43)
+2012/06/14 23:45:58 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
+in C:\xampp\htdocs\HSLF\html\protected\extensions\DistrictSelector\DistrictSelector.php (17)
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\_form.php (43)
+2012/06/14 23:46:51 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:46:51 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (143)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:46:51 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\index.php (35)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (146)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:46:53 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:46:53 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (169)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (46)
+2012/06/14 23:46:53 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\view.php (18)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (47)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:46:53 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:state" from cache
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\view.php (18)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (47)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:46:55 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:46:55 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (169)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (94)
+2012/06/14 23:46:55 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Recommendation.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\_form.php (9)
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\update.php (21)
+2012/06/14 23:46:55 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:state" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\State.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\extensions\DistrictSelector\DistrictSelector.php (12)
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\_form.php (43)
+2012/06/14 23:46:55 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
+in C:\xampp\htdocs\HSLF\html\protected\extensions\DistrictSelector\DistrictSelector.php (15)
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\_form.php (43)
+2012/06/14 23:46:55 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item_news" from cache
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\_form.php (210)
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\update.php (21)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (118)
+2012/06/14 23:46:58 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:46:58 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item_news" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItemNews.php (26)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemNewsController.php (89)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemNewsController.php (72)
+2012/06/14 23:46:58 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItemNews\update.php (5)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemNewsController.php (85)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:47:03 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/14 23:47:03 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (169)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (94)
+2012/06/14 23:47:03 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Recommendation.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\_form.php (9)
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\update.php (21)
+2012/06/14 23:47:03 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:state" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\State.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\extensions\DistrictSelector\DistrictSelector.php (12)
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\_form.php (43)
+2012/06/14 23:47:03 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\District.php (33)
+in C:\xampp\htdocs\HSLF\html\protected\extensions\DistrictSelector\DistrictSelector.php (15)
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\_form.php (43)
+2012/06/14 23:47:03 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item_news" from cache
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\_form.php (210)
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\update.php (21)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (118)
