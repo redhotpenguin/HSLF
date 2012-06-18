@@ -64,9 +64,7 @@ abstract class ModelFinder {
 
         if ($this->order)
             $criteria['order'] = $this->order;
-        // todo: dont call ballotItem directly'
-
-        
+       
         return $this->model->with($this->relations)->findAllByAttributes($this->attributes, $criteria);
     }
 

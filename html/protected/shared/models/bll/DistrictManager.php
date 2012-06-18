@@ -20,7 +20,7 @@ class DistrictManager {
                 ->where('state_abbr=:state_abbr', array(':state_abbr' => $state_abbr))
                 ->queryAll();
 
-        return array_map(array(&$this, 'extract_id'), $result);
+        return array_map(array(self , 'extract_id'), $result);
     }
 
     /**
