@@ -3,11 +3,15 @@
 
 class Foo{}
 class BallotItemFinder extends ModelFinder {
+    private $table_alias;
 
     public function __construct() {
         
-           
-      parent::__construct(new BallotItem);
+      $ballot_item = new  BallotItem;
+      
+      $this->table_alias = $ballot_item->getTableAlias(false, false);
+ 
+      parent::__construct($ballot_item);
         $this->setRelations(array('district', 'recommendation', 'electionResult', 'BallotItemNews'));
     }
 
@@ -34,10 +38,10 @@ class BallotItemFinder extends ModelFinder {
     }
 
     public function setPublishedYear($year) {
-        $this->addCondition('date_published', 'year_start', ModelFinder::GREATER_THAN);
+        $this->addCondition($this->table_alias.'.date_published', 'year_start', ModelFinder::GREATER_THAN);
         $this->addParameter('year_start', $year . '-01-01 00:00:00');
 
-        $this->addCondition('date_published', 'year_end', ModelFinder::LESSER_THAN);
+        $this->addCondition($this->table_alias.'.date_published', 'year_end', ModelFinder::LESSER_THAN);
         $this->addParameter('year_end', $year . '-12-31 23:59:59');
     }
 
