@@ -5,7 +5,8 @@
  *
  * @author jonas
  */
-class BallotItemManager {    
+class BallotItemManager {
+
     /**
      * Find all the ballot models fora state, by types and by district names. Can also include statewide districts
      * @param string $state_abbr abbreviation of the state
@@ -16,26 +17,58 @@ class BallotItemManager {
      * @return array return array of ballot items
      */
     public static function findAllByDistricts($state_abbr, array $district_types, array $districts, $year = null, $active = false) {
-          
+
         $district_ids = DistrictManager::getIdsByDistricts($state_abbr, $district_types, $districts);
-       
-        if(empty($district_ids))
+
+        if (empty($district_ids))
             return false;
-        
-        
+
+
         $ballotItemFinder = new BallotItemFinder();
 
         $ballotItemFinder->setPublished('yes');
         $ballotItemFinder->orderByHighestPriority();
         $ballotItemFinder->setDistrictIds($district_ids);
-        
-        if($year){
-           $ballotItemFinder->setPublishedYear($year);
-           
-           if($active)
-               $ballotItemFinder->setRunningOnly(); 
+
+        if ($year) {
+            $ballotItemFinder->setPublishedYear($year);
+
+            if ($active)
+                $ballotItemFinder->setRunningOnly();
         }
-       
+
+        $ballots = $ballotItemFinder->search();
+        return self::applyFilter($ballots);
+    }
+
+    /**
+     * Find all the ballot models by state
+     * @param string $state_abbr abbreviation of the state
+     * @param integer $year year of the publication date
+     * @param boolean $active  if true, return currently running ballot items
+     * @return array return array of ballot items
+     */
+    public static function findAllByState($state_abbr, $year = null, $active = false) {
+        // todo: encapsulate this function
+        $district_ids = DistrictManager::getIdsByState($state_abbr);
+
+        if (empty($district_ids))
+            return false;
+
+
+        $ballotItemFinder = new BallotItemFinder();
+
+        $ballotItemFinder->setPublished('yes');
+        $ballotItemFinder->orderByHighestPriority();
+        $ballotItemFinder->setDistrictIds($district_ids);
+
+        if ($year) {
+            $ballotItemFinder->setPublishedYear($year);
+
+            if ($active)
+                $ballotItemFinder->setRunningOnly();
+        }
+
         $ballots = $ballotItemFinder->search();
         return self::applyFilter($ballots);
     }
@@ -67,19 +100,6 @@ class BallotItemManager {
         $share_url = Yii::app()->params['share_url'] . '/ballot';
 
         return $share_url . '/' . substr($date_pub, 0, 4) . '/' . $ballot_url;
-    }
-
-    /**
-     * Find all the ballot models by state
-     * @param string $state_abbr abbreviation of the state
-     * @return array return array of ballot items
-     */
-    public static function findAllByState($state_abbr) {
-        $district_ids = DistrictManager::getIdsByState($state_abbr);
-
-        $ballots = BallotItem::model()->with('district', 'recommendation', 'electionResult')->findAllByAttributes(array('district_id' => $district_ids));
-
-        return self::applyFilter($ballots);
     }
 
     /**

@@ -80,28 +80,37 @@ class ApiController extends Controller {
 
         $state_abbr = $params['state_abbr'];  // already validated by the regex in main.php
 
-        $encoded_districts = $params['districts']; // #TODO: FILTER THIS
-        
+        $districts_param = $params['districts']; // #TODO: FILTER THIS
         // if requested, return running ballot items
         // can only be used if the year is set
-        if( $params['active'] === 'true' && !empty($year))
+        if ($params['active'] === 'true' && !empty($year))
             $active = true;
-        else 
+        else
             $active = false;
-        
-        
-        $encoded_districts = explode(',', $encoded_districts);
 
-        $district_types = array();
-        $districts = array();
+        $encoded_districts = explode(',', $districts_param);
 
-        foreach ($encoded_districts as $encoded_district) {
-            $d = explode('/', $encoded_district);
-            array_push($district_types, $d[0]);
-            array_push($districts, $d[1]);
+        // return ballot items by districts
+        if ( !empty($districts_param) ) {       
+             $district_types = array();
+             $districts = array();
+
+            foreach ($encoded_districts as $encoded_district) {
+                $d = explode('/', $encoded_district);
+                array_push($district_types, $d[0]);
+                array_push($districts, $d[1]);
+            }
+            $ballots = BallotItemManager::findAllByDistricts($state_abbr, $district_types, $districts, $year, $active);
+
+        } 
+        // return items by states
+        else {
+           $ballots = BallotItemManager::findAllByState($state_abbr, $year, $active);
         }
 
-        $ballots = BallotItemManager::findAllByDistricts($state_abbr, $district_types, $districts, $year, $active);
+
+        //$ballots = BallotItemManager::findAllByDistricts($state_abbr, $district_types, $districts, $year, $active);
+
         return $ballots;
     }
 
