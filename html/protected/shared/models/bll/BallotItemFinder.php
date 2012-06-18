@@ -26,6 +26,10 @@ class BallotItemFinder extends ModelFinder {
     public function setPublished($published) {
         $this->addAttribute('published', $published);
     }
+    
+    public function setUrl($url){
+        $this->addAttribute('url', $url);
+    }
 
     public function setRunningOnly() {
         $this->addCondition('next_election_date', 'current_date', ModelFinder::GREATER_THAN); // manage > 

@@ -153,6 +153,20 @@ class BallotItemManager {
      * @return object return a ballot_item object
      */
     public static function findByPublishedYearAndUrl($year, $url) {
+        
+        /*
+       $ballotItemFinder = new BallotItemFinder();
+
+        $ballotItemFinder->setPublished('yes');
+        $ballotItemFinder->setPublishedYear($year);
+        $ballotItemFinder->setUrl($url);
+        
+        $test = $ballotItemFinder->search();
+        
+        print_r($test);
+         * 
+         */
+        
         return BallotItem::model()->findByAttributes(
                         array(
                     'url' => $url,

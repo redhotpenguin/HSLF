@@ -20,7 +20,7 @@
     <div class="row">
         <?php
         echo $form->labelEx($model, 'tag_id');
-        $tagList = CHtml::listData(Tag::model()->findAll(), 'id', 'name');
+        $tagList = CHtml::listData(Tag::model()->findAllByAttributes(array('type'=>'alerts')), 'id', 'name');
         echo $form->dropDownList($model, 'tag_id', $tagList);
         echo $form->error($model, 'tag_id');
         ?>
