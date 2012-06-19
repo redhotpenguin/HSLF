@@ -2,4 +2,4 @@ html/.htaccess
 nbproject/*
 html/protected/config/*
 html/assets/*
-html/protected/runtime/application.log
+html/protected/runtime/*
