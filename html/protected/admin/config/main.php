@@ -129,7 +129,7 @@ return array(
         'site_url' => $site_url,
         'upload_path' => $site_url . '/content/upload',
         'upload_dir' => '/../content/upload',
-        'share_url' => 'http://www.voterguide.com' // in case we want to store the shared urls in another server
+        'share_url' => $site_url // in case we want to store the shared urls in another server
     ),
     'theme' => 'hslf'
 );
