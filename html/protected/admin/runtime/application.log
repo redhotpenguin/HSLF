@@ -8866,3 +8866,1330 @@ in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\_form.php (43)
 in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\_form.php (210)
 in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\update.php (21)
 in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (118)
+2012/06/20 01:25:50 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:25:50 [trace] [system.caching.CApcCache] Saving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" to cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:25:50 [trace] [system.caching.CApcCache] Saving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" to cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:26:22 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:26:22 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:26:22 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:26:24 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:26:24 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (143)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:26:24 [trace] [system.caching.CApcCache] Saving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" to cache
+in C:\xampp\htdocs\HSLF\html\protected\admin\views\ballotItem\index.php (35)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\BallotItemController.php (146)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:26:26 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:26:26 [error] [exception.CException] exception 'CException' with message 'EditorController cannot find the requested view "index".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:3536
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('index', Array, true)
+#1 C:\xampp\htdocs\HSLF\html\protected\admin\controllers\EditorController.php(47): CController->render('index', Array)
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): EditorController->actionIndex()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('editor')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#14 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#15 {main}
+REQUEST_URI=/admin/editor/
+---
+2012/06/20 01:26:38 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:26:38 [error] [exception.CException] exception 'CException' with message 'Alias "ext.FileEditor.Editor" is invalid. Make sure it points to an existing PHP file.' in C:\xampp\htdocs\HSLF\framework\yiilite.php:159
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(5413): YiiBase::import('ext.FileEditor....', true)
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3132): CWidgetFactory->createWidget(Object(EditorController), 'ext.FileEditor....', Array)
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3148): CBaseController->createWidget('ext.FileEditor....', Array)
+#3 C:\xampp\htdocs\HSLF\html\protected\admin\views\editor\index.php(11): CBaseController->widget('ext.FileEditor....', Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3124): require('C:\xampp\htdocs...')
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3103): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3527): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3495): CController->renderPartial('index', Array, true)
+#8 C:\xampp\htdocs\HSLF\html\protected\admin\controllers\EditorController.php(47): CController->render('index', Array)
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): EditorController->actionIndex()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(6176): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(6185): CFilterChain->run()
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3653): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(6218): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(6173): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(3265): CFilterChain->run()
+#17 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('')
+#19 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('editor')
+#20 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#22 {main}
+REQUEST_URI=/admin/editor/
+---
+2012/06/20 01:26:54 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:29:06 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:31:25 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:31:26 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:31:59 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:33:05 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:33:34 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:33:35 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:33:59 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:33:59 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:33:59 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:02 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:02 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:02 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:27 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:27 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:27 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:27 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:27 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:27 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:32 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:32 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:32 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:33 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:33 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:33 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:33 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:33 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:33 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:33 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:33 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:33 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:33 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:33 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:33 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:33 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:33 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:33 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:33 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:34 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:56 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:56 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:56 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:56 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/screen.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/screen.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:34:56 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/main.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:34:56 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/form.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/form.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:34:56 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/print.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/print.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:34:57 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:57 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:57 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:57 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/screen.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/screen.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:34:57 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/main.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:34:57 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/form.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/form.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:34:57 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/print.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/print.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:34:57 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:57 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:57 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:57 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/screen.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/screen.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:34:57 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/main.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:34:57 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/form.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/form.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:34:57 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/print.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/print.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:34:57 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:57 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:57 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:57 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/main.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:34:57 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/form.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/form.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:34:57 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/screen.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/screen.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:34:57 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/print.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/print.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:34:58 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:58 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:58 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:58 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/screen.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/screen.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:34:58 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/main.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:34:58 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/form.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/form.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:34:58 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:34:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/print.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/print.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:35:11 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:11 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:11 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:11 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/form.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/form.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:35:11 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/screen.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/screen.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:35:11 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/main.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:35:11 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/print.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/print.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:35:20 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:20 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:20 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:20 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/screen.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/screen.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:35:20 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/main.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:35:20 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/form.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/form.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:35:20 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/print.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/print.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:35:21 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:21 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:21 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:23 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/screen.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/screen.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:35:23 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/main.css
+HTTP_REFERER=http://www.voterguide.com/themes/admin/css/screen.css
+---
+2012/06/20 01:35:23 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/screen.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/screen.css
+HTTP_REFERER=http://www.voterguide.com/themes/admin/css/screen.css
+---
+2012/06/20 01:35:23 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/form.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/form.css
+HTTP_REFERER=http://www.voterguide.com/themes/admin/css/screen.css
+---
+2012/06/20 01:35:23 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/print.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/print.css
+HTTP_REFERER=http://www.voterguide.com/themes/admin/css/screen.css
+---
+2012/06/20 01:35:30 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/themes/admin/css/screen.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('admin/themes/ad...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/admin/themes/admin/css/screen.css
+---
+2012/06/20 01:35:30 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/screen.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/screen.css
+HTTP_REFERER=http://www.voterguide.com/admin/themes/admin/css/screen.css
+---
+2012/06/20 01:35:30 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/form.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/form.css
+HTTP_REFERER=http://www.voterguide.com/admin/themes/admin/css/screen.css
+---
+2012/06/20 01:35:30 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/main.css
+HTTP_REFERER=http://www.voterguide.com/admin/themes/admin/css/screen.css
+---
+2012/06/20 01:35:30 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/print.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/print.css
+HTTP_REFERER=http://www.voterguide.com/admin/themes/admin/css/screen.css
+---
+2012/06/20 01:35:33 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/screen.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/screen.css
+---
+2012/06/20 01:35:33 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/screen.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/screen.css
+HTTP_REFERER=http://www.voterguide.com/themes/admin/css/screen.css
+---
+2012/06/20 01:35:33 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/form.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/form.css
+HTTP_REFERER=http://www.voterguide.com/themes/admin/css/screen.css
+---
+2012/06/20 01:35:33 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/main.css
+HTTP_REFERER=http://www.voterguide.com/themes/admin/css/screen.css
+---
+2012/06/20 01:35:33 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/print.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/print.css
+HTTP_REFERER=http://www.voterguide.com/themes/admin/css/screen.css
+---
+2012/06/20 01:35:48 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/screen.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/screen.css
+---
+2012/06/20 01:35:48 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/main.css
+HTTP_REFERER=http://www.voterguide.com/themes/admin/css/screen.css
+---
+2012/06/20 01:35:48 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/screen.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/screen.css
+HTTP_REFERER=http://www.voterguide.com/themes/admin/css/screen.css
+---
+2012/06/20 01:35:48 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/form.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/form.css
+HTTP_REFERER=http://www.voterguide.com/themes/admin/css/screen.css
+---
+2012/06/20 01:35:48 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/print.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/print.css
+HTTP_REFERER=http://www.voterguide.com/themes/admin/css/screen.css
+---
+2012/06/20 01:35:48 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:48 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:48 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:48 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/form.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/form.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:35:48 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/screen.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/screen.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:35:48 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/main.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:35:48 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/print.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/print.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:35:49 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:49 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:49 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:49 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/main.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:35:49 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/screen.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/screen.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:35:49 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/form.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/form.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:35:49 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/print.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/print.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:35:49 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:49 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:49 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:49 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/main.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:35:49 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/screen.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/screen.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:35:49 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/form.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/form.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:35:49 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/print.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/print.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:35:49 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:49 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:49 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:49 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/main.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:35:49 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/screen.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/screen.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:35:49 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/form.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/form.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:35:49 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/print.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/print.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:35:53 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:53 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:53 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:58 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin=".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('admin=')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/admin=
+---
+2012/06/20 01:35:58 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/screen.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/screen.css
+HTTP_REFERER=http://www.voterguide.com/admin=
+---
+2012/06/20 01:35:58 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/main.css
+HTTP_REFERER=http://www.voterguide.com/admin=
+---
+2012/06/20 01:35:58 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/form.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/form.css
+HTTP_REFERER=http://www.voterguide.com/admin=
+---
+2012/06/20 01:35:58 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/print.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/print.css
+HTTP_REFERER=http://www.voterguide.com/admin=
+---
+2012/06/20 01:35:59 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:59 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:59 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:59 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/form.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/form.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:35:59 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/screen.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/screen.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:35:59 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/main.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:35:59 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:35:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/print.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/print.css
+HTTP_REFERER=http://www.voterguide.com/admin
+---
+2012/06/20 01:36:02 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:36:02 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:36:02 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:36:10 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:36:10 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:36:10 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:36:21 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:36:21 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:36:21 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:36:39 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:36:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/screen.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/screen.css
+---
+2012/06/20 01:36:50 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:36:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/screen.css".' in C:\xampp\htdocs\HSLF\framework\yiilite.php:1693
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('themes/admin/cs...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\HSLF\html\admin.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/admin/css/screen.css
+---
+2012/06/20 01:37:19 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:37:19 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:37:19 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:37:36 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:37:36 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:app_user" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\Application_user.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (13)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:37:36 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\admin\controllers\SiteController.php (14)
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
+2012/06/20 01:37:41 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\admin.php (19)
