@@ -39,9 +39,11 @@ class EditorController extends Controller {
      */
     public function actionIndex() {
 
+        $html_directory = getSetting('html_directory');
+        
         $this->render('index', array(
             'edit_files' => array(
-                'C:\xampp\htdocs\HSLF\html\themes\hslf_frontend\css\client_app.css',
+                $html_directory.'/themes/hslf_frontend/css/client_app.css',
             )
                 )
         );

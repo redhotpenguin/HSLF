@@ -6,6 +6,9 @@ $backend = dirname(dirname(__FILE__));
 $frontend = dirname($backend);
 $site_url = 'http://www.voterguide.com';
 
+$html_directory = dirname($_SERVER['SCRIPT_FILENAME']);
+
+
 Yii::setPathOfAlias('admin', $backend);
 
 if (isset($env['DOTCLOUD_DB_SQL_HOST']))
@@ -129,7 +132,8 @@ return array(
         'site_url' => $site_url,
         'upload_path' => $site_url . '/content/upload',
         'upload_dir' => '/../content/upload',
-        'share_url' => $site_url // in case we want to store the shared urls in another server
+        'share_url' => $site_url, // in case we want to store the shared urls in another server
+        'html_directory' => $html_directory
     ),
     'theme' => 'hslf'
 );
