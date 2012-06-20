@@ -8,3 +8,4 @@ html/protected/admin/runtime/*
 html/protected/admin/config/main.php
 html/protected/config/main.php
 html/protected/api/config/main.php
+/var/www/mvg.winningmark.com/html/themes/hslf_frontend/css/client_app.css

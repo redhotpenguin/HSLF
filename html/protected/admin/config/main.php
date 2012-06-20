@@ -4,7 +4,7 @@
 
 $backend = dirname(dirname(__FILE__));
 $frontend = dirname($backend);
-$site_url = 'http://www.voterguide.com';
+$site_url = 'http://mvg.winningmark.com';
 
 $html_directory = dirname($_SERVER['SCRIPT_FILENAME']);
 

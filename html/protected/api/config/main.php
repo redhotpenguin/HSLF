@@ -73,11 +73,11 @@ return array(
                 array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>/district/<district_number:\d+>', 'verb' => 'GET'),
                 // ex: /api/ballot_itens/2012/state/or/?districts=...
                 array('api/view', 'pattern' => 'api/<model:\w+>/<year:\d{4}>/state/<state_abbr:\w{2,3}>', 'verb' => 'GET'),
-                
-                // ex: /api/ballot_itens/single/4141/
-                array('api/view', 'pattern' => 'api/<model:\w+>/single/<ballot_item_id:\d+>', 'verb' => 'GET'),
                
-                array('api/view', 'pattern' => 'api/<model:\w+>/name/<type:\w+>', 'verb' => 'GET'),
+			   // ex: /api/ballot_itens/single/4141/
+                array('api/view', 'pattern' => 'api/<model:\w+>/single/<ballot_item_id:\d+>', 'verb' => 'GET'),
+
+			    array('api/view', 'pattern' => 'api/<model:\w+>/name/<type:\w+>', 'verb' => 'GET'),
                 array('api/view', 'pattern' => 'api/<model:\w+>/<id:\d+>/', 'verb' => 'GET'), // ex: /api/candidate/12/
                 array('api/view', 'pattern' => 'api/<model:\w+>/<id:\d+>/<filter:\w+>', 'verb' => 'GET'), // ex: /api/candidate/12/issue
                 array('api/view', 'pattern' => 'api/<model:\w+>/type/<type:\w+>', 'verb' => 'GET'),
@@ -124,7 +124,7 @@ return array(
         'api_secret' => 'PqiW_IDKL3mFi_OirCqOe-u',
         'urbanairship_app_key' => 'ouRCLPaBRRasv4K1AIw-xA',
         'urbanairship_app_master_secret' => '7hd19C6rSzyrbKM3k6KqDg',
-        'site_url' => 'http://www.voterguide.com',
-        'share_url' => 'http://www.voterguide.com' // in case we want to store the shared urls in another server
+        'site_url' => 'http://mvg.winningmark.com',
+        'share_url' => 'http://mvg.winningmark.com' // in case we want to store the shared urls in another server
     ),
 );

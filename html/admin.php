@@ -17,3 +17,6 @@ require ( 'protected/helpers/globals.php' ) ;
 
 require_once($yii);
 Yii::createWebApplication($config)->run();
+
+
+
