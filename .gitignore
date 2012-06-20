@@ -1,5 +1,9 @@
 html/.htaccess
-nbproject/*
 html/protected/config/*
 html/assets/*
-html/protected/runtime/*
+html/content/*
+html/protected/api/runtime/*
+html/protected/admin/runtime/*
+html/protected/admin/config/main.php
+html/protected/config/main.php
+html/protected/api/config/main.php
