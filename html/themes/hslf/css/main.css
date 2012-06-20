@@ -156,18 +156,10 @@ div.form .rememberMe label
 
 div.breadcrumbs
 {
-    font-size: 0.9em;
-    padding: 5px 20px;
-    position: relative;
-    top: -26px;
-    left: 17px;
+  margin-left:15px;
 
 }
 
-div.breadcrumbs span
-{
-    font-weight: bold;
-}
 
 div.search-form
 {
@@ -301,7 +293,6 @@ div.loading * {
     margin-right:1px;
 }
 
-
 #menu-top >  ul>  li{
     height: 25px;
     padding-top: 11px;
@@ -345,11 +336,7 @@ div.loading * {
 
 }
 
-#menu-top li:hover > a,
-#menu-top ul ul :hover > a,
-#menu-top a:focus {
 
-}
 
 #menu-top ul ul a:hover{
     background-color:#eee;
@@ -370,10 +357,17 @@ div.loading * {
     background-color:#ddd;
 
 }
-
-#menu-top > ul > li.active{
-  
+#menu-top li#external_item a:hover,
+#menu-top li#external_item a{
+    background-color:#1D4057;
 }
+
+
+#menu-top li#external_item a:hover{
+    color:#fff;
+}
+
+
 
 
 .index_option_list li{
@@ -430,6 +424,8 @@ div.loading * {
     margin-top: -5px;
 }
 
+
+
 .candidate .iphone_back_btn {
     margin-top: 8px;
     margin-left: 8px;
@@ -472,11 +468,17 @@ div.loading * {
     margin:5px;
 }
 
+.candidate #iphone_wrapper  { 
+    position: relative;
+    width: 246px;
+    overflow: hidden;
+    top: 0px;
+    height: 417px;
+}
 .candidate .update #iphone_bg, .candidate .create #iphone_bg,
 .user_alert .update #iphone_bg, .user_alert .create #iphone_bg{
-
     background-color: white;
-    width: 221px;
+    width: 238px;
     top: 96px;
     position: relative;
     left: 25px;
@@ -489,7 +491,7 @@ div.loading * {
 .candidate #Candidate_full_name_preview {
     font-weight: bold;
     color: white;
-    font-size: 16px;
+    font-size: 13px;
     padding-left: 1px;
     float: left;
     padding-top: 9px;
@@ -500,7 +502,7 @@ div.loading * {
     margin-top: 14px;
     font-weight: bold;
     color: white;
-    font-size: 15px;
+    font-size: 13px;
     margin-left: -3px;
 }
 
@@ -513,6 +515,24 @@ div.loading * {
     height: 320px;
     overflow: auto;
     color: black;
+}
+
+.candidate .candidate_issue_item,
+.ballotItem .ballot_news_item{
+    padding: 5px;
+    margin-bottom: 15px;
+    position: relative;
+    background-color: #EFEFEF;
+    border: 1px solid #DDD;
+}
+
+.candidate #id_candidate_issue {
+    border: 1px solid #CCC;
+    padding: 5px;
+    margin-bottom: 15px;
+    display: block;
+    text-align: center;
+    font-weight: bold;
 }
 
 #iphone_bg ul li{

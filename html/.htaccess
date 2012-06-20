@@ -1,6 +1,21 @@
-RewriteEngine On
-RewriteBase /
+Options +FollowSymLinks
+IndexIgnore */*
+RewriteEngine on
+
+# Make the backend accessible via url: http://site/admin
+RewriteRule admin admin.php
+
+# If a directory or a file exists, use it directly.
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)\?*$ index.php/$1 [L,QSA]
-RewriteCond %{REQUEST_URI} ^/favicon.ico$
+
+# Make the api accessible via url: http://site/api
+RewriteRule api api.php
+
+# If a directory or a file exists, use it directly.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Otherwise forward it to index.php.
+RewriteRule . index.php
+

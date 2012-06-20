@@ -3,6 +3,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="language" content="en" />
+        <meta name="robots" content="noindex" />
+
 
         <!-- blueprint CSS framework -->
         <link rel="stylesheet" type="text/css" href="/themes/hslf/css/screen.css" media="screen, projection" />
@@ -41,13 +43,12 @@
 
 
                     <div id="header">
-                        <div id="logo"><a href="/"><?php echo CHtml::encode(Yii::app()->name); ?></a></div>
+                        <div id="logo"><a href="/admin/"><?php echo CHtml::encode(Yii::app()->name); ?></a></div>
 
                         <div id="menu_auth">
                             <?php
                             $this->widget('zii.widgets.CMenu', array(
                                 'items' => array(
-                                    array('label' => 'Login', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
                                     array('label' => 'Logout (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest),
                                 ),
                             ));
@@ -57,6 +58,11 @@
                     </div><!-- header -->
                     <?php
                     if (Yii::app()->user->id):
+                        ?>
+
+
+                        <?php
+                        $this->widget('ext.Caption.Caption');
                         ?>
 
                         <div id="menu-top" class="clearfix">
@@ -72,19 +78,25 @@
                                         'url' => array('/site/publishing'),
                                         'visible' => !Yii::app()->user->isGuest,
                                         'items' => array(
-                                            array('label' => 'State', 'url' => array('/state'), 'visible' => !Yii::app()->user->isGuest),
-                                            array('label' => 'District', 'url' => array('/district'), 'visible' => !Yii::app()->user->isGuest),
-                                            array('label' => 'Candidate', 'url' => array('/candidate'), 'visible' => !Yii::app()->user->isGuest),
+                                            array('label' => 'States', 'url' => array('/state'), 'visible' => !Yii::app()->user->isGuest),
+                                            array('label' => 'Districts', 'url' => array('/district'), 'visible' => !Yii::app()->user->isGuest),
+                                            array('label' => 'Recommendations', 'url' => array('/recommendation'), 'visible' => !Yii::app()->user->isGuest),
+                                            array('label' => 'Ballot Item', 'url' => array('/ballotItem'), 'visible' => !Yii::app()->user->isGuest),
+                                        //    array('label' => 'Ballot Item News', 'url' => array('/ballotItemUpdate'), 'visible' => !Yii::app()->user->isGuest),
+                                            
+                                            array('itemOptions' => array('id' => 'external_item'), 'label' => 'Rich Push Notifications', 'linkOptions' => array('target' => '_blank'), 'url' => 'https://go.urbanairship.com/apps/ouRCLPaBRRasv4K1AIw-xA/composer/rich-push/'),
                                         ),
                                     ),
                                     array(
-                                        'label' => 'Messaging Center',
-                                        'url' => array('/site/messaging'),
+                                        'label' => 'App Manager',
+                                        'url' => array('/site/mobile'),
                                         'visible' => !Yii::app()->user->isGuest,
-                                        'itemOptions' => array('id' => 'itemMessaging'),
+                                        'itemOptions' => array('id' => 'itemAdministration'),
                                         'items' => array(
-                                            array('label' => 'User Alerts', 'url' => array('/user_alert'), 'visible' => !Yii::app()->user->isGuest),
-                                            array('label' => 'Push Notifications', 'url' => array('/pushNotifications'), 'visible' => !Yii::app()->user->isGuest),
+                                            array('label' => 'Application users', 'url' => array('/application_users'), 'visible' => !Yii::app()->user->isGuest),
+                                            array('label' => 'Tags', 'url' => array('/tag'), 'visible' => !Yii::app()->user->isGuest),
+                                            array('label' => 'Set alert types', 'url' => array('/alertType'), 'visible' => !Yii::app()->user->isGuest),
+                                            array('label' => 'Options', 'url' => array('/option'), 'visible' => !Yii::app()->user->isGuest),
                                         ),
                                     ),
                                     array(
@@ -93,25 +105,34 @@
                                         'visible' => !Yii::app()->user->isGuest,
                                         'itemOptions' => array('id' => 'itemAdministration'),
                                         'items' => array(
-                                            array('label' => 'Application Users', 'url' => array('/application_users'), 'visible' => !Yii::app()->user->isGuest),
                                             array('label' => 'Users', 'url' => array('/user'), 'visible' => !Yii::app()->user->isGuest),
-                                            array('label' => 'Options', 'url' => array('/option'), 'visible' => !Yii::app()->user->isGuest),
                                         ),
                                     ),
                                 ),
                             ));
                             ?>
                         </div>
-                        <?php
-                    endif;
-                    ?>
 
+                        <?php
+                        if (isset($this->category))
+                            $breadcrumbs = $this->category + $this->breadcrumbs;
+                        else
+                            $breadcrumbs = $this->breadcrumbs;
+
+
+
+                        $this->widget('zii.widgets.CBreadcrumbs', array(
+                            'links' => $breadcrumbs,
+                            'homeLink' => CHtml::link('Dashboard', array('./'))
+                        ));
+
+
+                    endif;
+                    ?><!-- breadcrumbs -->
 
                     <?php echo $content; ?>
 
                     <div class="clear"></div>
-
-
                     <div id="footer">
                         Copyright &copy; <?php echo date('Y'); ?> by Winning Mark.<br/>
                         All Rights Reserved.<br/>

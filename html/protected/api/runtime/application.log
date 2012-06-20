@@ -1,0 +1,1324 @@
+2012/06/13 00:00:33 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/13 00:00:33 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (50)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/13 00:00:33 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (50)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
+2012/06/13 00:00:33 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (50)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
+2012/06/13 00:00:33 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "AND"
+LINE 1: ...Result"."id")  WHERE ("t"."district_id"=212 AND ( AND date_p...
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  WHERE ("t"."district_id"=212 AND ( AND date_published>=:year_start AND date_published <=:year_end)) ORDER BY priority ASC.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (50)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
+2012/06/13 00:00:33 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "AND"
+LINE 1: ...Result"."id")  WHERE ("t"."district_id"=212 AND ( AND date_p...
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  WHERE ("t"."district_id"=212 AND ( AND date_published>=:year_start AND date_published <=:year_end)) ORDER BY priority ASC' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(7222): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7310): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(50): CActiveRecord->findAllByAttributes(Array, Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager->findAllByDistricts('ca', Array, Array, '2012', false)
+#8 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#16 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#17 {main}
+REQUEST_URI=/api/ballot_items/2012/state/ca/?districts=congressional/14
+---
+2012/06/13 00:01:24 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/13 00:01:24 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (53)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/13 00:01:24 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (53)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
+2012/06/13 00:01:24 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (53)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
+2012/06/13 00:01:24 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  WHERE ("t"."district_id"=212 AND (published =:published AND date_published>=:year_start AND date_published <=:year_end)) ORDER BY priority ASC.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (53)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (67)
+2012/06/13 00:01:24 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  WHERE ("t"."district_id"=212 AND (published =:published AND date_published>=:year_start AND date_published <=:year_end)) ORDER BY priority ASC' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(7222): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7310): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(53): CActiveRecord->findAllByAttributes(Array, Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager->findAllByDistricts('ca', Array, Array, '2012', false)
+#8 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#16 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#17 {main}
+REQUEST_URI=/api/ballot_items/2012/state/ca/?districts=congressional/14
+---
+2012/06/13 18:57:08 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/13 18:57:08 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (58)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+2012/06/13 18:57:08 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (58)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/13 18:57:08 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (58)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/13 18:57:08 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "DESCe"
+LINE 1: ...e_published<='2012-12-31 23:59:59')) ORDER BY priority DESCe
+                                                                  ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id" IN (265, 408) AND (date_published>=:year_start and date_published<=:year_end)) ORDER BY priority DESCe.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (58)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/13 18:57:08 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "DESCe"
+LINE 1: ...e_published<='2012-12-31 23:59:59')) ORDER BY priority DESCe
+                                                                  ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id" IN (265, 408) AND (date_published>=:year_start and date_published<=:year_end)) ORDER BY priority DESCe' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(7222): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7310): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php(58): CActiveRecord->findAllByAttributes(Array, Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(39): ModelFinder->search()
+#8 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#9 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#18 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1,county/clackamas
+---
+2012/06/13 19:03:12 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/13 19:03:12 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\dal\BallotItem.php (44)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (60)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+2012/06/13 19:03:12 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (60)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/13 19:03:12 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (60)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/13 19:03:12 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "123"
+LINE 1: ...ate_published<='2012-12-31 23:59:59')) ORDER BY priority 123
+                                                                    ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id" IN (265, 408) AND (date_published>=:year_start and date_published<=:year_end)) ORDER BY priority 123.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (60)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/13 19:03:12 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "123"
+LINE 1: ...ate_published<='2012-12-31 23:59:59')) ORDER BY priority 123
+                                                                    ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id" IN (265, 408) AND (date_published>=:year_start and date_published<=:year_end)) ORDER BY priority 123' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(7222): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7310): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php(60): CActiveRecord->findAllByAttributes(Array, Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(39): ModelFinder->search()
+#8 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#9 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#18 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1,county/clackamas
+---
+2012/06/13 19:03:50 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/13 19:03:50 [error] [exception.InvalidArgumentException] exception 'InvalidArgumentException' in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:43
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php(40): ModelFinder->setOrder('priority', 123)
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(29): BallotItemFinder->orderByHighestPriority()
+#2 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1,county/clackamas
+---
+2012/06/13 19:04:23 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/13 19:04:23 [error] [exception.InvalidArgumentException] exception 'InvalidArgumentException' with message 'Order type must be self::DESCENDANT ' in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:43
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php(40): ModelFinder->setOrder('priority', 123)
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(29): BallotItemFinder->orderByHighestPriority()
+#2 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1,county/clackamas
+---
+2012/06/13 19:04:30 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/13 19:04:30 [error] [exception.InvalidArgumentException] exception 'InvalidArgumentException' with message 'Order type must be {self::DESCENDANT} ' in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:43
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php(40): ModelFinder->setOrder('priority', 123)
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(29): BallotItemFinder->orderByHighestPriority()
+#2 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1,county/clackamas
+---
+2012/06/13 19:04:45 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/13 19:04:45 [error] [exception.InvalidArgumentException] exception 'InvalidArgumentException' with message 'Order type must beDESC' in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:43
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php(40): ModelFinder->setOrder('priority', 123)
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(29): BallotItemFinder->orderByHighestPriority()
+#2 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1,county/clackamas
+---
+2012/06/13 19:05:05 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/13 19:05:05 [error] [exception.InvalidArgumentException] exception 'InvalidArgumentException' with message 'Order type must be DESC or ASC' in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:43
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php(40): ModelFinder->setOrder('priority', 123)
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(29): BallotItemFinder->orderByHighestPriority()
+#2 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1,county/clackamas
+---
+2012/06/13 19:05:18 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/13 19:05:18 [error] [exception.InvalidArgumentException] exception 'InvalidArgumentException' with message 'Order type must be DESC or ASCType given: 123' in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:43
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php(40): ModelFinder->setOrder('priority', 123)
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(29): BallotItemFinder->orderByHighestPriority()
+#2 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1,county/clackamas
+---
+2012/06/13 19:05:22 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/13 19:05:22 [error] [exception.InvalidArgumentException] exception 'InvalidArgumentException' with message 'Order type must be DESC or ASC Type given: 123' in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:43
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php(40): ModelFinder->setOrder('priority', 123)
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(29): BallotItemFinder->orderByHighestPriority()
+#2 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1,county/clackamas
+---
+2012/06/13 19:05:27 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/13 19:05:27 [error] [exception.InvalidArgumentException] exception 'InvalidArgumentException' with message 'Order type must be DESC or ASC. Type given: 123' in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:43
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php(40): ModelFinder->setOrder('priority', 123)
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(29): BallotItemFinder->orderByHighestPriority()
+#2 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1,county/clackamas
+---
+2012/06/13 19:06:03 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/13 19:06:03 [error] [exception.InvalidArgumentException] exception 'InvalidArgumentException' with message 'Invalid Order type must be DESC or ASC. Type given: 123' in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:43
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php(40): ModelFinder->setOrder('priority', 123)
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(29): BallotItemFinder->orderByHighestPriority()
+#2 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1,county/clackamas
+---
+2012/06/13 19:06:12 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/13 19:06:12 [error] [exception.InvalidArgumentException] exception 'InvalidArgumentException' with message 'Order type must be DESC or ASC. Type given: 123' in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:43
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php(40): ModelFinder->setOrder('priority', 123)
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(29): BallotItemFinder->orderByHighestPriority()
+#2 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1,county/clackamas
+---
+2012/06/14 20:07:26 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/14 20:07:26 [error] [exception.InvalidArgumentException] exception 'InvalidArgumentException' with message 'The parameter must be a CActiveRecord object' in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:25
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php(7): ModelFinder->__construct(123)
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(26): BallotItemFinder->__construct()
+#2 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('ca', Array, Array, NULL, false)
+#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/ballot_items/state/ca/?districts=congressional/18
+---
+2012/06/14 20:10:09 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/14 20:10:09 [error] [exception.InvalidArgumentException] exception 'InvalidArgumentException' with message 'The parameter must be an object that inherit the  CActiveRecord class' in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:27
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php(10): ModelFinder->__construct(Object(Foo))
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(26): BallotItemFinder->__construct()
+#2 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('ca', Array, Array, NULL, false)
+#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/ballot_items/state/ca/?districts=congressional/18
+---
+2012/06/14 20:10:23 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/14 20:10:23 [error] [exception.InvalidArgumentException] exception 'InvalidArgumentException' with message 'The  object must inherit the CActiveRecord class' in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:27
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php(10): ModelFinder->__construct(Object(Foo))
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(26): BallotItemFinder->__construct()
+#2 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('ca', Array, Array, NULL, false)
+#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/ballot_items/state/ca/?districts=congressional/18
+---
+2012/06/14 20:10:28 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/14 20:10:28 [error] [exception.InvalidArgumentException] exception 'InvalidArgumentException' with message 'The parameter must be an object that inherit the  CActiveRecord class' in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:25
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php(10): ModelFinder->__construct(123)
+#1 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(26): BallotItemFinder->__construct()
+#2 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('ca', Array, Array, NULL, false)
+#3 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#12 {main}
+REQUEST_URI=/api/ballot_items/state/ca/?districts=congressional/18
+---
+2012/06/18 19:32:29 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/18 19:32:29 [trace] [system.caching.CApcCache] Saving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" to cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php (10)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (26)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:32:29 [trace] [system.caching.CApcCache] Saving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" to cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (70)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:32:29 [trace] [system.caching.CApcCache] Saving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" to cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (70)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:32:29 [trace] [system.caching.CApcCache] Saving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item_news" to cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (70)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:32:29 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42702]: Ambiguous column: 7 ERROR:  column reference "date_published" is ambiguous
+LINE 1: ...."published"='yes' AND "t"."district_id"=407 AND (date_publi...
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id"=407 AND (date_published>=:year_start and date_published<=:year_end)) ORDER BY priority DESC.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (70)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:32:29 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42702]: Ambiguous column: 7 ERROR:  column reference "date_published" is ambiguous
+LINE 1: ...."published"='yes' AND "t"."district_id"=407 AND (date_publi...
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id"=407 AND (date_published>=:year_start and date_published<=:year_end)) ORDER BY priority DESC' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(7222): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7310): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php(70): CActiveRecord->findAllByAttributes(Array, Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(39): ModelFinder->search()
+#8 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#9 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#18 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=city/portland
+---
+2012/06/18 19:32:31 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/18 19:32:31 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php (10)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (26)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:32:31 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (70)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:32:31 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (70)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:32:31 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item_news" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (70)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:32:31 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42702]: Ambiguous column: 7 ERROR:  column reference "date_published" is ambiguous
+LINE 1: ...."published"='yes' AND "t"."district_id"=407 AND (date_publi...
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id"=407 AND (date_published>=:year_start and date_published<=:year_end)) ORDER BY priority DESC.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (70)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:32:31 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42702]: Ambiguous column: 7 ERROR:  column reference "date_published" is ambiguous
+LINE 1: ...."published"='yes' AND "t"."district_id"=407 AND (date_publi...
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id"=407 AND (date_published>=:year_start and date_published<=:year_end)) ORDER BY priority DESC' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(7222): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7310): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php(70): CActiveRecord->findAllByAttributes(Array, Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(39): ModelFinder->search()
+#8 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#9 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#18 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=city/portland
+---
+2012/06/18 19:32:31 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/18 19:32:31 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php (10)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (26)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:32:31 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (70)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:32:31 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (70)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:32:31 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item_news" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (70)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:32:31 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42702]: Ambiguous column: 7 ERROR:  column reference "date_published" is ambiguous
+LINE 1: ...."published"='yes' AND "t"."district_id"=407 AND (date_publi...
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id"=407 AND (date_published>=:year_start and date_published<=:year_end)) ORDER BY priority DESC.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (70)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:32:31 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42702]: Ambiguous column: 7 ERROR:  column reference "date_published" is ambiguous
+LINE 1: ...."published"='yes' AND "t"."district_id"=407 AND (date_publi...
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id"=407 AND (date_published>=:year_start and date_published<=:year_end)) ORDER BY priority DESC' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(7222): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7310): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php(70): CActiveRecord->findAllByAttributes(Array, Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(39): ModelFinder->search()
+#8 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#9 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#18 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=city/portland
+---
+2012/06/18 19:32:34 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/18 19:32:34 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php (10)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (26)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:32:34 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (70)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:32:34 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (70)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:32:34 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item_news" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (70)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:32:34 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42702]: Ambiguous column: 7 ERROR:  column reference "date_published" is ambiguous
+LINE 1: ...."published"='yes' AND "t"."district_id"=407 AND (date_publi...
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id"=407 AND (date_published>=:year_start and date_published<=:year_end)) ORDER BY priority DESC.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (70)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:32:34 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42702]: Ambiguous column: 7 ERROR:  column reference "date_published" is ambiguous
+LINE 1: ...."published"='yes' AND "t"."district_id"=407 AND (date_publi...
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id"=407 AND (date_published>=:year_start and date_published<=:year_end)) ORDER BY priority DESC' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(7222): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7310): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php(70): CActiveRecord->findAllByAttributes(Array, Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(39): ModelFinder->search()
+#8 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#9 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#18 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=city/portland
+---
+2012/06/18 19:33:15 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/18 19:33:16 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php (10)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (26)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:33:16 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (70)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:33:16 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (70)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:33:16 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item_news" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (70)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:33:16 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42702]: Ambiguous column: 7 ERROR:  column reference "date_published" is ambiguous
+LINE 1: ...."published"='yes' AND "t"."district_id"=337 AND (date_publi...
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id"=337 AND (date_published>=:year_start and date_published<=:year_end)) ORDER BY priority DESC.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (70)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:33:16 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42702]: Ambiguous column: 7 ERROR:  column reference "date_published" is ambiguous
+LINE 1: ...."published"='yes' AND "t"."district_id"=337 AND (date_publi...
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id"=337 AND (date_published>=:year_start and date_published<=:year_end)) ORDER BY priority DESC' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(7222): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7310): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php(70): CActiveRecord->findAllByAttributes(Array, Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(39): ModelFinder->search()
+#8 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#9 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#18 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/4
+---
+2012/06/18 19:33:17 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/18 19:33:17 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php (10)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (26)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:33:17 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (70)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:33:17 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (70)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:33:17 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item_news" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (70)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:33:17 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42702]: Ambiguous column: 7 ERROR:  column reference "date_published" is ambiguous
+LINE 1: ...."published"='yes' AND "t"."district_id"=265 AND (date_publi...
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id"=265 AND (date_published>=:year_start and date_published<=:year_end)) ORDER BY priority DESC.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (70)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:33:17 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42702]: Ambiguous column: 7 ERROR:  column reference "date_published" is ambiguous
+LINE 1: ...."published"='yes' AND "t"."district_id"=265 AND (date_publi...
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id"=265 AND (date_published>=:year_start and date_published<=:year_end)) ORDER BY priority DESC' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(7222): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7310): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php(70): CActiveRecord->findAllByAttributes(Array, Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(39): ModelFinder->search()
+#8 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#9 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#18 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1
+---
+2012/06/18 19:39:05 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/18 19:39:05 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php (10)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (26)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:39:05 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (70)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:39:05 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (70)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:39:05 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item_news" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (70)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:39:05 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42702]: Ambiguous column: 7 ERROR:  column reference "date_published" is ambiguous
+LINE 1: ...."published"='yes' AND "t"."district_id"=265 AND (date_publi...
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id"=265 AND (date_published>=:year_start and date_published<=:year_end)) ORDER BY priority DESC.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (70)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:39:05 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42702]: Ambiguous column: 7 ERROR:  column reference "date_published" is ambiguous
+LINE 1: ...."published"='yes' AND "t"."district_id"=265 AND (date_publi...
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id"=265 AND (date_published>=:year_start and date_published<=:year_end)) ORDER BY priority DESC' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(7222): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7310): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php(70): CActiveRecord->findAllByAttributes(Array, Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(39): ModelFinder->search()
+#8 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#9 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#18 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1
+---
+2012/06/18 19:42:03 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/18 19:42:03 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php (10)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (26)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:42:03 [error] [php] error_log() [<a href='function.error-log'>function.error-log</a>]: &quot;sendmail_from&quot; not set in php.ini or custom &quot;From:&quot; header missing (C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:69)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): findAllByDistricts()
+#1 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): ApiController->runAction()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): ApiController->runActionWithFilters()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): ApiController->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\HSLF\html\api.php(21): CWebApplication->run()
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (69)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:42:12 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/18 19:42:12 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php (10)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (26)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:42:12 [error] [php] error_log() [<a href='function.error-log'>function.error-log</a>]: &quot;sendmail_from&quot; not set in php.ini or custom &quot;From:&quot; header missing (C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:69)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): findAllByDistricts()
+#1 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): ApiController->runAction()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): ApiController->runActionWithFilters()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): ApiController->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\HSLF\html\api.php(21): CWebApplication->run()
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (69)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:42:28 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/18 19:42:28 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php (10)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (26)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:42:28 [error] [php] error_log() [<a href='function.error-log'>function.error-log</a>]: &quot;sendmail_from&quot; not set in php.ini or custom &quot;From:&quot; header missing (C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php:69)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): findAllByDistricts()
+#1 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): ApiController->runAction()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): ApiController->runActionWithFilters()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): ApiController->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\HSLF\html\api.php(21): CWebApplication->run()
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (69)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:42:44 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/18 19:42:44 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php (10)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (26)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:42:44 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (72)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:42:44 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (72)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:42:44 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item_news" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (72)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:42:44 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42702]: Ambiguous column: 7 ERROR:  column reference "date_published" is ambiguous
+LINE 1: ...."published"='yes' AND "t"."district_id"=265 AND (date_publi...
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id"=265 AND (date_published>=:year_start and date_published<=:year_end)) ORDER BY priority DESC.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (72)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:42:44 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42702]: Ambiguous column: 7 ERROR:  column reference "date_published" is ambiguous
+LINE 1: ...."published"='yes' AND "t"."district_id"=265 AND (date_publi...
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id"=265 AND (date_published>=:year_start and date_published<=:year_end)) ORDER BY priority DESC' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(7222): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7310): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php(72): CActiveRecord->findAllByAttributes(Array, Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(39): ModelFinder->search()
+#8 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#9 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#18 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1
+---
+2012/06/18 19:43:47 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/18 19:43:47 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php (10)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (26)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:43:48 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (72)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:43:48 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (72)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:43:48 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item_news" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (72)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:43:48 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42P01]: Undefined table: 7 ERROR:  invalid reference to FROM-clause entry for table "ballot_item"
+LINE 1: ...."published"='yes' AND "t"."district_id"=265 AND (ballot_ite...
+                                                             ^
+HINT:  Perhaps you meant to reference the table alias "t".. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id"=265 AND (ballot_item.date_published>=:year_start and ballot_item.date_published<=:year_end)) ORDER BY priority DESC.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (72)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:43:48 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42P01]: Undefined table: 7 ERROR:  invalid reference to FROM-clause entry for table "ballot_item"
+LINE 1: ...."published"='yes' AND "t"."district_id"=265 AND (ballot_ite...
+                                                             ^
+HINT:  Perhaps you meant to reference the table alias "t".. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id"=265 AND (ballot_item.date_published>=:year_start and ballot_item.date_published<=:year_end)) ORDER BY priority DESC' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(7222): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7310): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php(72): CActiveRecord->findAllByAttributes(Array, Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(39): ModelFinder->search()
+#8 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#9 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#18 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1
+---
+2012/06/18 19:43:48 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/18 19:43:48 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php (10)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (26)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:43:48 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (72)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:43:48 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (72)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:43:48 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item_news" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (72)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:43:48 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42P01]: Undefined table: 7 ERROR:  invalid reference to FROM-clause entry for table "ballot_item"
+LINE 1: ...."published"='yes' AND "t"."district_id"=265 AND (ballot_ite...
+                                                             ^
+HINT:  Perhaps you meant to reference the table alias "t".. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id"=265 AND (ballot_item.date_published>=:year_start and ballot_item.date_published<=:year_end)) ORDER BY priority DESC.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (72)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:43:48 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42P01]: Undefined table: 7 ERROR:  invalid reference to FROM-clause entry for table "ballot_item"
+LINE 1: ...."published"='yes' AND "t"."district_id"=265 AND (ballot_ite...
+                                                             ^
+HINT:  Perhaps you meant to reference the table alias "t".. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id"=265 AND (ballot_item.date_published>=:year_start and ballot_item.date_published<=:year_end)) ORDER BY priority DESC' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(7222): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7310): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php(72): CActiveRecord->findAllByAttributes(Array, Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(39): ModelFinder->search()
+#8 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#9 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#18 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1
+---
+2012/06/18 19:45:30 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/18 19:45:30 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php (10)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (26)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:45:30 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (72)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:45:30 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (72)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:45:30 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item_news" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (72)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:45:30 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42702]: Ambiguous column: 7 ERROR:  column reference "date_published" is ambiguous
+LINE 1: ...."published"='yes' AND "t"."district_id"=265 AND (date_publi...
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id"=265 AND (date_published>=:year_start and date_published<=:year_end)) ORDER BY priority DESC.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (72)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:45:30 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42702]: Ambiguous column: 7 ERROR:  column reference "date_published" is ambiguous
+LINE 1: ...."published"='yes' AND "t"."district_id"=265 AND (date_publi...
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id"=265 AND (date_published>=:year_start and date_published<=:year_end)) ORDER BY priority DESC' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(7222): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7310): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php(72): CActiveRecord->findAllByAttributes(Array, Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(39): ModelFinder->search()
+#8 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#9 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#18 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1
+---
+2012/06/18 19:47:01 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/18 19:47:01 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php (10)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (26)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:47:01 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (72)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:47:01 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (72)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:47:01 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item_news" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (72)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:47:01 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near ":"
+LINE 1: ..."='yes' AND "t"."district_id"=265 AND (ballot_item:date_publ...
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id"=265 AND (ballot_item:date_published>=:year_start and ballot_item:date_published<=:year_end)) ORDER BY priority DESC.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (72)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:47:01 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near ":"
+LINE 1: ..."='yes' AND "t"."district_id"=265 AND (ballot_item:date_publ...
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id"=265 AND (ballot_item:date_published>=:year_start and ballot_item:date_published<=:year_end)) ORDER BY priority DESC' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(7222): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7310): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php(72): CActiveRecord->findAllByAttributes(Array, Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(39): ModelFinder->search()
+#8 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#9 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#18 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1
+---
+2012/06/18 19:47:02 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/18 19:47:02 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php (10)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (26)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:47:02 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (72)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:47:02 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (72)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:47:02 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item_news" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (72)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:47:02 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near ":"
+LINE 1: ..."='yes' AND "t"."district_id"=265 AND (ballot_item:date_publ...
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id"=265 AND (ballot_item:date_published>=:year_start and ballot_item:date_published<=:year_end)) ORDER BY priority DESC.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (72)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:47:02 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near ":"
+LINE 1: ..."='yes' AND "t"."district_id"=265 AND (ballot_item:date_publ...
+                                                             ^. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id"=265 AND (ballot_item:date_published>=:year_start and ballot_item:date_published<=:year_end)) ORDER BY priority DESC' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(7222): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7310): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php(72): CActiveRecord->findAllByAttributes(Array, Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(39): ModelFinder->search()
+#8 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#9 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#18 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1
+---
+2012/06/18 19:47:07 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/18 19:47:07 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php (10)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (26)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:47:07 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (72)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:47:07 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (72)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:47:07 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item_news" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (72)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:47:07 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42P01]: Undefined table: 7 ERROR:  invalid reference to FROM-clause entry for table "ballot_item"
+LINE 1: ...."published"='yes' AND "t"."district_id"=265 AND (ballot_ite...
+                                                             ^
+HINT:  Perhaps you meant to reference the table alias "t".. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id"=265 AND (ballot_item.date_published>=:year_start and ballot_item.date_published<=:year_end)) ORDER BY priority DESC.
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (72)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (39)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (104)
+2012/06/18 19:47:07 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42P01]: Undefined table: 7 ERROR:  invalid reference to FROM-clause entry for table "ballot_item"
+LINE 1: ...."published"='yes' AND "t"."district_id"=265 AND (ballot_ite...
+                                                             ^
+HINT:  Perhaps you meant to reference the table alias "t".. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND "t"."district_id"=265 AND (ballot_item.date_published>=:year_start and ballot_item.date_published<=:year_end)) ORDER BY priority DESC' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(7222): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7310): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php(72): CActiveRecord->findAllByAttributes(Array, Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(39): ModelFinder->search()
+#8 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(104): BallotItemManager::findAllByDistricts('or', Array, Array, '2012', false)
+#9 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems(Array)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\HSLF\html\api.php(21): CApplication->run()
+#18 {main}
+REQUEST_URI=/api/ballot_items/2012/state/or/?districts=congressional/1
+---
+2012/06/18 21:20:08 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/18 21:20:08 [error] [php] array_map() expects parameter 1 to be a valid callback, first array member is not a valid class name or object (C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php:23)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(108): findAllByState()
+#1 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): ApiController->runAction()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): ApiController->runActionWithFilters()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): ApiController->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\HSLF\html\api.php(21): CWebApplication->run()
+REQUEST_URI=/api/ballot_items/state/or/
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (50)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (108)
+2012/06/18 21:20:39 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/18 21:20:39 [error] [php] array_map() expects parameter 1 to be a valid callback, first array member is not a valid class name or object (C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php:23)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(108): findAllByState()
+#1 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): ApiController->runAction()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): ApiController->runActionWithFilters()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): ApiController->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\HSLF\html\api.php(21): CWebApplication->run()
+REQUEST_URI=/api/ballot_items/state/or/
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (52)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (108)
+2012/06/18 21:20:40 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/18 21:20:40 [error] [php] array_map() expects parameter 1 to be a valid callback, first array member is not a valid class name or object (C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php:23)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(108): findAllByState()
+#1 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): ApiController->runAction()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): ApiController->runActionWithFilters()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): ApiController->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\HSLF\html\api.php(21): CWebApplication->run()
+REQUEST_URI=/api/ballot_items/state/or/
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (52)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (108)
+2012/06/18 21:21:00 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/18 21:21:00 [error] [php] array_map() expects parameter 1 to be a valid callback, first array member is not a valid class name or object (C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php:23)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(108): findAllByState()
+#1 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): ApiController->runAction()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): ApiController->runActionWithFilters()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): ApiController->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\HSLF\html\api.php(21): CWebApplication->run()
+REQUEST_URI=/api/ballot_items/state/or/
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (52)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (108)
+2012/06/18 21:21:00 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/18 21:21:01 [error] [php] array_map() expects parameter 1 to be a valid callback, first array member is not a valid class name or object (C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php:23)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(108): findAllByState()
+#1 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): ApiController->runAction()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): ApiController->runActionWithFilters()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): ApiController->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\HSLF\html\api.php(21): CWebApplication->run()
+REQUEST_URI=/api/ballot_items/state/or/
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (52)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (108)
+2012/06/18 21:21:15 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/18 21:21:15 [error] [php] array_map() expects parameter 1 to be a valid callback, first array member is not a valid class name or object (C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php:23)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(108): findAllByState()
+#1 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): ApiController->runAction()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): ApiController->runActionWithFilters()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): ApiController->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\HSLF\html\api.php(21): CWebApplication->run()
+REQUEST_URI=/api/ballot_items/state/or/
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (52)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (108)
+2012/06/18 21:21:29 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (21)
+2012/06/18 21:21:29 [error] [php] array_map() expects parameter 1 to be a valid callback, first array member is not a valid class name or object (C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php:23)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(108): findAllByState()
+#1 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(67): ApiController->_getBallotItems()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): ApiController->runAction()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): ApiController->runActionWithFilters()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): ApiController->run()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\HSLF\html\api.php(21): CWebApplication->run()
+REQUEST_URI=/api/ballot_items/state/or/
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (23)
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (53)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (108)

@@ -93,6 +93,9 @@ div.form span.required
     color: red;
 }
 
+.errorMessage{
+    margin-top:10px;
+}
 div.form div.error label:first-child,
 div.form label.error,
 div.form span.error
@@ -182,4 +185,40 @@ div.wide.form .buttons, div.wide.form .hint, div.wide.form .errorMessage
     font-size: 25px;
     background-color: #fff;
     color: red;
+}
+
+div.left_col, div.right_col{
+    width:48%;
+}
+div.left_col{
+    float:left;
+}
+
+div.right_col{
+    float:right;
+
+}
+
+.ui-datepicker-trigger {
+    margin-top: 5px;
+    margin-left: 5px;
+    cursor:pointer;
+}
+
+input{
+    height:20px;
+}
+
+.pill_btn {
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 0 5px;
+    border: 1px solid #CCC;
+    font-weight: bold;
+    float: right;
+}
+
+.ballot_item_image_url{
+    width:100px;
+    height:100px;
 }

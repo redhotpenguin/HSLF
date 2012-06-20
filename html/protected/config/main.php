@@ -1,18 +1,40 @@
 <?php
 
-// uncomment the following to define a path alias
-// Yii::setPathOfAlias('local','path/to/local-folder');
-// This is the main Web application configuration. Any writable
-// CWebApplication properties can be configured here.
+if (isset($env['DOTCLOUD_DB_SQL_HOST']))
+    $dbhost = $env['DOTCLOUD_DB_SQL_HOST'];
+else
+    $dbhost = 'localhost';
+
+if (isset($env['DOTCLOUD_DB_SQL_LOGIN']))
+    $dbuser = $env['DOTCLOUD_DB_SQL_LOGIN'];
+else
+    $dbuser = 'postgres';
+
+
+if (isset($env['DOTCLOUD_DB_SQL_PASSWORD']))
+    $dbpass = $env['DOTCLOUD_DB_SQL_PASSWORD'];
+else
+    $dbpass = 'pengu1n';
+
+
+if (isset($env['DOTCLOUD_DB_SQL_PORT']))
+    $dbport = $env['DOTCLOUD_DB_SQL_PORT'];
+else
+    $dbport = '5432';
+
+
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
-    'name' => 'Winning Mark Mobile',
+    'name' => 'HSLF Mobile',
     // preloading 'log' component
     'preload' => array('log'),
     // autoloading model and component classes
     'import' => array(
         'application.models.*',
+        'application.shared.models.dal.*', // data access logic classes
+        'application.shared.models.bll.*', // business  logic classes
         'application.components.*',
+        'ext.multimodelform.MultiModelForm',
     ),
     'modules' => array(
         'gii' => array(
@@ -34,70 +56,50 @@ return array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'rules' => array(
-                array('api/list', 'pattern' => 'api/<model:\w+>', 'verb' => 'GET'),
-                array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>', 'verb' => 'GET'),
-                array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>/district/<district_number:\d+>', 'verb' => 'GET'),
-                array('api/view', 'pattern' => 'api/<model:\w+>/name/<type:\w+>', 'verb' => 'GET'),
-                array('api/create', 'pattern' => 'api/<model:\w+>', 'verb' => 'POST'),
-                // Other controllers
-                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-                '<controller:\w+>/<id:\d+>' => '<controller>/view',
-                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                
+               array('ballot/listbydistrict', 'pattern' => 'ballot/<year:\d{4}>/<state_abbr:\w{2,3}>/<district_type:\w{2,15}>/<district:\w+>', 'verb' => 'GET'), // /ballot/2012/ca/congressional/14
+                array('ballot/view', 'pattern' => 'ballot/<year:\d{4}>/<slug:.*?>', 'verb' => 'GET'), //  /ballot/2012/puppy-mills/
+                array('ballot/list', 'pattern' => 'ballot/<state_abbr:\w{2,3}>', 'verb' => 'GET'), //  /ballot/ca
+                array('ballot/list', 'pattern' => 'ballot/<year:\d{4}>/<state_abbr:\w{2,3}>/<district_type:\w{2,15}>', 'verb' => 'GET'), // /ballot/ca/congressional/
             ),
         ),
-        'db' => array(
-            'connectionString' => 'sqlite:' . dirname(__FILE__) . '/../data/testdrive.db',
-        ),
-        // uncomment the following to use a PostSQL database
-        $dbhost = $env['DOTCLOUD_DB_SQL_HOST'] || 'localhost';
-        $dbuser = $env['DOTCLOUD_DB_SQL_LOGIN'] || 'root';
-        $dbpass = $env['DOTCLOUD_DB_SQL_PASSWORD'] || 'pengu1n';
-        $dbport = $env['DOTCLOUD_DB_SQL_PORT'] || '5431';
-
         'db' => array(
             'connectionString' => "pgsql:host=$dbhost;port=$dbport;dbname=voterguide",
             'emulatePrepare' => true,
             'username' => $dbuser,
             'password' => $dbpass,
             'charset' => 'UTF-8',
-            'schemaCachingDuration' => '600',
+            'schemaCachingDuration' => '3600',
         ),
-        /*
+       
           'cache' => array(
           'class' => 'system.caching.CApcCache',
           ),
-         */
+     
         'errorHandler' => array(
-            // use 'site/error' action to display errors
             'errorAction' => 'site/error',
         ),
-           'log'=>array(
-			'class'=>'CLogRouter',
-			'routes'=>array(
-				array(
-					'class'=>'CFileLogRoute',
-					'levels'=>'error, warning',
-				),
-				// uncomment the following to show log messages on web pages
-				
-				/*array(
-					'class'=>'CWebLogRoute',
-				),*/
-				
-			),
-		),
+        'log' => array(
+            'class' => 'CLogRouter',
+            'routes' => array(
+                array(
+                    'class' => 'CFileLogRoute',
+                    'levels' => 'error, warning, info, trace',
+                ),
+            // uncomment the following to show log messages on web pages
+
+            /* array(
+              'class'=>'CWebLogRoute',
+              ), */
+            ),
+        ),
     ),
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']
     'params' => array(
         'dateFormat' => 'Y-m-d H:i:s',
         'adminEmail' => 'jonas@winningmark.com',
-        'api_username' => 'secretuser',
-        'api_password' => 'secretpassword',
-        'api_salt' => '1qV2453L674133', //never changes this value once in production!
-        'urbanairship_app_key' => 'ouRCLPaBRRasv4K1AIw-xA',
-        'urbanairship_app_master_secret' => '7hd19C6rSzyrbKM3k6KqDg',
+        'site_url' => 'http://www.voterguide.com',
     ),
-    'theme' => 'hslf'
+    'theme' => 'hslf_frontend'
 );

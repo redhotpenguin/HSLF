@@ -12,3 +12,4 @@ defined('YII_DEBUG_SHOW_PROFILER') or define('YII_DEBUG_SHOW_PROFILER',true);
 
 require_once($yii);
 Yii::createWebApplication($config)->run();
+
