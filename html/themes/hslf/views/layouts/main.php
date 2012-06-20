@@ -82,6 +82,7 @@
                                             array('label' => 'Districts', 'url' => array('/district/admin'), 'visible' => !Yii::app()->user->isGuest),
                                             array('label' => 'Recommendations', 'url' => array('/recommendation/admin'), 'visible' => !Yii::app()->user->isGuest),
                                             array('label' => 'Ballot Item', 'url' => array('/ballotItem/admin'), 'visible' => !Yii::app()->user->isGuest),
+                                            array('label' => 'Image Upload', 'url' => array('/upload'), 'visible' => !Yii::app()->user->isGuest),
                                         //    array('label' => 'Ballot Item News', 'url' => array('/ballotItemUpdate'), 'visible' => !Yii::app()->user->isGuest),
                                             
                                             array('itemOptions' => array('id' => 'external_item'), 'label' => 'Rich Push Notifications', 'linkOptions' => array('target' => '_blank'), 'url' => 'https://go.urbanairship.com/apps/ouRCLPaBRRasv4K1AIw-xA/composer/rich-push/'),
