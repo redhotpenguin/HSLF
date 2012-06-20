@@ -12,7 +12,7 @@ $this->menu = array(
 );
 ?>
 
-<h1><?php echo $model->item; ?></h1>
+<h1><?php echo $model->item; ?> #(<?php echo $model->id; ?>)</h1>
 
 <?php
 echo $this->renderPartial('_form', array(

@@ -104,7 +104,7 @@ class BallotItem extends CActiveRecord {
             'published' => 'Published',
             'party' => 'Party',
             'url' => 'URL',
-            'image_url' => 'Image',
+            'image_url' => 'Headshot',
             'election_result_id' => 'Election Result',
         );
     }

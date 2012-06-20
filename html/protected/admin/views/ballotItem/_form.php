@@ -82,7 +82,7 @@
                 // additional javascript options for the date picker plugin
                 'options' => array(
                     'showAnim' => 'fold',
-                    'dateFormat' => 'yy-mm-dd ' . date('h:i:s'),
+                    'dateFormat' => 'yy-mm-dd',
                     'buttonImageOnly' => 'true',
                     'buttonImage' => '/themes/hslf/img/calendar.png',
                     'showOn' => 'button',
