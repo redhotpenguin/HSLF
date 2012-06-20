@@ -64,7 +64,11 @@ class ApiController extends Controller {
                 break;
 
             case 'ballot_items': //api/ballot_items/w{3}/
-                $this->_sendResponse(200, $this->_getBallotItems($_GET));
+                
+                if(array_key_exists('ballot_item_id', $_GET)) // return a single ballot item
+                    $this->_sendResponse(200, $this->_getBallotItem($_GET['ballot_item_id']));
+                else // return multiple ballot items
+                    $this->_sendResponse(200, $this->_getBallotItems($_GET));
                 break;
 
             default:
@@ -72,10 +76,17 @@ class ApiController extends Controller {
                 break;
         }
     }
+    
+    private function _getBallotItem($ballot_item_id){
+        
+        $ballot = BallotItemManager::findByID($ballot_item_id);
+
+        return $ballot;
+       
+    }
 
     //ex: /api/ballot_items/state/or/?districts=county/clackamas,city/portland
     private function _getBallotItems($params) {
-
         $year = $params['year'];
 
         $state_abbr = $params['state_abbr'];  // already validated by the regex in main.php

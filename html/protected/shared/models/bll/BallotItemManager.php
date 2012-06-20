@@ -8,6 +8,22 @@
 class BallotItemManager {
 
     /**
+     * Find a single ballot item id (published only)
+     * @param integer $ballot_item_id  ballot item id (primary key)
+     * @return object ballot_item object
+     */
+    public static function findByID($ballot_item_id) {
+        if (empty($ballot_item_id))
+            return false;
+
+        $attributes = array(
+            'id' => $ballot_item_id,
+            'published' => 'yes'
+        );
+        return BallotItem::model()->with(array('district', 'recommendation', 'electionResult', 'BallotItemNews'))->findByAttributes($attributes);
+    }
+
+    /**
      * Find all the ballot models fora state, by types and by district names. Can also include statewide districts
      * @param string $state_abbr abbreviation of the state
      * @param array $district_types types of the district
@@ -153,20 +169,20 @@ class BallotItemManager {
      * @return object return a ballot_item object
      */
     public static function findByPublishedYearAndUrl($year, $url) {
-        
-        /*
-       $ballotItemFinder = new BallotItemFinder();
 
-        $ballotItemFinder->setPublished('yes');
-        $ballotItemFinder->setPublishedYear($year);
-        $ballotItemFinder->setUrl($url);
-        
-        $test = $ballotItemFinder->search();
-        
-        print_r($test);
+        /*
+          $ballotItemFinder = new BallotItemFinder();
+
+          $ballotItemFinder->setPublished('yes');
+          $ballotItemFinder->setPublishedYear($year);
+          $ballotItemFinder->setUrl($url);
+
+          $test = $ballotItemFinder->search();
+
+          print_r($test);
          * 
          */
-        
+
         return BallotItem::model()->findByAttributes(
                         array(
                     'url' => $url,

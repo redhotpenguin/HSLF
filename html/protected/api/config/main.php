@@ -1,7 +1,6 @@
 <?php
 // API CONFIG FILE
 
-
 $api = dirname(dirname(__FILE__));
 $frontend = dirname($api);
 Yii::setPathOfAlias('admin', $api);
@@ -74,6 +73,10 @@ return array(
                 array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>/district/<district_number:\d+>', 'verb' => 'GET'),
                 // ex: /api/ballot_itens/2012/state/or/?districts=...
                 array('api/view', 'pattern' => 'api/<model:\w+>/<year:\d{4}>/state/<state_abbr:\w{2,3}>', 'verb' => 'GET'),
+                
+                // ex: /api/ballot_itens/single/4141/
+                array('api/view', 'pattern' => 'api/<model:\w+>/single/<ballot_item_id:\d+>', 'verb' => 'GET'),
+               
                 array('api/view', 'pattern' => 'api/<model:\w+>/name/<type:\w+>', 'verb' => 'GET'),
                 array('api/view', 'pattern' => 'api/<model:\w+>/<id:\d+>/', 'verb' => 'GET'), // ex: /api/candidate/12/
                 array('api/view', 'pattern' => 'api/<model:\w+>/<id:\d+>/<filter:\w+>', 'verb' => 'GET'), // ex: /api/candidate/12/issue
