@@ -33,7 +33,11 @@
 	// General filesystem options
 	$mcImageManagerConfig['filesystem'] = "Moxiecode_LocalFileImpl";
 	$mcImageManagerConfig['filesystem.path'] = ''; // absolute or relative from this script path, optional.
+<<<<<<< HEAD
+	$mcImageManagerConfig['filesystem.rootpath'] = '/var/www/mvg.winningmark.com/html/img'; // absolute or relative from this script path, required.
+=======
 	$mcImageManagerConfig['filesystem.rootpath'] = 'files'; // absolute or relative from this script path, required.
+>>>>>>> 6780a824bab8b7e058cfbf1d5065b62440cc8c4a
 	$mcImageManagerConfig['filesystem.datefmt'] = "Y-m-d H:i";
 	$mcImageManagerConfig['filesystem.include_directory_pattern'] = '';
 	$mcImageManagerConfig['filesystem.exclude_directory_pattern'] = '/^mcith$/i';
@@ -94,7 +98,12 @@
 	$mcImageManagerConfig['edit.format'] = "";
 
 	// Authenication
+<<<<<<< HEAD
+	$mcImageManagerConfig['authenticator'] = "";
+	#$mcImageManagerConfig['authenticator'] = "SessionAuthenticator";
+=======
 	$mcImageManagerConfig['authenticator'] = "SessionAuthenticator";
+>>>>>>> 6780a824bab8b7e058cfbf1d5065b62440cc8c4a
 	$mcImageManagerConfig['authenticator.login_page'] = "login_session_auth.php";
 	$mcImageManagerConfig['authenticator.allow_override'] = "*";
 
@@ -141,4 +150,8 @@
 	// Custom plugin options.
 	$mcImageManagerConfig['favorites.max'] = 20; // 10 is default.
 	$mcImageManagerConfig['history.max'] = 20; // 10 is default.
+<<<<<<< HEAD
 ?>
+=======
+?>
+>>>>>>> 6780a824bab8b7e058cfbf1d5065b62440cc8c4a

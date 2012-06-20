@@ -1,8 +1,15 @@
 <?php
 	// Some settings
+<<<<<<< HEAD
+
+	$msg = "";
+	$username = "admin";
+	$password = "-hs:lf_ctrl56"; // Change the password to something suitable
+=======
 	$msg = "";
 	$username = "demo";
 	$password = ""; // Change the password to something suitable
+>>>>>>> 6780a824bab8b7e058cfbf1d5065b62440cc8c4a
 
 	if (!$password)
 		$msg = 'You must set a password in the file "login_session_auth.php" inorder to login using this page or reconfigure it the authenticator config options to fit your needs. Consult the <a href="http://wiki.moxiecode.com/index.php/Main_Page" target="_blank">Wiki</a> for more details.';
