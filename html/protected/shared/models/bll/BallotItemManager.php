@@ -29,10 +29,9 @@ class BallotItemManager {
      * @param array $district_types types of the district
      * @param array $district name of the district
      * @param integer $year year of the publication date
-     * @param boolean $active  if true, return currently running ballot items
      * @return array return array of ballot items
      */
-    public static function findAllByDistricts($state_abbr, array $district_types, array $districts, $year = null, $active = false) {
+    public static function findAllByDistricts($state_abbr, array $district_types, array $districts, $year = null) {
 
         $district_ids = DistrictManager::getIdsByDistricts($state_abbr, $district_types, $districts);
 
@@ -48,11 +47,11 @@ class BallotItemManager {
 
         if ($year) {
             $ballotItemFinder->setPublishedYear($year);
-
-            if ($active)
-                $ballotItemFinder->setRunningOnly();
         }
 
+        $ballotItemFinder->setRunningOnly();
+        
+        
         $ballots = $ballotItemFinder->search();
         return self::applyFilter($ballots);
     }
@@ -61,10 +60,9 @@ class BallotItemManager {
      * Find all the ballot models by state
      * @param string $state_abbr abbreviation of the state
      * @param integer $year year of the publication date
-     * @param boolean $active  if true, return currently running ballot items
      * @return array return array of ballot items
      */
-    public static function findAllByState($state_abbr, $year = null, $active = false) {
+    public static function findAllByState($state_abbr, $year = null) {
         // todo: encapsulate this function
         $district_ids = DistrictManager::getIdsByState($state_abbr);
 
@@ -79,12 +77,12 @@ class BallotItemManager {
         $ballotItemFinder->setDistrictIds($district_ids);
 
         if ($year) {
-            $ballotItemFinder->setPublishedYear($year);
-
-            if ($active)
-                $ballotItemFinder->setRunningOnly();
+            $ballotItemFinder->setPublishedYear($year);  
         }
 
+        $ballotItemFinder->setRunningOnly();
+         
+         
         $ballots = $ballotItemFinder->search();
         return self::applyFilter($ballots);
     }

@@ -1,7 +1,5 @@
 <?php
 
-
-class Foo{}
 class BallotItemFinder extends ModelFinder {
     private $table_alias;
 
@@ -33,7 +31,7 @@ class BallotItemFinder extends ModelFinder {
 
     public function setRunningOnly() {
         $this->addCondition('next_election_date', 'current_date', ModelFinder::GREATER_THAN); // manage > 
-        $this->addParameter('current_date', date('Y-m-d H:i:s'));
+        $this->addParameter('current_date', date('Y-m-d'));
     }
 
     public function setPriority($priority) {

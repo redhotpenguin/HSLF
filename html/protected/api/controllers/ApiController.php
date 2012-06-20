@@ -92,12 +92,7 @@ class ApiController extends Controller {
         $state_abbr = $params['state_abbr'];  // already validated by the regex in main.php
 
         $districts_param = $params['districts']; // #TODO: FILTER THIS
-        // if requested, return running ballot items
-        // can only be used if the year is set
-        if ($params['active'] === 'true' && !empty($year))
-            $active = true;
-        else
-            $active = false;
+ 
 
         $encoded_districts = explode(',', $districts_param);
 
@@ -111,12 +106,12 @@ class ApiController extends Controller {
                 array_push($district_types, $d[0]);
                 array_push($districts, $d[1]);
             }
-            $ballots = BallotItemManager::findAllByDistricts($state_abbr, $district_types, $districts, $year, $active);
+            $ballots = BallotItemManager::findAllByDistricts($state_abbr, $district_types, $districts, $year);
 
         } 
         // return items by states
         else {
-           $ballots = BallotItemManager::findAllByState($state_abbr, $year, $active);
+           $ballots = BallotItemManager::findAllByState($state_abbr, $year);
         }
 
 
