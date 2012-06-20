@@ -18,10 +18,12 @@
  * @property string $url
  * @property string $image_url
  * @property integer $election_result_id
+ * @property string $personal_url
  * The followings are the available model relations:
  * @property District $district
  * @property Recommendation $recommendation
  * @property Recommendation $electionResult
+
  */
 class BallotItem extends CActiveRecord {
 
@@ -62,13 +64,15 @@ class BallotItem extends CActiveRecord {
             array('district_id, recommendation_id, priority, election_result_id', 'numerical', 'integerOnly' => true),
             array('item_type, party', 'length', 'max' => 128),
             array('url', 'length', 'max' => 500),
+            array('personal_url', 'length', 'max'=> 2048 ),
+            array('personal_url', 'url'),
             array('published', 'length', 'max' => 16),
             array('date_published', 'date', 'format' => 'yyyy-M-d H:m:s'),
             array('next_election_date', 'date', 'format' => 'yyyy-M-d'),
             array('next_election_date, detail, url, image_url', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, district_id, item, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party, url, image_url, election_result_id, district_number, district_type, state_abbr', 'safe', 'on' => 'search'),
+            array('id, district_id, item, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party, url, image_url, election_result_id, district_number, district_type, state_abbr, personal_url', 'safe', 'on' => 'search'),
         );
     }
 

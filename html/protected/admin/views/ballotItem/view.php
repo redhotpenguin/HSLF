@@ -48,6 +48,7 @@ $this->widget('zii.widgets.CDetailView', array(
             'name' => 'district_id',
             'value' => $district
         ),
+        'personal_url'
     ),
 ));
 ?>

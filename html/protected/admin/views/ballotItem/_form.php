@@ -157,6 +157,15 @@
 
         <br/> <br/> 
     </div>
+    
+       <div class="row">
+        <?php
+        echo $form->labelEx($model, 'personal_url');
+        echo $form->textField($model, 'personal_url', array('size' => 50, 'maxlength' => 2048, 'placeholder' => 'External candidate or measure url'));
+        echo $form->error($model, 'personal_url');
+        ?>
+   
+    </div>
 
 
     <div class="row">
