@@ -74,7 +74,7 @@ class BallotItemController extends Controller {
             }
 
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id, 'updated'=> true));
         }
 
         $this->render('create', array(
@@ -110,7 +110,7 @@ class BallotItemController extends Controller {
             }
 
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id, 'updated'=> true));
         }
 
         $this->render('update', array(

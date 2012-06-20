@@ -14,7 +14,14 @@ $this->menu = array(
 
 <h1><?php echo $model->item; ?> #(<?php echo $model->id; ?>)</h1>
 
+
 <?php
+
+    if (getParam('updated') == 1) {
+        echo '<div class="update_box">Ballot item updated</div>';
+    } 
+
+
 echo $this->renderPartial('_form', array(
     'model' => $model,
         )
