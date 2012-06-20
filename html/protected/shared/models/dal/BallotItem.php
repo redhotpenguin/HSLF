@@ -63,7 +63,8 @@ class BallotItem extends CActiveRecord {
             array('item_type, party', 'length', 'max' => 128),
             array('url', 'length', 'max' => 500),
             array('published', 'length', 'max' => 16),
-            array('date_published, next_election_date', 'date', 'format' => 'yyyy-M-d H:m:s'),
+            array('date_published', 'date', 'format' => 'yyyy-M-d H:m:s'),
+            array('next_election_date', 'date', 'format' => 'yyyy-M-d'),
             array('next_election_date, detail, url, image_url', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
@@ -103,7 +104,7 @@ class BallotItem extends CActiveRecord {
             'published' => 'Published',
             'party' => 'Party',
             'url' => 'URL',
-            'image_url' => 'Image URL',
+            'image_url' => 'Image',
             'election_result_id' => 'Election Result',
         );
     }

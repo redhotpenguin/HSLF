@@ -58,7 +58,15 @@
 
         <div class="row">
             <?php echo $form->labelEx($model, 'image_url'); ?>
-            <?php echo $form->textField($model, 'image_url', array('size' => 50)); ?>
+            <?php 
+            
+            //echo $form->textField($model, 'image_url', array('size' => 50, 'readonly'=>'readonly')); 
+            
+         if($model->image_url){
+             echo '<a href="'.$model->image_url.'" target="_blank"><img class="ballot_item_image_url" src="'.$model->image_url.'"/></a>';
+         }
+            
+            ?>
             <?php echo $form->error($model, 'image_url'); ?>
         </div>
 
