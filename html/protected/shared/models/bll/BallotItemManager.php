@@ -48,10 +48,11 @@ class BallotItemManager {
         if ($year) {
             $ballotItemFinder->setPublishedYear($year);
         }
+        else
+            $ballotItemFinder->setRunningOnly();
 
-        $ballotItemFinder->setRunningOnly();
-        
-        
+
+
         $ballots = $ballotItemFinder->search();
         return self::applyFilter($ballots);
     }
@@ -77,12 +78,13 @@ class BallotItemManager {
         $ballotItemFinder->setDistrictIds($district_ids);
 
         if ($year) {
-            $ballotItemFinder->setPublishedYear($year);  
+            $ballotItemFinder->setPublishedYear($year);
         }
 
-        $ballotItemFinder->setRunningOnly();
-         
-         
+        else
+            $ballotItemFinder->setRunningOnly();
+
+
         $ballots = $ballotItemFinder->search();
         return self::applyFilter($ballots);
     }
