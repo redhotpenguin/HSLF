@@ -118,7 +118,7 @@ class BallotItem extends CActiveRecord {
      * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
      */
     public function search() {
-        $criteria = new CDbCriteria;
+        $criteria = new CDbCriteriaInsensitive();
 
         $criteria->with = array('district');
 
