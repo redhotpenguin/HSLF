@@ -25,8 +25,8 @@ else
 
 // Project config
 DEFINE('PROJECT_NAME', 'HSLF');
-// DEFINE('SITE_URL', 'http://mvg.winningmark.com');
-DEFINE('SITE_URL', 'http://www.voterguide.com');
+DEFINE('SITE_URL', 'http://mvg.winningmark.com');
+//DEFINE('SITE_URL', 'http://www.voterguide.com');
 DEFINE('ADMIN_EMAIL', 'mobile@winningmark.com');
 
 
