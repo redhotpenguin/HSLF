@@ -13,7 +13,7 @@
 
         <div id ="header">
             <?php
-            echo '<a href="/">' . Yii::app()->name . '</a>';
+            echo '<a href="/">' . Yii::app()->name . ' - Mobile</a>';
             $this->widget('SearchBlock', array(
             ));
             ?>
