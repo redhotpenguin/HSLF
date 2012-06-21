@@ -6,7 +6,7 @@ class ApiController extends Controller {
      * Key which has to be in HTTP USERNAME and PASSWORD headers 
      */
 
-    const APPLICATION_ID = 'mvghslf';
+    const APPLICATION_ID = 'MOBILE API';
     const API_VERSION = '0.1';
 
     public function actionIndex() {
@@ -64,8 +64,8 @@ class ApiController extends Controller {
                 break;
 
             case 'ballot_items': //api/ballot_items/w{3}/
-                
-                if(array_key_exists('ballot_item_id', $_GET)) // return a single ballot item
+
+                if (array_key_exists('ballot_item_id', $_GET)) // return a single ballot item
                     $this->_sendResponse(200, $this->_getBallotItem($_GET['ballot_item_id']));
                 else // return multiple ballot items
                     $this->_sendResponse(200, $this->_getBallotItems($_GET));
@@ -76,13 +76,12 @@ class ApiController extends Controller {
                 break;
         }
     }
-    
-    private function _getBallotItem($ballot_item_id){
-        
+
+    private function _getBallotItem($ballot_item_id) {
+
         $ballot = BallotItemManager::findByID($ballot_item_id);
 
         return $ballot;
-       
     }
 
     //ex: /api/ballot_items/state/or/?districts=county/clackamas,city/portland
@@ -92,14 +91,14 @@ class ApiController extends Controller {
         $state_abbr = $params['state_abbr'];  // already validated by the regex in main.php
 
         $districts_param = $params['districts']; // #TODO: FILTER THIS
- 
+
 
         $encoded_districts = explode(',', $districts_param);
 
         // return ballot items by districts
-        if ( !empty($districts_param) ) {       
-             $district_types = array();
-             $districts = array();
+        if (!empty($districts_param)) {
+            $district_types = array();
+            $districts = array();
 
             foreach ($encoded_districts as $encoded_district) {
                 $d = explode('/', $encoded_district);
@@ -107,11 +106,10 @@ class ApiController extends Controller {
                 array_push($districts, $d[1]);
             }
             $ballots = BallotItemManager::findAllByDistricts($state_abbr, $district_types, $districts, $year);
-
-        } 
+        }
         // return items by states
         else {
-           $ballots = BallotItemManager::findAllByState($state_abbr, $year);
+            $ballots = BallotItemManager::findAllByState($state_abbr, $year);
         }
 
 
@@ -241,6 +239,25 @@ class ApiController extends Controller {
 
             default:exit;
         }
+    }
+
+    public function actionSearch() {
+        $model = getParam('model');
+        $search_condition = array();
+        switch ($model) {
+            case 'ballot_items':
+                 $search_condition  = array();
+                break;
+            default:
+                $this->_sendResponse(404, $this->_getStatusCodeMessage(404));
+                return false;
+                break;
+        }
+
+        
+        $apiSearch = new APISearch($ar_model);
+        $search_result = $apiSearch->search('BallotItem',getParam('query'));
+        $this->_sendResponse(200, $search_result);
     }
 
     private function _add_applicationUser() {

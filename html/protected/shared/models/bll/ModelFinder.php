@@ -12,6 +12,8 @@ abstract class ModelFinder {
     const EQUAL = '=:';
     const ASCENDANT = 'ASC';
     const DESCENDANT = 'DESC';
+    const ILIKE = ' ILIKE :';
+    const LIKE = ' LIKE :';
 
     private $attributes = array();
     private $relations = array();
@@ -61,7 +63,8 @@ abstract class ModelFinder {
             'condition' => $this->condition,
             'params' => $this->parameters,
         );
-
+        
+        
         if ($this->order)
             $criteria['order'] = $this->order;
        

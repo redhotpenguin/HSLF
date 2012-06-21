@@ -1,15 +1,16 @@
 <?php
 
 class BallotItemFinder extends ModelFinder {
+
     private $table_alias;
 
     public function __construct() {
-        
-      $ballot_item = new  BallotItem;
-      
-      $this->table_alias = $ballot_item->getTableAlias(false, false);
- 
-      parent::__construct($ballot_item);
+
+        $ballot_item = new BallotItem;
+
+        $this->table_alias = $ballot_item->getTableAlias(false, false);
+
+        parent::__construct($ballot_item);
         $this->setRelations(array('district', 'recommendation', 'electionResult', 'BallotItemNews'));
     }
 
@@ -24,8 +25,8 @@ class BallotItemFinder extends ModelFinder {
     public function setPublished($published) {
         $this->addAttribute('published', $published);
     }
-    
-    public function setUrl($url){
+
+    public function setUrl($url) {
         $this->addAttribute('url', $url);
     }
 
@@ -40,19 +41,28 @@ class BallotItemFinder extends ModelFinder {
     }
 
     public function setPublishedYear($year) {
-        $this->addCondition($this->table_alias.'.date_published', 'year_start', ModelFinder::GREATER_THAN);
+        $this->addCondition($this->table_alias . '.date_published', 'year_start', ModelFinder::GREATER_THAN);
         $this->addParameter('year_start', $year . '-01-01 00:00:00');
 
-        $this->addCondition($this->table_alias.'.date_published', 'year_end', ModelFinder::LESSER_THAN);
+        $this->addCondition($this->table_alias . '.date_published', 'year_end', ModelFinder::LESSER_THAN);
         $this->addParameter('year_end', $year . '-12-31 23:59:59');
     }
 
-    public function orderByHighestPriority(){
+    public function orderByHighestPriority() {
         $this->setOrder('priority', ModelFinder::DESCENDANT);
     }
 
-     public function orderByLowestPriority(){
+    public function orderByLowestPriority() {
         $this->setOrder('priority', ModelFinder::ASCENDANT);
+    }
+
+    public function setName($name, $operator = ModelFinder::EQUAL) {
+        $this->addCondition('item', 'name', $operator);
+
+        if ($operator == ModelFinder::ILIKE || $operator == ModelFinder::LIKE) {
+            $this->addParameter('name', "%$name%");
+        }else
+            $this->addParameter('name', "$name");
     }
 
 }

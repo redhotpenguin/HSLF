@@ -46,13 +46,16 @@ return array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'rules' => array(
+
+                
+                
                 array('api/list', 'pattern' => 'api/<model:\w+>', 'verb' => 'GET'),
                 //   ex: /api/ballot_items/state/or/?districts=...
                 array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>', 'verb' => 'GET'),
                 array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>/district/<district_number:\d+>', 'verb' => 'GET'),
-                // ex: /api/ballot_itens/2012/state/or/?districts=...
+                // ex: /api/ballot_items/2012/state/or/?districts=...
                 array('api/view', 'pattern' => 'api/<model:\w+>/<year:\d{4}>/state/<state_abbr:\w{2,3}>', 'verb' => 'GET'),
-                // ex: /api/ballot_itens/single/4141/
+                // ex: /api/ballot_items/single/4141/
                 array('api/view', 'pattern' => 'api/<model:\w+>/single/<ballot_item_id:\d+>', 'verb' => 'GET'),
                 array('api/view', 'pattern' => 'api/<model:\w+>/name/<type:\w+>', 'verb' => 'GET'),
                 array('api/view', 'pattern' => 'api/<model:\w+>/<id:\d+>/', 'verb' => 'GET'), // ex: /api/candidate/12/
@@ -60,7 +63,15 @@ return array(
                 array('api/view', 'pattern' => 'api/<model:\w+>/type/<type:\w+>', 'verb' => 'GET'),
                 array('api/create', 'pattern' => 'api/<model:\w+>', 'verb' => 'POST'),
                 array('api/update', 'pattern' => 'api/<model:\w+>/device_token/<device_token:\w+>/<action:\w+>', 'verb' => 'POST'),
-            ),
+           
+                
+              // ex: /api/ballot_items/search/suzane bonamici/
+             array('api/search', 'pattern' => 'api/<model:\w+>/search/<query>', 'verb' => 'GET'),
+                
+                
+
+                
+              ),
         ),
         'db' => array(
             'connectionString' => "pgsql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME,
