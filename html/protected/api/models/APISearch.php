@@ -13,7 +13,9 @@
 class APISearch implements Searchable {
  
    public function search($model_name, $query){
-
+       
+       if(strlen($query) < 3)
+           return false;
 
        if(method_exists($this, $model_name.'Search')){
           return $this->{$model_name.'Search'}($query);
