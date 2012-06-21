@@ -16,13 +16,25 @@ html, body {height: 100%;}
 }
 
 #header a{
-   text-decoration:none;
-   color:#fff;
+    text-decoration:none;
+    color:#fff;
+}
+
+#page{
+    width: 50em;
+    margin: auto;
 }
 
 #content{
-    padding:25px;
+    float:left;
 }
+
+#sidebar {
+    min-height: 400px;
+    width: 300px;
+    float: left;
+}
+
 
 
 #footer{
@@ -31,7 +43,28 @@ html, body {height: 100%;}
     padding-top: 50px;
     background-color:#036;
     color:#fff;
-    margin-top: -50px; /* negative value of footer height */
     height: 50px;
     clear:both;
 }
+
+.ballot .view .ballot_news_item{
+    margin-bottom: 15px;
+    border: 1px solid  #eee;
+    padding: 15px;
+}
+
+.ballot .view .ballot_news_title{
+    font-weight:bold;
+
+}
+
+
+.ballot .view .ballot_news_content{
+
+}
+
+.ballot .view .ballot_news_date_published{
+    font-size:12px;
+    color:#333;
+}
+

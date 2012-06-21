@@ -13,7 +13,7 @@
 
         <div id ="header">
             <?php
-            echo '<a href="/">'.Yii::app()->name.'</a>';
+            echo '<a href="/">' . Yii::app()->name . '</a>';
             $this->widget('SearchBlock', array(
             ));
             ?>
@@ -21,12 +21,22 @@
         </div>
 
         <div id="wrap">
+            <div id="page">
+                <div class="<?php echo $this->getId(); ?>">
+                    <div class="<?php echo $this->getAction()->getId(); ?>" >
 
-            <div id="content">
-                <?php echo $content; ?>
+                        <div id="content">
+                            <?php echo $content; ?>
+                        </div>
+
+                    </div>
+                </div>
             </div>
 
+            <div id="sidebar">
+            </div>
         </div>
+
 
         <div id="footer">
             Copyright © 2012

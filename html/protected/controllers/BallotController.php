@@ -20,15 +20,17 @@ class BallotController extends Controller {
         
         $ballot = BallotItemManager::findByPublishedYearAndUrl($year, $slug);
         
-    
-        $this->render('view', array(
-            'ballot' => $ballot,
-        ));
+        if($ballot)
+            $this->render('view', array(
+                'ballot' => $ballot,
+            ));
+        else
+              throw new CHttpException(404,'The specified post cannot be found.');
     }
 
     public function actionList() {
-        echo 'list';
-        print_r($_GET);
+    //    echo 'list';
+       // print_r($_GET);
    
     }
 

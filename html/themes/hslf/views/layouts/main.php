@@ -62,7 +62,7 @@
 
 
                         <?php
-                        $this->widget('ext.Caption.Caption');
+                      //  $this->widget('ext.Caption.Caption');
                         ?>
 
                         <div id="menu-top" class="clearfix">
