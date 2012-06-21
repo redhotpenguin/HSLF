@@ -64,7 +64,7 @@ class BallotItem extends CActiveRecord {
             array('district_id, recommendation_id, priority, election_result_id', 'numerical', 'integerOnly' => true),
             array('item_type, party', 'length', 'max' => 128),
             array('url', 'length', 'max' => 500),
-            array('personal_url', 'length', 'max'=> 2048 ),
+            array('personal_url', 'length', 'max' => 2048),
             array('personal_url', 'url'),
             array('published', 'length', 'max' => 16),
             array('date_published', 'date', 'format' => 'yyyy-M-d H:m:s'),
@@ -86,8 +86,7 @@ class BallotItem extends CActiveRecord {
             'district' => array(self::BELONGS_TO, 'District', 'district_id'),
             'recommendation' => array(self::BELONGS_TO, 'Recommendation', 'recommendation_id'),
             'electionResult' => array(self::BELONGS_TO, 'Recommendation', 'election_result_id'),
-            
-             'BallotItemNews'=>array(self::HAS_MANY, 'BallotItemNews', 'ballot_item_id'),
+            'BallotItemNews' => array(self::HAS_MANY, 'BallotItemNews', 'ballot_item_id'),
         );
     }
 
@@ -227,6 +226,19 @@ class BallotItem extends CActiveRecord {
         // PostgresSql doesn't support empty strings for Timestamp type columns. Use NULL instead
         if ($this->next_election_date == '')
             $this->next_election_date = null;
+    }
+
+    /*
+     * Attach external behaviors 
+     */
+    public function behaviors() {
+        return array(
+            'beforeSave'=>array(
+            'class'=>'BallotItemBehavior',
+          //  'property1'=>'value1',
+           // 'property2'=>'value2',
+        ),
+        );
     }
 
 }

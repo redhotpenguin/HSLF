@@ -77,6 +77,7 @@ class BallotItemController extends Controller {
                 $this->redirect(array('update', 'id' => $model->id, 'updated'=> true));
         }
 
+        $model->date_published = date('Y-m-d h:i:s');
         $this->render('create', array(
             'model' => $model,
         ));
