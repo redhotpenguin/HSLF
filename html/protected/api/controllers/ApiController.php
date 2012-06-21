@@ -263,9 +263,9 @@ class ApiController extends Controller {
     private function _add_applicationUser() {
         if (
                 getPost('device_token') == false
-                || getPost('state_abbr') == false
-                || getPost('district_number') == false
-                || getPost('type') == false
+                || getPost('state_abbr') === false
+                || getPost('district_number') === false
+                || getPost('type') === false
                 || getPost('uap_user_id') == false
         ) {
             return 'missing_parameter';
