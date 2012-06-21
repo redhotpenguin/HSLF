@@ -246,7 +246,7 @@ class ApiController extends Controller {
         $search_condition = array();
         switch ($model) {
             case 'ballot_items':
-                 $search_condition  = array();
+                $search_condition = array();
                 break;
             default:
                 $this->_sendResponse(404, $this->_getStatusCodeMessage(404));
@@ -254,9 +254,9 @@ class ApiController extends Controller {
                 break;
         }
 
-        
+
         $apiSearch = new APISearch($ar_model);
-        $search_result = $apiSearch->search('BallotItem',getParam('query'));
+        $search_result = $apiSearch->search('BallotItem', getParam('query'));
         $this->_sendResponse(200, $search_result);
     }
 
@@ -344,14 +344,18 @@ class ApiController extends Controller {
 
         $app_user = Application_user::model()->findByAttributes(array('device_token' => $device_token));
 
-        if($payload['state_abbr'] && $payload['district_type'] && $payload['district']){
-           $district_id =   DistrictManager::getDistrictId($payload['state_abbr'], $payload['district_type'], $payload['district']);
-            
+        if (empty($app_user))
+            return 'no_user_found';
+
+
+        if ($payload['state_abbr'] && $payload['district_type'] && $payload['district']) {
+            $district_id = DistrictManager::getDistrictId($payload['state_abbr'], $payload['district_type'], $payload['district']);
+
             if (!$district_id) { // the district isn't saved in the database, insert a new one
                 $district = new District;
                 $district->state_abbr = $payload['state_abbr'];
                 $district->type = $payload['district_type'];
-                $district->number =  $payload['district'];
+                $district->number = $payload['district'];
                 $district->save();
                 $district_id = $district->id;
             }
@@ -359,11 +363,9 @@ class ApiController extends Controller {
             $app_user->district_id = $district_id;
             $app_user->save();
         }
-        
-        
 
-        if (empty($app_user))
-            return 'no_user_found';
+
+
 
         // delete tags associated to the app user
         if (!empty($payload['delete_tags'])) {
