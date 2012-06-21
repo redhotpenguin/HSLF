@@ -337,8 +337,7 @@ class ApiController extends Controller {
     }
 
     private function _update_applicationUserTag($device_token, $payload) {
-
-        if (empty($device_token) || ( empty($payload['add_tags']) && empty($payload['delete_tags']) ))
+        if (empty($device_token) )
             return 'missing_parameters';
 
 
@@ -348,7 +347,7 @@ class ApiController extends Controller {
             return 'no_user_found';
 
 
-        if ($payload['state_abbr'] && $payload['district_type'] && $payload['district']) {
+        if ( isset($payload['state_abbr']) && isset($payload['district_type']) && isset($payload['district'])) {
             $district_id = DistrictManager::getDistrictId($payload['state_abbr'], $payload['district_type'], $payload['district']);
 
             if (!$district_id) { // the district isn't saved in the database, insert a new one

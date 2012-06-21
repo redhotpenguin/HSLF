@@ -13,7 +13,7 @@
 
     <div class="row">
         <?php echo $form->labelEx($model, 'device_token'); ?>
-<?php echo $form->textField($model, 'device_token', array('size' => 60, 'maxlength' => 128, 'readonly'=>'readonly' ) ); ?>
+<?php echo $form->textField($model, 'device_token', array('size' => 60, 'maxlength' => 128 ) ); ?>
 <?php echo $form->error($model, 'device_token'); ?>
     </div>
 
@@ -75,6 +75,12 @@
         <?php echo $form->labelEx($model, 'user_agent'); ?>
         <?php echo $form->textField($model, 'user_agent', array('size' => 60, 'maxlength' => 1024)); ?>
 <?php echo $form->error($model, 'user_agent'); ?>
+    </div>
+    
+        <div class="row">
+        <?php echo $form->labelEx($model, 'uap_user_id'); ?>
+        <?php echo $form->textField($model, 'uap_user_id', array('size' => 60, 'maxlength' => 1024)); ?>
+<?php echo $form->error($model, 'uap_user_id'); ?>
     </div>
 
     <div class="row buttons">

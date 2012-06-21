@@ -1322,3 +1322,377 @@ REQUEST_URI=/api/ballot_items/state/or/
 in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php (23)
 in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php (53)
 in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (108)
+2012/06/21 02:28:14 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 02:28:14 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[08006] [7] FATAL:  database "123" does not exist' in C:\xampp\htdocs\HSLF\framework\yiilite.php:7808
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(7780): CDbConnection->open()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(7769): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(1037): CDbConnection->init()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(892): CModule->getComponent('db')
+#4 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\DistrictManager.php(16): CModule->__get('db')
+#5 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemManager.php(68): DistrictManager::getIdsByState('or')
+#6 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(114): BallotItemManager::findAllByState('or', NULL)
+#7 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(71): ApiController->_getBallotItems(Array)
+#8 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionView()
+#9 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('view')
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/view')
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\HSLF\html\api.php(23): CApplication->run()
+#16 {main}
+REQUEST_URI=/api/ballot_items/state/or/
+---
+2012/06/21 18:14:14 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 18:14:14 [trace] [system.caching.CApcCache] Saving "Yii.CUrlManager.rules" to cache
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 18:14:27 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 18:14:27 [trace] [system.caching.CApcCache] Saving "Yii.CUrlManager.rules" to cache
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 18:14:35 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 18:14:35 [trace] [system.caching.CApcCache] Saving "Yii.CUrlManager.rules" to cache
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 18:15:53 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 18:16:13 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 18:16:13 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 18:16:13 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 18:16:14 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 18:30:01 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 18:30:01 [error] [php] Argument 1 passed to APISearch::__construct() must be an instance of CActiveRecord, string given, called in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php on line 251 and defined (C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php:15)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): ApiController->runAction()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): ApiController->runActionWithFilters()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): ApiController->run()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\HSLF\html\api.php(23): CWebApplication->run()
+REQUEST_URI=/api/ballot_items/search/suzanne%20bonamici
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (15)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (251)
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 18:39:12 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 18:39:12 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (248)
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 18:39:12 [error] [php] Attempt to assign property of non-object (C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php:21)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): ApiController->runAction()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): ApiController->runActionWithFilters()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): ApiController->run()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\HSLF\html\api.php(23): CWebApplication->run()
+REQUEST_URI=/api/ballot_items/search/suzanne%20bonamici
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (21)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (258)
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 18:39:21 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 18:39:21 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (248)
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 18:39:21 [error] [php] Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php:22) (C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php:388)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionSearch()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): ApiController->runAction()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): ApiController->runActionWithFilters()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): ApiController->run()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#7 C:\xampp\htdocs\HSLF\html\api.php(23): CWebApplication->run()
+REQUEST_URI=/api/ballot_items/search/suzanne%20bonamici
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (388)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (259)
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 18:49:09 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 18:49:09 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (249)
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 18:49:09 [error] [php] Invalid argument supplied for foreach() (C:\xampp\htdocs\HSLF\framework\db\schema\CDbCommandBuilder.php:546)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(260): APISearch->search()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionSearch()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): ApiController->runAction()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): ApiController->runActionWithFilters()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): ApiController->run()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#8 C:\xampp\htdocs\HSLF\html\api.php(23): CWebApplication->run()
+REQUEST_URI=/api/ballot_items/search/suzanne%20bonamici
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (25)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (260)
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 18:53:21 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 18:53:21 [error] [exception.CException] exception 'CException' with message 'BalloteItemSearch() is not implemented' in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php:22
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(259): APISearch->search('BalloteItem', 'suzanne bonamic...')
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionSearch()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('search')
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/search')
+#7 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#8 C:\xampp\htdocs\HSLF\html\api.php(23): CApplication->run()
+#9 {main}
+REQUEST_URI=/api/ballot_items/search/suzanne%20bonamici
+---
+2012/06/21 18:53:52 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 18:53:52 [error] [php] Missing argument 1 for APISearch::ballotItemSearch(), called in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php on line 20 and defined (C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php:32)
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionSearch()
+#1 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams()
+#2 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): ApiController->runAction()
+#3 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): ApiController->runActionWithFilters()
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): ApiController->run()
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController()
+#6 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#7 C:\xampp\htdocs\HSLF\html\api.php(23): CWebApplication->run()
+REQUEST_URI=/api/ballot_items/search/suzanne%20bonamici
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (32)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (20)
+in C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php (259)
+2012/06/21 18:59:53 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 18:59:53 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php (8)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (27)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (19)
+2012/06/21 18:59:53 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (69)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (19)
+2012/06/21 18:59:53 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (69)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (19)
+2012/06/21 18:59:53 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item_news" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (69)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (19)
+2012/06/21 18:59:53 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "t"."personal_url" AS "t0_c14", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND (next_election_date>=:current_date and itemILIKEname)).
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (69)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (19)
+2012/06/21 18:59:53 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "t"."personal_url" AS "t0_c14", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND (next_election_date>=:current_date and itemILIKEname))' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(7222): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7310): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php(69): CActiveRecord->findAllByAttributes(Array, Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php(34): ModelFinder->search()
+#8 C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php(19): APISearch->ballotItemSearch('suzanne bonamic...')
+#9 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(259): APISearch->search('BallotItem', 'suzanne bonamic...')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionSearch()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('search')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/search')
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\HSLF\html\api.php(23): CApplication->run()
+#18 {main}
+REQUEST_URI=/api/ballot_items/search/suzanne%20bonamici
+---
+2012/06/21 19:00:03 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 19:00:03 [trace] [system.caching.CApcCache] Saving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" to cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php (8)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (27)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (19)
+2012/06/21 19:00:03 [trace] [system.caching.CApcCache] Saving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" to cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (69)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (19)
+2012/06/21 19:00:03 [trace] [system.caching.CApcCache] Saving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" to cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (69)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (19)
+2012/06/21 19:00:03 [trace] [system.caching.CApcCache] Saving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item_news" to cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (69)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (19)
+2012/06/21 19:00:03 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "t"."personal_url" AS "t0_c14", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND (next_election_date>=:current_date and itemILIKEname)).
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (69)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (19)
+2012/06/21 19:00:03 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "t"."personal_url" AS "t0_c14", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND (next_election_date>=:current_date and itemILIKEname))' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(7222): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7310): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php(69): CActiveRecord->findAllByAttributes(Array, Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php(34): ModelFinder->search()
+#8 C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php(19): APISearch->ballotItemSearch('suzanne bonamic...')
+#9 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(259): APISearch->search('BallotItem', 'suzanne bonamic...')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionSearch()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('search')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/search')
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\HSLF\html\api.php(23): CApplication->run()
+#18 {main}
+REQUEST_URI=/api/ballot_items/search/suzanne%20bonamici
+---
+2012/06/21 19:00:03 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 19:00:03 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php (8)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (27)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (19)
+2012/06/21 19:00:03 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (69)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (19)
+2012/06/21 19:00:03 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (69)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (19)
+2012/06/21 19:00:03 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item_news" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (69)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (19)
+2012/06/21 19:00:03 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "t"."personal_url" AS "t0_c14", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND (next_election_date>=:current_date and itemILIKEname)).
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (69)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (19)
+2012/06/21 19:00:03 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "t"."personal_url" AS "t0_c14", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND (next_election_date>=:current_date and itemILIKEname))' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(7222): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7310): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php(69): CActiveRecord->findAllByAttributes(Array, Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php(34): ModelFinder->search()
+#8 C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php(19): APISearch->ballotItemSearch('suzanne bonamic...')
+#9 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(259): APISearch->search('BallotItem', 'suzanne bonamic...')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionSearch()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('search')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/search')
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\HSLF\html\api.php(23): CApplication->run()
+#18 {main}
+REQUEST_URI=/api/ballot_items/search/suzanne%20bonamici
+---
+2012/06/21 19:00:04 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 19:00:04 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php (8)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (27)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (19)
+2012/06/21 19:00:04 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (69)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (19)
+2012/06/21 19:00:04 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (69)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (19)
+2012/06/21 19:00:04 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item_news" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (69)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (19)
+2012/06/21 19:00:04 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "t"."personal_url" AS "t0_c14", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND (next_election_date>=:current_date and itemILIKEname)).
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (69)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (19)
+2012/06/21 19:00:04 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "t"."personal_url" AS "t0_c14", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND (next_election_date>=:current_date and itemILIKEname))' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(7222): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7310): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php(69): CActiveRecord->findAllByAttributes(Array, Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php(34): ModelFinder->search()
+#8 C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php(19): APISearch->ballotItemSearch('suzanne bonamic...')
+#9 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(259): APISearch->search('BallotItem', 'suzanne bonamic...')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionSearch()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('search')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/search')
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\HSLF\html\api.php(23): CApplication->run()
+#18 {main}
+REQUEST_URI=/api/ballot_items/search/suzanne%20bonamici
+---
+2012/06/21 19:00:17 [trace] [system.caching.CApcCache] Serving "Yii.CUrlManager.rules" from cache
+in C:\xampp\htdocs\HSLF\html\api.php (23)
+2012/06/21 19:00:17 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\BallotItemFinder.php (8)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (27)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (19)
+2012/06/21 19:00:17 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:district" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (71)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (19)
+2012/06/21 19:00:17 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:recommendation" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (71)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (19)
+2012/06/21 19:00:17 [trace] [system.caching.CApcCache] Serving "yii:dbschemapgsql:host=localhost;port=5432;dbname=voterguide:postgres:ballot_item_news" from cache
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (71)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (19)
+2012/06/21 19:00:17 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "t"."personal_url" AS "t0_c14", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND (next_election_date>=:current_date and itemILIKEname)).
+in C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php (71)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (34)
+in C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php (19)
+2012/06/21 19:00:17 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens. The SQL statement executed was: SELECT "t"."id" AS "t0_c0", "t"."district_id" AS "t0_c1", "t"."item" AS "t0_c2", "t"."item_type" AS "t0_c3", "t"."recommendation_id" AS "t0_c4", "t"."next_election_date" AS "t0_c5", "t"."priority" AS "t0_c6", "t"."detail" AS "t0_c7", "t"."date_published" AS "t0_c8", "t"."published" AS "t0_c9", "t"."party" AS "t0_c10", "t"."image_url" AS "t0_c11", "t"."election_result_id" AS "t0_c12", "t"."url" AS "t0_c13", "t"."personal_url" AS "t0_c14", "district"."id" AS "t1_c0", "district"."state_abbr" AS "t1_c1", "district"."number" AS "t1_c2", "district"."type" AS "t1_c3", "recommendation"."id" AS "t2_c0", "recommendation"."value" AS "t2_c1", "recommendation"."type" AS "t2_c2", "electionResult"."id" AS "t3_c0", "electionResult"."value" AS "t3_c1", "electionResult"."type" AS "t3_c2", "BallotItemNews"."id" AS "t4_c0", "BallotItemNews"."ballot_item_id" AS "t4_c1", "BallotItemNews"."title" AS "t4_c2", "BallotItemNews"."content" AS "t4_c3", "BallotItemNews"."excerpt" AS "t4_c4", "BallotItemNews"."date_published" AS "t4_c5" FROM "ballot_item" "t"  LEFT OUTER JOIN "district" "district" ON ("t"."district_id"="district"."id")  LEFT OUTER JOIN "recommendation" "recommendation" ON ("t"."recommendation_id"="recommendation"."id")  LEFT OUTER JOIN "recommendation" "electionResult" ON ("t"."election_result_id"="electionResult"."id")  LEFT OUTER JOIN "ballot_item_news" "BallotItemNews" ON ("BallotItemNews"."ballot_item_id"="t"."id")  WHERE ("t"."published"=:yp0 AND (next_election_date>=:current_date and itemILIKEname))' in C:\xampp\htdocs\HSLF\framework\yiilite.php:8683
+Stack trace:
+#0 C:\xampp\htdocs\HSLF\framework\yiilite.php(8607): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(818): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(452): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\HSLF\framework\db\ar\CActiveFinder.php(70): CJoinElement->find(Object(CDbCriteria))
+#4 C:\xampp\htdocs\HSLF\framework\yiilite.php(7222): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\xampp\htdocs\HSLF\framework\yiilite.php(7310): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\xampp\htdocs\HSLF\html\protected\shared\models\bll\ModelFinder.php(71): CActiveRecord->findAllByAttributes(Array, Array)
+#7 C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php(34): ModelFinder->search()
+#8 C:\xampp\htdocs\HSLF\html\protected\api\models\APISearch.php(19): APISearch->ballotItemSearch('suzanne bonamic...')
+#9 C:\xampp\htdocs\HSLF\html\protected\api\controllers\ApiController.php(259): APISearch->search('BallotItem', 'suzanne bonamic...')
+#10 C:\xampp\htdocs\HSLF\framework\yiilite.php(3763): ApiController->actionSearch()
+#11 C:\xampp\htdocs\HSLF\framework\yiilite.php(3275): CInlineAction->runWithParams(Array)
+#12 C:\xampp\htdocs\HSLF\framework\yiilite.php(3260): CController->runAction(Object(CInlineAction))
+#13 C:\xampp\htdocs\HSLF\framework\yiilite.php(3250): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\xampp\htdocs\HSLF\framework\yiilite.php(1689): CController->run('search')
+#15 C:\xampp\htdocs\HSLF\framework\yiilite.php(1609): CWebApplication->runController('api/search')
+#16 C:\xampp\htdocs\HSLF\framework\yiilite.php(1135): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\HSLF\html\api.php(23): CApplication->run()
+#18 {main}
+REQUEST_URI=/api/ballot_items/search/suzanne%20bonamici
+---
