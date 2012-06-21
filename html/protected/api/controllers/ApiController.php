@@ -344,6 +344,23 @@ class ApiController extends Controller {
 
         $app_user = Application_user::model()->findByAttributes(array('device_token' => $device_token));
 
+        if($payload['state_abbr'] && $payload['district_type'] && $payload['district']){
+           $district_id =   DistrictManager::getDistrictId($payload['state_abbr'], $payload['district_type'], $payload['district']);
+            
+            if (!$district_id) { // the district isn't saved in the database, insert a new one
+                $district = new District;
+                $district->state_abbr = $payload['state_abbr'];
+                $district->type = $payload['district_type'];
+                $district->number =  $payload['district'];
+                $district->save();
+                $district_id = $district->id;
+            }
+            $app_user->state_abbr = $payload['state_abbr'];
+            $app_user->district_id = $district_id;
+            $app_user->save();
+        }
+        
+        
 
         if (empty($app_user))
             return 'no_user_found';
