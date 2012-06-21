@@ -23,22 +23,19 @@ else
     $dbport = '5432';
 
 
-$site_url = 'http://mvg.winningmark.com';
-$admin_email = 'jonas@winningmark.com';
-
-$dbname = 'voterguide';
+// Project config
+DEFINE('PROJECT_NAME', 'HSLF');
+DEFINE('SITE_URL', 'http://mvg.winningmark.com');
+DEFINE('ADMIN_EMAIL', 'mobile@winningmark.com');
 
 
 // DB Config
-DEFINE('PROJECT_NAME', 'HSLF');
-DEFINE('SITE_URL', $site_url);
-DEFINE('ADMIN_EMAIL', $admin_email);
-DEFINE('DB_NAME', $dbname);
+DEFINE('DB_NAME', 'voterguide');
 DEFINE('DB_HOST', $dbhost);
 DEFINE('DB_USER', $dbuser);
 DEFINE('DB_PASS', $dbpass);
 DEFINE('DB_PORT', $dbport);
 
-// Themes configs
+// Theme config
 DEFINE('ADMIN_THEME', 'hslf');
 DEFINE('FRONTEND_THEME', 'hslf_frontend');
