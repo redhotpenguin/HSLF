@@ -144,11 +144,6 @@ class Application_user extends CActiveRecord {
     public function beforeSave() {
         if ($this->isNewRecord) {
             $this->registration = date('Y-m-d H:i:s');
-
-            if (isset($_SERVER['HTTP_USER_AGENT']))
-                $this->user_agent = $_SERVER['HTTP_USER_AGENT']; //should really be in the controller\
-            else
-                $this->user_agent = 'UNAVALAIBLE';
         }
 
         if (!$this->latitude)
