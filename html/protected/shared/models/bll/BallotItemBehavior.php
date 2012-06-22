@@ -16,7 +16,7 @@ class BallotItemBehavior extends CActiveRecordBehavior {
 
             $this->owner->url = $new_url;
             
-            $this->owner->save();
+           // $this->owner->save();
         }
     }
 
