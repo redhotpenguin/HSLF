@@ -20,6 +20,9 @@ class ApiController extends Controller {
         return array();
     }
 
+    /**
+     * List supported models
+     */
     public function actionList() {
         $result = '';
         switch ($_GET['model']) {
@@ -44,6 +47,9 @@ class ApiController extends Controller {
         $this->_sendResponse(200, $result);
     }
 
+    /**
+     * List models according to a specific request
+     */
     public function actionView() {
         switch ($_GET['model']) {
             case 'candidates': //api/candidates/state/w{3}/d+
@@ -77,6 +83,11 @@ class ApiController extends Controller {
         }
     }
 
+    /**
+     * return a single ballot item
+     * @param $ballot_item_id id of the ballot item
+     * @return object return a ballot item object
+     */
     private function _getBallotItem($ballot_item_id) {
 
         $ballot = BallotItemManager::findByID($ballot_item_id);
@@ -84,14 +95,19 @@ class ApiController extends Controller {
         return $ballot;
     }
 
-    //ex: /api/ballot_items/state/or/?districts=county/clackamas,city/portland
+    /**
+     * return multiple  ballot items
+     * @param $params array of parameters: see api documentation
+     * @return array of ballot items
+     */
     private function _getBallotItems($params) {
+        //ex: /api/ballot_items/state/or/?districts=county/clackamas,city/portland
+
         $year = $params['year'];
 
         $state_abbr = $params['state_abbr'];  // already validated by the regex in main.php
 
         $districts_param = $params['districts']; // #TODO: FILTER THIS
-
 
         $encoded_districts = explode(',', $districts_param);
 
@@ -118,6 +134,11 @@ class ApiController extends Controller {
         return $ballots;
     }
 
+    /**
+     * return multiple  candidates
+     * @param $params array of parameters: see api documentation
+     * @return array of candidate objects
+     */
     private function _getCandidates($param) {
 
         $search_attributes = array();
@@ -145,6 +166,12 @@ class ApiController extends Controller {
         return $candidates;
     }
 
+    /**
+     * return a single  candidate
+     * @param $candidate_id id of the candidate
+     * @param $filter filter
+     * @return  array of candidate objects
+     */
     private function _getCandidate($candidate_id, $filter) {
         switch ($filter) {
             case 'issue': // /api/candidate/<candidate_id>/issue/
@@ -180,6 +207,11 @@ class ApiController extends Controller {
         return $response;
     }
 
+    /**
+     * return a list of options
+     * @param $param array of parameters: see api documentation
+     * @return  array of option objects
+     */
     private function _getOptions($param) {
         $type_filter = $_GET['type']; //already sanitized in main.php, see regex
         $search_attributes['name'] = $type_filter;
@@ -189,12 +221,21 @@ class ApiController extends Controller {
         return $filtered_options;
     }
 
+    /**
+     * return a list of tags
+     * @param $param array of parameters: see api documentation
+     * @return array of tag objects
+     */
     private function _getTags($param) {
         $search_attributes['type'] = $_GET['type']; //already sanitized in main.php, see regex
         $filtered_options = Tag::model()->findAllByAttributes($search_attributes);
         return $filtered_options;
     }
 
+    /**
+     * create object -  handle POST requests on supported models
+     * @return string result
+     */
     public function actionCreate() {
         if (YII_DEBUG)
             error_log(print_r($_REQUEST, true));
@@ -217,6 +258,10 @@ class ApiController extends Controller {
         }
     }
 
+    /**
+     * update object -  handle POST requests on supported models
+     * @return string result
+     */
     public function actionUpdate() {
         if (YII_DEBUG)
             error_log(print_r($_REQUEST, true));
@@ -241,6 +286,10 @@ class ApiController extends Controller {
         }
     }
 
+    /**
+     * search API entry point
+     * @return array of searched objects
+     */
     public function actionSearch() {
         $model = getParam('model');
         $search_condition = array();
@@ -260,6 +309,10 @@ class ApiController extends Controller {
         $this->_sendResponse(200, $search_result);
     }
 
+    /**
+     * create an application user object (see api doc for parameter descriptions)
+     * @return string result
+     */
     private function _add_applicationUser() {
         if (
                 getPost('device_token') == false
@@ -336,8 +389,12 @@ class ApiController extends Controller {
         return $save_result;
     }
 
+    /**
+     * update tags of an application user (see api doc for parameter descriptions)
+     * @return string result
+     */
     private function _update_applicationUserTag($device_token, $payload) {
-        if (empty($device_token) )
+        if (empty($device_token))
             return 'missing_parameters';
 
 
@@ -347,7 +404,7 @@ class ApiController extends Controller {
             return 'no_user_found';
 
 
-        if ( isset($payload['state_abbr']) && isset($payload['district_type']) && isset($payload['district'])) {
+        if (isset($payload['state_abbr']) && isset($payload['district_type']) && isset($payload['district'])) {
             $district_id = DistrictManager::getDistrictId($payload['state_abbr'], $payload['district_type'], $payload['district']);
 
             if (!$district_id) { // the district isn't saved in the database, insert a new one
@@ -384,6 +441,10 @@ class ApiController extends Controller {
         return 'tags_updated';
     }
 
+    /**
+     * update user meta data of an application user (see api doc for parameter descriptions)
+     * @return string result
+     */
     public function _update_applicationUserMeta($device_token, $payload) {
         $app_user = Application_user::model()->findByAttributes(array('device_token' => $device_token));
 
@@ -399,8 +460,13 @@ class ApiController extends Controller {
         return 'meta_updated';
     }
 
+    /**
+     * Print json data . Set http headers to application/json
+     * @param integer $status HTTP status
+     * @param mixed $body content to print
+     * @param string $template template to use
+     */
     private function _sendResponse($status = 200, $body = '', $template = '') {
-
         $container = array('api_name' => self::APPLICATION_ID, 'api_version' => self::API_VERSION, 'status' => $status);
 
         $status_header = 'HTTP/1.1 ' . $status . ' ' . $this->_getStatusCodeMessage($status);
@@ -425,6 +491,11 @@ class ApiController extends Controller {
         exit;
     }
 
+    /**
+     * Return a human readable version of the HTTP status
+     * @param integer $status HTTP status
+     * @return string human readable HTTP status
+     */
     private function _getStatusCodeMessage($status) {
         // these could be stored in a .ini file and loaded
         // via parse_ini_file()... however, this will suffice
@@ -442,6 +513,10 @@ class ApiController extends Controller {
         return (isset($codes[$status])) ? $codes[$status] : '';
     }
 
+    /**
+     * Check that the given api credentials are valid
+     * @return boolean return authentification result
+     */
     private function _checkAuth() {
         $api_key = Yii::app()->params['api_key'];
         $api_pass = Yii::app()->params['api_secret'];
