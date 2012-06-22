@@ -46,9 +46,6 @@ return array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'rules' => array(
-
-                
-                
                 array('api/list', 'pattern' => 'api/<model:\w+>', 'verb' => 'GET'),
                 //   ex: /api/ballot_items/state/or/?districts=...
                 array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>', 'verb' => 'GET'),
@@ -63,15 +60,9 @@ return array(
                 array('api/view', 'pattern' => 'api/<model:\w+>/type/<type:\w+>', 'verb' => 'GET'),
                 array('api/create', 'pattern' => 'api/<model:\w+>', 'verb' => 'POST'),
                 array('api/update', 'pattern' => 'api/<model:\w+>/device_token/<device_token:\w+>/<action:\w+>', 'verb' => 'POST'),
-           
-                
-              // ex: /api/ballot_items/search/suzane bonamici/
-             array('api/search', 'pattern' => 'api/<model:\w+>/search/<query>', 'verb' => 'GET'),
-                
-                
-
-                
-              ),
+                // ex: /api/ballot_items/search/suzane bonamici/
+                array('api/search', 'pattern' => 'api/<model:\w+>/search/<query>', 'verb' => 'GET'),
+            ),
         ),
         'db' => array(
             'connectionString' => "pgsql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME,
@@ -108,10 +99,10 @@ return array(
     'params' => array(
         'dateFormat' => 'Y-m-d H:i:s',
         'adminEmail' => ADMIN_EMAIL,
-        'api_key' => 'w-TCispEQW-MLev82TVyO_X',
-        'api_secret' => 'PqiW_IDKL3mFi_OirCqOe-u',
-        'urbanairship_app_key' => 'ouRCLPaBRRasv4K1AIw-xA',
-        'urbanairship_app_master_secret' => '7hd19C6rSzyrbKM3k6KqDg',
+        'api_key' => API_KEY,
+        'api_secret' => API_SECRET,
+        'urbanairship_app_key' => UA_API_KEY,
+        'urbanairship_app_master_secret' => UA_API_SECRET,
         'site_url' => SITE_URL,
         'share_url' => SITE_URL, // in case we want to store the shared urls in another server
     ),

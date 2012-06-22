@@ -10,11 +10,6 @@ $html_directory = dirname($_SERVER['SCRIPT_FILENAME']);
 
 Yii::setPathOfAlias('admin', $backend);
 
-if (isset($env['DOTCLOUD_DB_SQL_PORT']))
-    $dbport = $env['DOTCLOUD_DB_SQL_PORT'];
-else
-    $dbport = '5432';
-
 
 return array(
     //'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
@@ -109,10 +104,8 @@ return array(
         'dateFormat' => 'Y-m-d H:i:s',
         'adminEmail' => ADMIN_EMAIL,
         'site_url' => SITE_URL,
-        'api_key' => 'w-TCispEQW-MLev82TVyO_X',
-        'api_secret' => 'PqiW_IDKL3mFi_OirCqOe-u',
-        'urbanairship_app_key' => 'ouRCLPaBRRasv4K1AIw-xA',
-        'urbanairship_app_master_secret' => '7hd19C6rSzyrbKM3k6KqDg',
+        'urbanairship_app_key' => UA_API_KEY,
+        'urbanairship_app_master_secret' => UA_API_SECRET,
         'upload_path' => SITE_URL . '/content/upload',
         'upload_dir' => '/../content/upload',
         'share_url' => SITE_URL, // in case we want to store the shared urls in another server

@@ -22,6 +22,8 @@ if (isset($env['DOTCLOUD_DB_SQL_PORT']))
 else
     $dbport = '5432';
 
+// Image File Manager conf:
+// please also update root path in protected/extensions/tinymce/assets/jscripts/tiny_mce/plugins/imagemanager/config.php
 
 // Project config
 DEFINE('PROJECT_NAME', 'HSLF');
@@ -36,6 +38,15 @@ DEFINE('DB_HOST', $dbhost);
 DEFINE('DB_USER', $dbuser);
 DEFINE('DB_PASS', $dbpass);
 DEFINE('DB_PORT', $dbport);
+
+// API Config
+DEFINE('API_KEY', 'w-TCispEQW-MLev82TVyO_X');
+DEFINE('API_SECRET', 'PqiW_IDKL3mFi_OirCqOe-u');
+
+// Urban Airship
+DEFINE('UA_API_KEY', 'ouRCLPaBRRasv4K1AIw-xA');
+DEFINE('UA_API_SECRET', '7hd19C6rSzyrbKM3k6KqDg'); // master secret
+
 
 // Theme config
 DEFINE('ADMIN_THEME', 'hslf');
