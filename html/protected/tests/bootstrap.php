@@ -5,6 +5,7 @@
  ob_start();
 $yiit=dirname(__FILE__).'/../../../../framework/yiit.php';
 
+include_once(dirname(__FILE__).'/../config/config.php');
 $yiit = 'C:/xampp/htdocs/HSLF/framework/yiit.php';
 
 

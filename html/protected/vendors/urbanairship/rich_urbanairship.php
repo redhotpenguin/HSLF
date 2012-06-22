@@ -53,8 +53,12 @@ class Rich_Airship {
             );
 
             $body = json_encode($body);
-            $response = $this->_request($url, 'POST', $body, 'application/json');
-
+            try{
+             $response = $this->_request($url, 'POST', $body, 'application/json');
+            }
+            catch(Exception $e){
+                error_log("update device tags error:". $e->getMessage());
+            }
             return $this->_validate_http_code($response[0]);
         } else {
             error_log('Feature not supported');

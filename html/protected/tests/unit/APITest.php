@@ -1,96 +1,49 @@
 <?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-Yii::import('application.controllers.ApiController');
+Yii::import('application.config.config.php');
+Yii::import('application.shared.models.dal.*');
+Yii::import('application.shared.models.bll.*');
+Yii::import('application.api.models.*');
 
 class APITest extends CDbTestCase {
-
-    private $api_reflection;
-    private $api_controller;
-
-    public function __construct() {
-        $this->api_reflection = new ReflectionClass('ApiController');
-        $this->api_controller = new ApiController('test');
-    }
-
-    public static function setUpBeforeClass() {
-        parent::setUpBeforeClass();
-        PHPUnit_Framework_Error_Notice::$enabled = false;
-    }
-
-    public function testGetCandidate() {
-
-        // we use the reflection api to test private methods
-        $method = $this->api_reflection->getMethod('_getCandidates');
-        $method->setAccessible(true);
-
-        $method_params = array(
-            'state_abbr' => 'az',
-            'district_number' => 1
-        );
-
-        $method_result = $method->invokeArgs($this->api_controller, array($method_params, 'test'));
-        $this->assertEquals('Ann Kirkpatrick', $method_result[0]->full_name);
-    }
-
-    public function testRegisterAppUser() {
-        $test_token = '666';
-
-        $method = $this->api_reflection->getMethod('actionCreate');
-
-        $post_data  = array(
-            'device_token' => $test_token,
-            'state_abbr' => 'ca',
-            'district_number' => '14',
-            'type' => 'ios',
-            'user' => 'secretuser',
-            'password' => 'secretpassword',
-        );
+        private $device_token;
+        private $uap_user_id;
+        private $type = 'ios';
+        private $district_id;
+        private $optional;
         
-        $this->pushPostData('http://www.voterguide.com/api/app_users/', $post_data);
-
-        $application_user = Application_users::model()->findByAttributes(array('device_token' => $test_token));
-
-        $this->assertEquals('ios', $application_user->type);
-    }
-
-    public function testUpdateAppUser(){
-        $test_token = '666';
-
-        $method = $this->api_reflection->getMethod('actionCreate');
-
-        $post_data  = array(
-            'device_token' => $test_token,
-            'state_abbr' => 'ca',
-            'district_number' => '13',
-            'type' => 'ios',
-            'user' => 'secretuser',
-            'password' => 'secretpassword',
-        );
-        
-        $this->pushPostData('http://www.voterguide.com/api/app_users/', $post_data);
-
-        $application_user = Application_users::model()->findByAttributes(array('device_token' => $test_token));
-        $this->assertEquals('ios', $application_user->type);
-        $this->assertEquals('13', $application_user->district->number);
-        
-    }
+        public function __construct(){
+            $this->device_token = '120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232';
+            $this->uap_user_id = 'UwsN1BVESquaXdLA56QzSA';
+            $this->district_id = DistrictManager::getDistrictId('ca', 'congressional', '1');
+            $this->optional = array(
+                'user_agent'=>'firefox',
     
-    
-    public function pushPostData($url, array $data) {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_POST, true);
+            );
+            
+            // delete test user
+            $user = Application_user::model()->findByAttributes(array('device_token'=>$this->device_token));
+            if($user)
+                $user->delete();
+        }
 
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        $output = curl_exec($ch);
-        $info = curl_getinfo($ch);
-        curl_close($ch);
-    }
+        public function testAddApplicationUser(){
+            $api= new API();
+            
+            $add_user = $api->addApplicationUser($this->device_token, $this->uap_user_id, $this->type, $this->district_id, $this->optional);
+            
+            $this->assertTrue($add_user);
+            
+        }
+        
+        public function testUpdateApplicationUserMetaByDeviceToken(){
+            $api= new API();
+            
+            $add_user = $api->addApplicationUser($this->device_token, $this->meta);
+            
+            $this->assertTrue($add_user);
+            
+        }
+
 }
 
 ?>
