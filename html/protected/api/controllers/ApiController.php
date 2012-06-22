@@ -333,11 +333,16 @@ class ApiController extends Controller {
 
         $app_user = Application_user::model()->findByAttributes(array('device_token' => $device_token));
 
-        if (!$app_user) { // if user is not already saved in the DB, create a new one
-            $app_user = new Application_user();
-            $app_user->device_token = $device_token;
-            $app_user->registration = date('Y-m-d H:i:s');
+        if ($app_user) { // only accept new registration!
+            if (YII_DEBUG)
+                error_log("user already exist: $device_token");
+            return 'user_already_registered';
         }
+
+
+        $app_user = new Application_user();
+        $app_user->device_token = $device_token;
+        $app_user->registration = date('Y-m-d H:i:s');
 
         $app_user->uap_user_id = getPost('uap_user_id');
 
@@ -419,8 +424,6 @@ class ApiController extends Controller {
             $app_user->district_id = $district_id;
             $app_user->save();
         }
-
-
 
 
         // delete tags associated to the app user
