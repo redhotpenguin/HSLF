@@ -237,15 +237,17 @@ class ApiController extends Controller {
      * @return string result
      */
     public function actionCreate() {
-        if (YII_DEBUG)
+        if (YII_DEBUG) {
+            error_log("user registration:");
             error_log(print_r($_REQUEST, true));
+        }
 
         if (!$this->_checkAuth()) {
             $this->_sendResponse(401, $this->_getStatusCodeMessage(401));
             return false;
         }
         switch ($_GET['model']) {
-            case 'app_users': //insert/update  user record
+            case 'app_users': //insert  user record
                 $save_result = $this->_add_applicationUser();
                 if ($save_result == 1) {
                     $this->_sendResponse(200, 'insert_ok');
@@ -263,8 +265,10 @@ class ApiController extends Controller {
      * @return string result
      */
     public function actionUpdate() {
-        if (YII_DEBUG)
+        if (YII_DEBUG) {
+            error_Log("tag update:");
             error_log(print_r($_REQUEST, true));
+        }
 
         if (!$this->_checkAuth()) {
             $this->_sendResponse(401, $this->_getStatusCodeMessage(401));
@@ -351,7 +355,6 @@ class ApiController extends Controller {
             $app_user->latitude = getPost('user_lat');
             $app_user->longitude = getPost('user_long');
         }
-
 
         if (!District::isValidDistrictType($user_district_type))
             return 'invalid_district_type';
