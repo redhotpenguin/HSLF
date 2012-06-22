@@ -9,11 +9,12 @@ class AppUserTest extends CDbTestCase {
 
     private $device_token;
     private $uap_user_id;
-    private $type = 'ios';
+    private $type = 'android';
     private $district_id;
     private $optional;
     private $meta;
     private $new_tags;
+    private $app_user;
 
     public function __construct() {
         $this->device_token = '120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232';
@@ -22,6 +23,9 @@ class AppUserTest extends CDbTestCase {
         $this->optional = array(
             'user_agent' => 'firefox',
         );
+        
+        
+   
 
         $this->meta = array(
             'name' => 'jonas palmero',
@@ -36,13 +40,16 @@ class AppUserTest extends CDbTestCase {
         );
         
 
-        // delete test user
-        $user = Application_user::model()->findByAttributes(array('device_token' => $this->device_token));
-        if ($user)
-            $user->delete();
-    }
+        $this->app_user = Application_user::model()->findByAttributes(array('device_token' => $this->device_token));
+       
 
-    public function testAddApplicationUser() {
+               
+
+    }
+ 
+    
+    
+    public function _testAddApplicationUser() {
 
 
         $add_user =  ApplicationUserManager::addApplicationUser($this->device_token, $this->uap_user_id, $this->type, $this->district_id, $this->optional);
@@ -53,12 +60,12 @@ class AppUserTest extends CDbTestCase {
     public function testUpdateApplicationUserMetaByDeviceToken() {
     
 
-        $update_meta = ApplicationUserManager::updateApplicationUserMetaByDeviceToken($this->device_token, $this->meta);
+        $update_meta = $this->app_user->updateUserMeta($this->meta);
 
         $this->assertTrue($update_meta);
     }
 
-    public function testUpdateApplicationUserTagsByDeviceToken() {
+    public function _testUpdateApplicationUserTagsByDeviceToken() {
  
 
         $update_meta =  ApplicationUserManager::updateApplicationUserTagsByDeviceToken($this->device_token, $this->new_tags);

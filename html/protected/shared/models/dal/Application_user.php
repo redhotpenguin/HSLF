@@ -23,13 +23,13 @@ class Application_user extends CActiveRecord {
     public $state_abbr; // not part of the model, here for cgridview (admin search)
     public $district_type; // not part of the model, here for cgridview (admin search)
     public $district_number; // not part of the model, here for cgridview
+    private static $device_types = array('ios', 'android');
 
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
      * @return Application_user the static model class
      */
-
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
@@ -421,5 +421,20 @@ class Application_user extends CActiveRecord {
         return $uap_notifier->updateRichUserTags($this->uap_user_id, $this->device_token, $uap_tags);
     }
 
+    public static function is_valid_type($type) {
+        return in_array($type, self::$device_types);
+    }
+
+    /*
+     * Attach external behaviors 
+     * @method void test()
+     */
+    public function behaviors() {
+        return array(
+            'metaBehavior' => array(
+                'class' => 'ApplicationUserMetaBehavior',
+            )
+        );
+    }
 
 }
