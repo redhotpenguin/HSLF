@@ -393,7 +393,6 @@ class ApiController extends Controller {
             }
         }
 
-
         return $save_result;
     }
 
@@ -529,5 +528,4 @@ class ApiController extends Controller {
 
         return ( $api_key == $_POST['api_key'] && $api_pass == $_POST['api_secret'] );
     }
-
 }
