@@ -318,82 +318,45 @@ class ApiController extends Controller {
      * @return string result
      */
     private function _add_applicationUser() {
+        $device_token = getPost('device_token');
+        $state_abbr = getPost('state_abbr');
+        $district_type = getPost('district_type');
+        $district = getPost('district_number');
+
+        $device_type = getPost('type');
+        $uap_user_id = getPost('uap_user_id');
+        
+        $optional = array(); // parameters that are not required
+        $optional['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
+
         if (
-                getPost('device_token') == false
-                || getPost('state_abbr') === false
-                || getPost('district_number') === false
-                || getPost('type') === false
-                || getPost('uap_user_id') == false
+                $device_token == null
+                || $state_abbr == null
+                || $district_type == null
+                || $district == null
+                || $device_type == null
+                || $uap_user_id == null
         ) {
             return 'missing_parameter';
         }
 
-        $save_result = 0;
+        $api = new RestAPI();
 
-        $device_token = getPost('device_token');
-        $user_state = getPost('state_abbr');
-        $user_district_number = getPost('district_number');
-        $user_district_type = getPost('district_type');
-
-        $app_user = Application_user::model()->findByAttributes(array('device_token' => $device_token));
-
-        if ($app_user) { // only accept new registration!
-            if (YII_DEBUG)
-                error_log("user already exist: $device_token");
-            return 'user_already_registered';
+        if (isPost('user_lat') && isPost('user_long')) {
+            $optional['geolocation'] = array(
+                'lat' => getPost('user_lat'),
+                'long' => getPost('user_long')
+            );
+        }
+        
+        if (isPost('meta')) {
+            $optional['meta'] = getPost('meta');
         }
 
 
-        $app_user = new Application_user();
-        $app_user->device_token = $device_token;
-        $app_user->registration = date('Y-m-d H:i:s');
+        $register_user_result = $api->registerApplicationUser($device_token, $uap_user_id, $device_type, $state_abbr, $district_type, $district, $optional);
 
-        $app_user->uap_user_id = getPost('uap_user_id');
-
-        if (isPost('user_lat') && preg_match('/^[-+]?[0-9]*\,?[0-9]+$/', getPost('user_lat')) && preg_match('/^[-+]?[0-9]*\,?[0-9]+$/', getPost('user_long'))) {
-            // lat & long are not mandatory but should only be saved if both are valid.
-            $app_user->latitude = getPost('user_lat');
-            $app_user->longitude = getPost('user_long');
-        }
-
-        if (!District::isValidDistrictType($user_district_type))
-            return 'invalid_district_type';
-
-        if (preg_match('/^[0-9]{1,}$/', $user_district_number)) { // check that $user_district number is only made of numbers
-            $district_id = DistrictManager::getDistrictId($user_state, $user_district_type, $user_district_number);
-        }
-        else
-            return 'invalid_district';
-
-        if (in_array(getPost('type'), array('android', 'ios', 'blackberry')))
-            $app_user->type = getPost('type');
-        else
-            return 'invalid_device_type';
-
-        try {
-            if (!$district_id) { // the district isn't saved in the database, insert a new one
-                $district = new District;
-                $district->state_abbr = $user_state;
-                $district->number = $user_district_number;
-                $district->type = $user_district_type;
-                $district->save();
-                $district_id = $district->id;
-            }
-            $app_user->district_id = $district_id;
-            $save_result = $app_user->save();
-        } catch (Exception $exception) {
-            error_log('API: user registration error: ' . $exception->getMessage());
-            return 'insert_failed';
-        }
-
-        //save user meta after the user is saved/updated
-        if (isPost('meta') && is_array(getPost('meta'))) {
-            foreach (getPost('meta') as $meta_key => $meta_value) {
-                $app_user->updateMeta($meta_key, $meta_value);
-            }
-        }
-
-        return $save_result;
+        return $register_user_result;
     }
 
     /**
@@ -528,4 +491,5 @@ class ApiController extends Controller {
 
         return ( $api_key == $_POST['api_key'] && $api_pass == $_POST['api_secret'] );
     }
+
 }

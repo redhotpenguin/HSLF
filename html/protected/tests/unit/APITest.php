@@ -14,14 +14,19 @@ class APITest extends CDbTestCase {
     private $optional;
     private $meta;
     private $new_tags;
+    private $geolocation = array(
+        'lat' => '37,42291810',
+        'long' => '-122,08542120'
+    );
 
     public function __construct() {
+
+
+
         $this->device_token = '120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232';
         $this->uap_user_id = 'UwsN1BVESquaXdLA56QzSA';
         $this->district_id = DistrictManager::getDistrictId('ca', 'congressional', '1');
-        $this->optional = array(
-            'user_agent' => 'firefox',
-        );
+
 
         $this->meta = array(
             'name' => 'jonas palmero',
@@ -29,12 +34,14 @@ class APITest extends CDbTestCase {
         );
 
         $this->new_tags = array('tag1', 'tag2');
-        
+
         $this->optional = array(
+            'user_agent' => 'firefox',
             'meta' => $this->meta,
             'tags' => $this->new_tags,
+            'geolocation' => $this->geolocation,
         );
-        
+
 
         // delete test user
         $user = Application_user::model()->findByAttributes(array('device_token' => $this->device_token));
@@ -42,15 +49,25 @@ class APITest extends CDbTestCase {
             $user->delete();
     }
 
-    public function testAddApplicationUser() {
-        $api = new API();
+    public function testGetDistrictIDCreateIfNotExist() {
 
-        $add_user = $api->addApplicationUser($this->device_token, $this->uap_user_id, $this->type, $this->district_id, $this->optional);
+        $api = new RestAPI();
 
-        $this->assertTrue($add_user);
+        $district_id = $api->getDistrictIDCreateIfNotExist('ak', 'congressional', 61);
+
+
+        $this->assertNotEquals(false, $district_id);
     }
 
-    public function testUpdateApplicationUserMetaByDeviceToken() {
+    public function testRegisterApplicationUser() {
+        $api = new RestAPI();
+
+        $register_user = $api->registerApplicationUser($this->device_token, $this->uap_user_id, $this->type, 'ca', 'congressional', '41', $this->optional);
+
+        $this->assertEquals('insert_ok',$register_user);
+    }
+
+    public function _testUpdateApplicationUserMetaByDeviceToken() {
         $api = new API();
 
         $update_meta = $api->updateApplicationUserMetaByDeviceToken($this->device_token, $this->meta);
@@ -58,7 +75,7 @@ class APITest extends CDbTestCase {
         $this->assertTrue($update_meta);
     }
 
-    public function testUpdateApplicationUserTagsByDeviceToken() {
+    public function _testUpdateApplicationUserTagsByDeviceToken() {
         $api = new API();
 
         $update_meta = $api->updateApplicationUserTagsByDeviceToken($this->device_token, $this->new_tags);

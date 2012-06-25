@@ -1,5 +1,4 @@
 <?php
-
 if (isset($env['DOTCLOUD_DB_SQL_HOST']))
     $dbhost = $env['DOTCLOUD_DB_SQL_HOST'];
 else
