@@ -18,10 +18,10 @@ class APITest extends CDbTestCase {
         'lat' => '37,42291810',
         'long' => '-122,08542120'
     );
+    private $api;
 
     public function __construct() {
-
-
+        $this->api = new RestAPI();
 
         $this->device_token = '120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232';
         $this->uap_user_id = 'UwsN1BVESquaXdLA56QzSA';
@@ -51,36 +51,31 @@ class APITest extends CDbTestCase {
 
     public function testGetDistrictIDCreateIfNotExist() {
 
-        $api = new RestAPI();
 
-        $district_id = $api->getDistrictIDCreateIfNotExist('ak', 'congressional', 61);
+        $district_id = $this->api->getDistrictIDCreateIfNotExist('ak', 'congressional', 61);
 
 
         $this->assertNotEquals(false, $district_id);
     }
 
     public function testRegisterApplicationUser() {
-        $api = new RestAPI();
 
-        $register_user = $api->registerApplicationUser($this->device_token, $this->uap_user_id, $this->type, 'ca', 'congressional', '41', $this->optional);
 
-        $this->assertEquals('insert_ok',$register_user);
+        $register_user = $this->api->registerApplicationUser($this->device_token, $this->uap_user_id, $this->type, 'ca', 'congressional', '41', $this->optional);
+
+        $this->assertEquals('insert_ok', $register_user);
     }
 
-    public function _testUpdateApplicationUserMetaByDeviceToken() {
-        $api = new API();
-
-        $update_meta = $api->updateApplicationUserMetaByDeviceToken($this->device_token, $this->meta);
-
-        $this->assertTrue($update_meta);
-    }
-
-    public function _testUpdateApplicationUserTagsByDeviceToken() {
-        $api = new API();
-
-        $update_meta = $api->updateApplicationUserTagsByDeviceToken($this->device_token, $this->new_tags);
-
-        $this->assertTrue($update_meta);
+    public function testUpdateApplicationUserTag() {
+        
+        $tags = array(
+            'add_tags' => array('tag2', 'tag3', 'tag1'),
+            'delete_tags' => array('tag3')
+        );
+        
+        $update_user_tags = $this->api->updateApplicationUserTags($this->device_token, $tags, 436 );
+    
+        $this->assertEquals('update_tags_ok', $update_user_tags);
     }
 
 }
