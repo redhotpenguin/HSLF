@@ -165,9 +165,13 @@ class ApplicationUserMetaBehavior extends CBehavior {
      * @return true for success. False for failure.
      */
     public function updateMassMeta(array $metas) {
+        $result = true;
         foreach ($metas as $meta_key => $meta_value) {
-            $this->updateMeta($meta_key, $meta_value);
+           $update_result =  $this->updateMeta($meta_key, $meta_value);
+           if($update_result == false)
+               $result = false;
         }
+        return $result;
     }
 
 }

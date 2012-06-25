@@ -35,7 +35,7 @@ class ApplicationUserTagBehavior extends CBehavior {
                 'tag_id' => $tag_id
                     ));
         } catch (CException $ce) {
-            error_log("Could not add tag to app user_id $this->id" . $ce->getMessage());
+            error_log("Could not add tag to app user_id {$this->owner->id}: " . $ce->getMessage());
             $add_tag_result = false;
         }
 
@@ -44,16 +44,12 @@ class ApplicationUserTagBehavior extends CBehavior {
     }
 
     public function deleteTag($tag) {
-        error_log('foo');
-
         if (is_numeric($tag))
             $tag_id = $tag;
         elseif (is_string($tag))
             $tag_id = Tag::model()->getTagId($tag);
         else
             return false;
-
-        error_log($tag_id);
 
         $connection = Yii::app()->db;
         $command = $connection->createCommand();
