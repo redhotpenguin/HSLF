@@ -366,7 +366,7 @@ class ApiController extends Controller {
         if (empty($device_token))
             return 'missing_parameters';
 
-        $api = new RestApi();
+        $api = new RestAPI();
 
         if (isset($payload['state_abbr']) && isset($payload['district_type']) && isset($payload['district'])) {
             $district_id = $api->getDistrictIDCreateIfNotExist($payload['state_abbr'], $payload['district_type'], $payload['district']);
