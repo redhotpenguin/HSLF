@@ -41,8 +41,8 @@ class RestAPI extends CModel {
         $app_user->uap_user_id = $uap_user_id;
 
 
-       $app_user->type = $device_type;
-        
+        $app_user->type = $device_type;
+
 
         if (isset($optional)) {
             if (key_exists('user_agent', $optional))
@@ -68,10 +68,48 @@ class RestAPI extends CModel {
 
             return 'insert_ok';
         }
-        
-        else{
+
+        else {
             return $app_user->getErrors();
         }
+    }
+
+    /**
+     * Update an application user tags.
+     * @param string $device_token device token
+     * @param array $tags tags to be added or deleted
+     * @param integer $district_id district id (optional)
+     * $param l
+     */
+    public function updateApplicationUserTags($device_token, array $tags, $district_id = null) {
+        $app_user = Application_user::model()->findByAttributes(array('device_token' => $device_token));
+
+        if (!$app_user)
+            return 'no_user_found';
+
+        if (isset($district_id)) {
+            $app_user->district_id = $district_id;
+            $app_user->save();
+        }
+
+        if (isset($tags['add_tags'])) {
+            foreach ($tags['add_tags'] as $tag) {
+                $app_user->addTag($tag);
+            }
+        }
+
+        if (isset($tags['delete_tags'])) {
+            foreach ($tags['delete_tags'] as $tag) {
+                $app_user->deleteTag($tag);
+            }
+        }
+
+
+        // synchronize tags on URban Airship (only synchronize the valid tags)
+        $app_user->synchronizeUAPTags();
+
+
+        return 'update_tags_ok';
     }
 
     /**
@@ -111,5 +149,3 @@ class RestAPI extends CModel {
     }
 
 }
-
-?>
