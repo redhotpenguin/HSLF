@@ -65,8 +65,8 @@ class Application_user extends CActiveRecord {
      * Set  error field if the lat and long doesnt match a valid format
      */
     public function geolocation() {
-        if (isset($this->latitude) && isset($this->longitude)) {
-
+        if (isset($this->latitude) && isset($this->longitude) && $this->isNewRecord ) {
+          
             if (!preg_match('/^[-+]?[0-9]*\,?[0-9]+$/', $this->latitude) || !preg_match('/^[-+]?[0-9]*\,?[0-9]+$/', $this->longitude)) {
                 $this->addError("latlong", 'wrong format');
             }
@@ -166,7 +166,7 @@ class Application_user extends CActiveRecord {
                 ));
     }
 
-    public function beforeSave() {
+    public function beforeSave() { 
         if ($this->isNewRecord) {
             $this->registration = date('Y-m-d H:i:s');
         }
