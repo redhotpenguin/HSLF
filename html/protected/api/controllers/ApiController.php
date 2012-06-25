@@ -39,6 +39,9 @@ class ApiController extends Controller {
                 $result = $alert_types;
                 break;
 
+            case 'ballot_items': // /api/ballot/items
+                $result = $this->browseBallotItems();
+                break;
             default:
                 $this->_sendResponse(404, $this->_getStatusCodeMessage(404));
                 break;
@@ -389,11 +392,11 @@ class ApiController extends Controller {
         if (empty($app_user))
             return 'no_user_found';
 
-       $user_meta_update =  $app_user->updateMassMeta($payload['meta']);
-       if($user_meta_update)
-               return 'meta_updated';
-       else
-           return 'error';
+        $user_meta_update = $app_user->updateMassMeta($payload['meta']);
+        if ($user_meta_update)
+            return 'meta_updated';
+        else
+            return 'error';
     }
 
     /**
@@ -458,6 +461,28 @@ class ApiController extends Controller {
         $api_pass = Yii::app()->params['api_secret'];
 
         return ( $api_key == $_POST['api_key'] && $api_pass == $_POST['api_secret'] );
+    }
+
+    /**
+     * return an array of ballot item ids and district 
+     * filtered by election date and by publication status
+     * @return array payload
+     */
+    private function browseBallotItems() {
+
+        $ballot_items = Yii::app()->db->createCommand()
+                ->select('b.id, item, item_type, d.type, s.name AS state')
+                ->from('ballot_item b')
+                ->join('district d', 'b.district_id=d.id')
+                ->join('state s', 'd.state_abbr = s.abbr')
+                ->where('published=:published AND next_election_date>=:current_date', array(
+                    ':published' => 'yes',
+                    ':current_date' => date('Y-m-d'), // use NOW() instead?
+                ))
+                ->order('d.state_abbr ASC')
+                ->queryAll();
+
+        return $ballot_items;
     }
 
 }
