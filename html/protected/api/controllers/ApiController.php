@@ -325,7 +325,7 @@ class ApiController extends Controller {
 
         $device_type = getPost('type');
         $uap_user_id = getPost('uap_user_id');
-        
+
         $optional = array(); // parameters that are not required
         $optional['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
 
@@ -348,11 +348,10 @@ class ApiController extends Controller {
                 'long' => getPost('user_long')
             );
         }
-        
+
         if (isPost('meta')) {
             $optional['meta'] = getPost('meta');
         }
-
 
         $register_user_result = $api->registerApplicationUser($device_token, $uap_user_id, $device_type, $state_abbr, $district_type, $district, $optional);
 
@@ -367,46 +366,18 @@ class ApiController extends Controller {
         if (empty($device_token))
             return 'missing_parameters';
 
-
-        $app_user = Application_user::model()->findByAttributes(array('device_token' => $device_token));
-
-        if (empty($app_user))
-            return 'no_user_found';
-
+        $api = new RestApi();
 
         if (isset($payload['state_abbr']) && isset($payload['district_type']) && isset($payload['district'])) {
-            $district_id = DistrictManager::getDistrictId($payload['state_abbr'], $payload['district_type'], $payload['district']);
-
-            if (!$district_id) { // the district isn't saved in the database, insert a new one
-                $district = new District;
-                $district->state_abbr = $payload['state_abbr'];
-                $district->type = $payload['district_type'];
-                $district->number = $payload['district'];
-                $district->save();
-                $district_id = $district->id;
-            }
-            $app_user->state_abbr = $payload['state_abbr'];
-            $app_user->district_id = $district_id;
-            $app_user->save();
+            $district_id = $api->getDistrictIDCreateIfNotExist($payload['state_abbr'], $payload['district_type'], $payload['district']);
         }
 
+        $tags = array(
+            'add_tags' => $payload['add_tags'],
+            'delete_tags' => $payload['delete_tags']
+        );
 
-        // delete tags associated to the app user
-        if (!empty($payload['delete_tags'])) {
-            foreach ($payload['delete_tags'] as $tag) {
-                $app_user->deleteTag($tag);
-            }
-        }
-
-        // add tags associated to the app user
-        if (!empty($payload['add_tags'])) {
-            foreach ($payload['add_tags'] as $tag) {
-                $app_user->addTag($tag);
-            }
-        }
-
-        $app_user->synchronizeUAPTags();
-        return 'tags_updated';
+        return $api->updateApplicationUserTags($device_token, $tags, $district_id);
     }
 
     /**
@@ -415,17 +386,14 @@ class ApiController extends Controller {
      */
     public function _update_applicationUserMeta($device_token, $payload) {
         $app_user = Application_user::model()->findByAttributes(array('device_token' => $device_token));
-
         if (empty($app_user))
             return 'no_user_found';
 
-        if (isset($_POST['meta']) && is_array($_POST['meta'])) {
-            foreach ($_POST['meta'] as $meta_key => $meta_value) {
-                $app_user->updateMeta($meta_key, $meta_value);
-            }
-        }
-
-        return 'meta_updated';
+       $user_meta_update =  $app_user->updateMassMeta($payload['meta']);
+       if($user_meta_update)
+               return 'meta_updated';
+       else
+           return 'error';
     }
 
     /**
