@@ -471,10 +471,9 @@ class ApiController extends Controller {
     private function browseBallotItems() {
 
         $ballot_items = Yii::app()->db->createCommand()
-                ->select('b.id, item, item_type, d.type, s.name AS state')
+                ->select('b.id, item, item_type, d.type, d.state_abbr')
                 ->from('ballot_item b')
                 ->join('district d', 'b.district_id=d.id')
-                ->join('state s', 'd.state_abbr = s.abbr')
                 ->where('published=:published AND next_election_date>=:current_date', array(
                     ':published' => 'yes',
                     ':current_date' => date('Y-m-d'), // use NOW() instead?
