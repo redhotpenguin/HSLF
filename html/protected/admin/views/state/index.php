@@ -4,8 +4,10 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Create State', 'url'=>array('create')),
-	array('label'=>'Manage State', 'url'=>array('admin')),
+	array('label'=>'Add a  state', 'url'=>array('create')),
+	array('label'=>'Manage states', 'url'=>array('admin')),
+        array('label' => 'Export to CSV', 'url' => array('exportCSV')),
+
 );
 ?>
 
