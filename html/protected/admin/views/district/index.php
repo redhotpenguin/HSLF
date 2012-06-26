@@ -6,6 +6,7 @@ $this->breadcrumbs = array(
 $this->menu = array(
     array('label' => 'Add a district', 'url' => array('create')),
     array('label' => 'Manage districts', 'url' => array('admin')),
+    array('label' => 'Export to CSV', 'url' => array('exportCSV')),
 );
 ?>
 
@@ -27,8 +28,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
         'number',
         array(// display a column with "view", "update" and "delete" buttons
             'class' => 'CButtonColumn',
-             'deleteConfirmation'=>"js:'Deleting this District will also delete every ballot items associated to it, continue?'",
-
+            'deleteConfirmation' => "js:'Deleting this District will also delete every ballot items associated to it, continue?'",
         ),
     ),
 ));

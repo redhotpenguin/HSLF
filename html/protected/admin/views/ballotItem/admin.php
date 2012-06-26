@@ -6,6 +6,7 @@ $this->breadcrumbs = array(
 
 $this->menu = array(
     array('label' => 'Create a ballot item', 'url' => array('create')),
+    array('label' => 'Export to CSV', 'url' => array('exportCSV')),
 );
 ?>
 
@@ -50,7 +51,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
         array(
             'name' => 'party',
             'value' => '$data->party',
-            'filter' => CHtml::dropDownList('BallotItem[party]', $model->party, array(''=>'All')+$model->getParties() ),
+            'filter' => CHtml::dropDownList('BallotItem[party]', $model->party, array('' => 'All') + $model->getParties()),
         ),
         array('name' => 'state_abbr',
             'header' => 'State',

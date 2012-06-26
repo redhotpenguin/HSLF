@@ -7,12 +7,12 @@ class StateController extends Controller {
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
     public $layout = '//layouts/column2';
-    public $category = array( 'Publishing'=>array('/site/publishing/')); // used by the breadcrumb
-
+    public $category = array('Publishing' => array('/site/publishing/')); // used by the breadcrumb
 
     /**
      * @return array action filters
      */
+
     public function filters() {
         return array(
             'accessControl', // perform access control for CRUD operations
@@ -27,7 +27,7 @@ class StateController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'view', 'create', 'update', 'admin'),
+                'actions' => array('index', 'view', 'create', 'update', 'admin', 'exportCSV'),
                 'users' => array('@'),
             ),
             array(
@@ -84,8 +84,8 @@ class StateController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
-       
-        
+
+
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
@@ -168,6 +168,16 @@ class StateController extends Controller {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
+    }
+
+    /**
+     * Performs the CSV Export
+     */
+    public function actionExportCSV() {
+        Yii::import('ext.csv.ESCVExport');
+        $csv = new ESCVExport(State::model()->findAll());
+        $content = $csv->toCSV();
+        Yii::app()->getRequest()->sendFile('states.csv', $content, "text/csv", false);
     }
 
 }

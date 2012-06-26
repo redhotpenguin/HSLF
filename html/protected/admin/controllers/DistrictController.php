@@ -25,7 +25,7 @@ class DistrictController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'view', 'create', 'update', 'admin', 'dynamicdistrict', 'dynamicdistrictnumber'),
+                'actions' => array('index', 'view', 'create', 'update', 'admin', 'dynamicdistrict', 'dynamicdistrictnumber', 'exportCSV'),
                 'users' => array('@'),
             ),
             array(
@@ -202,6 +202,16 @@ class DistrictController extends Controller {
 
             echo CHtml::tag('option', array('value' => $id), CHtml::encode($district), true);
         }
+    }
+
+    /**
+     * Performs the CSV Export
+     */
+    public function actionExportCSV() {
+        Yii::import('ext.csv.ESCVExport');
+        $csv = new ESCVExport(District::model()->findAll());
+        $content = $csv->toCSV();
+        Yii::app()->getRequest()->sendFile('districts.csv', $content, "text/csv", false);
     }
 
 }

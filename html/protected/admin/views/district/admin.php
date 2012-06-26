@@ -8,6 +8,8 @@ $this->breadcrumbs = array(
 
 $this->menu = array(
     array('label' => 'Add a district', 'url' => array('create')),
+        array('label' => 'Export to CSV', 'url' => array('exportCSV')),
+
 );
 
 Yii::app()->clientScript->registerScript('search', "

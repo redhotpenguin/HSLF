@@ -28,7 +28,7 @@ class BallotItemController extends Controller {
 
         return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete', 'sendnotification', 'notificationsent', 'validatepush', 'gettreeview'),
+                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete', 'exportCSV'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -74,7 +74,7 @@ class BallotItemController extends Controller {
             }
 
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id, 'updated'=> true));
+                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
         }
 
         $model->date_published = date('Y-m-d h:i:s');
@@ -111,7 +111,7 @@ class BallotItemController extends Controller {
             }
 
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id, 'updated'=> true));
+                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
         }
 
         $this->render('update', array(
@@ -182,6 +182,17 @@ class BallotItemController extends Controller {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
+    }
+
+    
+    /**
+     * Performs the CSV Export
+     */
+    public function actionExportCSV() {
+        Yii::import('ext.csv.ESCVExport');
+        $csv = new ESCVExport(BallotItem::model()->findAll());
+        $content = $csv->toCSV();
+        Yii::app()->getRequest()->sendFile('ballot_items.csv', $content, "text/csv", false);
     }
 
 }
