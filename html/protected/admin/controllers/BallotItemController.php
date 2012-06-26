@@ -190,9 +190,12 @@ class BallotItemController extends Controller {
      */
     public function actionExportCSV() {
         Yii::import('ext.csv.ESCVExport');
-        $csv = new ESCVExport(BallotItem::model()->findAll());
-        $content = $csv->toCSV();
-        Yii::app()->getRequest()->sendFile('ballot_items.csv', $content, "text/csv", false);
+       
+        $csv = new ESCVExport(BallotItem::model()->with('district', 'recommendation', 'electionResult')->findAll());
+        
+    
+      $content = $csv->toCSV();
+       Yii::app()->getRequest()->sendFile('ballot_items.csv', $content, "text/csv", false);
     }
 
 }
