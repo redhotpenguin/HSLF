@@ -37,6 +37,10 @@ if (Yii::app()->user->getState('role') == 'admin') {
     $button_template = '{view}';
 }
 
+$state_list = CHtml::listData(State::model()->findAll(), 'abbr', 'name');
+
+$state_list = array('' => 'All') + $state_list;
+
 $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'application-users-grid',
     'dataProvider' => $model->search(),
@@ -47,14 +51,25 @@ $this->widget('zii.widgets.grid.CGridView', array(
         'latitude',
         'longitude',
   
-         array('name' => 'state_abbr',
+        array('name' => 'state_abbr',
             'header' => 'State',
-            'value' => '$data->district->state_abbr'
-        ),     
+            'value' => '$data->district->stateAbbr->name',
+            'filter' => CHtml::dropDownList('Application_user[state_abbr]', $model->state_abbr, $state_list),
+        ),
         
-        array('name' => 'district_type',
-            'header' => 'District type',
-            'value' => '$data->district->type'
+             array(
+            'header' => 'Level',
+            'name' => 'district_type',
+            'value' => '$data->district->type',
+            'filter' => CHtml::dropDownList('Application_user[district_type]', $model->district_type, array(
+                '' => 'All',
+                'statewide' => 'Statewide',
+                'congressional' => 'Congressional',
+                'upper_house' => 'Upper House',
+                'lower_house' => 'Lower House',
+                'county' => 'County',
+                'city' => 'City',
+            )),
         ),
    
         array('name' => 'district_number',

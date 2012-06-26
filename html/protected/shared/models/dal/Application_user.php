@@ -118,6 +118,8 @@ class Application_user extends CActiveRecord {
     public function search() {
         $criteria = new CDbCriteria;
 
+        error_log('search');
+        error_log(print_r($_REQUEST, true ));
         $criteria->with = array('district');
 
 
