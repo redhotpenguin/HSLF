@@ -51,16 +51,12 @@ class APITest extends CDbTestCase {
 
     public function testGetDistrictIDCreateIfNotExist() {
 
-
         $district_id = $this->api->getDistrictIDCreateIfNotExist('ak', 'congressional', 61);
-
 
         $this->assertNotEquals(false, $district_id);
     }
 
     public function testRegisterApplicationUser() {
-
-
         $register_user = $this->api->registerApplicationUser($this->device_token, $this->uap_user_id, $this->type, 'ca', 'congressional', '41', $this->optional);
 
         $this->assertEquals('insert_ok', $register_user);
