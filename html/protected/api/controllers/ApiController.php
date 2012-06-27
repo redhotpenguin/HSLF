@@ -471,7 +471,7 @@ class ApiController extends Controller {
     private function browseBallotItems() {
 
         $ballot_items = Yii::app()->db->createCommand()
-                ->select('b.id, item, item_type, d.type, d.state_abbr')
+                ->select('b.id, item, item_type, d.type, d.state_abbr, d.number, d.display_name')
                 ->from('ballot_item b')
                 ->join('district d', 'b.district_id=d.id')
                 ->where('published=:published AND next_election_date>=:current_date', array(
