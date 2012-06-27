@@ -8,6 +8,7 @@
  * @property string $state_abbr
  * @property integer $number
  * @property string  $type
+ * @property string $display_name
  *
  * The followings are the available model relations:
  * @property State $stateAbbr
@@ -46,11 +47,11 @@ class District extends CActiveRecord {
     public function rules() {
         return array(
             array('state_abbr, type', 'required'),
-            array('number', 'length', 'max' => 512),
+            array('number, display_name', 'length', 'max' => 512),
             array('state_abbr', 'length', 'max' => 3),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, state_abbr, number, type', 'safe', 'on' => 'search'),
+            array('id, state_abbr, number, type, display_name', 'safe', 'on' => 'search'),
         );
     }
 
