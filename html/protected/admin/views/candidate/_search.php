@@ -11,11 +11,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'state_abbr'); ?>
-		<?php echo $form->textField($model,'state_abbr',array('size'=>2,'maxlength'=>2)); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'district_id'); ?>
 		<?php echo $form->textField($model,'district_id'); ?>
 	</div>
