@@ -26,6 +26,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
         ),
         'type',
         'number',
+        'display_name',
         array(// display a column with "view", "update" and "delete" buttons
             'class' => 'CButtonColumn',
             'deleteConfirmation' => "js:'Deleting this District will also delete every ballot items associated to it, continue?'",
