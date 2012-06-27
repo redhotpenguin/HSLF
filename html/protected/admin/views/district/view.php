@@ -12,7 +12,7 @@ $this->menu = array(
 );
 ?>
 
-<h1>View District #<?php echo $model->number; ?></h1>
+<h1>View District: <?php echo $model->display_name; ?></h1>
 
 <?php
 $this->widget('zii.widgets.CDetailView', array(

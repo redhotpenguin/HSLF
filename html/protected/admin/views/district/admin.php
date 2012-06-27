@@ -52,6 +52,7 @@ $this->renderPartial('_search', array(
             'state_abbr',
             'type',
             'number',
+            'display_name',
             array(
                 'class' => 'CButtonColumn',
                 'deleteConfirmation' => "js:'Deleting this District will also delete every ballot items associated to it, continue?'",

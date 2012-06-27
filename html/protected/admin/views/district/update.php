@@ -12,6 +12,6 @@ $this->menu = array(
 );
 ?>
 
-<h1>Update District <?php echo $model->number; ?></h1>
+<h1>Update District <?php echo $model->display_name; ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model' => $model)); ?>
