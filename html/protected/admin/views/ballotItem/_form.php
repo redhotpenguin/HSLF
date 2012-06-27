@@ -33,7 +33,6 @@
 
         <div class="row">
             <?php
-//  echo $form->labelEx($model, 'district_id');
             $this->widget('ext.DistrictSelector.DistrictSelector', array(
                 'model' => $model,
                 'attribute' => 'district_id',
