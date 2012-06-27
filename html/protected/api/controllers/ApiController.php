@@ -60,7 +60,7 @@ class ApiController extends Controller {
                 break;
 
             case 'candidate':
-                $this->_sendResponse(200, $this->_getCandidate($_GET['id'], $_GET['filter']));
+                $this->_sendResponse(200, $this->_getCandidate($_GET['id']));
                 break;
 
 
@@ -145,18 +145,20 @@ class ApiController extends Controller {
         if (!isset($param['state_abbr']))
             return false;
 
+
         if (isset($param['district_number'])) {
             $senator_candidate_district_id = DistrictManager::getDistrictId($param['state_abbr'], 'statewide', ''); // this is a temporary fix
 
             $district_id = DistrictManager::getDistrictId($param['state_abbr'], 'congressional', $param['district_number']);
 
             $search_attributes['district_id'] = array($district_id, $senator_candidate_district_id);
-
+        } else {
+            $district_id = DistrictManager::getIdsByState($param['state_abbr']);
+            $search_attributes['district_id'] = $district_id;
         }
 
-
         $search_attributes['publish'] = 'yes';
-        $candidates = Candidate::model()->with('district')->findAllByAttributes($search_attributes);
+        $candidates = Candidate::model()->with('district', 'issues')->findAllByAttributes($search_attributes);
 
         return $candidates;
     }
@@ -164,39 +166,17 @@ class ApiController extends Controller {
     /**
      * return a single  candidate
      * @param $candidate_id id of the candidate
-     * @param $filter filter
      * @return  array of candidate objects
      */
-    private function _getCandidate($candidate_id, $filter) {
-        switch ($filter) {
-            case 'issue': // /api/candidate/<candidate_id>/issue/
-                $candidate_issues = CandidateIssue::model()->findAllByAttributes(array('candidate_id' => $candidate_id));
-                $templetized_issues = array();
+    private function _getCandidate($candidate_id) {
 
-                foreach ($candidate_issues as $candidate_issue) {
-                    ob_start();
-                    $this->renderPartial('/api/issue/issue_detail', array('candidate_issue' => $candidate_issue));
-                    $detail = ob_get_contents();
-                    ob_end_clean();
-
-                    array_push($templetized_issues, array(
-                        'name' => $candidate_issue->name,
-                        'value' => $candidate_issue->value,
-                        'detail' => $detail,
-                    ));
-                }
-
-                $response = $templetized_issues;
-                break;
-
-            default:
-                $candidate = Candidate::model()->with('district')->findByPk($candidate_id);
-                if (!empty($candidate)) {
-                    $response = $candidate;
-                }
-                else
-                    $response = 'Candidate not found';
+        $candidate = Candidate::model()->with('district', 'issues')->findByPk($candidate_id);
+        if (!empty($candidate)) {
+            $response = $candidate;
         }
+        else
+            $response = 'Candidate not found';
+
 
         return $response;
     }
