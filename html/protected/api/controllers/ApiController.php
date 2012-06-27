@@ -132,8 +132,6 @@ class ApiController extends Controller {
         }
 
 
-        //$ballots = BallotItemManager::findAllByDistricts($state_abbr, $district_types, $districts, $year, $active);
-
         return $ballots;
     }
 
@@ -143,10 +141,11 @@ class ApiController extends Controller {
      * @return array of candidate objects
      */
     private function _getCandidates($param) {
-
+        return 'not_supported';
         $search_attributes = array();
         if (isset($param['state_abbr']))
             $search_attributes['state_abbr'] = $param['state_abbr'];
+        
         else
             return false;
 
@@ -160,6 +159,7 @@ class ApiController extends Controller {
 
 
         $search_attributes['publish'] = 'yes';
+        
         $candidates = Candidate::model()->with('district')->findAllByAttributes($search_attributes);
 
         foreach ($candidates as $candidate) {

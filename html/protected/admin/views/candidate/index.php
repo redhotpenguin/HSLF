@@ -1,11 +1,11 @@
 <?php
-$this->breadcrumbs=array(
-	'Candidates',
+$this->breadcrumbs = array(
+    'Candidates',
 );
 
-$this->menu=array(
-	array('label'=>'Add a candidate', 'url'=>array('create')),
-	array('label'=>'Manage candidates', 'url'=>array('admin')),
+$this->menu = array(
+    array('label' => 'Add a candidate', 'url' => array('create')),
+    array('label' => 'Manage candidates', 'url' => array('admin')),
 );
 ?>
 
@@ -15,9 +15,12 @@ $this->menu=array(
 <?php
 $dataProvider->pagination->pageSize = 50;
 $this->widget('zii.widgets.grid.CGridView', array(
-    'dataProvider'=>$dataProvider,
-    'columns'=>array(          
-        'state_abbr',
+    'dataProvider' => $dataProvider,
+    'columns' => array(
+        array(
+            'header' => 'State',
+            'value' => '$data->district->state_abbr'
+        ),
         array(
             'header' => 'District',
             'value' => '$data->district->number'
@@ -28,12 +31,9 @@ $this->widget('zii.widgets.grid.CGridView', array(
         'scorecard',
         'date_published',
         'publish',
-        array(            // display a column with "view", "update" and "delete" buttons
-            'class'=>'CButtonColumn',
+        array(// display a column with "view", "update" and "delete" buttons
+            'class' => 'CButtonColumn',
         ),
-     
-        
     ),
 ));
-
 ?>

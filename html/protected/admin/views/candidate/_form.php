@@ -38,17 +38,19 @@
 
     <div class="row">
         <?php
-        echo $form->labelEx($model, 'district_id');
-
-        echo $form->dropDownList($model, 'district_id', District::getTagDistrictsByState($model->state_abbr)
-        );
+        $this->widget('ext.DistrictSelector.DistrictSelector', array(
+            'model' => $model,
+            'attribute' => 'district_id',
+            'options' => array(
+                'model_name' => 'Candidate',
+            ),
+        ));
+        echo $form->error($model, 'district_id');
         ?>
-
-        <?php echo $form->error($model, 'district'); ?>
     </div>
 
-    
-     <div class="row">
+
+    <div class="row">
         <?php
         echo $form->labelEx($model, 'type');
         echo $form->dropDownList($model, 'type', $model->getTypeOptions(), $options);
@@ -77,9 +79,9 @@
     </div>
 
 
-<?php 
-        echo $form->hiddenField($model,'date_published', array('value'=>date('Y-m-d H:i:s')));
- ?>
+    <?php
+    echo $form->hiddenField($model, 'date_published', array('value' => date('Y-m-d H:i:s')));
+    ?>
 
 
     <div class="row">

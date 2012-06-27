@@ -5,7 +5,6 @@
  *
  * The followings are the available columns in table 'candidate':
  * @property integer $id
- * @property string $state_abbr
  * @property integer $district_id
  * @property string $type
  * @property string $endorsement
@@ -17,6 +16,7 @@
  * @property string $url	
  *
  * The followings are the available model relations:
+ * @property string $state_abbr
  * @property State $stateAbbr
  * @property District $district
  */
@@ -50,16 +50,15 @@ class Candidate extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('state_abbr,district, full_name, party,type,endorsement,date_published, publish , scorecard', 'required'),
+            array('district, full_name, party,type,endorsement,date_published, publish , scorecard', 'required'),
             array('district_id, scorecard', 'numerical', 'integerOnly' => true),
-            array('state_abbr', 'length', 'max' => 3),
             array('full_name', 'length', 'max' => 256),
             array('party, publish', 'length', 'max' => 128),
             array('type, endorsement, date_published, scorecard, url, issues', 'safe'),
             array('date_published', 'date', 'format' => 'yyyy-M-d H:m:s'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, state_abbr, district_id, type, endorsement, full_name, party, date_published, publish, district_number, issues, url', 'safe', 'on' => 'search'),
+            array('id, district_id, type, endorsement, full_name, party, date_published, publish, district_number, issues, url', 'safe', 'on' => 'search'),
         );
     }
 
@@ -70,7 +69,6 @@ class Candidate extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'stateAbbr' => array(self::BELONGS_TO, 'State', 'state_abbr'),
             'district' => array(self::BELONGS_TO, 'District', 'district_id'),
             'issues' => array(self::HAS_MANY, 'CandidateIssue', 'candidate_id'),
         );
@@ -82,7 +80,6 @@ class Candidate extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'state_abbr' => 'State',
             'district_id' => 'District',
             'type' => 'Type',
             'endorsement' => 'Endorsement',
@@ -110,11 +107,9 @@ class Candidate extends CActiveRecord {
             // Join the 'district' table
             $criteria->with = array('district');
             $criteria->compare('district.number', $this->district_number, false);
-            $criteria->compare('district.state_abbr', $this->state_abbr, true);
         } else {
             $criteria->together = false;
             $criteria->with = array();
-            $criteria->compare('state_abbr', $this->state_abbr, true);
         }
 
         if (!is_numeric($this->id)) {
@@ -130,10 +125,6 @@ class Candidate extends CActiveRecord {
         $criteria->compare('publish', $this->publish, true);
 
         $criteria->compare("date_published", $this->date_published, false);
-        // error_log($this->date_published);
-        //$criteria->addCondition("date_published = to_date( '".$this->date_published."', 'YYYY') ");
-        //SELECT * FROM candidate WHERE date_published < to_date('2012', 'YYYY');
-
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,

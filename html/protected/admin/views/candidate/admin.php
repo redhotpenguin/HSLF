@@ -46,7 +46,10 @@ $this->widget('zii.widgets.grid.CGridView', array(
     'filter' => $model,
     'columns' => array(
         'id',
-        'state_abbr',
+        array(
+            'header' => 'State',
+            'value' => '$data->district->state_abbr'
+        ),
         array('name' => 'district_number',
             'header' => 'District number',
             'value' => '$data->district->number'
