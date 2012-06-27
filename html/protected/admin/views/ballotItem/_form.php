@@ -65,9 +65,14 @@
             }
             ?>
             <?php echo $form->error($model, 'image_url'); ?>
-        </div>
 
-        <input type="file" name="image_url" />
+
+
+            <input type="file" name="image_url" />
+
+            <p>Recommended width: 320px</p>
+
+        </div>
 
         <div class="row">
             <?php echo $form->labelEx($model, 'next_election_date'); ?>
