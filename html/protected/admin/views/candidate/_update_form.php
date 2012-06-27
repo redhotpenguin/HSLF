@@ -18,33 +18,16 @@
     </div>
 
     <div class="row">
-        <?php echo $form->labelEx($model, 'state_abbr'); ?>
         <?php
-        $state_list = CHtml::listData(State::model()->findAll(), 'abbr', 'name');
-
-        $options = array(
-            'empty' => '(not set)',
-            'tabindex' => '0',
-            'ajax' => array(
-                'type' => 'POST', //request type
-                'url' => CController::createUrl('district/dynamicdistrict?model=Candidate'), //url to call.  
-                'update' => '#Candidate_district_id', //selector to update      
-            )
-        );
-        echo $form->dropDownList($model, 'state_abbr', $state_list, $options);
+        $this->widget('ext.DistrictSelector.DistrictSelector', array(
+            'model' => $model,
+            'attribute' => 'district_id',
+            'options' => array(
+                'model_name' => 'Candidate',
+            ),
+        ));
+        echo $form->error($model, 'district_id');
         ?>
-        <?php echo $form->error($model, 'state_abbr'); ?>
-    </div>
-
-    <div class="row">
-        <?php
-        echo $form->labelEx($model, 'district_id');
-
-        echo $form->dropDownList($model, 'district_id', District::getTagDistrictsByState($model->state_abbr)
-        );
-        ?>
-
-        <?php echo $form->error($model, 'district'); ?>
     </div>
 
 

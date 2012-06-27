@@ -21,7 +21,6 @@ $this->widget('zii.widgets.CDetailView', array(
     'data' => $model,
     'attributes' => array(
         'id',
-        'state_abbr',
         array(
             'name' => 'district_id',
             'value' => $model->district->number,

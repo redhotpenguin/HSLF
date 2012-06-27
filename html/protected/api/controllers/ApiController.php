@@ -141,30 +141,22 @@ class ApiController extends Controller {
      * @return array of candidate objects
      */
     private function _getCandidates($param) {
-        return 'not_supported';
         $search_attributes = array();
-        if (isset($param['state_abbr']))
-            $search_attributes['state_abbr'] = $param['state_abbr'];
-        
-        else
+        if (!isset($param['state_abbr']))
             return false;
 
         if (isset($param['district_number'])) {
+            $senator_candidate_district_id = DistrictManager::getDistrictId($param['state_abbr'], 'statewide', ''); // this is a temporary fix
 
-            $senator_candidate_district_id = DistrictManager::getDistrictId($param['state_abbr'], 'statewide', 'U.S. Senate'); // this is a temporary fix
+            $district_id = DistrictManager::getDistrictId($param['state_abbr'], 'congressional', $param['district_number']);
 
-            $district_id = DistrictManager::getIdByStateAndDistrict($param['state_abbr'], $param['district_number']);
             $search_attributes['district_id'] = array($district_id, $senator_candidate_district_id);
+
         }
 
 
         $search_attributes['publish'] = 'yes';
-        
         $candidates = Candidate::model()->with('district')->findAllByAttributes($search_attributes);
-
-        foreach ($candidates as $candidate) {
-            $candidate->district_id = $candidate->district->number;
-        }
 
         return $candidates;
     }
@@ -200,7 +192,6 @@ class ApiController extends Controller {
             default:
                 $candidate = Candidate::model()->with('district')->findByPk($candidate_id);
                 if (!empty($candidate)) {
-                    $candidate->district_id = $candidate->district->number; //return the district number instead of the district id
                     $response = $candidate;
                 }
                 else

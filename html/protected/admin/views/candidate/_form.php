@@ -17,24 +17,7 @@
         <?php echo $form->error($model, 'full_name'); ?>
     </div>
 
-    <div class="row">
-        <?php echo $form->labelEx($model, 'state_abbr'); ?>
-        <?php
-        $state_list = CHtml::listData(State::model()->findAll(), 'abbr', 'name');
 
-        $options = array(
-            'empty' => '(not set)',
-            'tabindex' => '0',
-            'ajax' => array(
-                'type' => 'POST', //request type
-                'url' => CController::createUrl('district/dynamicdistrict?model=Candidate'), //url to call.  
-                'update' => '#Candidate_district_id', //selector to update      
-            )
-        );
-        echo $form->dropDownList($model, 'state_abbr', $state_list, $options);
-        ?>
-        <?php echo $form->error($model, 'state_abbr'); ?>
-    </div>
 
     <div class="row">
         <?php
