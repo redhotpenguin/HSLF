@@ -44,7 +44,7 @@ class DistrictSelector extends CInputWidget {
     private function StateSelector($selected = null) {
         echo '<div class="row"> <b>State:</b><br/>';
 
-        $state_list = CHtml::listData($this->state_model->findAll(), 'abbr', 'name');
+        $state_list = CHtml::listData($this->state_model->findAll(array('order'=>'name ASC')), 'abbr', 'name');
         $options = array(
             'tabindex' => '0',
             'empty' => '(not set)',
