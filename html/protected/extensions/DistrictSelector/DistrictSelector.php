@@ -25,7 +25,7 @@ class DistrictSelector extends CInputWidget {
     public function run() {
 
         // update model
-        if ($this->district->number) {
+        if ($this->district->id) {
             $this->StateSelector($this->district->state_abbr);
             $this->DistrictTypeSelector($this->district->type);
             $this->DistrictNumberSelector($this->district->state_abbr, ($this->district->type), $this->district->id);
