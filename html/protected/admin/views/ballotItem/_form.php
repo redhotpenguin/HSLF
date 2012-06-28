@@ -43,15 +43,7 @@
             echo $form->error($model, 'district_id');
             ?>
             
-            <?php
-            
-            if($model->id){
-                echo '<!-- debug mode:';
-                  echo $model->district->state_abbr;
-                  echo '-->';
-            }
-            
-            ?>
+
         </div>
 
     </div>
