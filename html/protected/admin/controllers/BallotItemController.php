@@ -78,6 +78,10 @@ class BallotItemController extends Controller {
         }
 
         $model->date_published = date('Y-m-d h:i:s');
+
+        $not_avalaible_recommendation_id = Recommendation::model()->findByAttributes(array('value' => 'Not Avalaible'))->id;
+        $model->recommendation_id = $not_avalaible_recommendation_id;
+        $model->election_result_id = $not_avalaible_recommendation_id;
         $this->render('create', array(
             'model' => $model,
         ));
@@ -93,6 +97,13 @@ class BallotItemController extends Controller {
         Yii::import('admin.models.helpers.FileUpload');
 
         $model = $this->loadModel($id);
+
+        if (!$model->recommendation_id)
+            $model->recommendation_id = Recommendation::model()->findByAttributes(array('value' => 'Not Avalaible'))->id;
+
+        if (!$model->election_result_id)
+            $model->election_result_id = Recommendation::model()->findByAttributes(array('value' => 'Not Avalaible'))->id;
+
 
         if (isset($_POST['BallotItem'])) {
             $model->attributes = $_POST['BallotItem'];
@@ -113,6 +124,8 @@ class BallotItemController extends Controller {
             if ($model->save())
                 $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
         }
+
+
 
         $this->render('update', array(
             'model' => $model
@@ -184,18 +197,17 @@ class BallotItemController extends Controller {
         }
     }
 
-    
     /**
      * Performs the CSV Export
      */
     public function actionExportCSV() {
         Yii::import('ext.csv.ESCVExport');
-       
+
         $csv = new ESCVExport(BallotItem::model()->with('district', 'recommendation', 'electionResult')->findAll());
-        
-    
-      $content = $csv->toCSV();
-       Yii::app()->getRequest()->sendFile('ballot_items.csv', $content, "text/csv", false);
+
+
+        $content = $csv->toCSV();
+        Yii::app()->getRequest()->sendFile('ballot_items.csv', $content, "text/csv", false);
     }
 
 }
