@@ -16,6 +16,8 @@ $this->menu = array(
 $dataProvider->pagination->pageSize = 50;
 $this->widget('zii.widgets.grid.CGridView', array(
     'dataProvider' => $dataProvider,
+    'template' => "{pager}\n{items}\n{pager}", // pagination on top and on bottom
+
     'columns' => array(
         'id',
         'item',

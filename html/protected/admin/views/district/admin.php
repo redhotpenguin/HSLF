@@ -1,6 +1,4 @@
 <?php
-
-
 $this->breadcrumbs = array(
     'Districts' => array('index'),
     'Manage',
@@ -8,8 +6,7 @@ $this->breadcrumbs = array(
 
 $this->menu = array(
     array('label' => 'Add a district', 'url' => array('create')),
-        array('label' => 'Export to CSV', 'url' => array('exportCSV')),
-
+    array('label' => 'Export to CSV', 'url' => array('exportCSV')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -47,6 +44,7 @@ $this->renderPartial('_search', array(
         'id' => 'district-grid',
         'dataProvider' => $model->search(),
         'filter' => $model,
+        'template' => "{pager}\n{items}\n{pager}", // pagination on top and on bottom
         'columns' => array(
             'id',
             'state_abbr',

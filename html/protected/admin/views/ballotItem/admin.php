@@ -25,11 +25,11 @@ $state_list = CHtml::listData(State::model()->findAll(), 'abbr', 'name');
 $state_list = array('' => 'All') + $state_list;
 
 
-
 $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'ballot-item-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
+    'template'=>"{pager}\n{items}\n{pager}", // pagination on top and on bottom
     'columns' => array(
         array(
             'header' => 'Type',
