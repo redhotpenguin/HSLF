@@ -79,7 +79,7 @@ class BallotItemController extends Controller {
 
         $model->date_published = date('Y-m-d h:i:s');
 
-        $not_avalaible_recommendation_id = Recommendation::model()->findByAttributes(array('value' => 'Not Avalaible'))->id;
+        $not_avalaible_recommendation_id = Recommendation::model()->findByAttributes(array('value' => 'N/A'))->id;
         $model->recommendation_id = $not_avalaible_recommendation_id;
         $model->election_result_id = $not_avalaible_recommendation_id;
         $this->render('create', array(
@@ -99,10 +99,10 @@ class BallotItemController extends Controller {
         $model = $this->loadModel($id);
 
         if (!$model->recommendation_id)
-            $model->recommendation_id = Recommendation::model()->findByAttributes(array('value' => 'Not Avalaible'))->id;
+            $model->recommendation_id = Recommendation::model()->findByAttributes(array('value' => 'N/A'))->id;
 
         if (!$model->election_result_id)
-            $model->election_result_id = Recommendation::model()->findByAttributes(array('value' => 'Not Avalaible'))->id;
+            $model->election_result_id = Recommendation::model()->findByAttributes(array('value' => 'N/A'))->id;
 
 
         if (isset($_POST['BallotItem'])) {
