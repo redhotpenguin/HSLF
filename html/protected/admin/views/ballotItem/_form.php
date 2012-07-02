@@ -42,7 +42,7 @@
             ));
             echo $form->error($model, 'district_id');
             ?>
-            
+
 
         </div>
 
@@ -177,10 +177,10 @@
         echo $form->error($model, 'personal_url');
         ?>
     </div>
-    
+
     <hr/>
-    
-    
+
+
     <div class="row">
         <?php
         echo $form->labelEx($model, 'score');
@@ -232,8 +232,52 @@
 
     <br/>
 
+    <h1>Scorecard:</h1>
+
+    <?php
+    if ($model->id):
+        $new_scorecard_item = CHtml::normalizeUrl(array('scorecard/add', 'ballot_item_id' => $model->id));
+
+        echo CHtml::link('Add a new scorecard item', $new_scorecard_item, array('target' => '_blank'));
+        ?>
+        <br/>
+        <br/>
+
+        <?php
+        if ($model->Scorecard):
+
+            foreach ($model->Scorecard as $card) {
+                ?>
+
+                <div class="ballot_news_item">
+                    <span class="pill_btn">
 
 
+                        <?php
+                        $edit_scorecard_item_url = CHtml::normalizeUrl(array('scorecard/update', 'id' => $card->id));
+                        echo CHtml::link('Edit', $edit_scorecard_item_url, array('target' => '_blank'));
+                        ?>
+
+                    </span>
+
+                    <b> <?php echo $card->name; ?>:</b>
+                    <br/>
+                    <?php echo $card->vote; ?>
+                </div>
+                <?php
+            }
+
+        else:
+            echo 'No scorecard';
+        endif;
+
+    else:
+        echo 'You must save an item before you can add  a scorecard.';
+    endif; // end test $model->BallotItemNews
+    ?>
+
+        <br/>
+ <br/>
 
     <h1>News updates:</h1>
 

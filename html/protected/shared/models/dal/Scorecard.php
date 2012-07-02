@@ -12,6 +12,34 @@
  */
 class Scorecard extends CActiveRecord {
 
+    private $types = array(
+        'house' => 'house',
+        'senate' => 'senate',
+    );
+    private $names = array(
+        'Puppy Mills Cosponsor' => 'Puppy Mills Cosponsor',
+        'Mills Cosponsor Chimps in Labs Cosponsor' => 'Mills Cosponsor Chimps in Labs Cosponsor',
+        'Horse Slaughter Cosponsor' => 'Horse Slaughter Cosponsor',
+    );
+    private $votes = array(
+        'SP' => 'SP',
+        'NV' => 'NV',
+        'N/A' => 'N/A',
+        'X' => 'X',
+    );
+
+    public function getTypeOptions() {
+        return $this->types;
+    }
+
+    public function getNameOptions() {
+        return $this->names;
+    }
+
+    public function getVoteOptions() {
+        return $this->votes;
+    }
+
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
