@@ -67,8 +67,6 @@ class ScorecardController extends Controller {
      */
     public function actionUpdate($id) {
 
-        error_log(print_r($_REQUEST, true));
-
         $model = $this->loadModel($id);
 
 
