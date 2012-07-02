@@ -18,14 +18,20 @@ class Scorecard extends CActiveRecord {
     );
     private $names = array(
         'Puppy Mills Cosponsor' => 'Puppy Mills Cosponsor',
-        'Mills Cosponsor Chimps in Labs Cosponsor' => 'Mills Cosponsor Chimps in Labs Cosponsor',
+        'Chimps in Labs Cosponsor' => 'Chimps in Labs Cosponsor',
         'Horse Slaughter Cosponsor' => 'Horse Slaughter Cosponsor',
+        'Ag Subsidies Vote' => 'Ag Subsidies Vote',
+        'Leaders'=>'Leaders',
+        'Lethal Predator Control Vote',
+        'ESA Vote',
+        'Funding Letter',
     );
     private $votes = array(
+        'Y' => 'Y',
+        'N' => 'N',
         'SP' => 'SP',
         'NV' => 'NV',
         'N/A' => 'N/A',
-        'X' => 'X',
     );
 
     public function getTypeOptions() {
