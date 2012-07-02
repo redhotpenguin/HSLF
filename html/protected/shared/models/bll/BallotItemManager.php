@@ -20,7 +20,7 @@ class BallotItemManager {
             'id' => $ballot_item_id,
             'published' => 'yes'
         );
-        return BallotItem::model()->with(array('district', 'recommendation', 'electionResult', 'BallotItemNews'))->findByAttributes($attributes);
+        return BallotItem::model()->with(array('district', 'recommendation', 'electionResult', 'BallotItemNews', 'Scorecard'))->findByAttributes($attributes);
     }
 
     /**

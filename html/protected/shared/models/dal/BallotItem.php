@@ -20,6 +20,7 @@
  * @property integer $election_result_id
  * @property string $personal_url
  * @property string $office_type
+ * @property integer score
  * The followings are the available model relations:
  * @property District $district
  * @property Recommendation $recommendation
@@ -70,7 +71,7 @@ class BallotItem extends CActiveRecord {
         // will receive user inputs.
         return array(
             array('district_id, item, recommendation_id, priority, date_published, published, election_result_id', 'required'),
-            array('district_id, recommendation_id, priority, election_result_id', 'numerical', 'integerOnly' => true),
+            array('district_id, recommendation_id, priority, election_result_id, score', 'numerical', 'integerOnly' => true),
             array('item_type, party, office_type', 'length', 'max' => 128),
             array('url', 'length', 'max' => 500),
             array('personal_url', 'length', 'max' => 2048),
@@ -81,7 +82,7 @@ class BallotItem extends CActiveRecord {
             array('next_election_date, detail, url, image_url', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, district_id, item,office_type, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party, url, image_url, election_result_id, district_number, district_type, state_abbr, personal_url', 'safe', 'on' => 'search'),
+            array('id, district_id, item,office_type, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party, url, image_url, election_result_id, district_number, district_type, state_abbr, personal_url, score', 'safe', 'on' => 'search'),
         );
     }
 
@@ -96,6 +97,7 @@ class BallotItem extends CActiveRecord {
             'recommendation' => array(self::BELONGS_TO, 'Recommendation', 'recommendation_id'),
             'electionResult' => array(self::BELONGS_TO, 'Recommendation', 'election_result_id'),
             'BallotItemNews' => array(self::HAS_MANY, 'BallotItemNews', 'ballot_item_id'),
+            'Scorecard' => array(self::HAS_MANY, 'Scorecard', 'ballot_item_id'),
         );
     }
 

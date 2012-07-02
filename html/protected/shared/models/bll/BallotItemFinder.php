@@ -11,7 +11,7 @@ class BallotItemFinder extends ModelFinder {
         $this->table_alias = $ballot_item->getTableAlias(false, false);
 
         parent::__construct($ballot_item);
-        $this->setRelations(array('district', 'recommendation', 'electionResult', 'BallotItemNews'));
+        $this->setRelations(array('district', 'recommendation', 'electionResult', 'BallotItemNews','Scorecard'));
     }
 
     public function setDistrictIds($district_ids) {

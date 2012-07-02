@@ -176,8 +176,19 @@
         echo $form->textField($model, 'personal_url', array('size' => 50, 'maxlength' => 2048, 'placeholder' => 'External candidate or measure url'));
         echo $form->error($model, 'personal_url');
         ?>
-
     </div>
+    
+    <hr/>
+    
+    
+    <div class="row">
+        <?php
+        echo $form->labelEx($model, 'score');
+        echo $form->textField($model, 'score', array('size' => 50, 'maxlength' => 2048, 'placeholder' => 'External candidate or measure url'));
+        echo $form->error($model, 'score');
+        ?>
+    </div>
+    <hr/>
 
 
     <div class="row">
