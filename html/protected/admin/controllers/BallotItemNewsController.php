@@ -47,7 +47,6 @@ class BallotItemNewsController extends Controller {
 
         $model = new BallotItemNews;
         $model->ballot_item_id = $ballot_item_id;
-        error_log(print_r($_REQUEST, true));
 
         if (isset($_POST['BallotItemNews'])) {
             $model->attributes = $_POST['BallotItemNews'];
