@@ -20,7 +20,7 @@ class BallotItemManager {
             'id' => $ballot_item_id,
             'published' => 'yes'
         );
-        return BallotItem::model()->with(array('district', 'recommendation', 'electionResult', 'BallotItemNews', 'Scorecard'))->findByAttributes($attributes);
+        return self::applyFilter( BallotItem::model()->with(array('district', 'recommendation', 'electionResult', 'BallotItemNews', 'Scorecard'))->findByAttributes($attributes) ) ;
     }
 
     /**
@@ -100,7 +100,7 @@ class BallotItemManager {
                 $ballot->url = self::addSiteUrlFilter($ballot->url, $ballot->date_published);
             }
         } else {
-            $ballots->url = self::addSiteUrlFilter($ballot->url, $ballot->date_published);
+            $ballots->url = self::addSiteUrlFilter($ballots->url, $ballots->date_published);
         }
 
         return $ballots;
@@ -114,7 +114,7 @@ class BallotItemManager {
      */
     private static function addSiteUrlFilter($ballot_url, $date_pub) {
         $share_url = Yii::app()->params['share_url'] . '/ballot';
-
+      
         return $share_url . '/' . substr($date_pub, 0, 4) . '/' . $ballot_url;
     }
 
