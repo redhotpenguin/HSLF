@@ -72,7 +72,7 @@
 
             <input type="file" name="image_url" />
 
-            <p>Recommended width: 640px</p>
+            <p>Recommended size: 280x320</p>
 
         </div>
 
