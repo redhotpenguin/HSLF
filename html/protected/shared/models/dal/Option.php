@@ -38,8 +38,6 @@ class Option extends CActiveRecord
 		return array(
 			array('name', 'required'),
 			array('value', 'safe'),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
 			array('id, name, value', 'safe', 'on'=>'search'),
 		);
 	}
@@ -49,8 +47,6 @@ class Option extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
 		);
 	}
