@@ -21,10 +21,11 @@ class Scorecard extends CActiveRecord {
         'Chimps in Labs Cosponsor' => 'Chimps in Labs Cosponsor',
         'Horse Slaughter Cosponsor' => 'Horse Slaughter Cosponsor',
         'Ag Subsidies Vote' => 'Ag Subsidies Vote',
-        'Leaders'=>'Leaders',
+        'Leaders' => 'Leaders',
         'Lethal Predator Control Vote' => 'Lethal Predator Control Vote',
         'ESA Vote' => 'ESA Vote',
         'Funding Letter' => 'Funding Letter',
+        'Animal Fighting Cosponsor' => 'Animal Fighting Cosponsor',
     );
     private $votes = array(
         'Y' => 'Y',
