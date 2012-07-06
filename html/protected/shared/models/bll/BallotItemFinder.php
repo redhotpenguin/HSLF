@@ -11,7 +11,7 @@ class BallotItemFinder extends ModelFinder {
         $this->table_alias = $ballot_item->getTableAlias(false, false);
 
         parent::__construct($ballot_item);
-        $this->setRelations(array('district', 'recommendation', 'electionResult', 'BallotItemNews','Scorecard'));
+        $this->setRelations(array('district', 'recommendation', 'electionResult', 'BallotItemNews', 'Scorecard'));
     }
 
     public function setDistrictIds($district_ids) {
@@ -50,6 +50,10 @@ class BallotItemFinder extends ModelFinder {
 
     public function orderByHighestPriority() {
         $this->setOrder('priority', ModelFinder::DESCENDANT);
+    }
+
+    public function orderByItem() {
+        $this->setOrder('item', ModelFinder::ASCENDANT);
     }
 
     public function orderByLowestPriority() {

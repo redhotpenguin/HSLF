@@ -42,7 +42,7 @@ class BallotItemManager {
         $ballotItemFinder = new BallotItemFinder();
 
         $ballotItemFinder->setPublished('yes');
-        $ballotItemFinder->orderByHighestPriority();
+        $ballotItemFinder->orderByItem();
         $ballotItemFinder->setDistrictIds($district_ids);
 
         if ($year) {
@@ -74,7 +74,9 @@ class BallotItemManager {
         $ballotItemFinder = new BallotItemFinder();
 
         $ballotItemFinder->setPublished('yes');
-        $ballotItemFinder->orderByHighestPriority();
+      //  $ballotItemFinder->orderByHighestPriority();
+          $ballotItemFinder->orderByItem();
+        
         $ballotItemFinder->setDistrictIds($district_ids);
 
         if ($year) {
