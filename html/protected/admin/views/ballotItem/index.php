@@ -14,7 +14,7 @@ $this->menu = array(
 
 <?php
 $dataProvider->pagination->pageSize = 50;
-$this->widget('zii.widgets.grid.CGridView', array(
+$this->widget('bootstrap.widgets.BootGridView', array(
     'dataProvider' => $dataProvider,
     'template' => "{pager}\n{items}\n{pager}", // pagination on top and on bottom
 
@@ -32,7 +32,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'value' => '$data->next_election_date',
         ),
         array(// display a column with "view", "update" and "delete" buttons
-            'class' => 'CButtonColumn',
+            'class' => 'bootstrap.widgets.BootButtonColumn',
         ),
     ),
 ));

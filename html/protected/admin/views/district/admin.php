@@ -30,7 +30,6 @@ $('.search-form form').submit(function(){
     or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
 </p>
 
-<?php echo CHtml::link('Advanced Search', '#', array('class' => 'search-button')); ?>
 <div class="search-form" style="display:none">
 <?php
 $this->renderPartial('_search', array(
@@ -40,7 +39,7 @@ $this->renderPartial('_search', array(
 </div><!-- search-form -->
 
     <?php
-    $this->widget('zii.widgets.grid.CGridView', array(
+    $this->widget('bootstrap.widgets.BootGridView', array(
         'id' => 'district-grid',
         'dataProvider' => $model->search(),
         'filter' => $model,
@@ -51,7 +50,7 @@ $this->renderPartial('_search', array(
             'type',
             'number',
             array(
-                'class' => 'CButtonColumn',
+                'class' => 'bootstrap.widgets.BootButtonColumn',
                 'deleteConfirmation' => "js:'Deleting this District will also delete every ballot items associated to it, continue?'",
             ),
         ),

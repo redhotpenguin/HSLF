@@ -11,14 +11,14 @@ $this->menu=array(
 
 <h1>Options</h1>
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
+<?php $this->widget('bootstrap.widgets.BootGridView', array(
     'dataProvider'=>$dataProvider,
     'columns'=>array(
         'id',          
         'name',  
         'value',
         array(            // display a column with "view", "update" and "delete" buttons
-            'class'=>'CButtonColumn',
+            'class'=>'bootstrap.widgets.BootButtonColumn',
         ),
     ),
 ));

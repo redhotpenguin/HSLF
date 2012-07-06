@@ -4,7 +4,9 @@
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'ballot-item-form',
         'enableAjaxValidation' => false,
-        'htmlOptions' => array('enctype' => 'multipart/form-data'),
+        'htmlOptions' => array(
+            'enctype' => 'multipart/form-data',
+            'class' => 'well form-vertical'),
             ));
     $recommendation_list = CHtml::listData(Recommendation::model()->findAll(), 'id', 'value');
     ?>
@@ -15,15 +17,15 @@
 
 
 
-    <div class="row">
+    <div class="">
         <?php echo $form->labelEx($model, 'item'); ?>
-        <?php echo $form->textField($model, 'item', array('size' => 111, 'maxlength' => 1000, 'placeholder' => 'i.e Candidate or Measure Name')); ?>
+        <?php echo $form->textField($model, 'item', array('class' => 'span7', 'maxlength' => 1000, 'placeholder' => 'i.e Candidate or Measure Name')); ?>
         <?php echo $form->error($model, 'item'); ?>
     </div>
 
     <div class="left_col">
 
-        <div class="row">
+        <div class="">
             <?php
             echo $form->labelEx($model, 'item_type');
             echo $form->dropDownList($model, 'item_type', $model->getItemTypeOptions());
@@ -31,7 +33,7 @@
             ?>
         </div>
 
-        <div class="row">
+        <div class="">
             <?php
             $this->widget('ext.DistrictSelector.DistrictSelector', array(
                 'model' => $model,
@@ -49,7 +51,7 @@
     </div>
 
     <div class="right_col">
-        <div class="row">
+        <div class="">
             <?php
             echo $form->labelEx($model, 'party');
             echo $form->dropDownList($model, 'party', $model->getParties());
@@ -57,7 +59,7 @@
             ?>
         </div>
 
-        <div class="row">
+        <div class="">
             <?php echo $form->labelEx($model, 'image_url'); ?>
             <?php
             //echo $form->textField($model, 'image_url', array('size' => 50, 'readonly'=>'readonly')); 
@@ -76,7 +78,7 @@
 
         </div>
 
-        <div class="row">
+        <div class="">
             <?php echo $form->labelEx($model, 'next_election_date'); ?>
             <?php
             $this->widget('zii.widgets.jui.CJuiDatePicker', array(
@@ -98,7 +100,7 @@
             <?php echo $form->error($model, 'next_election_date'); ?>
         </div>    
         <div style="clear:both;"></div>
-        <div class="row">
+        <div class="">
             <?php
             echo $form->labelEx($model, 'office_type');
             echo $form->dropDownList($model, 'office_type', $model->getOfficeTypes());
@@ -111,7 +113,7 @@
 
     <hr/>
 
-    <div class="row">
+    <div class="">
         <?php
         echo $form->labelEx($model, 'priority');
         echo $form->dropDownList($model, 'priority', $model->getPriorityOptions());
@@ -120,7 +122,7 @@
         <p> 1 = Lowest, 10 = highest</p>
     </div>
 
-    <div class="row">
+    <div class="">
         <?php
         echo $form->labelEx($model, 'recommendation_id');
         echo $form->dropDownList($model, 'recommendation_id', $recommendation_list);
@@ -129,7 +131,7 @@
     </div>
 
 
-    <div class="row">
+    <div class="">
         <?php
         echo $form->labelEx($model, 'detail');
         $this->widget('ext.tinymce.TinyMce', array(
@@ -145,7 +147,7 @@
         ?>
     </div>
 
-    <div class="row">
+    <div class="">
         <?php
         echo $form->labelEx($model, 'election_result_id');
         echo $form->dropDownList($model, 'election_result_id', $recommendation_list);
@@ -155,7 +157,7 @@
 
     <hr/>
 
-    <div class="row">
+    <div class="">
         <?php
         echo $form->labelEx($model, 'url');
         echo $form->textField($model, 'url', array('size' => 50, 'maxlength' => 1000, 'placeholder' => 'URL to share'));
@@ -170,7 +172,7 @@
         <br/> <br/> 
     </div>
 
-    <div class="row">
+    <div class="">
         <?php
         echo $form->labelEx($model, 'personal_url');
         echo $form->textField($model, 'personal_url', array('size' => 50, 'maxlength' => 2048, 'placeholder' => 'External candidate or measure url'));
@@ -181,7 +183,7 @@
     <hr/>
 
 
-    <div class="row">
+    <div class="">
         <?php
         echo $form->labelEx($model, 'score');
         echo $form->textField($model, 'score', array('size' => 50, 'maxlength' => 2048));
@@ -191,7 +193,7 @@
     <hr/>
 
 
-    <div class="row">
+    <div class="">
         <?php echo $form->labelEx($model, 'date_published'); ?>
         <?php
         $this->widget('zii.widgets.jui.CJuiDatePicker', array(
@@ -216,7 +218,7 @@
     <div style="clear:both;"></div>
 
 
-    <div class="row">
+    <div class="">
         <?php echo $form->labelEx($model, 'published'); ?>
         <?php echo $form->dropDownList($model, 'published', array('yes' => 'Yes', 'no' => 'No')); ?>
         <?php echo $form->error($model, 'published'); ?>
@@ -224,7 +226,7 @@
 
 
 
-    <div class="row buttons">
+    <div class="buttons">
         <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
     </div>
 
@@ -276,8 +278,8 @@
     endif; // end test $model->BallotItemNews
     ?>
 
-        <br/>
- <br/>
+    <br/>
+    <br/>
 
     <h1>News updates:</h1>
 

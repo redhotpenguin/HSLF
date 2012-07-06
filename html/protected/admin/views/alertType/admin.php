@@ -38,7 +38,7 @@ $('.search-form form').submit(function(){
 </div><!-- search-form -->
 
 <?php
-$this->widget('zii.widgets.grid.CGridView', array(
+$this->widget('bootstrap.widgets.BootGridView', array(
     'id' => 'alert-type-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
@@ -51,7 +51,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'value' => '$data->tag->name',
         ),
         array(
-            'class' => 'CButtonColumn',
+            'class' => 'bootstrap.widgets.BootButtonColumn',
         ),
     ),
 ));

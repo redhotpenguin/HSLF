@@ -20,7 +20,7 @@ if (Yii::app()->user->getState('role') == 'admin') {
 
 
 $dataProvider->pagination->pageSize = 50;
-$this->widget('zii.widgets.grid.CGridView', array(
+$this->widget('bootstrap.widgets.BootGridView', array(
     'dataProvider' => $dataProvider,
     'columns' => array(
         'device_token',
@@ -31,7 +31,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
         'type',
         'registration',
         array(// display a column with "view", "update" and "delete" buttons
-            'class' => 'CButtonColumn',
+            'class' => 'bootstrap.widgets.BootButtonColumn',
             'template' => $button_template,
         ),
     ),
