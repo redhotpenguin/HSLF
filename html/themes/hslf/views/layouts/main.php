@@ -12,8 +12,9 @@
         <link rel="stylesheet" type="text/css" href="/themes/hslf/css/ie.css" media="screen, projection" />
         <![endif]-->
 
-        <!-- <link rel="stylesheet" type="text/css" href="/themes/hslf/css/main.css" /> -->
-        <link rel="stylesheet" type="text/css" href="/themes/hslf/css/form.css" />
+        <link rel="stylesheet" type="text/css" href="/themes/hslf/css/main.css" />
+
+        <link rel="stylesheet" type="text/css" href="/themes/hslf/css/form.css" /> 
 
         <?php
         $cs = Yii::app()->clientScript;
@@ -37,127 +38,126 @@
 
     <body>
 
-        <div class="container" id="page">
-            <div class="<?php echo $this->getId(); ?>">
-                <div class="<?php echo $this->getAction()->getId(); ?>" >
+        <?php if (Yii::app()->user->id): ?>
 
 
-                    <div id="header">
-                        <div id="logo"><a href="/admin/"><?php echo CHtml::encode(Yii::app()->name); ?></a></div>
+            <?php
+            //  $this->widget('ext.Caption.Caption');
+            ?>
 
-                        <div id="menu_auth">
+            <div id="menu-top" class="clearfix">
+                <?php
+                $this->widget('bootstrap.widgets.BootNavbar', array(
+                    'brand' => Yii::app()->name,
+                    'brandUrl' => '/admin/',
+                    'id' => 'main_menu',
+                    'items' => array(
+                        array(
+                            'class' => 'bootstrap.widgets.BootMenu',
+                            'items' => array(
+                                '---',
+                                array('label' => 'Publishing', 'url' => '#', 'items' => array(
+                                        array('label' => 'States', 'url' => array('/state/admin'), 'visible' => !Yii::app()->user->isGuest),
+                                        array('label' => 'Districts', 'url' => array('/district/admin'), 'visible' => !Yii::app()->user->isGuest),
+                                        array('label' => 'Recommendations', 'url' => array('/recommendation/admin'), 'visible' => !Yii::app()->user->isGuest),
+                                        array('label' => 'Ballot Items', 'url' => array('/ballotItem/admin'), 'visible' => !Yii::app()->user->isGuest),
+                                        array('label' => 'Image Upload', 'url' => array('/upload'), 'visible' => !Yii::app()->user->isGuest),
+                                        //    array('label' => 'Ballot Item News', 'url' => array('/ballotItemUpdate'), 'visible' => !Yii::app()->user->isGuest),
+
+                                        array('itemOptions' => array('id' => 'external_item'), 'label' => 'Rich Push Notifications', 'linkOptions' => array('target' => '_blank'), 'url' => 'https://go.urbanairship.com/apps/ouRCLPaBRRasv4K1AIw-xA/composer/rich-push/'),
+                                )),
+                            ),
+                        ),
+                        array(
+                            'class' => 'bootstrap.widgets.BootMenu',
+                            'items' => array(
+                                '---',
+                                array(
+                                    'label' => 'Application Manager',
+                                    'url' => '#',
+                                    'items' => array(
+                                        array('label' => 'Application users', 'url' => array('/application_users'), 'visible' => !Yii::app()->user->isGuest),
+                                        array('label' => 'Tags', 'url' => array('/tag'), 'visible' => !Yii::app()->user->isGuest),
+                                        array('label' => 'Set alert types', 'url' => array('/alertType'), 'visible' => !Yii::app()->user->isGuest),
+                                        array('label' => 'Options', 'url' => array('/option'), 'visible' => !Yii::app()->user->isGuest),
+                                    ),
+                            )),
+                        ),
+                        array(
+                            'class' => 'bootstrap.widgets.BootMenu',
+                            'items' => array(
+                                '---',
+                                array(
+                                    'label' => 'Administration',
+                                    'url' => '#',
+                                    'items' => array(
+                                        array('label' => 'Users', 'url' => array('/user'), 'visible' => !Yii::app()->user->isGuest),
+                                    ),
+                            )),
+                        ),
+                        array(
+                            'class' => 'bootstrap.widgets.BootMenu',
+                            'htmlOptions' => array('class' => 'pull-right'),
+                            'items' => array(
+                                '---',
+                                array(
+                                    'label' => 'Log out',
+                                    'url' => '/admin/site/logout',
+                                    'visible' => !Yii::app()->user->isGuest,
+                            )),
+                        ),
+                    ),
+                ));
+                ?>
+            </div>
+
+
+            <div class="container">
+                <?php
+                $this->widget('bootstrap.widgets.BootBreadcrumbs', array(
+                    'links' => $this->breadcrumbs,
+                    'homeLink' => CHtml::link('Dashboard', array('./'))
+                ));
+
+
+            endif;
+            ?><!-- breadcrumbs -->
+        </div>
+
+        <div id="wrap">
+            <div id="main"  class="container clear-top" >
+                <div class="row">
+
+                    <div style="float:left;" class="span10">
+
+                        <?php echo $content; ?>
+
+                    </div>
+
+                    <div style="float:left;" class="span2">
+                        <div id="sidebar">
+
                             <?php
-                            $this->widget('zii.widgets.CMenu', array(
-                                'items' => array(
-                                    array('label' => 'Logout (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest),
-                                ),
+                            $this->widget('bootstrap.widgets.BootMenu', array(
+                                'type' => 'tabs', // '', 'tabs', 'pills' (or 'list')
+                                'stacked' => true, // whether this is a stacked menu
+                                'items' => $this->menu,
+                                'htmlOptions' => array('class' => 'nav nav-pills nav-stacked'),
                             ));
                             ?>
+
                         </div>
+                    </div>
 
-                    </div><!-- header -->
-                    <?php
-                    if (Yii::app()->user->id):
-                        ?>
-
-
-                        <?php
-                        //  $this->widget('ext.Caption.Caption');
-                        ?>
-
-                        <div id="menu-top" class="clearfix">
-                            <?php
-                            $this->widget('bootstrap.widgets.BootNavbar', array(
-                                //  'activeCssClass' => 'active',
-                                // 'activateParents' => true,
-                                'brand' => Yii::app()->name,
-                                'id' => 'main_menu',
-                                'items' => array(
-                                    array(
-                                        'class' => 'bootstrap.widgets.BootMenu',
-                                        'items' => array(
-                                            '---',
-                                            array('label' => 'Publishing', 'url' => '#', 'items' => array(
-                                                    array('label' => 'States', 'url' => array('/state/admin'), 'visible' => !Yii::app()->user->isGuest),
-                                                    array('label' => 'Districts', 'url' => array('/district/admin'), 'visible' => !Yii::app()->user->isGuest),
-                                                    array('label' => 'Recommendations', 'url' => array('/recommendation/admin'), 'visible' => !Yii::app()->user->isGuest),
-                                                    array('label' => 'Ballot Item', 'url' => array('/ballotItem/admin'), 'visible' => !Yii::app()->user->isGuest),
-                                                    array('label' => 'Image Upload', 'url' => array('/upload'), 'visible' => !Yii::app()->user->isGuest),
-                                                    //    array('label' => 'Ballot Item News', 'url' => array('/ballotItemUpdate'), 'visible' => !Yii::app()->user->isGuest),
-
-                                                    array('itemOptions' => array('id' => 'external_item'), 'label' => 'Rich Push Notifications', 'linkOptions' => array('target' => '_blank'), 'url' => 'https://go.urbanairship.com/apps/ouRCLPaBRRasv4K1AIw-xA/composer/rich-push/'),
-                                            )),
-                                        ),
-                                    ),
-                                    array(
-                                        'class' => 'bootstrap.widgets.BootMenu',
-                                        'items' => array(
-                                            '---',
-                                            array(
-                                                'label' => 'Application Manager',
-                                                'url' => '#',
-                                                'items' => array(
-                                                    array('label' => 'Application users', 'url' => array('/application_users'), 'visible' => !Yii::app()->user->isGuest),
-                                                    array('label' => 'Tags', 'url' => array('/tag'), 'visible' => !Yii::app()->user->isGuest),
-                                                    array('label' => 'Set alert types', 'url' => array('/alertType'), 'visible' => !Yii::app()->user->isGuest),
-                                                    array('label' => 'Options', 'url' => array('/option'), 'visible' => !Yii::app()->user->isGuest),
-                                                ),
-                                        )),
-                                    ),
-                                    array(
-                                        'class' => 'bootstrap.widgets.BootMenu',
-                                        'items' => array(
-                                            '---',
-                                            array(
-                                                'label' => 'Administration',
-                                                'url' => '#',
-                                                'items' => array(
-                                                    array('label' => 'Users', 'url' => array('/user'), 'visible' => !Yii::app()->user->isGuest),
-                                                ),
-                                        )),
-                                    ),
-                                    array(
-                                        'class' => 'bootstrap.widgets.BootMenu',
-                                        'htmlOptions' => array('class' => 'pull-right'),
-                                        'items' => array(
-                                            '---',
-                                            array(
-                                                'label' => 'Log out',
-                                                'url' => '/admin/site/logout',
-                                                'visible' => !Yii::app()->user->isGuest,
-                                        )),
-                                    ),
-                                ),
-                            ));
-                            ?>
-                        </div>
-
-    <?php
-    if (isset($this->category))
-        $breadcrumbs = $this->category + $this->breadcrumbs;
-    else
-        $breadcrumbs = $this->breadcrumbs;
-
-    $this->widget('bootstrap.widgets.BootBreadcrumbs', array(
-        'links' => $breadcrumbs,
-        'homeLink' => CHtml::link('Dashboard', array('./'))
-    ));
-
-
-endif;
-?><!-- breadcrumbs -->
-
-                    <?php echo $content; ?>
-
-                    <div class="clear"></div>
-                    <div id="footer">
-                        Copyright &copy; <?php echo date('Y'); ?> by Winning Mark.<br/>
-                        All Rights Reserved.<br/>
-
-                    </div><!-- footer -->
                 </div>
+
             </div>
         </div><!-- page -->
+
+        <footer class="footer" id="footer"> 
+            Copyright &copy; <?php echo date('Y'); ?> by Winning Mark - All Rights Reserved
+
+        </footer><!-- footer -->
 
 
     </body>
