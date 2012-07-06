@@ -9,7 +9,7 @@
 
     <div class="row">
         <?php echo $form->labelEx($model, 'title'); ?>
-        <?php echo $form->textField($model, 'title', array('size'=>111)); ?>
+        <?php echo $form->textField($model, 'title', array('size'=>111,  'class' => 'span9',)); ?>
         <?php echo $form->error($model, 'title'); ?>
     </div>
 
@@ -23,6 +23,7 @@
             'htmlOptions' => array(
                 'rows' => 20,
                 'cols' => 85,
+                'class' => 'span9',
             ),
         ));
 
@@ -34,7 +35,7 @@
 
     <div class="row">
         <?php echo $form->labelEx($model, 'excerpt'); ?>
-        <?php echo $form->textArea($model, 'excerpt', array('rows'=>5, 'cols'=>85)); ?>
+        <?php echo $form->textArea($model, 'excerpt', array('rows'=>5, 'cols'=>85,  'class' => 'span9',)); ?>
         <?php echo $form->error($model, 'excerpt'); ?>
     </div>
 

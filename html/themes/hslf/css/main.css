@@ -23,8 +23,11 @@ html,body
     height: 50px;
     clear:both;
     padding:20px;
-    color:#ccc;
-    background-color:#2C2C2C;
+    color:#555;
+    border-top:1px solid #eee;
+    font-weight:bold;
+    background-color:#efefef;
+    text-align:center;
 } 
 
 .breadcrumb {
@@ -32,4 +35,26 @@ html,body
 }
 
 #sidebar{
+}
+
+.candidate_issue_item,
+.ballot_news_item{
+    padding: 5px;
+    margin-bottom: 5px;
+    position: relative;
+    background-color: #EFEFEF;
+    border: 1px solid #DDD;
+}
+
+#id_candidate_issue {
+    border: 1px solid #CCC;
+    padding: 5px;
+    margin-bottom: 15px;
+    display: block;
+    text-align: center;
+    font-weight: bold;
+}
+
+.floatright{
+    float:right;
 }

@@ -139,7 +139,8 @@
             'attribute' => 'detail',
             'htmlOptions' => array(
                 'rows' => 20,
-                'cols' => 85,
+                'cols' => 185,
+                'class' => 'span9',
             ),
         ));
 
@@ -252,9 +253,7 @@
                 ?>
 
                 <div class="ballot_news_item">
-                    <span class="pill_btn">
-
-
+                    <span class="btn floatright">
                         <?php
                         $edit_scorecard_item_url = CHtml::normalizeUrl(array('scorecard/update', 'id' => $card->id));
                         echo CHtml::link('Edit', $edit_scorecard_item_url, array('target' => '_blank'));
@@ -299,7 +298,7 @@
                 ?>
 
                 <div class="ballot_news_item">
-                    <span class="pill_btn">
+                    <span class="btn floatright">
 
 
                         <?php

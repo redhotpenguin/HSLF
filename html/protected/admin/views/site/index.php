@@ -9,8 +9,8 @@
             <h1>Dashboard</h1>
             <p>Welcome to the HSLF app dashboard.</p>
 
-            <p> <b><?php echo $total_app_users; ?></b> <a href="/admin/application_users">Application users</a></p>
-            <p> <b><?php echo $total_ballot_page; ?></b> <a href="/admin/ballotItem">Ballot pages</a></p>
+            <p> <b><?php echo $total_app_users; ?></b> <a href="/admin/application_users/admin/">Application users</a></p>
+            <p> <b><?php echo $total_ballot_page; ?></b> <a href="/admin/ballotItem/admin/">Ballot pages</a></p>
         </div>
 
         <div class="row">
