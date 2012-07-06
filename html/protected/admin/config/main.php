@@ -53,6 +53,7 @@ return array(
 
         'bootstrap' => array(
             'class' => 'ext.bootstrap.components.Bootstrap', // assuming you extracted bootstrap under extensions
+            'responsiveCss'=> true,
         ),
         'urlManager' => array(
             'urlFormat' => 'path',
