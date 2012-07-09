@@ -7,11 +7,12 @@ class TagController extends Controller {
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
     public $layout = '//layouts/column2';
-    public $category = array( 'Application Manager'=>array('/site/mobile/')); // used by the breadcrumb
+    public $category = array('Application Manager' => array('/site/mobile/')); // used by the breadcrumb
 
     /**
      * @return array action filters
      */
+
     public function filters() {
         return array(
             'accessControl', // perform access control for CRUD operations
@@ -64,7 +65,7 @@ class TagController extends Controller {
         if (isset($_POST['Tag'])) {
             $model->attributes = $_POST['Tag'];
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id));
         }
 
         $this->render('create', array(
@@ -80,15 +81,21 @@ class TagController extends Controller {
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
 
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
-        if (isset($_POST['Tag'])) {
-            $model->attributes = $_POST['Tag'];
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+        if (Yii::app()->request->isPostRequest) {
+            // Uncomment the following line if AJAX validation is needed
+            $this->performAjaxValidation($model);
+    
+            if (isset($_POST['Tag'])) {
+                $model->attributes = $_POST['Tag'];
+                if ($model->save())
+                    echo 'success';
+                else
+                    echo 'failure';
+            
+          
+            }
+            return;
         }
-
         $this->render('update', array(
             'model' => $model,
         ));
