@@ -3,7 +3,8 @@
     <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'candidate-form',
-        'enableAjaxValidation' => false,
+        'enableAjaxValidation' => true,
+        'stateful' => true,
             ));
     ?>
 
