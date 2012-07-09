@@ -187,7 +187,7 @@ input{
     width:200px;
 }
 
-.success_update_box{
+.update_box{
     padding: 10px;
     font-weight: bold;
     border: 1px solid #194367;
@@ -207,3 +207,4 @@ input{
     filter: progid:dximagetransform.microsoft.gradient(startColorstr='#62c462',endColorstr='#51a351',GradientType=0);
     filter: progid:dximagetransform.microsoft.gradient(enabled=false);
 }
+
