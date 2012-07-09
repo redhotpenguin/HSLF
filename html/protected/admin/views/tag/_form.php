@@ -28,23 +28,18 @@
     </div>
 
     <div class="row buttons">
-        <?php
-        // echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save');
-        ?>
-
+    
         <?php
         if (!$model->isNewRecord) {
 
-            $url = '/admin/tag/update/?id=' . $model->id;
-
-
-            $url = CHtml::normalizeUrl($url);
-
-
+            $url = CHtml::normalizeUrl(array(
+                'tag/update',
+                'id'=> $model->id,
+            ));
+            
             echo CHtml::ajaxSubmitButton('Save', $this->createUrl($url), array(
                 'type' => 'POST',
-                 'update' => '#targetdiv',
-                
+                'update' => '#targetdiv',
                 'beforeSend' => 'js:function(){
                     target =$("#targetdiv");
                     target.fadeIn();
@@ -52,7 +47,6 @@
                     target.addClass("btn-info");
                     target.html("saving...");
                  }',
-      
                 'success' => 'js:function(response) {
                   if ( response != "success" )
                       return false;
