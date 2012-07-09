@@ -18,7 +18,7 @@ $this->menu = array(
 <?php
 
     if (getParam('updated') == 1) {
-        echo '<div class="update_box">Ballot item updated</div>';
+        echo '<div class="success_update_box">Ballot item updated</div>';
     } 
 
 
