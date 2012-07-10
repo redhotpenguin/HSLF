@@ -40,7 +40,6 @@ $('.search-form form').submit(function(){
 </div><!-- search-form -->
 
 <?php
-
 $this->widget('bootstrap.widgets.BootGridView', array(
     'id' => 'state-grid',
     'dataProvider' => $model->search(),
