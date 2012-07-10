@@ -9,14 +9,22 @@ class BallotItemBehavior extends CActiveRecordBehavior {
 
     public function beforeSave() {
 
-        if (!$this->owner->url) {
+        if (!empty($this->owner->url)) {
 
-            $new_url = str_replace(' ', '-', $this->owner->item);
-            $new_url = strtolower($new_url);
+            $ballots = BallotItem::model()->findAllByAttributes(
+                    array('url' => $this->owner->url), 'id!=:the_id', array(':the_id' => $this->owner->id)
+            );
 
-            $this->owner->url = $new_url;
-            
-           // $this->owner->save();
+            if ($ballots) {
+                /*
+                  foreach($ballots as $ballot){
+                  error_log('here');
+                  error_log($ballot->id);
+                  }
+                 * */
+
+                throw new CHttpException(400, Yii::t('error', 'URL already taken'));
+            }
         }
     }
 
