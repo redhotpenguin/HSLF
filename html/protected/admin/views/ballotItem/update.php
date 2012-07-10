@@ -1,4 +1,5 @@
 <?php
+
 $this->breadcrumbs = array(
     'Ballot Items' => array('index'),
     $model->item => array('view', 'id' => $model->id),

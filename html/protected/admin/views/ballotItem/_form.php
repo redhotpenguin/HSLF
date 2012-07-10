@@ -3,7 +3,8 @@
     <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'ballot-item-form',
-        'enableAjaxValidation' => false,
+        'enableAjaxValidation' => true,
+        'stateful' => true,
         'htmlOptions' => array(
             'enctype' => 'multipart/form-data',
             'class' => 'well form-vertical'),
@@ -60,21 +61,23 @@
         </div>
 
         <div class="">
-            <?php echo $form->labelEx($model, 'image_url'); ?>
+
             <?php
-            //echo $form->textField($model, 'image_url', array('size' => 50, 'readonly'=>'readonly')); 
+            echo $form->labelEx($model, 'image_url');
 
-            if ($model->image_url) {
-                echo '<a href="' . $model->image_url . '" target="_blank"><img class="ballot_item_image_url" src="' . $model->image_url . '"/></a>';
-            }
+            
+            $this->widget('ext.AjaxFileUploader.AjaxFileUploader', array(
+                'model' => $model,
+                'attribute' => 'image_url',
+                'options' => array(
+                    'model_name' => 'BallotItem',
+                    'upload_handler' => CHtml::normalizeUrl(array('ballotItem/upload')),
+                    'modal_view' => CHtml::normalizeUrl(array('ballotItem/upload')),
+                ),
+            ))->start();
+
+            echo $form->error($model, 'image_url');
             ?>
-            <?php echo $form->error($model, 'image_url'); ?>
-
-
-
-            <input type="file" name="image_url" />
-
-            <p>Recommended width: 640px</p>
 
         </div>
 
@@ -226,10 +229,66 @@
     </div>
 
 
+    <?php
+    if (!$model->isNewRecord) {
 
-    <div class="buttons">
-        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
-    </div>
+        $url = CHtml::normalizeUrl(array(
+                    'ballotItem/update',
+                    'id' => $model->id,
+                    'enctype' => 'multipart/form-data',
+                ));
+
+        // CHtml::submitButton('Create');
+        echo CHtml::ajaxSubmitButton('Save', $this->createUrl($url), array(
+            'type' => 'POST',
+            'update' => '#targetdiv',
+            'beforeSend' => 'js:function(){
+                    target =$("#targetdiv");
+                    target.fadeIn();
+                    target.removeClass("hidden");
+                    target.addClass("btn-info");
+                    target.html("saving...");
+                 }',
+            'success' => 'js:function(response) {
+               target =$("#targetdiv");
+                target.removeClass("btn-info");
+                 target.fadeIn();
+                 target.removeClass("hidden");
+                 
+                  if ( response == "success" ){
+                         target.addClass("btn-success");
+                        target.html( "ballot item saved" );
+                    }
+                    else{
+                    target.addClass("btn-danger");
+                      target.html( "Could not save ballot item." );
+                  }
+                target.fadeOut(5000, function(){
+                 target.removeClass("btn-danger");
+                 target.removeClass("btn-success");
+                });
+              
+                
+             }',
+            'error' => 'js:function(){
+                target =$("#targetdiv");
+                target.removeClass("btn-info");
+                 target.fadeIn();
+                 target.removeClass("hidden");
+                   target.addClass("btn-danger");
+         
+                   target.html( "Could not save ballot item." );
+             
+                target.fadeOut(5000, function(){
+                 target.removeClass("btn-danger");
+                });
+            }',
+        ));
+    }else
+        echo CHtml::submitButton('Create');
+    ?> 
+
+    <div class="hidden update_box" id="targetdiv">a</div>
 
     <?php $this->endWidget(); ?>
 

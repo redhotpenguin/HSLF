@@ -28,7 +28,7 @@ class BallotItemController extends Controller {
 
         return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete', 'exportCSV'),
+                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete', 'exportCSV', 'upload'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -105,8 +105,13 @@ class BallotItemController extends Controller {
             $model->election_result_id = Recommendation::model()->findByAttributes(array('value' => 'N/A'))->id;
 
 
-        if (isset($_POST['BallotItem'])) {
+        if (Yii::app()->request->isPostRequest) {
+            //throw new Exception("oops");
             $model->attributes = $_POST['BallotItem'];
+
+            if (Yii::app()->request->isAjaxRequest) { // if ajax request, perform ajax validation.
+                $this->performAjaxValidation($model);
+            }
 
             // a file for image_url has been uploded
             if (!empty($_FILES['image_url']['tmp_name'])) {
@@ -121,8 +126,19 @@ class BallotItemController extends Controller {
                     $model->image_url = $saved_file_url;
             }
 
-            if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
+
+            if (Yii::app()->request->isAjaxRequest) { // AJAX Post Request
+                if ($model->save()) {
+                    echo 'success';
+                } else {
+                    echo 'failure';
+                }
+            } else {  // normal POST request
+                if ($model->save())
+                    $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
+            }
+
+            return;
         }
 
 
@@ -130,6 +146,27 @@ class BallotItemController extends Controller {
         $this->render('update', array(
             'model' => $model
         ));
+    }
+
+    /**
+     * Updates a file
+     */
+    public function actionUpload() {
+
+        if (Yii::app()->request->isPostRequest) {
+            // import FileUpload helper class
+            Yii::import('admin.models.helpers.FileUpload');
+
+            if (!empty($_FILES['image_url']['tmp_name'])) {
+                $fileUpload = new FileUpload('image_url', array('image/jpeg', 'image/gif', 'image/png'));
+
+                $year_month = date('Y_m');
+                $destPath = '/' . $year_month; //ex: /2012_06/
+
+                echo $t = $fileUpload->save($_FILES['image_url'], $destPath);
+            }
+        }else
+            $this->renderPartial ('upload');
     }
 
     /**
