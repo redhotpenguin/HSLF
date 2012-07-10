@@ -56,7 +56,7 @@
                 'showAnim' => 'fold',
                 'dateFormat' => 'yy-mm-dd ' . date('h:i:s'),
                 'buttonImageOnly' => 'true',
-                'buttonImage' => '/themes/hslf/img/calendar.png',
+                'buttonImage' => '/themes/dashboard/img/calendar.png',
                 'showOn' => 'button',
             ),
             'htmlOptions' => array(

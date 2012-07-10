@@ -43,7 +43,7 @@ class EditorController extends Controller {
         
         $this->render('index', array(
             'edit_files' => array(
-                $html_directory.'/themes/hslf_frontend/css/client_app.css',
+                $html_directory.'/themes/frontend/css/client_app.css',
             )
                 )
         );
