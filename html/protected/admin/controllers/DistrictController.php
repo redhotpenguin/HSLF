@@ -191,7 +191,7 @@ class DistrictController extends Controller {
 
         $data = CHtml::listData($data, 'id', 'number');
 
-        //   array_multisort($data);
+        asort($data);
 
         foreach ($data as $id => $district) {
             if (empty($district))
