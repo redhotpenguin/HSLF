@@ -120,20 +120,4 @@ class SiteController extends Controller {
         );
     }
 
-    public function actionPublishing() {
-        $this->render('publishing', array('content' => $content));
-    }
-
-    public function actionMessaging() {
-        $this->render('messaging', array('content' => $content));
-    }
-
-    public function actionAdministration() {
-        $this->render('administration', array('content' => $content));
-    }
-
-    public function actionMobile() {
-        $this->render('mobile');
-    }
-
 }
