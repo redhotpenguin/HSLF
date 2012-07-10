@@ -13,6 +13,11 @@ $this->menu=array(
 
 <?php 
 
+if(isAdmin())
+    $template = '{view}{update}{delete}';
+else
+    $template = '{view}';
+
 $this->widget('bootstrap.widgets.BootGridView', array(
     'dataProvider'=>$dataProvider,
     'columns'=>array(        
@@ -20,6 +25,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
         'email',
         array(            // display a column with "view", "update" and "delete" buttons
             'class'=>'bootstrap.widgets.BootButtonColumn',
+             'template'=> $template,
         ),
     ),
 ));
