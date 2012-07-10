@@ -14,7 +14,7 @@ return array(
     'runtimePath' => $api . '/runtime',
     'name' => PROJECT_NAME . ' - API',
     // preloading 'log' component
-    'preload' => array('log'),
+   // 'preload' => array('log'),
     // autoloading model and component classes
     'import' => array(
         'admin.models.*',
@@ -78,6 +78,7 @@ return array(
             // use 'api/error' action to display errors
             'errorAction' => 'api/index',
         ),
+        /*
         'log' => array(
             'class' => 'CLogRouter',
             'routes' => array(
@@ -87,11 +88,11 @@ return array(
                 ),
             // uncomment the following to show log messages on web pages
 
-            /*  array(
+            array(
               'class'=>'CWebLogRoute',
-              ), */
+              ), 
             ),
-        ),
+        ),*/
     ),
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']
