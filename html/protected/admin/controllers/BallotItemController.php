@@ -166,7 +166,7 @@ class BallotItemController extends Controller {
                 echo $t = $fileUpload->save($_FILES['image_url'], $destPath);
             }
         }else
-            $this->renderPartial ('upload');
+            $this->renderPartial('upload');
     }
 
     /**
