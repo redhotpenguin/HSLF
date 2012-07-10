@@ -20,9 +20,10 @@ $this->menu = array(
 
 
 <?php
-$state_list = CHtml::listData(State::model()->findAll(), 'abbr', 'name');
 
-$state_list = array('' => 'All') + $state_list;
+$state_list = array('' => 'All') + CHtml::listData(State::model()->findAll(), 'abbr', 'name');
+
+$offices = array('' => 'All') + $model->getOfficeTypes();
 
 
 $this->widget('bootstrap.widgets.BootGridView', array(
@@ -42,11 +43,10 @@ $this->widget('bootstrap.widgets.BootGridView', array(
             'header' => 'Item',
             'name' => 'item',
         ),
-        array(
-            'header' => 'Date',
-            'name' => 'date_published',
-            'value' => 'substr($data->date_published, 0, 10)', // get rid off the time stamp
-            'htmlOptions' => array('width' => '70px'),
+       array('name' => 'office_type',
+            'header' => 'Office type',
+            'value' => '$data->office_type',
+            'filter' => CHtml::dropDownList('BallotItem[office_type]', $model->office_type, $offices),
         ),
         array(
             'name' => 'party',

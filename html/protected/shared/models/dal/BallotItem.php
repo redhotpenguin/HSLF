@@ -39,14 +39,13 @@ class BallotItem extends CActiveRecord {
         'republican' => 'Republican',
         'independant' => 'Independant',
     );
-
     private $office_types = array(
         'N/A' => 'Not Avalaible',
-        'representative'=>'Representative',
-        'senator'=>'Senator',
-        'at_large_delate'=> 'At Large Delegate'
+        'representative' => 'Representative',
+        'senator' => 'Senator',
+        'at_large_delate' => 'At Large Delegate'
     );
-    
+
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
@@ -120,7 +119,7 @@ class BallotItem extends CActiveRecord {
             'url' => 'URL',
             'image_url' => 'Headshot',
             'election_result_id' => 'Election Result',
-            'office_type'=>'Office type'
+            'office_type' => 'Office type'
         );
     }
 
@@ -154,7 +153,7 @@ class BallotItem extends CActiveRecord {
         $criteria->compare('next_election_date', $this->next_election_date, true);
         $criteria->compare('priority', $this->priority);
         $criteria->compare('detail', $this->detail, true);
-
+        $criteria->compare('office_type', $this->office_type, true);
         $criteria->compare('published', $this->published, true);
         $criteria->compare('party', $this->party, true);
         $criteria->compare('url', $this->url, true);
@@ -185,6 +184,7 @@ class BallotItem extends CActiveRecord {
                         'pageSize' => 50,
                     ),
                     'sort' => array(
+                        'defaultOrder' => $this->getTableAlias(false, false) . '.id DESC',
                         'attributes' => array(
                             'state_abbr' => array(
                                 'asc' => 'district.state_abbr',
@@ -195,7 +195,6 @@ class BallotItem extends CActiveRecord {
                                 'desc' => 'district.type DESC',
                             ),
                             'district_number' => array(
-                                //  'asc' => "NULLIF(regexp_replace(number, E'\\D', '', 'g'), '')::int",
                                 'asc' => 'district.number ASC',
                                 'desc' => 'district.number DESC',
                             ),
