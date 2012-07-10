@@ -3,36 +3,54 @@ html,body
 {
     height:100%;
 }
+.*{
+    font-family:Georgia;
+    
+}
+body{
+        background-color:#EFEFEF!important;
+}
+
+h1{
+    color:#DD5336!important;
+}
+.container{
+   min-height: 90%; 
+    
+}
+
+#container{
+       background-color: white;
+       padding:20px;
+}
 
 #wrap
 {
-    min-height: 100%; 
-    padding-top:10px;
+    margin-top:50px;
+ 
 }
 
 #main{
     overflow:auto;
-    padding-bottom:50px; /* this needs to be bigger than footer height*/
+
 }
 
 
 .footer 
 {
     position: relative;
-    margin-top: -50px; /* negative value of footer height */
+   
     height: 50px;
     clear:both;
     padding:20px;
-    color:#555;
+    color:#fff;
     border-top:1px solid #eee;
     font-weight:bold;
-    background-color:#efefef;
+    background-color:#537678;
     text-align:center;
 } 
 
-.breadcrumb {
-    margin-top: 50px!important;
-}
+
 
 #sidebar{
 }
@@ -58,3 +76,4 @@ html,body
 .floatright{
     float:right;
 }
+
