@@ -47,6 +47,8 @@
 
             <div id="menu-top" class="clearfix">
                 <?php
+         
+              
                 $this->widget('bootstrap.widgets.BootNavbar', array(
                     'brand' => Yii::app()->name,
                     'brandUrl' => '/admin/',
@@ -57,7 +59,7 @@
                             'items' => array(
                                 '---',
                                 array('label' => 'Publishing', 'url' => '#', 'items' => array(
-                                        array('label' => 'States', 'url' => array('/state/admin'), 'visible' => !Yii::app()->user->isGuest),
+                                        array('label' => 'States', 'url' => array('/state/admin'), 'visible' =>  isAdmin() ),
                                         array('label' => 'Districts', 'url' => array('/district/admin'), 'visible' => !Yii::app()->user->isGuest),
                                         array('label' => 'Recommendations', 'url' => array('/recommendation/admin'), 'visible' => !Yii::app()->user->isGuest),
                                         array('label' => 'Ballot Items', 'url' => array('/ballotItem/admin'), 'visible' => !Yii::app()->user->isGuest),
