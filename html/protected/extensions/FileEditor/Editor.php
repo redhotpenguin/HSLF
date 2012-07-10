@@ -60,7 +60,7 @@ class Editor extends CWidget {
     }
 
     private function printFileEditor($file_content) {
-        echo "<textarea name='FileContent'  rows='30' cols='120'>$file_content</textarea>";
+        echo "<textarea class='span8' name='FileContent'  rows='30' cols='120'>$file_content</textarea>";
     }
 
     private function printHeader($header) {
