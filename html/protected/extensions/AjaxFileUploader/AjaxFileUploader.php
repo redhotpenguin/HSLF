@@ -30,7 +30,7 @@ class AjaxFileUploader extends CWidget {
     }
 
     private function displayThumb($image_url) {
-        echo '<div><img id="'.$this->attribute.'_image_preview" src="' . $image_url . '" style="width:50px; height:50px; "/></div>';
+        echo '<div><a target="_blank" href="'.$image_url.'"><img id="'.$this->attribute.'_image_preview" src="' . $image_url . '" style="width:50px; height:50px; "/></a></div>';
     }
 
     private function displayModalUploaderButton() {
