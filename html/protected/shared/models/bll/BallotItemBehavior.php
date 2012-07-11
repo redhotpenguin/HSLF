@@ -28,6 +28,53 @@ class BallotItemBehavior extends CActiveRecordBehavior {
         }
     }
 
+    /* EXPERIMENTAL */
+
+    public static function filterURL($url) {
+
+
+        $url = preg_replace('/\W/', '', $url);
+
+
+        $url = strtolower($url);
+
+        //remove utf8 characters
+        $url = preg_replace('/[^(\x20-\x7F)]*/', '', $url);
+
+        $url = str_replace(array(" ", "_"), "-", $url);
+        return $url;
+    }
+
+    public function validateURL($url) {
+        if (!$this->owner->isNewRecord) {
+
+            if ($this->isURLUnique($url, $this->owner->id)) {
+                return $this->filterURL($url);
+            }else
+                return false;
+        }
+    }
+
+    public static function isURLUnique($url, $ballot_item_id = null) {
+        if (isset($ballot_item_id)) {
+            $ballot_item_id;
+
+            $ballots = BallotItem::model()->findAllByAttributes(
+                    array('url' => $url), 'id!=:ballot_id', array(':ballot_id' => $ballot_item_id)
+            );
+        } else {
+
+            $ballots = BallotItem::model()->findAllByAttributes(
+                    array('url' => $url));
+        }
+
+
+        if ($ballots)
+            return false;
+        else
+            return true;
+    }
+
 }
 
 ?>

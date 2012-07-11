@@ -28,7 +28,7 @@ class BallotItemController extends Controller {
 
         return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete', 'exportCSV', 'upload'),
+                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete', 'exportCSV', 'upload', 'ajax'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -54,8 +54,8 @@ class BallotItemController extends Controller {
     public function actionCreate() {
         // import FileUpload helper class
         Yii::import('admin.models.helpers.FileUpload');
-        
-     //   error_log(print_r($_REQUEST, true ));
+
+        //   error_log(print_r($_REQUEST, true ));
 
         $model = new BallotItem;
 
@@ -95,8 +95,7 @@ class BallotItemController extends Controller {
      * @param integer $id the ID of the model to be updated
      */
     public function actionUpdate($id) {
-             //   error_log(print_r($_REQUEST, true ));
-     
+        //   error_log(print_r($_REQUEST, true ));
         // import FileUpload helper class
         Yii::import('admin.models.helpers.FileUpload');
 
@@ -248,6 +247,45 @@ class BallotItemController extends Controller {
 
         $content = $csv->toCSV();
         Yii::app()->getRequest()->sendFile('ballot_items.csv', $content, "text/csv", false);
+    }
+
+    /**
+     * Handle ajax requests for /admin/ballotItem/ajax
+     */
+    public function actionAjax() {
+
+        switch (getParam('a')) {
+            case 'validateURL':
+
+                // validation for existing record
+                if (getParam('id')) {
+
+                    $ballot = BallotItem::model()->findByPk(getParam('id'));
+
+                    if (empty($ballot)) {
+                        echo 'not_found';
+                        return;
+                    }
+
+                    $validated_url = $ballot->validateURL(getParam('url'));
+                    if ($validated_url == false)
+                        echo 'invalid_url';
+                    else
+                        echo $validated_url;
+                }else{
+                    // validation for new model
+                    
+                  if ( BallotItem::model()->isURLUnique(getParam('url')) )
+                      echo BallotItem::model()->filterUrl(getParam('url'));
+                  else
+                      echo 'invalid_url';
+                    
+                }
+
+
+
+                break;
+        }
     }
 
 }

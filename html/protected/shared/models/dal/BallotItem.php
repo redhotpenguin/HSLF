@@ -69,12 +69,12 @@ class BallotItem extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('district_id, item, recommendation_id, priority, date_published, published, election_result_id', 'required'),
+            array('district_id, item, recommendation_id, priority, date_published, published, election_result_id, url', 'required'),
             array('district_id, recommendation_id, priority, election_result_id, score', 'numerical', 'integerOnly' => true),
             array('item_type, party, office_type', 'length', 'max' => 128),
             array('url', 'length', 'max' => 500),
             array('personal_url', 'length', 'max' => 2048),
-            // array('personal_url', 'url'),
+            array('personal_url', 'url'),
             array('published', 'length', 'max' => 16),
             array('date_published', 'date', 'format' => 'yyyy-M-d H:m:s'),
             array('next_election_date', 'date', 'format' => 'yyyy-M-d'),
