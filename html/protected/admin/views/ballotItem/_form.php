@@ -1,3 +1,17 @@
+<?php
+if ($model->isNewRecord) {
+    $ns = "var ns  = {site_url: '" . getSetting('site_url') . "' };";
+} else {
+    $ns = "var ns  = {site_url: '" . getSetting('site_url') . "', ballot_id: ".$model->id." };";
+}
+
+Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::POS_HEAD);
+$baseUrl = Yii::app()->baseUrl;
+$cs = Yii::app()->getClientScript();
+$cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
+?>
+
+
 <div class="form">
 
     <?php
@@ -157,7 +171,7 @@
         echo $form->error($model, 'recommendation_id');
         ?>
     </div>
- <div class="clearfix"></div>
+    <div class="clearfix"></div>
     <hr/>
 
     <div class="">
@@ -186,10 +200,7 @@
         echo $form->error($model, 'url');
         ?>
         <br/>
-        <?php
-        echo Yii::app()->params['site_url'];
-        echo '/ballot/' . date('Y') . '/';
-        ?>
+        <span id="dynamic_site_url"></span>
 
         <br/> <br/> 
     </div>
@@ -201,7 +212,7 @@
         echo $form->error($model, 'personal_url');
         ?>
         <br/>
-        External candidate or measure page
+        External candidate or measure site
     </div>
 
     <hr/>
