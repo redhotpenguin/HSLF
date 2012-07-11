@@ -86,7 +86,7 @@
                                 'items' => array(
                                     '---',
                                     array(
-                                        'label' => 'dashboardistration',
+                                        'label' => 'Administration',
                                         'url' => '#',
                                         'items' => array(
                                             array('label' => 'Users', 'url' => array('/user'), 'visible' => !Yii::app()->user->isGuest),
