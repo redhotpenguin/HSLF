@@ -54,6 +54,8 @@ class BallotItemController extends Controller {
     public function actionCreate() {
         // import FileUpload helper class
         Yii::import('admin.models.helpers.FileUpload');
+        
+     //   error_log(print_r($_REQUEST, true ));
 
         $model = new BallotItem;
 
@@ -93,6 +95,8 @@ class BallotItemController extends Controller {
      * @param integer $id the ID of the model to be updated
      */
     public function actionUpdate($id) {
+             //   error_log(print_r($_REQUEST, true ));
+     
         // import FileUpload helper class
         Yii::import('admin.models.helpers.FileUpload');
 
@@ -106,7 +110,6 @@ class BallotItemController extends Controller {
 
 
         if (Yii::app()->request->isPostRequest) {
-            //throw new Exception("oops");
             $model->attributes = $_POST['BallotItem'];
 
             if (Yii::app()->request->isAjaxRequest) { // if ajax request, perform ajax validation.
