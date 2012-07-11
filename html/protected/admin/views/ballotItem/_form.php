@@ -60,7 +60,7 @@
             ?>
         </div>
 
-        <div class="">
+        <div class="clearfix">
 
             <?php
             echo $form->labelEx($model, 'image_url');
@@ -78,10 +78,11 @@
 
             echo $form->error($model, 'image_url');
             ?>
-
         </div>
+        
+     
 
-        <div class="">
+        <div class="clearfix">
             <?php echo $form->labelEx($model, 'next_election_date'); ?>
             <?php
             $this->widget('zii.widgets.jui.CJuiDatePicker', array(
@@ -102,7 +103,7 @@
             ?>
             <?php echo $form->error($model, 'next_election_date'); ?>
         </div>    
-        <div style="clear:both;"></div>
+     
         <div class="">
             <?php
             echo $form->labelEx($model, 'office_type');
@@ -161,7 +162,7 @@
 
     <hr/>
 
-    <div class="">
+    <div class="left_col">
         <?php
         echo $form->labelEx($model, 'url');
         echo $form->textField($model, 'url', array('size' => 50, 'maxlength' => 1000, 'placeholder' => 'URL to share'));
@@ -176,7 +177,7 @@
         <br/> <br/> 
     </div>
 
-    <div class="">
+    <div class="right_col">
         <?php
         echo $form->labelEx($model, 'personal_url');
         echo $form->textField($model, 'personal_url', array('size' => 50, 'maxlength' => 2048, 'placeholder' => 'External candidate or measure url'));
@@ -197,7 +198,7 @@
     <hr/>
 
 
-    <div class="">
+    <div class="clearfix">
         <?php echo $form->labelEx($model, 'date_published'); ?>
         <?php
         $this->widget('zii.widgets.jui.CJuiDatePicker', array(
@@ -219,7 +220,7 @@
         <?php echo $form->error($model, 'date_published'); ?>
     </div>
 
-    <div style="clear:both;"></div>
+  
 
 
     <div class="">
