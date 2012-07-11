@@ -79,11 +79,13 @@ class BallotItem extends CActiveRecord {
             array('date_published', 'date', 'format' => 'yyyy-M-d H:m:s'),
             array('next_election_date', 'date', 'format' => 'yyyy-M-d'),
             array('next_election_date, detail, url, image_url', 'safe'),
+            array('url', 'unique_url'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, district_id, item,office_type, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party, url, image_url, election_result_id, district_number, district_type, state_abbr, personal_url, score', 'safe', 'on' => 'search'),
         );
     }
+
 
     /**
      * @return array relational rules.
@@ -260,7 +262,20 @@ class BallotItem extends CActiveRecord {
             ),
         );
     }
+    
+        /**
+     * Validation rules - make sure the ballot item url is unique
+     * @param string $attribute model attribute
+     */
+    public function unique_url($attribute) {
+        if ($this->isNewRecord) {
+            $ballots = BallotItem::model()->findAllByAttributes(
+                    array('url' => $this->url)
+            );
 
-
+            if ($ballots)
+                $this->addError($attribute, 'The url is already taken.');
+        }
+    }
 
 }
