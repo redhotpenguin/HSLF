@@ -30,22 +30,26 @@ class AjaxFileUploader extends CWidget {
     }
 
     private function displayThumb($image_url) {
-        echo '<div><a target="_blank" href="'.$image_url.'"><img id="'.$this->attribute.'_image_preview" src="' . $image_url . '" style="width:50px; height:50px; "/></a></div>';
+        echo '<div><a target="_blank" href="' . $image_url . '"><img id="' . $this->attribute . '_image_preview" src="' . $image_url . '" style="width:50px; height:50px; "/></a></div>';
     }
 
     private function displayModalUploaderButton() {
-
-        echo CHtml::activeTextField($this->model, $this->attribute, array('id' => 'upload_insert_image'));
         ?>
-        <div>
+
+
+        <div class="alignLeft">
+            <?php echo CHtml::activeTextField($this->model, $this->attribute, array('id' => 'upload_insert_image')); ?>
+        </div>
+
+        <div style="margin-left:5px;" class="alignLeft">
             <input type="button" id="opener" class="btn btn-primary" value="Upload"></input>
         </div>
 
 
         <script type="text/javascript">
-                                                                                                                                                        
+                                                                                                                                                                
             jQuery(document).ready(function($){
-                                                                
+                                                                        
                 image_dialog =  $("#dialog").dialog({
                     autoOpen: false,
                     modal: true,
@@ -58,12 +62,12 @@ class AjaxFileUploader extends CWidget {
                         } 
                     }
                 });
-                                                                                                                                 
+                                                                                                                                         
                 $('#opener').click(function(){           
                     image_dialog.load('<?php echo $this->options['modal_view']; ?>' ).dialog("open");                                   
                 });
             });
-                                                                                                                                                
+                                                                                                                                                        
         </script>
 
 
@@ -71,9 +75,8 @@ class AjaxFileUploader extends CWidget {
 
         <?php
     }
-    
-    
-    public function modalWindow(){
+
+    public function modalWindow() {
         $this->render('ModalWindow');
     }
 

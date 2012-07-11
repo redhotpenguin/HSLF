@@ -194,3 +194,10 @@ input{
     text-align:center;
 }
 
+.alignLeft{
+    float:left;
+}
+
+.alignRight{
+    float:right;
+}
