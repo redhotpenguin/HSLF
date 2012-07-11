@@ -74,7 +74,7 @@ class BallotItem extends CActiveRecord {
             array('item_type, party, office_type', 'length', 'max' => 128),
             array('url', 'length', 'max' => 500),
             array('personal_url', 'length', 'max' => 2048),
-            array('personal_url', 'url'),
+            // array('personal_url', 'url'),
             array('published', 'length', 'max' => 16),
             array('date_published', 'date', 'format' => 'yyyy-M-d H:m:s'),
             array('next_election_date', 'date', 'format' => 'yyyy-M-d'),
@@ -85,7 +85,6 @@ class BallotItem extends CActiveRecord {
             array('id, district_id, item,office_type, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party, url, image_url, election_result_id, district_number, district_type, state_abbr, personal_url, score', 'safe', 'on' => 'search'),
         );
     }
-
 
     /**
      * @return array relational rules.
@@ -262,19 +261,20 @@ class BallotItem extends CActiveRecord {
             ),
         );
     }
-    
-        /**
+
+    /**
      * Validation rules - make sure the ballot item url is unique
      * @param string $attribute model attribute
      */
     public function unique_url($attribute) {
-        if ($this->isNewRecord) {
+        if ($this->isNewRecord && !empty($this->url)) {
             $ballots = BallotItem::model()->findAllByAttributes(
                     array('url' => $this->url)
             );
 
-            if ($ballots)
+            if ($ballots) {
                 $this->addError($attribute, 'The url is already taken.');
+            }
         }
     }
 

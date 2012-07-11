@@ -22,7 +22,7 @@ class BallotItemBehavior extends CActiveRecordBehavior {
                   error_log($ballot->id);
                   }
                  * */
-
+                error_log('url already taken');
                 throw new CHttpException(400, Yii::t('error', 'URL already taken'));
             }
         }
