@@ -15,7 +15,6 @@ $this->menu = array(
 
 <h1><?php echo $model->item; ?> #(<?php echo $model->id; ?>)</h1>
 
-
 <?php
 
     if (getParam('updated') == 1) {
