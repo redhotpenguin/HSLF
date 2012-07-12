@@ -106,7 +106,19 @@ function ballotItemForm($){
     if(!ns.ballot_id){
         item_name_input.trigger('focusout');    
         date_published_input.trigger('change'); 
+    }else{
+        site_url_input.attr('readonly', true);
+        site_url_input.attr('title', "Click to change this url");
+        site_url_input.click(function(){
+            site_url_input.attr('readonly', false);
+        });
+        site_url_input.focusout(function(){
+            site_url_input.attr('readonly', true);
+        });
+   
     }
     site_url_input.trigger('focusout');
-   
+    
+    
+
 }
