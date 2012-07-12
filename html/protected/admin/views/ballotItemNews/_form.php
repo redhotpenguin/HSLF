@@ -1,4 +1,9 @@
+<?php
+
+echo $updated;
+?>
 <div class="form">
+
 
     <?php
     $form = $this->beginWidget('CActiveForm', array(
