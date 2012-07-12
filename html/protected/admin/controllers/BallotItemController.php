@@ -255,35 +255,24 @@ class BallotItemController extends Controller {
     public function actionAjax() {
 
         switch (getParam('a')) {
+            // validate a ballot item URL (see ballotItem.js)
             case 'validateURL':
-
-                // validation for existing record
+                // get the current record if an ID is provided
                 if (getParam('id')) {
-
                     $ballot = BallotItem::model()->findByPk(getParam('id'));
-
-                    if (empty($ballot)) {
-                        echo 'not_found';
-                        return;
-                    }
-
                     $validated_url = $ballot->validateURL(getParam('url'));
-                    if ($validated_url == false)
-                        echo 'invalid_url';
-                    else
-                        echo $validated_url;
-                }else{
-                    // validation for new model
-                    
-                  if ( BallotItem::model()->isURLUnique(getParam('url')) )
-                      echo BallotItem::model()->filterUrl(getParam('url'));
-                  else
-                      echo 'invalid_url';
-                    
                 }
+                else
+                    $validated_url = BallotItem::model()->validateURL(getParam('url'));
 
+                if ($validated_url == false)
+                    echo 'invalid_url';
+                else
+                    echo $validated_url;
 
+                break;
 
+            default:
                 break;
         }
     }
