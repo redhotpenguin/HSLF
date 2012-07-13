@@ -94,8 +94,8 @@
 	$mcImageManagerConfig['edit.format'] = "";
 
 	// Authenication
-	$mcImageManagerConfig['authenticator'] = "";
-	#$mcImageManagerConfig['authenticator'] = "SessionAuthenticator";
+	//$mcImageManagerConfig['authenticator'] = "";
+	$mcImageManagerConfig['authenticator'] = "SessionAuthenticator";
 	$mcImageManagerConfig['authenticator.login_page'] = "login_session_auth.php";
 	$mcImageManagerConfig['authenticator.allow_override'] = "*";
 
