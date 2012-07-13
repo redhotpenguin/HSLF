@@ -25,11 +25,13 @@ class RecommendationController extends Controller {
      * @return array access control rules
      */
     public function accessRules() {
-
         return array(
-            array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete', 'sendnotification', 'notificationsent', 'validatepush', 'gettreeview'),
+       
+             array( // restrict State to admins only
+                'allow',
+                'actions' => array('create', 'delete', 'update', 'admin', 'index', 'view'),
                 'users' => array('@'),
+                'expression' => 'isset($user->role) && ($user->role==="admin")'
             ),
             array('deny', // deny all users
                 'users' => array('*'),

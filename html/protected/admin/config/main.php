@@ -19,7 +19,10 @@ return array(
     'runtimePath' => $backend . '/runtime',
     'name' => 'Admin Dashboard - ' . PROJECT_NAME . ' Mobile ',
     // preloading 'log' component
-    'preload' => array('log'),
+    'preload' => array(
+       // 'log',
+        'bootstrap'
+    ), // preload the bootstrap component),
     // autoloading model and component classes
     'import' => array(
         'admin.models.*',
@@ -48,6 +51,10 @@ return array(
         ),
         // uncomment the following to enable URLs in path-format
 
+        'bootstrap' => array(
+            'class' => 'ext.bootstrap.components.Bootstrap', // assuming you extracted bootstrap under extensions
+            'responsiveCss'=> true,
+        ),
         'urlManager' => array(
             'urlFormat' => 'path',
             'showScriptName' => false,
@@ -72,7 +79,8 @@ return array(
             // use 'site/error' action to display errors
             'errorAction' => 'site/error',
         ),
-        'log' => array(
+        
+        /*'log' => array(
             'class' => 'CLogRouter',
             'routes' => array(
                 array(
@@ -94,9 +102,9 @@ return array(
              */
             /* array(
               'class'=>'CWebLogRoute',
-              ), */
+              ), 
             ),
-        ),
+        ),*/
     ),
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']

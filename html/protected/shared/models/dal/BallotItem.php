@@ -39,14 +39,13 @@ class BallotItem extends CActiveRecord {
         'republican' => 'Republican',
         'independant' => 'Independant',
     );
-
     private $office_types = array(
         'N/A' => 'Not Avalaible',
-        'representative'=>'Representative',
-        'senator'=>'Senator',
-        'at_large_delate'=> 'At Large Delegate'
+        'representative' => 'Representative',
+        'senator' => 'Senator',
+        'at_large_delate' => 'At Large Delegate'
     );
-    
+
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
@@ -70,7 +69,7 @@ class BallotItem extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('district_id, item, recommendation_id, priority, date_published, published, election_result_id', 'required'),
+            array('district_id, item, recommendation_id, priority, date_published, published, election_result_id, url', 'required'),
             array('district_id, recommendation_id, priority, election_result_id, score', 'numerical', 'integerOnly' => true),
             array('item_type, party, office_type', 'length', 'max' => 128),
             array('url', 'length', 'max' => 500),
@@ -80,6 +79,7 @@ class BallotItem extends CActiveRecord {
             array('date_published', 'date', 'format' => 'yyyy-M-d H:m:s'),
             array('next_election_date', 'date', 'format' => 'yyyy-M-d'),
             array('next_election_date, detail, url, image_url', 'safe'),
+            array('url', 'unique_url'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, district_id, item,office_type, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party, url, image_url, election_result_id, district_number, district_type, state_abbr, personal_url, score', 'safe', 'on' => 'search'),
@@ -120,7 +120,7 @@ class BallotItem extends CActiveRecord {
             'url' => 'URL',
             'image_url' => 'Headshot',
             'election_result_id' => 'Election Result',
-            'office_type'=>'Office type'
+            'office_type' => 'Office type'
         );
     }
 
@@ -154,7 +154,7 @@ class BallotItem extends CActiveRecord {
         $criteria->compare('next_election_date', $this->next_election_date, true);
         $criteria->compare('priority', $this->priority);
         $criteria->compare('detail', $this->detail, true);
-
+        $criteria->compare('office_type', $this->office_type, true);
         $criteria->compare('published', $this->published, true);
         $criteria->compare('party', $this->party, true);
         $criteria->compare('url', $this->url, true);
@@ -185,6 +185,7 @@ class BallotItem extends CActiveRecord {
                         'pageSize' => 50,
                     ),
                     'sort' => array(
+                        'defaultOrder' => $this->getTableAlias(false, false) . '.id DESC',
                         'attributes' => array(
                             'state_abbr' => array(
                                 'asc' => 'district.state_abbr',
@@ -195,7 +196,6 @@ class BallotItem extends CActiveRecord {
                                 'desc' => 'district.type DESC',
                             ),
                             'district_number' => array(
-                                //  'asc' => "NULLIF(regexp_replace(number, E'\\D', '', 'g'), '')::int",
                                 'asc' => 'district.number ASC',
                                 'desc' => 'district.number DESC',
                             ),
@@ -260,6 +260,22 @@ class BallotItem extends CActiveRecord {
             // 'property2'=>'value2',
             ),
         );
+    }
+
+    /**
+     * Validation rules - make sure the ballot item url is unique
+     * @param string $attribute model attribute
+     */
+    public function unique_url($attribute) {
+        if ($this->isNewRecord && !empty($this->url)) {
+            $ballots = BallotItem::model()->findAllByAttributes(
+                    array('url' => $this->url)
+            );
+
+            if ($ballots) {
+                $this->addError($attribute, 'The url is already taken.');
+            }
+        }
     }
 
 }

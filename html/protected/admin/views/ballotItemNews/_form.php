@@ -1,15 +1,21 @@
+<?php
+
+echo $updated;
+?>
 <div class="form">
+
 
     <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'candidate-form',
-        'enableAjaxValidation' => false,
+        'enableAjaxValidation' => true,
+        'stateful' => true,
             ));
     ?>
 
     <div class="row">
         <?php echo $form->labelEx($model, 'title'); ?>
-        <?php echo $form->textField($model, 'title', array('size'=>111)); ?>
+        <?php echo $form->textField($model, 'title', array('size'=>111,  'class' => 'span9',)); ?>
         <?php echo $form->error($model, 'title'); ?>
     </div>
 
@@ -23,6 +29,7 @@
             'htmlOptions' => array(
                 'rows' => 20,
                 'cols' => 85,
+                'class' => 'span9',
             ),
         ));
 
@@ -34,7 +41,7 @@
 
     <div class="row">
         <?php echo $form->labelEx($model, 'excerpt'); ?>
-        <?php echo $form->textArea($model, 'excerpt', array('rows'=>5, 'cols'=>85)); ?>
+        <?php echo $form->textArea($model, 'excerpt', array('rows'=>5, 'cols'=>85,  'class' => 'span9',)); ?>
         <?php echo $form->error($model, 'excerpt'); ?>
     </div>
 
@@ -54,7 +61,7 @@
                 'showAnim' => 'fold',
                 'dateFormat' => 'yy-mm-dd ' . date('h:i:s'),
                 'buttonImageOnly' => 'true',
-                'buttonImage' => '/themes/hslf/img/calendar.png',
+                'buttonImage' => '/themes/dashboard/img/calendar.png',
                 'showOn' => 'button',
             ),
             'htmlOptions' => array(

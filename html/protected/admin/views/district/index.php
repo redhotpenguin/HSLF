@@ -17,7 +17,7 @@ $this->menu = array(
 <?php
 $dataProvider->pagination->pageSize = 60;
 
-$this->widget('zii.widgets.grid.CGridView', array(
+$this->widget('bootstrap.widgets.BootGridView', array(
     'dataProvider' => $dataProvider,
     'columns' => array(
         array(
@@ -28,7 +28,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
         'number',
         'display_name',
         array(// display a column with "view", "update" and "delete" buttons
-            'class' => 'CButtonColumn',
+            'class' => 'bootstrap.widgets.BootButtonColumn',
             'deleteConfirmation' => "js:'Deleting this District will also delete every ballot items associated to it, continue?'",
         ),
     ),

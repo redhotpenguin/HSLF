@@ -42,7 +42,7 @@ class DistrictSelector extends CInputWidget {
     }
 
     private function StateSelector($selected = null) {
-        echo '<div class="row"> <b>State:</b><br/>';
+        echo '<div class=""> <b>State:</b><br/>';
 
         $state_list = CHtml::listData($this->state_model->findAll(array('order'=>'name ASC')), 'abbr', 'name');
         $options = array(
@@ -62,7 +62,7 @@ class DistrictSelector extends CInputWidget {
     }
 
     private function DistrictTypeSelector($selected = null) {
-        echo '<div class="row"> <b>District Type:</b><br/>';
+        echo '<div class=""> <b>District Type:</b><br/>';
 
         $district_type_list = $this->district->getTypeOptions();
 
@@ -82,7 +82,7 @@ class DistrictSelector extends CInputWidget {
     private function DistrictNumberSelector($state_abbr = 'ak', $district_type = 'statewide', $selected = null) {
 
         // select number from District where state_abbr = x and type = y
-        echo '<div class="row"> <b>District:</b><span class="required">*</span><br/>';
+        echo '<div class=""> <b>District:</b><span class="required">*</span><br/>';
         $district_number_list = District::model()->getTagDistrictsByStateAndType($state_abbr, $district_type);
         echo CHtml::dropDownList($this->field_name, $selected, $district_number_list);
         echo '</div>';

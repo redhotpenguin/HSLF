@@ -15,7 +15,7 @@ $this->menu=array(
 
 <h1><?php echo $model->name; ?></h1>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
+<?php $this->widget('bootstrap.widgets.BootDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',

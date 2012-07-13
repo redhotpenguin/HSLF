@@ -41,7 +41,7 @@ $state_list = CHtml::listData(State::model()->findAll(), 'abbr', 'name');
 
 $state_list = array('' => 'All') + $state_list;
 
-$this->widget('zii.widgets.grid.CGridView', array(
+$this->widget('bootstrap.widgets.BootGridView', array(
     'id' => 'application-users-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
@@ -79,7 +79,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
         
         
         array(
-            'class' => 'CButtonColumn',
+            'class' => 'bootstrap.widgets.BootButtonColumn',
             'template' => $button_template,
         ),
     ),

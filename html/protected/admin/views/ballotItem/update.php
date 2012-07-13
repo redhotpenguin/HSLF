@@ -1,4 +1,5 @@
 <?php
+
 $this->breadcrumbs = array(
     'Ballot Items' => array('index'),
     $model->item => array('view', 'id' => $model->id),
@@ -14,11 +15,10 @@ $this->menu = array(
 
 <h1><?php echo $model->item; ?> #(<?php echo $model->id; ?>)</h1>
 
-
 <?php
 
     if (getParam('updated') == 1) {
-        echo '<div class="update_box">Ballot item updated</div>';
+        echo '<div class="success_update_box">Ballot item updated</div>';
     } 
 
 

@@ -28,7 +28,7 @@ class BallotItemController extends Controller {
 
         return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete', 'exportCSV'),
+                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete', 'exportCSV', 'upload', 'ajax'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -54,6 +54,8 @@ class BallotItemController extends Controller {
     public function actionCreate() {
         // import FileUpload helper class
         Yii::import('admin.models.helpers.FileUpload');
+
+        //   error_log(print_r($_REQUEST, true ));
 
         $model = new BallotItem;
 
@@ -93,6 +95,7 @@ class BallotItemController extends Controller {
      * @param integer $id the ID of the model to be updated
      */
     public function actionUpdate($id) {
+        //   error_log(print_r($_REQUEST, true ));
         // import FileUpload helper class
         Yii::import('admin.models.helpers.FileUpload');
 
@@ -105,8 +108,12 @@ class BallotItemController extends Controller {
             $model->election_result_id = Recommendation::model()->findByAttributes(array('value' => 'N/A'))->id;
 
 
-        if (isset($_POST['BallotItem'])) {
+        if (Yii::app()->request->isPostRequest) {
             $model->attributes = $_POST['BallotItem'];
+
+            if (Yii::app()->request->isAjaxRequest) { // if ajax request, perform ajax validation.
+                $this->performAjaxValidation($model);
+            }
 
             // a file for image_url has been uploded
             if (!empty($_FILES['image_url']['tmp_name'])) {
@@ -121,8 +128,19 @@ class BallotItemController extends Controller {
                     $model->image_url = $saved_file_url;
             }
 
-            if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
+
+            if (Yii::app()->request->isAjaxRequest) { // AJAX Post Request
+                if ($model->save()) {
+                    echo 'success';
+                } else {
+                    echo 'failure';
+                }
+            } else {  // normal POST request
+                if ($model->save())
+                    $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
+            }
+
+            return;
         }
 
 
@@ -130,6 +148,27 @@ class BallotItemController extends Controller {
         $this->render('update', array(
             'model' => $model
         ));
+    }
+
+    /**
+     * Updates a file
+     */
+    public function actionUpload() {
+
+        if (Yii::app()->request->isPostRequest) {
+            // import FileUpload helper class
+            Yii::import('admin.models.helpers.FileUpload');
+
+            if (!empty($_FILES['image_url']['tmp_name'])) {
+                $fileUpload = new FileUpload('image_url', array('image/jpeg', 'image/gif', 'image/png'));
+
+                $year_month = date('Y_m');
+                $destPath = '/' . $year_month; //ex: /2012_06/
+
+                echo $t = $fileUpload->save($_FILES['image_url'], $destPath);
+            }
+        }else
+            $this->renderPartial('upload');
     }
 
     /**
@@ -208,6 +247,34 @@ class BallotItemController extends Controller {
 
         $content = $csv->toCSV();
         Yii::app()->getRequest()->sendFile('ballot_items.csv', $content, "text/csv", false);
+    }
+
+    /**
+     * Handle ajax requests for /admin/ballotItem/ajax
+     */
+    public function actionAjax() {
+
+        switch (getParam('a')) {
+            // validate a ballot item URL (see ballotItem.js)
+            case 'validateURL':
+                // get the current record if an ID is provided
+                if (getParam('id')) {
+                    $ballot = BallotItem::model()->findByPk(getParam('id'));
+                    $validated_url = $ballot->validateURL(getParam('url'));
+                }
+                else
+                    $validated_url = BallotItem::model()->validateURL(getParam('url'));
+
+                if ($validated_url == false)
+                    echo 'invalid_url';
+                else
+                    echo $validated_url;
+
+                break;
+
+            default:
+                break;
+        }
     }
 
 }

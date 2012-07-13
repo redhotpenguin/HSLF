@@ -1,11 +1,41 @@
+<?php
+if ($model->isNewRecord) {
+    $ns = "var ns  = {site_url: '" . getSetting('site_url') . "' };";
+} else {
+    $ns = "var ns  = {site_url: '" . getSetting('site_url') . "', ballot_id: ".$model->id." };";
+}
+
+Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::POS_HEAD);
+$baseUrl = Yii::app()->baseUrl;
+$cs = Yii::app()->getClientScript();
+$cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
+?>
+
+
 <div class="form">
 
     <?php
-    $form = $this->beginWidget('CActiveForm', array(
-        'id' => 'ballot-item-form',
-        'enableAjaxValidation' => false,
-        'htmlOptions' => array('enctype' => 'multipart/form-data'),
-            ));
+    if ($model->id) {
+        $form = $this->beginWidget('CActiveForm', array(
+            'id' => 'ballot-item-form',
+            'enableAjaxValidation' => true,
+            'stateful' => true,
+            'htmlOptions' => array(
+                'enctype' => 'multipart/form-data',
+                'class' => 'well form-vertical'),
+                ));
+    } else {
+        $form = $this->beginWidget('CActiveForm', array(
+            'id' => 'ballot-item-form',
+            'enableAjaxValidation' => false,
+            'stateful' => false,
+            'htmlOptions' => array(
+                'enctype' => 'multipart/form-data',
+                'class' => 'well form-vertical'),
+                ));
+    }
+
+
     $recommendation_list = CHtml::listData(Recommendation::model()->findAll(), 'id', 'value');
     ?>
 
@@ -15,15 +45,15 @@
 
 
 
-    <div class="row">
+    <div class="">
         <?php echo $form->labelEx($model, 'item'); ?>
-        <?php echo $form->textField($model, 'item', array('size' => 111, 'maxlength' => 1000, 'placeholder' => 'i.e Candidate or Measure Name')); ?>
+        <?php echo $form->textField($model, 'item', array('class' => 'span7', 'maxlength' => 1000, 'placeholder' => 'i.e Candidate or Measure Name')); ?>
         <?php echo $form->error($model, 'item'); ?>
     </div>
 
     <div class="left_col">
 
-        <div class="row">
+        <div class="">
             <?php
             echo $form->labelEx($model, 'item_type');
             echo $form->dropDownList($model, 'item_type', $model->getItemTypeOptions());
@@ -31,7 +61,7 @@
             ?>
         </div>
 
-        <div class="row">
+        <div class="">
             <?php
             $this->widget('ext.DistrictSelector.DistrictSelector', array(
                 'model' => $model,
@@ -49,7 +79,7 @@
     </div>
 
     <div class="right_col">
-        <div class="row">
+        <div class="">
             <?php
             echo $form->labelEx($model, 'party');
             echo $form->dropDownList($model, 'party', $model->getParties());
@@ -57,26 +87,28 @@
             ?>
         </div>
 
-        <div class="row">
-            <?php echo $form->labelEx($model, 'image_url'); ?>
+        <div class="clearfix">
+
             <?php
-            //echo $form->textField($model, 'image_url', array('size' => 50, 'readonly'=>'readonly')); 
+            echo $form->labelEx($model, 'image_url');
 
-            if ($model->image_url) {
-                echo '<a href="' . $model->image_url . '" target="_blank"><img class="ballot_item_image_url" src="' . $model->image_url . '"/></a>';
-            }
+
+            $this->widget('ext.AjaxFileUploader.AjaxFileUploader', array(
+                'model' => $model,
+                'attribute' => 'image_url',
+                'options' => array(
+                    'model_name' => 'BallotItem',
+                    'upload_handler' => CHtml::normalizeUrl(array('ballotItem/upload')),
+                    'modal_view' => CHtml::normalizeUrl(array('ballotItem/upload')),
+                ),
+            ))->start();
+
+            echo $form->error($model, 'image_url');
             ?>
-            <?php echo $form->error($model, 'image_url'); ?>
-
-
-
-            <input type="file" name="image_url" />
-
-            <p>Recommended size: 280x320</p>
-
         </div>
 
-        <div class="row">
+
+        <div class="clearfix">
             <?php echo $form->labelEx($model, 'next_election_date'); ?>
             <?php
             $this->widget('zii.widgets.jui.CJuiDatePicker', array(
@@ -87,7 +119,7 @@
                     'showAnim' => 'fold',
                     'dateFormat' => 'yy-mm-dd',
                     'buttonImageOnly' => 'true',
-                    'buttonImage' => '/themes/hslf/img/calendar.png',
+                    'buttonImage' => '/themes/dashboard/img/calendar.png',
                     'showOn' => 'button',
                 ),
                 'htmlOptions' => array(
@@ -97,8 +129,8 @@
             ?>
             <?php echo $form->error($model, 'next_election_date'); ?>
         </div>    
-        <div style="clear:both;"></div>
-        <div class="row">
+
+        <div class="">
             <?php
             echo $form->labelEx($model, 'office_type');
             echo $form->dropDownList($model, 'office_type', $model->getOfficeTypes());
@@ -111,25 +143,37 @@
 
     <hr/>
 
-    <div class="row">
+    <div class="left_col">
         <?php
         echo $form->labelEx($model, 'priority');
-        echo $form->dropDownList($model, 'priority', $model->getPriorityOptions());
+
+
+        $this->widget('ext.UIWidgets.SliderWidget', array(
+            'model' => $model,
+            'attribute' => 'priority',
+            'options' => array(
+                'min' => 1,
+                'max' => 10,
+                'width' => 200,
+                'animate' => false,
+            ),
+        ));
+
         echo $form->error($model, 'priority');
         ?>
-        <p> 1 = Lowest, 10 = highest</p>
     </div>
 
-    <div class="row">
+    <div class="right_col">
         <?php
         echo $form->labelEx($model, 'recommendation_id');
         echo $form->dropDownList($model, 'recommendation_id', $recommendation_list);
         echo $form->error($model, 'recommendation_id');
         ?>
     </div>
+    <div class="clearfix"></div>
+    <hr/>
 
-
-    <div class="row">
+    <div class="">
         <?php
         echo $form->labelEx($model, 'detail');
         $this->widget('ext.tinymce.TinyMce', array(
@@ -137,7 +181,8 @@
             'attribute' => 'detail',
             'htmlOptions' => array(
                 'rows' => 20,
-                'cols' => 85,
+                'cols' => 185,
+                'class' => 'span9',
             ),
         ));
 
@@ -145,7 +190,33 @@
         ?>
     </div>
 
-    <div class="row">
+    <hr/>
+
+    <div class="left_col">
+        <?php
+        echo $form->labelEx($model, 'url');
+        echo $form->textField($model, 'url', array('size' => 50, 'maxlength' => 1000, 'placeholder' => 'URL to share'));
+        echo $form->error($model, 'url');
+        ?>
+        <br/>
+        <span id="dynamic_site_url"></span>
+
+        <br/> <br/> 
+    </div>
+
+    <div class="right_col">
+        <?php
+        echo $form->labelEx($model, 'personal_url');
+        echo $form->textField($model, 'personal_url', array('size' => 50, 'maxlength' => 2048, 'placeholder' => 'External candidate or measure url'));
+        echo $form->error($model, 'personal_url');
+        ?>
+        <br/>
+        External candidate or measure site
+    </div>
+
+    <hr/>
+
+    <div class="left_col">
         <?php
         echo $form->labelEx($model, 'election_result_id');
         echo $form->dropDownList($model, 'election_result_id', $recommendation_list);
@@ -153,45 +224,30 @@
         ?>
     </div>
 
-    <hr/>
-
-    <div class="row">
-        <?php
-        echo $form->labelEx($model, 'url');
-        echo $form->textField($model, 'url', array('size' => 50, 'maxlength' => 1000, 'placeholder' => 'URL to share'));
-        echo $form->error($model, 'url');
-        ?>
-        <br/>
-        <?php
-        echo Yii::app()->params['site_url'];
-        echo '/ballot/' . date('Y') . '/';
-        ?>
-
-        <br/> <br/> 
-    </div>
-
-    <div class="row">
-        <?php
-        echo $form->labelEx($model, 'personal_url');
-        echo $form->textField($model, 'personal_url', array('size' => 50, 'maxlength' => 2048, 'placeholder' => 'External candidate or measure url'));
-        echo $form->error($model, 'personal_url');
-        ?>
-    </div>
-
-    <hr/>
-
-
-    <div class="row">
+    <div class="right_col">
         <?php
         echo $form->labelEx($model, 'score');
-        echo $form->textField($model, 'score', array('size' => 50, 'maxlength' => 2048));
+
+        $this->widget('ext.UIWidgets.SliderWidget', array(
+            'model' => $model,
+            'attribute' => 'score',
+            'options' => array(
+                'min' => 1,
+                'max' => 101,
+                'width' => 200
+            ),
+        ));
+
         echo $form->error($model, 'score');
         ?>
     </div>
+
+    <div class="clearfix"></div>
+
     <hr/>
 
 
-    <div class="row">
+    <div class="left_col">
         <?php echo $form->labelEx($model, 'date_published'); ?>
         <?php
         $this->widget('zii.widgets.jui.CJuiDatePicker', array(
@@ -202,7 +258,7 @@
                 'showAnim' => 'fold',
                 'dateFormat' => 'yy-mm-dd ' . date('h:i:s'),
                 'buttonImageOnly' => 'true',
-                'buttonImage' => '/themes/hslf/img/calendar.png',
+                'buttonImage' => '/themes/dashboard/img/calendar.png',
                 'showOn' => 'button',
             ),
             'htmlOptions' => array(
@@ -213,20 +269,78 @@
         <?php echo $form->error($model, 'date_published'); ?>
     </div>
 
-    <div style="clear:both;"></div>
 
 
-    <div class="row">
+
+    <div class="right_col ">
         <?php echo $form->labelEx($model, 'published'); ?>
         <?php echo $form->dropDownList($model, 'published', array('yes' => 'Yes', 'no' => 'No')); ?>
         <?php echo $form->error($model, 'published'); ?>
     </div>
 
+    <div class="clearfix"></div>
 
+    <?php
+    if (!$model->isNewRecord) {
 
-    <div class="row buttons">
-        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
-    </div>
+        $url = CHtml::normalizeUrl(array(
+                    'ballotItem/update',
+                    'id' => $model->id,
+                    'enctype' => 'multipart/form-data',
+                ));
+
+        // CHtml::submitButton('Create');
+        echo CHtml::ajaxSubmitButton('Save', $this->createUrl($url), array(
+            'type' => 'POST',
+            'update' => '#targetdiv',
+            'beforeSend' => 'js:function(){
+                    target =$("#targetdiv");
+                    target.fadeIn();
+                    target.removeClass("hidden");
+                    target.addClass("btn-info");
+                    target.html("saving...");
+                 }',
+            'success' => 'js:function(response) {
+               target =$("#targetdiv");
+                target.removeClass("btn-info");
+                 target.fadeIn();
+                 target.removeClass("hidden");
+                 
+                  if ( response == "success" ){
+                         target.addClass("btn-success");
+                        target.html( "ballot item saved" );
+                    }
+                    else{
+                    target.addClass("btn-danger");
+                      target.html( "Could not save ballot item." );
+                  }
+                target.fadeOut(5000, function(){
+                 target.removeClass("btn-danger");
+                 target.removeClass("btn-success");
+                });
+              
+                
+             }',
+            'error' => 'js:function(object){
+              
+                target =$("#targetdiv");
+                target.removeClass("btn-info");
+                 target.fadeIn();
+                 target.removeClass("hidden");
+                   target.addClass("btn-danger");
+         
+                   target.html( "Could not save ballot item:<br/>" + object.responseText );
+             
+                //target.fadeOut(5000, function(){
+                // target.removeClass("btn-danger");
+              //  });
+            }',
+        ));
+    }else
+        echo CHtml::submitButton('Create');
+    ?> 
+
+    <div class="hidden update_box" id="targetdiv">a</div>
 
     <?php $this->endWidget(); ?>
 
@@ -250,9 +364,7 @@
                 ?>
 
                 <div class="ballot_news_item">
-                    <span class="pill_btn">
-
-
+                    <span class="btn floatright">
                         <?php
                         $edit_scorecard_item_url = CHtml::normalizeUrl(array('scorecard/update', 'id' => $card->id));
                         echo CHtml::link('Edit', $edit_scorecard_item_url, array('target' => '_blank'));
@@ -276,8 +388,8 @@
     endif; // end test $model->BallotItemNews
     ?>
 
-        <br/>
- <br/>
+    <br/>
+    <br/>
 
     <h1>News updates:</h1>
 
@@ -297,7 +409,7 @@
                 ?>
 
                 <div class="ballot_news_item">
-                    <span class="pill_btn">
+                    <span class="btn floatright">
 
 
                         <?php

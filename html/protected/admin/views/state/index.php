@@ -16,14 +16,15 @@ $this->menu=array(
 
 $dataProvider->pagination->pageSize = 60;
 
-$this->widget('zii.widgets.grid.CGridView', array(
+$this->widget('bootstrap.widgets.BootGridView', array(
     'dataProvider'=>$dataProvider,
+    'type'=>'striped bordered condensed',
     'columns'=>array(
         'id',          
         'name',  
         'abbr',
         array(            // display a column with "view", "update" and "delete" buttons
-            'class'=>'CButtonColumn',
+            'class'=>'bootstrap.widgets.BootButtonColumn',
         ),
     ),
 ));

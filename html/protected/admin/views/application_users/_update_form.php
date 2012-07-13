@@ -4,6 +4,7 @@
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'application-users-form',
         'enableAjaxValidation' => false,
+            'htmlOptions' => array('class' => 'well form-vertical'),
             ));
     ?>
 

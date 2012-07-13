@@ -26,13 +26,10 @@ class StateController extends Controller {
      */
     public function accessRules() {
         return array(
-            array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'view', 'create', 'update', 'admin', 'exportCSV'),
-                'users' => array('@'),
-            ),
-            array(
+       
+             array( // restrict State to admins only
                 'allow',
-                'actions' => array('delete'),
+                'actions' => array('create', 'delete', 'update', 'admin', 'index', 'view'),
                 'users' => array('@'),
                 'expression' => 'isset($user->role) && ($user->role==="admin")'
             ),

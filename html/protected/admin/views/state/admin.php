@@ -31,7 +31,6 @@ $('.search-form form').submit(function(){
     or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
 </p>
 
-<?php echo CHtml::link('Advanced Search', '#', array('class' => 'search-button')); ?>
 <div class="search-form" style="display:none">
     <?php
     $this->renderPartial('_search', array(
@@ -41,7 +40,7 @@ $('.search-form form').submit(function(){
 </div><!-- search-form -->
 
 <?php
-$this->widget('zii.widgets.grid.CGridView', array(
+$this->widget('bootstrap.widgets.BootGridView', array(
     'id' => 'state-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
@@ -50,7 +49,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
         'abbr',
         'name',
         array(
-            'class' => 'CButtonColumn',
+            'class' => 'bootstrap.widgets.BootButtonColumn',
         ),
     ),
 ));

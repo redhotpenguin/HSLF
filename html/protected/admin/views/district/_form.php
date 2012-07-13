@@ -4,6 +4,7 @@
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'district-form',
         'enableAjaxValidation' => false,
+        'htmlOptions' => array('class' => 'well form-vertical'),
             ));
     ?>
 
@@ -11,7 +12,7 @@
 
     <?php echo $form->errorSummary($model); ?>
 
-    <div class="row">
+    <div class="">
         <?php echo $form->labelEx($model, 'state_abbr'); ?>
         <?php
         $state_list = CHtml::listData(State::model()->findAll(), 'abbr', 'name');
@@ -24,7 +25,7 @@
         <?php echo $form->error($model, 'state_abbr'); ?>
     </div>
 
-    <div class="row">
+    <div class="">
         <?php
         echo $form->labelEx($model, 'type');
         echo $form->dropDownList($model, 'type', $model->getTypeOptions(), $options);
@@ -32,21 +33,21 @@
         ?>
     </div>
 
-    <div class="row">
+    <div class="">
         <?php echo $form->labelEx($model, 'number'); ?>
         <?php echo $form->textField($model, 'number'); ?>
         <?php echo $form->error($model, 'number'); ?>
     </div>
 
 
-    <div class="row">
+    <div class="">
         <?php echo $form->labelEx($model, 'display_name'); ?>
         <?php echo $form->textField($model, 'display_name'); ?>
         <?php echo $form->error($model, 'display_name'); ?>
     </div>
 
 
-    <div class="row buttons">
+    <div class=" buttons">
         <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
     </div>
 

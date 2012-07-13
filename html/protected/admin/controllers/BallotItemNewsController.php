@@ -52,7 +52,7 @@ class BallotItemNewsController extends Controller {
             $model->attributes = $_POST['BallotItemNews'];
 
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id, 'created' => true));
         }
 
         $this->render('add', array(
@@ -76,7 +76,7 @@ class BallotItemNewsController extends Controller {
 
 
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
         }
 
         $this->render('update', array(

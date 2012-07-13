@@ -1,0 +1,87 @@
+/* styles for layout */
+html,body
+{
+    height:100%;
+}
+.*{
+    font-family:Georgia;
+    
+}
+body{
+        background-color:#EFEFEF!important;
+}
+
+h1{
+    color:#DD5336!important;
+}
+.container{
+   min-height: 90%; 
+    
+}
+
+#container{
+       background-color: white;
+       padding:20px;
+}
+
+#wrap
+{
+    margin-top:50px;
+ 
+}
+
+#main{
+    overflow:auto;
+
+}
+
+
+.footer 
+{
+    position: relative;
+   
+    height: 50px;
+    clear:both;
+    padding:20px;
+    color:#fff;
+    border-top:1px solid #eee;
+    font-weight:bold;
+    background-color:#537678;
+    text-align:center;
+} 
+
+
+
+#sidebar{
+}
+
+.candidate_issue_item,
+.ballot_news_item{
+    padding: 5px;
+    margin-bottom: 5px;
+    position: relative;
+    background-color: #EFEFEF;
+    border: 1px solid #DDD;
+}
+
+#id_candidate_issue {
+    border: 1px solid #CCC;
+    padding: 5px;
+    margin-bottom: 15px;
+    display: block;
+    text-align: center;
+    font-weight: bold;
+}
+
+.floatright{
+    float:right;
+}
+
+.clearfix:after{
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+  font-size: 0;
+}

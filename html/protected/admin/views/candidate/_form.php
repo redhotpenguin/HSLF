@@ -158,7 +158,7 @@
         <div id="iphone_wrapper">
             <div id="iphone_bg">
                 <div id="iphone_header">   
-                    <img class="iphone_back_btn" src='/themes/hslf/css/iphone_back_btn.png'/>
+                    <img class="iphone_back_btn" src='/themes/dashboard/css/iphone_back_btn.png'/>
                     <div id="Candidate_full_name_preview" class="input_preview"></div>
 
 

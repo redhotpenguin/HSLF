@@ -13,7 +13,7 @@ $this->menu=array(
 
 <?php
 
-$this->widget('zii.widgets.grid.CGridView', array(
+$this->widget('bootstrap.widgets.BootGridView', array(
     'dataProvider' => $dataProvider,
     'columns' => array(
         'id',

@@ -52,7 +52,7 @@ class ScorecardController extends Controller {
             $model->attributes = $_POST['Scorecard'];
 
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id, 'created' => true));
         }
 
         $this->render('add', array(
@@ -74,10 +74,9 @@ class ScorecardController extends Controller {
             $model->attributes = $_POST['Scorecard'];
 
             if ($model->save()) {
-                $this->redirect(array('update', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
             }else
                 error_log('cant save');
-             
         }
 
         $this->render('update', array(
@@ -91,8 +90,8 @@ class ScorecardController extends Controller {
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
     }
-    
-     /**
+
+    /**
      * Deletes a particular model.
      * If deletion is successful, the browser will be redirected to the 'admin' page.
      * @param integer $id the ID of the model to be deleted

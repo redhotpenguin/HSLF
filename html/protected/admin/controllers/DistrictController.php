@@ -17,20 +17,15 @@ class DistrictController extends Controller {
         );
     }
 
-    /**
-     * Specifies the access control rules.
-     * This method is used by the 'accessControl' filter.
-     * @return array access control rules
-     */
     public function accessRules() {
         return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'view', 'create', 'update', 'admin', 'dynamicdistrict', 'dynamicdistrictnumber', 'exportCSV'),
+                'actions' => array('dynamicdistrictnumber', 'dynamicdistrict', 'exportCSV'),
                 'users' => array('@'),
             ),
-            array(
+            array(// restrict State to admins only
                 'allow',
-                'actions' => array('delete'),
+                'actions' => array('create', 'delete', 'update', 'admin', 'index', 'view'),
                 'users' => array('@'),
                 'expression' => 'isset($user->role) && ($user->role==="admin")'
             ),
@@ -195,8 +190,7 @@ class DistrictController extends Controller {
         $data = District::model()->findAllByAttributes(array('state_abbr' => $state_abbr, 'type' => $district_type), $params);
 
         $data = CHtml::listData($data, 'id', 'number');
-
-      //  array_multisort($data);
+        asort($data);
 
         foreach ($data as $id => $district) {
             if (empty($district))
