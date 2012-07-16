@@ -94,8 +94,10 @@ class ApiController extends Controller {
     private function _getBallotItem($ballot_item_id) {
 
         $ballot = BallotItemManager::findByID($ballot_item_id);
-
-        return $ballot;
+        if (!empty($ballot))
+            return $ballot;
+        else
+            $this->_sendResponse(404, "no_ballot_found");
     }
 
     /**

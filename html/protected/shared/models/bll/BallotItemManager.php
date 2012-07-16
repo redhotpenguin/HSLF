@@ -96,7 +96,10 @@ class BallotItemManager {
      * @param array $ballots array of ballotItem
      * @return array of filtered ballotItem
      */
-    private static function applyFilter($ballots) {
+    private static function applyFilter($ballots) { 
+        if(empty($ballots))
+            return false;
+        
         if (is_array($ballots)) {
             foreach ($ballots as $ballot) {
                 $ballot->url = self::addSiteUrlFilter($ballot->url, $ballot->date_published);
