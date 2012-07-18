@@ -29,7 +29,7 @@ class StateController extends Controller {
        
              array( // restrict State to admins only
                 'allow',
-                'actions' => array('create', 'delete', 'update', 'admin', 'index', 'view'),
+                'actions' => array('create', 'delete', 'update', 'admin', 'index', 'view', 'exportCSV'),
                 'users' => array('@'),
                 'expression' => 'isset($user->role) && ($user->role==="admin")'
             ),
