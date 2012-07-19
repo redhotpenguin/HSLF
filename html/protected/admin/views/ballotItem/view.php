@@ -36,6 +36,8 @@ $this->widget('bootstrap.widgets.BootDetailView', array(
         'date_published',
         'published',
         'party',
+        'office_type',
+        'score',
         array(
             'name' => 'image_url',
             'label' => 'Image',
