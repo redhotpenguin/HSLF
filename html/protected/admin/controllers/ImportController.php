@@ -25,7 +25,7 @@ class ImportController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'upload'),
+                'actions' => array('index', 'BallotItemUpload'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -38,90 +38,38 @@ class ImportController extends Controller {
      * Display the Import home page
      */
     public function actionIndex() {
-        $this->render('index');
-    }
 
-    public function actionUpload() {
-        
         $tmp_name = $_FILES['import']['tmp_name'];
-        
-        if (!is_uploaded_file($tmp_name))
-            return false;
 
-        // open the temporary file in read only
-        $fHandle = fopen($tmp_name, 'r');
-
-        if (!$fHandle)
-            throw new CException("Could not open file: " . $tmp_name);
-
-        // empty array  for the transactional queries
-        $queries = array();
-
-        // csv column header
-        $keys = fgetcsv($fHandle);
-      
-        $i = 0; // index
-        while (($data = fgetcsv($fHandle, 0, ",")) !== FALSE) {
-            $array[] = array_combine($keys, $data);
-
-            $item = $array[$i]['item'];
-            $item_type = $array[$i]['item_type'];
-            $election_date = $array[$i]['next_election_date'];
-            $priority = $array[$i]['priority'];
-            $detail = $array[$i]['detail'];
-            $date_published = $array[$i]['date_published'];
-
-            $published = $array[$i]['published'];
-            $party = $array[$i]['party'];
-            $image_url = $array[$i]['image_url'];
-            $url = $array[$i]['url'];
-            $personal_url = $array[$i]['personal_url'];
-            $office_type = $array[$i]['office_type'];
-            $score = $array[$i]['score'];
-
-            $state_abbr = $array[$i]['state'];
-            $district_type = $array[$i]['district_type'];
-            $district = (string) $array[$i]['district'];
-            
-            $recommendation_type = $array[$i]['recommendation_type'];
-            $recommendation_value= $array[$i]['recommendation_value'];
-            
-            $recommendation_id = "(SELECT id from recommendation WHERE type = '$recommendation_type' AND value = '$recommendation_value' )";
-     
-            $district_id = "( SELECT id from district WHERE state_abbr = '$state_abbr' AND number = '$district' AND type = '$district_type' )";
-
-            $insert_ballot_query = "INSERT INTO ballot_item ( district_id, item, item_type, next_election_date , priority, detail, date_published, published, party,image_url,url, personal_url, office_type, score, recommendation_id)
-             VALUES($district_id, '$item', '$item_type', '$election_date' , $priority, '$detail', '$date_published' , '$published',  '$party' , '$image_url' , '$url', '$personal_url', '$office_type', '$score', $recommendation_id );";
-
-            
-            echo $insert_ballot_query;
-            
-            echo '<br>';
-            
-            array_push($queries, $insert_ballot_query);
-            ++$i; // pre increment index
+        if (!is_uploaded_file($tmp_name)) {
+            $this->render('index');
+            return;
         }
 
-        unset($array);
-
-        fclose($fHandle);
-
-        $connection = Yii::app()->db;
-        $transaction = $connection->beginTransaction();
-  
-   
-        try {
-            // create command for all the import queries
-            foreach ($queries as $query)
-                $connection->createCommand($query)->execute();
-
-            // commit the transaction
-            $transaction->commit();
-            echo 'Upload complete.';
-        } catch (Exception $e) {
-            echo $e->getMessage();
-            $transaction->rollBack();
+        $allowed_mimes = array('application/vnd.ms-excel', 'text/plain', 'text/csv', 'text/tsv');
+        if (!in_array($_FILES['import']['type'], $allowed_mimes)) {
+            $this->render('index', array('result' => 'File format not allowed. Please use CSV.'));
+            return;
         }
+
+        switch (getParam('action')) {
+            case 'importBallot':
+                $import_result = Import::importBallot($_FILES['import']['tmp_name'], $_FILES['import']['name']);
+
+                if ($import_result === true)
+                    $result = 'success';
+                else
+                    $result = '<b>Something went wrong:</b><br/>'.$import_result;
+
+                break;
+
+            default:
+                $result = 'Operation not supported';
+                break;
+        }
+
+        $this->render('index', array('result' => $result));
+        return;
     }
 
 }

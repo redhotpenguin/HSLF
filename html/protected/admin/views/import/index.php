@@ -1,11 +1,30 @@
+
 <?php
+echo CHtml::form(CHtml::normalizeUrl(array('import/index', 'action' => 'importBallot')), 'POST', array('enctype' => 'multipart/form-data'));
+?>
+<div class="form">
+    <h1>Import ballot items:</h1>
 
-echo CHtml::form(CHtml::normalizeUrl(array('import/upload')), 'POST', array('enctype' => 'multipart/form-data'));
 
-echo Chtml::label("csv only", "import");
+    <div class="left_col">
+        <?php
+        echo CHtml::fileField("import");
+        ?>
 
-echo CHtml::fileField("import");
+    </div>
 
-echo Chtml::submitButton("Import");
+    <div class = "right_col">
+        <?php
+        echo Chtml::submitButton("Import");
+        ?>
+    </div>
 
-echo Chtml::endForm();
+    <div class="clearfix">
+        <?php
+        echo Chtml::endForm();
+        print_r($result);
+        ?>
+    </div>
+
+</div>
+
