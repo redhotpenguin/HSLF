@@ -53,22 +53,33 @@ class ImportController extends Controller {
         }
 
         switch (getParam('action')) {
+            case 'importState':
+                $import_result = Import::importState($_FILES['import']['tmp_name'], $_FILES['import']['name']);
+                break;
+
+
+            case 'importDistrict':
+                $import_result = Import::importDistrict($_FILES['import']['tmp_name'], $_FILES['import']['name']);
+                break;
+
             case 'importBallot':
                 $import_result = Import::importBallot($_FILES['import']['tmp_name'], $_FILES['import']['name']);
-
-                if ($import_result === true)
-                    $result = 'success';
-                else
-                    $result = '<b>Something went wrong:</b><br/>'.$import_result;
-
                 break;
 
             default:
-                $result = 'Operation not supported';
+                $result = 'failure';
+                $error_msg = 'Operation not supported';
                 break;
         }
 
-        $this->render('index', array('result' => $result));
+        if ($import_result === true)
+            $result = 'success';
+        else {
+            $result = 'failure';
+            $error_msg = '<b>Something went wrong:</b><br/>' . $import_result;
+        }
+
+        $this->render('index', array('result' => $result, 'error_msg' => $error_msg));
         return;
     }
 

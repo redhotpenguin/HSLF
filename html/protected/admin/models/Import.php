@@ -15,11 +15,10 @@ class Import extends CModel {
         
     }
 
-    public static function importBallot($tmp_name, $file_name) {
-        $result = null;
-        $data_field = array();
-        // open the temporary file in read only
+    private static function insertDataFromCSV($tmp_name, $file_name, $table_name, $fields) {
         $fHandle = fopen($tmp_name, 'r');
+        $queries = array();
+        $data_field = array();
 
         if (!$fHandle) {
             return "Could not open file: " . $file_name;
@@ -29,52 +28,20 @@ class Import extends CModel {
             return "File is empty: " . $file_name;
         }
 
-        // empty array  for the transactional queries
-        $queries = array();
-
         // csv column header
         $keys = fgetcsv($fHandle);
 
+        $columns = implode(',', $fields);
 
         $i = 0; // index
         while (($data = fgetcsv($fHandle, 0, ",")) !== FALSE) {
             $data_field[] = array_combine($keys, $data);
 
-            $item = $data_field[$i]['item'];
-            $item_type = $data_field[$i]['item_type'];
-            $election_date = $data_field[$i]['next_election_date'];
-            $priority = $data_field[$i]['priority'];
-            $detail = $data_field[$i]['detail'];
-            $date_published = $data_field[$i]['date_published'];
-            
-            if (empty($date_published))
-                $date_published = 'now()::timestamp(0)'; // used DB current time if the publication field is not given
-            else
-                $date_published = "'$date_published'";
+            $values = implode("','", $data_field[$i]);
 
-            $published = $data_field[$i]['published'];
-            $party = $data_field[$i]['party'];
-            $image_url = $data_field[$i]['image_url'];
-            $url = $data_field[$i]['url'];
-            $personal_url = $data_field[$i]['personal_url'];
-            $office_type = $data_field[$i]['office_type'];
-            $score = $data_field[$i]['score'];
+            $insert_state_query = "INSERT INTO $table_name ($columns) VALUES('$values');";
 
-            $state_abbr = $data_field[$i]['state_abbr'];
-            $district_type = $data_field[$i]['district_type'];
-            $district = (string) $data_field[$i]['district'];
-
-            $recommendation_type = $data_field[$i]['recommendation_type'];
-            $recommendation_value = $data_field[$i]['recommendation_value'];
-
-            $recommendation_id = "(SELECT id from recommendation WHERE type = '$recommendation_type' AND value = '$recommendation_value' )";
-
-            $district_id = "( SELECT id from district WHERE state_abbr = '$state_abbr' AND number = '$district' AND type = '$district_type' )";
-
-            $insert_ballot_query = "INSERT INTO ballot_item ( district_id, item, item_type, next_election_date , priority, detail, date_published, published, party,image_url,url, personal_url, office_type, score, recommendation_id)
-             VALUES($district_id, '$item', '$item_type', '$election_date' , $priority, '$detail', $date_published , '$published',  '$party' , '$image_url' , '$url', '$personal_url', '$office_type', '$score', $recommendation_id );";
-
-            array_push($queries, $insert_ballot_query);
+            array_push($queries, $insert_state_query);
             ++$i; // pre increment index
         }
 
@@ -84,6 +51,7 @@ class Import extends CModel {
 
         if (empty($queries))
             return "Wrong data format";
+
 
         $connection = Yii::app()->db;
         $transaction = $connection->beginTransaction();
@@ -100,6 +68,34 @@ class Import extends CModel {
             $result = $e->getMessage();
             $transaction->rollBack();
         }
+
+        return $result;
+    }
+
+    public static function importState($tmp_name, $file_name) {
+
+        $fields = array('abbr', 'name');
+
+        $result = self::insertDataFromCSV($tmp_name, $file_name, 'state', $fields);
+
+        return $result;
+    }
+
+    public static function importDistrict($tmp_name, $file_name) {
+
+        $fields = array('state_abbr', 'number', 'type', 'display_name');
+
+        $result = self::insertDataFromCSV($tmp_name, $file_name, 'district', $fields);
+
+        return $result;
+    }
+
+    public static function importBallot($tmp_name, $file_name) {
+
+        $fields = array('district_id', 'item', 'item_type', 'next_election_date', 'priority', 'detail', 'date_published', 'published', 'party', 'url', 'personal_url', 'office_type', 'score', 'recommendation_id');
+
+        $result = self::insertDataFromCSV($tmp_name, $file_name, 'ballot_item', $fields);
+
         return $result;
     }
 
