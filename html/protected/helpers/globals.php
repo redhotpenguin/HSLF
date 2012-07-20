@@ -70,3 +70,12 @@ function get_hash($string){
 function isAdmin(){
     return ( "admin" == Yii::app()->user->role );
 }
+
+
+/**
+ * Debug function
+ * @param mixed $data data to be logged
+ */
+function logIt($data){
+    error_log( print_r($data, true) ) ;
+}
