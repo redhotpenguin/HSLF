@@ -24,9 +24,11 @@ class ImportController extends Controller {
      */
     public function accessRules() {
         return array(
-            array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'BallotItemUpload'),
+            array(// restrict State to admins only
+                'allow',
+                'actions' => array('index'),
                 'users' => array('@'),
+                'expression' => 'isset($user->role) && ($user->role==="admin")'
             ),
             array('deny', // deny all users
                 'users' => array('*'),

@@ -90,7 +90,7 @@
                                     'url' => '#',
                                     'items' => array(
                                         array('label' => 'Users', 'url' => array('/user'), 'visible' => !Yii::app()->user->isGuest),
-                                        array('label' => 'Import', 'url' => array('/import'), 'visible' => !Yii::app()->user->isGuest),
+                                        array('label' => 'Import', 'url' => array('/import'), 'visible' => isAdmin() ),
                                     ),
                             )),
                         ),
