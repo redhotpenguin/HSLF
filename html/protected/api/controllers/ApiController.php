@@ -55,15 +55,6 @@ class ApiController extends Controller {
      */
     public function actionView() {
         switch ($_GET['model']) {
-            case 'candidates': //api/candidates/state/w{3}/d+
-                $this->_sendResponse(200, $this->_getCandidates($_GET));
-                break;
-
-            case 'candidate':
-                $this->_sendResponse(200, $this->_getCandidate($_GET['id']));
-                break;
-
-
             case 'options': //api/options/type/w+
                 $this->_sendResponse(200, $this->_getOptions($_GET));
                 break;
@@ -137,51 +128,7 @@ class ApiController extends Controller {
         return $ballots;
     }
 
-    /**
-     * return multiple  candidates
-     * @param $params array of parameters: see api documentation
-     * @return array of candidate objects
-     */
-    private function _getCandidates($param) {
-        $search_attributes = array();
-        if (!isset($param['state_abbr']))
-            return false;
-
-
-        if (isset($param['district_number'])) {
-            $senator_candidate_district_id = DistrictManager::getDistrictId($param['state_abbr'], 'statewide', ''); // this is a temporary fix
-
-            $district_id = DistrictManager::getDistrictId($param['state_abbr'], 'congressional', $param['district_number']);
-
-            $search_attributes['district_id'] = array($district_id, $senator_candidate_district_id);
-        } else {
-            $district_id = DistrictManager::getIdsByState($param['state_abbr']);
-            $search_attributes['district_id'] = $district_id;
-        }
-
-        $search_attributes['publish'] = 'yes';
-        $candidates = Candidate::model()->with('district', 'issues')->findAllByAttributes($search_attributes);
-
-        return $candidates;
-    }
-
-    /**
-     * return a single  candidate
-     * @param $candidate_id id of the candidate
-     * @return  array of candidate objects
-     */
-    private function _getCandidate($candidate_id) {
-
-        $candidate = Candidate::model()->with('district', 'issues')->findByPk($candidate_id);
-        if (!empty($candidate)) {
-            $response = $candidate;
-        }
-        else
-            $response = 'Candidate not found';
-
-
-        return $response;
-    }
+   
 
     /**
      * return a list of options
