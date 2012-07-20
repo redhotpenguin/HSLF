@@ -24,7 +24,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
     'id' => 'ballot-item-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
-   'template'=>"{summary} {pager}\n{items}\n{pager}", // pagination on top and on bottom
+   'template'=>"{pager}\n{summary}\n{items}\n{pager}", // pagination on top and on bottom
     'columns' => array(
         array(
             'header' => 'Type',

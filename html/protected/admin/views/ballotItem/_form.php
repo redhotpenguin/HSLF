@@ -2,7 +2,7 @@
 if ($model->isNewRecord) {
     $ns = "var ns  = {site_url: '" . getSetting('site_url') . "' };";
 } else {
-    $ns = "var ns  = {site_url: '" . getSetting('site_url') . "', ballot_id: ".$model->id." };";
+    $ns = "var ns  = {site_url: '" . getSetting('site_url') . "', ballot_id: " . $model->id . " };";
 }
 
 Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::POS_HEAD);
@@ -307,8 +307,9 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
                  target.removeClass("hidden");
                  
                   if ( response == "success" ){
+                         sessionStorage.setItem("BallotItemContent", "");
                          target.addClass("btn-success");
-                        target.html( "ballot item saved" );
+                         target.html( "ballot item saved" );
                     }
                     else{
                     target.addClass("btn-danger");
