@@ -12,12 +12,6 @@ $this->menu = array(
 
 <h1>Manage Ballot Items</h1>
 
-<p>
-    You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-    or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
-
-
 
 <?php
 
@@ -30,7 +24,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
     'id' => 'ballot-item-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
-    'template'=>"{pager}\n{items}\n{pager}", // pagination on top and on bottom
+   'template'=>"{summary} {pager}\n{items}\n{pager}", // pagination on top and on bottom
     'columns' => array(
         array(
             'header' => 'Type',
