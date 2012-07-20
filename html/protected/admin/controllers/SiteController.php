@@ -38,6 +38,10 @@ class SiteController extends Controller {
         }
  }
  
+ public function actionHELP(){
+     $this->render('help');
+ }
+ 
   /**
      * This is the default 'index' action that is invoked
      * when an action is not explicitly requested by users.
@@ -98,7 +102,7 @@ class SiteController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'publishing', 'messaging', 'administration', 'mobile', 'logout'),
+                'actions' => array('index', 'publishing', 'messaging', 'administration', 'mobile', 'logout', 'help'),
                 'users' => array('@'),
             ),
             array('allow', // 

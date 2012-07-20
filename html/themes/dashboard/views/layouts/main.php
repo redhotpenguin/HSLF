@@ -90,7 +90,8 @@
                                     'url' => '#',
                                     'items' => array(
                                         array('label' => 'Users', 'url' => array('/user'), 'visible' => !Yii::app()->user->isGuest),
-                                        array('label' => 'Import', 'url' => array('/import'), 'visible' => isAdmin() ),
+                                        array('label' => 'Import', 'url' => array('/import'), 'visible' => isAdmin()),
+                                        array('label' => 'Help', 'url' => array('/site/help'), 'visible' => isAdmin()),
                                     ),
                             )),
                         ),
