@@ -45,7 +45,7 @@ class User extends CActiveRecord {
             array('email', 'email'),
             array('username, email', 'length', 'max' => 128),
             array('password', 'length', 'max' => 40),
-            array('id, username, email', 'safe', 'on' => 'search'),
+            array('id, username, email, role', 'safe', 'on' => 'search'),
         );
     }
 
@@ -84,6 +84,7 @@ class User extends CActiveRecord {
         $criteria->compare('username', $this->username, true);
         $criteria->compare('password', $this->password, true);
         $criteria->compare('email', $this->email, true);
+        $criteria->compare('role', $this->role, true);
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
