@@ -12,13 +12,11 @@ $this->menu = array(
 
 <h1>Manage Ballot Items</h1>
 
-
 <?php
 
 $state_list = array('' => 'All') + CHtml::listData(State::model()->findAll(), 'abbr', 'name');
 
 $offices = array('' => 'All') + $model->getOfficeTypes();
-
 
 $this->widget('bootstrap.widgets.BootGridView', array(
     'id' => 'ballot-item-grid',
@@ -78,4 +76,3 @@ $this->widget('bootstrap.widgets.BootGridView', array(
         ),
     ),
 ));
-?>

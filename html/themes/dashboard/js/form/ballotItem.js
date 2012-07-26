@@ -120,5 +120,30 @@ function ballotItemForm($){
     site_url_input.trigger('focusout');
     
     
+    // for new ballot items. store the detail in the browser and inject it if the user accidently reloads or leave the page
+    if(!ns.ballot_id){ 
+        
+        if($.browser.msie  && parseInt($.browser.version, 10) === 8) // exclude ie8
+            return;
+        
+    
+        textarea = $('#BallotItem_detail');
+        
+        content = textarea.val();
+
+        $(window).bind('beforeunload', function(){
+            content = textarea.text();
+            if(!content == "")
+                sessionStorage.BallotItemContent = content;
+        });
+    
+        if(sessionStorage.BallotItemContent){
+           // textarea.text(sessionStorage.BallotItemContent);
+        }
+        
+
+
+    }
+    
 
 }
