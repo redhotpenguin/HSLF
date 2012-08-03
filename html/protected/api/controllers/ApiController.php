@@ -115,14 +115,14 @@ class ApiController extends Controller {
             //experimental: bridge cicero district type naming conventions to ours
 
             $cicero_districts_bridge = array(
-                'LOCAL_EXEC' => 'local',
-                'LOCAL' => 'local',
-                'NATIONAL_EXEC' => 'national' ,
-                'NATIONAL_LOWER' => 'congressional',
-                'NATIONAL_UPPER' => 'statewide',
-                'STATE_EXEC' => 'statewide',
-                'STATE_LOWER' => 'lower_house',
-                'STATE_UPPER' => 'upper_house',
+                'local_exec' => 'local',
+                'local' => 'local',
+                'national_exec' => 'national' ,
+                'national_lower' => 'congressional',
+                'national_upper' => 'statewide',
+                'state_exec' => 'statewide',
+                'state_lower' => 'lower_house',
+                'state_upper' => 'upper_house',
                 'congressional' => 'congressional',
                 'statewide' => 'statewide',
             );
