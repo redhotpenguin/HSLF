@@ -16,14 +16,6 @@ return array(
         'ext.multimodelform.MultiModelForm',
     ),
     'modules' => array(
-    /*
-      'gii' => array(
-      'class' => 'system.gii.GiiModule',
-      'password' => 'giipass',
-      // If removed, Gii defaults to localhost only. Edit carefully to taste.
-      'ipFilters' => array('127.0.0.1', '::1'),
-      ),
-     */
     ),
     // application components
     'components' => array(
@@ -37,12 +29,6 @@ return array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'rules' => array(
-            /*
-              array('ballot/listbydistrict', 'pattern' => 'ballot/<year:\d{4}>/<state_abbr:\w{2,3}>/<district_type:\w{2,15}>/<district:\w+>', 'verb' => 'GET'), // /ballot/2012/ca/congressional/14
-              array('ballot/view', 'pattern' => 'ballot/<year:\d{4}>/<slug:.*?>', 'verb' => 'GET'), //  /ballot/2012/puppy-mills/
-              array('ballot/list', 'pattern' => 'ballot/<state_abbr:\w{2,3}>', 'verb' => 'GET'), //  /ballot/ca
-              array('ballot/list', 'pattern' => 'ballot/<year:\d{4}>/<state_abbr:\w{2,3}>/<district_type:\w{2,15}>', 'verb' => 'GET'), // /ballot/ca/congressional/
-             */
             ),
         ),
         'db' => array(
@@ -67,7 +53,6 @@ return array(
                     'levels' => 'error, warning',
                 ),
                 // uncomment the following to show log messages on web pages
-
                 array(
                     'class' => 'CWebLogRoute',
                 ),
