@@ -112,9 +112,30 @@ class ApiController extends Controller {
             $district_types = array();
             $districts = array();
 
+            //experimental: bridge cicero district type naming conventions to ours
+
+            $cicero_districts_bridge = array(
+                'LOCAL_EXEC' => 'local',
+                'LOCAL' => 'local',
+                'NATIONAL_EXEC' => 'national' ,
+                'NATIONAL_LOWER' => 'congressional',
+                'NATIONAL_UPPER' => 'statewide',
+                'STATE_EXEC' => 'statewide',
+                'STATE_LOWER' => 'lower_house',
+                'STATE_UPPER' => 'upper_house',
+                'congressional' => 'congressional',
+                'statewide' => 'statewide',
+            );
+
             foreach ($encoded_districts as $encoded_district) {
                 $d = explode('/', $encoded_district);
-                array_push($district_types, $d[0]);
+
+                $district = $d[0];
+
+                $district = $cicero_districts_bridge[$district];
+
+                array_push($district_types, $district);
+
                 array_push($districts, $d[1]);
             }
             $ballots = BallotItemManager::findAllByDistricts($state_abbr, $district_types, $districts, $year);
@@ -127,8 +148,6 @@ class ApiController extends Controller {
 
         return $ballots;
     }
-
-   
 
     /**
      * return a list of options
