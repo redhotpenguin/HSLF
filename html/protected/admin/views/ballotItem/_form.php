@@ -145,9 +145,18 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
 
     <div class="left_col">
         <?php
-        echo $form->labelEx($model, 'priority');
+        echo $form->labelEx($model, 'recommendation_id');
+        echo $form->dropDownList($model, 'recommendation_id', $recommendation_list);
+        echo $form->error($model, 'recommendation_id');
+        ?>
+    </div>
+    
+        <?php
+       // echo $form->labelEx($model, 'priority');
+        // priority is deprecared, make it 1 by default
+        echo $form->hiddenField($model, 'priority', array('value'=>1));
 
-
+/*
         $this->widget('ext.UIWidgets.SliderWidget', array(
             'model' => $model,
             'attribute' => 'priority',
@@ -158,18 +167,12 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
                 'animate' => false,
             ),
         ));
+ * 
+ */
 
         echo $form->error($model, 'priority');
         ?>
-    </div>
-
-    <div class="right_col">
-        <?php
-        echo $form->labelEx($model, 'recommendation_id');
-        echo $form->dropDownList($model, 'recommendation_id', $recommendation_list);
-        echo $form->error($model, 'recommendation_id');
-        ?>
-    </div>
+    
     <div class="clearfix"></div>
     <hr/>
 
