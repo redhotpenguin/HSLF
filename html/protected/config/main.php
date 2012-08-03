@@ -6,7 +6,7 @@ return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'name' => PROJECT_NAME,
     // preloading 'log' component
-    //'preload' => array('log'),
+    'preload' => array('log'),
     // autoloading model and component classes
     'import' => array(
         'application.models.*',
@@ -37,13 +37,12 @@ return array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'rules' => array(
-                /*
-                array('ballot/listbydistrict', 'pattern' => 'ballot/<year:\d{4}>/<state_abbr:\w{2,3}>/<district_type:\w{2,15}>/<district:\w+>', 'verb' => 'GET'), // /ballot/2012/ca/congressional/14
-                array('ballot/view', 'pattern' => 'ballot/<year:\d{4}>/<slug:.*?>', 'verb' => 'GET'), //  /ballot/2012/puppy-mills/
-                array('ballot/list', 'pattern' => 'ballot/<state_abbr:\w{2,3}>', 'verb' => 'GET'), //  /ballot/ca
-                array('ballot/list', 'pattern' => 'ballot/<year:\d{4}>/<state_abbr:\w{2,3}>/<district_type:\w{2,15}>', 'verb' => 'GET'), // /ballot/ca/congressional/
-                 */
-                 
+            /*
+              array('ballot/listbydistrict', 'pattern' => 'ballot/<year:\d{4}>/<state_abbr:\w{2,3}>/<district_type:\w{2,15}>/<district:\w+>', 'verb' => 'GET'), // /ballot/2012/ca/congressional/14
+              array('ballot/view', 'pattern' => 'ballot/<year:\d{4}>/<slug:.*?>', 'verb' => 'GET'), //  /ballot/2012/puppy-mills/
+              array('ballot/list', 'pattern' => 'ballot/<state_abbr:\w{2,3}>', 'verb' => 'GET'), //  /ballot/ca
+              array('ballot/list', 'pattern' => 'ballot/<year:\d{4}>/<state_abbr:\w{2,3}>/<district_type:\w{2,15}>', 'verb' => 'GET'), // /ballot/ca/congressional/
+             */
             ),
         ),
         'db' => array(
@@ -60,20 +59,20 @@ return array(
         'errorHandler' => array(
             'errorAction' => 'site/error',
         ),
-        /*'log' => array(
+        'log' => array(
             'class' => 'CLogRouter',
             'routes' => array(
                 array(
                     'class' => 'CFileLogRoute',
-                    'levels' => 'error, warning, info, trace',
+                    'levels' => 'error, warning',
                 ),
-            // uncomment the following to show log messages on web pages
+                // uncomment the following to show log messages on web pages
 
-             array(
-              'class'=>'CWebLogRoute',
-              ), 
+                array(
+                    'class' => 'CWebLogRoute',
+                ),
             ),
-        ),*/
+        ),
     ),
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']

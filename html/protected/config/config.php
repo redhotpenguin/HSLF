@@ -1,4 +1,5 @@
 <?php
+
 if (isset($env['DOTCLOUD_DB_SQL_HOST']))
     $dbhost = $env['DOTCLOUD_DB_SQL_HOST'];
 else
@@ -23,11 +24,10 @@ else
 
 // Image File Manager conf:
 // please also update root path in protected/extensions/tinymce/assets/jscripts/tiny_mce/plugins/imagemanager/config.php
-
 // Project config
 DEFINE('PROJECT_NAME', 'HSLF');
-DEFINE('SITE_URL', 'http://mvg.winningmark.com');
-//DEFINE('SITE_URL', 'http://www.voterguide.com');
+//DEFINE('SITE_URL', 'http://mvg.winningmark.com');
+DEFINE('SITE_URL', 'http://www.voterguide.com');
 DEFINE('ADMIN_EMAIL', 'mobile@winningmark.com');
 
 
@@ -45,8 +45,11 @@ DEFINE('API_SECRET', 'PqiW_IDKL3mFi_OirCqOe-u');
 // Urban Airship
 DEFINE('UA_API_KEY', 'ouRCLPaBRRasv4K1AIw-xA');
 DEFINE('UA_API_SECRET', '7hd19C6rSzyrbKM3k6KqDg'); // master secret
+// Cicero Config
+DEFINE('CICERO_USERNAME', 'winningmark');
+DEFINE('CICERO_PASSWORD', '3TUuAv5DwNsB');
 
 
 // Theme config
-DEFINE('ADMIN_THEME', 'hslf');
-DEFINE('FRONTEND_THEME', 'hslf_frontend');
+DEFINE('ADMIN_THEME', 'dashboard');
+DEFINE('FRONTEND_THEME', 'frontend');
