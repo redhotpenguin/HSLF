@@ -3,8 +3,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="language" content="en" />
+        <meta name="robots" content="noindex" />
+     
         <link rel="stylesheet" type="text/css" href="/themes/frontend/css/main.css" />
+
         <link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/favicon.ico" type="image/x-icon" />
+  
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
         <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
     </head>
@@ -12,11 +16,7 @@
     <body>
 
         <div id ="header">
-            <?php
-            echo '<a href="/">' . Yii::app()->name . '</a>';
-            $this->widget('SearchBlock', array(
-            ));
-            ?>
+   
 
         </div>
 
@@ -26,6 +26,7 @@
                     <div class="<?php echo $this->getAction()->getId(); ?>" >
 
                         <div id="content">
+                            <h1>Mobile Voter guide</h1>
                             <?php echo $content; ?>
                         </div>
 
@@ -39,7 +40,6 @@
 
 
         <div id="footer">
-            Copyright © 2012
         </div>
 
 
