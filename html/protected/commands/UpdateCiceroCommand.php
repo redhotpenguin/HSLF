@@ -56,7 +56,7 @@ class UpdateCiceroCommand extends CConsoleCommand {
             return;
         }
 
-        echo 'cicero token generated';
+        echo 'cicero token generated for: ' . $username. ' => '.$cicero_token;
     }
 
 }
