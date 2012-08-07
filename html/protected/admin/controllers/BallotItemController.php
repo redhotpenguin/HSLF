@@ -242,7 +242,7 @@ class BallotItemController extends Controller {
     public function actionExportCSV() {
         Yii::import('ext.csv.ESCVExport');
 
-        $csv = new ESCVExport(BallotItem::model()->with('district', 'recommendation', 'electionResult')->findAll());
+        $csv = new ESCVExport(BallotItem::model()->findAll());
 
 
         $content = $csv->toCSV();
