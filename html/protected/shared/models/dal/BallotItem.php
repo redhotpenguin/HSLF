@@ -19,8 +19,8 @@
  * @property string $image_url
  * @property integer $election_result_id
  * @property string $personal_url
- * @property string $office_type
  * @property integer score
+ * @property integer office_id
  * The followings are the available model relations:
  * @property District $district
  * @property Recommendation $recommendation
@@ -38,12 +38,6 @@ class BallotItem extends CActiveRecord {
         'democratic' => 'Democratic',
         'republican' => 'Republican',
         'independant' => 'Independant',
-    );
-    private $office_types = array(
-        'N/A' => 'Not Avalaible',
-        'representative' => 'Representative',
-        'senator' => 'Senator',
-        'at_large_delate' => 'At Large Delegate'
     );
 
     /**
@@ -69,9 +63,9 @@ class BallotItem extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('district_id, item, recommendation_id, priority, date_published, published, election_result_id, url', 'required'),
+            array('district_id, item, recommendation_id, priority, office_id, date_published, published, election_result_id, url', 'required'),
             array('district_id, recommendation_id, priority, election_result_id, score', 'numerical', 'integerOnly' => true),
-            array('item_type, party, office_type', 'length', 'max' => 128),
+            array('item_type, party', 'length', 'max' => 128),
             array('url', 'length', 'max' => 500),
             array('personal_url', 'length', 'max' => 2048),
             array('personal_url', 'url'),
@@ -82,7 +76,7 @@ class BallotItem extends CActiveRecord {
             array('url', 'unique_url'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, district_id, item,office_type, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party, url, image_url, election_result_id, district_number, district_type, state_abbr, personal_url, score', 'safe', 'on' => 'search'),
+            array('id, district_id, item, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party, url, image_url, election_result_id, district_number, district_type, state_abbr, personal_url, score', 'safe', 'on' => 'search'),
         );
     }
 
@@ -97,7 +91,15 @@ class BallotItem extends CActiveRecord {
             'recommendation' => array(self::BELONGS_TO, 'Recommendation', 'recommendation_id'),
             'electionResult' => array(self::BELONGS_TO, 'Recommendation', 'election_result_id'),
             'BallotItemNews' => array(self::HAS_MANY, 'BallotItemNews', 'ballot_item_id'),
-            'Scorecard' => array(self::HAS_MANY, 'Scorecard', 'ballot_item_id'),
+            'Scorecards' => array(self::HAS_MANY, 'Scorecard', 'ballot_item_id'),
+           
+            //'Cards' => array(self::HAS_MANY, 'ScorecardItem', 'scorecard_item_id',
+               // 'through' => 'Scorecard'),
+            
+            'Cards' => array(self::MANY_MANY, 'ScorecardItem',
+                'scorecard(ballot_item_id, scorecard_item_id)'),
+            
+            'Office' => array(self::BELONGS_TO, 'Office', 'office_id'),
         );
     }
 
@@ -120,7 +122,7 @@ class BallotItem extends CActiveRecord {
             'url' => 'URL',
             'image_url' => 'Headshot',
             'election_result_id' => 'Election Result',
-            'office_type' => 'Office type'
+            'office_id' => 'Office'
         );
     }
 
@@ -154,7 +156,6 @@ class BallotItem extends CActiveRecord {
         $criteria->compare('next_election_date', $this->next_election_date, true);
         $criteria->compare('priority', $this->priority);
         $criteria->compare('detail', $this->detail, true);
-        $criteria->compare('office_type', $this->office_type, true);
         $criteria->compare('published', $this->published, true);
         $criteria->compare('party', $this->party, true);
         $criteria->compare('url', $this->url, true);
@@ -220,13 +221,6 @@ class BallotItem extends CActiveRecord {
         return $this->labelled_parties;
     }
 
-    /**
-     * Return the different office options
-     * @return array array of office options
-     */
-    public function getOfficeTypes() {
-        return $this->office_types;
-    }
 
     /**
      * Return the different item options

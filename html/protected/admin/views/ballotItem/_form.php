@@ -132,47 +132,37 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
 
         <div class="">
             <?php
-            echo $form->labelEx($model, 'office_type');
-            echo $form->dropDownList($model, 'office_type', $model->getOfficeTypes());
-            echo $form->error($model, 'office_type');
+            echo $form->labelEx($model, 'recommendation_id');
+            echo $form->dropDownList($model, 'recommendation_id', $recommendation_list);
+            echo $form->error($model, 'recommendation_id');
             ?>
         </div>
 
 
     </div>
-
-    <hr/>
-
-    <div class="left_col">
-        <?php
-        echo $form->labelEx($model, 'recommendation_id');
-        echo $form->dropDownList($model, 'recommendation_id', $recommendation_list);
-        echo $form->error($model, 'recommendation_id');
-        ?>
-    </div>
     
-        <?php
-       // echo $form->labelEx($model, 'priority');
-        // priority is deprecared, make it 1 by default
-        echo $form->hiddenField($model, 'priority', array('value'=>1));
+    <?php
+    // echo $form->labelEx($model, 'priority');
+    // priority is deprecared, make it 1 by default
+    echo $form->hiddenField($model, 'priority', array('value' => 1));
 
-/*
-        $this->widget('ext.UIWidgets.SliderWidget', array(
-            'model' => $model,
-            'attribute' => 'priority',
-            'options' => array(
-                'min' => 1,
-                'max' => 10,
-                'width' => 200,
-                'animate' => false,
-            ),
-        ));
- * 
- */
+    /*
+      $this->widget('ext.UIWidgets.SliderWidget', array(
+      'model' => $model,
+      'attribute' => 'priority',
+      'options' => array(
+      'min' => 1,
+      'max' => 10,
+      'width' => 200,
+      'animate' => false,
+      ),
+      ));
+     * 
+     */
 
-        echo $form->error($model, 'priority');
-        ?>
-    
+    echo $form->error($model, 'priority');
+    ?>
+
     <div class="clearfix"></div>
     <hr/>
 
@@ -248,7 +238,15 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
     <div class="clearfix"></div>
 
     <hr/>
+           <?php
+            $office_list = CHtml::listData(Office::model()->findAll(), 'id', 'name');
 
+            echo $form->labelEx($model, 'office_id');
+            echo $form->dropDownList($model, 'office_id', $office_list);
+            echo $form->error($model, 'office_id');
+            ?>
+
+    <hr/>
 
     <div class="left_col">
         <?php echo $form->labelEx($model, 'date_published'); ?>
@@ -271,9 +269,6 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
         ?>
         <?php echo $form->error($model, 'date_published'); ?>
     </div>
-
-
-
 
     <div class="right_col ">
         <?php echo $form->labelEx($model, 'published'); ?>
@@ -344,57 +339,11 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
         echo CHtml::submitButton('Create');
     ?> 
 
-    <div class="hidden update_box" id="targetdiv">a</div>
+    <div class="hidden update_box" id="targetdiv"></div>
 
     <?php $this->endWidget(); ?>
 
     <br/>
-
-    <h1>Scorecard:</h1>
-
-    <?php
-    if ($model->id):
-        $new_scorecard_item = CHtml::normalizeUrl(array('scorecard/add', 'ballot_item_id' => $model->id));
-
-        echo CHtml::link('Add a new scorecard item', $new_scorecard_item, array('target' => '_blank'));
-        ?>
-        <br/>
-        <br/>
-
-        <?php
-        if ($model->Scorecard):
-
-            foreach ($model->Scorecard as $card) {
-                ?>
-
-                <div class="ballot_news_item">
-                    <span class="btn floatright">
-                        <?php
-                        $edit_scorecard_item_url = CHtml::normalizeUrl(array('scorecard/update', 'id' => $card->id));
-                        echo CHtml::link('Edit', $edit_scorecard_item_url, array('target' => '_blank'));
-                        ?>
-
-                    </span>
-
-                    <b> <?php echo $card->name; ?>:</b>
-                    <br/>
-                    <?php echo $card->vote; ?>
-                </div>
-                <?php
-            }
-
-        else:
-            echo 'No scorecard';
-        endif;
-
-    else:
-        echo 'You must save an item before you can add  a scorecard.';
-    endif; // end test $model->BallotItemNews
-    ?>
-
-    <br/>
-    <br/>
-
     <h1>News updates:</h1>
 
     <?php

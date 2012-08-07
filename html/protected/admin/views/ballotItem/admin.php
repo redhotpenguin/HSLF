@@ -16,8 +16,6 @@ $this->menu = array(
 
 $state_list = array('' => 'All') + CHtml::listData(State::model()->findAll(), 'abbr', 'name');
 
-$offices = array('' => 'All') + $model->getOfficeTypes();
-
 $this->widget('bootstrap.widgets.BootGridView', array(
     'id' => 'ballot-item-grid',
     'dataProvider' => $model->search(),
@@ -35,11 +33,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
             'header' => 'Item',
             'name' => 'item',
         ),
-       array('name' => 'office_type',
-            'header' => 'Office type',
-            'value' => '$data->office_type',
-            'filter' => CHtml::dropDownList('BallotItem[office_type]', $model->office_type, $offices),
-        ),
+   
         array(
             'name' => 'party',
             'value' => '$data->party',

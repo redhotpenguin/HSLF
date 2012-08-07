@@ -124,7 +124,7 @@ class ApiController extends Controller {
                 'state_lower' => 'lower_house',
                 'state_upper' => 'upper_house',
                 'congressional' => 'congressional',
-                'statewide' => 'statewide',
+                'statewide' => 'statewide',       
             );
 
             foreach ($encoded_districts as $encoded_district) {

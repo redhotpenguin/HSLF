@@ -71,9 +71,9 @@ return array(
             'charset' => 'UTF-8',
             'schemaCachingDuration' => '3600',
         ),
-        'cache' => array(
-            'class' => 'system.caching.CApcCache',
-        ),
+      //  'cache' => array(
+         //   'class' => 'system.caching.CApcCache',
+      //  ),
         'errorHandler' => array(
             // use 'api/error' action to display errors
             'errorAction' => 'api/index',

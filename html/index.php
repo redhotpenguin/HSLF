@@ -14,4 +14,4 @@ defined('YII_DEBUG_SHOW_PROFILER') or define('YII_DEBUG_SHOW_PROFILER',true);
 require ( 'protected/helpers/globals.php' ) ;
 require_once($yii);
 Yii::createWebApplication($config)->run();
-
+Yii::app()->cache->flush();
