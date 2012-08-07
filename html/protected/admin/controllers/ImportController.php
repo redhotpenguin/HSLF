@@ -68,6 +68,11 @@ class ImportController extends Controller {
                 $import_result = Import::importBallot($_FILES['import']['tmp_name'], $_FILES['import']['name']);
                 break;
 
+            case 'importScorecard':
+                $import_result = Import::importScorecard($_FILES['import']['tmp_name'], $_FILES['import']['name']);
+                break;
+
+
             default:
                 $result = 'failure';
                 $error_msg = 'Operation not supported';
