@@ -31,21 +31,47 @@ class Import extends CModel {
         // csv column header
         $keys = fgetcsv($fHandle);
 
-        $columns = implode(',', $fields);
+       
 
         $i = 0; // index
         while (($data = fgetcsv($fHandle, 0, ",")) !== FALSE) {
             $data_field[] = array_combine($keys, $data);
 
-            $values = implode("','", $data_field[$i]);
+            
+            if ($data_field[$i]['id'] != null) { // update 
+                $id = $data_field[$i]['id'];
 
-            $insert_state_query = "INSERT INTO $table_name ($columns) VALUES('$values');";
+                array_shift ($data_field[$i]); // remove the first element of the array (id ) 
+                $set = "";
+                $j = 0;
+                $data_field_size = count($data_field[$i]) - 1;
+                
+                foreach ($data_field[$i] as $column => $value) {
+                    $set.=" $column = '$value' ";
+                    if ($j < $data_field_size)
+                        $set.= ',';
 
-            array_push($queries, $insert_state_query);
+                    $j++;
+                }
+
+                $query = "UPDATE  $table_name SET  $set  WHERE id = $id ;";
+            } else { // insert
+                
+                array_shift($data_field[$i]);   
+                $columns = implode(',', $fields);
+                $values = implode("','", $data_field[$i]);
+                $query = "INSERT INTO $table_name ($columns) VALUES('$values');";
+            }
+
+   
+
+            array_push($queries, $query);
             ++$i; // pre increment index
         }
-
-        unset($data_field);
+        
+     //  print_r($queries);
+           
+       unset($data_field);
 
         fclose($fHandle);
 
@@ -65,19 +91,18 @@ class Import extends CModel {
             $transaction->commit();
             $result = true;
         } catch (Exception $e) {
+          
             $result = $e->getMessage();
             $transaction->rollBack();
         }
-
         return $result;
     }
 
     public static function importState($tmp_name, $file_name) {
-
         $fields = array('abbr', 'name');
 
         $result = self::insertDataFromCSV($tmp_name, $file_name, 'state', $fields);
-
+ 
         return $result;
     }
 
