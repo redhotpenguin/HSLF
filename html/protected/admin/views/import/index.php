@@ -78,7 +78,7 @@ echo Chtml::endForm();
 
 <div class="form">
     <?php
-    echo CHtml::form(CHtml::normalizeUrl(array('import/index', 'action' => 'importBallot')), 'POST', array('enctype' => 'multipart/form-data'));
+    echo CHtml::form(CHtml::normalizeUrl(array('import/index', 'action' => 'importScorecard')), 'POST', array('enctype' => 'multipart/form-data'));
     ?>
     <h1>Import Ballot items:</h1>
 
