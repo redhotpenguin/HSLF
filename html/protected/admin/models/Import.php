@@ -37,7 +37,6 @@ class Import extends CModel {
         while (($data = fgetcsv($fHandle, 0, ",")) !== FALSE) {
             $data_field[] = array_combine($keys, $data);
 
-            
             if ($data_field[$i]['id'] != null) { // update 
                 $id = $data_field[$i]['id'];
 
