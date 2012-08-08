@@ -149,8 +149,10 @@ class ApiController extends Controller {
         else {
             $ballots = BallotItemManager::findAllByState($state_abbr, $year);
         }
-
-        return $this->_ballotsWrapper($ballots);
+       if( empty($ballots) )
+           return false;
+       else
+          return $this->_ballotsWrapper($ballots);
     }
 
     /**
@@ -186,10 +188,25 @@ class ApiController extends Controller {
             ++$i;
         }
 
-
         $wrapped_ballot = array(
             'id' => $ballot->id,
-            'scorecard' => $scorecards
+            'item' => $ballot->item,
+            'item_type' => $ballot->item_type,
+            'recommendation' => $ballot->recommendation,
+            'next_election_date' => $ballot->next_election_date,
+            'priority' => $ballot->priority,
+            'detail' => $ballot->detail,
+            'date_published' => $ballot->date_published,
+            'party' => $ballot->party,
+            'image_url' => $ballot->image_url,
+            'election_result' => $ballot->electionResult,
+            'url' => $ballot->url,
+            'personal_url' => $ballot->personal_url,
+            'score' => $ballot->score,
+            'office' => $ballot->office->name,
+            'district' => $ballot->district,
+            'scorecard' => $scorecards,
+            'news' => $ballot->ballotItemNews,
         );
 
         return $wrapped_ballot;
