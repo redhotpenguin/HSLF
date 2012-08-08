@@ -7,10 +7,8 @@ echo $updated;
 
     <?php
     $form = $this->beginWidget('CActiveForm', array(
-        'id' => 'candidate-form',
-        'enableAjaxValidation' => true,
-        'stateful' => true,
-            ));
+        'id' => 'candidate-form'       
+     ));
     ?>
 
     <div class="row">
