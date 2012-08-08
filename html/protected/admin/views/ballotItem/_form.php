@@ -364,9 +364,9 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
         <br/>
 
         <?php
-        if ($model->BallotItemNews):
+        if ($model->ballotItemNews):
 
-            foreach ($model->BallotItemNews as $ballotItemNew) {
+            foreach ($model->ballotItemNews as $ballotItemNew) {
                 ?>
 
                 <div class="ballot_news_item">
