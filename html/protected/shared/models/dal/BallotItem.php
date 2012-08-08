@@ -87,19 +87,23 @@ class BallotItem extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'district' => array(self::BELONGS_TO, 'District', 'district_id'),
-            'recommendation' => array(self::BELONGS_TO, 'Recommendation', 'recommendation_id'),
-            'electionResult' => array(self::BELONGS_TO, 'Recommendation', 'election_result_id'),
-            'BallotItemNews' => array(self::HAS_MANY, 'BallotItemNews', 'ballot_item_id'),
-            'Scorecards' => array(self::HAS_MANY, 'Scorecard', 'ballot_item_id'),
-           
-            //'Cards' => array(self::HAS_MANY, 'ScorecardItem', 'scorecard_item_id',
-               // 'through' => 'Scorecard'),
-            
-            'Cards' => array(self::MANY_MANY, 'ScorecardItem',
-                'scorecard(ballot_item_id, scorecard_item_id)'),
-            
-            'Office' => array(self::BELONGS_TO, 'Office', 'office_id'),
+        'district' => array(self::BELONGS_TO, 'District', 'district_id'),
+        'recommendation' => array(self::BELONGS_TO, 'Recommendation', 'recommendation_id'),
+        'electionResult' => array(self::BELONGS_TO, 'Recommendation', 'election_result_id'),
+        'BallotItemNews' => array(self::HAS_MANY, 'BallotItemNews', 'ballot_item_id'),
+
+   
+          'scorecards' => array(self::HAS_MANY, 'Scorecard', 'ballot_item_id'),
+
+          'cards' => array(self::MANY_MANY, 'ScorecardItem',
+          'scorecard(ballot_item_id, scorecard_item_id)'),
+
+          'office' => array(self::BELONGS_TO, 'Office', 'office_id'),
+
+          'votes' => array(self::MANY_MANY, 'Vote' ,
+          'scorecard(ballot_item_id, vote_id)')   ,
+     
+
         );
     }
 
@@ -220,7 +224,6 @@ class BallotItem extends CActiveRecord {
     public function getParties() {
         return $this->labelled_parties;
     }
-
 
     /**
      * Return the different item options

@@ -62,7 +62,11 @@ class Scorecard extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'ballotItem' => array(self::BELONGS_TO, 'BallotItem', 'ballot_item_id'),
+            
+            'Vote' => array(self::BELONGS_TO, 'Vote', 'vote_id'),
+            'ScorecardItem' => array(self::BELONGS_TO, 'ScorecardItem', 'scorecard_item_id'),
+
+
         );
     }
 

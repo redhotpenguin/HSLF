@@ -245,6 +245,14 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
             echo $form->dropDownList($model, 'office_id', $office_list);
             echo $form->error($model, 'office_id');
             ?>
+    
+            <?php
+            $this->widget('ext.ScorecardSelector.ScorecardSelector', array(
+                'model' => $model,
+
+            ));
+            ?>
+    
 
     <hr/>
 
