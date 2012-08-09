@@ -47,7 +47,10 @@ $this->widget('bootstrap.widgets.BootGridView', array(
         'id',
         'name',
         'description',
-        'office_id',
+        array(
+            'header' => 'Office',
+            'value' => '$data->office->name',
+        ),
         array(
             'class' => 'bootstrap.widgets.BootButtonColumn',
         ),
