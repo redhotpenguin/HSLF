@@ -26,7 +26,7 @@ class VoteController extends Controller {
         return array(
             array(// restrict State to admins only
                 'allow',
-                'actions' => array('create', 'delete', 'update', 'admin', 'index', 'view'),
+                'actions' => array('create', 'delete', 'update', 'admin', 'index', 'view', 'exportCSV'),
                 'users' => array('@'),
                 'expression' => 'isset($user->role) && ($user->role==="admin")'
             ),
@@ -152,6 +152,19 @@ class VoteController extends Controller {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
+    }
+    
+        /**
+     * Performs the CSV Export
+     */
+    public function actionExportCSV() {
+        Yii::import('ext.csv.ESCVExport');
+
+        $csv = new ESCVExport(Vote::model()->findAll());
+
+
+        $content = $csv->toCSV();
+        Yii::app()->getRequest()->sendFile('vote.csv', $content, "text/csv", false);
     }
 
 }

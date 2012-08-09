@@ -154,4 +154,17 @@ class OfficeController extends Controller {
         }
     }
 
+    /**
+     * Performs the CSV Export
+     */
+    public function actionExportCSV() {
+        Yii::import('ext.csv.ESCVExport');
+
+        $csv = new ESCVExport(Office::model()->findAll());
+
+
+        $content = $csv->toCSV();
+        Yii::app()->getRequest()->sendFile('office.csv', $content, "text/csv", false);
+    }
+
 }

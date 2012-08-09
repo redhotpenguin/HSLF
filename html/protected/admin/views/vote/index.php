@@ -6,6 +6,7 @@ $this->breadcrumbs = array(
 $this->menu = array(
     array('label' => 'Add a new vote option', 'url' => array('create')),
     array('label' => 'Manage vote options', 'url' => array('admin')),
+    array('label' => 'Export to CSV', 'url' => array('exportCSV')),
 );
 ?>
 
