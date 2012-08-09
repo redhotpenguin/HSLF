@@ -59,6 +59,8 @@ class Import extends CModel {
                 $columns = implode(',', $fields);
                 $values = implode("','", $data_field[$i]);
                 $query = "INSERT INTO $table_name ($columns) VALUES('$values');";
+               
+               echo '<br>';
             }
 
 
@@ -66,9 +68,9 @@ class Import extends CModel {
             array_push($queries, $query);
             ++$i; // pre increment index
         }
-
+        
         // print_r($queries);
-        // exit;
+       // exit;
 
         unset($data_field);
 
@@ -116,7 +118,7 @@ class Import extends CModel {
 
     public static function importBallot($tmp_name, $file_name) {
 
-        $fields = array('district_id', 'item', 'item_type', 'next_election_date', 'priority', 'detail', 'date_published', 'published', 'party', 'url', 'personal_url', 'office_type', 'score', 'recommendation_id');
+        $fields = array('district_id', 'item', 'item_type', 'recommendation_id', 'next_election_date', 'priority', 'detail', 'date_published', 'published', 'party', 'image_url','election_result_id','url', 'personal_url', 'score', 'office_id');
 
         $result = self::insertDataFromCSV($tmp_name, $file_name, 'ballot_item', $fields);
 

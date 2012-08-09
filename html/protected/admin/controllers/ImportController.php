@@ -42,7 +42,7 @@ class ImportController extends Controller {
     public function actionIndex() {
 
         $tmp_name = $_FILES['import']['tmp_name'];
-
+  
         if (!is_uploaded_file($tmp_name)) {
             $this->render('index');
             return;
@@ -54,6 +54,8 @@ class ImportController extends Controller {
             return;
         }
 
+   
+        
         switch (getParam('action')) {
             case 'importState':
                 $import_result = Import::importState($_FILES['import']['tmp_name'], $_FILES['import']['name']);
@@ -64,7 +66,7 @@ class ImportController extends Controller {
                 $import_result = Import::importDistrict($_FILES['import']['tmp_name'], $_FILES['import']['name']);
                 break;
 
-            case 'importBallot':
+            case 'importBallotItem':
                 $import_result = Import::importBallot($_FILES['import']['tmp_name'], $_FILES['import']['name']);
                 break;
 

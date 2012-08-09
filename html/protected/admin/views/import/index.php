@@ -78,7 +78,7 @@ echo Chtml::endForm();
 
 <div class="form">
     <?php
-    echo CHtml::form(CHtml::normalizeUrl(array('import/index', 'action' => 'importScorecard')), 'POST', array('enctype' => 'multipart/form-data'));
+    echo CHtml::form(CHtml::normalizeUrl(array('import/index', 'action' => 'importBallotItem')), 'POST', array('enctype' => 'multipart/form-data'));
     ?>
     <h1>Import Ballot items:</h1>
 
@@ -87,7 +87,6 @@ echo Chtml::endForm();
         <?php
         echo CHtml::fileField("import");
         ?>
-
     </div>
 
     <div class = "right_col">
@@ -95,6 +94,16 @@ echo Chtml::endForm();
         echo Chtml::submitButton("Import");
         ?>
     </div>
+
+    <div class="clearfix"></div>
+    <p>
+        <b>CSV structure:</b> id, district_id, item, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party, image_url, election_result_id, url, personal_url, score, office_id
+        <br/>
+        (headers must be included)
+    </p>
+<?php
+echo Chtml::endForm();
+?>
 </div>
 
 <br/>
