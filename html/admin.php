@@ -17,7 +17,9 @@ require ( 'protected/helpers/globals.php' ) ;
 
 
 require_once($yii);
-Yii::createWebApplication($config)->run();
 
+$yii =Yii::createWebApplication($config);
 
+//$yii->cache->flush();
 
+$yii->run();

@@ -59,9 +59,8 @@ class TinyMce extends CInputWidget {
                     theme_advanced_resizing : true,
                     theme_advanced_font_sizes: "10px,12px,13px,14px,16px,18px,20px, 22px",
 
-
                     content_css : "<?php echo $baseUrl . '/css/'; ?>content.css"
-                             		
+                                     		
                 });
             });
         </script>

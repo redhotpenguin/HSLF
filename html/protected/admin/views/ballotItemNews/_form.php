@@ -1,5 +1,4 @@
 <?php
-
 echo $updated;
 ?>
 <div class="form">
@@ -7,13 +6,13 @@ echo $updated;
 
     <?php
     $form = $this->beginWidget('CActiveForm', array(
-        'id' => 'candidate-form'       
-     ));
+        'id' => 'candidate-form'
+            ));
     ?>
 
     <div class="row">
         <?php echo $form->labelEx($model, 'title'); ?>
-        <?php echo $form->textField($model, 'title', array('size'=>111,  'class' => 'span9',)); ?>
+        <?php echo $form->textField($model, 'title', array('size' => 111, 'class' => 'span9',)); ?>
         <?php echo $form->error($model, 'title'); ?>
     </div>
 
@@ -39,7 +38,7 @@ echo $updated;
 
     <div class="row">
         <?php echo $form->labelEx($model, 'excerpt'); ?>
-        <?php echo $form->textArea($model, 'excerpt', array('rows'=>5, 'cols'=>85,  'class' => 'span9',)); ?>
+        <?php echo $form->textArea($model, 'excerpt', array('rows' => 5, 'cols' => 85, 'class' => 'span9',)); ?>
         <?php echo $form->error($model, 'excerpt'); ?>
     </div>
 
@@ -47,10 +46,9 @@ echo $updated;
     <div class="row">
         <?php echo $form->labelEx($model, 'date_published'); ?>
         <?php
-        
-        if( empty( $model->date_published ) )
-           $model->date_published = date('Y-m-d h:i:s');
-        
+        if (empty($model->date_published))
+            $model->date_published = date('Y-m-d h:i:s');
+
         $this->widget('zii.widgets.jui.CJuiDatePicker', array(
             'name' => 'BallotItemNews[date_published]',
             'value' => $model->date_published,
@@ -69,13 +67,13 @@ echo $updated;
         ?>
         <?php echo $form->error($model, 'date_published'); ?>
     </div>
-    
+
     <div style="clear:both;"></div>
 
     <div class="row buttons">
-        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
     </div>
 
-    <?php $this->endWidget(); ?>
+<?php $this->endWidget(); ?>
 
 </div><!-- form -->

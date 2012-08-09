@@ -1,35 +1,31 @@
 <?php
 
 /**
- * This is the model class for table "scorecard".
+ * This is the model class for table "office".
  *
- * The followings are the available columns in table 'scorecard':
+ * The followings are the available columns in table 'office':
  * @property integer $id
- * @property integer $ballot_item_id
- * @property integer $scorecard_item_id
- * @property string $vote_id
+ * @property string $name
  *
  * The followings are the available model relations:
- * @property BallotItem $ballotItem
- * @property ScorecardItem $scorecardItem
+ * @property BallotItem[] $ballotItems
  */
-class Scorecard extends CActiveRecord {
+class Office extends CActiveRecord {
 
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
-     * @return Scorecard the static model class
+     * @return Office the static model class
      */
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
 
-
     /**
      * @return string the associated database table name
      */
     public function tableName() {
-        return 'scorecard';
+        return 'office';
     }
 
     /**
@@ -39,11 +35,10 @@ class Scorecard extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('ballot_item_id, scorecard_item_id, vote_id', 'required'),
-            array('ballot_item_id, scorecard_item_id, vote_id ', 'numerical', 'integerOnly' => true),
+            array('name', 'length', 'max' => 256),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, ballot_item_id, scorecard_item_id, vote_id', 'safe', 'on' => 'search'),
+            array('id, name', 'safe', 'on' => 'search'),
         );
     }
 
@@ -54,8 +49,7 @@ class Scorecard extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'vote' => array(self::BELONGS_TO, 'Vote', 'vote_id'),
-            'scorecardItem' => array(self::BELONGS_TO, 'ScorecardItem', 'scorecard_item_id'),
+            'ballotItems' => array(self::HAS_MANY, 'BallotItem', 'office_id'),
         );
     }
 
@@ -65,9 +59,7 @@ class Scorecard extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'ballot_item_id' => 'Ballot Item',
-            'scorecard_item_id' => 'Scorecard Item',
-            'vote_id' => 'Vote',
+            'name' => 'Name',
         );
     }
 
@@ -82,13 +74,15 @@ class Scorecard extends CActiveRecord {
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id);
-        $criteria->compare('ballot_item_id', $this->ballot_item_id);
-        $criteria->compare('scorecard_item_id', $this->scorecard_item_id);
+        $criteria->compare('name', $this->name, true);
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
-        ));
+                ));
     }
 
+    public static function getOfficesByType($office_type) {
+
+    }
 
 }

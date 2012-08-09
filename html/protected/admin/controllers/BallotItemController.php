@@ -95,9 +95,10 @@ class BallotItemController extends Controller {
      * @param integer $id the ID of the model to be updated
      */
     public function actionUpdate($id) {
-        //   error_log(print_r($_REQUEST, true ));
         // import FileUpload helper class
         Yii::import('admin.models.helpers.FileUpload');
+
+        // error_log (  print_r($_POST, true )  );
 
         $model = $this->loadModel($id);
 
@@ -139,6 +140,40 @@ class BallotItemController extends Controller {
                 if ($model->save())
                     $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
             }
+            // savescorecards
+
+            if ($scorecard_item_ids = getPost('scorecards')) {
+
+
+                //    error_log(print_r($scorecard_item_ids, true));
+
+
+                $scorecard_model = new Scorecard();
+                foreach ($scorecard_item_ids as $scorecard_item_id => $vote_id) {
+
+                    $scorecard = $scorecard_model->findByAttributes(array(
+                        "ballot_item_id" => $id,
+                        "scorecard_item_id" => $scorecard_item_id
+                            ));
+
+                    if ($scorecard) { // update or delete existing scorecard 
+                        if (!$vote_id)
+                            $scorecard->delete();
+
+
+                        $scorecard->vote_id = $vote_id;
+                        $scorecard->save();
+                    } else { // insert new scorecard
+                        if (!$vote_id)
+                            continue;
+
+                        $scorecard_model = new Scorecard();
+                        $scorecard_model->attributes = array('ballot_item_id' => $id, 'scorecard_item_id' => $scorecard_item_id, 'vote_id' => $vote_id);
+                        $scorecard_model->save();
+                    }
+                }
+            }
+
 
             return;
         }
@@ -253,7 +288,6 @@ class BallotItemController extends Controller {
      * Handle ajax requests for /admin/ballotItem/ajax
      */
     public function actionAjax() {
-
         switch (getParam('a')) {
             // validate a ballot item URL (see ballotItem.js)
             case 'validateURL':
@@ -270,6 +304,14 @@ class BallotItemController extends Controller {
                 else
                     echo $validated_url;
 
+                break;
+
+
+            case 'getScorecardTable':
+                if (getParam('id')) {
+                    $ballot_item = BallotItem::model()->findByPk(getParam('id'));
+                    $this->renderPartial('_scorecardTable', array('model'=>$ballot_item, 'office_id'=> getParam('office_id')));
+                }
                 break;
 
             default:
