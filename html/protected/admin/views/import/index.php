@@ -112,7 +112,7 @@ echo Chtml::endForm();
     <?php
     echo CHtml::form(CHtml::normalizeUrl(array('import/index', 'action' => 'importScorecard')), 'POST', array('enctype' => 'multipart/form-data'));
     ?>
-    <h1>Import Score cards:</h1>
+    <h1>Import Scorecards:</h1>
 
 
     <div class="left_col">
@@ -141,10 +141,10 @@ echo Chtml::endForm();
 
 <strong>Notes:</strong>
 <ul>
-    <li> An ID column is <b>always</b> required</li>
-    <li> To update an existing record, an ID value must be provided in the first column.</li>
+    <li> An ID column is <b>always</b> required and should always be first.</li>
+    <li> To update an existing record, an ID value must be provided in the ID column.</li>
     <li> Excel might replace empty rows with ',,,,' which will cause the import to fail.</li>
-    <li>If an ID cell is left empty, the row will be appended. In some case, this might causes a unique-constraint violation error if the row already exists.</li>
+    <li>If an ID cell is left empty, the row will be appended. In some cases, it will causes a unique-constraint violation error if the row already exists.</li>
     <li>If an error happens, the import will be rolled back and won't leave any traces.</li>
 </ul>
 
