@@ -41,15 +41,15 @@ $('.search-form form').submit(function(){
 </div><!-- search-form -->
 
 <?php
-$this->widget('zii.widgets.grid.CGridView', array(
+$this->widget('bootstrap.widgets.BootGridView', array(
     'id' => 'office-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
     'columns' => array(
         'id',
         'name',
-        array(
-            'class' => 'CButtonColumn',
+       array(// display a column with "view", "update" and "delete" buttons
+            'class' => 'bootstrap.widgets.BootButtonColumn',
         ),
     ),
 ));

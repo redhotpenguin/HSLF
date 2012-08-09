@@ -13,8 +13,18 @@ $this->menu = array(
 <h1>Offices</h1>
 
 <?php
-$this->widget('zii.widgets.CListView', array(
+
+$this->widget('bootstrap.widgets.BootGridView', array(
+    'id' => 'office-grid',
     'dataProvider' => $dataProvider,
-    'itemView' => '_view',
+
+    'columns' => array(
+        'id',
+        'name',
+       array(// display a column with "view", "update" and "delete" buttons
+            'class' => 'bootstrap.widgets.BootButtonColumn',
+        ),
+    ),
 ));
 ?>
+
