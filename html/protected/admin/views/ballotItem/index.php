@@ -7,6 +7,7 @@ $this->menu = array(
     array('label' => 'Add a ballot item', 'url' => array('create')),
     array('label' => 'Manage ballot items', 'url' => array('admin')),
     array('label' => 'Export to CSV file', 'url' => array('exportCSV')),
+    array('label' => 'Export Scorecards', 'url' => array('exportScorecardCSV')),
 );
 ?>
 

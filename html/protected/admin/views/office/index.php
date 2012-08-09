@@ -17,11 +17,11 @@ $this->menu = array(
 $this->widget('bootstrap.widgets.BootGridView', array(
     'id' => 'office-grid',
     'dataProvider' => $dataProvider,
-
+    
     'columns' => array(
         'id',
         'name',
-       array(// display a column with "view", "update" and "delete" buttons
+       array(
             'class' => 'bootstrap.widgets.BootButtonColumn',
         ),
     ),

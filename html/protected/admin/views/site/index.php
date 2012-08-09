@@ -33,9 +33,9 @@
         <br/>
         <div class="row">
             <div class="span3">
-                <h2>Application Users</h2>
-                <p>See who uses your app.</p>
-                <p><a class="btn" href="/admin/application_users/">More »</a></p>
+                <h2>Scorecard</h2>
+                <p>Manage scorecard items</p>
+                <p><a class="btn" href="/admin/scorecardItem/admin/">More »</a></p>
             </div>
 
             <div class="span3">

@@ -7,6 +7,7 @@ $this->breadcrumbs = array(
 $this->menu = array(
     array('label' => 'Create a ballot item', 'url' => array('create')),
     array('label' => 'Export to CSV', 'url' => array('exportCSV')),
+    array('label' => 'Export Scorecards', 'url' => array('exportScorecardCSV')),
 );
 ?>
 
