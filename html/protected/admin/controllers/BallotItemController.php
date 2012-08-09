@@ -145,7 +145,7 @@ class BallotItemController extends Controller {
             if ($scorecard_item_ids = getPost('scorecards')) {
 
 
-                error_log(print_r($scorecard_item_ids, true));
+                //    error_log(print_r($scorecard_item_ids, true));
 
 
                 $scorecard_model = new Scorecard();
@@ -171,14 +171,6 @@ class BallotItemController extends Controller {
                         $scorecard_model->attributes = array('ballot_item_id' => $id, 'scorecard_item_id' => $scorecard_item_id, 'vote_id' => $vote_id);
                         $scorecard_model->save();
                     }
-
-
-
-                    // $command->reset();
-                    // delete existing scorecarditems
-                    //   $command->reset();
-                    // insert new scorecard items
-                    // $command->insert('scorecard', array('ballot_item_id' => $id, 'scorecard_item_id' => $scorecard_item_id, 'vote_id' => $vote_id));
                 }
             }
 
@@ -296,7 +288,6 @@ class BallotItemController extends Controller {
      * Handle ajax requests for /admin/ballotItem/ajax
      */
     public function actionAjax() {
-
         switch (getParam('a')) {
             // validate a ballot item URL (see ballotItem.js)
             case 'validateURL':
@@ -313,6 +304,14 @@ class BallotItemController extends Controller {
                 else
                     echo $validated_url;
 
+                break;
+
+
+            case 'getScorecardTable':
+                if (getParam('id')) {
+                    $ballot_item = BallotItem::model()->findByPk(getParam('id'));
+                    $this->renderPartial('_scorecardTable', array('model'=>$ballot_item, 'office_id'=> getParam('office_id')));
+                }
                 break;
 
             default:
