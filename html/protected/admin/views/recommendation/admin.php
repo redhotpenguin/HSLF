@@ -1,11 +1,12 @@
 <?php
-$this->breadcrumbs=array(
-	'Recommendations'=>array('index'),
-	'Manage',
+$this->breadcrumbs = array(
+    'Recommendations' => array('index'),
+    'Manage',
 );
 
-$this->menu=array(
-	array('label'=>'Add a recommendation', 'url'=>array('create')),
+$this->menu = array(
+    array('label' => 'Add a recommendation', 'url' => array('create')),
+    array('label' => 'Export to CSV', 'url' => array('exportCSV')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -25,26 +26,30 @@ $('.search-form form').submit(function(){
 <h1>Manage Recommendations</h1>
 
 <p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
+    You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
+    or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
 </p>
 
 <div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
-	'model'=>$model,
-)); ?>
+    <?php
+    $this->renderPartial('_search', array(
+        'model' => $model,
+    ));
+    ?>
 </div><!-- search-form -->
 
-<?php $this->widget('bootstrap.widgets.BootGridView', array(
-	'id'=>'recommendation-grid',
-	'dataProvider'=>$model->search(),
-	'filter'=>$model,
-	'columns'=>array(
-		'id',
-		'value',
-		'type',
-		array(
-			'class'=>'bootstrap.widgets.BootButtonColumn',
-		),
-	),
-)); ?>
+<?php
+$this->widget('bootstrap.widgets.BootGridView', array(
+    'id' => 'recommendation-grid',
+    'dataProvider' => $model->search(),
+    'filter' => $model,
+    'columns' => array(
+        'id',
+        'value',
+        'type',
+        array(
+            'class' => 'bootstrap.widgets.BootButtonColumn',
+        ),
+    ),
+));
+?>

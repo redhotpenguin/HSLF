@@ -153,8 +153,8 @@ class VoteController extends Controller {
             Yii::app()->end();
         }
     }
-    
-        /**
+
+    /**
      * Performs the CSV Export
      */
     public function actionExportCSV() {

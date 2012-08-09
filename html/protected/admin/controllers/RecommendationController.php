@@ -26,10 +26,9 @@ class RecommendationController extends Controller {
      */
     public function accessRules() {
         return array(
-       
-             array( // restrict State to admins only
+            array(// restrict State to admins only
                 'allow',
-                'actions' => array('create', 'delete', 'update', 'admin', 'index', 'view'),
+                'actions' => array('create', 'delete', 'update', 'admin', 'index', 'view', 'exportCSV'),
                 'users' => array('@'),
                 'expression' => 'isset($user->role) && ($user->role==="admin")'
             ),
@@ -155,6 +154,19 @@ class RecommendationController extends Controller {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
+    }
+
+    /**
+     * Performs the CSV Export
+     */
+    public function actionExportCSV() {
+        Yii::import('ext.csv.ESCVExport');
+
+        $csv = new ESCVExport(Recommendation::model()->findAll());
+
+
+        $content = $csv->toCSV();
+        Yii::app()->getRequest()->sendFile('recommendation.csv', $content, "text/csv", false);
     }
 
 }

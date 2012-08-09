@@ -1,18 +1,18 @@
 <?php
-$this->breadcrumbs=array(
-	'Recommendations',
+$this->breadcrumbs = array(
+    'Recommendations',
 );
 
-$this->menu=array(
-	array('label'=>'Add a recommendation', 'url'=>array('create')),
-	array('label'=>'Manage recommendations', 'url'=>array('admin')),
+$this->menu = array(
+    array('label' => 'Add a recommendation', 'url' => array('create')),
+    array('label' => 'Manage recommendations', 'url' => array('admin')),
+    array('label' => 'Export to CSV', 'url' => array('exportCSV')),
 );
 ?>
 
 <h1>Recommendations</h1>
 
 <?php
-
 $this->widget('bootstrap.widgets.BootGridView', array(
     'dataProvider' => $dataProvider,
     'columns' => array(
@@ -21,5 +21,4 @@ $this->widget('bootstrap.widgets.BootGridView', array(
         'value',
     ),
 ));
-
 ?>
