@@ -33,6 +33,7 @@ class BallotItem extends CActiveRecord {
     public $state_abbr; // not part of the model, here for cgridview (admin search)
     public $district_type; // not part of the model, here for cgridview (admin search)
     public $district_number; // not part of the model, here for cgridview (admin search)
+    public $office_type; // not part of the model, here for cgridview (admin search)
     private $labelled_parties = array(
         'N/A' => 'Not Avalaible',
         'democratic' => 'Democratic',
@@ -76,7 +77,7 @@ class BallotItem extends CActiveRecord {
             array('url', 'unique_url'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, district_id, item, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party, url, image_url, election_result_id, district_number, district_type, state_abbr, personal_url, score', 'safe', 'on' => 'search'),
+            array('id, district_id, item, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party, url, image_url, election_result_id, district_number, district_type, state_abbr, personal_url, score, office_type', 'safe', 'on' => 'search'),
         );
     }
 
@@ -87,20 +88,14 @@ class BallotItem extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-        'district' => array(self::BELONGS_TO, 'District', 'district_id'),
-        'recommendation' => array(self::BELONGS_TO, 'Recommendation', 'recommendation_id'),
-        'electionResult' => array(self::BELONGS_TO, 'Recommendation', 'election_result_id'),
-        
-         'ballotItemNews' => array(self::HAS_MANY, 'BallotItemNews', 'ballot_item_id'),
-
-   
-          'scorecards' => array(self::HAS_MANY, 'Scorecard', 'ballot_item_id'),
-
-          'cards' => array(self::MANY_MANY, 'ScorecardItem',
-          'scorecard(ballot_item_id, scorecard_item_id)'),
- 
-          'office' => array(self::BELONGS_TO, 'Office', 'office_id'),
-
+            'district' => array(self::BELONGS_TO, 'District', 'district_id'),
+            'recommendation' => array(self::BELONGS_TO, 'Recommendation', 'recommendation_id'),
+            'electionResult' => array(self::BELONGS_TO, 'Recommendation', 'election_result_id'),
+            'ballotItemNews' => array(self::HAS_MANY, 'BallotItemNews', 'ballot_item_id'),
+            'scorecards' => array(self::HAS_MANY, 'Scorecard', 'ballot_item_id'),
+            'cards' => array(self::MANY_MANY, 'ScorecardItem',
+                'scorecard(ballot_item_id, scorecard_item_id)'),
+            'office' => array(self::BELONGS_TO, 'Office', 'office_id'),
         );
     }
 
@@ -123,7 +118,8 @@ class BallotItem extends CActiveRecord {
             'url' => 'URL',
             'image_url' => 'Headshot',
             'election_result_id' => 'Election Result',
-            'office_id' => 'Office'
+            'office_id' => 'Office',
+            'office_type' => 'Office'
         );
     }
 
@@ -134,10 +130,10 @@ class BallotItem extends CActiveRecord {
     public function search() {
         $criteria = new CDbCriteriaInsensitive();
 
-        $criteria->with = array('district');
+        $criteria->with = array('district', 'office');
 
         // search by relationship (district)
-        if ($this->district_number || $this->district_type || $this->state_abbr) {
+        if ($this->district_number || $this->district_type || $this->state_abbr || $this->office_type) {
             $criteria->together = true;
             // Join the 'district' table
 
@@ -147,6 +143,10 @@ class BallotItem extends CActiveRecord {
                 $criteria->compare('district.type', $this->district_type, true);
             if ($this->state_abbr)
                 $criteria->compare('district.state_abbr', $this->state_abbr, true);
+
+            if ($this->office_type)
+                $criteria->compare('office.name', $this->office_type, false);
+
         }
 
         $criteria->compare('id', $this->id);
@@ -200,6 +200,10 @@ class BallotItem extends CActiveRecord {
                             'district_number' => array(
                                 'asc' => 'district.number ASC',
                                 'desc' => 'district.number DESC',
+                            ),
+                            'office_type' => array(
+                                'asc' => 'office.name ASC',
+                                'desc' => 'office.name DESC',
                             ),
                             '*',
                     ))

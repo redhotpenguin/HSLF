@@ -14,14 +14,15 @@ $this->menu = array(
 <h1>Manage Ballot Items</h1>
 
 <?php
-
 $state_list = array('' => 'All') + CHtml::listData(State::model()->findAll(), 'abbr', 'name');
+$office_list = array('' => 'All') + CHtml::listData(Office::model()->findAll(), 'name', 'name');
+
 
 $this->widget('bootstrap.widgets.BootGridView', array(
     'id' => 'ballot-item-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
-    'template'=>"{pager}{summary}\n{items}\n{pager}", // pagination on top and on bottom
+    'template' => "{pager}{summary}\n{items}\n{pager}", // pagination on top and on bottom
     'columns' => array(
         array(
             'header' => 'Type',
@@ -34,7 +35,6 @@ $this->widget('bootstrap.widgets.BootGridView', array(
             'header' => 'Item',
             'name' => 'item',
         ),
-   
         array(
             'name' => 'party',
             'value' => '$data->party',
@@ -64,8 +64,12 @@ $this->widget('bootstrap.widgets.BootGridView', array(
             'name' => 'district_number',
             'value' => '$data->district->number'
         ),
-        // 'election_result_id',
-
+        array(
+            'header' => 'Office',
+            'name' => 'office_type',
+            'value' => '$data->office->name',
+            'filter' => CHtml::dropDownList('BallotItem[office_type]', $model->office_type, $office_list),
+        ),
         array(
             'class' => 'bootstrap.widgets.BootButtonColumn',
         ),
