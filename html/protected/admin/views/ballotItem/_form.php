@@ -1,4 +1,5 @@
 <?php
+
 if ($model->isNewRecord) {
     $ns = "var ns  = {site_url: '" . getSetting('site_url') . "' };";
 } else {
@@ -140,7 +141,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
 
 
     </div>
-    
+
     <?php
     // echo $form->labelEx($model, 'priority');
     // priority is deprecared, make it 1 by default
@@ -238,21 +239,88 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
     <div class="clearfix"></div>
 
     <hr/>
-           <?php
-            $office_list = CHtml::listData(Office::model()->findAll(), 'id', 'name');
+    <?php
+    $office_list = CHtml::listData(Office::model()->findAll(), 'id', 'name');
 
-            echo $form->labelEx($model, 'office_id');
-            echo $form->dropDownList($model, 'office_id', $office_list);
-            echo $form->error($model, 'office_id');
-            ?>
-    
+    echo $form->labelEx($model, 'office_id');
+    echo $form->dropDownList($model, 'office_id', $office_list);
+    echo $form->error($model, 'office_id');
+    ?>
+
+    <?php
+    if (!$model->isNewRecord):
+
+        $ballot_item_scorecards = $model->scorecards;
+
+
+        $ballot_scorecards = array();
+        $i = 0;
+        foreach ($ballot_item_scorecards as $t) {
+            $ballot_scorecards[$i] = $t->scorecardItem;
+            ++$i;
+        }
+
+        // get the difference between all possible scorecard items and all the scorecard item a ballot has
+        $all_scorecard_items = array_udiff(ScorecardItem::model()->findAll(), $ballot_scorecards, function($a, $b) {
+                    if ($a->name === $b->name)
+                        return 0;
+                    return ($a->name > $b->name) ? 1 : -1;
+         });
+
+
+
+
+
+        $listed_votes = CHtml::listData(Vote::model()->findAll(), 'id', 'name');
+        $listed_votes += array('0' => 'Not set');
+        ?>
+        <h3>Score card:</h3>
+        <table  class="table">
+            <tr>
+                <td>item</td>
+                <td>vote</td>
+            </tr>
             <?php
-            $this->widget('ext.ScorecardSelector.ScorecardSelector', array(
-                'model' => $model,
+            foreach ($ballot_item_scorecards as $scorecard) {
+                echo '<tr>';
 
-            ));
+                echo '<td>' . $scorecard->scorecardItem->name . '</td>';
+
+                //  echo '<td>'.$scorecard->vote->name.'</td>';
+
+
+                echo '<td>';
+                echo CHtml::dropDownList("scorecards[{$scorecard->scorecardItem->id}]", $scorecard->vote_id, $listed_votes);
+                echo '</td>';
+
+
+                echo '</tr>';
+            }
+
+
+            foreach ($all_scorecard_items as $scorecard_item) {
+                echo '<tr>';
+
+                echo '<td>' . $scorecard_item->name . '</td>';
+
+                //  echo '<td>'.$scorecard->vote->name.'</td>';
+
+
+                echo '<td>';
+                echo CHtml::dropDownList("scorecards[{$scorecard_item->id}]", 0, $listed_votes);
+                echo '</td>';
+
+
+                echo '</tr>';
+            }
             ?>
-    
+        </table>
+
+
+        <?php
+    endif;
+    ?>
+
 
     <hr/>
 
