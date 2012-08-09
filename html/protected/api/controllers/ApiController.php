@@ -176,18 +176,18 @@ class ApiController extends Controller {
     private function _ballotWrapper(BallotItem $ballot) {
         $scorecards = array();
         $i = 0;
+
         foreach ($ballot->scorecards as $scorecard) {
             array_push($scorecards, array(
                 'id' => $scorecard->id,
                 'name' => $ballot->cards[$i]->name,
                 'description' => $ballot->cards[$i]->description,
-                'vote' => $ballot->votes[$i]->name,
-                'vote_icon' => $ballot->votes[$i]->icon,
+                'vote' =>   $scorecard->vote->name,
+                'vote_icon' => $scorecard->vote->icon,
             ));
-
             ++$i;
         }
-
+        
         $wrapped_ballot = array(
             'id' => $ballot->id,
             'item' => $ballot->item,
