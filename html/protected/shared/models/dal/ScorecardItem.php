@@ -83,6 +83,7 @@ class ScorecardItem extends CActiveRecord {
         // Warning: Please modify the following code to remove attributes that
         // should not be searched.
         $criteria = new CDbCriteriaInsensitive();
+        $table_alias = $this->getTableAlias(false, false);
 
         $criteria->with = array('office');
 
@@ -95,10 +96,9 @@ class ScorecardItem extends CActiveRecord {
             $criteria->compare('office.name', $this->office_type, false);
         }
 
-        $criteria->compare('id', $this->id);
-        $criteria->compare('name', $this->name, true);
+        $criteria->compare($table_alias . '.id', $this->id);
+        $criteria->compare($table_alias . '.name', $this->name, true);
         $criteria->compare('description', $this->description, true);
-        $criteria->compare('office_id', $this->office_id);
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
@@ -106,7 +106,7 @@ class ScorecardItem extends CActiveRecord {
                         'pageSize' => 50,
                     ),
                     'sort' => array(
-                        'defaultOrder' => $this->getTableAlias(false, false) . '.id DESC',
+                        'defaultOrder' => $table_alias . '.id DESC',
                         'attributes' => array(
                             'office_type' => array(
                                 'asc' => 'office.name ASC',
