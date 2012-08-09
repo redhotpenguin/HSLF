@@ -28,7 +28,7 @@ class BallotItemController extends Controller {
 
         return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete', 'exportCSV', 'upload', 'ajax'),
+                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete', 'exportCSV', 'upload', 'ajax', 'exportScorecardCSV'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -283,7 +283,21 @@ class BallotItemController extends Controller {
         $content = $csv->toCSV();
         Yii::app()->getRequest()->sendFile('ballot_items.csv', $content, "text/csv", false);
     }
+    
+    /**
+     * Export scorecards to CSV
+     */
+    public function actionExportScorecardCSV() {
+        Yii::import('ext.csv.ESCVExport');
 
+        $csv = new ESCVExport(Scorecard::model()->findAll());
+
+
+        $content = $csv->toCSV();
+        Yii::app()->getRequest()->sendFile('scorecard.csv', $content, "text/csv", false);
+    }
+    
+    
     /**
      * Handle ajax requests for /admin/ballotItem/ajax
      */
