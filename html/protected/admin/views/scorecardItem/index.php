@@ -6,6 +6,7 @@ $this->breadcrumbs=array(
 $this->menu=array(
 	array('label'=>'Add a scorecard item', 'url'=>array('create')),
 	array('label'=>'Manage scorecard items', 'url'=>array('admin')),
+        array('label' => 'Export to CSV file', 'url' => array('exportCSV')),
 );
 ?>
 

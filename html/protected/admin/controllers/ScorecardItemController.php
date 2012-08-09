@@ -26,7 +26,7 @@ class ScorecardItemController extends Controller {
 
         return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete', 'upload'),
+                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete', 'upload', 'exportCSV'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -151,6 +151,19 @@ class ScorecardItemController extends Controller {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
+    }
+
+    /**
+     * Performs the CSV Export
+     */
+    public function actionExportCSV() {
+        Yii::import('ext.csv.ESCVExport');
+
+        $csv = new ESCVExport(ScorecardItem::model()->findAll());
+
+
+        $content = $csv->toCSV();
+        Yii::app()->getRequest()->sendFile('scorecard_item.csv', $content, "text/csv", false);
     }
 
 }
