@@ -125,7 +125,7 @@ class Import extends CModel {
 
     public static function importScorecard($tmp_name, $file_name) {
 
-        $fields = array( 'ballot_item_id', 'scorecard_item_id', 'vote');
+        $fields = array( 'ballot_item_id', 'scorecard_item_id', 'vote_id');
 
         $result = self::insertDataFromCSV($tmp_name, $file_name, 'scorecard', $fields);
 

@@ -121,7 +121,7 @@ echo Chtml::endForm();
 
     <div class="clearfix"></div>
     <p>
-        <b>CSV structure:</b>id, ballot_item_id, scorecard_item_id, vote
+        <b>CSV structure:</b>id, ballot_item_id, scorecard_item_id, vote_id
         (headers must be included)
     </p>
 </div>
