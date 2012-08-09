@@ -7,7 +7,7 @@
  * @property integer $id
  * @property integer $ballot_item_id
  * @property integer $scorecard_item_id
- * @property string $vote
+ * @property string $vote_id
  *
  * The followings are the available model relations:
  * @property BallotItem $ballotItem
@@ -24,13 +24,6 @@ class Scorecard extends CActiveRecord {
         return parent::model($className);
     }
 
-    private $votes = array(
-        'Y' => 'Y',
-        'N' => 'N',
-        'SP' => 'SP',
-        'NV' => 'NV',
-        'N/A' => 'N/A',
-    );
 
     /**
      * @return string the associated database table name
@@ -46,12 +39,11 @@ class Scorecard extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('ballot_item_id, scorecard_item_id', 'required'),
-            array('ballot_item_id, scorecard_item_id', 'numerical', 'integerOnly' => true),
-            array('vote', 'length', 'max' => 128),
+            array('ballot_item_id, scorecard_item_id, vote_id', 'required'),
+            array('ballot_item_id, scorecard_item_id, vote_id ', 'numerical', 'integerOnly' => true),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, ballot_item_id, scorecard_item_id, vote', 'safe', 'on' => 'search'),
+            array('id, ballot_item_id, scorecard_item_id, vote_id', 'safe', 'on' => 'search'),
         );
     }
 
@@ -62,11 +54,8 @@ class Scorecard extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            
-            'Vote' => array(self::BELONGS_TO, 'Vote', 'vote_id'),
-            'ScorecardItem' => array(self::BELONGS_TO, 'ScorecardItem', 'scorecard_item_id'),
-
-
+            'vote' => array(self::BELONGS_TO, 'Vote', 'vote_id'),
+            'scorecardItem' => array(self::BELONGS_TO, 'ScorecardItem', 'scorecard_item_id'),
         );
     }
 
@@ -78,7 +67,7 @@ class Scorecard extends CActiveRecord {
             'id' => 'ID',
             'ballot_item_id' => 'Ballot Item',
             'scorecard_item_id' => 'Scorecard Item',
-            'vote' => 'Vote',
+            'vote_id' => 'Vote',
         );
     }
 
@@ -95,15 +84,11 @@ class Scorecard extends CActiveRecord {
         $criteria->compare('id', $this->id);
         $criteria->compare('ballot_item_id', $this->ballot_item_id);
         $criteria->compare('scorecard_item_id', $this->scorecard_item_id);
-        $criteria->compare('vote', $this->vote, true);
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
-                ));
+        ));
     }
 
-    public function getVoteOptions() {
-        return $this->votes;
-    }
 
 }

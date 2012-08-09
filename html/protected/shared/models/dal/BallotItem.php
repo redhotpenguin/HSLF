@@ -98,12 +98,8 @@ class BallotItem extends CActiveRecord {
 
           'cards' => array(self::MANY_MANY, 'ScorecardItem',
           'scorecard(ballot_item_id, scorecard_item_id)'),
-
+ 
           'office' => array(self::BELONGS_TO, 'Office', 'office_id'),
-
-          'votes' => array(self::MANY_MANY, 'Vote' ,
-          'scorecard(ballot_item_id, vote_id)')   ,
-     
 
         );
     }
