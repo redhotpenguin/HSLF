@@ -201,3 +201,8 @@ input{
 .alignRight{
     float:right;
 }
+
+.ajax_wheel_spin{
+    display: block;
+    text-align: center;
+}

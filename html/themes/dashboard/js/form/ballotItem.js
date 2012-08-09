@@ -1,7 +1,7 @@
 jQuery(document).ready(ballotItemForm);
 
 jQuery.fn.updateURLUsingName = function() {
-    var o = $(this[0]); // It's your element    console.log('update');
+    var o = $(this[0]);
     
     // retrieve the ballot item name
     item_name = item_name_input.val();
@@ -12,13 +12,16 @@ jQuery.fn.updateURLUsingName = function() {
     
     
     // filter the url
-    filtered_url = filterURL(item_name);
+    filtered_url = filterURL(item_name, '', function(filtered_url){
+        o.printURL(filtered_url);
+    });
        
-    o.printURL();
+  
 };
 
 jQuery.fn.updateURLUsingInput = function() {
-    var o = $(this[0]); // It's your element    console.log('update');
+    var o = $(this[0]);
+
     
     // retrieve the ballot site url
     site_url = site_url_input.val();
@@ -28,13 +31,14 @@ jQuery.fn.updateURLUsingInput = function() {
         return false;
    
     // filter the url
-    filtered_url = filterURL(site_url, ns.ballot_id);
+    filterURL(site_url, ns.ballot_id, function(filtered_url){
+        o.printURL(filtered_url);
+    });
     
-    o.printURL();
-    
+   
 };
 
-jQuery.fn.printURL = function() {
+jQuery.fn.printURL = function(filtered_url) {
  
     // get the year from the publication field
     year_published = date_published_input.val().substr(0, 4);
@@ -56,7 +60,7 @@ jQuery.fn.printURL = function() {
 
 
 // synchrously make a request to the server to filter the url
-function filterURL(item_name, id){
+function filterURL(item_name, id, _cb){
     id = id || "";
 
     // ajax request url
@@ -71,9 +75,9 @@ function filterURL(item_name, id){
         url:    ajax_url,
 
         success: function(result) {
-            resp = result;
+            _cb(result);
         },
-        async:   false
+        async:   true
     });  
     
     return resp;
@@ -138,12 +142,46 @@ function ballotItemForm($){
         });
     
         if(sessionStorage.BallotItemContent){
-           // textarea.text(sessionStorage.BallotItemContent);
+        // textarea.text(sessionStorage.BallotItemContent);
         }
-        
-
 
     }
+   
+    
+    // dynamic scorecard
+    var office_input = $('#BallotItem_office_id');
+    var dynamic_scorecard_table = $('#dynamic_scorecard_table');
+    
+    // only bind event for existing ballot items
+    if(ns.ballot_id){
+        office_input.change(function(){
+            dynamic_scorecard_table.updateScorecards( ns.ballot_id, office_input.val() );
+         
+        });
+        $("#scorecard_spin").hide();
+        office_input.change();
+    }
+    
     
 
+} //  ready function  end
+
+jQuery.fn.updateScorecards = function(ballot_item_id, office_id) {
+    var o = $(this[0]);
+    o.html("");
+    // ajax request url
+    ajax_url = ns.site_url+ "/admin/ballotItem/ajax/?a=getScorecardTable&office_id="+office_id+"&id="+ballot_item_id;
+    $("#scorecard_spin").show();
+    
+    jQuery.ajax({
+        url:    ajax_url,
+
+        success: function(result) {
+            $("#scorecard_spin").hide();
+            o.html(result);
+        },
+        async:   true
+    });  
+    
+      
 }
