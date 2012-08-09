@@ -11,7 +11,20 @@ $this->menu=array(
 
 <h1>Scorecard Items</h1>
 
-<?php $this->widget('zii.widgets.CListView', array(
-	'dataProvider'=>$dataProvider,
-	'itemView'=>'_view',
-)); ?>
+<?php
+
+$this->widget('bootstrap.widgets.BootGridView', array(
+    'id' => 'scorecard-item-grid',
+    'dataProvider' => $dataProvider,
+    'columns' => array(
+        'id',
+        'name',
+        'description',
+        'office_id',
+        array(
+            'class' => 'bootstrap.widgets.BootButtonColumn',
+        ),
+    ),
+));
+?>
+

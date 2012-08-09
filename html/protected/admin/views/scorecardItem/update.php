@@ -11,6 +11,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Update ScorecardItem <?php echo $model->id; ?></h1>
+<h1>Update Scorecard Item <?php echo $model->id; ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
