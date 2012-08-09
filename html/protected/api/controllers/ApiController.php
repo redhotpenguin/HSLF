@@ -199,14 +199,14 @@ class ApiController extends Controller {
             'date_published' => $ballot->date_published,
             'party' => $ballot->party,
             'image_url' => $ballot->image_url,
-            'election_result' => $ballot->electionResult,
+            'electionResult' => $ballot->electionResult,
             'url' => $ballot->url,
             'personal_url' => $ballot->personal_url,
             'score' => $ballot->score,
-            'office' => $ballot->office->name,
+            'office_type' => $ballot->office->name,
             'district' => $ballot->district,
-            'scorecard' => $scorecards,
-            'news' => $ballot->ballotItemNews,
+            'Scorecard' => $scorecards,
+            'BallotItemNews' => $ballot->ballotItemNews,
         );
 
         return $wrapped_ballot;
