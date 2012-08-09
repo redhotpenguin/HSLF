@@ -59,6 +59,7 @@
                                 array('label' => 'Publishing', 'url' => '#', 'items' => array(
                                         array('label' => 'States', 'url' => array('/state/admin'), 'visible' => isAdmin()),
                                         array('label' => 'Districts', 'url' => array('/district/admin'), 'visible' => isAdmin()),
+                                        array('label' => 'Votes', 'url' => array('/vote/admin'), 'visible' => isAdmin()),
                                         array('label' => 'Recommendations', 'url' => array('/recommendation/admin'), 'visible' => isAdmin()),
                                         array('label' => 'Ballot Items', 'url' => array('/ballotItem/admin'), 'visible' => !Yii::app()->user->isGuest),
                                         array('label' => 'Scorecard Items', 'url' => array('/scorecardItem/admin'), 'visible' => !Yii::app()->user->isGuest),
