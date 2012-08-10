@@ -43,10 +43,6 @@ class ApiController extends Controller {
                 $result = State::model()->findAll();
                 break;
 
-            case 'districts': // /api/districts
-                $result = District::model()->findAll();
-                break;
-
             case 'ballot_items': // /api/ballot/items
                 $result = $this->browseBallotItems();
                 break;
@@ -80,6 +76,10 @@ class ApiController extends Controller {
                 else // return multiple ballot items
                     $this->_sendResponse(200, $this->_getBallotItems($_GET));
                 break;
+                
+            case 'districts':
+                $this->_sendResponse(200, District::model()->getTypeOptions());
+            break;  
 
             default:
                 $this->_sendResponse(404, $this->_getStatusCodeMessage(404));
