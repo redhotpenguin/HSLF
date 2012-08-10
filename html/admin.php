@@ -15,7 +15,6 @@ defined('YII_DEBUG_SHOW_PROFILER') or define('YII_DEBUG_SHOW_PROFILER',true);
 
 require ( 'protected/helpers/globals.php' ) ;
 
-
 require_once($yii);
 
 $yii =Yii::createWebApplication($config);

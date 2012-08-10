@@ -1,5 +1,4 @@
 <?php
-
 class BallotItemController extends Controller {
 
     /**
@@ -331,6 +330,7 @@ class BallotItemController extends Controller {
             default:
                 break;
         }
+        exit;
     }
 
 }

@@ -52,25 +52,18 @@ class Import extends CModel {
 
                     $j++;
                 }
-                                
+
                 $query = "UPDATE  $table_name SET  $set  WHERE id = $id ;";
             } else { // insert
                 array_shift($data_field[$i]);
                 $columns = implode(',', $fields);
                 $values = implode("','", $data_field[$i]);
                 $query = "INSERT INTO $table_name ($columns) VALUES('$values');";
-               
-               echo '<br>';
             }
-
-
 
             array_push($queries, $query);
             ++$i; // pre increment index
         }
-        
-        // print_r($queries);
-       // exit;
 
         unset($data_field);
 
@@ -118,7 +111,7 @@ class Import extends CModel {
 
     public static function importBallot($tmp_name, $file_name) {
 
-        $fields = array('district_id', 'item', 'item_type', 'recommendation_id', 'next_election_date', 'priority', 'detail', 'date_published', 'published', 'party', 'image_url','election_result_id','url', 'personal_url', 'score', 'office_id');
+        $fields = array('district_id', 'item', 'item_type', 'recommendation_id', 'next_election_date', 'priority', 'detail', 'date_published', 'published', 'party', 'image_url', 'election_result_id', 'url', 'personal_url', 'score', 'office_id');
 
         $result = self::insertDataFromCSV($tmp_name, $file_name, 'ballot_item', $fields);
 
@@ -127,7 +120,7 @@ class Import extends CModel {
 
     public static function importScorecard($tmp_name, $file_name) {
 
-        $fields = array( 'ballot_item_id', 'scorecard_item_id', 'vote_id');
+        $fields = array('ballot_item_id', 'scorecard_item_id', 'vote_id');
 
         $result = self::insertDataFromCSV($tmp_name, $file_name, 'scorecard', $fields);
 

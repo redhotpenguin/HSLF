@@ -45,8 +45,7 @@ jQuery.fn.printURL = function(filtered_url) {
     
     // URL minus the slug
     url = ns.site_url+"/ballot/"+year_published+"/";
-    
-    
+   
     var o = $(this[0]);
         
     if(filtered_url == 'invalid_url'){
@@ -68,9 +67,7 @@ function filterURL(item_name, id, _cb){
     
     if(id != "undefined" && id!="" )
         ajax_url += "&id="+id;
-    
-    var resp;
-    
+
     jQuery.ajax({
         url:    ajax_url,
 
@@ -80,7 +77,7 @@ function filterURL(item_name, id, _cb){
         async:   true
     });  
     
-    return resp;
+  
 }
 
 // executed when the page is Ready
