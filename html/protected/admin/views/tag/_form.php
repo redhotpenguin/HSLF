@@ -47,6 +47,20 @@
                     target.addClass("btn-info");
                     target.html("saving...");
                  }',
+                'error' => 'js:function(object){
+              
+                target =$("#targetdiv");
+                target.removeClass("btn-info");
+                 target.fadeIn();
+                 target.removeClass("hidden");
+                   target.addClass("btn-danger");
+         
+                   target.html( "Could not save ballot item:<br/>" + object.responseText );
+             
+                //target.fadeOut(5000, function(){
+                // target.removeClass("btn-danger");
+              //  });
+            }',
                 'success' => 'js:function(response) {
                   if ( response != "success" )
                       return false;
