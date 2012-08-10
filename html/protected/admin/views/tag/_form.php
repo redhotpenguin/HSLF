@@ -3,8 +3,8 @@
     <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'tag-form',
-        'enableAjaxValidation' => true,
-        'stateful' => true,
+            //   'enableAjaxValidation' => true,
+            // 'stateful' => true,
             ));
     ?>
 
@@ -28,15 +28,15 @@
     </div>
 
     <div class="row buttons">
-    
+
         <?php
         if (!$model->isNewRecord) {
 
             $url = CHtml::normalizeUrl(array(
-                'tag/update',
-                'id'=> $model->id,
-            ));
-            
+                        'tag/update',
+                        'id' => $model->id,
+                    ));
+
             echo CHtml::ajaxSubmitButton('Save', $this->createUrl($url), array(
                 'type' => 'POST',
                 'update' => '#targetdiv',
@@ -70,6 +70,6 @@
     <div class="hidden update_box" id="targetdiv">
     </div>
 
-<?php $this->endWidget(); ?>
+    <?php $this->endWidget(); ?>
 
 </div><!-- form -->
