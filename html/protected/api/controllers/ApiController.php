@@ -38,6 +38,14 @@ class ApiController extends Controller {
                 $alert_types = AlertType::model()->with('tag')->findAll();
                 $result = $alert_types;
                 break;
+            
+            case 'states': // /api/states
+                $result = State::model()->findAll();
+                break;
+
+            case 'districts': // /api/districts
+                $result = District::model()->findAll();
+                break;
 
             case 'ballot_items': // /api/ballot/items
                 $result = $this->browseBallotItems();
@@ -149,10 +157,10 @@ class ApiController extends Controller {
         else {
             $ballots = BallotItemManager::findAllByState($state_abbr, $year);
         }
-       if( empty($ballots) )
-           return false;
-       else
-          return $this->_ballotsWrapper($ballots);
+        if (empty($ballots))
+            return false;
+        else
+            return $this->_ballotsWrapper($ballots);
     }
 
     /**
@@ -182,12 +190,12 @@ class ApiController extends Controller {
                 'id' => $scorecard->id,
                 'name' => $ballot->cards[$i]->name,
                 'description' => $ballot->cards[$i]->description,
-                'vote' =>   $scorecard->vote->name,
+                'vote' => $scorecard->vote->name,
                 'vote_icon' => $scorecard->vote->icon,
             ));
             ++$i;
         }
-        
+
         $wrapped_ballot = array(
             'id' => $ballot->id,
             'item' => $ballot->item,
