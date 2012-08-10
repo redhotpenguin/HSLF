@@ -150,14 +150,14 @@ function ballotItemForm($){
     var dynamic_scorecard_table = $('#dynamic_scorecard_table');
     
     // only bind event for existing ballot items
-    if(ns.ballot_id){
-        office_input.change(function(){
-            dynamic_scorecard_table.updateScorecards( ns.ballot_id, office_input.val() );
+    // if(ns.ballot_id){
+    office_input.change(function(){
+        dynamic_scorecard_table.updateScorecards( ns.ballot_id, office_input.val() );
          
-        });
-        $("#scorecard_spin").hide();
-        office_input.change();
-    }
+    });
+    $("#scorecard_spin").hide();
+    office_input.change();
+//  }
     
     
 
@@ -166,10 +166,17 @@ function ballotItemForm($){
 jQuery.fn.updateScorecards = function(ballot_item_id, office_id) {
     var o = $(this[0]);
     o.html("");
-    // ajax request url
-    ajax_url = ns.site_url+ "/admin/ballotItem/ajax/?a=getScorecardTable&office_id="+office_id+"&id="+ballot_item_id;
+    
+    ajax_url = ns.site_url+ "/admin/ballotItem/ajax/?a=getScorecardTable&office_id="+office_id;
+
+    
+    if(typeof ballot_item_id != 'undefined')
+        ajax_url += "&id="+ballot_item_id; 
+
+   
     $("#scorecard_spin").show();
     
+ 
     jQuery.ajax({
         url:    ajax_url,
 
