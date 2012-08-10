@@ -14,7 +14,7 @@ return array(
     'runtimePath' => $api . '/runtime',
     'name' => PROJECT_NAME . ' - API',
     // preloading 'log' component
-   // 'preload' => array('log'),
+    // 'preload' => array('log'),
     // autoloading model and component classes
     'import' => array(
         'admin.models.*',
@@ -72,28 +72,28 @@ return array(
             'charset' => 'UTF-8',
             'schemaCachingDuration' => '3600',
         ),
-      //  'cache' => array(
-         //   'class' => 'system.caching.CApcCache',
-      //  ),
+        'cache' => array(
+            'class' => 'system.caching.CApcCache',
+        ),
         'errorHandler' => array(
             // use 'api/error' action to display errors
             'errorAction' => 'api/index',
         ),
-        /*
-        'log' => array(
-            'class' => 'CLogRouter',
-            'routes' => array(
-                array(
-                    'class' => 'CFileLogRoute',
-                    'levels' => 'error, warning, info, trace',
-                ),
-            // uncomment the following to show log messages on web pages
+    /*
+      'log' => array(
+      'class' => 'CLogRouter',
+      'routes' => array(
+      array(
+      'class' => 'CFileLogRoute',
+      'levels' => 'error, warning, info, trace',
+      ),
+      // uncomment the following to show log messages on web pages
 
-            array(
-              'class'=>'CWebLogRoute',
-              ), 
-            ),
-        ),*/
+      array(
+      'class'=>'CWebLogRoute',
+      ),
+      ),
+      ), */
     ),
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']
