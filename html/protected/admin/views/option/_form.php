@@ -11,24 +11,24 @@
 
     <p class="note">Fields with <span class="required">*</span> are required.</p>
 
-        <?php echo $form->errorSummary($model); ?>
+    <?php echo $form->errorSummary($model); ?>
 
     <div class="">
         <?php echo $form->labelEx($model, 'name'); ?>
-<?php echo $form->textField($model, 'name'); ?>
-<?php echo $form->error($model, 'name'); ?>
+        <?php echo $form->textField($model, 'name', array('size' => 60, 'class' => 'span7',)); ?>
+        <?php echo $form->error($model, 'name'); ?>
     </div>
 
     <div class="">
         <?php echo $form->labelEx($model, 'value'); ?>
-<?php echo $form->textArea($model, 'value', array('rows' => 6, 'cols' => 50)); ?>
-<?php echo $form->error($model, 'value'); ?>
+        <?php echo $form->textArea($model, 'value', array('rows' => 6, 'class' => 'span7', 'cols' => 10)); ?>
+        <?php echo $form->error($model, 'value'); ?>
     </div>
 
     <div class="buttons">
-    <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
     </div>
 
-<?php $this->endWidget(); ?>
+    <?php $this->endWidget(); ?>
 
 </div><!-- form -->

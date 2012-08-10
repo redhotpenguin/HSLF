@@ -13,8 +13,7 @@ $this->menu=array(
 
 <?php $this->widget('bootstrap.widgets.BootGridView', array(
     'dataProvider'=>$dataProvider,
-    'columns'=>array(
-        'id',          
+    'columns'=>array(         
         'name',  
         'value',
         array(            // display a column with "view", "update" and "delete" buttons

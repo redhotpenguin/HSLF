@@ -44,7 +44,6 @@ $this->widget('bootstrap.widgets.BootGridView', array(
     'dataProvider' => $model->search(),
     'filter' => $model,
     'columns' => array(
-        'id',
         'name',
         'value',
         array(
