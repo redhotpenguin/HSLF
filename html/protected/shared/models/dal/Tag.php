@@ -29,7 +29,7 @@ class Tag extends CActiveRecord
 	}
         
         public function getTagTypes(){
-            return array('alerts'=>'Alerts', 'home_location'=>'Home Location');
+            return array('alerts'=>'Alerts');
         }
 
 	/**

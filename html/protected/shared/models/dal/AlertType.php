@@ -77,16 +77,11 @@ class AlertType extends CActiveRecord {
         // should not be searched.
           //error_log(print_r($_REQUEST, true));
         $criteria = new CDbCriteria;
-        error_log($this->tag_name);
-
-
-
 
         if ($this->tag_name != '') {
             $criteria->together = true;
             $criteria->with = array('tag');
             $criteria->compare('tag.name', $this->tag_name, false);
-           
         }
 
         $criteria->compare('id', $this->id);
