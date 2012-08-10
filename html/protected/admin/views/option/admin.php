@@ -39,6 +39,11 @@ $('.search-form form').submit(function(){
 </div><!-- search-form -->
 
 <?php
+if (isAdmin())
+    $template = '{view}{update}{delete}';
+else
+    $template = '{view}{update}';
+
 $this->widget('bootstrap.widgets.BootGridView', array(
     'id' => 'option-grid',
     'dataProvider' => $model->search(),
@@ -48,6 +53,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
         'value',
         array(
             'class' => 'bootstrap.widgets.BootButtonColumn',
+            'template'=>$template,
         ),
     ),
 ));

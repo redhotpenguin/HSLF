@@ -7,11 +7,12 @@ class OptionController extends Controller {
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
     public $layout = '//layouts/column2';
-    public $category = array( 'Application Manager'=>array('/site/mobile/')); // used by the breadcrumb
+    public $category = array('Application Manager' => array('/site/mobile/')); // used by the breadcrumb
 
     /**
      * @return array action filters
      */
+
     public function filters() {
         return array(
             'accessControl', // perform access control for CRUD operations
@@ -24,9 +25,15 @@ class OptionController extends Controller {
      * @return array access control rules
      */ public function accessRules() {
         return array(
-            array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete'),
+            array('allow', //
+                'actions' => array('index', 'view', 'update'),
                 'users' => array('@'),
+            ),
+            array(
+                'allow',
+                'actions' => array('create', 'delete', 'update', 'admin'),
+                'users' => array('@'),
+                'expression' => 'isset($user->role) && ($user->role==="admin")'
             ),
             array('deny', // deny all users
                 'users' => array('*'),
