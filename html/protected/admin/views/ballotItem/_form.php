@@ -247,7 +247,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
     ?>
 
     <?php
-    if (!$model->isNewRecord):
+  //  if (!$model->isNewRecord):
         // see ballotItem.js and _scorecardTable.php
         ?>
 
@@ -256,7 +256,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
     <span id="scorecard_spin" class="ajax_wheel_spin"><img src="/themes/dashboard/img/64_orange_wheel.gif"/></span>
     <div id ="dynamic_scorecard_table"> 
         <?php
-    endif;
+  //  endif;
     ?>
     </div>
 

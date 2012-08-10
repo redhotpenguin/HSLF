@@ -1,4 +1,5 @@
 <?php
+
 class BallotItemController extends Controller {
 
     /**
@@ -74,8 +75,42 @@ class BallotItemController extends Controller {
                     $model->image_url = $saved_file_url;
             }
 
-            if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
+           $model->save();
+           
+                   // savescorecards
+
+            if ($scorecard_item_ids = getPost('scorecards')) {
+        
+                $scorecard_model = new Scorecard();
+                foreach ($scorecard_item_ids as $scorecard_item_id => $vote_id) {
+                    error_log($vote_id);
+
+                    $scorecard = $scorecard_model->findByAttributes(array(
+                        "ballot_item_id" => $model->id,
+                        "scorecard_item_id" => $scorecard_item_id
+                            ));
+
+                    if ($scorecard) { // update or delete existing scorecard 
+                        if (!$vote_id)
+                            $scorecard->delete();
+
+
+                        $scorecard->vote_id = $vote_id;
+                        $scorecard->save();
+                    } else { // insert new scorecard
+                        if (!$vote_id)
+                            continue;
+
+                        $scorecard_model = new Scorecard();
+                        $scorecard_model->attributes = array('ballot_item_id' => $model->id, 'scorecard_item_id' => $scorecard_item_id, 'vote_id' => $vote_id);
+                        $scorecard_model->save();
+                    }
+                }
+            }
+            
+
+           
+           $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
         }
 
         $model->date_published = date('Y-m-d h:i:s');
@@ -142,10 +177,6 @@ class BallotItemController extends Controller {
             // savescorecards
 
             if ($scorecard_item_ids = getPost('scorecards')) {
-
-
-                //    error_log(print_r($scorecard_item_ids, true));
-
 
                 $scorecard_model = new Scorecard();
                 foreach ($scorecard_item_ids as $scorecard_item_id => $vote_id) {
@@ -282,7 +313,7 @@ class BallotItemController extends Controller {
         $content = $csv->toCSV();
         Yii::app()->getRequest()->sendFile('ballot_items.csv', $content, "text/csv", false);
     }
-    
+
     /**
      * Export scorecards to CSV
      */
@@ -295,8 +326,7 @@ class BallotItemController extends Controller {
         $content = $csv->toCSV();
         Yii::app()->getRequest()->sendFile('scorecard.csv', $content, "text/csv", false);
     }
-    
-    
+
     /**
      * Handle ajax requests for /admin/ballotItem/ajax
      */
@@ -323,8 +353,9 @@ class BallotItemController extends Controller {
             case 'getScorecardTable':
                 if (getParam('id')) {
                     $ballot_item = BallotItem::model()->findByPk(getParam('id'));
-                    $this->renderPartial('_scorecardTable', array('model'=>$ballot_item, 'office_id'=> getParam('office_id')));
-                }
+                    $this->renderPartial('_scorecardTable', array('model' => $ballot_item, 'office_id' => getParam('office_id')));
+                }else
+                    $this->renderPartial('_scorecardTable', array('office_id' => getParam('office_id')));
                 break;
 
             default:
