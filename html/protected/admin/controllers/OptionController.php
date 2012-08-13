@@ -31,7 +31,7 @@ class OptionController extends Controller {
             ),
             array(
                 'allow',
-                'actions' => array('create', 'delete', 'update', 'admin'),
+                'actions' => array('create', 'delete', 'update', 'admin', 'editor'),
                 'users' => array('@'),
                 'expression' => 'isset($user->role) && ($user->role==="admin")'
             ),
@@ -157,6 +157,21 @@ class OptionController extends Controller {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
+    }
+    
+   /**
+     * Displays the editor index page
+     */
+    public function actionEditor() {
+        
+        $html_directory = getSetting('html_directory');
+        
+        $this->render('file_editor', array(
+            'edit_files' => array(
+                $html_directory.'/themes/frontend/css/client_app.css',
+            )
+                )
+        );
     }
 
 }

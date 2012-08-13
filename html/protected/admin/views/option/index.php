@@ -6,6 +6,7 @@ $this->breadcrumbs = array(
 $this->menu = array(
     array('label' => 'Add an option', 'url' => array('create')),
     array('label' => 'Manage options', 'url' => array('admin')),
+    array('label' => 'File Editor', 'url' => array('editor')),
 );
 ?>
 
