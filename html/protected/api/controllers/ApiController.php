@@ -38,7 +38,7 @@ class ApiController extends Controller {
                 $alert_types = AlertType::model()->with('tag')->findAll();
                 $result = $alert_types;
                 break;
-            
+
             case 'states': // /api/states
                 $result = State::model()->findAll();
                 break;
@@ -76,10 +76,10 @@ class ApiController extends Controller {
                 else // return multiple ballot items
                     $this->_sendResponse(200, $this->_getBallotItems($_GET));
                 break;
-                
+
             case 'districts':
                 $this->_sendResponse(200, District::model()->getTypeOptions());
-            break;  
+                break;
 
             default:
                 $this->_sendResponse(404, $this->_getStatusCodeMessage(404));
@@ -310,9 +310,16 @@ class ApiController extends Controller {
     public function actionSearch() {
         $model = getParam('model');
         $search_condition = array();
+        $apiSearch = new APISearch($ar_model);
+
         switch ($model) {
             case 'ballot_items':
                 $search_condition = array();
+
+
+                $search_result = $apiSearch->search('BallotItem', getParam('query'));
+                $search_result = $this->_ballotsWrapper($search_result);
+
                 break;
             default:
                 $this->_sendResponse(404, $this->_getStatusCodeMessage(404));
@@ -320,9 +327,6 @@ class ApiController extends Controller {
                 break;
         }
 
-
-        $apiSearch = new APISearch($ar_model);
-        $search_result = $apiSearch->search('BallotItem', getParam('query'));
         $this->_sendResponse(200, $search_result);
     }
 
@@ -415,7 +419,7 @@ class ApiController extends Controller {
      * @param mixed $body content to print
      * @param string $template template to use
      */
-    private function _sendResponse($status = 200, $body = '', $template = '') {
+    private function _sendResponse($status = 200, $body = '') {
         $container = array('api_name' => self::APPLICATION_ID, 'api_version' => self::API_VERSION, 'status' => $status);
 
         $status_header = 'HTTP/1.1 ' . $status . ' ' . $this->_getStatusCodeMessage($status);
@@ -429,14 +433,11 @@ class ApiController extends Controller {
             $container['results'] = 'no_results';
         }
 
-        if ($template != '') {
-            $this->renderPartial('issue', array('data' => $container));
-        } else {
 
-            $json_encoded_result = CJSON_Nested::encode($container);
+        $json_encoded_result = CJSON_Nested::encode($container);
 
-            echo $json_encoded_result;
-        }
+        echo $json_encoded_result;
+
         exit;
     }
 
