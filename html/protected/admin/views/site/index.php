@@ -8,8 +8,6 @@
         <div class="hero-unit">
             <h1>Dashboard</h1>
             <p>Welcome to the HSLF app dashboard.</p>
-
-            <p> <b><?php echo $total_app_users; ?></b> <a href="/admin/application_users/admin/">Application users</a></p>
             <p> <b><?php echo $total_ballot_page; ?></b> <a href="/admin/ballotItem/admin/">Ballot pages</a></p>
         </div>
 
@@ -21,7 +19,7 @@
             </div>
             <div class="span3">
                 <h2>Image Uploader</h2>
-                <p>Upload your images. </p>
+                <p>Upload images. </p>
                 <p><a class="btn" href="/admin/upload/">More »</a></p>
             </div>
             <div class="span3">
@@ -34,7 +32,7 @@
         <div class="row">
             <div class="span3">
                 <h2>Scorecard</h2>
-                <p>Manage scorecard items</p>
+                <p>Manage scorecard items.</p>
                 <p><a class="btn" href="/admin/scorecardItem/admin/">More »</a></p>
             </div>
 

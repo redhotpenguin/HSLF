@@ -10,9 +10,7 @@ class SiteController extends Controller {
            $data = null;
         if (Yii::app()->user->id) {
             $data = array(
-                'total_app_users'=> Application_user::model()->count(),
                 'total_ballot_page'=> BallotItem::model()->count(),
-                
             );
               $this->render('index', $data);
         }else{
