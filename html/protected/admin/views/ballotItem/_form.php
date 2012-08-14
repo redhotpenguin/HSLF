@@ -13,7 +13,6 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
 
 
 <div class="form">
-
     <?php
     if ($model->id) {
         $form = $this->beginWidget('CActiveForm', array(

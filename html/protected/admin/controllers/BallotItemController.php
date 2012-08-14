@@ -162,11 +162,8 @@ class BallotItemController extends Controller {
                 if ($saved_file_url)
                     $model->image_url = $saved_file_url;
             }
-            error_log("before save party id:" . $model->party_id);
             if (Yii::app()->request->isAjaxRequest) { // AJAX Post Request
                 if ($model->save()) {
-                    error_log('saved');
-                    error_log("party id:" . $model->party_id);
                     echo 'success';
                 } else {
                     echo 'failure';

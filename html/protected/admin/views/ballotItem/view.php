@@ -21,7 +21,6 @@ $district_number = $model->district->number;
 
 
 $district = $state_name . ' ' . $district_type . ' - ' . $district_number;
-
 $this->widget('bootstrap.widgets.BootDetailView', array(
     'data' => $model,
     'attributes' => array(
@@ -35,9 +34,12 @@ $this->widget('bootstrap.widgets.BootDetailView', array(
         'detail',
         'date_published',
         'published',
-        'party',
         array(
-            'label'=>'Office',
+            'label' => 'Party',
+            'value' => $model->party->name
+        ),
+        array(
+            'label' => 'Office',
             'value' => $model->office->name
         ),
         'score',

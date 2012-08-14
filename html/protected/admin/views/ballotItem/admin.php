@@ -16,6 +16,8 @@ $this->menu = array(
 <?php
 $state_list = array('' => 'All') + CHtml::listData(State::model()->findAll(), 'abbr', 'name');
 $office_list = array('' => 'All') + CHtml::listData(Office::model()->findAll(), 'name', 'name');
+$party_list = array('' => 'All') + CHtml::listData(Party::model()->findAll(), 'name', 'name');
+
 
 
 $this->widget('bootstrap.widgets.BootGridView', array(
@@ -37,8 +39,8 @@ $this->widget('bootstrap.widgets.BootGridView', array(
         ),
         array(
             'name' => 'party',
-            'value' => '$data->party',
-            'filter' => CHtml::dropDownList('BallotItem[party]', $model->party, array('' => 'All') + $model->getParties()),
+            'value' => '$data->party->name',
+            'filter' => CHtml::dropDownList('BallotItem[party]', $model->party, $party_list),
         ),
         array('name' => 'state_abbr',
             'header' => 'State',

@@ -34,6 +34,7 @@ class BallotItem extends CActiveRecord {
     public $district_type; // not part of the model, here for cgridview (admin search)
     public $district_number; // not part of the model, here for cgridview (admin search)
     public $office_type; // not part of the model, here for cgridview (admin search)
+    public $party_name; // not part of the model, here for cgridview (admin search)
 
     /**
      * Returns the static model of the specified AR class.
@@ -72,7 +73,7 @@ class BallotItem extends CActiveRecord {
             array('url', 'unique_url'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, district_id, item, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party_id, url, image_url, election_result_id, district_number, district_type, state_abbr, personal_url, score, office_type', 'safe', 'on' => 'search'),
+            array('id, district_id, item, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party_id, url, image_url, election_result_id, district_number, district_type, state_abbr, personal_url, score, office_type, party', 'safe', 'on' => 'search'),
         );
     }
 
@@ -126,10 +127,10 @@ class BallotItem extends CActiveRecord {
     public function search() {
         $criteria = new CDbCriteriaInsensitive();
 
-        $criteria->with = array('district', 'office');
+        $criteria->with = array('district', 'office', 'party');
 
         // search by relationship (district)
-        if ($this->district_number || $this->district_type || $this->state_abbr || $this->office_type) {
+        if ($this->district_number || $this->district_type || $this->state_abbr || $this->office_type  || $this->party) {
             $criteria->together = true;
             // Join the 'district' table
 
@@ -142,6 +143,11 @@ class BallotItem extends CActiveRecord {
 
             if ($this->office_type)
                 $criteria->compare('office.name', $this->office_type, false);
+
+            if ($this->party)
+                $criteria->compare('party.name', $this->party, false);
+            
+     
         }
 
         $criteria->compare('id', $this->id);
