@@ -81,9 +81,9 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
     <div class="right_col">
         <div class="">
             <?php
-            echo $form->labelEx($model, 'party');
-            echo $form->dropDownList($model, 'party', $model->getParties());
-            echo $form->error($model, 'party');
+            echo $form->labelEx($model, 'party_id');
+            echo $form->dropDownList($model, 'party_id', CHtml::listData(Party::model()->findAll(), 'id', 'name') );
+            echo $form->error($model, 'party_id');
             ?>
         </div>
 

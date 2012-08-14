@@ -75,12 +75,12 @@ class BallotItemController extends Controller {
                     $model->image_url = $saved_file_url;
             }
 
-           $model->save();
-           
-                   // savescorecards
+            $model->save();
+
+            // savescorecards
 
             if ($scorecard_item_ids = getPost('scorecards')) {
-        
+
                 $scorecard_model = new Scorecard();
                 foreach ($scorecard_item_ids as $scorecard_item_id => $vote_id) {
                     error_log($vote_id);
@@ -107,10 +107,10 @@ class BallotItemController extends Controller {
                     }
                 }
             }
-            
 
-           
-           $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
+
+
+            $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
         }
 
         $model->date_published = date('Y-m-d h:i:s');
@@ -132,7 +132,7 @@ class BallotItemController extends Controller {
         // import FileUpload helper class
         Yii::import('admin.models.helpers.FileUpload');
 
-        // error_log (  print_r($_POST, true )  );
+        error_log(print_r($_POST, true));
 
         $model = $this->loadModel($id);
 
@@ -162,10 +162,11 @@ class BallotItemController extends Controller {
                 if ($saved_file_url)
                     $model->image_url = $saved_file_url;
             }
-
-
+            error_log("before save party id:" . $model->party_id);
             if (Yii::app()->request->isAjaxRequest) { // AJAX Post Request
                 if ($model->save()) {
+                    error_log('saved');
+                    error_log("party id:" . $model->party_id);
                     echo 'success';
                 } else {
                     echo 'failure';
