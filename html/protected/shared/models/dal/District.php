@@ -14,9 +14,7 @@
  * @property State $stateAbbr
  */
 class District extends CActiveRecord {
-
-    public $state_abbr; // not part of the model, here for cgridview (admin search)
-    //
+   
     // district types. Please update $labelledDistrictTypes as well if you modify this list
     private static $district_types = array(
         'statewide',
@@ -27,12 +25,13 @@ class District extends CActiveRecord {
         'city',
     );
     private static $labelledDistrictTypes = array(
+        'NATIONAL_UPPER' => 'NATIONAL UPPER',
+        'NATIONAL_LOWER' => 'NATIONAL LOWER',
+        'STATE_UPPER' => 'STATE UPPER',
+        'STATE_LOWER' => 'STATE LOWER',
+        'LOCAL_EXEC' => 'LOCAL EXEC',
         'LOCAL' => 'LOCAL',
-        'NATIONAL_LOWER' => 'NATIONAL_LOWER',
-        'NATIONAL_UPPER' => 'NATIONAL_UPPER',
-        'STATE_UPPER' => 'Lower STATE_UPPER',
-        'STATE_LOWER' => 'STATE_LOWER',
-        'LOCAL_EXEC' => 'LOCAL_EXEC');
+    );
 
     /**
      * Returns the static model of the specified AR class.
