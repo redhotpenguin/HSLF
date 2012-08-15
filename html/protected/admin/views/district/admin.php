@@ -56,9 +56,9 @@ $this->widget('bootstrap.widgets.BootGridView', array(
         ),
         array(
             'header' => 'District Type',
-            'name' => 'district_type',
+            'name' => 'type',
             'value' => '$data->type',
-            'filter' => CHtml::dropDownList('BallotItem[district_type]', $model->district_type, $district_list),
+            'filter' => CHtml::dropDownList('District[type]', $model->type, $district_list),
         ),
         'number',
         array(
