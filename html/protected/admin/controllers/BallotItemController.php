@@ -57,6 +57,7 @@ class BallotItemController extends Controller {
 
         //   error_log(print_r($_REQUEST, true ));
 
+
         $model = new BallotItem;
 
         if (isset($_POST['BallotItem'])) {
@@ -75,15 +76,28 @@ class BallotItemController extends Controller {
                     $model->image_url = $saved_file_url;
             }
 
+
             $model->save();
 
             // savescorecards
 
+            $r = $model->validate();
+
+
+            $save = $model->save();
+            if ($save == false) {
+                error_log('could not save');
+                $this->render('create', array(
+                    'model' => $model,
+                ));
+                return;
+            }
+
+            // savescorecards
             if ($scorecard_item_ids = getPost('scorecards')) {
 
                 $scorecard_model = new Scorecard();
                 foreach ($scorecard_item_ids as $scorecard_item_id => $vote_id) {
-                    error_log($vote_id);
 
                     $scorecard = $scorecard_model->findByAttributes(array(
                         "ballot_item_id" => $model->id,
@@ -115,9 +129,7 @@ class BallotItemController extends Controller {
 
         $model->date_published = date('Y-m-d h:i:s');
 
-        $not_avalaible_recommendation_id = Recommendation::model()->findByAttributes(array('value' => 'N/A'))->id;
-        $model->recommendation_id = $not_avalaible_recommendation_id;
-        $model->election_result_id = $not_avalaible_recommendation_id;
+
         $this->render('create', array(
             'model' => $model,
         ));
@@ -131,8 +143,6 @@ class BallotItemController extends Controller {
     public function actionUpdate($id) {
         // import FileUpload helper class
         Yii::import('admin.models.helpers.FileUpload');
-
-        error_log(print_r($_POST, true));
 
         $model = $this->loadModel($id);
 
@@ -150,6 +160,8 @@ class BallotItemController extends Controller {
                 $this->performAjaxValidation($model);
             }
 
+
+
             // a file for image_url has been uploded
             if (!empty($_FILES['image_url']['tmp_name'])) {
                 $fileUpload = new FileUpload('image_url', array('image/jpeg', 'image/gif', 'image/png'));
@@ -166,7 +178,7 @@ class BallotItemController extends Controller {
                 if ($model->save()) {
                     echo 'success';
                 } else {
-                    echo 'failure';
+                    throw new CException(print_r($model->getErrors(), true));
                 }
             } else {  // normal POST request
                 if ($model->save())
