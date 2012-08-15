@@ -20,5 +20,6 @@ $this->menu=array(
 		'id',
 		'name',
 		'abbr',
+                'initial',
 	),
 )); ?>
