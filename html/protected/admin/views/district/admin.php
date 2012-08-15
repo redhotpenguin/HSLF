@@ -43,7 +43,7 @@ $this->renderPartial('_search', array(
         'id' => 'district-grid',
         'dataProvider' => $model->search(),
         'filter' => $model,
-        'template' => "{pager}\n{items}\n{pager}", // pagination on top and on bottom
+        'template' => "{pager}{summary}\n{items}\n{pager}", // pagination on top and on bottom
         'columns' => array(
             'id',
             'state_abbr',
