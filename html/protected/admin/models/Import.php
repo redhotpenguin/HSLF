@@ -127,4 +127,49 @@ class Import extends CModel {
         return $result;
     }
 
+    public static function importeVote($tmp_name, $file_name) {
+
+        $fields = array('name', 'icon');
+
+        $result = self::insertDataFromCSV($tmp_name, $file_name, 'vote', $fields);
+
+        return $result;
+    }
+
+    public static function importRecommendation($tmp_name, $file_name) {
+
+        $fields = array('value', 'type');
+
+        $result = self::insertDataFromCSV($tmp_name, $file_name, 'recommendation', $fields);
+
+        return $result;
+    }
+
+    public static function importOffice($tmp_name, $file_name) {
+
+        $fields = array('name');
+
+        $result = self::insertDataFromCSV($tmp_name, $file_name, 'office', $fields);
+
+        return $result;
+    }
+
+    public static function importParty($tmp_name, $file_name) {
+
+        $fields = array('name', 'abbr', 'initial');
+
+        $result = self::insertDataFromCSV($tmp_name, $file_name, 'party', $fields);
+
+        return $result;
+    }
+
+    public static function importScorecardItem($tmp_name, $file_name) {
+
+        $fields = array('name', 'description', 'office_id');
+
+        $result = self::insertDataFromCSV($tmp_name, $file_name, 'scorecard_item', $fields);
+
+        return $result;
+    }
+
 }

@@ -42,7 +42,7 @@ class ImportController extends Controller {
     public function actionIndex() {
 
         $tmp_name = $_FILES['import']['tmp_name'];
-  
+
         if (!is_uploaded_file($tmp_name)) {
             $this->render('index');
             return;
@@ -54,8 +54,8 @@ class ImportController extends Controller {
             return;
         }
 
-   
-        
+
+
         switch (getParam('action')) {
             case 'importState':
                 $import_result = Import::importState($_FILES['import']['tmp_name'], $_FILES['import']['name']);
@@ -74,7 +74,27 @@ class ImportController extends Controller {
                 $import_result = Import::importScorecard($_FILES['import']['tmp_name'], $_FILES['import']['name']);
                 break;
 
+            case 'importVote':
+                $import_result = Import::importeVote($_FILES['import']['tmp_name'], $_FILES['import']['name']);
+                break;
 
+            case 'importRecommendation':
+                $import_result = Import::importRecommendation($_FILES['import']['tmp_name'], $_FILES['import']['name']);
+                break;
+
+            case 'importOffice':
+                $import_result = Import::importOffice($_FILES['import']['tmp_name'], $_FILES['import']['name']);
+                break;
+
+            case 'importParty':
+                $import_result = Import::importParty($_FILES['import']['tmp_name'], $_FILES['import']['name']);
+                break;
+
+            case 'importScorecardItem':
+                $import_result = Import::importScorecardItem($_FILES['import']['tmp_name'], $_FILES['import']['name']);
+                break;
+
+                
             default:
                 $result = 'failure';
                 $error_msg = 'Operation not supported';

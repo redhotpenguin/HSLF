@@ -101,9 +101,9 @@ echo Chtml::endForm();
         <br/>
         (headers must be included)
     </p>
-<?php
-echo Chtml::endForm();
-?>
+    <?php
+    echo Chtml::endForm();
+    ?>
 </div>
 
 <br/>
@@ -134,10 +134,175 @@ echo Chtml::endForm();
         (headers must be included)
     </p>
 </div>
+<?php
+echo Chtml::endForm();
+?>
 
+<br/>
+
+<div class="form">
+    <?php
+    echo CHtml::form(CHtml::normalizeUrl(array('import/index', 'action' => 'importVote')), 'POST', array('enctype' => 'multipart/form-data'));
+    ?>
+    <h1>Import Votes:</h1>
+
+
+    <div class="left_col">
+        <?php
+        echo CHtml::fileField("import");
+        ?>
+
+    </div>
+
+    <div class = "right_col">
+        <?php
+        echo Chtml::submitButton("Import");
+        ?>
+    </div>
+
+    <div class="clearfix"></div>
+    <p>
+        <b>CSV structure:</b>id, vote, icon
+        (headers must be included)
+    </p>
+    <?php
+    echo Chtml::endForm();
+    ?>
+</div>
+
+<br/>
+
+<div class="form">
+    <?php
+    echo CHtml::form(CHtml::normalizeUrl(array('import/index', 'action' => 'importRecommendation')), 'POST', array('enctype' => 'multipart/form-data'));
+    ?>
+    <h1>Import Recommendations:</h1>
+
+
+    <div class="left_col">
+        <?php
+        echo CHtml::fileField("import");
+        ?>
+
+    </div>
+
+    <div class = "right_col">
+        <?php
+        echo Chtml::submitButton("Import");
+        ?>
+    </div>
+
+    <div class="clearfix"></div>
+    <p>
+        <b>CSV structure:</b>id, value, type
+        (headers must be included)
+    </p>
+    <?php
+    echo Chtml::endForm();
+    ?>
+</div>
 
 
 <br/>
+
+<div class="form">
+    <?php
+    echo CHtml::form(CHtml::normalizeUrl(array('import/index', 'action' => 'importOffice')), 'POST', array('enctype' => 'multipart/form-data'));
+    ?>
+    <h1>Import Offices:</h1>
+
+
+    <div class="left_col">
+        <?php
+        echo CHtml::fileField("import");
+        ?>
+
+    </div>
+
+    <div class = "right_col">
+        <?php
+        echo Chtml::submitButton("Import");
+        ?>
+    </div>
+
+    <div class="clearfix"></div>
+    <p>
+        <b>CSV structure:</b>id, name
+        (headers must be included)
+    </p>
+    <?php
+    echo Chtml::endForm();
+    ?>
+</div>
+
+<br/>
+
+<div class="form">
+    <?php
+    echo CHtml::form(CHtml::normalizeUrl(array('import/index', 'action' => 'importParty')), 'POST', array('enctype' => 'multipart/form-data'));
+    ?>
+    <h1>Import Parties:</h1>
+
+
+    <div class="left_col">
+        <?php
+        echo CHtml::fileField("import");
+        ?>
+
+    </div>
+
+    <div class = "right_col">
+        <?php
+        echo Chtml::submitButton("Import");
+        ?>
+    </div>
+
+    <div class="clearfix"></div>
+    <p>
+        <b>CSV structure:</b>id, name, abbreviation, initial
+        (headers must be included)
+    </p>
+    <?php
+    echo Chtml::endForm();
+    ?>
+</div>
+
+<br/>
+
+<div class="form">
+    <?php
+    echo CHtml::form(CHtml::normalizeUrl(array('import/index', 'action' => 'importScorecardItem')), 'POST', array('enctype' => 'multipart/form-data'));
+    ?>
+    <h1>Import Scorecard Items:</h1>
+
+
+    <div class="left_col">
+        <?php
+        echo CHtml::fileField("import");
+        ?>
+
+    </div>
+
+    <div class = "right_col">
+        <?php
+        echo Chtml::submitButton("Import");
+        ?>
+    </div>
+
+    <div class="clearfix"></div>
+    <p>
+        <b>CSV structure:</b>id, name, description, office_id
+        (headers must be included)
+    </p>
+    <?php
+    echo Chtml::endForm();
+    ?>
+</div>
+
+<br/>
+
+<br/>
+
 
 <strong>Notes:</strong>
 <ul>
