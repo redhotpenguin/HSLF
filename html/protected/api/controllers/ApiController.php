@@ -125,28 +125,12 @@ class ApiController extends Controller {
             $district_types = array();
             $districts = array();
 
-            //experimental: bridge cicero district type naming conventions to ours
-
-            $cicero_districts_bridge = array(
-                'local_exec' => 'local',
-                'local' => 'local',
-                'national_exec' => 'national',
-                'national_lower' => 'congressional',
-                'national_upper' => 'statewide',
-                'state_exec' => 'statewide',
-                'state_lower' => 'lower_house',
-                'state_upper' => 'upper_house',
-                'congressional' => 'congressional',
-                'statewide' => 'statewide',
-            );
 
             foreach ($encoded_districts as $encoded_district) {
                 $d = explode('/', $encoded_district);
 
                 $district = $d[0];
-
-                $district = $cicero_districts_bridge[$district];
-
+                
                 array_push($district_types, $district);
 
                 array_push($districts, $d[1]);
