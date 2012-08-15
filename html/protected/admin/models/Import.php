@@ -64,7 +64,8 @@ class Import extends CModel {
             array_push($queries, $query);
             ++$i; // pre increment index
         }
-
+        
+        
         unset($data_field);
 
         fclose($fHandle);
@@ -101,6 +102,7 @@ class Import extends CModel {
     }
 
     public static function importDistrict($tmp_name, $file_name) {
+
 
         $fields = array('state_abbr', 'number', 'type', 'display_name');
 
