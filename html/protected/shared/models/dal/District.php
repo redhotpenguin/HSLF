@@ -16,6 +16,7 @@
 class District extends CActiveRecord {
 
     // district types. Please update getTypeOptions() as well if you modify this list
+    // also update ballot_item/admin.php
     private static $district_types = array(
         'statewide',
         'congressional',
