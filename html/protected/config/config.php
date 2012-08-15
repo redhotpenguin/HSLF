@@ -32,7 +32,7 @@ DEFINE('ADMIN_EMAIL', 'mobile@winningmark.com');
 
 
 // DB Config
-DEFINE('DB_NAME', 'voterguide');
+DEFINE('DB_NAME', 'ouroregon_dev');
 DEFINE('DB_HOST', $dbhost);
 DEFINE('DB_USER', $dbuser);
 DEFINE('DB_PASS', $dbpass);
