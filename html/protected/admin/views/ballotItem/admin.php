@@ -17,8 +17,7 @@ $this->menu = array(
 $state_list = array('' => 'All') + CHtml::listData(State::model()->findAll(), 'abbr', 'name');
 $office_list = array('' => 'All') + CHtml::listData(Office::model()->findAll(), 'name', 'name');
 $party_list = array('' => 'All') + CHtml::listData(Party::model()->findAll(), 'name', 'name');
-
-
+$district_list = array('' => 'All') + District::model()->getTypeOptions();
 
 $this->widget('bootstrap.widgets.BootGridView', array(
     'id' => 'ballot-item-grid',
@@ -48,18 +47,10 @@ $this->widget('bootstrap.widgets.BootGridView', array(
             'filter' => CHtml::dropDownList('BallotItem[state_abbr]', $model->state_abbr, $state_list),
         ),
         array(
-            'header' => 'Level',
+            'header' => 'District Type',
             'name' => 'district_type',
             'value' => '$data->district->type',
-            'filter' => CHtml::dropDownList('BallotItem[district_type]', $model->district_type, array(
-                '' => 'All',
-                'statewide' => 'Statewide',
-                'congressional' => 'Congressional',
-                'upper_house' => 'Upper House',
-                'lower_house' => 'Lower House',
-                'county' => 'County',
-                'city' => 'City',
-            )),
+            'filter' => CHtml::dropDownList('BallotItem[district_type]', $model->district_type, $district_list),
         ),
         array(
             'header' => 'District',

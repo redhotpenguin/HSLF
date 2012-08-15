@@ -15,8 +15,10 @@
  */
 class District extends CActiveRecord {
 
-    // district types. Please update getTypeOptions() as well if you modify this list
-    // also update ballot_item/admin.php
+    public $state_abbr; // not part of the model, here for cgridview (admin search)
+    public $district_type; // not part of the model, here for cgridview (admin search)
+    //
+    // district types. Please update $labelledDistrictTypes as well if you modify this list
     private static $district_types = array(
         'statewide',
         'congressional',
@@ -25,6 +27,13 @@ class District extends CActiveRecord {
         'county',
         'city',
     );
+    private static $labelledDistrictTypes = array(
+        'statewide' => 'Statewide',
+        'congressional' => 'Congressional',
+        'upper_house' => 'Upper House',
+        'lower_house' => 'Lower House',
+        'county' => 'County',
+        'city' => 'City');
 
     /**
      * Returns the static model of the specified AR class.
@@ -63,8 +72,8 @@ class District extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-          //  'candidates' => array(self::HAS_MANY, 'Candidate', 'district_id'),
-           // 'Application_users' => array(self::HAS_MANY, 'Application_users', 'district_id'),
+            //  'candidates' => array(self::HAS_MANY, 'Candidate', 'district_id'),
+            // 'Application_users' => array(self::HAS_MANY, 'Application_users', 'district_id'),
             //'user_alerts' => array(self::HAS_MANY, 'User_alert', 'district_id'),
             'stateAbbr' => array(self::BELONGS_TO, 'State', 'state_abbr'),
         );
@@ -134,7 +143,6 @@ class District extends CActiveRecord {
         }
     }
 
-    
     /**
      *   Save a District model
      */
@@ -160,14 +168,7 @@ class District extends CActiveRecord {
      * @return array array of type options
      */
     public function getTypeOptions() {
-        return array(
-            'statewide' => 'Statewide',
-            'congressional' => 'Congressional',
-            'upper_house' => 'Upper House',
-            'lower_house' => 'Lower House',
-            'county' => 'County',
-            'city' => 'City',
-        );
+        return self::$labelledDistrictTypes;
     }
 
     /**

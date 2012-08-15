@@ -31,28 +31,40 @@ $('.search-form form').submit(function(){
 </p>
 
 <div class="search-form" style="display:none">
-<?php
-$this->renderPartial('_search', array(
-    'model' => $model,
-));
-?>
-</div><!-- search-form -->
-
     <?php
-    $this->widget('bootstrap.widgets.BootGridView', array(
-        'id' => 'district-grid',
-        'dataProvider' => $model->search(),
-        'filter' => $model,
-        'template' => "{pager}{summary}\n{items}\n{pager}", // pagination on top and on bottom
-        'columns' => array(
-            'id',
-            'state_abbr',
-            'type',
-            'number',
-            array(
-                'class' => 'bootstrap.widgets.BootButtonColumn',
-                'deleteConfirmation' => "js:'Deleting this District will also delete every ballot items associated to it, continue?'",
-            ),
-        ),
+    $this->renderPartial('_search', array(
+        'model' => $model,
     ));
     ?>
+</div><!-- search-form -->
+
+<?php
+$state_list = array('' => 'All') + CHtml::listData(State::model()->findAll(), 'abbr', 'name');
+$district_list = array('' => 'All') + District::model()->getTypeOptions();
+
+$this->widget('bootstrap.widgets.BootGridView', array(
+    'id' => 'district-grid',
+    'dataProvider' => $model->search(),
+    'filter' => $model,
+    'template' => "{pager}{summary}\n{items}\n{pager}", // pagination on top and on bottom
+    'columns' => array(
+        'id',
+        array('name' => 'state_abbr',
+            'header' => 'State',
+            'value' => '$data->stateAbbr->name',
+            'filter' => CHtml::dropDownList('District[state_abbr]', $model->state_abbr, $state_list),
+        ),
+        array(
+            'header' => 'District Type',
+            'name' => 'district_type',
+            'value' => '$data->type',
+            'filter' => CHtml::dropDownList('BallotItem[district_type]', $model->district_type, $district_list),
+        ),
+        'number',
+        array(
+            'class' => 'bootstrap.widgets.BootButtonColumn',
+            'deleteConfirmation' => "js:'Deleting this District will also delete every ballot items associated to it, continue?'",
+        ),
+    ),
+));
+?>
