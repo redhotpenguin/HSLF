@@ -206,7 +206,9 @@ class DistrictController extends Controller {
     public function actionExportCSV() {
         Yii::import('ext.csv.ESCVExport');
         $csv = new ESCVExport(District::model()->findAll());
+
         $content = $csv->toCSV();
+        
         Yii::app()->getRequest()->sendFile('districts.csv', $content, "text/csv", false);
     }
 
