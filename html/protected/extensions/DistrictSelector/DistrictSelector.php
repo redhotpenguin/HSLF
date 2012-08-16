@@ -79,7 +79,7 @@ class DistrictSelector extends CInputWidget {
         echo '</div>';
     }
 
-    private function DistrictNumberSelector($state_abbr = 'ak', $district_type = 'statewide', $selected = null) {
+    private function DistrictNumberSelector($state_abbr = 'OR', $district_type = 'NATIONAL_UPPER', $selected = null) {
 
         // select number from District where state_abbr = x and type = y
         echo '<div class=""> <b>District:</b><span class="required">*</span><br/>';

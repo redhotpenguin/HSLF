@@ -157,8 +157,7 @@ function ballotItemForm($){
     });
     $("#scorecard_spin").hide();
     office_input.change();
-    //  }
-   
+ 
 } //  ready function  end
 
 jQuery.fn.updateScorecards = function(ballot_item_id, office_id) {
