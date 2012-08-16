@@ -15,7 +15,7 @@
  * @property State $stateAbbr
  */
 class District extends CActiveRecord {
-   
+
     // district types. Please update $labelledDistrictTypes as well if you modify this list
     private static $district_types = array(
         'NATIONAL_UPPER',
@@ -25,6 +25,7 @@ class District extends CActiveRecord {
         'LOCAL_EXEC',
         'LOCAL',
         'COUNTY',
+        'SCHOOL',
     );
     private static $labelledDistrictTypes = array(
         'NATIONAL_UPPER' => 'NATIONAL UPPER',
@@ -34,6 +35,7 @@ class District extends CActiveRecord {
         'LOCAL_EXEC' => 'LOCAL EXEC',
         'LOCAL' => 'LOCAL',
         'COUNTY' => 'COUNTY',
+        'SCHOOL' => 'SCHOOL',
     );
 
     /**
@@ -59,7 +61,7 @@ class District extends CActiveRecord {
         return array(
             array('state_abbr, type', 'required'),
             array('number, display_name', 'length', 'max' => 512),
-             array('locality', 'length', 'max' => 1024),
+            array('locality', 'length', 'max' => 1024),
             array('state_abbr', 'length', 'max' => 3),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
@@ -90,7 +92,7 @@ class District extends CActiveRecord {
             'state_abbr' => 'State Abbreviation',
             'number' => 'District Number',
             'type' => 'District Type',
-            'locality'=>'Locality',
+            'locality' => 'Locality',
         );
     }
 
@@ -106,7 +108,7 @@ class District extends CActiveRecord {
         $criteria->compare('state_abbr', $this->state_abbr, true);
         $criteria->compare('number', $this->number);
         $criteria->compare('type', $this->type);
-         $criteria->compare('locality', $this->locality);
+        $criteria->compare('locality', $this->locality);
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
