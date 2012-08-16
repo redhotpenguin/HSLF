@@ -46,6 +46,12 @@
         <?php echo $form->error($model, 'display_name'); ?>
     </div>
 
+    <div class="">
+        <?php echo $form->labelEx($model, 'locality'); ?>
+        <?php echo $form->textField($model, 'locality'); ?>
+        <?php echo $form->error($model, 'locality'); ?>
+    </div>
+
 
     <div class=" buttons">
         <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

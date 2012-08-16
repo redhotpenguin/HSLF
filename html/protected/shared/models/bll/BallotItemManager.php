@@ -31,9 +31,9 @@ class BallotItemManager {
      * @param integer $year year of the publication date
      * @return array return array of ballot items
      */
-    public static function findAllByDistricts($state_abbr, array $district_types, array $districts, $year = null) {
+    public static function findAllByDistricts($state_abbr, array $district_types, array $districts, array $localities, $year = null) {
 
-        $district_ids = DistrictManager::getIdsByDistricts($state_abbr, $district_types, $districts);
+        $district_ids = DistrictManager::getIdsByDistricts($state_abbr, $district_types, $districts, $localities);
 
         if (empty($district_ids))
             return false;

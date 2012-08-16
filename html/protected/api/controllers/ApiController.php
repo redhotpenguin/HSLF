@@ -124,18 +124,21 @@ class ApiController extends Controller {
         if (!empty($districts_param)) {
             $district_types = array();
             $districts = array();
+            $localities = array();
 
 
             foreach ($encoded_districts as $encoded_district) {
                 $d = explode('/', $encoded_district);
-
-                $district = $d[0];
                 
-                array_push($district_types, $district);
+                array_push($district_types, $d[0]);
 
                 array_push($districts, $d[1]);
+                
+                 array_push($localities, $d[2]);
             }
-            $ballots = BallotItemManager::findAllByDistricts($state_abbr, $district_types, $districts, $year);
+            
+            
+            $ballots = BallotItemManager::findAllByDistricts($state_abbr, $district_types, $districts, $localities, $year);
         }
         // return items by states
         else {

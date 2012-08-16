@@ -20,7 +20,7 @@ class DistrictManager {
                 ->where('state_abbr=:state_abbr', array(':state_abbr' => $state_abbr))
                 ->queryAll();
 
-        return array_map(array(self , 'extract_id'), $result);
+        return array_map(array(self, 'extract_id'), $result);
     }
 
     /**
@@ -30,7 +30,8 @@ class DistrictManager {
      * @param array $districts  district names
      * @return array array of district ids
      */
-    public static function getIdsByDistricts($state_abbr, array $district_types, array $districts) {
+    public static function getIdsByDistricts($state_abbr, array $district_types, array $districts, array $localities) {
+
         $command = Yii::app()->db->createCommand();
         // verify that $district_types and $districts have the same number of elements
         if (count($district_types) != count($districts))
@@ -54,10 +55,11 @@ class DistrictManager {
         $condition_values = array(':state_abbr' => $state_abbr);
 
         foreach ($district_types as $i => $district_type) {
-            if ($i > 0)
+            if ($i > 0) {
                 $condition_string .= ' OR state_abbr=:state_abbr AND type=:district_type' . $i . ' AND number=:district' . $i;
-            else
+            } else {
                 $condition_string .= ' AND state_abbr=:state_abbr AND type=:district_type' . $i . ' AND number=:district' . $i;
+            }
 
             // needed because some district types don't have a district number. Ex: statewide
             if (empty($districts[$i]))
@@ -65,6 +67,12 @@ class DistrictManager {
 
             $condition_values[":district_type{$i}"] = $district_type;
             $condition_values[":district{$i}"] = $districts[$i];
+
+            if ($cities[$i]) {
+                $condition_string.= " AND locality=:locality{$i}";
+
+                $condition_values[":locality{$i}"] = $localities[$i];
+            }
         }
 
         // execute the command
@@ -86,8 +94,8 @@ class DistrictManager {
     private static function extract_id($a) {
         return $a['id'];
     }
-    
-     /**
+
+    /**
      * Retrieve the District ID based on $state and $district_number
      * DEPRECATED
      */
@@ -114,7 +122,6 @@ class DistrictManager {
             return false;
     }
 
-
     /**
      * Get all the district ids within a state and of a specified type
      * @param integer $state_abbr  abbreviaiton of the state
@@ -131,8 +138,6 @@ class DistrictManager {
 
         return array_map(array(self, 'extract_id'), $result);
     }
-
-
 
     /**
      * Get all the district ids that match a specified state, a specified type and a speficied district number
@@ -151,8 +156,6 @@ class DistrictManager {
 
         return array_map(array(self, 'extract_id'), $result);
     }
-
-   
 
     /**
      * Prepend the keyword 'type' to an element

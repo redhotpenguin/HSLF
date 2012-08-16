@@ -9,6 +9,7 @@
  * @property integer $number
  * @property string  $type
  * @property string $display_name
+ * @property string $locality
  *
  * The followings are the available model relations:
  * @property State $stateAbbr
@@ -58,10 +59,11 @@ class District extends CActiveRecord {
         return array(
             array('state_abbr, type', 'required'),
             array('number, display_name', 'length', 'max' => 512),
+             array('locality', 'length', 'max' => 1024),
             array('state_abbr', 'length', 'max' => 3),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, state_abbr, number, type, display_name', 'safe', 'on' => 'search'),
+            array('id, state_abbr, number, type, display_name, locality', 'safe', 'on' => 'search'),
         );
     }
 
@@ -88,6 +90,7 @@ class District extends CActiveRecord {
             'state_abbr' => 'State Abbreviation',
             'number' => 'District Number',
             'type' => 'District Type',
+            'locality'=>'Locality',
         );
     }
 
@@ -103,6 +106,7 @@ class District extends CActiveRecord {
         $criteria->compare('state_abbr', $this->state_abbr, true);
         $criteria->compare('number', $this->number);
         $criteria->compare('type', $this->type);
+         $criteria->compare('locality', $this->locality);
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
@@ -127,7 +131,7 @@ class District extends CActiveRecord {
             }
         }
 
-        return CHtml::listData($districts, 'id', 'number');
+        return CHtml::listData($districts, 'id', 'display_name');
     }
 
     /**

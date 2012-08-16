@@ -61,6 +61,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
             'filter' => CHtml::dropDownList('District[type]', $model->type, $district_list),
         ),
         'number',
+        'locality',
         array(
             'class' => 'bootstrap.widgets.BootButtonColumn',
             'deleteConfirmation' => "js:'Deleting this District will also delete every ballot items associated to it, continue?'",

@@ -189,7 +189,7 @@ class DistrictController extends Controller {
 
         $data = District::model()->findAllByAttributes(array('state_abbr' => $state_abbr, 'type' => $district_type), $params);
 
-        $data = CHtml::listData($data, 'id', 'number');
+        $data = CHtml::listData($data, 'id', 'display_name');
         asort($data);
 
         foreach ($data as $id => $district) {

@@ -23,6 +23,7 @@ $this->widget('bootstrap.widgets.BootDetailView', array(
         'number',
         'type',
         'display_name',
+        'locality',
     ),
 ));
 ?>
