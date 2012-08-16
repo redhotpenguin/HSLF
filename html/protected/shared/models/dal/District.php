@@ -17,12 +17,13 @@ class District extends CActiveRecord {
    
     // district types. Please update $labelledDistrictTypes as well if you modify this list
     private static $district_types = array(
-        'statewide',
-        'congressional',
-        'upper_house',
-        'lower_house',
-        'county',
-        'city',
+        'NATIONAL_UPPER',
+        'NATIONAL_LOWER',
+        'STATE_UPPER',
+        'STATE_LOWER',
+        'LOCAL_EXEC',
+        'LOCAL',
+        'COUNTY',
     );
     private static $labelledDistrictTypes = array(
         'NATIONAL_UPPER' => 'NATIONAL UPPER',

@@ -33,8 +33,10 @@ if ($result == 'failure') {
 
     <div class="clearfix"></div>
     <p>
-        <b>CSV structure:</b> id, abbr, name
+        <b>CSV structure:</b><br/> id, abbr, name
         (headers must be included)
+            <br/>
+        Ex: [blank or existing], CA, California
     </p>
 </div>
 <?php
@@ -66,8 +68,9 @@ echo Chtml::endForm();
 
     <div class="clearfix"></div>
     <p>
-        <b>CSV structure:</b>id, state_abbr, number, type, display_name
-        (headers must be included)
+        <b>CSV structure:</b><br/>id, state_abbr, number, type, display_name
+        (headers must be included)<br/>
+        Ex: [blank or existing], CA, 1, STATE_LOWER, House District 1
     </p>
 
 </div>
@@ -292,6 +295,38 @@ echo Chtml::endForm();
     <div class="clearfix"></div>
     <p>
         <b>CSV structure:</b>id, name, description, office_id
+        (headers must be included)
+    </p>
+    <?php
+    echo Chtml::endForm();
+    ?>
+</div>
+
+<br/>
+
+<div class="form">
+    <?php
+    echo CHtml::form(CHtml::normalizeUrl(array('import/index', 'action' => 'importTag')), 'POST', array('enctype' => 'multipart/form-data'));
+    ?>
+    <h1>Import Tags:</h1>
+
+
+    <div class="left_col">
+        <?php
+        echo CHtml::fileField("import");
+        ?>
+
+    </div>
+
+    <div class = "right_col">
+        <?php
+        echo Chtml::submitButton("Import");
+        ?>
+    </div>
+
+    <div class="clearfix"></div>
+    <p>
+        <b>CSV structure:</b>id, name, type
         (headers must be included)
     </p>
     <?php

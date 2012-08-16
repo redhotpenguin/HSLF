@@ -173,5 +173,14 @@ class Import extends CModel {
 
         return $result;
     }
+    
+      public static function importTag($tmp_name, $file_name) {
+
+        $fields = array('name', 'type');
+
+        $result = self::insertDataFromCSV($tmp_name, $file_name, 'tag', $fields);
+
+        return $result;
+    }
 
 }

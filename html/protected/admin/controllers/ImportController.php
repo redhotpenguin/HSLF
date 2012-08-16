@@ -94,7 +94,10 @@ class ImportController extends Controller {
                 $import_result = Import::importScorecardItem($_FILES['import']['tmp_name'], $_FILES['import']['name']);
                 break;
 
-                
+            case 'importTag':
+                $import_result = Import::importTag($_FILES['import']['tmp_name'], $_FILES['import']['name']);
+                break;
+
             default:
                 $result = 'failure';
                 $error_msg = 'Operation not supported';
