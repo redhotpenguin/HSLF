@@ -61,6 +61,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
             'filter' => CHtml::dropDownList('District[type]', $model->type, $district_list),
         ),
         'number',
+        'display_name',
         'locality',
         array(
             'class' => 'bootstrap.widgets.BootButtonColumn',

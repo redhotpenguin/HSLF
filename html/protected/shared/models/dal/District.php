@@ -102,13 +102,15 @@ class District extends CActiveRecord {
      */
     public function search() {
 
-        $criteria = new CDbCriteria;
+        $criteria = new CDbCriteriaInsensitive();
+
 
         $criteria->compare('id', $this->id);
         $criteria->compare('state_abbr', $this->state_abbr, true);
-        $criteria->compare('number', $this->number);
+        $criteria->compare('number', $this->number, true);
         $criteria->compare('type', $this->type);
-        $criteria->compare('locality', $this->locality);
+        $criteria->compare('locality', $this->locality, true);
+        $criteria->compare('display_name', $this->display_name, true);
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,

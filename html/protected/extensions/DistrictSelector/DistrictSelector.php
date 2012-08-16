@@ -5,7 +5,7 @@ class DistrictSelector extends CInputWidget {
     public $options = array();
     private $state_model;
     private $district;
-    private $field_name; // ex: BallotItem[district_id]
+    private $field_name;
     private $field_id;
 
     public function init() {
@@ -80,8 +80,6 @@ class DistrictSelector extends CInputWidget {
     }
 
     private function DistrictNumberSelector($state_abbr = 'OR', $district_type = 'NATIONAL_UPPER', $selected = null) {
-
-        // select number from District where state_abbr = x and type = y
         echo '<div class=""> <b>District:</b><span class="required">*</span><br/>';
         $district_number_list = District::model()->getTagDistrictsByStateAndType($state_abbr, $district_type);
         echo CHtml::dropDownList($this->field_name, $selected, $district_number_list);
