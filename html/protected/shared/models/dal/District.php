@@ -31,6 +31,7 @@ class District extends CActiveRecord {
         'STATE_LOWER' => 'STATE LOWER',
         'LOCAL_EXEC' => 'LOCAL EXEC',
         'LOCAL' => 'LOCAL',
+        'COUNTY' => 'COUNTY',
     );
 
     /**
