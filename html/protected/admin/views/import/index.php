@@ -68,9 +68,9 @@ echo Chtml::endForm();
 
     <div class="clearfix"></div>
     <p>
-        <b>CSV structure:</b><br/>id, state_abbr, number, type, display_name
+        <b>CSV structure:</b><br/>id, state_abbr, number, type, display_name, locality
         (headers must be included)<br/>
-        Ex: [blank or existing], CA, 1, STATE_LOWER, House District 1
+
     </p>
 
 </div>
