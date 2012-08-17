@@ -11,7 +11,6 @@ $cs = Yii::app()->getClientScript();
 $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
 ?>
 
-
 <div class="form">
     <?php
     if ($model->id) {
@@ -81,7 +80,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
         <div class="">
             <?php
             echo $form->labelEx($model, 'party_id');
-            echo $form->dropDownList($model, 'party_id', CHtml::listData(Party::model()->findAll(), 'id', 'name') );
+            echo $form->dropDownList($model, 'party_id', CHtml::listData(Party::model()->findAll(), 'id', 'name'));
             echo $form->error($model, 'party_id');
             ?>
         </div>
@@ -109,6 +108,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
 
         <div class="clearfix">
             <?php echo $form->labelEx($model, 'next_election_date'); ?>
+            <a  rel="tooltip" href="#" data-original-title="Candidate's election date. The ballot item will not be displayed in the application once that date has passed. If this field is left empty, the ballot item will always be present in the application. "><i class="icon-question-sign"></i></a>
             <?php
             $this->widget('zii.widgets.jui.CJuiDatePicker', array(
                 'name' => 'BallotItem[next_election_date]',
@@ -187,7 +187,11 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
     <div class="left_col">
         <?php
         echo $form->labelEx($model, 'url');
-        echo $form->textField($model, 'url', array('size' => 50, 'maxlength' => 1000, 'placeholder' => 'URL to share'));
+        echo $form->textField($model, 'url', array('size' => 50, 'maxlength' => 1000, 'placeholder' => 'Microsite URL'));
+        ?>
+        <a  rel="tooltip" href="#" data-original-title="Microsite link. Click to edit."><i class="icon-question-sign"></i></a>
+
+        <?php
         echo $form->error($model, 'url');
         ?>
         <br/>
@@ -200,6 +204,10 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
         <?php
         echo $form->labelEx($model, 'personal_url');
         echo $form->textField($model, 'personal_url', array('size' => 50, 'maxlength' => 2048, 'placeholder' => 'External candidate or measure url'));
+        ?>
+        <a  rel="tooltip" href="#" data-original-title="Candidate or measure's website."><i class="icon-question-sign"></i></a>
+
+        <?php
         echo $form->error($model, 'personal_url');
         ?>
         <br/>
@@ -246,17 +254,17 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
     ?>
 
     <?php
-  //  if (!$model->isNewRecord):
-        // see ballotItem.js and _scorecardTable.php
-        ?>
+    //  if (!$model->isNewRecord):
+    // see ballotItem.js and _scorecardTable.php
+    ?>
 
     <label>Scorecard</label>
     <br/> 
     <span id="scorecard_spin" class="ajax_wheel_spin"><img src="/themes/dashboard/img/64_orange_wheel.gif"/></span>
     <div id ="dynamic_scorecard_table"> 
         <?php
-  //  endif;
-    ?>
+        //  endif;
+        ?>
     </div>
 
 
