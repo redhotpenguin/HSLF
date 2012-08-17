@@ -39,7 +39,7 @@ class Party extends CActiveRecord {
         return array(
             array('name', 'length', 'max' => 2048),
             array('abbr', 'length', 'max' => 128),
-             array('initial', 'length', 'max' => 16),
+            array('initial', 'length', 'max' => 16),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, name, abbr, initial', 'safe', 'on' => 'search'),
@@ -77,11 +77,12 @@ class Party extends CActiveRecord {
         // Warning: Please modify the following code to remove attributes that
         // should not be searched.
 
-        $criteria = new CDbCriteria;
+        $criteria = new CDbCriteriaInsensitive();
 
         $criteria->compare('id', $this->id);
         $criteria->compare('name', $this->name, true);
         $criteria->compare('abbr', $this->abbr, true);
+        $criteria->compare('initial', $this->initial, true);
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,

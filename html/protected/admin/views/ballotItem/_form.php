@@ -189,7 +189,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
         echo $form->labelEx($model, 'url');
         echo $form->textField($model, 'url', array('size' => 50, 'maxlength' => 1000, 'placeholder' => 'Microsite URL'));
         ?>
-        <a  rel="tooltip" href="#" data-original-title="Microsite link. Click to edit."><i class="icon-question-sign"></i></a>
+        <a  rel="tooltip" href="#" data-original-title="Microsite link. Click the input field to update it."><i class="icon-question-sign"></i></a>
 
         <?php
         echo $form->error($model, 'url');
