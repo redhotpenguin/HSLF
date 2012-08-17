@@ -6,7 +6,7 @@ return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'name' => PROJECT_NAME,
     // preloading 'log' component
-    'preload' => array('log'),
+    'preload' => array('log', 'bootstrap'),
     // autoloading model and component classes
     'import' => array(
         'application.models.*',
@@ -16,20 +16,22 @@ return array(
         'ext.multimodelform.MultiModelForm',
     ),
     'modules' => array(
-    
-      'gii' => array(
-      'class' => 'system.gii.GiiModule',
-      'password' => 'giipass',
-      // If removed, Gii defaults to localhost only. Edit carefully to taste.
-      'ipFilters' => array('127.0.0.1', '::1'),
-      ),
-     
+        'gii' => array(
+            'class' => 'system.gii.GiiModule',
+            'password' => 'giipass',
+            // If removed, Gii defaults to localhost only. Edit carefully to taste.
+            'ipFilters' => array('127.0.0.1', '::1'),
+        ),
     ),
     // application components
     'components' => array(
         'user' => array(
             // enable cookie-based authentication
             'allowAutoLogin' => true,
+        ),
+        'bootstrap' => array(
+            'class' => 'ext.bootstrap.components.Bootstrap', // assuming you extracted bootstrap under extensions
+            'responsiveCss' => true,
         ),
         // uncomment the following to enable URLs in path-format
 

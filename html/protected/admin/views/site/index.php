@@ -7,7 +7,7 @@
         ?>
         <div class="hero-unit">
             <h1>Dashboard</h1>
-            <p>Welcome to the HSLF app dashboard.</p>
+            <p>Welcome to the administration dashboard.</p>
             <p> <b><?php echo $total_ballot_page; ?></b> <a href="/admin/ballotItem/admin/">Ballot pages</a></p>
         </div>
 
