@@ -4,46 +4,85 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="language" content="en" />
         <meta name="robots" content="noindex" />
-     
-        <link rel="stylesheet" type="text/css" href="/themes/frontend/css/main.css" />
-
         <link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/favicon.ico" type="image/x-icon" />
-  
+        <!-- blueprint CSS framework -->
+        <link rel="stylesheet" type="text/css" href="/themes/dashboard/css/screen.css" media="screen, projection" />
+        <link rel="stylesheet" type="text/css" href="/themes/dashboard/css/print.css" media="print" />
+        <!--[if lt IE 8]>
+        <link rel="stylesheet" type="text/css" href="/themes/dashboard/css/ie.css" media="screen, projection" />
+        <![endif]-->
+
+        <link rel="stylesheet" type="text/css" href="/themes/dashboard/css/main.css" />
+
+        <link rel="stylesheet" type="text/css" href="/themes/dashboard/css/form.css" /> 
+
+        <?php
+        $cs = Yii::app()->clientScript;
+        $cs->registerScriptFile('/js/superfish.js', CClientScript::POS_HEAD);
+        $cs->registerScriptFile('/js/jquery.hoverIntent.minified.js', CClientScript::POS_HEAD);
+        ?>
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
         <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
+
+        <script type="text/javascript"> 
+            jQuery(document).ready(function($){
+                $('ul#main_menu').superfish({
+                    autoArrows: false
+                });
+ 
+            });
+        </script>
+
     </head>
 
     <body>
 
-        <div id ="header">
-   
-
+ 
+        <div id="menu-top" class="clearfix">
+            <?php
+            $this->widget('bootstrap.widgets.BootNavbar', array(
+                'brand' => Yii::app()->name,
+                'brandUrl' => '/admin/',
+                'id' => 'main_menu'
+            ));
+            ?>
         </div>
 
-        <div id="wrap">
-            <div id="page">
-                <div class="<?php echo $this->getId(); ?>">
-                    <div class="<?php echo $this->getAction()->getId(); ?>" >
+        <div id="container" class="container">
 
-                        <div id="content">
-                            <h1>Mobile Voter guide</h1>
-                            <?php echo $content; ?>
-                        </div>
+
+
+
+            <div id="main"  class="container clear-top" >
+                <div class="row">
+
+                    <div style="float:left;" class="span10">
+
+                        <?php echo $content; ?>
 
                     </div>
+
+                    <div style="float:left;" class="span2">
+                        <div id="sidebar">
+
+                            <?php
+                            $this->widget('bootstrap.widgets.BootMenu', array(
+                                'type' => 'tabs', // '', 'tabs', 'pills' (or 'list')
+                                'stacked' => true, // whether this is a stacked menu
+                                'items' => $this->menu,
+                                'htmlOptions' => array('class' => 'nav nav-pills nav-stacked'),
+                            ));
+                            ?>
+
+                        </div>
+                    </div>
+
                 </div>
+
             </div>
+        </div><!-- page -->
 
-            <div id="sidebar">
-            </div>
-        </div>
-
-
-        <div id="footer">
-        </div>
-
-
-
+        </div><!-- container-->
 
     </body>
 </html>
