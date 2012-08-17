@@ -20,7 +20,7 @@ class BallotItemManager {
             'id' => $ballot_item_id,
             'published' => 'yes'
         );
-        return self::applyFilter( BallotItem::model()->with(array('district', 'recommendation', 'electionResult', 'ballotItemNews',  'scorecards', 'cards',  'office', 'party'))->findByAttributes($attributes) ) ;
+        return self::applyFilter(BallotItem::model()->with(array('district', 'recommendation', 'electionResult', 'ballotItemNews', 'scorecards', 'cards', 'office', 'party'))->findByAttributes($attributes));
     }
 
     /**
@@ -47,9 +47,11 @@ class BallotItemManager {
 
         if ($year) {
             $ballotItemFinder->setPublishedYear($year);
-        }
-        else
+        } else {
             $ballotItemFinder->setRunningOnly();
+            $ballotItemFinder->setNullElectionDate();
+        }
+
 
 
 
@@ -74,17 +76,18 @@ class BallotItemManager {
         $ballotItemFinder = new BallotItemFinder();
 
         $ballotItemFinder->setPublished('yes');
-      //  $ballotItemFinder->orderByHighestPriority();
-          $ballotItemFinder->orderByItem();
-        
+        //  $ballotItemFinder->orderByHighestPriority();
+        $ballotItemFinder->orderByItem();
+
         $ballotItemFinder->setDistrictIds($district_ids);
 
         if ($year) {
             $ballotItemFinder->setPublishedYear($year);
+        } else {
+            $ballotItemFinder->setRunningOnly();
+            $ballotItemFinder->setNullElectionDate();
         }
 
-        else
-            $ballotItemFinder->setRunningOnly();
 
 
         $ballots = $ballotItemFinder->search();
@@ -96,10 +99,10 @@ class BallotItemManager {
      * @param array $ballots array of ballotItem
      * @return array of filtered ballotItem
      */
-    private static function applyFilter($ballots) { 
-        if(empty($ballots))
+    private static function applyFilter($ballots) {
+        if (empty($ballots))
             return false;
-        
+
         if (is_array($ballots)) {
             foreach ($ballots as $ballot) {
                 $ballot->url = self::addSiteUrlFilter($ballot->url, $ballot->date_published);
@@ -119,7 +122,7 @@ class BallotItemManager {
      */
     private static function addSiteUrlFilter($ballot_url, $date_pub) {
         $share_url = Yii::app()->params['share_url'] . '/ballot';
-      
+
         return $share_url . '/' . substr($date_pub, 0, 4) . '/' . $ballot_url;
     }
 

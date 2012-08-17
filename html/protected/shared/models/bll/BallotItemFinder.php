@@ -33,9 +33,10 @@ class BallotItemFinder extends ModelFinder {
     public function setRunningOnly() {
         $this->addCondition('next_election_date', 'current_date', ModelFinder::GREATER_THAN);
         $this->addParameter('current_date', date('Y-m-d'));
-                
-       $this->addCondition('next_election_date', '' , ' ISNULL ', true );
+    }
 
+    public function setNullElectionDate() {
+        $this->addCondition('next_election_date', '', ' ISNULL ', true);
     }
 
     public function setPriority($priority) {
