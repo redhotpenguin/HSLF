@@ -9,6 +9,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create Vote</h1>
+<h1>Add a vote option</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
