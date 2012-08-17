@@ -42,7 +42,7 @@
             <?php
             $this->widget('bootstrap.widgets.BootNavbar', array(
                 'brand' => Yii::app()->name,
-                'brandUrl' => '/admin/',
+                'brandUrl' => '/',
                 'id' => 'main_menu'
             ));
             ?>
