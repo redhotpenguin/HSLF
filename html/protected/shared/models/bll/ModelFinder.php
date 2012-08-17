@@ -14,6 +14,7 @@ abstract class ModelFinder {
     const DESCENDANT = 'DESC';
     const ILIKE = ' ILIKE :';
     const LIKE = ' LIKE :';
+    const NOT_EQUAL = ' !=: ';
 
     private $attributes = array();
     private $relations = array();
@@ -21,11 +22,11 @@ abstract class ModelFinder {
     private $condition = "";
     private $order = "";
     private $model;
-    
-    public function __construct($model){
-        if(!is_object($model))
+
+    public function __construct($model) {
+        if (!is_object($model))
             throw new InvalidArgumentException('The parameter must be an object that inherit the  CActiveRecord class');
-        if( get_parent_class($model) != 'CActiveRecord' )
+        if (get_parent_class($model) != 'CActiveRecord')
             throw new InvalidArgumentException('The  object must inherit the CActiveRecord class');
 
         $this->model = $model;
@@ -35,12 +36,15 @@ abstract class ModelFinder {
         $this->attributes[$attribute_key] = $attribute_value;
     }
 
-    protected final function addCondition($condition_key, $condition_value, $sign = self::EQUAL) {
+    protected final function addCondition($condition_key, $condition_value, $sign = self::EQUAL, $or = false) {
         if (!empty($this->condition)) {
-            $and = ' and ';
+            $operator = ' and ';
         }
+        
+        if($or)
+            $operator = ' or ';
 
-        $this->condition .= $and . $condition_key . $sign . $condition_value;
+        $this->condition .= $operator . $condition_key . $sign . $condition_value;
     }
 
     protected final function addParameter($parameter_key, $parameter_value) {
@@ -63,11 +67,10 @@ abstract class ModelFinder {
             'condition' => $this->condition,
             'params' => $this->parameters,
         );
-        
-        
+
         if ($this->order)
             $criteria['order'] = $this->order;
-       
+
         return $this->model->with($this->relations)->findAllByAttributes($this->attributes, $criteria);
     }
 

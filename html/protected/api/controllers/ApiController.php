@@ -472,7 +472,7 @@ class ApiController extends Controller {
                 ->select('b.id, item, item_type, d.type, d.state_abbr, d.number, d.display_name')
                 ->from('ballot_item b')
                 ->join('district d', 'b.district_id=d.id')
-                ->where('published=:published AND next_election_date>=:current_date', array(
+                ->where('published=:published AND next_election_date>=:current_date or next_election_date ISNULL', array(
                     ':published' => 'yes',
                     ':current_date' => date('Y-m-d'), // use NOW() instead?
                 ))

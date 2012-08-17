@@ -11,7 +11,7 @@ class BallotItemFinder extends ModelFinder {
         $this->table_alias = $ballot_item->getTableAlias(false, false);
 
         parent::__construct($ballot_item);
-        $this->setRelations(array('district', 'recommendation', 'electionResult', 'ballotItemNews',  'scorecards', 'cards', 'office'));
+        $this->setRelations(array('district', 'recommendation', 'electionResult', 'ballotItemNews', 'scorecards', 'cards', 'office'));
     }
 
     public function setDistrictIds($district_ids) {
@@ -31,8 +31,11 @@ class BallotItemFinder extends ModelFinder {
     }
 
     public function setRunningOnly() {
-        $this->addCondition('next_election_date', 'current_date', ModelFinder::GREATER_THAN); // manage > 
+        $this->addCondition('next_election_date', 'current_date', ModelFinder::GREATER_THAN);
         $this->addParameter('current_date', date('Y-m-d'));
+                
+       $this->addCondition('next_election_date', '' , ' ISNULL ', true );
+
     }
 
     public function setPriority($priority) {
