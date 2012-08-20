@@ -1,5 +1,7 @@
 <?php
 
+$env = json_decode(file_get_contents("/home/dotcloud/environment.json"), true);
+
 if (isset($env['DOTCLOUD_DB_SQL_HOST']))
     $dbhost = $env['DOTCLOUD_DB_SQL_HOST'];
 else
