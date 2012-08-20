@@ -25,6 +25,9 @@
  * @property District $district
  * @property Recommendation $recommendation
  * @property Recommendation $electionResult
+ * @property string facebook_url
+ * @property string twitter_handle
+ * @property string hold_office
 
 
  */
@@ -62,18 +65,18 @@ class BallotItem extends CActiveRecord {
         return array(
             array('district_id, item, recommendation_id, priority, office_id, date_published, published, election_result_id, url', 'required'),
             array('district_id, recommendation_id, priority, election_result_id, score, party_id', 'numerical', 'integerOnly' => true),
-            array('item_type', 'length', 'max' => 128),
+            array('item_type, twitter_handle', 'length', 'max' => 128),
             array('url', 'length', 'max' => 500),
-            array('personal_url', 'length', 'max' => 2048),
-            array('personal_url', 'url'),
-            array('published', 'length', 'max' => 16),
+            array('personal_url, facebook_url', 'length', 'max' => 2048),
+            array('personal_url, facebook_url', 'url'),
+            array('published, hold_office', 'length', 'max' => 16),
             array('date_published', 'date', 'format' => 'yyyy-M-d H:m:s'),
             array('next_election_date', 'date', 'format' => 'yyyy-M-d'),
             array('next_election_date, detail, url, image_url', 'safe'),
             array('url', 'unique_url'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, district_id, item, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party_id, url, image_url, election_result_id, district_number, district_type, state_abbr, personal_url, score, office_type, party', 'safe', 'on' => 'search'),
+            array('id, district_id, item, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party_id, url, image_url, election_result_id, district_number, district_type, state_abbr, personal_url, score, office_type, party, facebook_url, twitter_handle, hold_office', 'safe', 'on' => 'search'),
         );
     }
 

@@ -215,6 +215,29 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
     </div>
 
     <hr/>
+    <div class="left_col">
+        <?php
+        echo $form->labelEx($model, 'facebook_url');
+        echo $form->textField($model, 'facebook_url', array('size' => 50, 'maxlength' => 2048, 'placeholder' => 'Facebook URL'));
+        ?>
+        <?php
+        echo $form->error($model, 'facebook_url');
+        ?>
+    </div>
+
+
+    <div class="right_col">
+        <?php
+        echo $form->labelEx($model, 'twitter_handle');
+        echo $form->textField($model, 'twitter_handle', array('size' => 50, 'maxlength' => 16, 'placeholder' => 'Twitter handle'));
+        ?>
+        <?php
+        echo $form->error($model, 'twitter_handle');
+        ?>
+    </div>
+
+
+    <hr/>
 
     <div class="left_col">
         <?php
@@ -245,18 +268,29 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
     <div class="clearfix"></div>
 
     <hr/>
-    <?php
-    $office_list = CHtml::listData(Office::model()->findAll(), 'id', 'name');
 
-    echo $form->labelEx($model, 'office_id');
-    echo $form->dropDownList($model, 'office_id', $office_list);
-    echo $form->error($model, 'office_id');
-    ?>
+    <div class="left_col">
+        <?php
+        $office_list = CHtml::listData(Office::model()->findAll(), 'id', 'name');
 
-    <?php
-    //  if (!$model->isNewRecord):
-    // see ballotItem.js and _scorecardTable.php
-    ?>
+        echo $form->labelEx($model, 'office_id');
+        echo $form->dropDownList($model, 'office_id', $office_list);
+        echo $form->error($model, 'office_id');
+        ?>
+    </div>
+
+    <div class="right_col">
+        <?php
+        echo $form->labelEx($model, 'hold_office');
+        echo $form->dropDownList($model, 'hold_office', array('yes' => 'Yes', 'no' => 'No'));
+        echo $form->error($model, 'hold_office');
+        ?>
+    </div>
+
+
+
+
+
 
     <label>Scorecard</label>
     <br/> 
