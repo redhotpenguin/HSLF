@@ -68,9 +68,6 @@ class ApiController extends Controller {
                 break;
 
             case 'ballot_items': //api/ballot_items/w{3}/
-                //  $test = Scorecard::model()->with('Vote', 'ScorecardItem')->findByPk(1);
-                //  $this->_sendResponse(200, $test );
-
                 if (array_key_exists('ballot_item_id', $_GET)) // return a single ballot item
                     $this->_sendResponse(200, $this->_getBallotItem($_GET['ballot_item_id']));
                 else // return multiple ballot items
