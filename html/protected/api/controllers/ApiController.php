@@ -199,6 +199,9 @@ class ApiController extends Controller {
             'district' => $ballot->district,
             'Scorecard' => $scorecards,
             'BallotItemNews' => $ballot->ballotItemNews,
+            'facebook_url' => $ballot->facebook_url,
+            'twitter_handle' => $ballot->twitter_handle,
+            'hold_office' => $ballot->hold_office,
         );
 
         return $wrapped_ballot;

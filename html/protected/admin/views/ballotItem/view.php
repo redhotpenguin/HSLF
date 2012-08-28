@@ -55,7 +55,8 @@ $this->widget('bootstrap.widgets.BootDetailView', array(
             'name' => 'district_id',
             'value' => $district
         ),
-        'personal_url'
+        'personal_url',
+        'hold_office'
     ),
 ));
 ?>
