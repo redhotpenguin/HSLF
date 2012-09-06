@@ -333,7 +333,7 @@ echo Chtml::endForm();
     echo Chtml::endForm();
     ?>
 </div>
-
+<br/>
 <div class="form">
     <?php
     echo CHtml::form(CHtml::normalizeUrl(array('import/index', 'action' => 'importEndorser')), 'POST', array('enctype' => 'multipart/form-data'));
