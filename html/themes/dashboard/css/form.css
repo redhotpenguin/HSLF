@@ -206,3 +206,12 @@ input{
     display: block;
     text-align: center;
 }
+
+div#endorsers{
+    border:1px dotted #ccc;
+    padding:5px;
+    height:150px;
+    overflow: scroll;
+    overflow-x:hidden;
+    
+}
