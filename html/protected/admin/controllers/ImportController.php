@@ -42,7 +42,7 @@ class ImportController extends Controller {
     public function actionIndex() {
 
 
-        if ( !isset($_FILES['import']['tmp_name']) || !is_uploaded_file($_FILES['import']['tmp_name'])) {
+        if (!isset($_FILES['import']['tmp_name']) || !is_uploaded_file($_FILES['import']['tmp_name'])) {
             $this->render('index');
             return;
         }
@@ -95,6 +95,14 @@ class ImportController extends Controller {
 
             case 'importTag':
                 $import_result = Import::importTag($_FILES['import']['tmp_name'], $_FILES['import']['name']);
+                break;
+
+            case 'importEndorser':
+                $import_result = Import::importEndorser($_FILES['import']['tmp_name'], $_FILES['import']['name']);
+                break;
+
+            case 'importEndorserBallotItem':
+                $import_result = Import::importEndorserBallotItem($_FILES['import']['tmp_name'], $_FILES['import']['name']);
                 break;
 
             default:

@@ -1,12 +1,7 @@
-<?php
-//var_dump($model->endorsers);
-// todo: move to controller
-$endorser_list = Endorser::model()->findAll();
-?>
-
 <label>Endorsers</label>
-
+<div id="endorsers">
 <?php
+
 foreach ($endorser_list as $endorser):
 
     if ($model->hasEndorser($endorser->id))
@@ -15,11 +10,13 @@ foreach ($endorser_list as $endorser):
         $checked = "";
     }
     ?>
-    <input type="checkbox" name="endorsers[]" <?php echo $checked; ?> value="<?php echo $endorser->id; ?>"> <?php echo $endorser->name; ?> <br>
+    <input type="checkbox" name="endorsers[]" <?php echo $checked; ?> value="<?php echo $endorser->id; ?>"><b> <?php echo $endorser->name; ?></b>:
+    <?php echo substr(strip_tags($endorser->description), 0, 100); ?>
+    <br> <br>
 
     <?php
 endforeach;
-
 ?>
+</div>
 
 

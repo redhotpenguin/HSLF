@@ -337,8 +337,10 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
     <hr/>
 
     <?php
+
     echo $this->renderPartial('_endorser', array(
         'model' => $model,
+        'endorser_list' => $endorser_list
     ));
     ?>
 
