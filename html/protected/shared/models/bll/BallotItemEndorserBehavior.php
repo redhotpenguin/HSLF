@@ -19,6 +19,22 @@ class BallotItemEndorserBehavior extends CBehavior {
     }
 
     /**
+     * Get array of ballot items by endorser id
+     * @param integer $endorser_id
+     * @return array of ballot items
+     */
+    public function findByEndorser($endorser_id){
+        $ballot_items = BallotItem::model()->with('endorsers')->findAll( 
+                array(
+                    'condition' => 'endorser_id = :endorser_id',
+                    'params' => array(':endorser_id' => $endorser_id)
+                ));
+        
+        
+        return $ballot_items;
+    }
+
+    /**
      * Verifiy if a ballot item has a specific endorser
      * @param integer $endorser_id
      * @return boolean
@@ -89,12 +105,10 @@ class BallotItemEndorserBehavior extends CBehavior {
         $connection = Yii::app()->db;
         $command = $connection->createCommand();
         $delete_endorsers_result = $command->delete(
-                'endorser_ballot_item', 
-                'ballot_item_id=:ballot_item_id', 
-                 array(':ballot_item_id' => $this->owner->id)
+                'endorser_ballot_item', 'ballot_item_id=:ballot_item_id', array(':ballot_item_id' => $this->owner->id)
         );
-        
-        
+
+
         return $delete_endorsers_result;
     }
 

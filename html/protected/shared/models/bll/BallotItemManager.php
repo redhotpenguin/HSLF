@@ -62,17 +62,10 @@ class BallotItemManager {
      * @return ballot return array of ballot item object
      */
     public static function findByEndorser($endorser_id) {
-        $ballotItemFinder = new BallotItemFinder();
-
-        $ballotItemFinder->setPublished('yes');
-        $ballotItemFinder->orderByItem();
-
-        $ballotItemFinder->setRunningOnly();
-        $ballotItemFinder->setNullElectionDate();
-        $ballotItemFinder->setEndorserId($endorser_id);
-        $ballots = $ballotItemFinder->search();
         
-        return self::applyFilter($ballots);
+        $ballot_items = BallotItem::model()->findByEndorser($endorser_id);
+        
+        return self::applyFilter($ballot_items);
     }
 
     /**
