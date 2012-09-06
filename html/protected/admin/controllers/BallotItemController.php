@@ -89,6 +89,7 @@ class BallotItemController extends Controller {
                 error_log('could not save');
                 $this->render('create', array(
                     'model' => $model,
+                    'endorser_list' => Endorser::model()->findAll(array('order' => 'name')),
                 ));
                 return;
             }
@@ -140,6 +141,7 @@ class BallotItemController extends Controller {
 
         $this->render('create', array(
             'model' => $model,
+            'endorser_list' => Endorser::model()->findAll(array('order' => 'name')),
         ));
     }
 
@@ -240,7 +242,8 @@ class BallotItemController extends Controller {
 
 
         $this->render('update', array(
-            'model' => $model
+            'model' => $model,
+            'endorser_list' => Endorser::model()->findAll(array('order' => 'name')),
         ));
     }
 
