@@ -113,7 +113,7 @@ class Import extends CModel {
 
     public static function importBallot($tmp_name, $file_name) {
 
-        $fields = array('district_id', 'item', 'item_type', 'recommendation_id', 'next_election_date', 'priority', 'detail', 'date_published', 'published', 'party_id', 'image_url', 'election_result_id', 'url', 'personal_url', 'score', 'office_id', 'facebook_url', 'twitter_handle', 'hold_office');
+        $fields = array('district_id', 'item', 'item_type', 'recommendation_id', 'next_election_date', 'priority', 'detail', 'date_published', 'published', 'party_id', 'image_url', 'election_result_id', 'url', 'personal_url', 'score', 'office_id', 'facebook_url', 'twitter_handle', 'hold_office', 'facebook_share', 'twitter_share', 'measure_number');
 
         $result = self::insertDataFromCSV($tmp_name, $file_name, 'ballot_item', $fields);
 
