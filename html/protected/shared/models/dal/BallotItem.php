@@ -30,6 +30,7 @@
  * @property string twitter_handle
  * @property string twitter_share
  * @property string hold_office
+ * @property string measure_number
 
 
  */
@@ -69,6 +70,7 @@ class BallotItem extends CActiveRecord {
             array('district_id, recommendation_id, priority, election_result_id, score, party_id', 'numerical', 'integerOnly' => true),
             array('item_type, twitter_handle', 'length', 'max' => 128),
             array('facebook_share', 'length', 'max' => 1024),
+            array('measure_number', 'length', 'max' => 8),
             array('twitter_share', 'length', 'max' => 140),
             array('url', 'length', 'max' => 500),
             array('personal_url, facebook_url', 'length', 'max' => 2048),
@@ -80,7 +82,7 @@ class BallotItem extends CActiveRecord {
             array('url', 'unique_url'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, district_id, item, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party_id, url, image_url, election_result_id, district_number, district_type, state_abbr, personal_url, score, office_type, party, facebook_url, facebook_share, twitter_handle, twitter_share, hold_office', 'safe', 'on' => 'search'),
+            array('id, district_id, item, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party_id, url, image_url, election_result_id, district_number, district_type, state_abbr, personal_url, score, office_type, party, facebook_url, facebook_share, twitter_handle, twitter_share, hold_office, measure_number', 'safe', 'on' => 'search'),
         );
     }
 
@@ -100,6 +102,8 @@ class BallotItem extends CActiveRecord {
                 'scorecard(ballot_item_id, scorecard_item_id)'),
             'office' => array(self::BELONGS_TO, 'Office', 'office_id'),
             'party' => array(self::BELONGS_TO, 'Party', 'party_id'),
+            'endorsers' => array(self::MANY_MANY, 'Endorser',
+                'endorser_ballot_item(endorser_id, ballot_item_id)'),
         );
     }
 
