@@ -31,6 +31,7 @@
  * @property string twitter_share
  * @property string hold_office
  * @property string measure_number
+ * @property string friendly_name
 
 
  */
@@ -69,7 +70,7 @@ class BallotItem extends CActiveRecord {
             array('district_id, item, recommendation_id, priority, office_id, date_published, published, election_result_id, url', 'required'),
             array('district_id, recommendation_id, priority, election_result_id, score, party_id', 'numerical', 'integerOnly' => true),
             array('item_type, twitter_handle', 'length', 'max' => 128),
-            array('facebook_share', 'length', 'max' => 1024),
+            array('facebook_share, friendly_name', 'length', 'max' => 1024),
             array('measure_number', 'length', 'max' => 8),
             array('twitter_share', 'length', 'max' => 140),
             array('url', 'length', 'max' => 500),
@@ -82,7 +83,7 @@ class BallotItem extends CActiveRecord {
             array('url', 'unique_url'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, district_id, item, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party_id, url, image_url, election_result_id, district_number, district_type, state_abbr, personal_url, score, office_type, party, facebook_url, facebook_share, twitter_handle, twitter_share, hold_office, measure_number', 'safe', 'on' => 'search'),
+            array('id, district_id, item, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party_id, url, image_url, election_result_id, district_number, district_type, state_abbr, personal_url, score, office_type, party, facebook_url, facebook_share, twitter_handle, twitter_share, hold_office, measure_number, friendly_name', 'safe', 'on' => 'search'),
         );
     }
 
@@ -261,6 +262,9 @@ class BallotItem extends CActiveRecord {
             //  'property1'=>'value1',
             // 'property2'=>'value2',
             ),
+            'EndorserBehavior' => array(
+                'class' => 'BallotItemEndorserBehavior',
+            )
         );
     }
 

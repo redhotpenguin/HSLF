@@ -46,7 +46,7 @@ class ApiController extends Controller {
             case 'ballot_items': // /api/ballot/items
                 $result = $this->browseBallotItems();
                 break;
-         
+
             case 'endorsers': // /api/endorsers
                 $result = Endorser::model()->findAll();
                 break;
@@ -211,6 +211,7 @@ class ApiController extends Controller {
             'hold_office' => $ballot->hold_office,
             'endorsers' => $ballot->endorsers,
             'measure_number' => $ballot->measure_number,
+            'friendly_name' => $ballot->friendly_name
         );
 
         return $wrapped_ballot;

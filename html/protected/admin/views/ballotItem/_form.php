@@ -71,15 +71,21 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
             echo $form->error($model, 'district_id');
             ?>
 
+            <?php
+            echo $form->labelEx($model, 'recommendation_id');
+            echo $form->dropDownList($model, 'recommendation_id', $recommendation_list);
+            echo $form->error($model, 'recommendation_id');
+            ?>
+
+
 
             <?php
             echo $form->labelEx($model, 'measure_number');
             echo $form->textField($model, 'measure_number', array('size' => 50, 'maxlength' => 16, 'placeholder' => 'Measure Number'));
+            echo $form->error($model, 'measure_number');
             ?>
 
-            <?php
-            echo $form->error($model, 'personal_url');
-            ?>
+
         </div>
 
 
@@ -141,9 +147,9 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
 
         <div class="">
             <?php
-            echo $form->labelEx($model, 'recommendation_id');
-            echo $form->dropDownList($model, 'recommendation_id', $recommendation_list);
-            echo $form->error($model, 'recommendation_id');
+            echo $form->labelEx($model, 'friendly_name');
+            echo $form->textField($model, 'friendly_name', array('size' => 50, 'maxlength' => 1024, 'placeholder' => 'Friendly Name'));
+            echo $form->error($model, 'friendly_name');
             ?>
         </div>
 

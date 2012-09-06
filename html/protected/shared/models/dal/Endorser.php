@@ -53,6 +53,8 @@ class Endorser extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
+            'ballot_items' => array(self::MANY_MANY, 'BallotItem',
+                'endorser_ballot_item(endorser_id, ballot_item_id)'),
         );
     }
 
