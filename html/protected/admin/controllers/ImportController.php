@@ -41,9 +41,8 @@ class ImportController extends Controller {
      */
     public function actionIndex() {
 
-        $tmp_name = $_FILES['import']['tmp_name'];
 
-        if (!is_uploaded_file($tmp_name)) {
+        if ( !isset($_FILES['import']['tmp_name']) || !is_uploaded_file($_FILES['import']['tmp_name'])) {
             $this->render('index');
             return;
         }
