@@ -334,6 +334,66 @@ echo Chtml::endForm();
     ?>
 </div>
 
+<div class="form">
+    <?php
+    echo CHtml::form(CHtml::normalizeUrl(array('import/index', 'action' => 'importEndorser')), 'POST', array('enctype' => 'multipart/form-data'));
+    ?>
+    <h1>Import Endorsers:</h1>
+
+
+    <div class="left_col">
+        <?php
+        echo CHtml::fileField("import");
+        ?>
+
+    </div>
+
+    <div class = "right_col">
+        <?php
+        echo Chtml::submitButton("Import");
+        ?>
+    </div>
+
+    <div class="clearfix"></div>
+    <p>
+        <b>CSV structure:</b>id, name, description, website, image_url
+        (headers must be included)
+    </p>
+    <?php
+    echo Chtml::endForm();
+    ?>
+</div>
+<br/>
+<div class="form">
+    <?php
+    echo CHtml::form(CHtml::normalizeUrl(array('import/index', 'action' => 'importEndorserBallotItem')), 'POST', array('enctype' => 'multipart/form-data'));
+    ?>
+    <h1>Import Endorser-Ballot Item:</h1>
+
+
+    <div class="left_col">
+        <?php
+        echo CHtml::fileField("import");
+        ?>
+
+    </div>
+
+    <div class = "right_col">
+        <?php
+        echo Chtml::submitButton("Import");
+        ?>
+    </div>
+
+    <div class="clearfix"></div>
+    <p>
+        <b>CSV structure:</b>id, endorser_id, ballot_item_id
+        (headers must be included)
+    </p>
+    <?php
+    echo Chtml::endForm();
+    ?>
+</div>
+
 <br/>
 
 <br/>

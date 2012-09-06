@@ -64,8 +64,8 @@ class Import extends CModel {
             array_push($queries, $query);
             ++$i; // pre increment index
         }
- 
-        
+
+
         unset($data_field);
 
         fclose($fHandle);
@@ -173,12 +173,30 @@ class Import extends CModel {
 
         return $result;
     }
-    
-      public static function importTag($tmp_name, $file_name) {
+
+    public static function importTag($tmp_name, $file_name) {
 
         $fields = array('name', 'type');
 
         $result = self::insertDataFromCSV($tmp_name, $file_name, 'tag', $fields);
+
+        return $result;
+    }
+
+    public static function importEndorser($tmp_name, $file_name) {
+
+        $fields = array('name', 'description', 'website', 'image_url');
+
+        $result = self::insertDataFromCSV($tmp_name, $file_name, 'endorser', $fields);
+
+        return $result;
+    }
+    
+        public static function importEndorserBallotItem($tmp_name, $file_name) {
+
+        $fields = array('endorser_id', 'ballot_item_id');
+
+        $result = self::insertDataFromCSV($tmp_name, $file_name, 'endorser_ballot_item', $fields);
 
         return $result;
     }
