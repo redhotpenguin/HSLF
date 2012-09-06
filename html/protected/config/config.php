@@ -1,6 +1,6 @@
 <?php
 
-$env = json_decode(file_get_contents("/home/dotcloud/environment.json"), true);
+//$env = json_decode(file_get_contents("/home/dotcloud/environment.json"), true);
 
 if (isset($env['DOTCLOUD_DB_SQL_HOST']))
     $dbhost = $env['DOTCLOUD_DB_SQL_HOST'];
@@ -27,7 +27,7 @@ else
 // Image File Manager conf:
 // please also update root path in protected/extensions/tinymce/assets/jscripts/tiny_mce/plugins/imagemanager/config.php
 // Project config
-DEFINE('PROJECT_NAME', 'HSLF');
+DEFINE('PROJECT_NAME', 'Our Oregon');
 //DEFINE('SITE_URL', 'http://mvg.winningmark.com');
 DEFINE('SITE_URL', 'http://www.voterguide.com');
 DEFINE('ADMIN_EMAIL', 'mobile@winningmark.com');
