@@ -46,6 +46,11 @@ class ApiController extends Controller {
             case 'ballot_items': // /api/ballot/items
                 $result = $this->browseBallotItems();
                 break;
+         
+            case 'endorsers': // /api/endorsers
+                $result = Endorser::model()->findAll();
+                break;
+
             default:
                 $this->_sendResponse(404, $this->_getStatusCodeMessage(404));
                 break;
@@ -126,15 +131,15 @@ class ApiController extends Controller {
 
             foreach ($encoded_districts as $encoded_district) {
                 $d = explode('/', $encoded_district);
-                
+
                 array_push($district_types, $d[0]);
 
                 array_push($districts, $d[1]);
-                
-                 array_push($localities, $d[2]);
+
+                array_push($localities, $d[2]);
             }
-            
-            
+
+
             $ballots = BallotItemManager::findAllByDistricts($state_abbr, $district_types, $districts, $localities, $year);
         }
         // return items by states
@@ -200,8 +205,12 @@ class ApiController extends Controller {
             'Scorecard' => $scorecards,
             'BallotItemNews' => $ballot->ballotItemNews,
             'facebook_url' => $ballot->facebook_url,
+            'facebook_share' => $ballot->facebook_share,
             'twitter_handle' => $ballot->twitter_handle,
+            'twitter_share' => $ballot->twitter_share,
             'hold_office' => $ballot->hold_office,
+            'endorsers' => $ballot->endorsers,
+            'measure_number' => $ballot->measure_number,
         );
 
         return $wrapped_ballot;
