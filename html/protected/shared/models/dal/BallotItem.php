@@ -123,7 +123,9 @@ class BallotItem extends CActiveRecord {
             'image_url' => 'Headshot',
             'election_result_id' => 'Election Result',
             'office_id' => 'Office',
-            'office_type' => 'Office'
+            'office_type' => 'Office',
+            'facebook_share' => 'Facebook Share Text',
+            'twitter_share' => 'Twitter Share Text',
         );
     }
 
