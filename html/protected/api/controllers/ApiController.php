@@ -75,6 +75,8 @@ class ApiController extends Controller {
             case 'ballot_items': //api/ballot_items/w{3}/
                 if (array_key_exists('ballot_item_id', $_GET)) // return a single ballot item
                     $this->_sendResponse(200, $this->_getBallotItem($_GET['ballot_item_id']));
+                elseif (array_key_exists('endorser_id', $_GET)) // return a single ballot item
+                    $this->_sendResponse(200, $this->_getBallotItemsByEndorser($_GET['endorser_id']));
                 else // return multiple ballot items
                     $this->_sendResponse(200, $this->_getBallotItems($_GET));
                 break;
@@ -100,6 +102,22 @@ class ApiController extends Controller {
         if (!empty($ballot)) {
 
             return $this->_ballotWrapper($ballot);
+        }
+
+        else
+            $this->_sendResponse(404, "no_ballot_found");
+    }
+
+    /**
+     * return all ballot items that have a specificied endorser
+     * @param integer $endorser_id id of the endorser
+     * @return ballot return array of ballot item object
+     */
+    private function _getBallotItemsByEndorser($endorser_id) {
+        $ballot_items = BallotItemManager::findByEndorser($endorser_id);
+        if (!empty($ballot_items)) {
+
+            return $this->_ballotsWrapper($ballot_items);
         }
 
         else

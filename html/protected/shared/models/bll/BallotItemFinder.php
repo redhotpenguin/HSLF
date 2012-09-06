@@ -72,5 +72,5 @@ class BallotItemFinder extends ModelFinder {
         }else
             $this->addParameter('name', "$name");
     }
-
+    
 }
