@@ -72,7 +72,17 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
             ?>
 
 
+            <?php
+            echo $form->labelEx($model, 'measure_number');
+            echo $form->textField($model, 'measure_number', array('size' => 50, 'maxlength' => 16, 'placeholder' => 'Measure Number'));
+            ?>
+
+            <?php
+            echo $form->error($model, 'personal_url');
+            ?>
         </div>
+
+
 
     </div>
 
@@ -320,6 +330,14 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
 
     <hr/>
 
+    <?php
+    echo $this->renderPartial('_endorser', array(
+        'model' => $model,
+    ));
+    ?>
+
+
+    <hr/>
     <div class="left_col">
         <?php echo $form->labelEx($model, 'date_published'); ?>
         <?php
