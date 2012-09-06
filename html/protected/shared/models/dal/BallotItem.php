@@ -26,7 +26,9 @@
  * @property Recommendation $recommendation
  * @property Recommendation $electionResult
  * @property string facebook_url
+ * @property string facebook_share
  * @property string twitter_handle
+ * @property string twitter_share
  * @property string hold_office
 
 
@@ -66,6 +68,8 @@ class BallotItem extends CActiveRecord {
             array('district_id, item, recommendation_id, priority, office_id, date_published, published, election_result_id, url', 'required'),
             array('district_id, recommendation_id, priority, election_result_id, score, party_id', 'numerical', 'integerOnly' => true),
             array('item_type, twitter_handle', 'length', 'max' => 128),
+            array('facebook_share', 'length', 'max' => 1024),
+            array('twitter_share', 'length', 'max' => 140),
             array('url', 'length', 'max' => 500),
             array('personal_url, facebook_url', 'length', 'max' => 2048),
             array('personal_url, facebook_url', 'url'),
@@ -76,7 +80,7 @@ class BallotItem extends CActiveRecord {
             array('url', 'unique_url'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, district_id, item, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party_id, url, image_url, election_result_id, district_number, district_type, state_abbr, personal_url, score, office_type, party, facebook_url, twitter_handle, hold_office', 'safe', 'on' => 'search'),
+            array('id, district_id, item, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party_id, url, image_url, election_result_id, district_number, district_type, state_abbr, personal_url, score, office_type, party, facebook_url, facebook_share, twitter_handle, twitter_share, hold_office', 'safe', 'on' => 'search'),
         );
     }
 
@@ -133,7 +137,7 @@ class BallotItem extends CActiveRecord {
         $criteria->with = array('district', 'office', 'party');
 
         // search by relationship (district)
-        if ($this->district_number || $this->district_type || $this->state_abbr || $this->office_type  || $this->party) {
+        if ($this->district_number || $this->district_type || $this->state_abbr || $this->office_type || $this->party) {
             $criteria->together = true;
             // Join the 'district' table
 
@@ -149,8 +153,6 @@ class BallotItem extends CActiveRecord {
 
             if ($this->party)
                 $criteria->compare('party.name', $this->party, false);
-            
-     
         }
 
         $criteria->compare('id', $this->id);

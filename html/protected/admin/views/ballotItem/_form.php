@@ -223,6 +223,14 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
         <?php
         echo $form->error($model, 'facebook_url');
         ?>
+
+        <?php
+        echo $form->labelEx($model, 'facebook_share');
+        echo $form->textField($model, 'facebook_share', array('size' => 50, 'maxlength' => 1041, 'placeholder' => 'Facebook Share Text'));
+        ?>
+        <?php
+        echo $form->error($model, 'facebook_share');
+        ?>
     </div>
 
 
@@ -233,6 +241,14 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
         ?>
         <?php
         echo $form->error($model, 'twitter_handle');
+        ?>
+
+        <?php
+        echo $form->labelEx($model, 'twitter_share');
+        echo $form->textField($model, 'twitter_share', array('size' => 50, 'maxlength' => 1041, 'placeholder' => 'Twitter Share Text'));
+        ?>
+        <?php
+        echo $form->error($model, 'twitter_share');
         ?>
     </div>
 
