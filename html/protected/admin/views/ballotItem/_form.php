@@ -326,14 +326,21 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
     ));
     ?>
 
-    <br/>
-    <label>Scorecard</label>
-    <span id="scorecard_spin" class="ajax_wheel_spin"><img src="/themes/dashboard/img/64_orange_wheel.gif"/></span>
-    <div id ="dynamic_scorecard_table"> 
-        <?php
-        //  endif;
+    <?php
+    if (ScorecardItem::model()->count() > 0):
         ?>
-    </div>
+
+        <br/>
+        <label>Scorecard</label>
+        <span id="scorecard_spin" class="ajax_wheel_spin"><img src="/themes/dashboard/img/64_orange_wheel.gif"/></span>
+        <div id ="dynamic_scorecard_table"> 
+            <?php
+            //  endif;
+            ?>
+        </div>
+        <?php
+    endif;
+    ?>
 
 
 
