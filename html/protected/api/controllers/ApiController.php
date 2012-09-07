@@ -72,14 +72,25 @@ class ApiController extends Controller {
                 $this->_sendResponse(200, $this->_getTags($_GET));
                 break;
 
-            case 'ballot_items': //api/ballot_items/w{3}/
-                if (array_key_exists('ballot_item_id', $_GET)) // return a single ballot item
-                    $this->_sendResponse(200, $this->_getBallotItem($_GET['ballot_item_id']));
-                elseif (array_key_exists('endorser_id', $_GET)) // return a single ballot item
-                    $this->_sendResponse(200, $this->_getBallotItemsByEndorser($_GET['endorser_id']));
-                else // return multiple ballot items
-                    $this->_sendResponse(200, $this->_getBallotItems($_GET));
+            case 'ballot_items': //api/ballot_items/
+                switch ($_GET['filter']) {
+                    case 'single': //api/ballot_items/single/<id>
+                        $this->_sendResponse(200, $this->_getBallotItem($_GET['id']));
+                        break;
+                    case 'endorser': //api/ballot_items/endorser/<id>
+                        $this->_sendResponse(200, $this->_getBallotItemsByEndorser($_GET['id']));
+                        break;
+
+                    default:
+                        $this->_sendResponse(200, $this->_getBallotItems($_GET));
+                        break;
+                }
                 break;
+
+            case 'endorsers':
+                $this->_sendResponse(200, $this->_getEndorser($_GET['id']));
+                break;
+
 
             case 'districts':
                 $this->_sendResponse(200, District::model()->getTypeOptions());
@@ -233,6 +244,15 @@ class ApiController extends Controller {
         );
 
         return $wrapped_ballot;
+    }
+
+    /**
+     * return an endorser object
+     * @param integer $endorser_id id of the endorser
+     * @return Endorser 
+     */
+    private function _getEndorser($endorser_id) {
+        return Endorser::model()->findByPk($endorser_id);
     }
 
     /**

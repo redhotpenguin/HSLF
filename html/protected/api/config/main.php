@@ -43,8 +43,8 @@ return array(
                 // ex: /api/ballot_items/2012/state/or/?districts=...
                 array('api/view', 'pattern' => 'api/<model:\w+>/<year:\d{4}>/state/<state_abbr:\w{2,3}>', 'verb' => 'GET'),
                 // ex: /api/ballot_items/single/4141/
-                array('api/view', 'pattern' => 'api/<model:\w+>/single/<ballot_item_id:\d+>', 'verb' => 'GET'),
-                array('api/view', 'pattern' => 'api/<model:\w+>/endorser/<endorser_id:\d+>', 'verb' => 'GET'),
+              //  array('api/view', 'pattern' => 'api/<model:\w+>/single/<id:\d+>', 'verb' => 'GET'),
+                 array('api/view', 'pattern' => 'api/<model:\w+>/<filter:\w+>/<id:\d+>', 'verb' => 'GET'),
                 array('api/view', 'pattern' => 'api/<model:\w+>/name/<type:\w+>', 'verb' => 'GET'),
                 array('api/view', 'pattern' => 'api/<model:\w+>/<id:\d+>/', 'verb' => 'GET'),
                 array('api/view', 'pattern' => 'api/<model:\w+>/types', 'verb' => 'GET'), // ex: /api/districts/type
