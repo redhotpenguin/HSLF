@@ -317,19 +317,6 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
 
 
 
-
-
-
-    <label>Scorecard</label>
-    <br/> 
-    <span id="scorecard_spin" class="ajax_wheel_spin"><img src="/themes/dashboard/img/64_orange_wheel.gif"/></span>
-    <div id ="dynamic_scorecard_table"> 
-        <?php
-        //  endif;
-        ?>
-    </div>
-
-
     <hr/>
 
     <?php
@@ -338,6 +325,18 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
         'endorser_list' => $endorser_list
     ));
     ?>
+
+    <br/>
+    <label>Scorecard</label>
+    <span id="scorecard_spin" class="ajax_wheel_spin"><img src="/themes/dashboard/img/64_orange_wheel.gif"/></span>
+    <div id ="dynamic_scorecard_table"> 
+        <?php
+        //  endif;
+        ?>
+    </div>
+
+
+
 
 
     <hr/>

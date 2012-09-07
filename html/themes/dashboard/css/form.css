@@ -208,9 +208,7 @@ input{
 }
 
 div#endorsers{
-    border:1px dotted #ccc;
-    padding:5px;
-    height:150px;
+    height:250px;
     overflow: scroll;
     overflow-x:hidden;
     
