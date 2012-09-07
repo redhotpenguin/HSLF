@@ -47,9 +47,12 @@ DEFINE('API_SECRET', 'PqiW_IDKL3mFi_OirCqOe-u');
 // Urban Airship
 DEFINE('UA_API_KEY', 'ouRCLPaBRRasv4K1AIw-xA');
 DEFINE('UA_API_SECRET', '7hd19C6rSzyrbKM3k6KqDg'); // master secret
+DEFINE('UA_DASHBOARD_LINK', 'https://go.urbanairship.com/apps/uz0lefTuQUWHPtjDenPNRQ/composer/rich-push/');
+
 // Cicero Config
 DEFINE('CICERO_USERNAME', 'winningmark');
 DEFINE('CICERO_PASSWORD', '3TUuAv5DwNsB');
+
 
 
 // Theme config
