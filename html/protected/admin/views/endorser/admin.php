@@ -38,8 +38,6 @@ $('.search-form form').submit(function(){
     ?>
 </div><!-- search-form -->
 
-?>
-
 <?php
 $this->widget('bootstrap.widgets.BootGridView', array(
     'id' => 'vote-grid',
