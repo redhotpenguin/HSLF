@@ -6,6 +6,7 @@ $this->breadcrumbs = array(
 
 $this->menu = array(
     array('label' => 'Add an endorser', 'url' => array('create')),
+    array('label' => 'Export to CSV file', 'url' => array('exportCSV')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -31,11 +32,11 @@ $('.search-form form').submit(function(){
 
 <?php echo CHtml::link('Advanced Search', '#', array('class' => 'search-button')); ?>
 <div class="search-form" style="display:none">
-    <?php
-    $this->renderPartial('_search', array(
-        'model' => $model,
-    ));
-    ?>
+<?php
+$this->renderPartial('_search', array(
+    'model' => $model,
+));
+?>
 </div><!-- search-form -->
 
 <?php

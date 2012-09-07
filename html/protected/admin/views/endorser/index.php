@@ -6,6 +6,7 @@ $this->breadcrumbs = array(
 $this->menu = array(
     array('label' => 'Add an endorser', 'url' => array('create')),
     array('label' => 'Manage endorsers', 'url' => array('admin')),
+    array('label' => 'Export to CSV file', 'url' => array('exportCSV')),
 );
 ?>
 

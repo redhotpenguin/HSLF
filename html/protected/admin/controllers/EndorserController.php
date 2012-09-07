@@ -25,7 +25,7 @@ class EndorserController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete'),
+                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete', 'exportCSV'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -150,6 +150,19 @@ class EndorserController extends Controller {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
+    }
+
+    /**
+     * Performs the CSV Export
+     */
+    public function actionExportCSV() {
+        Yii::import('ext.csv.ESCVExport');
+
+        $csv = new ESCVExport(Endorser::model()->findAll());
+
+
+        $content = $csv->toCSV();
+        Yii::app()->getRequest()->sendFile('endorsers.csv', $content, "text/csv", false);
     }
 
 }
