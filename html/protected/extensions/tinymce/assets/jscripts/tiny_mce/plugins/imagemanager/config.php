@@ -3,7 +3,6 @@
 require_once(MCMANAGER_ABSPATH . "ImageManager/ImageManagerPlugin.php");
 
 @session_start();
-// ugliest hack ever
 $connected = false;
 foreach ($_SESSION as $t) {
     if (is_array($t)) {
@@ -52,7 +51,7 @@ $mcImageManagerConfig['createdir.allow_override'] = "*";
 // General filesystem options
 $mcImageManagerConfig['filesystem'] = "Moxiecode_LocalFileImpl";
 $mcImageManagerConfig['filesystem.path'] = ''; // absolute or relative from this script path, optional.
-$mcImageManagerConfig['filesystem.rootpath'] = '/var/www/mvg.winningmark.com/html/content/img'; // absolute or relative from this script path, required.
+$mcImageManagerConfig['filesystem.rootpath'] = '/var/www/ouroregondev.winningmark.com/html/content/img'; // absolute or relative from this script path, required.
 $mcImageManagerConfig['filesystem.datefmt'] = "Y-m-d H:i";
 $mcImageManagerConfig['filesystem.include_directory_pattern'] = '';
 $mcImageManagerConfig['filesystem.exclude_directory_pattern'] = '/^mcith$/i';
