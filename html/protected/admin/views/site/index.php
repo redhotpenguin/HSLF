@@ -8,7 +8,7 @@
         <div class="hero-unit">
             <h1>Dashboard</h1>
             <p>Welcome to the administration dashboard.</p>
-            <p> <b><?php echo $total_ballot_page; ?></b> <a href="/admin/ballotItem/admin/">Ballot pages</a></p>
+            <p> <b><?php echo $total_ballot_page; ?></b> <a href="/admin/ballotItem/admin/">Ballot items</a></p>
         </div>
 
         <div class="row">
@@ -24,7 +24,7 @@
             </div>
             <div class="span3">
                 <h2>Push Notifications</h2>
-                <p>Send Rich Push Notifications to your users.</p>
+                <p>Send Rich Push Notifications to mobile users.</p>
                 <p><a class="btn" href="https://go.urbanairship.com/apps/ouRCLPaBRRasv4K1AIw-xA/composer/rich-push/">More »</a></p>
             </div>
         </div>
