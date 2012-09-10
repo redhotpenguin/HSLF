@@ -26,6 +26,11 @@ class District extends CActiveRecord {
         'LOCAL',
         'COUNTY',
         'SCHOOL',
+        'CENSUS',
+        'JUDICIAL',
+        'POLICE',
+        'SCHOOL',
+        'WATERSHED',
     );
     private static $labelledDistrictTypes = array(
         'NATIONAL_UPPER' => 'NATIONAL UPPER',
@@ -36,6 +41,11 @@ class District extends CActiveRecord {
         'LOCAL' => 'LOCAL',
         'COUNTY' => 'COUNTY',
         'SCHOOL' => 'SCHOOL',
+        'CENSUS' => 'CENSUS',
+        'JUDICIAL' => 'JUDICIAL',
+        'POLICE' => 'POLICE',
+        'SCHOOL' => 'SCHOOL',
+        'WATERSHED' => 'WATERSHED',
     );
 
     /**

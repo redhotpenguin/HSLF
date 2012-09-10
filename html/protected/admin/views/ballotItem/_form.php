@@ -70,10 +70,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
             ));
             echo $form->error($model, 'district_id');
             ?>
-
-
         </div>
-
     </div>
 
     <div class="right_col">
@@ -129,15 +126,30 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
             <?php echo $form->error($model, 'next_election_date'); ?>
         </div>    
 
-        <div class="">
-            <?php
-            echo $form->labelEx($model, 'recommendation_id');
-            echo $form->dropDownList($model, 'recommendation_id', $recommendation_list);
-            echo $form->error($model, 'recommendation_id');
-            ?>
-        </div>
+        <?php
+        echo $form->labelEx($model, 'recommendation_id');
+        echo $form->dropDownList($model, 'recommendation_id', $recommendation_list);
+        echo $form->error($model, 'recommendation_id');
+        ?>
 
 
+    </div>
+
+    <hr/>
+
+    <div class="left_col">
+        <?php
+        echo $form->labelEx($model, 'measure_number');
+        echo $form->textField($model, 'measure_number', array('size' => 50, 'maxlength' => 16, 'placeholder' => 'Measure Number'));
+        echo $form->error($model, 'measure_number');
+        ?>
+    </div>
+    <div class="right_col">
+        <?php
+        echo $form->labelEx($model, 'friendly_name');
+        echo $form->textField($model, 'friendly_name', array('size' => 50, 'maxlength' => 1024, 'placeholder' => 'Friendly Name'));
+        echo $form->error($model, 'friendly_name');
+        ?>
     </div>
 
     <?php
@@ -223,6 +235,14 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
         <?php
         echo $form->error($model, 'facebook_url');
         ?>
+
+        <?php
+        echo $form->labelEx($model, 'facebook_share');
+        echo $form->textField($model, 'facebook_share', array('size' => 50, 'maxlength' => 1041, 'placeholder' => 'Facebook Share Text'));
+        ?>
+        <?php
+        echo $form->error($model, 'facebook_share');
+        ?>
     </div>
 
 
@@ -233,6 +253,14 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
         ?>
         <?php
         echo $form->error($model, 'twitter_handle');
+        ?>
+
+        <?php
+        echo $form->labelEx($model, 'twitter_share');
+        echo $form->textField($model, 'twitter_share', array('size' => 50, 'maxlength' => 1041, 'placeholder' => 'Twitter Share Text'));
+        ?>
+        <?php
+        echo $form->error($model, 'twitter_share');
         ?>
     </div>
 
@@ -289,21 +317,36 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
 
 
 
+    <hr/>
 
+    <?php
+    echo $this->renderPartial('_endorser', array(
+        'model' => $model,
+        'endorser_list' => $endorser_list
+    ));
+    ?>
 
-
-    <label>Scorecard</label>
-    <br/> 
-    <span id="scorecard_spin" class="ajax_wheel_spin"><img src="/themes/dashboard/img/64_orange_wheel.gif"/></span>
-    <div id ="dynamic_scorecard_table"> 
-        <?php
-        //  endif;
+    <?php
+    if (ScorecardItem::model()->count() > 0):
         ?>
-    </div>
+
+        <br/>
+        <label>Scorecard</label>
+        <span id="scorecard_spin" class="ajax_wheel_spin"><img src="/themes/dashboard/img/64_orange_wheel.gif"/></span>
+        <div id ="dynamic_scorecard_table"> 
+            <?php
+            //  endif;
+            ?>
+        </div>
+        <?php
+    endif;
+    ?>
+
+
+
 
 
     <hr/>
-
     <div class="left_col">
         <?php echo $form->labelEx($model, 'date_published'); ?>
         <?php

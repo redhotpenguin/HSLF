@@ -1,14 +1,19 @@
 <?php
-$this->breadcrumbs=array(
-	'Ballot Items'=>array('index'),
-	'Create',
+$this->breadcrumbs = array(
+    'Ballot Items' => array('index'),
+    'Create',
 );
 
-$this->menu=array(
-	array('label'=>'Manage ballot items', 'url'=>array('admin')),
+$this->menu = array(
+    array('label' => 'Manage ballot items', 'url' => array('admin')),
 );
 ?>
 
 <h1>Add a Ballot Item</h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php
+echo $this->renderPartial('_form', array(
+    'model' => $model,
+    'endorser_list' => $endorser_list,
+));
+?>

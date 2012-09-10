@@ -13,8 +13,6 @@ return array(
     'viewPath' => $api . '/views/',
     'runtimePath' => $api . '/runtime',
     'name' => PROJECT_NAME . ' - API',
-    // preloading 'log' component
-    // 'preload' => array('log'),
     // autoloading model and component classes
     'import' => array(
         'admin.models.*',
@@ -25,14 +23,6 @@ return array(
         'application.components.*',
     ),
     'modules' => array(
-    /*
-      'gii' => array(
-      'class' => 'system.gii.GiiModule',
-      'password' => 'giipass',
-      // If removed, Gii defaults to localhost only. Edit carefully to taste.
-      'ipFilters' => array('127.0.0.1', '::1'),
-      ),
-     */
     ),
     // application components
     'components' => array(
@@ -53,7 +43,8 @@ return array(
                 // ex: /api/ballot_items/2012/state/or/?districts=...
                 array('api/view', 'pattern' => 'api/<model:\w+>/<year:\d{4}>/state/<state_abbr:\w{2,3}>', 'verb' => 'GET'),
                 // ex: /api/ballot_items/single/4141/
-                array('api/view', 'pattern' => 'api/<model:\w+>/single/<ballot_item_id:\d+>', 'verb' => 'GET'),
+              //  array('api/view', 'pattern' => 'api/<model:\w+>/single/<id:\d+>', 'verb' => 'GET'),
+                 array('api/view', 'pattern' => 'api/<model:\w+>/<filter:\w+>/<id:\d+>', 'verb' => 'GET'),
                 array('api/view', 'pattern' => 'api/<model:\w+>/name/<type:\w+>', 'verb' => 'GET'),
                 array('api/view', 'pattern' => 'api/<model:\w+>/<id:\d+>/', 'verb' => 'GET'),
                 array('api/view', 'pattern' => 'api/<model:\w+>/types', 'verb' => 'GET'), // ex: /api/districts/type
@@ -70,7 +61,7 @@ return array(
             'username' => DB_USER,
             'password' => DB_PASS,
             'charset' => 'UTF-8',
-           // 'schemaCachingDuration' => '3600',
+        // 'schemaCachingDuration' => '3600',
         ),
         'cache' => array(
             'class' => 'system.caching.CApcCache',
@@ -79,21 +70,6 @@ return array(
             // use 'api/error' action to display errors
             'errorAction' => 'api/index',
         ),
-    /*
-      'log' => array(
-      'class' => 'CLogRouter',
-      'routes' => array(
-      array(
-      'class' => 'CFileLogRoute',
-      'levels' => 'error, warning, info, trace',
-      ),
-      // uncomment the following to show log messages on web pages
-
-      array(
-      'class'=>'CWebLogRoute',
-      ),
-      ),
-      ), */
     ),
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']

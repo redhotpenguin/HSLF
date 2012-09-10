@@ -89,6 +89,7 @@ class BallotItemController extends Controller {
                 error_log('could not save');
                 $this->render('create', array(
                     'model' => $model,
+                    'endorser_list' => Endorser::model()->findAll(array('order' => 'name')),
                 ));
                 return;
             }
@@ -122,6 +123,14 @@ class BallotItemController extends Controller {
                 }
             }
 
+            // save endorsers
+            if ($endorser_ids = getPost('endorsers')) {
+
+                foreach ($endorser_ids as $endorser_id) {
+                    $model->addEndorser($endorser_id);
+                }
+            }
+
 
 
             $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
@@ -132,6 +141,7 @@ class BallotItemController extends Controller {
 
         $this->render('create', array(
             'model' => $model,
+            'endorser_list' => Endorser::model()->findAll(array('order' => 'name')),
         ));
     }
 
@@ -143,6 +153,8 @@ class BallotItemController extends Controller {
     public function actionUpdate($id) {
         // import FileUpload helper class
         Yii::import('admin.models.helpers.FileUpload');
+
+        //   logIt($_REQUEST);
 
         $model = $this->loadModel($id);
 
@@ -184,8 +196,8 @@ class BallotItemController extends Controller {
                 if ($model->save())
                     $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
             }
-            // savescorecards
 
+            // save scorecards
             if ($scorecard_item_ids = getPost('scorecards')) {
 
                 $scorecard_model = new Scorecard();
@@ -214,6 +226,15 @@ class BallotItemController extends Controller {
                 }
             }
 
+            // remove existing endorsers
+            $model->removeEndorsers();
+            // save endorsers
+            if ($endorser_ids = getPost('endorsers')) {
+
+                foreach ($endorser_ids as $endorser_id) {
+                    $model->addEndorser($endorser_id);
+                }
+            }
 
             return;
         }
@@ -221,7 +242,8 @@ class BallotItemController extends Controller {
 
 
         $this->render('update', array(
-            'model' => $model
+            'model' => $model,
+            'endorser_list' => Endorser::model()->findAll(array('order' => 'name')),
         ));
     }
 

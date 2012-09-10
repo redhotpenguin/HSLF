@@ -52,11 +52,20 @@ class BallotItemManager {
             $ballotItemFinder->setNullElectionDate();
         }
 
-
-
-
         $ballots = $ballotItemFinder->search();
         return self::applyFilter($ballots);
+    }
+
+    /**
+     * return all ballot items that have a specificied endorser
+     * @param integer $endorser_id id of the endorser
+     * @return ballot return array of ballot item object
+     */
+    public static function findByEndorser($endorser_id) {
+        
+        $ballot_items = BallotItem::model()->findByEndorser($endorser_id);
+        
+        return self::applyFilter($ballot_items);
     }
 
     /**

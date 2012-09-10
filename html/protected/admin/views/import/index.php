@@ -100,7 +100,7 @@ echo Chtml::endForm();
 
     <div class="clearfix"></div>
     <p>
-        <b>CSV structure:</b> id, district_id, item, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party_id, image_url, election_result_id, url, personal_url, score, office_id, facebook_url, twitter_handle, hold_office
+        <b>CSV structure:</b> id, district_id, item, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party_id, image_url, election_result_id, url, personal_url, score, office_id, facebook_url, twitter_handle, hold_office, facebook_share, twitter_share, measure_number
         <br/>
         (headers must be included)
     </p>
@@ -327,6 +327,66 @@ echo Chtml::endForm();
     <div class="clearfix"></div>
     <p>
         <b>CSV structure:</b>id, name, type
+        (headers must be included)
+    </p>
+    <?php
+    echo Chtml::endForm();
+    ?>
+</div>
+<br/>
+<div class="form">
+    <?php
+    echo CHtml::form(CHtml::normalizeUrl(array('import/index', 'action' => 'importEndorser')), 'POST', array('enctype' => 'multipart/form-data'));
+    ?>
+    <h1>Import Endorsers:</h1>
+
+
+    <div class="left_col">
+        <?php
+        echo CHtml::fileField("import");
+        ?>
+
+    </div>
+
+    <div class = "right_col">
+        <?php
+        echo Chtml::submitButton("Import");
+        ?>
+    </div>
+
+    <div class="clearfix"></div>
+    <p>
+        <b>CSV structure:</b>id, name, description, website, image_url
+        (headers must be included)
+    </p>
+    <?php
+    echo Chtml::endForm();
+    ?>
+</div>
+<br/>
+<div class="form">
+    <?php
+    echo CHtml::form(CHtml::normalizeUrl(array('import/index', 'action' => 'importEndorserBallotItem')), 'POST', array('enctype' => 'multipart/form-data'));
+    ?>
+    <h1>Import Endorser-Ballot Item:</h1>
+
+
+    <div class="left_col">
+        <?php
+        echo CHtml::fileField("import");
+        ?>
+
+    </div>
+
+    <div class = "right_col">
+        <?php
+        echo Chtml::submitButton("Import");
+        ?>
+    </div>
+
+    <div class="clearfix"></div>
+    <p>
+        <b>CSV structure:</b>id, endorser_id, ballot_item_id
         (headers must be included)
     </p>
     <?php

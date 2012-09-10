@@ -46,6 +46,11 @@ class ApiController extends Controller {
             case 'ballot_items': // /api/ballot/items
                 $result = $this->browseBallotItems();
                 break;
+
+            case 'endorsers': // /api/endorsers
+                $result = Endorser::model()->findAll();
+                break;
+
             default:
                 $this->_sendResponse(404, $this->_getStatusCodeMessage(404));
                 break;
@@ -67,12 +72,25 @@ class ApiController extends Controller {
                 $this->_sendResponse(200, $this->_getTags($_GET));
                 break;
 
-            case 'ballot_items': //api/ballot_items/w{3}/
-                if (array_key_exists('ballot_item_id', $_GET)) // return a single ballot item
-                    $this->_sendResponse(200, $this->_getBallotItem($_GET['ballot_item_id']));
-                else // return multiple ballot items
-                    $this->_sendResponse(200, $this->_getBallotItems($_GET));
+            case 'ballot_items': //api/ballot_items/
+                switch ($_GET['filter']) {
+                    case 'single': //api/ballot_items/single/<id>
+                        $this->_sendResponse(200, $this->_getBallotItem($_GET['id']));
+                        break;
+                    case 'endorser': //api/ballot_items/endorser/<id>
+                        $this->_sendResponse(200, $this->_getBallotItemsByEndorser($_GET['id']));
+                        break;
+
+                    default:
+                        $this->_sendResponse(200, $this->_getBallotItems($_GET));
+                        break;
+                }
                 break;
+
+            case 'endorsers':
+                $this->_sendResponse(200, $this->_getEndorser($_GET['id']));
+                break;
+
 
             case 'districts':
                 $this->_sendResponse(200, District::model()->getTypeOptions());
@@ -95,6 +113,22 @@ class ApiController extends Controller {
         if (!empty($ballot)) {
 
             return $this->_ballotWrapper($ballot);
+        }
+
+        else
+            $this->_sendResponse(404, "no_ballot_found");
+    }
+
+    /**
+     * return all ballot items that have a specificied endorser
+     * @param integer $endorser_id id of the endorser
+     * @return ballot return array of ballot item object
+     */
+    private function _getBallotItemsByEndorser($endorser_id) {
+        $ballot_items = BallotItemManager::findByEndorser($endorser_id);
+        if (!empty($ballot_items)) {
+
+            return $this->_ballotsWrapper($ballot_items);
         }
 
         else
@@ -126,15 +160,15 @@ class ApiController extends Controller {
 
             foreach ($encoded_districts as $encoded_district) {
                 $d = explode('/', $encoded_district);
-                
+
                 array_push($district_types, $d[0]);
 
                 array_push($districts, $d[1]);
-                
-                 array_push($localities, $d[2]);
+
+                array_push($localities, $d[2]);
             }
-            
-            
+
+
             $ballots = BallotItemManager::findAllByDistricts($state_abbr, $district_types, $districts, $localities, $year);
         }
         // return items by states
@@ -200,11 +234,25 @@ class ApiController extends Controller {
             'Scorecard' => $scorecards,
             'BallotItemNews' => $ballot->ballotItemNews,
             'facebook_url' => $ballot->facebook_url,
+            'facebook_share' => $ballot->facebook_share,
             'twitter_handle' => $ballot->twitter_handle,
+            'twitter_share' => $ballot->twitter_share,
             'hold_office' => $ballot->hold_office,
+            'endorsers' => $ballot->endorsers,
+            'measure_number' => $ballot->measure_number,
+            'friendly_name' => $ballot->friendly_name
         );
 
         return $wrapped_ballot;
+    }
+
+    /**
+     * return an endorser object
+     * @param integer $endorser_id id of the endorser
+     * @return Endorser 
+     */
+    private function _getEndorser($endorser_id) {
+        return Endorser::model()->findByPk($endorser_id);
     }
 
     /**
