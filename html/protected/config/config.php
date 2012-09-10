@@ -41,7 +41,7 @@ DEFINE('DB_PASS', $dbpass);
 DEFINE('DB_PORT', $dbport);
 
 // API Config
-DEFINE('API_KEY', 'w-TCispEQW-MLev82TVyO_X');
+DEFINE('API_KEY', '52356');
 DEFINE('API_SECRET', 'PqiW_IDKL3mFi_OirCqOe-u');
 
 // Urban Airship

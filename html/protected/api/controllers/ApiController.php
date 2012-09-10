@@ -21,9 +21,17 @@ class ApiController extends Controller {
      */
     public function actionList() {
         $result = '';
+        $code = 200;
+
         switch ($_GET['model']) {
             case 'options': // /api/options
-                $result = Option::model()->findAll();
+                if ($this->_checkAuth()) {
+                    $result = Option::model()->findAll();
+                    $code = 200;
+                } else {
+                    $result = "Unauthorized";
+                    $code = 401;
+                }
                 break;
 
             case 'tags': // /api/tags
@@ -52,7 +60,7 @@ class ApiController extends Controller {
                 break;
         }
 
-        $this->_sendResponse(200, $result);
+        $this->_sendResponse($code, $result);
     }
 
     /**
@@ -61,7 +69,15 @@ class ApiController extends Controller {
     public function actionView() {
         switch ($_GET['model']) {
             case 'options': //api/options/type/w+
-                $this->_sendResponse(200, $this->_getOptions($_GET));
+                if ($this->_checkAuth()) {
+                    $response = $this->_getOptions($_GET);
+                    $code = 200;
+                } else {
+                    $response = "Unauthorized";
+                    $code = 401;
+                }
+                $this->_sendResponse($code, $response);
+
                 break;
 
             case 'tags': // /api/tags/type/w+
@@ -526,7 +542,7 @@ class ApiController extends Controller {
         $api_key = Yii::app()->params['api_key'];
         $api_pass = Yii::app()->params['api_secret'];
 
-        return ( $api_key == $_POST['api_key'] && $api_pass == $_POST['api_secret'] );
+        return ( $api_key == $_REQUEST['api_key'] && $api_pass == $_REQUEST['api_secret'] );
     }
 
 }
