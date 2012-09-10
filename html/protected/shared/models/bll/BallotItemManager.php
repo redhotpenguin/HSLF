@@ -29,9 +29,10 @@ class BallotItemManager {
      * @param array $district_types types of the district
      * @param array $district name of the district
      * @param integer $year year of the publication date
+     * @param array $orders optionnal array of fields to order
      * @return array return array of ballot items
      */
-    public static function findAllByDistricts($state_abbr, array $district_types, array $districts, array $localities, $year = null) {
+    public static function findAllByDistricts($state_abbr, array $district_types, array $districts, array $localities, $year = null, $orders = array()) {
 
         $district_ids = DistrictManager::getIdsByDistricts($state_abbr, $district_types, $districts, $localities);
 
@@ -52,6 +53,10 @@ class BallotItemManager {
             $ballotItemFinder->setNullElectionDate();
         }
 
+        if ($orders['measure_order']) {
+            $ballotItemFinder->orderByMeasureNumber($orders['measure_order']);
+        }
+
         $ballots = $ballotItemFinder->search();
         return self::applyFilter($ballots);
     }
@@ -62,9 +67,9 @@ class BallotItemManager {
      * @return ballot return array of ballot item object
      */
     public static function findByEndorser($endorser_id) {
-        
+
         $ballot_items = BallotItem::model()->findByEndorser($endorser_id);
-        
+
         return self::applyFilter($ballot_items);
     }
 
@@ -72,15 +77,15 @@ class BallotItemManager {
      * Find all the ballot models by state
      * @param string $state_abbr abbreviation of the state
      * @param integer $year year of the publication date
+     * @param array $orders optionnal array of fields to order
      * @return array return array of ballot items
      */
-    public static function findAllByState($state_abbr, $year = null) {
+    public static function findAllByState($state_abbr, $year = null, array $orders = array()) {
         // todo: encapsulate this function
         $district_ids = DistrictManager::getIdsByState($state_abbr);
 
         if (empty($district_ids))
             return false;
-
 
         $ballotItemFinder = new BallotItemFinder();
 
@@ -98,6 +103,9 @@ class BallotItemManager {
         }
 
 
+        if ($orders['measure_order']) {
+            $ballotItemFinder->orderByMeasureNumber($orders['measure_order']);
+        }
 
         $ballots = $ballotItemFinder->search();
         return self::applyFilter($ballots);

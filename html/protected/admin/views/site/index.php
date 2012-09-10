@@ -31,9 +31,9 @@
         <br/>
         <div class="row">
             <div class="span3">
-                <h2>Scorecard</h2>
-                <p>Manage scorecard items.</p>
-                <p><a class="btn" href="/admin/scorecardItem/admin/">More »</a></p>
+                <h2>Endorsers</h2>
+                <p>Manage endorsers.</p>
+                <p><a class="btn" href="/admin/endorser/admin/">More »</a></p>
             </div>
 
             <div class="span3">

@@ -19,7 +19,7 @@
 
     <div class="row">
         <?php echo $form->labelEx($model, 'icon'); ?>
-<?php echo $form->textField($model, 'icon', array('size' => 60, 'maxlength' => 64, 'class' => 'span9')); ?>
+<?php echo $form->textField($model, 'icon', array('size' => 60, 'maxlength' => 64, 'class' => 'span9', 'placeholder'=>'Image URL')); ?>
 <?php echo $form->error($model, 'icon'); ?>
     </div>
 

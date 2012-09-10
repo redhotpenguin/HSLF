@@ -368,7 +368,7 @@ echo Chtml::endForm();
     <?php
     echo CHtml::form(CHtml::normalizeUrl(array('import/index', 'action' => 'importEndorserBallotItem')), 'POST', array('enctype' => 'multipart/form-data'));
     ?>
-    <h1>Import Endorser-Ballot Item:</h1>
+    <h1>Import Ballot item endorsers:</h1>
 
 
     <div class="left_col">

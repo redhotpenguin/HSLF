@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
 	'Recommendations'=>array('index'),
-	$model->id,
+	$model->value,
 );
 
 $this->menu=array(
