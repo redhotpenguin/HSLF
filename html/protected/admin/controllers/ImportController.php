@@ -40,7 +40,7 @@ class ImportController extends Controller {
      * Display the Import home page
      */
     public function actionIndex() {
-
+        $result = "";
 
         if (!isset($_FILES['import']['tmp_name']) || !is_uploaded_file($_FILES['import']['tmp_name'])) {
             $this->render('index');
