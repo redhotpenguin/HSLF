@@ -40,8 +40,8 @@ abstract class ModelFinder {
         if (!empty($this->condition)) {
             $operator = ' and ';
         }
-        
-        if($or)
+
+        if ($or)
             $operator = ' or ';
 
         $this->condition .= $operator . $condition_key . $sign . $condition_value;
@@ -56,6 +56,10 @@ abstract class ModelFinder {
             throw new InvalidArgumentException('Order type must be ' . self::DESCENDANT . ' or ' . self::ASCENDANT . '. Type given: ' . $order_type);
 
         $this->order = "$attribute $order_type";
+    }
+
+    protected final function isValidOrder($order) {
+        return ($order == self::ASCENDANT || $order == self::DESCENDANT );
     }
 
     public final function setRelations(array $relations) {

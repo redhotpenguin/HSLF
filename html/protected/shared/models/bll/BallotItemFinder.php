@@ -52,16 +52,24 @@ class BallotItemFinder extends ModelFinder {
         $this->addParameter('year_end', $year . '-12-31 23:59:59');
     }
 
-    public function orderByHighestPriority() {
-        $this->setOrder('priority', ModelFinder::DESCENDANT);
+    public function orderByHighestPriority($order = ModelFinder::ASCENDANT) {
+        if ($this->isValidOrder($order))
+            $this->setOrder('priority', $order);
     }
 
-    public function orderByItem() {
-        $this->setOrder('item', ModelFinder::ASCENDANT);
+    public function orderByItem($order = ModelFinder::ASCENDANT) {
+        if ($this->isValidOrder($order))
+            $this->setOrder('item', $order);
     }
 
-    public function orderByLowestPriority() {
-        $this->setOrder('priority', ModelFinder::ASCENDANT);
+    public function orderByLowestPriority($order = ModelFinder::ASCENDANT) {
+        if ($this->isValidOrder($order))
+            $this->setOrder('priority', ModelFinder::ASCENDANT);
+    }
+
+    public function orderByMeasureNumber($order = ModelFinder::ASCENDANT) {
+        if ($this->isValidOrder($order))
+            $this->setOrder('measure_number', $order);
     }
 
     public function setName($name, $operator = ModelFinder::EQUAL) {

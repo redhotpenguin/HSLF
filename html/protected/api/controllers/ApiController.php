@@ -44,7 +44,7 @@ class ApiController extends Controller {
                 break;
 
             case 'ballot_items': // /api/ballot/items
-                $result = $this->browseBallotItems();
+                $result = $this->browseBallotItems(strtoupper($_GET['order_measure']));
                 break;
 
             case 'endorsers': // /api/endorsers
@@ -151,6 +151,9 @@ class ApiController extends Controller {
 
         $encoded_districts = explode(',', $districts_param);
 
+        $orders = array();
+        $orders['order_measure'] = strtoupper(getParam('order_measure'));
+
         // return ballot items by districts
         if (!empty($districts_param)) {
             $district_types = array();
@@ -169,11 +172,11 @@ class ApiController extends Controller {
             }
 
 
-            $ballots = BallotItemManager::findAllByDistricts($state_abbr, $district_types, $districts, $localities, $year);
+            $ballots = BallotItemManager::findAllByDistricts($state_abbr, $district_types, $districts, $localities, $year, $orders);
         }
         // return items by states
         else {
-            $ballots = BallotItemManager::findAllByState($state_abbr, $year);
+            $ballots = BallotItemManager::findAllByState($state_abbr, $year, $orders);
         }
         if (empty($ballots))
             return false;
@@ -514,17 +517,19 @@ class ApiController extends Controller {
      * filtered by election date and by publication status
      * @return array payload
      */
-    private function browseBallotItems() {
+    private function browseBallotItems($order_measure = "ASC") {
+        if ($order_measure != 'ASC' && $order_measure != 'DESC')
+            return false;
 
         $ballot_items = Yii::app()->db->createCommand()
-                ->select('b.id, item, item_type, d.type, d.state_abbr, d.number, d.display_name')
+                ->select('b.id, item, b.measure_number, item_type, d.type, d.state_abbr, d.number, d.display_name')
                 ->from('ballot_item b')
                 ->join('district d', 'b.district_id=d.id')
                 ->where('published=:published AND next_election_date>=:current_date or next_election_date ISNULL', array(
                     ':published' => 'yes',
                     ':current_date' => date('Y-m-d'), // use NOW() instead?
                 ))
-                ->order('d.state_abbr ASC')
+                ->order("d.state_abbr ASC, b.measure_number {$order_measure}")
                 ->queryAll();
 
         return $ballot_items;
