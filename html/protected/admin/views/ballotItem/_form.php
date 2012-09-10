@@ -283,7 +283,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
             'model' => $model,
             'attribute' => 'score',
             'options' => array(
-                'min' => 1,
+                'min' => 0,
                 'max' => 101,
                 'width' => 200
             ),
