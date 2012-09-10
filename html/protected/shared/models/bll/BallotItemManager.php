@@ -53,8 +53,8 @@ class BallotItemManager {
             $ballotItemFinder->setNullElectionDate();
         }
 
-        if ($orders['order_measure']) {
-            $ballotItemFinder->orderByMeasureNumber($orders['order_measure']);
+        if ($orders['measure_order']) {
+            $ballotItemFinder->orderByMeasureNumber($orders['measure_order']);
         }
 
         $ballots = $ballotItemFinder->search();
@@ -103,8 +103,8 @@ class BallotItemManager {
         }
 
 
-        if ($orders['order_measure']) {
-            $ballotItemFinder->orderByMeasureNumber($orders['order_measure']);
+        if ($orders['measure_order']) {
+            $ballotItemFinder->orderByMeasureNumber($orders['measure_order']);
         }
 
         $ballots = $ballotItemFinder->search();
