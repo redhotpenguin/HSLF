@@ -123,7 +123,6 @@ class ApiController extends Controller {
     private function _getBallotItemsByEndorser($endorser_id) {
         $ballot_items = BallotItemManager::findByEndorser($endorser_id);
         if (!empty($ballot_items)) {
-
             return $this->_ballotItemsWrapper($ballot_items);
         }
 
@@ -165,7 +164,6 @@ class ApiController extends Controller {
 
                 array_push($localities, $d[2]);
             }
-
 
             $ballots = BallotItemManager::findAllByDistricts($state_abbr, $district_types, $districts, $localities, $year, $orders);
         }
