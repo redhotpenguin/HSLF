@@ -1,10 +1,6 @@
 <?php
 
 class ApiController extends Controller {
-    // Members
-    /**
-     * Key which has to be in HTTP USERNAME and PASSWORD headers 
-     */
 
     const APPLICATION_ID = 'MOBILE API';
     const API_VERSION = '0.1';
@@ -112,7 +108,7 @@ class ApiController extends Controller {
         $ballot = BallotItemManager::findByID($ballot_item_id);
         if (!empty($ballot)) {
 
-            return $this->_ballotWrapper($ballot);
+            return $this->_ballotItemWrapper($ballot);
         }
 
         else
@@ -128,7 +124,7 @@ class ApiController extends Controller {
         $ballot_items = BallotItemManager::findByEndorser($endorser_id);
         if (!empty($ballot_items)) {
 
-            return $this->_ballotsWrapper($ballot_items);
+            return $this->_ballotItemsWrapper($ballot_items);
         }
 
         else
@@ -160,7 +156,6 @@ class ApiController extends Controller {
             $districts = array();
             $localities = array();
 
-
             foreach ($encoded_districts as $encoded_district) {
                 $d = explode('/', $encoded_district);
 
@@ -181,7 +176,7 @@ class ApiController extends Controller {
         if (empty($ballots))
             return false;
         else
-            return $this->_ballotsWrapper($ballots);
+            return $this->_ballotItemsWrapper($ballots);
     }
 
     /**
@@ -189,10 +184,10 @@ class ApiController extends Controller {
      * @param $ballots array of BallotItem Objects
      * @return array array of wrapped ballots
      */
-    private function _ballotsWrapper(array $ballots) {
+    private function _ballotItemsWrapper(array $ballots) {
         $wrapped_ballots = array();
         foreach ($ballots as $ballot)
-            array_push($wrapped_ballots, $this->_ballotWrapper($ballot));
+            array_push($wrapped_ballots, $this->_ballotItemWrapper($ballot));
 
         return $wrapped_ballots;
     }
@@ -202,51 +197,51 @@ class ApiController extends Controller {
      * @param $ballot BallotItem ballot item
      * @return array wrapped ballot
      */
-    private function _ballotWrapper(BallotItem $ballot) {
+    private function _ballotItemWrapper(BallotItem $ballot_item) {
         $scorecards = array();
         $i = 0;
 
-        foreach ($ballot->scorecards as $scorecard) {
+        foreach ($ballot_item->scorecards as $scorecard) {
             array_push($scorecards, array(
                 'id' => $scorecard->id,
-                'name' => $ballot->cards[$i]->name,
-                'description' => $ballot->cards[$i]->description,
+                'name' => $ballot_item->cards[$i]->name,
+                'description' => $ballot_item->cards[$i]->description,
                 'vote' => $scorecard->vote->name,
                 'vote_icon' => $scorecard->vote->icon,
             ));
             ++$i;
         }
 
-        $wrapped_ballot = array(
-            'id' => $ballot->id,
-            'item' => $ballot->item,
-            'item_type' => $ballot->item_type,
-            'recommendation' => $ballot->recommendation,
-            'next_election_date' => $ballot->next_election_date,
-            'priority' => $ballot->priority,
-            'detail' => $ballot->detail,
+        $wrapped_ballot_item = array(
+            'id' => $ballot_item->id,
+            'item' => $ballot_item->item,
+            'item_type' => $ballot_item->item_type,
+            'recommendation' => $ballot_item->recommendation,
+            'next_election_date' => $ballot_item->next_election_date,
+            'priority' => $ballot_item->priority,
+            'detail' => $ballot_item->detail,
             'date_published' => $ballot->date_published,
-            'party' => $ballot->party,
-            'image_url' => $ballot->image_url,
-            'electionResult' => $ballot->electionResult,
-            'url' => $ballot->url,
-            'personal_url' => $ballot->personal_url,
-            'score' => $ballot->score,
-            'office_type' => $ballot->office->name,
-            'district' => $ballot->district,
+            'party' => $ballot_item->party,
+            'image_url' => $ballot_item->image_url,
+            'electionResult' => $ballot_item->electionResult,
+            'url' => $ballot_item->url,
+            'personal_url' => $ballot_item->personal_url,
+            'score' => $ballot_item->score,
+            'office_type' => $ballot_item->office->name,
+            'district' => $ballot_item->district,
             'Scorecard' => $scorecards,
-            'BallotItemNews' => $ballot->ballotItemNews,
-            'facebook_url' => $ballot->facebook_url,
-            'facebook_share' => $ballot->facebook_share,
-            'twitter_handle' => $ballot->twitter_handle,
-            'twitter_share' => $ballot->twitter_share,
-            'hold_office' => $ballot->hold_office,
-            'endorsers' => $ballot->endorsers,
-            'measure_number' => $ballot->measure_number,
-            'friendly_name' => $ballot->friendly_name
+            'BallotItemNews' => $ballot_item->ballotItemNews,
+            'facebook_url' => $ballot_item->facebook_url,
+            'facebook_share' => $ballot_item->facebook_share,
+            'twitter_handle' => $ballot_item->twitter_handle,
+            'twitter_share' => $ballot_item->twitter_share,
+            'hold_office' => $ballot_item->hold_office,
+            'endorsers' => $ballot_item->endorsers,
+            'measure_number' => $ballot_item->measure_number,
+            'friendly_name' => $ballot_item->friendly_name
         );
 
-        return $wrapped_ballot;
+        return $wrapped_ballot_item;
     }
 
     /**
@@ -256,6 +251,30 @@ class ApiController extends Controller {
      */
     private function _getEndorser($endorser_id) {
         return Endorser::model()->findByPk($endorser_id);
+    }
+
+    /**
+     * return an array of ballot item ids and district 
+     * filtered by election date and by publication status
+     * @return array payload
+     */
+    private function browseBallotItems($measure_order = "ASC") {
+
+        if ($measure_order != 'ASC' && $measure_order != 'DESC')
+            $measure_order = 'ASC';
+
+        $ballot_items = Yii::app()->db->createCommand()
+                ->select('b.id, item, b.measure_number, item_type, d.type, d.state_abbr, d.number, d.display_name')
+                ->from('ballot_item b')
+                ->join('district d', 'b.district_id=d.id')
+                ->where('published=:published AND next_election_date>=:current_date or next_election_date ISNULL', array(
+                    ':published' => 'yes',
+                    ':current_date' => date('Y-m-d'), // use NOW() instead?
+                ))
+                ->order("d.state_abbr ASC, b.measure_number {$measure_order}")
+                ->queryAll();
+
+        return $ballot_items;
     }
 
     /**
@@ -510,30 +529,6 @@ class ApiController extends Controller {
         $api_pass = Yii::app()->params['api_secret'];
 
         return ( $api_key == $_POST['api_key'] && $api_pass == $_POST['api_secret'] );
-    }
-
-    /**
-     * return an array of ballot item ids and district 
-     * filtered by election date and by publication status
-     * @return array payload
-     */
-    private function browseBallotItems($measure_order = "ASC") {
-
-        if ($measure_order != 'ASC' && $measure_order != 'DESC')
-            $measure_order = 'ASC';
-
-        $ballot_items = Yii::app()->db->createCommand()
-                ->select('b.id, item, b.measure_number, item_type, d.type, d.state_abbr, d.number, d.display_name')
-                ->from('ballot_item b')
-                ->join('district d', 'b.district_id=d.id')
-                ->where('published=:published AND next_election_date>=:current_date or next_election_date ISNULL', array(
-                    ':published' => 'yes',
-                    ':current_date' => date('Y-m-d'), // use NOW() instead?
-                ))
-                ->order("d.state_abbr ASC, b.measure_number {$measure_order}")
-                ->queryAll();
-
-        return $ballot_items;
     }
 
 }
