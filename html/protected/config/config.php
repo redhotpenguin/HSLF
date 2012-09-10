@@ -22,7 +22,7 @@ else
 if (isset($env['DOTCLOUD_DB_SQL_PORT']))
     $dbport = $env['DOTCLOUD_DB_SQL_PORT'];
 else
-    $dbport = '5432';
+    $dbport = '5444';
 
 // Image File Manager conf:
 // please also update root path in protected/extensions/tinymce/assets/jscripts/tiny_mce/plugins/imagemanager/config.php
