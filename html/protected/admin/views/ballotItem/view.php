@@ -25,15 +25,27 @@ $this->widget('bootstrap.widgets.BootDetailView', array(
     'data' => $model,
     'attributes' => array(
         'id',
-        'district_id',
-        'item',
-        'item_type',
-        'recommendation_id',
+        array(
+            'label' => 'Item',
+            'value' => $model->item
+        ),
+        array(
+            'label' => 'Type',
+            'value' => $model->item_type
+        ),
+        array(
+            'label' => 'Recommendation',
+            'value' => $model->recommendation->value
+        ),
         'next_election_date',
-        'priority',
-        'detail',
-        'date_published',
-        'published',
+        array(
+            'name' => 'district_id',
+            'value' => $district
+        ),
+        array(
+            'name' => 'Detail',
+            'value' => substr(strip_tags($model->detail), 0, 100) . '...',
+        ),
         array(
             'label' => 'Party',
             'value' => $model->party->name
@@ -42,7 +54,6 @@ $this->widget('bootstrap.widgets.BootDetailView', array(
             'label' => 'Office',
             'value' => $model->office->name
         ),
-        'score',
         array(
             'name' => 'image_url',
             'label' => 'Image',
@@ -50,13 +61,32 @@ $this->widget('bootstrap.widgets.BootDetailView', array(
             'type' => 'raw',
         ),
         'url',
-        'election_result_id',
         array(
-            'name' => 'district_id',
-            'value' => $district
+            'label' => 'Election result',
+            'value' => $model->electionResult->value
         ),
-        'personal_url',
-        'hold_office'
+        array(
+            'name' => 'personal_url',
+            'type' => 'raw',
+            'value' => CHtml::link($model->personal_url, $model->personal_url, array('target' => '_blank')),
+        ),
+        'hold_office',
+        array(
+            'name' => 'facebook_url',
+            'type' => 'raw',
+            'value' => CHtml::link($model->facebook_url, $model->facebook_url, array('target' => '_blank')),
+        ),
+        'facebook_share',
+        array(
+            'name' => 'twitter_handle',
+            'type' => 'raw',
+            'value' => CHtml::link($model->twitter_handle, "https://twitter.com/" . $model->twitter_handle, array('target' => '_blank')),
+        ),
+        'twitter_share',
+        'friendly_name',
+        'measure_number',
+        'published',
+        'date_published',
     ),
 ));
 ?>
