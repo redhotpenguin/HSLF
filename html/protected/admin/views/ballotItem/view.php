@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs = array(
     'Ballot Items' => array('index'),
-    $model->id,
+    $model->item,
 );
 
 $this->menu = array(

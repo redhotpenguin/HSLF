@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs = array(
     'Districts' => array('index'),
-    $model->number => array('view', 'id' => $model->number),
+    $model->display_name => array('view', 'id' => $model->number),
     'Update',
 );
 
