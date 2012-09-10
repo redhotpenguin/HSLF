@@ -1,11 +1,12 @@
 <?php
-if ($result == 'success')
-    echo "<div class='btn btn-success'>Success</div>";
-
-if ($result == 'failure') {
-    echo "<div class='btn btn-danger'>Error</div>";
-    print_r($error_msg);
-    echo '<br/>';
+if (isset($result)) {
+    if ($result == 'success')
+        echo "<div class='btn btn-success'>Success</div>";
+    elseif ($result == 'failure') {
+        echo "<div class='btn btn-danger'>Error</div>";
+        print_r($error_msg);
+        echo '<br/>';
+    }
 }
 ?>
 
@@ -35,7 +36,7 @@ if ($result == 'failure') {
     <p>
         <b>CSV structure:</b><br/> id, abbr, name
         (headers must be included)
-            <br/>
+        <br/>
         Ex: [blank or existing], CA, California
     </p>
 </div>
