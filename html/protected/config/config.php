@@ -1,6 +1,6 @@
 <?php
 
-//$env = json_decode(file_get_contents("/home/dotcloud/environment.json"), true);
+$env = json_decode(file_get_contents("/home/dotcloud/environment.json"), true);
 
 if (isset($env['DOTCLOUD_DB_SQL_HOST']))
     $dbhost = $env['DOTCLOUD_DB_SQL_HOST'];
@@ -24,6 +24,10 @@ if (isset($env['DOTCLOUD_DB_SQL_PORT']))
 else
     $dbport = '5444';
 
+set_include_path(get_include_path() . PATH_SEPARATOR . '/home/dotcloud/php-env/share/php');
+
+
+
 // Image File Manager conf:
 // please also update root path in protected/extensions/tinymce/assets/jscripts/tiny_mce/plugins/imagemanager/config.php
 // Project config
@@ -34,7 +38,7 @@ DEFINE('ADMIN_EMAIL', 'mobile@winningmark.com');
 
 
 // DB Config
-DEFINE('DB_NAME', 'ouroregon_dev');
+DEFINE('DB_NAME', 'ouroregon');
 DEFINE('DB_HOST', $dbhost);
 DEFINE('DB_USER', $dbuser);
 DEFINE('DB_PASS', $dbpass);
