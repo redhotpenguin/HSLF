@@ -40,6 +40,7 @@ class BallotItem extends CActiveRecord {
     public $state_abbr; // not part of the model, here for cgridview (admin search)
     public $district_type; // not part of the model, here for cgridview (admin search)
     public $district_number; // not part of the model, here for cgridview (admin search)
+    public $district_display_name; // not part of the model, here for cgridview (admin search)
     public $office_type; // not part of the model, here for cgridview (admin search)
     public $party_name; // not part of the model, here for cgridview (admin search)
 
@@ -83,7 +84,7 @@ class BallotItem extends CActiveRecord {
             array('url', 'unique_url'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, district_id, item, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party_id, url, image_url, election_result_id, district_number, district_type, state_abbr, personal_url, score, office_type, party, facebook_url, facebook_share, twitter_handle, twitter_share, hold_office, measure_number, friendly_name', 'safe', 'on' => 'search'),
+            array('id, district_id, item, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party_id, url, image_url, election_result_id, district_number, district_type,district_display_name, state_abbr, personal_url, score, office_type, party, facebook_url, facebook_share, twitter_handle, twitter_share, hold_office, measure_number, friendly_name', 'safe', 'on' => 'search'),
         );
     }
 
@@ -144,7 +145,7 @@ class BallotItem extends CActiveRecord {
         $criteria->with = array('district', 'office', 'party');
 
         // search by relationship (district)
-        if ($this->district_number || $this->district_type || $this->state_abbr || $this->office_type || $this->party) {
+        if ($this->district_number || $this->district_type || $this->district_display_name || $this->state_abbr || $this->office_type || $this->party) {
             $criteria->together = true;
             // Join the 'district' table
 
@@ -154,6 +155,9 @@ class BallotItem extends CActiveRecord {
                 $criteria->compare('district.type', $this->district_type, true);
             if ($this->state_abbr)
                 $criteria->compare('district.state_abbr', $this->state_abbr, true);
+
+            if ($this->district_display_name)
+                $criteria->compare('district.display_name', $this->district_display_name, true);
 
             if ($this->office_type)
                 $criteria->compare('office.name', $this->office_type, false);
@@ -165,7 +169,6 @@ class BallotItem extends CActiveRecord {
         $criteria->compare('id', $this->id);
         $criteria->compare('district_id', $this->district_id);
         $criteria->compare('item', $this->item, true);
-        $criteria->compare('item_type', $this->item_type, true);
         $criteria->compare('recommendation_id', $this->recommendation_id);
         $criteria->compare('next_election_date', $this->next_election_date, true);
         $criteria->compare('priority', $this->priority);
@@ -175,6 +178,9 @@ class BallotItem extends CActiveRecord {
         $criteria->compare('url', $this->url, true);
         $criteria->compare('image_url', $this->image_url, true);
         $criteria->compare('election_result_id', $this->election_result_id);
+        
+        
+        $criteria->compare('item_type', $this->item_type);
 
 
         // $criteria->compare('date_published', $this->date_published, false);

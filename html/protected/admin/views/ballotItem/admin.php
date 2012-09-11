@@ -18,6 +18,7 @@ $state_list = array('' => 'All') + CHtml::listData(State::model()->findAll(), 'a
 $office_list = array('' => 'All') + CHtml::listData(Office::model()->findAll(), 'name', 'name');
 $party_list = array('' => 'All') + CHtml::listData(Party::model()->findAll(), 'name', 'name');
 $district_list = array('' => 'All') + District::model()->getTypeOptions();
+$item_type_list = array(''=>'All')+BallotItem::model()->getItemTypeOptions();
 
 $this->widget('bootstrap.widgets.BootGridView', array(
     'id' => 'ballot-item-grid',
@@ -29,18 +30,14 @@ $this->widget('bootstrap.widgets.BootGridView', array(
             'header' => 'Type',
             'name' => 'item_type',
             'value' => '$data->item_type',
-            'filter' => CHtml::dropDownList('BallotItem[item_type]', $model->item_type, BallotItem::model()->getItemTypeOptions()),
+            'filter' => CHtml::dropDownList('BallotItem[item_type]', $model->item_type, $item_type_list),
             'htmlOptions' => array('width' => '85px'),
         ),
         array(
             'header' => 'Item',
             'name' => 'item',
         ),
-        array(
-            'name' => 'party',
-            'value' => '$data->party->name',
-            'filter' => CHtml::dropDownList('BallotItem[party]', $model->party, $party_list),
-        ),
+  
         array('name' => 'state_abbr',
             'header' => 'State',
             'value' => '$data->district->stateAbbr->name',
@@ -54,8 +51,8 @@ $this->widget('bootstrap.widgets.BootGridView', array(
         ),
         array(
             'header' => 'District',
-            'name' => 'district_number',
-            'value' => '$data->district->number'
+            'name' => 'district_display_name',
+            'value' => '$data->district->display_name'
         ),
         array(
             'header' => 'Office',

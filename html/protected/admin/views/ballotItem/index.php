@@ -25,7 +25,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
         'item_type',
         array(
             'header' => 'District',
-            'value' => '$data->district->state_abbr." ".$data->district->type." ".$data->district->number'
+            'value' => '$data->district->display_name'
         ),
         'url',
         array(
