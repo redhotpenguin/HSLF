@@ -97,6 +97,8 @@ class UrbanAirshipNotifier extends CModel {
 
         return $r;
     }
+    
+
 
 }
 

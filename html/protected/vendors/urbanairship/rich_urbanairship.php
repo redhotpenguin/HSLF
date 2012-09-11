@@ -11,8 +11,6 @@ define('ALIAS_URL', USER_URL . '/alias');
 define('AIRMAIL_URL', BASE_URL . '/airmail');
 define('AIRMAIL_SEND_URL', AIRMAIL_URL . '/send/');
 
-
-
 // Raise when we get a 401 from the server.
 class RichUnauthorized extends Exception {
     
@@ -28,9 +26,9 @@ class Rich_Airship {
     private $secret = '';
 
     public function __construct($key, $secret) {
+ 
         $this->key = $key;
         $this->secret = $secret;
-        return true;
     }
 
     public function _request($url, $method, $body = null, $content_type = null) {
@@ -46,6 +44,7 @@ class Rich_Airship {
     }
 
     public function update_device_tags(array $tags, $device_token, $user_id, $device_type = 'ios') {
+    
         if ($device_type == 'ios') {
             $url = USER_URL . '/' . $user_id . '/';
 
@@ -54,12 +53,13 @@ class Rich_Airship {
                 'device_tokens' => array($device_token),
             );
 
-            $body = json_encode($body);
-            try{
-             $response = $this->_request($url, 'POST', $body, 'application/json');
-            }
-            catch(Exception $e){
-                error_log("update device tags error:". $e->getMessage());
+            $json_body = json_encode($body);
+
+            try {
+                $response = $this->_request($url, 'PUT', $json_body, 'application/json');
+            } catch (Exception $e) {
+                echo $e->getMessage();
+                error_log("update device tags error:" . $e->getMessage());
             }
             return $this->_validate_http_code($response[0]);
         } else {
@@ -68,14 +68,13 @@ class Rich_Airship {
         }
     }
 
-
-    public function sendRichNotification(array $audience, array $airmail_payload, $alert = null, array $extra = null ) {
+    public function sendRichNotification(array $audience, array $airmail_payload, $alert = null, array $extra = null) {
         // at least one of tags, users or aliases must be specified.
-        if( !isset($audience['users']) && !isset($audience['tags']) && !isset($audience['users']) )
+        if (!isset($audience['users']) && !isset($audience['tags']) && !isset($audience['users']))
             throw new Exception('An audience is required');
-        
-   
-        if(!isset($airmail_payload['message']))
+
+
+        if (!isset($airmail_payload['message']))
             throw new Exception('A message must be specified in the payload');
 
         $payload = array();
@@ -89,7 +88,7 @@ class Rich_Airship {
         if (isset($audience['aliases']))
             $payload['aliases'] = $audience['aliases'];
 
-        
+
         if (!empty($alert)) {
             $payload['push'] = array(
                 'aps' => array(
@@ -102,8 +101,8 @@ class Rich_Airship {
             $payload['message'] = $airmail_payload['message'];
             $payload['content_type'] = 'text/html';
         }
-        
-        if( !empty($extra)) {
+
+        if (!empty($extra)) {
             $payload['extra'] = $extra;
         }
 
@@ -112,12 +111,12 @@ class Rich_Airship {
 
         //error_log($json_payload);
 
-       $response = $this->_request(AIRMAIL_SEND_URL, 'POST', $json_payload, 'application/json');
-       $response_code = $response[0];
-       
-       if($response_code != 200)
-        throw new RichAirshipFailure($response[1], $response_code);
-       
+        $response = $this->_request(AIRMAIL_SEND_URL, 'POST', $json_payload, 'application/json');
+        $response_code = $response[0];
+
+        if ($response_code != 200)
+            throw new RichAirshipFailure($response[1], $response_code);
+
 
         return $this->_validate_http_code($response_code);
     }
