@@ -18,6 +18,7 @@ class District extends CActiveRecord {
 
     // district types. Please update $labelledDistrictTypes as well if you modify this list
     private static $district_types = array(
+        'STATEWIDE',
         'NATIONAL_UPPER',
         'NATIONAL_LOWER',
         'STATE_UPPER',
@@ -33,19 +34,19 @@ class District extends CActiveRecord {
         'WATERSHED',
     );
     private static $labelledDistrictTypes = array(
-        'NATIONAL_UPPER' => 'NATIONAL UPPER',
-        'NATIONAL_LOWER' => 'NATIONAL LOWER',
-        'STATE_UPPER' => 'STATE UPPER',
-        'STATE_LOWER' => 'STATE LOWER',
-        'LOCAL_EXEC' => 'LOCAL EXEC',
-        'LOCAL' => 'LOCAL',
-        'COUNTY' => 'COUNTY',
-        'SCHOOL' => 'SCHOOL',
-        'CENSUS' => 'CENSUS',
-        'JUDICIAL' => 'JUDICIAL',
-        'POLICE' => 'POLICE',
-        'SCHOOL' => 'SCHOOL',
-        'WATERSHED' => 'WATERSHED',
+        'STATEWIDE' => 'Statewide',
+        'NATIONAL_UPPER' => 'National Upper',
+        'NATIONAL_LOWER' => 'National Lower',
+        'STATE_UPPER' => 'State Upper',
+        'STATE_LOWER' => 'State Lower',
+        'LOCAL_EXEC' => 'Local Exec',
+        'LOCAL' => 'Local',
+        'COUNTY' => 'County',
+        'SCHOOL' => 'School',
+        'CENSUS' => 'Census',
+        'JUDICIAL' => 'Judicial',
+        'POLICE' => 'Police',
+        'WATERSHED' => 'Watershed',
     );
 
     /**
