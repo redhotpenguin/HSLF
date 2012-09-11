@@ -41,6 +41,7 @@ class ImportController extends Controller {
      */
     public function actionIndex() {
         $result = "";
+        $error_msg = "";
 
         if (!isset($_FILES['import']['tmp_name']) || !is_uploaded_file($_FILES['import']['tmp_name'])) {
             $this->render('index');
