@@ -278,9 +278,10 @@ class ApiController extends Controller {
             $measure_order = 'ASC';
 
         $ballot_items = Yii::app()->db->createCommand()
-                ->select('b.id, item, b.measure_number, item_type, d.type, d.state_abbr, d.number, d.display_name')
-                ->from('ballot_item b')
+                ->select('b.id, item, b.measure_number, item_type, d.type, d.state_abbr, d.number, d.display_name, r.type AS recommendation_type')
+                ->from(array('ballot_item b'))
                 ->join('district d', 'b.district_id=d.id')
+                ->join('recommendation r', 'b.recommendation_id=r.id')
                 ->where('published=:published AND next_election_date>=:current_date or next_election_date ISNULL', array(
                     ':published' => 'yes',
                     ':current_date' => date('Y-m-d'), // use NOW() instead?
@@ -361,7 +362,7 @@ class ApiController extends Controller {
 
         switch ($_REQUEST['action']) {
             case 'tag': // /api/app_user/device_token/<device_token>/tag/
-                $update_result = $this->_update_applicationUserTag($_GET['device_token'], $_POST);
+                $update_result = $this->_updateUAPTag($_GET['device_token'], $_POST);
                 $this->_sendResponse($status = 200, $update_result);
                 break;
 
@@ -466,6 +467,30 @@ class ApiController extends Controller {
         );
 
         return $api->updateApplicationUserTags($device_token, $tags, $district_id);
+    }
+
+    /**
+     *  Proxy - request UAP user tag update
+     * @return string result
+     */
+    private function _updateUAPTag($device_token, $payload) {
+        if (empty($device_token))
+            return 'missing_parameters';
+
+        $api = new RestAPI();
+
+
+        $tags = $payload['tags'];
+
+        $uap_user_id = $payload['uap_user_id'];
+
+        //  return $api->updateApplicationUserTags($device_token, $tags, $district_id);
+        $result =  $api->updateUAPTags($uap_user_id, $device_token, $tags);
+        
+        if($result == true)
+            return 'tag_update_ok';
+        else
+            return 'tag_update_error';
     }
 
     /**

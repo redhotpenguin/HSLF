@@ -148,4 +148,9 @@ class RestAPI extends CModel {
         return $district_id;
     }
 
+    public function updateUAPTags($uap_user_id, $device_token, $tags) {
+        $uap_notifier = new UrbanAirshipNotifier();
+        return $uap_notifier->updateRichUserTags($uap_user_id, $device_token, $tags);
+    }
+
 }
