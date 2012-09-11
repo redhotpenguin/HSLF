@@ -33,15 +33,8 @@ class District extends CActiveRecord {
     );
     private static $labelledDistrictTypes = array(
         'STATEWIDE' => 'Statewide',
-        'NATIONAL_UPPER' => 'National Upper',
-        'NATIONAL_LOWER' => 'National Lower',
-        'STATE_UPPER' => 'State Upper',
-        'STATE_LOWER' => 'State Lower',
-        'LOCAL_EXEC' => 'Local Exec',
-        'LOCAL' => 'Local',
+        'PLACE' => 'Place',
         'COUNTY' => 'County',
-        'SCHOOL' => 'School',
-        'CENSUS' => 'Census',
     );
 
     /**
