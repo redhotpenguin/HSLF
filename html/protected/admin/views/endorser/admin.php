@@ -32,11 +32,11 @@ $('.search-form form').submit(function(){
 
 <?php echo CHtml::link('Advanced Search', '#', array('class' => 'search-button')); ?>
 <div class="search-form" style="display:none">
-<?php
-$this->renderPartial('_search', array(
-    'model' => $model,
-));
-?>
+    <?php
+    $this->renderPartial('_search', array(
+        'model' => $model,
+    ));
+    ?>
 </div><!-- search-form -->
 
 <?php
@@ -47,7 +47,11 @@ $this->widget('bootstrap.widgets.BootGridView', array(
     'columns' => array(
         'id',
         'name',
-        'website',
+        array(
+            'name' => 'website',
+            'type' => 'raw',
+            'value' => ' Chtml::link( $data->website, $data->website, array("target"=>"_blank")) '
+        ),
         array(
             'class' => 'bootstrap.widgets.BootButtonColumn',
         ),

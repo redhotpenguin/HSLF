@@ -19,7 +19,11 @@ $this->widget('bootstrap.widgets.BootGridView', array(
     'columns' => array(
         'id',
         'name',
-        'website',
+        array(
+            'name' => 'website',
+            'type'=>'raw',
+            'value'=>' Chtml::link( $data->website, $data->website, array("target"=>"_blank")) '
+        ),
         array(
             'class' => 'bootstrap.widgets.BootButtonColumn',
         ),
