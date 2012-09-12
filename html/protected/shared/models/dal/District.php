@@ -17,7 +17,7 @@
 class District extends CActiveRecord {
 
     // district types. Please update $labelledDistrictTypes as well if you modify this list
-    private static $district_types = array(
+    public static $district_types = array(
         'STATEWIDE',
         'NATIONAL_UPPER',
         'NATIONAL_LOWER',
