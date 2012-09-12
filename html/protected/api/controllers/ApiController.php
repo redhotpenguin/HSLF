@@ -288,7 +288,7 @@ class ApiController extends Controller {
             $measure_order = 'ASC';
 
         $ballot_items = Yii::app()->db->createCommand()
-                ->select('b.id, item, b.measure_number, item_type, d.type, d.state_abbr, d.number, d.display_name, r.type AS recommendation_type')
+                ->select('b.id, item, b.measure_number, item_type, d.type AS district_type, d.state_abbr, d.number AS district_number, d.display_name AS district_display_name, r.type AS recommendation_type, measure_number')
                 ->from(array('ballot_item b'))
                 ->join('district d', 'b.district_id=d.id')
                 ->join('recommendation r', 'b.recommendation_id=r.id')
@@ -494,7 +494,7 @@ class ApiController extends Controller {
         $uap_user_id = $payload['uap_user_id'];
 
         //  return $api->updateApplicationUserTags($device_token, $tags, $district_id);
-        $result = $api->updateUAPTags($uap_user_id, $device_token, $tags);
+        $result = $api->updateUAPTags($uap_user_id, $tags,  $device_token);
 
         if ($result == true)
             return 'tag_update_ok';
