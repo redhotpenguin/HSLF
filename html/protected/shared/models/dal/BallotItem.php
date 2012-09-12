@@ -72,7 +72,7 @@ class BallotItem extends CActiveRecord {
             array('district_id, recommendation_id, priority, election_result_id, score, party_id', 'numerical', 'integerOnly' => true),
             array('item_type, twitter_handle', 'length', 'max' => 128),
             array('facebook_share, friendly_name', 'length', 'max' => 1024),
-            array('measure_number', 'length', 'max' => 8),
+            array('measure_number', 'length', 'max' => 24),
             array('twitter_share', 'length', 'max' => 140),
             array('url', 'length', 'max' => 500),
             array('personal_url, facebook_url', 'length', 'max' => 2048),
