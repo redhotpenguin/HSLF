@@ -90,7 +90,12 @@ class ApiController extends Controller {
                 break;
 
             case 'ballot_items': //api/ballot_items/
-                switch ($_GET['filter']) {
+                if( isset ( $_GET['filter'] ))
+                    $filter = $_GET['filter'];
+                else
+                    $filter = "";
+                
+                switch ($filter) {
                     case 'single': //api/ballot_items/single/<id>
                         $this->_sendResponse(200, $this->_getBallotItem($_GET['id']));
                         break;
@@ -239,7 +244,7 @@ class ApiController extends Controller {
             'next_election_date' => $ballot_item->next_election_date,
             'priority' => $ballot_item->priority,
             'detail' => $ballot_item->detail,
-            'date_published' => $ballot->date_published,
+            'date_published' => $ballot_item->date_published,
             'party' => $ballot_item->party,
             'image_url' => $ballot_item->image_url,
             'electionResult' => $ballot_item->electionResult,
@@ -387,12 +392,11 @@ class ApiController extends Controller {
     public function actionSearch() {
         $model = getParam('model');
         $search_condition = array();
-        $apiSearch = new APISearch($ar_model);
+        $apiSearch = new APISearch();
 
         switch ($model) {
             case 'ballot_items':
                 $search_condition = array();
-
 
                 $search_result = $apiSearch->search('BallotItem', getParam('query'));
                 $search_result = $this->_ballotsWrapper($search_result);
