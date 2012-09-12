@@ -140,7 +140,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
     <div class="left_col">
         <?php
         echo $form->labelEx($model, 'measure_number');
-        echo $form->textField($model, 'measure_number', array('size' => 50, 'maxlength' => 16, 'placeholder' => 'Measure Number'));
+        echo $form->textField($model, 'measure_number', array('size' => 50, 'maxlength' => 24, 'placeholder' => 'Measure Number'));
         echo $form->error($model, 'measure_number');
         ?>
     </div>
