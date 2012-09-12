@@ -48,7 +48,12 @@ class ApiController extends Controller {
                 break;
 
             case 'ballot_items': // /api/ballot/items
-                $result = $this->browseBallotItems(strtoupper($_GET['measure_order']));
+                if (isset($_GET['measure_order']))
+                    $measure_order = strtoupper($_GET['measure_order']);
+                else
+                    $measure_order = 'ASC';
+
+                $result = $this->browseBallotItems($measure_order);
                 break;
 
             case 'endorsers': // /api/endorsers
@@ -485,9 +490,9 @@ class ApiController extends Controller {
         $uap_user_id = $payload['uap_user_id'];
 
         //  return $api->updateApplicationUserTags($device_token, $tags, $district_id);
-        $result =  $api->updateUAPTags($uap_user_id, $device_token, $tags);
-        
-        if($result == true)
+        $result = $api->updateUAPTags($uap_user_id, $device_token, $tags);
+
+        if ($result == true)
             return 'tag_update_ok';
         else
             return 'tag_update_error';
