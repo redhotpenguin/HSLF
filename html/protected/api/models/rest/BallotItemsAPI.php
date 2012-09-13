@@ -55,12 +55,13 @@ class BallotItemsAPI extends APIBase implements IAPI {
         $bindParams = array();
 
 
-// query only published items
+        // query only published items
         $criteria->addCondition("published='yes'", 'AND');
 
         if (isset($filters['stateAbbr'])) {
             $criteria->addCondition('district.state_abbr=:stateAbbr', 'AND');
             $bindParams[':stateAbbr'] = $filters['stateAbbr'];
+
 
             if (isset($filters['codedDistricts'])) {
 
@@ -96,10 +97,9 @@ class BallotItemsAPI extends APIBase implements IAPI {
         }
 
 
-
         $activeDataProvider = new CActiveDataProvider($ballotItem, array(
                     'criteria' => $criteria,
-                ));
+        ));
 
 
         $ballotItems = $activeDataProvider->getData();
