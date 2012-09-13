@@ -48,8 +48,8 @@ DEFINE('API_KEY', '52356');
 DEFINE('API_SECRET', 'PqiW_IDKL3mFi_OirCqOe-u');
 
 // Urban Airship
-DEFINE('UA_API_KEY', '3rQVdPPdT7Osvdx1vB37Tg'); // mvg-platform credentials
-DEFINE('UA_API_SECRET', 'X9k8V7YpQzi4cwkviE_RXA'); // master secret
+DEFINE('UA_API_KEY', '3rQVdPPdT7Osvdx1vB37Tg'); // Our Oregon credentials
+DEFINE('UA_API_SECRET', 'Iy380QDRQbCALRrgDB_8Qw'); // master secret
 DEFINE('UA_DASHBOARD_LINK', 'https://go.urbanairship.com/apps/3rQVdPPdT7Osvdx1vB37Tg/composer/rich-push/');
 
 // Cicero Config
