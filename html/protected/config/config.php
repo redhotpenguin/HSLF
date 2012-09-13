@@ -3,14 +3,13 @@
 $dotcloud_conf = "/home/dotcloud/environment.json";
 
 if (file_exists($dotcloud_conf)) {     // prod server conf
-    $env = json_decode(file_get_contents("/home/dotcloud/environment.json"), true);
+    $env = json_decode(file_get_contents($dotcloud_conf), true);
     $dbhost = $env['DOTCLOUD_DB_SQL_HOST'];
     $dbname = 'ouroregon';
     $dbuser = $env['DOTCLOUD_DB_SQL_LOGIN'];
     $dbpass = $env['DOTCLOUD_DB_SQL_PASSWORD'];
     $dbport = $env['DOTCLOUD_DB_SQL_PORT'];
     set_include_path(get_include_path() . PATH_SEPARATOR . '/home/dotcloud/php-env/share/php');
-    
 } else {    //dev server conf
     $dbhost = 'localhost';
     $dbname = 'ouroregon_dev';
@@ -20,11 +19,9 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
 }
 
 
-
-
-
 // Image File Manager conf:
 // please also update root path in protected/extensions/tinymce/assets/jscripts/tiny_mce/plugins/imagemanager/config.php
+
 // Project config
 DEFINE('PROJECT_NAME', 'Our Oregon');
 //DEFINE('SITE_URL', 'http://mvg.winningmark.com');
