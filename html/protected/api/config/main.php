@@ -15,12 +15,14 @@ return array(
     'name' => PROJECT_NAME . ' - API',
     // autoloading model and component classes
     'import' => array(
+        'application.vendors.urbanairship.*',
         'admin.models.*',
         'application.shared.models.dal.*', // data access logic classes
         'application.shared.models.bll.*', // business  logic classes
         'admin.components.*',
         'application.models.*',
         'application.components.*',
+        
     ),
     'modules' => array(
     ),
