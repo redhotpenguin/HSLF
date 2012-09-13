@@ -1,8 +1,8 @@
 <?php
 
-Yii::import('application.vendors.*');
-require_once('urbanairship/urbanairship.php');
-require_once('urbanairship/rich_urbanairship.php');
+// Yii::import('application.vendors.*');
+//require_once('urbanairship/urbanairship.php');
+//require_once('urbanairship/rich_urbanairship.php');
 
 class UrbanAirshipNotifier extends CModel {
 
@@ -10,8 +10,7 @@ class UrbanAirshipNotifier extends CModel {
     private $rich_airship;
 
     public function __construct() {
-        echo 'UAPNotifier';
-        $this->airship = new Airship(Yii::app()->params['urbanairship_app_key'], Yii::app()->params['urbanairship_app_master_secret']);
+      //  $this->airship = new Airship(Yii::app()->params['urbanairship_app_key'], Yii::app()->params['urbanairship_app_master_secret']);
         $this->rich_airship = new Rich_Airship(Yii::app()->params['urbanairship_app_key'], Yii::app()->params['urbanairship_app_master_secret']);
     }
 
@@ -90,7 +89,6 @@ class UrbanAirshipNotifier extends CModel {
     }
 
     public function updateRichUserTags($uap_user_id, $device_token, array $tags) {
-        echo 'updateRichUserTags';
         try {
             $r = $this->rich_airship->update_device_tags($tags, $device_token, $uap_user_id, 'ios');
         } catch (CExcetpion $ce) {
@@ -99,8 +97,6 @@ class UrbanAirshipNotifier extends CModel {
 
         return $r;
     }
-    
-
 
 }
 
