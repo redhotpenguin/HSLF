@@ -32,7 +32,7 @@ set_include_path(get_include_path() . PATH_SEPARATOR . '/home/dotcloud/php-env/s
 // please also update root path in protected/extensions/tinymce/assets/jscripts/tiny_mce/plugins/imagemanager/config.php
 // Project config
 DEFINE('PROJECT_NAME', 'Our Oregon');
-DEFINE('SITE_URL', 'http://oo.m.winningmark.com');
+DEFINE('SITE_URL', 'http://www.voterguide.com');
 DEFINE('ADMIN_EMAIL', 'mobile@winningmark.com');
 
 

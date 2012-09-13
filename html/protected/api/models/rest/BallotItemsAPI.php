@@ -22,6 +22,7 @@ class BallotItemsAPI extends APIBase implements IAPI {
             $result = $this->getByCriteria($filters);
         }
 
+        print_r($filters);
 
         return $result;
     }
