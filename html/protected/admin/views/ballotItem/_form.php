@@ -310,7 +310,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
     <div class="right_col">
         <?php
         echo $form->labelEx($model, 'hold_office');
-        echo $form->dropDownList($model, 'hold_office', array('no' => 'No', 'yes' => 'Yes', ));
+        echo $form->dropDownList($model, 'hold_office', array('na'=>'Not Applicable', 'no' => 'No', 'yes' => 'Yes', ));
         echo $form->error($model, 'hold_office');
         ?>
     </div>
