@@ -1,6 +1,6 @@
 <?php
 
-$env = json_decode(file_get_contents("/home/dotcloud/environment.json"), true);
+//$env = json_decode(file_get_contents("/home/dotcloud/environment.json"), true);
 
 if (isset($env['DOTCLOUD_DB_SQL_HOST']))
     $dbhost = $env['DOTCLOUD_DB_SQL_HOST'];
@@ -37,7 +37,7 @@ DEFINE('ADMIN_EMAIL', 'mobile@winningmark.com');
 
 
 // DB Config
-DEFINE('DB_NAME', 'ouroregon');
+DEFINE('DB_NAME', 'ouroregon_dev');
 DEFINE('DB_HOST', $dbhost);
 DEFINE('DB_USER', $dbuser);
 DEFINE('DB_PASS', $dbpass);
