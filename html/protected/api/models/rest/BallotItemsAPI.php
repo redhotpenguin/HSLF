@@ -3,26 +3,26 @@
 class BallotItemsAPI extends APIBase implements IAPI {
 
     public function getList($arguments = array()) {
-        /*
-         * arguments could be: order_by, endorser=1
-         */
+
         $criteria = array();
 
         if (isset($arguments['endorser'])) {
-            $filters['endorserId'] = $arguments['endorserId'];
+            $criteria['endorserId'] = $arguments['endorserId'];
         }
 
         if (isset($arguments['state'])) {
-            $filters['stateAbbr'] = $arguments['state'];
+            $criteria['stateAbbr'] = $arguments['state'];
+
+            if (isset($arguments['districts'])) {
+                $criteria['codedDistricts'] = explode(',', $arguments['districts']);
+            }
         }
 
-        if (empty($filters))
+        if (empty($criteria))
             $result = $this->getOverview();
         else {
-            $result = $this->getByCriteria($filters);
+            $result = $this->getByCriteria($criteria);
         }
-
-        print_r($filters);
 
         return $result;
     }
@@ -52,12 +52,48 @@ class BallotItemsAPI extends APIBase implements IAPI {
             'endorsers',
         );
 
+        $bindParams = array();
 
-        // query only published items
+
+// query only published items
         $criteria->addCondition("published='yes'", 'AND');
 
-        if (isset($filters['stateAbbr']))
-            $criteria->compare('district.state_abbr', $filters['stateAbbr'], true);
+        if (isset($filters['stateAbbr'])) {
+            $criteria->addCondition('district.state_abbr=:stateAbbr', 'AND');
+            $bindParams[':stateAbbr'] = $filters['stateAbbr'];
+
+            if (isset($filters['codedDistricts'])) {
+
+                $i = 0;
+
+                foreach ($filters['codedDistricts'] as $codedDistrict) {
+                    $d = explode('/', $codedDistrict);
+                    if (!isset($d[0])) // type
+                        continue;
+
+                    $districtType = $d[0];
+
+                    if (isset($d[1])) // district number
+                        $districtNumber = $d[1];
+                    else
+                        $districtNumber = "";
+
+                    if ($i == 0)
+                        $operator = 'AND';
+                    else
+                        $operator = 'OR';
+
+                    $criteria->addCondition('district.type=:districtType' . $i . ' AND district.number=:districtNumber' . $i, $operator);
+
+                    $bindParams[":districtType{$i}"] = $districtType;
+                    $bindParams[":districtNumber{$i}"] = $districtNumber;
+
+                    ++$i;
+                }
+
+                $criteria->params = $bindParams;
+            }
+        }
 
 
 
@@ -71,7 +107,7 @@ class BallotItemsAPI extends APIBase implements IAPI {
             $result = $this->ballotItemsWrapper($ballotItems);
         else
             $result = "";
-        
+
         return $result;
     }
 
@@ -84,9 +120,9 @@ class BallotItemsAPI extends APIBase implements IAPI {
         $ballot_items = Yii::app()->db->createCommand()
                 ->select('b.id, item, b.measure_number, item_type, d.type AS district_type, d.state_abbr, d.number AS district_number, d.display_name AS district_display_name, r.type AS recommendation_type, measure_number, friendly_name')
                 ->from(array('ballot_item b'))
-                ->join('district d', 'b.district_id=d.id')
-                ->join('recommendation r', 'b.recommendation_id=r.id')
-                ->where('published=:published AND next_election_date>=:current_date or next_election_date ISNULL', array(
+                ->join('district d', 'b.district_id = d.id')
+                ->join('recommendation r', 'b.recommendation_id = r.id')
+                ->where('published = :published AND next_election_date>=:current_date or next_election_date ISNULL', array(
                     ':published' => 'yes',
                     ':current_date' => date('Y-m-d'), // use NOW() instead?
                 ))
