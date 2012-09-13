@@ -483,7 +483,6 @@ class ApiController extends Controller {
      * @return string result
      */
     private function _updateUAPTag($device_token, $payload) {
-        echo '_updateUAPITag';
         if (empty($device_token))
             return 'missing_parameters';
 
