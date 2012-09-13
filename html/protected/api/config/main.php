@@ -15,6 +15,7 @@ return array(
     'name' => PROJECT_NAME . ' - API',
     // autoloading model and component classes
     'import' => array(
+        'application.api.models.rest.*',
         'admin.models.*',
         'application.shared.models.dal.*', // data access logic classes
         'application.shared.models.bll.*', // business  logic classes
@@ -36,6 +37,13 @@ return array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'rules' => array(
+                //API V2
+                array('api2/index', 'pattern' => 'api/v2', 'verb' => 'GET'),
+                array('api2/list', 'pattern' => 'api/v2/<model:\w+>', 'verb' => 'GET'),
+                array('api2/view', 'pattern' => 'api/v2/<model:\w+>/<id:\w+>', 'verb' => 'GET'),
+                // API V1
+
+
                 array('api/list', 'pattern' => 'api/<model:\w+>', 'verb' => 'GET'),
                 //   ex: /api/ballot_items/state/or/?districts=...
                 array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>', 'verb' => 'GET'),
