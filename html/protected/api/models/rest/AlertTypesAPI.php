@@ -1,6 +1,6 @@
 <?php
 
-class AlertTypesAPI implements IAPI {
+class AlertTypesAPI  extends APIBase  implements IAPI {
 
     public function getList($arguments = array()) {
 

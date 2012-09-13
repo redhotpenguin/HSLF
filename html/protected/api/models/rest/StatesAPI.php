@@ -1,6 +1,6 @@
 <?php
 
-class StatesAPI implements IAPI {
+class StatesAPI extends APIBase  implements IAPI {
 
     public function getList( $arguments = array() ) {
         return State::model()->findAll();

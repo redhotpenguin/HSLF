@@ -30,7 +30,7 @@ class Api2Controller extends Controller {
             $code = 200;
             $model = new $requested_model();
             unset($_GET['model']);
-
+           
             if ($this->checkAuth())
                 $model->setAuthenticated(true);
             else

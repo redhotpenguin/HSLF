@@ -1,6 +1,6 @@
 <?php
 
-class TagsAPI implements IAPI {
+class TagsAPI extends APIBase  implements IAPI {
 
     public function getList($arguments = array()) {
 
