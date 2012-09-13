@@ -4,15 +4,13 @@ abstract class APIBase {
 
     const AUTH_REQUIRED = 'authentication required';
 
-    protected $authenticated;
+    protected $isAuthenticated;
 
     public final function setAuthenticated($authenticated) {
-        $this->authentidcated = $authenticated;
+        $this->isAuthenticated = $authenticated;
     }
 
-    protected final function isAuthenticated() {
-        return $this->authenticated;
-    }
+ 
 
 }
 

@@ -31,7 +31,7 @@ class Api2Controller extends Controller {
             $model = new $requested_model();
             unset($_GET['model']);
 
-            if( $this->checkAuth())
+            if ($this->checkAuth())
                 $model->setAuthenticated(true);
             else
                 $model->setAuthenticated(false);
@@ -54,6 +54,12 @@ class Api2Controller extends Controller {
         } else {
             $code = 200;
             $model = new $requested_model();
+
+            if ($this->checkAuth())
+                $model->setAuthenticated(true);
+            else
+                $model->setAuthenticated(false);
+
             $message = $model->getSingle($id);
         }
         $this->sendResponse($code, $message);
@@ -120,9 +126,6 @@ class Api2Controller extends Controller {
 
         $api_key = Yii::app()->params['api_key'];
         $api_secret = Yii::app()->params['api_secret'];
-
-        $api_key = "foo";
-        $api_secret = "bar";
 
         return ( $api_key == $_REQUEST['api_key'] && $api_secret == $_REQUEST['api_secret'] );
     }
