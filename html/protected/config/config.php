@@ -9,6 +9,7 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $dbuser = $env['DOTCLOUD_DB_SQL_LOGIN'];
     $dbpass = $env['DOTCLOUD_DB_SQL_PASSWORD'];
     $dbport = $env['DOTCLOUD_DB_SQL_PORT'];
+    $siteurl = 'http://oo.m.winningmark.com';
     set_include_path(get_include_path() . PATH_SEPARATOR . '/home/dotcloud/php-env/share/php');
 } else {    //dev server conf
     $dbhost = 'localhost';
@@ -16,16 +17,16 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $dbuser = 'postgres';
     $dbpass = 'pengu1n';
     $dbport = '5444';
+    $siteurl = 'http://www.voterguide.com';
 }
 
 
 // Image File Manager conf:
 // please also update root path in protected/extensions/tinymce/assets/jscripts/tiny_mce/plugins/imagemanager/config.php
-
 // Project config
 DEFINE('PROJECT_NAME', 'Our Oregon');
-//DEFINE('SITE_URL', 'http://mvg.winningmark.com');
-DEFINE('SITE_URL', 'http://www.voterguide.com');
+
+DEFINE('SITE_URL', $siteurl);
 DEFINE('ADMIN_EMAIL', 'mobile@winningmark.com');
 
 
