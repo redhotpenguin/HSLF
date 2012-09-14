@@ -20,6 +20,10 @@ class BallotItemsAPI extends APIBase implements IAPI {
             );
         }
 
+        if (isset($arguments['limit']) && is_numeric($arguments['limit'])) {
+            $criteria['limit'] = $arguments['limit'];
+        }
+
         if (isset($arguments['state'])) {
             $criteria['stateAbbr'] = $arguments['state'];
 
@@ -71,6 +75,9 @@ class BallotItemsAPI extends APIBase implements IAPI {
         $sort = array(
             'defaultOrder' => $ballotItemTableAlias . '.id ASC',
             'attributes' => array(),
+        );
+        $pagination = array(
+            'pageSize' => "",
         );
 
         // query only published items
@@ -135,9 +142,14 @@ class BallotItemsAPI extends APIBase implements IAPI {
             }
         }
 
+        if (isset($filters['limit']) && is_numeric($filters['limit'])) {
+            $pagination['pageSize'] = $filters['limit'];
+        }
+
         $activeDataProvider = new CActiveDataProvider($ballotItem, array(
                     'criteria' => $criteria,
                     'sort' => $sort,
+                    'pagination' => $pagination
                 ));
 
 
