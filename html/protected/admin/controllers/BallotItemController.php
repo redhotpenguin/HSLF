@@ -122,14 +122,17 @@ class BallotItemController extends Controller {
                 }
             }
 
-            // save endorsers
-            if ($endorser_ids = getPost('endorsers')) {
-
-                foreach ($endorser_ids as $endorser_id) {
-                    $model->addEndorser($endorser_id);
+            logIt($_POST['endorsers']);
+            $endorser_ids = getPost('endorsers');
+            // if any endorsers are selected
+            if ($endorser_ids) {
+                // remove endorsers that are not selected ( unselected )
+                //   $model->removeEndorsersNotIn($endorser_ids);
+                // add endorsers
+                foreach ($endorser_ids as $endorser_id => $position) {
+                    $model->addEndorser($endorser_id, $position);
                 }
             }
-
 
 
             $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
@@ -225,22 +228,18 @@ class BallotItemController extends Controller {
                 }
             }
 
+            logIt($_POST['endorsers']);
             $endorser_ids = getPost('endorsers');
             // if any endorsers are selected
             if ($endorser_ids) {
                 // remove endorsers that are not selected ( unselected )
-                $model->removeEndorsersNotIn($endorser_ids);
-                
+                //   $model->removeEndorsersNotIn($endorser_ids);
                 // add endorsers
-                foreach ($endorser_ids as $endorser_id) {
-                    $model->addEndorser($endorser_id);
+                foreach ($endorser_ids as $endorser_id => $position) {
+                    $model->addEndorser($endorser_id, $position);
                 }
-            }else{
-                // no endorser submitted ( could mean that all endorsers have been unchecked )
-                // remove all endorsers
-                $model->removeEndorsers();
             }
-            
+
             return;
         }
 

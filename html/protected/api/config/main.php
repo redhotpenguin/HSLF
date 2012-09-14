@@ -62,7 +62,7 @@ return array(
             'username' => DB_USER,
             'password' => DB_PASS,
             'charset' => 'UTF-8',
-            'schemaCachingDuration' => '3600',
+         //   'schemaCachingDuration' => '3600',
         ),
         'cache' => array(
             'class' => 'system.caching.CApcCache',

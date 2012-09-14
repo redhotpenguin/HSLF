@@ -58,20 +58,24 @@ class BallotItemEndorserBehavior extends CBehavior {
     /**
      * Add an endorser to a ballot item
      * @param integer $endorser_id
+     * @param string $position
      * @return boolean
      */
-    public function addEndorser($endorser_id) {
+    public function addEndorser($endorser_id, $position = 'np') {
         $connection = Yii::app()->db;
         $command = $connection->createCommand($sql);
 
         // if the ballot item is already endorsed, return false;
-        if ($this->hasEndorser($endorser_id))
-            return false;
+        if ($this->hasEndorser($endorser_id)) {
+            return $this->updateEndorserPosition($endorser_id, $position);
+        }
+
 
         try {
             $add_endorser_result = $command->insert('endorser_ballot_item', array(
                 'ballot_item_id' => $this->owner->id,
-                'endorser_id' => $endorser_id
+                'endorser_id' => $endorser_id,
+                'position' => $position
                     ));
         } catch (CException $ce) {
             error_log("Could not add endorser to ballot item {$this->owner->id}: " . $ce->getMessage());
@@ -79,6 +83,25 @@ class BallotItemEndorserBehavior extends CBehavior {
 
 
         return (boolean) $add_endorser_result;
+    }
+
+    /**
+     * Update the position of a ballot item endorser
+     * @param integer $endorser_id
+     * @param string $position
+     * @return boolean
+     */
+    public function updateEndorserPosition($endorser_id, $position = 'np') {
+        $ballotItemEndorser = BallotItemEndorser::model()->findByAttributes(array(
+            'endorser_id' => $endorser_id,
+            'ballot_item_id' => $this->owner->id
+                ));
+
+        if ($ballotItemEndorser) {
+            $ballotItemEndorser->position = $position;
+            $ballotItemEndorser->save();
+        }else
+            return false;
     }
 
     /**
