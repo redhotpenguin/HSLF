@@ -51,7 +51,10 @@ $this->widget('bootstrap.widgets.BootGridView', array(
     'filter' => $model,
     'columns' => array(
         'name',
-        'value',
+        array(
+            'name' => 'value',
+            'value' => 'substr($data->value,0,100);'
+        ),
         array(
             'class' => 'bootstrap.widgets.BootButtonColumn',
             'template' => $template,
