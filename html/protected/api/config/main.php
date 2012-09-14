@@ -41,8 +41,6 @@ return array(
                 array('api2/index', 'pattern' => 'api/v2', 'verb' => 'GET'),
                 array('api2/list', 'pattern' => 'api/v2/<model:\w+>', 'verb' => 'GET'),
                 array('api2/view', 'pattern' => 'api/v2/<model:\w+>/<id:\d+>', 'verb' => 'GET'),
-                array('api2/list', 'pattern' => 'api/v2/<model:\w+>/<category:\w+>', 'verb' => 'GET'),
-                array('api2/list', 'pattern' => 'api/v2/<model:\w+>/<category:\w+>/<category_id:\d+>', 'verb' => 'GET'),
                 // API V1
 
 

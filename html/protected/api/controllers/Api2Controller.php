@@ -21,6 +21,7 @@ class Api2Controller extends Controller {
      */
     public function actionList() {
         $requested_model = $_GET['model'] . 'API';
+        $category = "";
 
         if (!class_exists($requested_model)) {
             $code = 404;
@@ -34,8 +35,8 @@ class Api2Controller extends Controller {
                 $model->setAuthenticated(true);
             else
                 $model->setAuthenticated(false);
-
-            $message = $model->getList($_GET);
+            
+            $message = $model->getList( $_GET );
         }
 
         $this->sendResponse($code, $message);

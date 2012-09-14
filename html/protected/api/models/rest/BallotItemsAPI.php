@@ -5,9 +5,13 @@ class BallotItemsAPI extends APIBase implements IAPI {
     public function getList($arguments = array()) {
 
         $criteria = array();
+        $taxonomy = array();
 
-        if (isset($arguments['category'])) {
-            $criteria['endorserId'] = $arguments['endorserId'];
+        if (isset($arguments['taxonomy']) && isset($arguments['taxonomy_id'])) {
+            $taxonomy = array(
+                'taxonomy' => $arguments['taxonomy'],
+                'taxonomy_id' => $arguments['taxonomy_id'
+                    ]);
         }
 
         if (isset($arguments['state'])) {
@@ -18,10 +22,10 @@ class BallotItemsAPI extends APIBase implements IAPI {
             }
         }
 
-        if (empty($criteria))
+        if (empty($criteria) && empty($taxonomy))
             $result = $this->getOverview();
         else {
-            $result = $this->getByCriteria($criteria);
+            $result = $this->getByCriteria($criteria, $taxonomy);
         }
 
         return $result;
@@ -37,7 +41,8 @@ class BallotItemsAPI extends APIBase implements IAPI {
         return $result;
     }
 
-    private function getByCriteria(array $filters) {
+    private function getByCriteria(array $filters, array $tax) {
+
         $ballotItem = new BallotItem;
         $criteria = new CDbCriteria;
         $criteria->with = array(
@@ -49,11 +54,15 @@ class BallotItemsAPI extends APIBase implements IAPI {
             'cards',
             'office',
             'party',
-            'endorsers',
+            'endorsers' => array(
+                'together' => true,
+                'joinType' => 'INNER JOIN',
+            ),
         );
 
+
         $bindParams = array();
-        
+
         // query only published items
         $criteria->addCondition("published='yes'", 'AND');
 
@@ -90,18 +99,26 @@ class BallotItemsAPI extends APIBase implements IAPI {
 
                     ++$i;
                 }
-
-                $criteria->params = $bindParams;
             }
         }
 
+        if (isset($tax)) {
+            if ($tax['taxonomy'] == 'endorser') {
+                $criteria->addCondition('endorsers.id = :endorser_id', 'AND');
+                $bindParams[':endorser_id'] = $tax['taxonomy_id'];
+            }
+        }
+
+        $criteria->params = $bindParams;
 
         $activeDataProvider = new CActiveDataProvider($ballotItem, array(
                     'criteria' => $criteria,
-        ));
+                ));
 
 
         $ballotItems = $activeDataProvider->getData();
+
+
         if ($ballotItems)
             $result = $this->ballotItemsWrapper($ballotItems);
         else
@@ -129,21 +146,6 @@ class BallotItemsAPI extends APIBase implements IAPI {
                 ->queryAll();
 
         return $ballot_items;
-    }
-
-    /**
-     * return all ballot items that have a specificied endorser
-     * @param integer $endorser_id id of the endorser
-     * @return ballot return array of ballot item object
-     */
-    private function getByEndorser($endorser_id) {
-        $ballot_items = BallotItemManager::findByEndorser($endorser_id);
-        if (!empty($ballot_items)) {
-            return $this->ballotItemsWrapper($ballot_items);
-        }
-
-        else
-            $this->_sendResponse(404, "no_ballot_found");
     }
 
     /**
