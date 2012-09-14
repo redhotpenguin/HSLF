@@ -3,6 +3,9 @@
 class UpdateCiceroCommand extends CConsoleCommand {
 
     public function run($args) {
+        
+        error_log('Cicero Update Executed');
+        
         // Some constants that we will use:
         $username = CICERO_USERNAME;
         $password = CICERO_PASSWORD;
