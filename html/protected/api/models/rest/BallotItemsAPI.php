@@ -6,7 +6,7 @@ class BallotItemsAPI extends APIBase implements IAPI {
 
         $criteria = array();
 
-        if (isset($arguments['endorser'])) {
+        if (isset($arguments['category'])) {
             $criteria['endorserId'] = $arguments['endorserId'];
         }
 
@@ -53,8 +53,7 @@ class BallotItemsAPI extends APIBase implements IAPI {
         );
 
         $bindParams = array();
-
-
+        
         // query only published items
         $criteria->addCondition("published='yes'", 'AND');
 
