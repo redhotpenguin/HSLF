@@ -66,7 +66,7 @@ class BallotItemsAPI extends APIBase implements IAPI {
             'party',
             'endorsers' => array(
                 'together' => true,
-                'joinType' => 'INNER JOIN',
+                'joinType' => 'LEFT JOIN',
             ),
         );
 
@@ -74,10 +74,9 @@ class BallotItemsAPI extends APIBase implements IAPI {
         $bindParams = array();
         $sort = array(
             'defaultOrder' => $ballotItemTableAlias . '.id ASC',
-            'attributes' => array(),
         );
         $pagination = array(
-            'pageSize' => "",
+            'pageSize' => "1000",
         );
 
         // query only published items
@@ -119,7 +118,7 @@ class BallotItemsAPI extends APIBase implements IAPI {
             }
         }
 
-        if (isset($tax)) {
+        if (!empty($tax)) {
             if ($tax['taxonomy'] == 'endorser') {
 
                 if (!is_numeric($tax['taxonomyID']))
@@ -214,30 +213,31 @@ class BallotItemsAPI extends APIBase implements IAPI {
         $wrapped_ballot_item = array(
             'id' => $ballot_item->id,
             'item' => $ballot_item->item,
-            'item_type' => $ballot_item->item_type,
-            'recommendation' => $ballot_item->recommendation,
-            'next_election_date' => $ballot_item->next_election_date,
-            'priority' => $ballot_item->priority,
-            'detail' => $ballot_item->detail,
             'date_published' => $ballot_item->date_published,
-            'party' => $ballot_item->party,
-            'image_url' => $ballot_item->image_url,
-            'electionResult' => $ballot_item->electionResult,
-            'url' => $ballot_item->url,
-            'personal_url' => $ballot_item->personal_url,
-            'score' => $ballot_item->score,
-            'office_type' => $ballot_item->office->name,
-            'district' => $ballot_item->district,
-            'Scorecard' => $scorecards,
-            'BallotItemNews' => $ballot_item->ballotItemNews,
-            'facebook_url' => $ballot_item->facebook_url,
-            'facebook_share' => $ballot_item->facebook_share,
-            'twitter_handle' => $ballot_item->twitter_handle,
-            'twitter_share' => $ballot_item->twitter_share,
-            'hold_office' => $ballot_item->hold_office,
-            'endorsers' => $ballot_item->endorsers,
-            'measure_number' => $ballot_item->measure_number,
-            'friendly_name' => $ballot_item->friendly_name
+                /*  'item_type' => $ballot_item->item_type,
+                  'recommendation' => $ballot_item->recommendation,
+                  'next_election_date' => $ballot_item->next_election_date,
+                  'priority' => $ballot_item->priority,
+                  'detail' => $ballot_item->detail,
+
+                  'party' => $ballot_item->party,
+                  'image_url' => $ballot_item->image_url,
+                  'electionResult' => $ballot_item->electionResult,
+                  'url' => $ballot_item->url,
+                  'personal_url' => $ballot_item->personal_url,
+                  'score' => $ballot_item->score,
+                  'office_type' => $ballot_item->office->name,
+                  'district' => $ballot_item->district,
+                  'Scorecard' => $scorecards,
+                  'BallotItemNews' => $ballot_item->ballotItemNews,
+                  'facebook_url' => $ballot_item->facebook_url,
+                  'facebook_share' => $ballot_item->facebook_share,
+                  'twitter_handle' => $ballot_item->twitter_handle,
+                  'twitter_share' => $ballot_item->twitter_share,
+                  'hold_office' => $ballot_item->hold_office,
+                  'endorsers' => $ballot_item->endorsers,
+                  'measure_number' => $ballot_item->measure_number,
+                  'friendly_name' => $ballot_item->friendly_name */
         );
 
         return $wrapped_ballot_item;
