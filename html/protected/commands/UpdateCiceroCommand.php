@@ -41,7 +41,6 @@ class UpdateCiceroCommand extends CConsoleCommand {
         $connection = Yii::app()->db;
         $transaction = $connection->beginTransaction();
 
-
         try {
             // upsert_option is a custom postesgsql function
             $update_cicero_token_query = "SELECT upsert_option('cicero_token', '$cicero_token')";
