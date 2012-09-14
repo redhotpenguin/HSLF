@@ -7,11 +7,17 @@ class BallotItemsAPI extends APIBase implements IAPI {
         $criteria = array();
         $taxonomy = array();
 
-        if (isset($arguments['taxonomy']) && isset($arguments['taxonomy_id'])) {
+        if (isset($arguments['taxonomy']) && isset($arguments['taxonomyID'])) {
             $taxonomy = array(
                 'taxonomy' => $arguments['taxonomy'],
-                'taxonomy_id' => $arguments['taxonomy_id'
-                    ]);
+                'taxonomyID' => $arguments['taxonomyID']);
+        }
+
+        if (isset($arguments['orderBy']) && isset($arguments['order'])) {
+            $criteria['order'] = array(
+                'orderBy' => $arguments['orderBy'],
+                'order' => $arguments['order']
+            );
         }
 
         if (isset($arguments['state'])) {
@@ -60,8 +66,12 @@ class BallotItemsAPI extends APIBase implements IAPI {
             ),
         );
 
-
+        $ballotItemTableAlias = $ballotItem->getTableAlias(false, false);
         $bindParams = array();
+        $sort = array(
+            'defaultOrder' => $ballotItemTableAlias . '.id ASC',
+            'attributes' => array(),
+        );
 
         // query only published items
         $criteria->addCondition("published='yes'", 'AND');
@@ -104,19 +114,40 @@ class BallotItemsAPI extends APIBase implements IAPI {
 
         if (isset($tax)) {
             if ($tax['taxonomy'] == 'endorser') {
-                $criteria->addCondition('endorsers.id = :endorser_id', 'AND');
-                $bindParams[':endorser_id'] = $tax['taxonomy_id'];
+
+                if (!is_numeric($tax['taxonomyID']))
+                    return false;
+
+                $criteria->addCondition('endorsers.id = :endorserID', 'AND');
+                $bindParams[':endorserID'] = $tax['taxonomyID'];
             }
         }
 
         $criteria->params = $bindParams;
 
+        if (isset($filters['order'])) {
+            $orderBy = $filters['order']['orderBy'];
+            $order = $filters['order']['order'];
+
+            if ($ballotItem->hasAttribute($orderBy)) {
+                if (strtoupper($order) == 'ASC' || strtoupper($order) == 'DESC')
+                    $criteria->order = "{$ballotItemTableAlias}.{$orderBy} {$order}";
+            }
+        }
+
         $activeDataProvider = new CActiveDataProvider($ballotItem, array(
                     'criteria' => $criteria,
+                    'sort' => $sort,
                 ));
 
 
-        $ballotItems = $activeDataProvider->getData();
+        try {
+            $ballotItems = $activeDataProvider->getData();
+        } catch (CDbException $cdbE) {
+            echo $cdbE->getMessage();
+            $ballotItems = false;
+        }
+
 
 
         if ($ballotItems)
