@@ -195,9 +195,12 @@ class BallotItemsAPI extends APIBase implements IAPI {
      * @param $ballot BallotItem ballot item
      * @return array wrapped ballot
      */
-    private function ballotItemWrapper(BallotItem $ballot_item) {
+    private function _ballotItemWrapper(BallotItem $ballot_item) {
         $scorecards = array();
+        $endorsers = array();
         $i = 0;
+
+        // print_r($ballot_item->endorsers);
 
         foreach ($ballot_item->scorecards as $scorecard) {
             array_push($scorecards, array(
@@ -210,34 +213,50 @@ class BallotItemsAPI extends APIBase implements IAPI {
             ++$i;
         }
 
+        $i = 0;
+        foreach ($ballot_item->ballotItemEndorsers as $ballotItemEndorsers) {
+
+            array_push($endorsers, array(
+                'endorser_id' => $ballotItemEndorsers->endorser->id,
+                'position' => $ballotItemEndorsers->position,
+                'name' => $ballotItemEndorsers->endorser->name,
+                'description' => $ballotItemEndorsers->endorser->description,
+                'website' => $ballotItemEndorsers->endorser->website,
+                'image_url' => $ballotItemEndorsers->endorser->image_url,
+            ));
+            ++$i;
+        }
+
+
+
+
         $wrapped_ballot_item = array(
             'id' => $ballot_item->id,
             'item' => $ballot_item->item,
+            'item_type' => $ballot_item->item_type,
+            'recommendation' => $ballot_item->recommendation,
+            'next_election_date' => $ballot_item->next_election_date,
+            'priority' => $ballot_item->priority,
+            'detail' => $ballot_item->detail,
             'date_published' => $ballot_item->date_published,
-                /*  'item_type' => $ballot_item->item_type,
-                  'recommendation' => $ballot_item->recommendation,
-                  'next_election_date' => $ballot_item->next_election_date,
-                  'priority' => $ballot_item->priority,
-                  'detail' => $ballot_item->detail,
-
-                  'party' => $ballot_item->party,
-                  'image_url' => $ballot_item->image_url,
-                  'electionResult' => $ballot_item->electionResult,
-                  'url' => $ballot_item->url,
-                  'personal_url' => $ballot_item->personal_url,
-                  'score' => $ballot_item->score,
-                  'office_type' => $ballot_item->office->name,
-                  'district' => $ballot_item->district,
-                  'Scorecard' => $scorecards,
-                  'BallotItemNews' => $ballot_item->ballotItemNews,
-                  'facebook_url' => $ballot_item->facebook_url,
-                  'facebook_share' => $ballot_item->facebook_share,
-                  'twitter_handle' => $ballot_item->twitter_handle,
-                  'twitter_share' => $ballot_item->twitter_share,
-                  'hold_office' => $ballot_item->hold_office,
-                  'endorsers' => $ballot_item->endorsers,
-                  'measure_number' => $ballot_item->measure_number,
-                  'friendly_name' => $ballot_item->friendly_name */
+            'party' => $ballot_item->party,
+            'image_url' => $ballot_item->image_url,
+            'electionResult' => $ballot_item->electionResult,
+            'url' => $ballot_item->url,
+            'personal_url' => $ballot_item->personal_url,
+            'score' => $ballot_item->score,
+            'office_type' => $ballot_item->office->name,
+            'district' => $ballot_item->district,
+            'Scorecard' => $scorecards,
+            'BallotItemNews' => $ballot_item->ballotItemNews,
+            'facebook_url' => $ballot_item->facebook_url,
+            'facebook_share' => $ballot_item->facebook_share,
+            'twitter_handle' => $ballot_item->twitter_handle,
+            'twitter_share' => $ballot_item->twitter_share,
+            'hold_office' => $ballot_item->hold_office,
+            'endorsers' => $endorsers,
+            'measure_number' => $ballot_item->measure_number,
+            'friendly_name' => $ballot_item->friendly_name,
         );
 
         return $wrapped_ballot_item;
