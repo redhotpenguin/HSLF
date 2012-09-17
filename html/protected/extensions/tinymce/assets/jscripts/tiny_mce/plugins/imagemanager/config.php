@@ -53,7 +53,7 @@ $mcImageManagerConfig['filesystem'] = "Moxiecode_LocalFileImpl";
 $mcImageManagerConfig['filesystem.path'] = ''; // absolute or relative from this script path, optional.
 
 if (file_exists('/home/dotcloud/environment.json')) {
-    $mcImageManagerConfig['filesystem.rootpath'] = '/home/dotcloud/data'; // absolute or relative from this script path, required.
+    $mcImageManagerConfig['filesystem.rootpath'] = '/home/dotcloud/current/content'; // absolute or relative from this script path, required.
 }
 else
     $mcImageManagerConfig['filesystem.rootpath'] = '../../../../../../../../content/img'; // absolute or relative from this script path, required.
