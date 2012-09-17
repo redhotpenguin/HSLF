@@ -97,11 +97,7 @@ class BallotItemManager {
 
         if ($year) {
             $ballotItemFinder->setPublishedYear($year);
-        } else {
-            $ballotItemFinder->setRunningOnly();
-            $ballotItemFinder->setNullElectionDate();
-        }
-
+        } 
 
         if ($orders['measure_order']) {
             $ballotItemFinder->orderByMeasureNumber($orders['measure_order']);

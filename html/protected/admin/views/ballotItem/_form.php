@@ -105,7 +105,6 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
 
         <div class="clearfix">
             <?php echo $form->labelEx($model, 'next_election_date'); ?>
-            <a  rel="tooltip" href="#" data-original-title="Candidate's election date. The ballot item will not be displayed in the application once that date has passed. If this field is left empty, the ballot item will always be present in the application. "><i class="icon-question-sign"></i></a>
             <?php
             $this->widget('zii.widgets.jui.CJuiDatePicker', array(
                 'name' => 'BallotItem[next_election_date]',
