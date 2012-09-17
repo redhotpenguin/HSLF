@@ -55,7 +55,7 @@ $mcImageManagerConfig['filesystem.path'] = ''; // absolute or relative from this
 if (file_exists('/home/dotcloud/environment.json')) {
     $mcImageManagerConfig['filesystem.rootpath'] = '/home/dotcloud/data'; // absolute or relative from this script path, required.
     $mcImageManagerConfig['preview.wwwroot'] = '/home/dotcloud/data'; // absolute or relative from this script path, try to leave blank system figures it out.
-    $mcImageManagerConfig['preview.urlprefix'] = "{proto}://{host}/content/img"; // domain name
+    $mcImageManagerConfig['preview.urlprefix'] = "{proto}://{host}/content"; // domain name
 }
 else
     $mcImageManagerConfig['filesystem.rootpath'] = '../../../../../../../../content/img'; // absolute or relative from this script path, required.
