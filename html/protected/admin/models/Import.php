@@ -164,7 +164,7 @@ class Import extends CModel {
 
     public static function importEndorserBallotItem($tmp_name, $file_name) {
 
-        $fields = array('endorser_id', 'ballot_item_id');
+        $fields = array('endorser_id', 'ballot_item_id', 'position');
 
         $result = self::insertDataFromCSV($tmp_name, $file_name, 'endorser_ballot_item', $fields);
 

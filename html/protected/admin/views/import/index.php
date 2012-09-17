@@ -387,7 +387,7 @@ echo Chtml::endForm();
 
     <div class="clearfix"></div>
     <p>
-        <b>CSV structure:</b>id, endorser_id, ballot_item_id
+        <b>CSV structure:</b>id, endorser_id, ballot_item_id, position
         (headers must be included)
     </p>
     <?php
