@@ -24,9 +24,11 @@ class BallotItemEndorserBehavior extends CBehavior {
      * @return array of ballot items
      */
     public function findByEndorser($endorser_id) {
-        $ballot_items = BallotItem::model()->with('endorsers')->findAll(
+        $table_alias = $this->owner->tableAlias;
+
+        $ballot_items = BallotItem::model()->with('ballotItemEndorsers')->findAll(
                 array(
-                    'condition' => 'endorser_id = :endorser_id',
+                    'condition' => "endorser_id = :endorser_id AND ballot_item_id = {$table_alias}.ID",
                     'params' => array(':endorser_id' => $endorser_id)
                 ));
 
@@ -108,7 +110,7 @@ class BallotItemEndorserBehavior extends CBehavior {
         $delete_endorsers_result = $command->delete(
                 'endorser_ballot_item', 'ballot_item_id=:ballot_item_id', array(':ballot_item_id' => $this->owner->id)
         );
-        
+
 
         return $delete_endorsers_result;
     }

@@ -113,6 +113,7 @@ class BallotItem extends CActiveRecord {
             'endorsers' => array(self::MANY_MANY, 'Endorser',
                 'endorser_ballot_item(ballot_item_id, endorser_id)'),
         );
+
     }
 
     /**
