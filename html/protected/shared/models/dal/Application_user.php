@@ -1,7 +1,7 @@
 <?php
 
 Yii::import('application.vendors.*');
-require_once('urbanairship/urbanairship.php');
+// require_once('urbanairship/urbanairship.php');
 
 /**
  * This is the model class for table "app_user".

@@ -90,11 +90,11 @@ class ApiController extends Controller {
                 break;
 
             case 'ballot_items': //api/ballot_items/
-                if( isset ( $_GET['filter'] ))
+                if (isset($_GET['filter']))
                     $filter = $_GET['filter'];
                 else
                     $filter = "";
-                
+
                 switch ($filter) {
                     case 'single': //api/ballot_items/single/<id>
                         $this->_sendResponse(200, $this->_getBallotItem($_GET['id']));
@@ -223,7 +223,10 @@ class ApiController extends Controller {
      */
     private function _ballotItemWrapper(BallotItem $ballot_item) {
         $scorecards = array();
+        $endorsers = array();
         $i = 0;
+
+        // print_r($ballot_item->endorsers);
 
         foreach ($ballot_item->scorecards as $scorecard) {
             array_push($scorecards, array(
@@ -235,6 +238,23 @@ class ApiController extends Controller {
             ));
             ++$i;
         }
+
+        $i = 0;
+        foreach ($ballot_item->ballotItemEndorsers as $ballotItemEndorsers) {
+
+            array_push($endorsers, array(
+                'endorser_id' => $ballotItemEndorsers->endorser->id,
+                'position' => $ballotItemEndorsers->position,
+                'name' => $ballotItemEndorsers->endorser->name,
+                'description' => $ballotItemEndorsers->endorser->description,
+                'website' => $ballotItemEndorsers->endorser->website,
+                'image_url' => $ballotItemEndorsers->endorser->image_url,
+            ));
+            ++$i;
+        }
+
+
+
 
         $wrapped_ballot_item = array(
             'id' => $ballot_item->id,
@@ -260,9 +280,9 @@ class ApiController extends Controller {
             'twitter_handle' => $ballot_item->twitter_handle,
             'twitter_share' => $ballot_item->twitter_share,
             'hold_office' => $ballot_item->hold_office,
-            'endorsers' => $ballot_item->endorsers,
+            'endorsers' => $endorsers,
             'measure_number' => $ballot_item->measure_number,
-            'friendly_name' => $ballot_item->friendly_name
+            'friendly_name' => $ballot_item->friendly_name,
         );
 
         return $wrapped_ballot_item;
@@ -494,7 +514,7 @@ class ApiController extends Controller {
         $uap_user_id = $payload['uap_user_id'];
 
         //  return $api->updateApplicationUserTags($device_token, $tags, $district_id);
-        $result = $api->updateUAPTags($uap_user_id, $tags,  $device_token);
+        $result = $api->updateUAPTags($uap_user_id, $tags, $device_token);
 
         if ($result == true)
             return 'tag_update_ok';

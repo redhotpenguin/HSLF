@@ -114,8 +114,8 @@ return array(
         'site_url' => SITE_URL,
         'urbanairship_app_key' => UA_API_KEY,
         'urbanairship_app_master_secret' => UA_API_SECRET,
-        'upload_path' => SITE_URL . '/content/upload',
-        'upload_dir' => '/../content/upload',
+        'upload_path' => SITE_URL . UPLOAD_PATH,
+        'upload_dir' => UPLOAD_DIR,
         'share_url' => SITE_URL, // in case we want to store the shared urls in another server
         'html_directory' => $html_directory
     ),

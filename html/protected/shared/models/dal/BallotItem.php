@@ -104,9 +104,16 @@ class BallotItem extends CActiveRecord {
                 'scorecard(ballot_item_id, scorecard_item_id)'),
             'office' => array(self::BELONGS_TO, 'Office', 'office_id'),
             'party' => array(self::BELONGS_TO, 'Party', 'party_id'),
+            //'endorsers' => array(self::MANY_MANY, 'Endorser',
+            //'endorser_ballot_item(endorser_id, ballot_item_id)'),
+
+
+            'ballotItemEndorsers' => array(self::HAS_MANY, 'BallotItemEndorser', 'ballot_item_id'),
+        
             'endorsers' => array(self::MANY_MANY, 'Endorser',
-                'endorser_ballot_item(endorser_id, ballot_item_id)'),
+                'endorser_ballot_item(ballot_item_id, endorser_id)'),
         );
+
     }
 
     /**
@@ -178,8 +185,8 @@ class BallotItem extends CActiveRecord {
         $criteria->compare('url', $this->url, true);
         $criteria->compare('image_url', $this->image_url, true);
         $criteria->compare('election_result_id', $this->election_result_id);
-        
-        
+
+
         $criteria->compare('item_type', $this->item_type);
 
 

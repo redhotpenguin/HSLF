@@ -23,14 +23,14 @@ class BallotItemEndorserBehavior extends CBehavior {
      * @param integer $endorser_id
      * @return array of ballot items
      */
-    public function findByEndorser($endorser_id){
-        $ballot_items = BallotItem::model()->with('endorsers')->findAll( 
+    public function findByEndorser($endorser_id) {
+        $ballot_items = BallotItem::model()->with('ballotItemEndorsers')->findAll(
                 array(
-                    'condition' => 'endorser_id = :endorser_id',
+                    'condition' => "endorser_id = :endorser_id",
                     'params' => array(':endorser_id' => $endorser_id)
                 ));
-        
-        
+
+
         return $ballot_items;
     }
 
@@ -49,52 +49,53 @@ class BallotItemEndorserBehavior extends CBehavior {
                 ->where('endorser_id=:endorser_id AND ballot_item_id=:ballot_item_id', array(':endorser_id' => $endorser_id, ':ballot_item_id' => $this->owner->id))
                 ->queryRow();
 
+        if (isset($result['id']))
+            return true;
 
-        return $result;
+        return false;
     }
 
     /**
      * Add an endorser to a ballot item
      * @param integer $endorser_id
+     * @param string $position
      * @return boolean
      */
-    public function addEndorser($endorser_id) {
+    public function addEndorser($endorser_id, $position = 'np') {
         $connection = Yii::app()->db;
         $command = $connection->createCommand();
 
         // if the ballot item is already endorsed, return false;
-        if ($this->findEndorser($endorser_id))
-            return false;
-
-        try {
-            $add_endorser_result = $command->insert('endorser_ballot_item', array(
-                'ballot_item_id' => $this->owner->id,
-                'endorser_id' => $endorser_id
-                    ));
-        } catch (CException $ce) {
-            error_log("Could not add endorser to ballot item {$this->owner->id}: " . $ce->getMessage());
-            $add_tag_result = false;
+        if ($this->hasEndorser($endorser_id)) {
+            return $this->updateEndorserPosition($endorser_id, $position);
         }
 
+        $ballotItemEndorser = new BallotItemEndorser();
+        $ballotItemEndorser->ballot_item_id = $this->owner->id;
+        $ballotItemEndorser->endorser_id = $endorser_id;
+        $ballotItemEndorser->position = $position;
+        $ballotItemEndorser->save();
 
         return (boolean) $add_endorser_result;
     }
 
     /**
-     * Check if a ballot item has an endorser
-     * @param integer $endorser_id endorser id
-     * @return endorser id for success. False for failure.
+     * Update the position of a ballot item endorser
+     * @param integer $endorser_id
+     * @param string $position
+     * @return boolean
      */
-    public function findEndorser($endorser_id) {
-        $connection = Yii::app()->db;
-        $command = $connection->createCommand();
+    public function updateEndorserPosition($endorser_id, $position = 'np') {
+        $ballotItemEndorser = BallotItemEndorser::model()->findByAttributes(array(
+            'endorser_id' => $endorser_id,
+            'ballot_item_id' => $this->owner->id
+                ));
 
-        $result = $command->select('endorser_id')
-                ->from('endorser_ballot_item')
-                ->where('endorser_id=:endorser_id AND ballot_item_id=:ballot_item_id', array(':endorser_id' => $endorser_id, ':ballot_item_id' => $this->owner->id))
-                ->queryRow();
-
-        return $result['endorser_id'];
+        if ($ballotItemEndorser) {
+            $ballotItemEndorser->position = $position;
+            $ballotItemEndorser->save();
+        }else
+            return false;
     }
 
     /**
@@ -108,6 +109,30 @@ class BallotItemEndorserBehavior extends CBehavior {
                 'endorser_ballot_item', 'ballot_item_id=:ballot_item_id', array(':ballot_item_id' => $this->owner->id)
         );
 
+
+        return $delete_endorsers_result;
+    }
+
+    /**
+     * Remove all endorsers for a ballot item not present in the argument
+     * @param array endorser IDs to keep
+     * return boolean true or false
+     */
+    public function removeEndorsersNotIn(array $endorser_ids) {
+
+        if (empty($endorser_ids)) {
+            return false;
+        }
+
+        $endorser_ids_str = implode(',', $endorser_ids);
+
+        $connection = Yii::app()->db;
+        $command = $connection->createCommand();
+        $delete_endorsers_result = $command->delete(
+                'endorser_ballot_item', "ballot_item_id =:ballot_item_id  AND endorser_id NOT IN( {$endorser_ids_str} )", array(
+            ':ballot_item_id' => $this->owner->id,
+                )
+        );
 
         return $delete_endorsers_result;
     }

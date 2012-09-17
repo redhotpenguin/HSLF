@@ -86,7 +86,6 @@ class BallotItemController extends Controller {
 
             $save = $model->save();
             if ($save == false) {
-                error_log('could not save');
                 $this->render('create', array(
                     'model' => $model,
                     'endorser_list' => Endorser::model()->findAll(array('order' => 'name')),
@@ -123,14 +122,16 @@ class BallotItemController extends Controller {
                 }
             }
 
-            // save endorsers
-            if ($endorser_ids = getPost('endorsers')) {
-
-                foreach ($endorser_ids as $endorser_id) {
-                    $model->addEndorser($endorser_id);
+            $endorser_ids = getPost('endorsers');
+            // if any endorsers are selected
+            if ($endorser_ids) {
+                // remove endorsers that are not selected ( unselected )
+                //   $model->removeEndorsersNotIn($endorser_ids);
+                // add endorsers
+                foreach ($endorser_ids as $endorser_id => $position) {
+                    $model->addEndorser($endorser_id, $position);
                 }
             }
-
 
 
             $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
@@ -226,13 +227,14 @@ class BallotItemController extends Controller {
                 }
             }
 
-            // remove existing endorsers
-            $model->removeEndorsers();
-            // save endorsers
-            if ($endorser_ids = getPost('endorsers')) {
-
-                foreach ($endorser_ids as $endorser_id) {
-                    $model->addEndorser($endorser_id);
+            $endorser_ids = getPost('endorsers');
+            // if any endorsers are selected
+            if ($endorser_ids) {
+                // remove endorsers that are not selected ( unselected )
+                //   $model->removeEndorsersNotIn($endorser_ids);
+                // add endorsers
+                foreach ($endorser_ids as $endorser_id => $position) {
+                    $model->addEndorser($endorser_id, $position);
                 }
             }
 

@@ -16,6 +16,7 @@ return array(
     // autoloading model and component classes
     'import' => array(
         'application.api.models.rest.*',
+        'application.vendors.urbanairship.*',
         'admin.models.*',
         'application.shared.models.dal.*', // data access logic classes
         'application.shared.models.bll.*', // business  logic classes

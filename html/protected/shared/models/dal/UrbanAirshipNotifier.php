@@ -1,8 +1,8 @@
 <?php
 
-Yii::import('application.vendors.*');
-require_once('urbanairship/urbanairship.php');
-require_once('urbanairship/rich_urbanairship.php');
+// Yii::import('application.vendors.*');
+//require_once('urbanairship/urbanairship.php');
+//require_once('urbanairship/rich_urbanairship.php');
 
 class UrbanAirshipNotifier extends CModel {
 
@@ -10,7 +10,7 @@ class UrbanAirshipNotifier extends CModel {
     private $rich_airship;
 
     public function __construct() {
-        $this->airship = new Airship(Yii::app()->params['urbanairship_app_key'], Yii::app()->params['urbanairship_app_master_secret']);
+      //  $this->airship = new Airship(Yii::app()->params['urbanairship_app_key'], Yii::app()->params['urbanairship_app_master_secret']);
         $this->rich_airship = new Rich_Airship(Yii::app()->params['urbanairship_app_key'], Yii::app()->params['urbanairship_app_master_secret']);
     }
 
@@ -97,8 +97,6 @@ class UrbanAirshipNotifier extends CModel {
 
         return $r;
     }
-    
-
 
 }
 

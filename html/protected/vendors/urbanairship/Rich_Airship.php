@@ -26,7 +26,7 @@ class Rich_Airship {
     private $secret = '';
 
     public function __construct($key, $secret) {
- 
+
         $this->key = $key;
         $this->secret = $secret;
     }
@@ -38,13 +38,13 @@ class Rich_Airship {
         $rest->sendRequest();
         $response = $rest->getResponse();
         if ($response[0] == 401) {
-            throw new Unauthorized();
+            throw new RichUnauthorized();
         }
         return $response;
     }
 
     public function update_device_tags(array $tags, $device_token, $user_id, $device_type = 'ios') {
-    
+
         if ($device_type == 'ios') {
             $url = USER_URL . '/' . $user_id . '/';
 
@@ -61,7 +61,11 @@ class Rich_Airship {
                 echo $e->getMessage();
                 error_log("update device tags error:" . $e->getMessage());
             }
-            return $this->_validate_http_code($response[0]);
+
+            if (isset($response[0]))
+                return $this->_validate_http_code($response[0]);
+            else
+                return false;
         } else {
             error_log('Feature not supported');
             return false;
