@@ -52,14 +52,12 @@ $mcImageManagerConfig['createdir.allow_override'] = "*";
 $mcImageManagerConfig['filesystem'] = "Moxiecode_LocalFileImpl";
 $mcImageManagerConfig['filesystem.path'] = ''; // absolute or relative from this script path, optional.
 
-
-$env = json_decode(file_get_contents("/home/dotcloud/environment.json"), true);
-
-if (isset($env['DOTCLOUD_DB_SQL_HOST']))
+if (file_exists('/home/dotcloud/environment.json')) {
     $mcImageManagerConfig['filesystem.rootpath'] = '/home/dotcloud/data'; // absolute or relative from this script path, required.
+}
 else
     $mcImageManagerConfig['filesystem.rootpath'] = '../../../../../../../../content/img'; // absolute or relative from this script path, required.
-    
+
 
 $mcImageManagerConfig['filesystem.datefmt'] = "Y-m-d H:i";
 $mcImageManagerConfig['filesystem.include_directory_pattern'] = '';
