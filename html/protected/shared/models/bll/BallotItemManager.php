@@ -68,7 +68,7 @@ class BallotItemManager {
      */
     public static function findByEndorser($endorser_id) {
 
-        $ballot_items = BallotItem::model()->findByEndorser($endorser_id);
+        $ballot_items = BallotItem::model()->findByEndorserWithPosition($endorser_id);
 
         return self::applyFilter($ballot_items);
     }
