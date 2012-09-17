@@ -26,8 +26,31 @@ class BallotItemEndorserBehavior extends CBehavior {
     public function findByEndorser($endorser_id) {
         $ballot_items = BallotItem::model()->with('ballotItemEndorsers')->findAll(
                 array(
-                    'condition' => "endorser_id = :endorser_id",
-                    'params' => array(':endorser_id' => $endorser_id)
+                    'condition' => "endorser_id = :endorser_id AND published =:published",
+                    'params' => array(
+                        ':endorser_id' => $endorser_id,
+                        ':published' => 'yes',
+                    )
+                ));
+
+
+        return $ballot_items;
+    }
+
+    /**
+     * Get array of ballot items by endorser id
+     * @param integer $endorser_id
+     * @return array of ballot items
+     */
+    public function findByEndorserWithPosition($endorser_id) {
+        $ballot_items = BallotItem::model()->with('ballotItemEndorsers')->findAll(
+                array(
+                    'condition' => "endorser_id = :endorser_id AND published =:published AND  position !=:position   ",
+                    'params' => array(
+                        ':endorser_id' => $endorser_id,
+                        ':published' => 'yes',
+                        ':position' => 'np'
+                    )
                 ));
 
 

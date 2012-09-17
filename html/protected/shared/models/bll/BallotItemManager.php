@@ -68,7 +68,7 @@ class BallotItemManager {
      */
     public static function findByEndorser($endorser_id) {
 
-        $ballot_items = BallotItem::model()->findByEndorser($endorser_id);
+        $ballot_items = BallotItem::model()->findByEndorserWithPosition($endorser_id);
 
         return self::applyFilter($ballot_items);
     }
@@ -97,11 +97,7 @@ class BallotItemManager {
 
         if ($year) {
             $ballotItemFinder->setPublishedYear($year);
-        } else {
-            $ballotItemFinder->setRunningOnly();
-            $ballotItemFinder->setNullElectionDate();
-        }
-
+        } 
 
         if ($orders['measure_order']) {
             $ballotItemFinder->orderByMeasureNumber($orders['measure_order']);

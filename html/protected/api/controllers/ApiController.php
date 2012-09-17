@@ -312,9 +312,8 @@ class ApiController extends Controller {
                 ->from(array('ballot_item b'))
                 ->join('district d', 'b.district_id=d.id')
                 ->join('recommendation r', 'b.recommendation_id=r.id')
-                ->where('published=:published AND next_election_date>=:current_date or next_election_date ISNULL', array(
+                ->where('published=:published', array(
                     ':published' => 'yes',
-                    ':current_date' => date('Y-m-d'), // use NOW() instead?
                 ))
                 ->order("d.state_abbr ASC, b.measure_number {$measure_order}")
                 ->queryAll();
