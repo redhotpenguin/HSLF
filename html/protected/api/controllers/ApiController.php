@@ -245,6 +245,7 @@ class ApiController extends Controller {
             array_push($endorsers, array(
                 'endorser_id' => $ballotItemEndorsers->endorser->id,
                 'position' => $ballotItemEndorsers->position,
+                'name' => $ballotItemEndorsers->endorser->name,
                 'description' => $ballotItemEndorsers->endorser->description,
                 'website' => $ballotItemEndorsers->endorser->website,
                 'image_url' => $ballotItemEndorsers->endorser->image_url,
