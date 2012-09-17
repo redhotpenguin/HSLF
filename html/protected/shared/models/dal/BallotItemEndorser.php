@@ -19,7 +19,6 @@ class BallotItemEndorser extends CActiveRecord {
         'np' => 'No Position',
         'yes' => 'Yes',
         'no' => 'No',
-        'split' => 'Split',
     );
 
     /**
