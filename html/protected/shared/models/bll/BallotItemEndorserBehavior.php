@@ -24,11 +24,9 @@ class BallotItemEndorserBehavior extends CBehavior {
      * @return array of ballot items
      */
     public function findByEndorser($endorser_id) {
-        $table_alias = $this->owner->tableAlias;
-
         $ballot_items = BallotItem::model()->with('ballotItemEndorsers')->findAll(
                 array(
-                    'condition' => "endorser_id = :endorser_id AND ballot_item_id = {$table_alias}.ID",
+                    'condition' => "endorser_id = :endorser_id",
                     'params' => array(':endorser_id' => $endorser_id)
                 ));
 
