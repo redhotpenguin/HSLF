@@ -70,17 +70,11 @@ class BallotItemEndorserBehavior extends CBehavior {
             return $this->updateEndorserPosition($endorser_id, $position);
         }
 
-
-        try {
-            $add_endorser_result = $command->insert('endorser_ballot_item', array(
-                'ballot_item_id' => $this->owner->id,
-                'endorser_id' => $endorser_id,
-                'position' => $position
-                    ));
-        } catch (CException $ce) {
-            error_log("Could not add endorser to ballot item {$this->owner->id}: " . $ce->getMessage());
-        }
-
+        $ballotItemEndorser = new BallotItemEndorser();
+        $ballotItemEndorser->ballot_item_id = $this->owner->id;
+        $ballotItemEndorser->endorser_id = $endorser_id;
+        $ballotItemEndorser->position = $position;
+        $ballotItemEndorser->save();
 
         return (boolean) $add_endorser_result;
     }
@@ -114,6 +108,7 @@ class BallotItemEndorserBehavior extends CBehavior {
         $delete_endorsers_result = $command->delete(
                 'endorser_ballot_item', 'ballot_item_id=:ballot_item_id', array(':ballot_item_id' => $this->owner->id)
         );
+        
 
         return $delete_endorsers_result;
     }
