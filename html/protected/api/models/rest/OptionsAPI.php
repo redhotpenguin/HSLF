@@ -3,7 +3,7 @@
 class OptionsAPI extends APIBase implements IAPI {
 
     public function getList($arguments = array()) {
-        
+
         if ($this->isAuthenticated)
             $result = Option::model()->findAll();
         else
@@ -14,8 +14,8 @@ class OptionsAPI extends APIBase implements IAPI {
     }
 
     public function getSingle($id) {
-       
-       
+
+
         if ($this->isAuthenticated)
             $result = Option::model()->findByPk($id);
         else
@@ -23,6 +23,10 @@ class OptionsAPI extends APIBase implements IAPI {
 
 
         return $result;
+    }
+
+    public function getPartialList() {
+        return $this->getList();
     }
 
 }

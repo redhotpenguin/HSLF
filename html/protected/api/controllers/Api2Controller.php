@@ -30,13 +30,17 @@ class Api2Controller extends Controller {
             $code = 200;
             $model = new $requested_model();
             unset($_GET['model']);
-           
+
             if ($this->checkAuth())
                 $model->setAuthenticated(true);
             else
                 $model->setAuthenticated(false);
-            
-            $message = $model->getList( $_GET );
+
+
+            if (empty($_GET))
+                $message = $model->getPartialList();
+            else
+                $message = $model->getList($_GET);
         }
 
         $this->sendResponse($code, $message);

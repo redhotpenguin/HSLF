@@ -15,6 +15,7 @@ return array(
     'name' => PROJECT_NAME . ' - API',
     // autoloading model and component classes
     'import' => array(
+        'application.api.models.rest.criteria.*',
         'application.api.models.rest.*',
         'application.vendors.urbanairship.*',
         'admin.models.*',
@@ -40,7 +41,7 @@ return array(
             'rules' => array(
                 //API V2
                 array('api2/index', 'pattern' => 'api/v2', 'verb' => 'GET'),
-                array('api2/list', 'pattern' => 'api/v2/<model:\w+>', 'verb' => 'GET'),
+                array('api2/list', 'pattern' => 'api/v2/<model:\w+>/', 'verb' => 'GET'),
                 array('api2/view', 'pattern' => 'api/v2/<model:\w+>/<id:\d+>', 'verb' => 'GET'),
                 // API V1
 

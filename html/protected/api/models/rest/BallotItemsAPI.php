@@ -4,41 +4,41 @@ class BallotItemsAPI extends APIBase implements IAPI {
 
     public function getList($arguments = array()) {
 
-        $criteria = array();
-        $taxonomy = array();
-
-        if (isset($arguments['taxonomy']) && isset($arguments['taxonomyID'])) {
-            $taxonomy = array(
-                'taxonomy' => $arguments['taxonomy'],
-                'taxonomyID' => $arguments['taxonomyID']);
-        }
-
-        if (isset($arguments['orderBy']) && isset($arguments['order'])) {
-            $criteria['order'] = array(
-                'orderBy' => $arguments['orderBy'],
-                'order' => $arguments['order']
-            );
-        }
-
-        if (isset($arguments['limit']) && is_numeric($arguments['limit'])) {
-            $criteria['limit'] = $arguments['limit'];
-        }
+        $ballotItemCriteria = new BallotItemCriteria();
 
         if (isset($arguments['state'])) {
-            $criteria['stateAbbr'] = $arguments['state'];
+
+            $ballotItemCriteria->setState($arguments['state']);
 
             if (isset($arguments['districts'])) {
-                $criteria['codedDistricts'] = explode(',', $arguments['districts']);
+                $ballotItemCriteria->setDistricts(explode(',', $arguments['districts']));
             }
         }
 
-        if (empty($criteria) && empty($taxonomy))
-            $result = $this->getOverview();
-        else {
-            $result = $this->getByCriteria($criteria, $taxonomy);
+        if (isset($arguments['orderBy']) && isset($arguments['order'])) {
+            $ballotItemCriteria->setOrder($arguments['orderBy'], $arguments['order']);
         }
 
-        return $result;
+        if (isset($arguments['limit']) && is_numeric($arguments['limit'])) {
+            $ballotItemCriteria->setLimit($arguments['limit']);
+        }
+
+
+        if (isset($arguments['taxonomy']) && isset($arguments['taxonomyID'])) {
+            $ballotItemCriteria->setTaxonomy( $arguments['taxonomy'],  $arguments['taxonomyID']);
+        }
+
+
+        $ballotItems = $ballotItemCriteria->search();
+
+        if ($ballotItems)
+            return $this->ballotItemsWrapper($ballotItems);
+        else
+            return false;
+    }
+
+    public function getPartialList() {
+        return $this->getOverview();
     }
 
     public function getSingle($id) {
@@ -47,124 +47,6 @@ class BallotItemsAPI extends APIBase implements IAPI {
             $result = $this->ballotItemWrapper($ballot_item);
         else
             $result = false;
-
-        return $result;
-    }
-
-    private function getByCriteria(array $filters, array $tax) {
-
-        $ballotItem = new BallotItem;
-        $criteria = new CDbCriteria;
-        $criteria->with = array(
-            'district',
-            'recommendation',
-            'electionResult',
-            'ballotItemNews',
-            'scorecards',
-            'cards',
-            'office',
-            'party',
-            'endorsers' => array(
-                'together' => true,
-                'joinType' => 'LEFT JOIN',
-            ),
-        );
-
-        $ballotItemTableAlias = $ballotItem->getTableAlias(false, false);
-        $bindParams = array();
-        $sort = array(
-            'defaultOrder' => $ballotItemTableAlias . '.id ASC',
-        );
-        $pagination = array(
-            'pageSize' => "1000",
-        );
-
-        // query only published items
-        $criteria->addCondition("published='yes'", 'AND');
-
-        if (isset($filters['stateAbbr'])) {
-            $criteria->addCondition('district.state_abbr=:stateAbbr', 'AND');
-            $bindParams[':stateAbbr'] = $filters['stateAbbr'];
-
-
-            if (isset($filters['codedDistricts'])) {
-
-                $i = 0;
-
-                foreach ($filters['codedDistricts'] as $codedDistrict) {
-                    $d = explode('/', $codedDistrict);
-                    if (!isset($d[0])) // type
-                        continue;
-
-                    $districtType = $d[0];
-
-                    if (isset($d[1])) // district number
-                        $districtNumber = $d[1];
-                    else
-                        $districtNumber = "";
-
-                    if ($i == 0)
-                        $operator = 'AND';
-                    else
-                        $operator = 'OR';
-
-                    $criteria->addCondition('district.type=:districtType' . $i . ' AND district.number=:districtNumber' . $i, $operator);
-
-                    $bindParams[":districtType{$i}"] = $districtType;
-                    $bindParams[":districtNumber{$i}"] = $districtNumber;
-
-                    ++$i;
-                }
-            }
-        }
-
-        if (!empty($tax)) {
-            if ($tax['taxonomy'] == 'endorser') {
-
-                if (!is_numeric($tax['taxonomyID']))
-                    return false;
-
-                $criteria->addCondition('endorsers.id = :endorserID', 'AND');
-                $bindParams[':endorserID'] = $tax['taxonomyID'];
-            }
-        }
-
-        $criteria->params = $bindParams;
-
-        if (isset($filters['order'])) {
-            $orderBy = $filters['order']['orderBy'];
-            $order = $filters['order']['order'];
-
-            if ($ballotItem->hasAttribute($orderBy)) {
-                if (strtoupper($order) == 'ASC' || strtoupper($order) == 'DESC')
-                    $criteria->order = "{$ballotItemTableAlias}.{$orderBy} {$order}";
-            }
-        }
-
-        if (isset($filters['limit']) && is_numeric($filters['limit'])) {
-            $pagination['pageSize'] = $filters['limit'];
-        }
-
-        $activeDataProvider = new CActiveDataProvider($ballotItem, array(
-                    'criteria' => $criteria,
-                    'sort' => $sort,
-                    'pagination' => $pagination
-                ));
-
-
-        try {
-            $ballotItems = $activeDataProvider->getData();
-        } catch (CDbException $cdbE) {
-            echo $cdbE->getMessage();
-            $ballotItems = false;
-        }
-
-
-
-        if ($ballotItems)
-            $result = $this->ballotItemsWrapper($ballotItems);
-        else
-            $result = "";
 
         return $result;
     }
@@ -195,7 +77,7 @@ class BallotItemsAPI extends APIBase implements IAPI {
      * @param $ballot BallotItem ballot item
      * @return array wrapped ballot
      */
-    private function _ballotItemWrapper(BallotItem $ballot_item) {
+    private function ballotItemWrapper(BallotItem $ballot_item) {
         $scorecards = array();
         $endorsers = array();
         $i = 0;
@@ -236,27 +118,27 @@ class BallotItemsAPI extends APIBase implements IAPI {
             'item_type' => $ballot_item->item_type,
             'recommendation' => $ballot_item->recommendation,
             'next_election_date' => $ballot_item->next_election_date,
-            'priority' => $ballot_item->priority,
-            'detail' => $ballot_item->detail,
-            'date_published' => $ballot_item->date_published,
-            'party' => $ballot_item->party,
-            'image_url' => $ballot_item->image_url,
-            'electionResult' => $ballot_item->electionResult,
-            'url' => $ballot_item->url,
-            'personal_url' => $ballot_item->personal_url,
-            'score' => $ballot_item->score,
-            'office_type' => $ballot_item->office->name,
-            'district' => $ballot_item->district,
-            'Scorecard' => $scorecards,
-            'BallotItemNews' => $ballot_item->ballotItemNews,
-            'facebook_url' => $ballot_item->facebook_url,
-            'facebook_share' => $ballot_item->facebook_share,
-            'twitter_handle' => $ballot_item->twitter_handle,
-            'twitter_share' => $ballot_item->twitter_share,
-            'hold_office' => $ballot_item->hold_office,
-            'endorsers' => $endorsers,
-            'measure_number' => $ballot_item->measure_number,
-            'friendly_name' => $ballot_item->friendly_name,
+                /*  'priority' => $ballot_item->priority,
+                  'detail' => $ballot_item->detail,
+                  'date_published' => $ballot_item->date_published,
+                  'party' => $ballot_item->party,
+                  'image_url' => $ballot_item->image_url,
+                  'electionResult' => $ballot_item->electionResult,
+                  'url' => $ballot_item->url,
+                  'personal_url' => $ballot_item->personal_url,
+                  'score' => $ballot_item->score,
+                  'office_type' => $ballot_item->office->name,
+                  'district' => $ballot_item->district,
+                  'Scorecard' => $scorecards,
+                  'BallotItemNews' => $ballot_item->ballotItemNews,
+                  'facebook_url' => $ballot_item->facebook_url,
+                  'facebook_share' => $ballot_item->facebook_share,
+                  'twitter_handle' => $ballot_item->twitter_handle,
+                  'twitter_share' => $ballot_item->twitter_share,
+                  'hold_office' => $ballot_item->hold_office,
+                  'endorsers' => $endorsers,
+                  'measure_number' => $ballot_item->measure_number,
+                  'friendly_name' => $ballot_item->friendly_name, */
         );
 
         return $wrapped_ballot_item;

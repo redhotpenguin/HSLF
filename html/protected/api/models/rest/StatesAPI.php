@@ -10,4 +10,10 @@ class StatesAPI extends APIBase  implements IAPI {
         return State::model()->findByPk($state_abbr);
     }
 
+    public function getPartialList() {
+        return $this->getList();
+    }
+    
+    
+
 }

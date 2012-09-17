@@ -1,6 +1,6 @@
 <?php
 
-class AlertTypesAPI  extends APIBase  implements IAPI {
+class AlertTypesAPI extends APIBase implements IAPI {
 
     public function getList($arguments = array()) {
 
@@ -9,6 +9,10 @@ class AlertTypesAPI  extends APIBase  implements IAPI {
 
     public function getSingle($id) {
         return AlertType::model()->findAllByPk($id);
+    }
+
+    public function getPartialList() {
+        return $this->getList();
     }
 
 }
