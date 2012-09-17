@@ -122,7 +122,6 @@ class BallotItemController extends Controller {
                 }
             }
 
-            logIt($_POST['endorsers']);
             $endorser_ids = getPost('endorsers');
             // if any endorsers are selected
             if ($endorser_ids) {
@@ -228,7 +227,6 @@ class BallotItemController extends Controller {
                 }
             }
 
-            logIt($_POST['endorsers']);
             $endorser_ids = getPost('endorsers');
             // if any endorsers are selected
             if ($endorser_ids) {
