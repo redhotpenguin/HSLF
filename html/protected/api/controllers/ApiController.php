@@ -249,12 +249,10 @@ class ApiController extends Controller {
                 'description' => $ballotItemEndorsers->endorser->description,
                 'website' => $ballotItemEndorsers->endorser->website,
                 'image_url' => $ballotItemEndorsers->endorser->image_url,
+                'display_name' => $ballotItemEndorsers->endorser->display_name,
             ));
             ++$i;
         }
-
-
-
 
         $wrapped_ballot_item = array(
             'id' => $ballot_item->id,
