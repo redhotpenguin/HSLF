@@ -5,6 +5,7 @@ class BallotItemsAPI extends APIBase implements IAPI {
     public function getList($arguments = array()) {
 
         $ballotItemCriteria = new BallotItemCriteria();
+        $includes = array();
 
         if (isset($arguments['state'])) {
 
@@ -29,10 +30,18 @@ class BallotItemsAPI extends APIBase implements IAPI {
         }
 
 
+        if ( ( isset($arguments['includeEndorsers']) && $arguments['includeEndorsers'] == 'true' ) ) {
+            array_push($includes, 'endorsers');
+        }
+
+        if (isset($arguments['includeScorecards']) && $arguments['includeScorecards'] == 'true') {
+            array_push($includes, 'scorecards');
+        }
+
         $ballotItems = $ballotItemCriteria->search();
 
         if ($ballotItems)
-            return $this->ballotItemsWrapper($ballotItems);
+            return $this->ballotItemsWrapper($ballotItems, $includes);
         else
             return false;
     }
@@ -43,8 +52,12 @@ class BallotItemsAPI extends APIBase implements IAPI {
 
     public function getSingle($id) {
         $ballot_item = BallotItem::model()->findByPk($id);
+
+        $includes = array('scorecards', 'endorsers');
+
+
         if ($ballot_item != false)
-            $result = $this->ballotItemWrapper($ballot_item);
+            $result = $this->ballotItemWrapper($ballot_item, $includes);
         else
             $result = false;
 
@@ -77,40 +90,10 @@ class BallotItemsAPI extends APIBase implements IAPI {
      * @param $ballot BallotItem ballot item
      * @return array wrapped ballot
      */
-    private function ballotItemWrapper(BallotItem $ballot_item) {
+    private function ballotItemWrapper(BallotItem $ballot_item, $includes = array()) {
         $scorecards = array();
         $endorsers = array();
         $i = 0;
-
-        // print_r($ballot_item->endorsers);
-
-        foreach ($ballot_item->scorecards as $scorecard) {
-            array_push($scorecards, array(
-                'id' => $scorecard->id,
-                'name' => $ballot_item->cards[$i]->name,
-                'description' => $ballot_item->cards[$i]->description,
-                'vote' => $scorecard->vote->name,
-                'vote_icon' => $scorecard->vote->icon,
-            ));
-            ++$i;
-        }
-
-        $i = 0;
-        foreach ($ballot_item->ballotItemEndorsers as $ballotItemEndorsers) {
-
-            array_push($endorsers, array(
-                'endorser_id' => $ballotItemEndorsers->endorser->id,
-                'position' => $ballotItemEndorsers->position,
-                'name' => $ballotItemEndorsers->endorser->name,
-                'description' => $ballotItemEndorsers->endorser->description,
-                'website' => $ballotItemEndorsers->endorser->website,
-                'image_url' => $ballotItemEndorsers->endorser->image_url,
-            ));
-            ++$i;
-        }
-
-
-
 
         $wrapped_ballot_item = array(
             'id' => $ballot_item->id,
@@ -138,9 +121,43 @@ class BallotItemsAPI extends APIBase implements IAPI {
             'hold_office' => $ballot_item->hold_office,
             'measure_number' => $ballot_item->measure_number,
             'friendly_name' => $ballot_item->friendly_name,
-            'scorecard' => $scorecards,
-            'endorsers' => $endorsers,
         );
+
+        if (in_array('endorsers', $includes)) {
+            $i = 0;
+            $endorsers = array();
+            foreach ($ballot_item->ballotItemEndorsers as $ballotItemEndorsers) {
+
+                array_push($endorsers, array(
+                    'endorser_id' => $ballotItemEndorsers->endorser->id,
+                    'position' => $ballotItemEndorsers->position,
+                    'name' => $ballotItemEndorsers->endorser->name,
+                    'description' => $ballotItemEndorsers->endorser->description,
+                    'website' => $ballotItemEndorsers->endorser->website,
+                    'image_url' => $ballotItemEndorsers->endorser->image_url,
+                ));
+                ++$i;
+            }
+
+            $wrapped_ballot_item['endorsers'] = $endorsers;
+        }
+
+        if (in_array('scorecards', $includes)) {
+            $scorecards = array();
+            $i = 0;
+            foreach ($ballot_item->scorecards as $scorecard) {
+                array_push($scorecards, array(
+                    'id' => $scorecard->id,
+                    'name' => $ballot_item->cards[$i]->name,
+                    'description' => $ballot_item->cards[$i]->description,
+                    'vote' => $scorecard->vote->name,
+                    'vote_icon' => $scorecard->vote->icon,
+                ));
+                ++$i;
+            }
+
+            $wrapped_ballot_item['scorecards'] = $scorecards;
+        }
 
         return $wrapped_ballot_item;
     }
@@ -150,10 +167,10 @@ class BallotItemsAPI extends APIBase implements IAPI {
      * @param $ballots array of BallotItem Objects
      * @return array array of wrapped ballots
      */
-    private function ballotItemsWrapper(array $ballots) {
+    private function ballotItemsWrapper(array $ballots, $includes = array()) {
         $wrapped_ballots = array();
         foreach ($ballots as $ballot)
-            array_push($wrapped_ballots, $this->ballotItemWrapper($ballot));
+            array_push($wrapped_ballots, $this->ballotItemWrapper($ballot, $includes));
 
         return $wrapped_ballots;
     }
