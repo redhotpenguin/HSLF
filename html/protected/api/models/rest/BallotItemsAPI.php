@@ -5,6 +5,8 @@ class BallotItemsAPI extends APIBase implements IAPI {
     public function getList($arguments = array()) {
 
         $ballotItemCriteria = new BallotItemCriteria();
+        $ballotItemCriteria->setPublishedStatus('yes');
+
         $includes = array();
 
         if (isset($arguments['state'])) {
@@ -30,12 +32,19 @@ class BallotItemsAPI extends APIBase implements IAPI {
         }
 
 
-        if ( ( isset($arguments['includeEndorsers']) && $arguments['includeEndorsers'] == 'true' ) ) {
+        if (( isset($arguments['includeEndorsers']) && $arguments['includeEndorsers'] == 'true')) {
             array_push($includes, 'endorsers');
+            $ballotItemCriteria->addEndorserRelation();
         }
 
         if (isset($arguments['includeScorecards']) && $arguments['includeScorecards'] == 'true') {
             array_push($includes, 'scorecards');
+            $ballotItemCriteria->addScorecardRelation();
+        }
+
+        if (isset($arguments['includeNews']) && $arguments['includeNews'] == 'true') {
+            array_push($includes, 'news');
+            $ballotItemCriteria->addNewsRelation();
         }
 
         $ballotItems = $ballotItemCriteria->search();
@@ -49,7 +58,7 @@ class BallotItemsAPI extends APIBase implements IAPI {
     public function getPartialList() {
         return $this->getOverview();
     }
-
+    
     public function getSingle($id) {
         $ballot_item = BallotItem::model()->findByPk($id);
 
@@ -113,7 +122,6 @@ class BallotItemsAPI extends APIBase implements IAPI {
             'score' => $ballot_item->score,
             'office_type' => $ballot_item->office->name,
             'district' => $ballot_item->district,
-            'BallotItemNews' => $ballot_item->ballotItemNews,
             'facebook_url' => $ballot_item->facebook_url,
             'facebook_share' => $ballot_item->facebook_share,
             'twitter_handle' => $ballot_item->twitter_handle,
@@ -157,6 +165,10 @@ class BallotItemsAPI extends APIBase implements IAPI {
             }
 
             $wrapped_ballot_item['scorecards'] = $scorecards;
+        }
+
+        if (in_array('news', $includes)) {
+            $wrapped_ballot_item['news'] = $ballot_item->ballotItemNews;
         }
 
         return $wrapped_ballot_item;
