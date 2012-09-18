@@ -108,7 +108,6 @@ class BallotItemCriteria {
     }
 
     public function search() {
-
         // bind parameters
         $this->criteria->params = $this->bindParams;
         
@@ -120,8 +119,7 @@ class BallotItemCriteria {
                 ));
 
         $activeDataProvider->pagination = false;
-
-
+        
         try {
             $ballotItems = $activeDataProvider->getData();
         } catch (CDbException $cdbE) {
