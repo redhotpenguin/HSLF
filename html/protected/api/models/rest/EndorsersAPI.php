@@ -10,10 +10,6 @@ class EndorsersAPI extends APIBase implements IAPI {
         return Endorser::model()->findByPk($endorser_id);
     }
 
-    public function getPartialList() {
-        return $this->getList();
-    }
-
 }
 
 ?>

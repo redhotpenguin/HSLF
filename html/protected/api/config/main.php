@@ -13,6 +13,7 @@ return array(
     'viewPath' => $api . '/views/',
     'runtimePath' => $api . '/runtime',
     'name' => PROJECT_NAME . ' - API',
+    'preload' => array('log'),
     // autoloading model and component classes
     'import' => array(
         'application.api.models.rest.criteria.*',
@@ -79,6 +80,21 @@ return array(
             // use 'api/error' action to display errors
             'errorAction' => 'api/index',
         ),
+        'log' => array(
+            'class' => 'CLogRouter',
+            'routes' => array(
+                array(
+                    'class' => 'CWebLogRoute',
+                    'levels' => 'trace,info,error,warning',
+                    'categories'=> 'system.db.CDbCommand',
+                    'filter' => array(
+                        'class' => 'CLogFilter',
+                        'prefixSession' => true,
+                        'prefixUser' => false,
+                        'logUser' => false,
+                        'logVars' => array(),
+                    ),
+            ))),
     ),
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']

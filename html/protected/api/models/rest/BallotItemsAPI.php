@@ -7,6 +7,7 @@ class BallotItemsAPI extends APIBase implements IAPI {
         $ballotItemCriteria = new BallotItemCriteria();
         $ballotItemCriteria->setPublishedStatus('yes');
 
+
         $includes = array();
 
         if (isset($arguments['state'])) {
@@ -26,25 +27,28 @@ class BallotItemsAPI extends APIBase implements IAPI {
             $ballotItemCriteria->setLimit($arguments['limit']);
         }
 
-
         if (isset($arguments['taxonomy']) && isset($arguments['taxonomyID'])) {
             $ballotItemCriteria->setTaxonomy($arguments['taxonomy'], $arguments['taxonomyID']);
         }
 
+        if (isset($arguments['includes'])) {
+            $include_list = explode(',', $arguments['includes']);
+            $include_list = array_map('trim', $include_list); // remove accidental white spaces
 
-        if (( isset($arguments['includeEndorsers']) && $arguments['includeEndorsers'] == 'true')) {
-            array_push($includes, 'endorsers');
-            $ballotItemCriteria->addEndorserRelation();
-        }
+            if (in_array('news', $include_list)) {
+                array_push($includes, 'news');
+                $ballotItemCriteria->addNewsRelation();
+            }
 
-        if (isset($arguments['includeScorecards']) && $arguments['includeScorecards'] == 'true') {
-            array_push($includes, 'scorecards');
-            $ballotItemCriteria->addScorecardRelation();
-        }
+            if (in_array('scorecards', $include_list)) {
+                array_push($includes, 'scorecards');
+                $ballotItemCriteria->addScorecardRelation();
+            }
 
-        if (isset($arguments['includeNews']) && $arguments['includeNews'] == 'true') {
-            array_push($includes, 'news');
-            $ballotItemCriteria->addNewsRelation();
+            if (in_array('endorsers', $include_list)) {
+                array_push($includes, 'endorsers');
+                $ballotItemCriteria->addEndorserRelation();
+            }
         }
 
         $ballotItems = $ballotItemCriteria->search();
@@ -55,15 +59,15 @@ class BallotItemsAPI extends APIBase implements IAPI {
             return false;
     }
 
-    public function getPartialList() {
-        return $this->getOverview();
-    }
-    
     public function getSingle($id) {
-        $ballot_item = BallotItem::model()->findByPk($id);
 
-        $includes = array('scorecards', 'endorsers');
+        $ballot_item = BallotItem::model()->with(array('district', 'recommendation', 'electionResult', 'ballotItemNews', 'scorecards', 'cards', 'office', 'party'))->findByPk($id);
 
+
+
+        //  $includes = array('scorecards', 'endorsers');
+
+        $includes = array('endorsers');
 
         if ($ballot_item != false)
             $result = $this->ballotItemWrapper($ballot_item, $includes);
@@ -71,27 +75,6 @@ class BallotItemsAPI extends APIBase implements IAPI {
             $result = false;
 
         return $result;
-    }
-
-    /**
-     * return a limited overview of the ballot items
-     * @param string $measure_order = "ASC" order by measure
-     * @return ballot return array of ballot item object
-     */
-    private function getOverview($measure_order = "ASC") {
-        $ballot_items = Yii::app()->db->createCommand()
-                ->select('b.id, item, b.measure_number, item_type, d.type AS district_type, d.state_abbr, d.number AS district_number, d.display_name AS district_display_name, r.type AS recommendation_type, measure_number, friendly_name')
-                ->from(array('ballot_item b'))
-                ->join('district d', 'b.district_id = d.id')
-                ->join('recommendation r', 'b.recommendation_id = r.id')
-                ->where('published = :published AND next_election_date>=:current_date or next_election_date ISNULL', array(
-                    ':published' => 'yes',
-                    ':current_date' => date('Y-m-d'), // use NOW() instead?
-                ))
-                ->order("d.state_abbr ASC, b.measure_number {$measure_order}")
-                ->queryAll();
-
-        return $ballot_items;
     }
 
     /**
@@ -120,7 +103,7 @@ class BallotItemsAPI extends APIBase implements IAPI {
             'url' => $ballot_item->url,
             'personal_url' => $ballot_item->personal_url,
             'score' => $ballot_item->score,
-            'office_type' => $ballot_item->office->name,
+            'office' => $ballot_item->office,
             'district' => $ballot_item->district,
             'facebook_url' => $ballot_item->facebook_url,
             'facebook_share' => $ballot_item->facebook_share,
@@ -134,6 +117,12 @@ class BallotItemsAPI extends APIBase implements IAPI {
         if (in_array('endorsers', $includes)) {
             $i = 0;
             $endorsers = array();
+
+            foreach ($ballot_item->ballotItemEndorsers as $ballotItemEndorsers) {
+                
+            }
+
+
             foreach ($ballot_item->ballotItemEndorsers as $ballotItemEndorsers) {
 
                 array_push($endorsers, array(

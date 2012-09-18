@@ -25,9 +25,5 @@ class OptionsAPI extends APIBase implements IAPI {
         return $result;
     }
 
-    public function getPartialList() {
-        return $this->getList();
-    }
-
 }
 

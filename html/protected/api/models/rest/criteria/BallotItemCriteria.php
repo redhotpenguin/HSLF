@@ -19,10 +19,10 @@ class BallotItemCriteria extends CDbCriteria {
 
         $defaultRelations = array(
             'district',
-            'recommendation',
-            'electionResult',
-            'office',
-            'party',
+            'recommendation',// todo: remove from defaultRelation
+            'electionResult',// todo: remove from defaultRelation
+            'office',// todo: remove from defaultRelation
+            'party', // todo: remove from defaultRelation
         );
 
         $this->setRelations($defaultRelations);

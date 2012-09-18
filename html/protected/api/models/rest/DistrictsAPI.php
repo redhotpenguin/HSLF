@@ -10,8 +10,4 @@ class DistrictsAPI extends APIBase implements IAPI {
         return District::model()->findByPk($state_abbr);
     }
 
-    public function getPartialList() {
-        return $this->getList();
-    }
-
 }

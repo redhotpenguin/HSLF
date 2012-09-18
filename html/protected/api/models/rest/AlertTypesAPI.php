@@ -11,10 +11,6 @@ class AlertTypesAPI extends APIBase implements IAPI {
         return AlertType::model()->findAllByPk($id);
     }
 
-    public function getPartialList() {
-        return $this->getList();
-    }
-
 }
 
 ?>
