@@ -47,6 +47,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
     'columns' => array(
         'id',
         'name',
+        'display_name',
         array(
             'name' => 'website',
             'type' => 'raw',

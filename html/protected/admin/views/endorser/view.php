@@ -20,6 +20,7 @@ $this->widget('zii.widgets.CDetailView', array(
     'attributes' => array(
         'id',
         'name',
+        'display_name',
         'description',
         array(
             'name' => 'website',

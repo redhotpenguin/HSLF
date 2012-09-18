@@ -9,6 +9,7 @@
  * @property string $description
  * @property string $website
  * @property string $image_url
+ * @property string $display_name
  */
 class Endorser extends CActiveRecord {
 
@@ -38,11 +39,11 @@ class Endorser extends CActiveRecord {
             array('name', 'required'),
             array('name', 'length', 'max' => 512),
             array('website, image_url', 'length', 'max' => 2048),
-            array('description', 'safe'),
+            array('description, display_name', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('website, image_url', 'url'),
-            array('id, name, description, website, image_url', 'safe', 'on' => 'search'),
+            array('id, name, description, website, image_url, display_name', 'safe', 'on' => 'search'),
         );
     }
 
@@ -67,7 +68,8 @@ class Endorser extends CActiveRecord {
             'name' => 'Name',
             'description' => 'Description',
             'website' => 'Website',
-            'image_url' => 'Image Url',
+            'image_url' => 'Image url',
+            'display_name' => 'Display name'
         );
     }
 
@@ -79,13 +81,14 @@ class Endorser extends CActiveRecord {
         // Warning: Please modify the following code to remove attributes that
         // should not be searched.
 
-        $criteria = new CDbCriteria;
+        $criteria = new CDbCriteriaInsensitive;
 
         $criteria->compare('id', $this->id);
         $criteria->compare('name', $this->name, true);
         $criteria->compare('description', $this->description, true);
         $criteria->compare('website', $this->website, true);
         $criteria->compare('image_url', $this->image_url, true);
+        $criteria->compare('display_name', $this->display_name , true);
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
