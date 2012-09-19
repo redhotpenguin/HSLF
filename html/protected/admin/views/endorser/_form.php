@@ -21,6 +21,14 @@
 
     <div class="">
         <?php
+        echo $form->labelEx($model, 'display_name');
+        echo $form->textField($model, 'display_name', array('size' => 60, 'class' => 'span9'));
+        echo $form->error($model, 'display_name');
+        ?>
+    </div>
+
+    <div class="">
+        <?php
         echo $form->labelEx($model, 'description');
         $this->widget('ext.tinymce.TinyMce', array(
             'model' => $model,

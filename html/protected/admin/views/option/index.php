@@ -19,6 +19,8 @@ else
     $template = '{view}{update}';
 
 
+$dataProvider->pagination->pageSize=50;
+
 $this->widget('bootstrap.widgets.BootGridView', array(
     'dataProvider' => $dataProvider,
     'columns' => array(
