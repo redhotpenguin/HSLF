@@ -7,7 +7,6 @@ class BallotItemsAPI extends APIBase implements IAPI {
         $ballotItemCriteria = new BallotItemCriteria();
         $ballotItemCriteria->setPublishedStatus('yes');
 
-
         $includes = array();
 
         if (isset($arguments['state'])) {
@@ -49,6 +48,26 @@ class BallotItemsAPI extends APIBase implements IAPI {
                 array_push($includes, 'endorsers');
                 $ballotItemCriteria->addEndorserRelation();
             }
+
+            if (in_array('recommendations', $include_list)) {
+                array_push($includes, 'recommendations');
+                $ballotItemCriteria->addRecommendationRelation();
+            }
+
+            if (in_array('electionResults', $include_list)) {
+                array_push($includes, 'electionResults');
+                $ballotItemCriteria->addElectionResultRelation();
+            }
+
+            if (in_array('offices', $include_list)) {
+                array_push($includes, 'offices');
+                $ballotItemCriteria->addOfficeRelation();
+            }
+
+            if (in_array('parties', $include_list)) {
+                array_push($includes, 'parties');
+                $ballotItemCriteria->addPartyRelation();
+            }
         }
 
         $ballotItems = $ballotItemCriteria->search();
@@ -59,15 +78,15 @@ class BallotItemsAPI extends APIBase implements IAPI {
             return false;
     }
 
+    /**
+     * get a single item with relations
+     * @todo Refactor this function to use BallotItemCriteria?
+     */
     public function getSingle($id) {
-
+        // todo: find better way to do this
         $ballot_item = BallotItem::model()->with(array('district', 'recommendation', 'electionResult', 'ballotItemNews', 'scorecards', 'cards', 'office', 'party'))->findByPk($id);
 
-
-
-        //  $includes = array('scorecards', 'endorsers');
-
-        $includes = array('endorsers');
+        $includes = array('endorsers', 'scorecards', 'news');
 
         if ($ballot_item != false)
             $result = $this->ballotItemWrapper($ballot_item, $includes);
@@ -91,19 +110,15 @@ class BallotItemsAPI extends APIBase implements IAPI {
             'id' => $ballot_item->id,
             'item' => $ballot_item->item,
             'item_type' => $ballot_item->item_type,
-            'recommendation' => $ballot_item->recommendation,
             'next_election_date' => $ballot_item->next_election_date,
             'district' => $ballot_item->district,
             'priority' => $ballot_item->priority,
             'detail' => $ballot_item->detail,
             'date_published' => $ballot_item->date_published,
-            'party' => $ballot_item->party,
             'image_url' => $ballot_item->image_url,
-            'electionResult' => $ballot_item->electionResult,
             'url' => $ballot_item->url,
             'personal_url' => $ballot_item->personal_url,
             'score' => $ballot_item->score,
-            'office' => $ballot_item->office,
             'district' => $ballot_item->district,
             'facebook_url' => $ballot_item->facebook_url,
             'facebook_share' => $ballot_item->facebook_share,
@@ -117,10 +132,6 @@ class BallotItemsAPI extends APIBase implements IAPI {
         if (in_array('endorsers', $includes)) {
             $i = 0;
             $endorsers = array();
-
-            foreach ($ballot_item->ballotItemEndorsers as $ballotItemEndorsers) {
-                
-            }
 
 
             foreach ($ballot_item->ballotItemEndorsers as $ballotItemEndorsers) {
@@ -160,6 +171,24 @@ class BallotItemsAPI extends APIBase implements IAPI {
             $wrapped_ballot_item['news'] = $ballot_item->ballotItemNews;
         }
 
+        if (in_array('recommendations', $includes)) {
+            $wrapped_ballot_item['recommendation'] = $ballot_item->recommendation;
+        }
+
+        if (in_array('electionResults', $includes)) {
+            $wrapped_ballot_item['electionResult'] = $ballot_item->electionResult;
+        }
+
+
+        if (in_array('parties', $includes)) {
+            $wrapped_ballot_item['party'] =  $ballot_item->party;
+        }
+
+
+        if (in_array('offices', $includes)) {
+            $wrapped_ballot_item['office'] = $ballot_item->office;
+        }
+        
         return $wrapped_ballot_item;
     }
 
@@ -177,5 +206,3 @@ class BallotItemsAPI extends APIBase implements IAPI {
     }
 
 }
-
-?>

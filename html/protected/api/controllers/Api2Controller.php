@@ -20,8 +20,8 @@ class Api2Controller extends Controller {
      * List supported models
      */
     public function actionList() {
+
         $requested_model = $_GET['model'] . 'API';
-        $category = "";
 
         if (!class_exists($requested_model)) {
             $code = 404;

@@ -18,11 +18,7 @@ class BallotItemCriteria extends CDbCriteria {
         );
 
         $defaultRelations = array(
-            'district',
-            'recommendation',// todo: remove from defaultRelation
-            'electionResult',// todo: remove from defaultRelation
-            'office',// todo: remove from defaultRelation
-            'party', // todo: remove from defaultRelation
+            'district'
         );
 
         $this->setRelations($defaultRelations);
@@ -145,7 +141,7 @@ class BallotItemCriteria extends CDbCriteria {
      * @return return ballot items
      */
     public function search() {
-        // print_r($this->toArray());
+        //print_r($this->toArray());
 
         $activeDataProvider = new CActiveDataProvider($this->ballotItem, array(
                     'criteria' => $this,
@@ -187,8 +183,36 @@ class BallotItemCriteria extends CDbCriteria {
             'together' => true,
             'joinType' => 'LEFT JOIN',
         );
-        
+
         $this->addRelation('endorsers', $withEndorsers);
+    }
+
+    /**
+     * Set the relation for recommendations
+     */
+    public function addRecommendationRelation() {
+        $this->addRelation('recommendation');
+    }
+
+    /**
+     * Set the relation for election results
+     */
+    public function addElectionResultRelation() {
+        $this->addRelation('electionResult');
+    }
+
+    /**
+     * Set the relation for offices
+     */
+    public function addOfficeRelation() {
+        $this->addRelation('office');
+    }
+
+    /**
+     * Set the relation for parties
+     */
+    public function addPartyRelation() {
+        $this->addRelation('party');
     }
 
 }
