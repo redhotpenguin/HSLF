@@ -35,6 +35,8 @@ class BallotItemsAPI extends APIBase implements IAPI {
             $includeList = array_map('trim', $includeList); // remove accidental white spaces
             // switch keys and indexes, so we can use the index as a lookup
             $includeList = array_flip($includeList);
+            
+         //  print_r($includeList);
 
             if (array_key_exists('districts', $includeList)) {
                 array_push($includes, 'districts');
@@ -67,12 +69,12 @@ class BallotItemsAPI extends APIBase implements IAPI {
                 $ballotItemCriteria->addNewsRelation();
             }
 
-            if (in_array('offices', $includeList)) {
+             if (array_key_exists('offices', $includeList)) {
                 array_push($includes, 'offices');
                 $ballotItemCriteria->addOfficeRelation();
             }
 
-            if (in_array('parties', $includeList)) {
+            if (array_key_exists('parties', $includeList)) {
                 array_push($includes, 'parties');
                 $ballotItemCriteria->addPartyRelation();
             }
