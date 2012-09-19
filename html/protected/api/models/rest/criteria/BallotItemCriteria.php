@@ -14,9 +14,9 @@ class BallotItemCriteria extends CDbCriteria {
         $this->tableAlias = $this->ballotItem->getTableAlias(false, false);
 
 
-        // order by ascending ID by default.
+        // order by descending ID by default.
         $this->sort = array(
-            'defaultOrder' => $this->tableAlias . '.id ASC',
+            'defaultOrder' => $this->tableAlias . '.id DESC',
         );
 
         // set no default relations
