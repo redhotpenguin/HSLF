@@ -19,7 +19,7 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $dbname = 'ouroregon_dev';
     $dbuser = 'postgres';
     $dbpass = 'pengu1n';
-    $dbport = '5444';
+    $dbport = '5432';
     $siteurl = 'http://www.voterguide.com';
     $uploaddir = '/../content/img'; // physical path
     $uploadpath = '/content/img'; // wwww path
