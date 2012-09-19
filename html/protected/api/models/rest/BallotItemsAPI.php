@@ -31,40 +31,48 @@ class BallotItemsAPI extends APIBase implements IAPI {
         }
 
         if (isset($arguments['includes'])) {
-            $include_list = explode(',', $arguments['includes']);
-            $include_list = array_map('trim', $include_list); // remove accidental white spaces
+            $includeList = explode(',', $arguments['includes']);
+            $includeList = array_map('trim', $includeList); // remove accidental white spaces
+            // switch keys and indexes, so we can use the index as a lookup
+            $includeList = array_flip($includeList);
 
-            if (in_array('news', $include_list)) {
-                array_push($includes, 'news');
-                $ballotItemCriteria->addNewsRelation();
+            if (array_key_exists('districts', $includeList)) {
+                array_push($includes, 'districts');
+                $ballotItemCriteria->addDistrictRelation();
             }
 
-            if (in_array('scorecards', $include_list)) {
+
+            if (array_key_exists('scorecards', $includeList)) {
                 array_push($includes, 'scorecards');
                 $ballotItemCriteria->addScorecardRelation();
             }
 
-            if (in_array('endorsers', $include_list)) {
+            if (array_key_exists('endorsers', $includeList)) {
                 array_push($includes, 'endorsers');
                 $ballotItemCriteria->addEndorserRelation();
             }
 
-            if (in_array('recommendations', $include_list)) {
+            if (array_key_exists('recommendations', $includeList)) {
                 array_push($includes, 'recommendations');
                 $ballotItemCriteria->addRecommendationRelation();
             }
 
-            if (in_array('electionResults', $include_list)) {
+            if (array_key_exists('electionResults', $includeList)) {
                 array_push($includes, 'electionResults');
                 $ballotItemCriteria->addElectionResultRelation();
             }
 
-            if (in_array('offices', $include_list)) {
+            if (array_key_exists('news', $includeList)) {
+                array_push($includes, 'news');
+                $ballotItemCriteria->addNewsRelation();
+            }
+
+            if (in_array('offices', $includeList)) {
                 array_push($includes, 'offices');
                 $ballotItemCriteria->addOfficeRelation();
             }
 
-            if (in_array('parties', $include_list)) {
+            if (in_array('parties', $includeList)) {
                 array_push($includes, 'parties');
                 $ballotItemCriteria->addPartyRelation();
             }
@@ -111,7 +119,6 @@ class BallotItemsAPI extends APIBase implements IAPI {
             'item' => $ballot_item->item,
             'item_type' => $ballot_item->item_type,
             'next_election_date' => $ballot_item->next_election_date,
-            'district' => $ballot_item->district,
             'priority' => $ballot_item->priority,
             'detail' => $ballot_item->detail,
             'date_published' => $ballot_item->date_published,
@@ -119,7 +126,6 @@ class BallotItemsAPI extends APIBase implements IAPI {
             'url' => $ballot_item->url,
             'personal_url' => $ballot_item->personal_url,
             'score' => $ballot_item->score,
-            'district' => $ballot_item->district,
             'facebook_url' => $ballot_item->facebook_url,
             'facebook_share' => $ballot_item->facebook_share,
             'twitter_handle' => $ballot_item->twitter_handle,
@@ -167,6 +173,10 @@ class BallotItemsAPI extends APIBase implements IAPI {
             $wrapped_ballot_item['scorecards'] = $scorecards;
         }
 
+        if (in_array('districts', $includes)) {
+            $wrapped_ballot_item['districts'] = $ballot_item->district;
+        }
+
         if (in_array('news', $includes)) {
             $wrapped_ballot_item['news'] = $ballot_item->ballotItemNews;
         }
@@ -181,14 +191,14 @@ class BallotItemsAPI extends APIBase implements IAPI {
 
 
         if (in_array('parties', $includes)) {
-            $wrapped_ballot_item['party'] =  $ballot_item->party;
+            $wrapped_ballot_item['party'] = $ballot_item->party;
         }
 
 
         if (in_array('offices', $includes)) {
             $wrapped_ballot_item['office'] = $ballot_item->office;
         }
-        
+
         return $wrapped_ballot_item;
     }
 

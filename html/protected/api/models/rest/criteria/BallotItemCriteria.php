@@ -12,16 +12,15 @@ class BallotItemCriteria extends CDbCriteria {
     public function __construct() {
         $this->ballotItem = new BallotItem;
         $this->tableAlias = $this->ballotItem->getTableAlias(false, false);
-
+        
+        
+        // order by ascending ID by default.
         $this->sort = array(
             'defaultOrder' => $this->tableAlias . '.id ASC',
         );
 
-        $defaultRelations = array(
-            'district'
-        );
-
-        $this->setRelations($defaultRelations);
+        // set no default relations
+        $this->with = array();
     }
 
     /**
@@ -51,6 +50,7 @@ class BallotItemCriteria extends CDbCriteria {
      */
     public function setState($stateAbbr) {
         $this->addCondition('district.state_abbr=:stateAbbr', 'AND');
+        $this->addRelation('district');
         $this->params[':stateAbbr'] = $stateAbbr;
     }
 
@@ -130,6 +130,10 @@ class BallotItemCriteria extends CDbCriteria {
      */
     public function addRelation($relationName, $with = array()) {
 
+        // make sure the relation is not already loaded
+        if(in_array($relationName, $this->with))
+            return false;
+        
         if (!empty($with))
             $this->with[$relationName] = $with;
         else
@@ -141,8 +145,7 @@ class BallotItemCriteria extends CDbCriteria {
      * @return return ballot items
      */
     public function search() {
-        //print_r($this->toArray());
-
+      //  print_r($this->toArray());
         $activeDataProvider = new CActiveDataProvider($this->ballotItem, array(
                     'criteria' => $this,
                     'sort' => $this->sort,
@@ -158,6 +161,13 @@ class BallotItemCriteria extends CDbCriteria {
         }
 
         return $ballotItems;
+    }
+
+    /**
+     * Set the relation for scorecards
+     */
+    public function addDistrictRelation() {
+        $this->addRelation('district');
     }
 
     /**
