@@ -12,8 +12,8 @@ class BallotItemCriteria extends CDbCriteria {
     public function __construct() {
         $this->ballotItem = new BallotItem;
         $this->tableAlias = $this->ballotItem->getTableAlias(false, false);
-        
-        
+
+
         // order by ascending ID by default.
         $this->sort = array(
             'defaultOrder' => $this->tableAlias . '.id ASC',
@@ -36,10 +36,12 @@ class BallotItemCriteria extends CDbCriteria {
                 return false;
 
 
-            $this->addCondition('endorsers.id = :endorserID', 'AND');
+            $this->addCondition('endorsers.id = :endorserID ', 'AND');
+            $this->addCondition('position !=:position', 'AND');
+            
             $this->params[':endorserID'] = $taxonomyID;
+            $this->params[':position'] = 'np';
 
-            // add relations
             $this->addEndorserRelation();
         }
     }
@@ -131,9 +133,9 @@ class BallotItemCriteria extends CDbCriteria {
     public function addRelation($relationName, $with = array()) {
 
         // make sure the relation is not already loaded
-        if(in_array($relationName, $this->with))
+        if (in_array($relationName, $this->with))
             return false;
-        
+
         if (!empty($with))
             $this->with[$relationName] = $with;
         else
@@ -145,7 +147,7 @@ class BallotItemCriteria extends CDbCriteria {
      * @return return ballot items
      */
     public function search() {
-      //  print_r($this->toArray());
+        //  print_r($this->toArray());
         $activeDataProvider = new CActiveDataProvider($this->ballotItem, array(
                     'criteria' => $this,
                     'sort' => $this->sort,
