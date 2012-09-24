@@ -7,7 +7,7 @@
  */
 class BallotItemBehavior extends CActiveRecordBehavior {
 
-    public function beforeSave() {
+    public function beforeSave($event) {
 
         if (!empty($this->owner->url)) {
 
