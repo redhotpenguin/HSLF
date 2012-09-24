@@ -125,7 +125,6 @@ class BallotItemsAPI extends APIBase implements IAPI {
             'item' => $ballot_item->item,
             'item_type' => $ballot_item->item_type,
             'next_election_date' => $ballot_item->next_election_date,
-            'priority' => $ballot_item->priority,
             'detail' => $ballot_item->detail,
             'date_published' => $ballot_item->date_published,
             'image_url' => $ballot_item->image_url,

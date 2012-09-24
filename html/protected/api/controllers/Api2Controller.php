@@ -88,9 +88,14 @@ class Api2Controller extends Controller {
 
         $json_encoded_result = CJSON_Nested::encode($container);
 
-        echo $json_encoded_result;
-       // echo memory_get_peak_usage(true)/1024;
-       die();
+        // serve padded json
+        if(isset($_GET['callback']))
+           echo $_GET['callback'] . ' (' . $json_encoded_result . ');';
+        else
+            echo $json_encoded_result;
+
+        die();
+        
     }
 
     /**
