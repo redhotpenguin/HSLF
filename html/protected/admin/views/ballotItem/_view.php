@@ -24,9 +24,6 @@
 	<?php echo CHtml::encode($data->next_election_date); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('priority')); ?>:</b>
-	<?php echo CHtml::encode($data->priority); ?>
-	<br />
 
 	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('detail')); ?>:</b>
