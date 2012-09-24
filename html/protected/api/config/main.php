@@ -106,6 +106,6 @@ return array(
         'urbanairship_app_key' => UA_API_KEY,
         'urbanairship_app_master_secret' => UA_API_SECRET,
         'site_url' => SITE_URL,
-        'share_url' => SITE_URL, // in case we want to store the shared urls in another server
+        'share_url' => SHARE_URL, // in case we want to store the shared urls in another server
     ),
 );

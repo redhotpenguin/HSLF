@@ -260,7 +260,6 @@ class ApiController extends Controller {
             'item_type' => $ballot_item->item_type,
             'recommendation' => $ballot_item->recommendation,
             'next_election_date' => $ballot_item->next_election_date,
-            'priority' => $ballot_item->priority,
             'detail' => $ballot_item->detail,
             'date_published' => $ballot_item->date_published,
             'party' => $ballot_item->party,

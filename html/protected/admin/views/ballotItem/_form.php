@@ -1,8 +1,8 @@
 <?php
 if ($model->isNewRecord) {
-    $ns = "var ns  = {site_url: '" . getSetting('site_url') . "' };";
+    $ns = "var ns  = {site_url: '" . getSetting('site_url') . "',share_url: '" . getSetting('share_url') . "' };";
 } else {
-    $ns = "var ns  = {site_url: '" . getSetting('site_url') . "', ballot_id: " . $model->id . " };";
+    $ns = "var ns  = {site_url: '" . getSetting('site_url') . "',share_url: '" . getSetting('share_url') . "', ballot_id: " . $model->id . " };";
 }
 
 Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::POS_HEAD);
@@ -150,28 +150,6 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
         echo $form->error($model, 'friendly_name');
         ?>
     </div>
-
-    <?php
-    // echo $form->labelEx($model, 'priority');
-    // priority is deprecared, make it 1 by default
-    echo $form->hiddenField($model, 'priority', array('value' => 1));
-
-    /*
-      $this->widget('ext.UIWidgets.SliderWidget', array(
-      'model' => $model,
-      'attribute' => 'priority',
-      'options' => array(
-      'min' => 1,
-      'max' => 10,
-      'width' => 200,
-      'animate' => false,
-      ),
-      ));
-     * 
-     */
-
-    echo $form->error($model, 'priority');
-    ?>
 
     <div class="clearfix"></div>
     <hr/>

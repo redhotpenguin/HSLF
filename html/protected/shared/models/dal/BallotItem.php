@@ -10,7 +10,6 @@
  * @property string $item_type
  * @property integer $recommendation_id
  * @property string $next_election_date
- * @property integer $priority
  * @property string $detail
  * @property string $date_published
  * @property string $published
@@ -68,8 +67,8 @@ class BallotItem extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('district_id, item, recommendation_id, priority, office_id, date_published, published, election_result_id, url', 'required'),
-            array('district_id, recommendation_id, priority, election_result_id, score, party_id', 'numerical', 'integerOnly' => true),
+            array('district_id, item, recommendation_id, office_id, date_published, published, election_result_id, url', 'required'),
+            array('district_id, recommendation_id, election_result_id, score, party_id', 'numerical', 'integerOnly' => true),
             array('item_type, twitter_handle', 'length', 'max' => 128),
             array('facebook_share, friendly_name', 'length', 'max' => 1024),
             array('measure_number', 'length', 'max' => 24),
@@ -84,7 +83,7 @@ class BallotItem extends CActiveRecord {
             array('url', 'unique_url'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, district_id, item, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party_id, url, image_url, election_result_id, district_number, district_type,district_display_name, state_abbr, personal_url, score, office_type, party, facebook_url, facebook_share, twitter_handle, twitter_share, hold_office, measure_number, friendly_name', 'safe', 'on' => 'search'),
+            array('id, district_id, item, item_type, recommendation_id, next_election_date, detail, date_published, published, party_id, url, image_url, election_result_id, district_number, district_type,district_display_name, state_abbr, personal_url, score, office_type, party, facebook_url, facebook_share, twitter_handle, twitter_share, hold_office, measure_number, friendly_name', 'safe', 'on' => 'search'),
         );
     }
 
@@ -127,7 +126,6 @@ class BallotItem extends CActiveRecord {
             'item_type' => 'Ballot Item Type',
             'recommendation_id' => 'Recommendation',
             'next_election_date' => 'Election Date',
-            'priority' => 'Priority',
             'detail' => 'Detail',
             'date_published' => 'Date Published',
             'published' => 'Published',
@@ -178,7 +176,6 @@ class BallotItem extends CActiveRecord {
         $criteria->compare('item', $this->item, true);
         $criteria->compare('recommendation_id', $this->recommendation_id);
         $criteria->compare('next_election_date', $this->next_election_date, true);
-        $criteria->compare('priority', $this->priority);
         $criteria->compare('detail', $this->detail, true);
         $criteria->compare('published', $this->published, true);
         $criteria->compare('party_id', $this->party_id, true);
@@ -236,13 +233,7 @@ class BallotItem extends CActiveRecord {
                 ));
     }
 
-    /**
-     * Return the different priority options
-     * @return array array of priority options
-     */
-    public function getPriorityOptions() {
-        return array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10);
-    }
+
 
     /**
      * Return the different item options

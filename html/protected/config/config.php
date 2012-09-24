@@ -12,6 +12,7 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $siteurl = 'http://oo.m.winningmark.com';
     $uploaddir = '/../content/img'; // physical path
     $uploadpath = '/content/img'; // wwww path
+    $shareurl = $siteurl;
 
     set_include_path(get_include_path() . PATH_SEPARATOR . '/home/dotcloud/php-env/share/php');
 } else {    //dev server conf
@@ -23,14 +24,15 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $siteurl = 'http://www.voterguide.com';
     $uploaddir = '/../content/img'; // physical path
     $uploadpath = '/content/img'; // wwww path
+    $shareurl = 'http://www.google.com';
 }
-
 
 // Image File Manager conf:
 // please also update root path in protected/extensions/tinymce/assets/jscripts/tiny_mce/plugins/imagemanager/config.php
 // Project config
 DEFINE('PROJECT_NAME', 'Our Oregon');
 DEFINE('SITE_URL', $siteurl);
+DEFINE('SHARE_URL', $shareurl); // microsite base url
 DEFINE('ADMIN_EMAIL', 'mobile@winningmark.com');
 DEFINE('UPLOAD_DIR', $uploaddir);
 DEFINE('UPLOAD_PATH', $uploadpath);

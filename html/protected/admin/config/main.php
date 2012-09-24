@@ -116,7 +116,7 @@ return array(
         'urbanairship_app_master_secret' => UA_API_SECRET,
         'upload_path' => SITE_URL . UPLOAD_PATH,
         'upload_dir' => UPLOAD_DIR,
-        'share_url' => SITE_URL, // in case we want to store the shared urls in another server
+        'share_url' => SHARE_URL, // in case we want to store the shared urls in another server
         'html_directory' => $html_directory
     ),
     'theme' => ADMIN_THEME,
