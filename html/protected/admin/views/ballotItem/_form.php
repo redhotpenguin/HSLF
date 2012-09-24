@@ -1,8 +1,8 @@
 <?php
 if ($model->isNewRecord) {
-    $ns = "var ns  = {site_url: '" . getSetting('site_url') . "' };";
+    $ns = "var ns  = {site_url: '" . getSetting('site_url') . "',share_url: '" . getSetting('share_url') . "' };";
 } else {
-    $ns = "var ns  = {site_url: '" . getSetting('site_url') . "', ballot_id: " . $model->id . " };";
+    $ns = "var ns  = {site_url: '" . getSetting('site_url') . "',share_url: '" . getSetting('share_url') . "', ballot_id: " . $model->id . " };";
 }
 
 Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::POS_HEAD);
