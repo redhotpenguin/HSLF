@@ -324,7 +324,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
 
     <div class="">
         <?php echo $form->labelEx($model, 'keywords'); ?>
-        <?php echo $form->textField($model, 'keywords', array('class' => 'span7', 'placeholder'=>'')); ?>
+        <?php echo $form->textField($model, 'keywords', array('class' => 'span7', 'placeholder'=>'Revenue, schools, education, teachers, students, class size')); ?>
         <?php echo $form->error($model, 'keywords'); ?>
     </div>
 

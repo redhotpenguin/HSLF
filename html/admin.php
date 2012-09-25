@@ -19,6 +19,6 @@ require_once($yii);
 
 $yii =Yii::createWebApplication($config);
 
-$yii->cache->flush();
+//$yii->cache->flush();
 
 $yii->run();

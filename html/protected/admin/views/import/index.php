@@ -10,7 +10,6 @@ if (isset($result)) {
 }
 ?>
 
-
 <div class="form">
     <?php
     echo CHtml::form(CHtml::normalizeUrl(array('import/index', 'action' => 'importState')), 'POST', array('enctype' => 'multipart/form-data'));
