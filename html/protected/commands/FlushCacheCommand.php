@@ -9,11 +9,11 @@ class FlushCacheCommand extends CConsoleCommand {
         if ($cacheFlushResult) {
             $msg = "Cache successfully flushed";
             echo $msg;
-            error_log($cacheFlushResult);
+            error_log($msg);
         } else {
-            $msg = "Could not flush the cache";
+            $msg = "Could not flush the cache.";
             echo $msg;
-            error_log($cacheFlushResult);
+            error_log($msg);
         }
     }
 
