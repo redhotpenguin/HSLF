@@ -138,6 +138,7 @@ class BallotItemsAPI extends APIBase implements IAPI {
             'hold_office' => $ballot_item->hold_office,
             'measure_number' => $ballot_item->measure_number,
             'friendly_name' => $ballot_item->friendly_name,
+            'keywords' => $ballot_item->keywords,
         );
 
         if (in_array('endorsers', $includes)) {

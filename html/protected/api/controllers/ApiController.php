@@ -305,7 +305,7 @@ class ApiController extends Controller {
             $measure_order = 'ASC';
 
         $ballot_items = Yii::app()->db->createCommand()
-                ->select('b.id, item, b.measure_number, item_type, d.type AS district_type, d.state_abbr, d.number AS district_number, d.display_name AS district_display_name, r.type AS recommendation_type, measure_number, friendly_name')
+                ->select('b.id, item, b.measure_number, item_type, d.type AS district_type, d.state_abbr, d.number AS district_number, d.display_name AS district_display_name, r.type AS recommendation_type, measure_number, friendly_name, keywords')
                 ->from(array('ballot_item b'))
                 ->join('district d', 'b.district_id=d.id')
                 ->join('recommendation r', 'b.recommendation_id=r.id')

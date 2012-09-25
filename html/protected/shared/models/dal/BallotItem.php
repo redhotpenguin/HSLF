@@ -31,6 +31,7 @@
  * @property string hold_office
  * @property string measure_number
  * @property string friendly_name
+ * @property string keywords
 
 
  */
@@ -79,11 +80,11 @@ class BallotItem extends CActiveRecord {
             array('published, hold_office', 'length', 'max' => 16),
             array('date_published', 'date', 'format' => 'yyyy-M-d H:m:s'),
             array('next_election_date', 'date', 'format' => 'yyyy-M-d'),
-            array('next_election_date, detail, url, image_url', 'safe'),
+            array('next_election_date, detail, url, image_url, keywords', 'safe'),
             array('url', 'unique_url'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, district_id, item, item_type, recommendation_id, next_election_date, detail, date_published, published, party_id, url, image_url, election_result_id, district_number, district_type,district_display_name, state_abbr, personal_url, score, office_type, party, facebook_url, facebook_share, twitter_handle, twitter_share, hold_office, measure_number, friendly_name', 'safe', 'on' => 'search'),
+            array('id, district_id, item, item_type, recommendation_id, next_election_date, detail, date_published, published, party_id, url, image_url, election_result_id, district_number, district_type,district_display_name, state_abbr, personal_url, score, office_type, party, facebook_url, facebook_share, twitter_handle, twitter_share, hold_office, measure_number, friendly_name,keywords', 'safe', 'on' => 'search'),
         );
     }
 
@@ -137,6 +138,7 @@ class BallotItem extends CActiveRecord {
             'office_type' => 'Office',
             'facebook_share' => 'Facebook Share Text',
             'twitter_share' => 'Twitter Share Text',
+            'keywords' => 'Keywords'
         );
     }
 

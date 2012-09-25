@@ -287,7 +287,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
     <div class="right_col">
         <?php
         echo $form->labelEx($model, 'hold_office');
-        echo $form->dropDownList($model, 'hold_office', array('na'=>'Not Applicable', 'no' => 'No', 'yes' => 'Yes', ));
+        echo $form->dropDownList($model, 'hold_office', array('na' => 'Not Applicable', 'no' => 'No', 'yes' => 'Yes',));
         echo $form->error($model, 'hold_office');
         ?>
     </div>
@@ -320,7 +320,13 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
     ?>
 
 
+    <hr/>
 
+    <div class="">
+        <?php echo $form->labelEx($model, 'keywords'); ?>
+        <?php echo $form->textField($model, 'keywords', array('class' => 'span7', 'placeholder'=>'')); ?>
+        <?php echo $form->error($model, 'keywords'); ?>
+    </div>
 
 
     <hr/>
