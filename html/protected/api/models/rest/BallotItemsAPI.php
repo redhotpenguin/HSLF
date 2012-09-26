@@ -178,7 +178,7 @@ class BallotItemsAPI extends APIBase implements IAPI {
             foreach ($ballot_item->ballotItemEndorsers as $ballotItemEndorsers) {
 
                 array_push($endorsers, array(
-                    'endorser_id' => $ballotItemEndorsers->endorser->id,
+                    'id' => $ballotItemEndorsers->endorser->id,
                     'position' => $ballotItemEndorsers->position,
                     'name' => $ballotItemEndorsers->endorser->name,
                     'description' => $ballotItemEndorsers->endorser->description,
