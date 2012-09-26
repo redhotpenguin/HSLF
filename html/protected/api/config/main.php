@@ -44,9 +44,8 @@ return array(
                 array('api2/index', 'pattern' => 'api/v2', 'verb' => 'GET'),
                 array('api2/list', 'pattern' => 'api/v2/<model:\w+>/', 'verb' => 'GET'),
                 array('api2/view', 'pattern' => 'api/v2/<model:\w+>/<id:\d+>', 'verb' => 'GET'),
+
                 // API V1
-
-
                 array('api/list', 'pattern' => 'api/<model:\w+>', 'verb' => 'GET'),
                 //   ex: /api/ballot_items/state/or/?districts=...
                 array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>', 'verb' => 'GET'),
@@ -86,7 +85,7 @@ return array(
                 array(
                     'class' => 'CWebLogRoute',
                     'levels' => 'trace,info,error,warning',
-                    'categories'=> 'system.db.CDbCommand',
+                    'categories' => 'system.db.CDbCommand',
                     'filter' => array(
                         'class' => 'CLogFilter',
                         'prefixSession' => true,

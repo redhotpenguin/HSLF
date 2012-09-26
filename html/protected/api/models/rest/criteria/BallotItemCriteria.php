@@ -38,7 +38,7 @@ class BallotItemCriteria extends CDbCriteria {
 
             $this->addCondition('endorsers.id = :endorserID ', 'AND');
             $this->addCondition('position !=:position', 'AND');
-            
+
             $this->params[':endorserID'] = $taxonomyID;
             $this->params[':position'] = 'np';
 
@@ -147,7 +147,7 @@ class BallotItemCriteria extends CDbCriteria {
      * @return return ballot items
      */
     public function search() {
-        //  print_r($this->toArray());
+      //  print_r($this->toArray());
         $activeDataProvider = new CActiveDataProvider($this->ballotItem, array(
                     'criteria' => $this,
                     'sort' => $this->sort,
@@ -158,7 +158,7 @@ class BallotItemCriteria extends CDbCriteria {
         try {
             $ballotItems = $activeDataProvider->getData();
         } catch (CDbException $cdbE) {
-            echo $cdbE->getMessage();
+            echo $cdbE->getMessage(); // debug
             $ballotItems = false;
         }
 
@@ -225,6 +225,35 @@ class BallotItemCriteria extends CDbCriteria {
      */
     public function addPartyRelation() {
         $this->addRelation('party');
+    }
+
+    /**
+     * Add a condition based on a model attribute
+     * @param string $attribute - model attribute
+     * @param string $value - field value
+     * string string $operator - logic operator
+     */
+    public function addAttributeCondition($attribute, $value, $operator = 'AND') {
+
+        if (!$this->ballotItem->hasAttribute($attribute))
+            return false;
+
+        $condition = "$attribute=:$attribute";
+
+        $this->addCondition("{$this->tableAlias}.{$condition}", $operator);
+        $this->params[":$attribute"] = $value;
+    }
+
+    public function addAllRelations() {
+        $this->with = array(); // remove existing relarions
+        $this->addDistrictRelation();
+        $this->addScorecardRelation();
+        $this->addEndorserRelation();
+        $this->addRecommendationRelation();
+        $this->addElectionResultRelation();
+        $this->addNewsRelation();
+        $this->addOfficeRelation();
+        $this->addPartyRelation();
     }
 
 }

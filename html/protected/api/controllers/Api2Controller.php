@@ -65,6 +65,7 @@ class Api2Controller extends Controller {
         $this->sendResponse($code, $message);
     }
 
+
     /**
      * Print json data . Set http headers to application/json
      * @param integer $status HTTP status
@@ -89,13 +90,12 @@ class Api2Controller extends Controller {
         $json_encoded_result = CJSON_Nested::encode($container);
 
         // serve padded json
-        if(isset($_GET['callback']))
-           echo $_GET['callback'] . ' (' . $json_encoded_result . ');';
+        if (isset($_GET['callback']))
+            echo $_GET['callback'] . ' (' . $json_encoded_result . ');';
         else
             echo $json_encoded_result;
 
         die();
-        
     }
 
     /**

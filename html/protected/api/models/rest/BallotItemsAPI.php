@@ -1,7 +1,10 @@
 <?php
 
 class BallotItemsAPI extends APIBase implements IAPI {
-
+    
+    private $allIncludes = array('districts', 'scorecards','endorsers', 'recommendations', 'news', 'electionResults', 'offices', 'parties');
+    
+    
     /**
      * return a list of ballot items
      * @param  array $arguments API Get Parameters
@@ -9,10 +12,56 @@ class BallotItemsAPI extends APIBase implements IAPI {
      */
     public function getList($arguments = array()) {
 
-        $ballotItemCriteria = new BallotItemCriteria();
-        $ballotItemCriteria->setPublishedStatus('yes');
-
         $includes = array();
+
+        $ballotItemCriteria = new BallotItemCriteria();
+
+        $this->criteriaBuilder($ballotItemCriteria, $arguments);
+
+        if (isset($arguments['includes'])) {
+
+            if ($arguments['includes'] == 'all') {
+                $includes = $this->allIncludes;
+                $ballotItemCriteria->addAllRelations();      
+            } else {
+                $includes = explode(',', $arguments['includes']);
+                $includes = $this->includeParser($ballotItemCriteria, $includes);
+            }
+        }
+
+        $ballotItems = $ballotItemCriteria->search();
+
+        if ($ballotItems)
+            return $this->ballotItemsWrapper($ballotItems, $includes);
+        else
+            return false;
+    }
+
+    /**
+     * get a single item with relations
+     * @param integer $id ballot item id
+     * @todo Refactor this function to use BallotItemCriteria?
+     */
+    public function getSingle($id) {
+        // todo: find better way to do this
+        $ballot_item = BallotItem::model()->with(array('district', 'recommendation', 'electionResult', 'ballotItemNews', 'scorecards', 'cards', 'office', 'party'))->findByPk($id);
+
+       
+        if ($ballot_item != false)
+            $result = $this->ballotItemWrapper($ballot_item, $this->allIncludes);
+        else
+            $result = false;
+
+        return $result;
+    }
+
+    /**
+     * Set up a ballotIemCriteria based on an array of arguments
+     * @param BallotItemCriteria &$ballotItemCriteria reference to a ballotitemcriteria object
+     * @param array $arguments - array of arguments
+     */
+    private function criteriaBuilder(BallotItemCriteria &$ballotItemCriteria, $arguments) {
+        $ballotItemCriteria->setPublishedStatus('yes');
 
         if (isset($arguments['state'])) {
 
@@ -35,79 +84,59 @@ class BallotItemsAPI extends APIBase implements IAPI {
             $ballotItemCriteria->setTaxonomy($arguments['taxonomy'], $arguments['taxonomyID']);
         }
 
-        if (isset($arguments['includes'])) {
-            $includeList = explode(',', $arguments['includes']);
-            $includeList = array_map('trim', $includeList); // remove accidental white spaces
-            // switch keys and indexes, so we can use the index as a lookup
-            $includeList = array_flip($includeList);
-
-            //  print_r($includeList);
-
-            if (array_key_exists('districts', $includeList)) {
-                array_push($includes, 'districts');
-                $ballotItemCriteria->addDistrictRelation();
-            }
-
-            if (array_key_exists('scorecards', $includeList)) {
-                array_push($includes, 'scorecards');
-                $ballotItemCriteria->addScorecardRelation();
-            }
-
-            if (array_key_exists('endorsers', $includeList)) {
-                array_push($includes, 'endorsers');
-                $ballotItemCriteria->addEndorserRelation();
-            }
-
-            if (array_key_exists('recommendations', $includeList)) {
-                array_push($includes, 'recommendations');
-                $ballotItemCriteria->addRecommendationRelation();
-            }
-
-            if (array_key_exists('electionResults', $includeList)) {
-                array_push($includes, 'electionResults');
-                $ballotItemCriteria->addElectionResultRelation();
-            }
-
-            if (array_key_exists('news', $includeList)) {
-                array_push($includes, 'news');
-                $ballotItemCriteria->addNewsRelation();
-            }
-
-            if (array_key_exists('offices', $includeList)) {
-                array_push($includes, 'offices');
-                $ballotItemCriteria->addOfficeRelation();
-            }
-
-            if (array_key_exists('parties', $includeList)) {
-                array_push($includes, 'parties');
-                $ballotItemCriteria->addPartyRelation();
-            }
+        if (isset($arguments['field']) && isset($arguments['fieldValue'])) {
+            $ballotItemCriteria->addAttributeCondition($arguments['field'], $arguments['fieldValue'], 'AND');
         }
-
-        $ballotItems = $ballotItemCriteria->search();
-
-        if ($ballotItems)
-            return $this->ballotItemsWrapper($ballotItems, $includes);
-        else
-            return false;
     }
 
-    /**
-     * get a single item with relations
-     * @todo Refactor this function to use BallotItemCriteria?
-     */
-    public function getSingle($id) {
-        // todo: find better way to do this
-        $ballot_item = BallotItem::model()->with(array('district', 'recommendation', 'electionResult', 'ballotItemNews', 'scorecards', 'cards', 'office', 'party'))->findByPk($id);
+    private function includeParser(BallotItemCriteria &$ballotItemCriteria, $includeList) {
+        $includes = array();
 
-        $includes = array('endorsers', 'scorecards', 'news');
+        $includeList = array_map('trim', $includeList); // remove accidental white spaces
+        // switch keys and indexes, so we can use the index as a lookup
+        $includeList = array_flip($includeList);
 
-        if ($ballot_item != false)
-            $result = $this->ballotItemWrapper($ballot_item, $includes);
-        else
-            $result = false;
+        if (array_key_exists('districts', $includeList)) {
+            array_push($includes, 'districts');
+            $ballotItemCriteria->addDistrictRelation();
+        }
 
-        return $result;
+        if (array_key_exists('scorecards', $includeList)) {
+            array_push($includes, 'scorecards');
+            $ballotItemCriteria->addScorecardRelation();
+        }
+
+        if (array_key_exists('endorsers', $includeList)) {
+            array_push($includes, 'endorsers');
+            $ballotItemCriteria->addEndorserRelation();
+        }
+
+        if (array_key_exists('recommendations', $includeList)) {
+            array_push($includes, 'recommendations');
+            $ballotItemCriteria->addRecommendationRelation();
+        }
+
+        if (array_key_exists('electionResults', $includeList)) {
+            array_push($includes, 'electionResults');
+            $ballotItemCriteria->addElectionResultRelation();
+        }
+
+        if (array_key_exists('news', $includeList)) {
+            array_push($includes, 'news');
+            $ballotItemCriteria->addNewsRelation();
+        }
+
+        if (array_key_exists('offices', $includeList)) {
+            array_push($includes, 'offices');
+            $ballotItemCriteria->addOfficeRelation();
+        }
+
+        if (array_key_exists('parties', $includeList)) {
+            array_push($includes, 'parties');
+            $ballotItemCriteria->addPartyRelation();
+        }
+
+        return $includes;
     }
 
     /**
@@ -222,5 +251,6 @@ class BallotItemsAPI extends APIBase implements IAPI {
 
         return $wrapped_ballots;
     }
+
 
 }
