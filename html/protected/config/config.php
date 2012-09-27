@@ -52,7 +52,7 @@ DEFINE('API_SECRET', 'PqiW_IDKL3mFi_OirCqOe-u');
 // Urban Airship
 DEFINE('UA_API_KEY', '3rQVdPPdT7Osvdx1vB37Tg'); // Our Oregon credentials
 DEFINE('UA_API_SECRET', 'Iy380QDRQbCALRrgDB_8Qw'); // master secret
-DEFINE('UA_DASHBOARD_LINK', 'https://go.urbanairship.com/apps/3rQVdPPdT7Osvdx1vB37Tg/composer/rich-push/');
+DEFINE('UA_DASHBOARD_LINK', 'https://go.urbanairship.com/apps/k0CycJkISr6PYqZ5MO2r-A/composer/rich-push/');
 
 // Cicero Config
 DEFINE('CICERO_USERNAME', 'winningmark');
