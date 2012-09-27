@@ -6,7 +6,7 @@ class Api2Controller extends Controller {
     const API_VERSION = '0.2';
 
     public function actionIndex() {
-        $this->sendResponse(500);
+        $this->sendResponse(404);
     }
 
     /**
