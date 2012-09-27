@@ -4,6 +4,9 @@ class BallotItemsAPI extends APIBase implements IAPI {
     
     private $allIncludes = array('districts', 'scorecards','endorsers', 'recommendations', 'news', 'electionResults', 'offices', 'parties');
     
+    public function __construct(){
+        parent::__construct(new BallotItem );
+    }
     
     /**
      * return a list of ballot items

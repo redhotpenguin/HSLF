@@ -1,13 +1,9 @@
 <?php
 
-class StatesAPI extends APIBase  implements IAPI {
+class StatesAPI extends APIBase {
 
-    public function getList( $arguments = array() ) {
-        return State::model()->findAll();
-    }
-
-    public function getSingle($state_abbr) {
-        return State::model()->findByPk($state_abbr);
+    public function __construct(){
+        parent::__construct( new State );
     }
 
 }
