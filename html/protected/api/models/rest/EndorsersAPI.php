@@ -1,13 +1,9 @@
 <?php
 
-class EndorsersAPI extends APIBase implements IAPI {
+class EndorsersAPI extends APIBase {
 
-    public function getList($arguments = array()) {
-        return Endorser::model()->findAll();
-    }
-
-    public function getSingle($endorser_id) {
-        return Endorser::model()->findByPk($endorser_id);
+    public function __construct() {
+        parent::__construct(new Endorser);
     }
 
 }
