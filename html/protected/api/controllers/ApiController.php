@@ -281,6 +281,7 @@ class ApiController extends Controller {
             'endorsers' => $endorsers,
             'measure_number' => $ballot_item->measure_number,
             'friendly_name' => $ballot_item->friendly_name,
+            'keywords' => $ballot_item->keywords,
         );
 
         return $wrapped_ballot_item;
