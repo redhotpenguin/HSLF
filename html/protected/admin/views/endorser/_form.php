@@ -37,6 +37,15 @@
 
     <div class="">
         <?php
+        echo $form->labelEx($model, 'slug');
+        echo $form->textField($model, 'slug', array('size' => 60, 'class' => 'span9'));
+        echo $form->error($model, 'slug');
+        ?>
+    </div>
+
+
+    <div class="">
+        <?php
         echo $form->labelEx($model, 'description');
         $this->widget('ext.tinymce.TinyMce', array(
             'model' => $model,
