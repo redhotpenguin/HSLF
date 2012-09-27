@@ -1,1 +1,2 @@
-0 */6 * * * php /home/dotcloud/code/HSLF/cron.php updatecicero > /dev/null
+MAILTO="jonas.palmero@gmail.com"
+0 */4 * * * php /home/dotcloud/code/HSLF/cron.php updatecicero
