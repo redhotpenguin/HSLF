@@ -251,6 +251,7 @@ class ApiController extends Controller {
                 'image_url' => $ballotItemEndorsers->endorser->image_url,
                 'display_name' => $ballotItemEndorsers->endorser->display_name,
                 'list_name' => $ballotItemEndorsers->endorser->list_name,
+                'slug' => $ballotItemEndorsers->endorser->slug,
             ));
             ++$i;
         }
