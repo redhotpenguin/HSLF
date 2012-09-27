@@ -59,12 +59,11 @@ class Api2Controller extends Controller {
                 $model->setAuthenticated(true);
             else
                 $model->setAuthenticated(false);
-
+            
             $message = $model->getSingle($id);
         }
         $this->sendResponse($code, $message);
     }
-
 
     /**
      * Print json data . Set http headers to application/json
