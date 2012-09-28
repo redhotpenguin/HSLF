@@ -38,7 +38,7 @@ class Endorser extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('name, list_name, display_name', 'required'),
+            array('name, list_name, display_name, slug', 'required'),
             array('name, list_name, slug', 'length', 'max' => 512),
             array('website, image_url', 'length', 'max' => 2048),
             array('description, display_name, list_name', 'safe'),
