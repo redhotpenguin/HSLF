@@ -36,11 +36,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'priority'); ?>
-		<?php echo $form->textField($model,'priority'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'detail'); ?>
 		<?php echo $form->textArea($model,'detail',array('rows'=>6, 'cols'=>50)); ?>
 	</div>

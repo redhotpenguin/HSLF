@@ -10,6 +10,8 @@
  * @property string $website
  * @property string $image_url
  * @property string $display_name
+ * @property string $list_name
+ * @property string $slug
  */
 class Endorser extends CActiveRecord {
 
@@ -36,14 +38,14 @@ class Endorser extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('name', 'required'),
-            array('name', 'length', 'max' => 512),
+            array('name, list_name, display_name, slug', 'required'),
+            array('name, list_name, slug', 'length', 'max' => 512),
             array('website, image_url', 'length', 'max' => 2048),
-            array('description, display_name', 'safe'),
+            array('description, display_name, list_name', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('website, image_url', 'url'),
-            array('id, name, description, website, image_url, display_name', 'safe', 'on' => 'search'),
+            array('id, name, description, website, image_url, display_name, list_name, slug', 'safe', 'on' => 'search'),
         );
     }
 
@@ -65,11 +67,13 @@ class Endorser extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'name' => 'Name',
+            'name' => 'Full Name',
             'description' => 'Description',
             'website' => 'Website',
             'image_url' => 'Image url',
-            'display_name' => 'Display name'
+            'display_name' => 'Name in Title Bar',
+            'list_name' => 'Name In Lists',
+            'slug' => 'Slug'
         );
     }
 
@@ -88,8 +92,8 @@ class Endorser extends CActiveRecord {
         $criteria->compare('description', $this->description, true);
         $criteria->compare('website', $this->website, true);
         $criteria->compare('image_url', $this->image_url, true);
-        $criteria->compare('display_name', $this->display_name , true);
-
+        $criteria->compare('display_name', $this->display_name, true);
+        $criteria->compare('slug', $this->slug, true);
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
                     'pagination' => array(

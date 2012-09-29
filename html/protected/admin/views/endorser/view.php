@@ -21,7 +21,9 @@ $this->widget('zii.widgets.CDetailView', array(
         'id',
         'name',
         'display_name',
+        'list_name',
         'description',
+        'slug',
         array(
             'name' => 'website',
             'type' => 'raw',

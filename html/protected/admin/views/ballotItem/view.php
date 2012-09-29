@@ -12,7 +12,7 @@ $this->menu = array(
 );
 ?>
 
-<h1>View Ballot: <?php echo $model->item; ?></h1>
+<h1>View Ballot item: <?php echo $model->item; ?></h1>
 
 <?php
 $state_name = $model->district->stateAbbr->name;
@@ -85,6 +85,7 @@ $this->widget('bootstrap.widgets.BootDetailView', array(
         'twitter_share',
         'friendly_name',
         'measure_number',
+        'keywords',
         'published',
         'date_published',
     ),

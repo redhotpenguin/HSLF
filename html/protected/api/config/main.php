@@ -13,8 +13,11 @@ return array(
     'viewPath' => $api . '/views/',
     'runtimePath' => $api . '/runtime',
     'name' => PROJECT_NAME . ' - API',
+    'preload' => array('log'),
     // autoloading model and component classes
     'import' => array(
+        'application.api.models.rest.criteria.*',
+        'application.api.models.rest.*',
         'application.vendors.urbanairship.*',
         'admin.models.*',
         'application.shared.models.dal.*', // data access logic classes
@@ -37,6 +40,12 @@ return array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'rules' => array(
+                //API V2
+                array('api2/index', 'pattern' => 'api/v2', 'verb' => 'GET'),
+                array('api2/list', 'pattern' => 'api/v2/<model:\w+>/', 'verb' => 'GET'),
+                array('api2/view', 'pattern' => 'api/v2/<model:\w+>/<id:\d+>', 'verb' => 'GET'),
+
+                // API V1
                 array('api/list', 'pattern' => 'api/<model:\w+>', 'verb' => 'GET'),
                 //   ex: /api/ballot_items/state/or/?districts=...
                 array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>', 'verb' => 'GET'),
@@ -70,6 +79,21 @@ return array(
             // use 'api/error' action to display errors
             'errorAction' => 'api/index',
         ),
+        'log' => array(
+            'class' => 'CLogRouter',
+            'routes' => array(
+                array(
+                    'class' => 'CWebLogRoute',
+                    'levels' => 'trace,info,error,warning',
+                    'categories' => 'system.db.CDbCommand',
+                    'filter' => array(
+                        'class' => 'CLogFilter',
+                        'prefixSession' => true,
+                        'prefixUser' => false,
+                        'logUser' => false,
+                        'logVars' => array(),
+                    ),
+            ))),
     ),
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']
@@ -81,6 +105,6 @@ return array(
         'urbanairship_app_key' => UA_API_KEY,
         'urbanairship_app_master_secret' => UA_API_SECRET,
         'site_url' => SITE_URL,
-        'share_url' => SITE_URL, // in case we want to store the shared urls in another server
+        'share_url' => SHARE_URL, // in case we want to store the shared urls in another server
     ),
 );

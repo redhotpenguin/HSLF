@@ -12,25 +12,27 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $siteurl = 'http://oo.m.winningmark.com';
     $uploaddir = '/../content/img'; // physical path
     $uploadpath = '/content/img'; // wwww path
+    $shareurl = $siteurl;
 
     set_include_path(get_include_path() . PATH_SEPARATOR . '/home/dotcloud/php-env/share/php');
 } else {    //dev server conf
     $dbhost = 'localhost';
-    $dbname = 'ouroregon_dev';
+    $dbname = 'ouroregon';
     $dbuser = 'postgres';
     $dbpass = 'pengu1n';
-    $dbport = '5444';
+    $dbport = '5432';
     $siteurl = 'http://www.voterguide.com';
     $uploaddir = '/../content/img'; // physical path
     $uploadpath = '/content/img'; // wwww path
+    $shareurl = 'http://www.google.com';
 }
-
 
 // Image File Manager conf:
 // please also update root path in protected/extensions/tinymce/assets/jscripts/tiny_mce/plugins/imagemanager/config.php
 // Project config
 DEFINE('PROJECT_NAME', 'Our Oregon');
 DEFINE('SITE_URL', $siteurl);
+DEFINE('SHARE_URL', $shareurl); // microsite base url
 DEFINE('ADMIN_EMAIL', 'mobile@winningmark.com');
 DEFINE('UPLOAD_DIR', $uploaddir);
 DEFINE('UPLOAD_PATH', $uploadpath);
@@ -50,7 +52,7 @@ DEFINE('API_SECRET', 'PqiW_IDKL3mFi_OirCqOe-u');
 // Urban Airship
 DEFINE('UA_API_KEY', '3rQVdPPdT7Osvdx1vB37Tg'); // Our Oregon credentials
 DEFINE('UA_API_SECRET', 'Iy380QDRQbCALRrgDB_8Qw'); // master secret
-DEFINE('UA_DASHBOARD_LINK', 'https://go.urbanairship.com/apps/3rQVdPPdT7Osvdx1vB37Tg/composer/rich-push/');
+DEFINE('UA_DASHBOARD_LINK', 'https://go.urbanairship.com/apps/k0CycJkISr6PYqZ5MO2r-A/composer/rich-push/');
 
 // Cicero Config
 DEFINE('CICERO_USERNAME', 'winningmark');

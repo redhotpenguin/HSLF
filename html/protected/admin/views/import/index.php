@@ -10,7 +10,6 @@ if (isset($result)) {
 }
 ?>
 
-
 <div class="form">
     <?php
     echo CHtml::form(CHtml::normalizeUrl(array('import/index', 'action' => 'importState')), 'POST', array('enctype' => 'multipart/form-data'));
@@ -101,7 +100,7 @@ echo Chtml::endForm();
 
     <div class="clearfix"></div>
     <p>
-        <b>CSV structure:</b> id, district_id, item, item_type, recommendation_id, next_election_date, priority, detail, date_published, published, party_id, image_url, election_result_id, url, personal_url, score, office_id, facebook_url, twitter_handle, hold_office, facebook_share, twitter_share, measure_number, friendly_name
+        <b>CSV structure:</b> id, district_id, item, item_type, recommendation_id, next_election_date, detail, date_published, published, party_id, image_url, election_result_id, url, personal_url, score, office_id, facebook_url, twitter_handle, hold_office, facebook_share, twitter_share, measure_number, friendly_name, keywords
         <br/>
         (headers must be included)
     </p>
@@ -357,7 +356,7 @@ echo Chtml::endForm();
 
     <div class="clearfix"></div>
     <p>
-        <b>CSV structure:</b>id, name, description, website, image_url, display_name
+        <b>CSV structure:</b>id, name, description, website, image_url, display_name,list_name, slug
         (headers must be included)
     </p>
     <?php

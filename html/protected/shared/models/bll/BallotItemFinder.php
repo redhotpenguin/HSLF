@@ -39,11 +39,6 @@ class BallotItemFinder extends ModelFinder {
         $this->addCondition('next_election_date', '', ' ISNULL ', true);
     }
 
-    public function setPriority($priority) {
-        $this->addCondition('priority', 'priority', ModelFinder::EQUAL);
-        $this->addParameter('priority', $priority);
-    }
-
     public function setPublishedYear($year) {
         $this->addCondition($this->table_alias . '.date_published', 'year_start', ModelFinder::GREATER_THAN);
         $this->addParameter('year_start', $year . '-01-01 00:00:00');
@@ -52,19 +47,11 @@ class BallotItemFinder extends ModelFinder {
         $this->addParameter('year_end', $year . '-12-31 23:59:59');
     }
 
-    public function orderByHighestPriority($order = ModelFinder::ASCENDANT) {
-        if ($this->isValidOrder($order))
-            $this->setOrder('priority', $order);
-    }
+
 
     public function orderByItem($order = ModelFinder::ASCENDANT) {
         if ($this->isValidOrder($order))
             $this->setOrder('item', $order);
-    }
-
-    public function orderByLowestPriority($order = ModelFinder::ASCENDANT) {
-        if ($this->isValidOrder($order))
-            $this->setOrder('priority', ModelFinder::ASCENDANT);
     }
 
     public function orderByMeasureNumber($order = ModelFinder::ASCENDANT) {

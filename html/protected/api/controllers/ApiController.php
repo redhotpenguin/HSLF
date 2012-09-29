@@ -250,6 +250,8 @@ class ApiController extends Controller {
                 'website' => $ballotItemEndorsers->endorser->website,
                 'image_url' => $ballotItemEndorsers->endorser->image_url,
                 'display_name' => $ballotItemEndorsers->endorser->display_name,
+                'list_name' => $ballotItemEndorsers->endorser->list_name,
+                'slug' => $ballotItemEndorsers->endorser->slug,
             ));
             ++$i;
         }
@@ -260,7 +262,6 @@ class ApiController extends Controller {
             'item_type' => $ballot_item->item_type,
             'recommendation' => $ballot_item->recommendation,
             'next_election_date' => $ballot_item->next_election_date,
-            'priority' => $ballot_item->priority,
             'detail' => $ballot_item->detail,
             'date_published' => $ballot_item->date_published,
             'party' => $ballot_item->party,
@@ -281,6 +282,7 @@ class ApiController extends Controller {
             'endorsers' => $endorsers,
             'measure_number' => $ballot_item->measure_number,
             'friendly_name' => $ballot_item->friendly_name,
+            'keywords' => $ballot_item->keywords,
         );
 
         return $wrapped_ballot_item;
@@ -306,7 +308,7 @@ class ApiController extends Controller {
             $measure_order = 'ASC';
 
         $ballot_items = Yii::app()->db->createCommand()
-                ->select('b.id, item, b.measure_number, item_type, d.type AS district_type, d.state_abbr, d.number AS district_number, d.display_name AS district_display_name, r.type AS recommendation_type, measure_number, friendly_name')
+                ->select('b.id, item, b.measure_number, item_type, d.type AS district_type, d.state_abbr, d.number AS district_number, d.display_name AS district_display_name, r.type AS recommendation_type, measure_number, friendly_name, keywords')
                 ->from(array('ballot_item b'))
                 ->join('district d', 'b.district_id=d.id')
                 ->join('recommendation r', 'b.recommendation_id=r.id')

@@ -153,7 +153,7 @@ class District extends CActiveRecord {
     /**
      *   Save a District model
      */
-    public function save() {
+    public function save($runValidation = true, $attributes = NULL) {
         try {
             $save_result = parent::save();
         } catch (CDbException $cdbe) {
