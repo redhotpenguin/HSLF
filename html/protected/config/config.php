@@ -12,7 +12,7 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $siteurl = 'http://oo.m.winningmark.com';
     $uploaddir = '/../content/img'; // physical path
     $uploadpath = '/content/img'; // wwww path
-    $shareurl = $siteurl;
+    $shareurl = 'http://vote.ouroregon.org';
 
     set_include_path(get_include_path() . PATH_SEPARATOR . '/home/dotcloud/php-env/share/php');
 } else {    //dev server conf
@@ -24,7 +24,7 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $siteurl = 'http://www.voterguide.com';
     $uploaddir = '/../content/img'; // physical path
     $uploadpath = '/content/img'; // wwww path
-    $shareurl = 'http://www.google.com';
+    $shareurl = 'http://vote.ouroregon.org';
 }
 
 // Image File Manager conf:
