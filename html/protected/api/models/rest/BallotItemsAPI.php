@@ -215,7 +215,7 @@ class BallotItemsAPI extends APIBase implements IAPI {
         }
 
         if (in_array('districts', $includes)) {
-            $wrapped_ballot_item['districts'] = $ballot_item->district;
+            $wrapped_ballot_item['districts'] = array( $ballot_item->district );
         }
 
         if (in_array('news', $includes)) {
