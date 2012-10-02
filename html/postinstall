@@ -1,3 +1,5 @@
 #!/bin/sh
 
 crontab mvgcron
+
+ln -s /home/dotcloud/data /home/dotcloud/current/content
