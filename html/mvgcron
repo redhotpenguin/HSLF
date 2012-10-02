@@ -1,6 +1,2 @@
-<<<<<<< HEAD
-20 * * * * php /home/dotcloud/code/HSLF/cron.php updatecicero > /dev/null
-=======
-MAILTO="jonas.palmero@gmail.com"
+MAILTO="mobile@winningmark.com"
 0 */4 * * * php /home/dotcloud/code/HSLF/cron.php updatecicero
->>>>>>> e909667815b88bc2d88628824bb7f3971bfa4cc6
