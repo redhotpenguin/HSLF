@@ -43,10 +43,16 @@ class BallotItemNews extends CActiveRecord {
             array('ballot_item_id, title, date_published, slug', 'required'),
             array('ballot_item_id', 'numerical', 'integerOnly' => true),
             array('content, excerpt', 'safe'),
+            array('slug', 'slugValidation'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, ballot_item_id, title, content, excerpt, date_published, slug', 'safe', 'on' => 'search'),
         );
+    }
+
+    public function slugValidation($attribute, $params) {
+        if (!preg_match('/^[\w-]+$/', $this->slug))
+            $this->addError($attribute, "Invalid slug");
     }
 
     /**
