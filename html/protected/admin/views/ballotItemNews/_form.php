@@ -1,5 +1,5 @@
 <?php
-echo $updated;
+echo $updated = (isset($updated)?$updated:"");
 ?>
 <div class="form">
 
