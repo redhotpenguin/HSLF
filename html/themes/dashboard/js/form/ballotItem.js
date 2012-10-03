@@ -44,7 +44,7 @@ jQuery.fn.printURL = function(filtered_url) {
     year_published = date_published_input.val().substr(0, 4);
     
     // URL minus the slug
-    url = ns.share_url+"/ballot/"+year_published+"/";
+    url = ns.share_url+"/#!/ballotItems/";
    
     var o = $(this[0]);
         
