@@ -87,6 +87,7 @@ class BallotItemEndorserBehavior extends CBehavior {
     public function addEndorser($endorser_id, $position = 'np') {
         $connection = Yii::app()->db;
         $command = $connection->createCommand();
+        $add_endorser_result = "";
 
         // if the ballot item is already endorsed, return false;
         if ($this->hasEndorser($endorser_id)) {
