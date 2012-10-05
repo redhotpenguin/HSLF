@@ -1,5 +1,5 @@
 <?php
-echo $updated;
+echo $updated = (isset($updated) ? $updated : "");
 ?>
 <div class="form">
 
@@ -15,6 +15,13 @@ echo $updated;
         <?php echo $form->textField($model, 'title', array('size' => 111, 'class' => 'span9',)); ?>
         <?php echo $form->error($model, 'title'); ?>
     </div>
+
+    <div class="row">
+        <?php echo $form->labelEx($model, 'slug'); ?>
+        <?php echo $form->textField($model, 'slug', array('size' => 111, 'class' => 'span9',)); ?>
+        <?php echo $form->error($model, 'slug'); ?>
+    </div>
+
 
 
     <div class="row">
@@ -71,9 +78,9 @@ echo $updated;
     <div style="clear:both;"></div>
 
     <div class="row buttons">
-<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
     </div>
 
-<?php $this->endWidget(); ?>
+    <?php $this->endWidget(); ?>
 
 </div><!-- form -->
