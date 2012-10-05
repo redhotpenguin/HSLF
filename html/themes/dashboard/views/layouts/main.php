@@ -81,7 +81,7 @@
                                     'items' => array(
                                         array('label' => 'Application users', 'url' => array('/application_users'), 'visible' => !Yii::app()->user->isGuest),
                                         array('label' => 'Tags', 'url' => array('/tag'), 'visible' => !Yii::app()->user->isGuest),
-                                        array('label' => 'Set alert types', 'url' => array('/alertType'), 'visible' => !Yii::app()->user->isGuest),
+                                        array('label' => 'Alert types', 'url' => array('/alertType'), 'visible' => !Yii::app()->user->isGuest),
                                         array('label' => 'Options', 'url' => array('/option'), 'visible' => !Yii::app()->user->isGuest),
                                     ),
                             )),
