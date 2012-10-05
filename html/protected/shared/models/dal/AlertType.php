@@ -7,6 +7,7 @@
  * @property integer $id
  * @property string $display_name
  * @property integer $tag_id
+ * @property string $category
  *
  * The followings are the available model relations:
  * @property Tag $tag
@@ -37,11 +38,13 @@ class AlertType extends CActiveRecord {
      */
     public function rules() {
         return array(
+            array('display_name, category, tag_id','required'),
             array('tag_id', 'numerical', 'integerOnly' => true),
             array('display_name', 'length', 'max' => 1024),
+            array('category', 'length', 'max' => 512),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, display_name, tag_id, tag_name', 'safe', 'on' => 'search'),
+            array('id, display_name, tag_id, tag_name, category', 'safe', 'on' => 'search'),
         );
     }
 
@@ -65,6 +68,7 @@ class AlertType extends CActiveRecord {
             'display_name' => 'Display Name',
             'tag_id' => 'Tag ID',
             'Tag' => 'Tag',
+            'category' => 'Category',
         );
     }
 
@@ -75,7 +79,7 @@ class AlertType extends CActiveRecord {
     public function search() {
         // Warning: Please modify the following code to remove attributes that
         // should not be searched.
-          //error_log(print_r($_REQUEST, true));
+        //error_log(print_r($_REQUEST, true));
         $criteria = new CDbCriteria;
 
         if ($this->tag_name != '') {
@@ -86,6 +90,7 @@ class AlertType extends CActiveRecord {
 
         $criteria->compare('id', $this->id);
         $criteria->compare('display_name', $this->display_name, true);
+        $criteria->compare('category', $this->category, true);
         $criteria->compare('tag_id', $this->tag_id);
 
         return new CActiveDataProvider($this, array(

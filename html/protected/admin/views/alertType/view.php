@@ -15,8 +15,6 @@ $this->menu = array(
 <h1>View: <?php echo $model->display_name; ?></h1>
 
 <?php
-
-
 $this->widget('bootstrap.widgets.BootDetailView', array(
     'data' => $model,
     'attributes' => array(
@@ -27,6 +25,7 @@ $this->widget('bootstrap.widgets.BootDetailView', array(
             'header' => 'Tag',
             'value' => $model->tag->name,
         ),
+        'category',
     ),
 ));
 ?>

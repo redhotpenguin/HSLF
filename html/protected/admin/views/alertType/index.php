@@ -22,6 +22,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
             'name' => 'Tag',
             'value' => '$data->tag->name',
         ),
+        'category',
 
         array(// display a column with "view", "update" and "delete" buttons
             'class' => 'bootstrap.widgets.BootButtonColumn',

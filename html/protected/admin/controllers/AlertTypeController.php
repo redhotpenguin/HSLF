@@ -123,11 +123,9 @@ class AlertTypeController extends Controller {
         $model = new AlertType('search');
         $model->unsetAttributes();  // clear any default values
 
-        $tag_name = trim($_GET['AlertType']['tag']);
       
         if (isset($_GET['AlertType'])){
             $model->attributes = $_GET['AlertType'];
-            $model->tag_name = $tag_name;
         }
 
         $this->render('admin', array(

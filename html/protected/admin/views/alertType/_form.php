@@ -20,6 +20,12 @@
     </div>
 
     <div class="">
+        <?php echo $form->labelEx($model, 'category'); ?>
+        <?php echo $form->textField($model, 'category', array('size' => 60, 'maxlength' => 512, 'placeholder' => 'Ex: organization')); ?>
+        <?php echo $form->error($model, 'category'); ?>
+    </div>
+
+    <div class="">
         <?php
         echo $form->labelEx($model, 'tag_id');
         $tagList = CHtml::listData(Tag::model()->findAllByAttributes(array('type' => 'alerts')), 'id', 'name');

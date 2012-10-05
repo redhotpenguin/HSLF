@@ -50,6 +50,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
             'name' => 'tag',
             'value' => '$data->tag->name',
         ),
+        'category',
         array(
             'class' => 'bootstrap.widgets.BootButtonColumn',
         ),
