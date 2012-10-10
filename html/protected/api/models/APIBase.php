@@ -5,11 +5,13 @@ abstract class APIBase implements IAPI {
     const AUTH_REQUIRED = 'Authentication required';
 
     protected $model;
+    protected $tableAlias;
     protected $isAuthenticated;
     protected $requiresAuth;
 
     public function __construct(CActiveRecord $model, $requiresAuth = false) {
         $this->model = $model;
+        $this->tableAlias = $model->getTableAlias();
         $this->requiresAuth = $requiresAuth;
     }
 
@@ -19,32 +21,42 @@ abstract class APIBase implements IAPI {
 
     public function getList($arguments = array()) {
 
+        // auth is required but user is not authenticated:
+        if ($this->requiresAuth && !$this->isAuthenticated)
+            return self::AUTH_REQUIRED;;
+
         // doesn't require auth or is authenticated
         if (!$this->requiresAuth || $this->isAuthenticated) {
             $relations = array();
+            $attributes = array();
+            $options = array('order' => $this->tableAlias . '.id desc');
+
             // check if relationships are set
             if (isset($arguments['relations'])) {
                 $relations = explode(',', $arguments['relations']);
             }
 
-            // filter by a single attribute
-            if (isset($arguments['attributeValue']) && isset($arguments['attribute']) && $this->model->with($relations)->hasAttribute($arguments['attribute'])) {
+            // handle orderering
+            if (isset($arguments['orderBy']) && isset($arguments['order'])) {
+                $arguments['order'] = strtoupper($arguments['order']);
+                if ($this->model->hasAttribute($arguments['orderBy']) && ( $arguments['order'] == 'ASC' || $arguments['order'] == 'DESC')) {
+                    $options['order'] = $arguments['orderBy'] . " " . $arguments['order'];
 
-                try {
-                    $result = $this->model->findAllByAttributes(array($arguments['attribute'] => $arguments['attributeValue']));
-                } catch (CDbException $cdbException) {
-                    $result = "error";
+                    $options['order'] = "{$this->tableAlias}.{$arguments['orderBy']} {$arguments['order']}";
                 }
-                return $result;
             }
-            // no attributes specified, return all the rows
-            else
-                return $this->model->with($relations)->findAll();
+
+            // filter by attribute
+            if (isset($arguments['attributeValue']) && isset($arguments['attribute']) && $this->model->hasAttribute($arguments['attribute'])) {
+                $attributes = array($arguments['attribute'] => $arguments['attributeValue']);
+            }
+            try {
+                $result = $this->model->with($relations)->findAllByAttributes($attributes, $options);
+            } catch (CDbException $cdbE) {
+                $result = "no_results";
+            }
+            return $result;
         }
-
-
-        else
-            return self::AUTH_REQUIRED;
     }
 
     public function getSingle($pkID) {
