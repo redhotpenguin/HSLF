@@ -21,9 +21,14 @@ abstract class APIBase implements IAPI {
 
         // doesn't require auth or is authenticated
         if (!$this->requiresAuth || $this->isAuthenticated) {
-          
+            $relations = array();
+            // check if relationships are set
+            if (isset($arguments['relations'])) {
+                $relations = explode(',', $arguments['relations']);
+            }
+
             // filter by a single attribute
-            if (isset($arguments['attributeValue']) && isset($arguments['attribute']) && $this->model->hasAttribute($arguments['attribute'])) {
+            if (isset($arguments['attributeValue']) && isset($arguments['attribute']) && $this->model->with($relations)->hasAttribute($arguments['attribute'])) {
 
                 try {
                     $result = $this->model->findAllByAttributes(array($arguments['attribute'] => $arguments['attributeValue']));
@@ -34,7 +39,7 @@ abstract class APIBase implements IAPI {
             }
             // no attributes specified, return all the rows
             else
-                return $this->model->findAll();
+                return $this->model->with($relations)->findAll();
         }
 
 
