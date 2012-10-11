@@ -45,7 +45,7 @@ class BallotItemsAPI extends APIBase implements IAPI {
      * @param integer $id ballot item id
      * @todo Refactor this function to use BallotItemCriteria?
      */
-    public function getSingle($id) {
+    public function getSingle($id, $arguments = array() ) {
         // todo: find better way to do this
         $ballot_item = BallotItem::model()->with(array('district', 'recommendation', 'electionResult', 'ballotItemNews', 'scorecards', 'cards', 'office', 'party'))->findByPk($id);
 

@@ -60,6 +60,8 @@ class ScorecardItem extends CActiveRecord {
         return array(
             'scorecards' => array(self::HAS_MANY, 'Scorecard', 'scorecard_item_id'),
             'office' => array(self::BELONGS_TO, 'Office', 'office_id'),
+            'ballot_items' => array(self::MANY_MANY, 'BallotItem',
+                'scorecard(scorecard_item_id, ballot_item_id)'),
         );
     }
 

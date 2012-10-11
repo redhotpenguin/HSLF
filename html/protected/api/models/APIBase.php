@@ -53,17 +53,29 @@ abstract class APIBase implements IAPI {
             try {
                 $result = $this->model->with($relations)->findAllByAttributes($attributes, $options);
             } catch (CDbException $cdbE) {
+                //echo $cdbE->getMessage();
                 $result = "no_results";
             }
             return $result;
         }
     }
 
-    public function getSingle($pkID) {
+    public function getSingle($pkID, $arguments = array()) {
+
+        $relations = array();
+
+        if (isset($arguments['relations']) && $arguments['relations'] == 'all') {
+            $modelRelations = $this->model->relations();
+
+
+            foreach ($modelRelations as $relationName => $value) {
+                array_push($relations, $relationName);
+            }
+        }
 
         // doesn't require auth or is authenticated
         if (!$this->requiresAuth || $this->isAuthenticated)
-            return $this->model->findByPk($pkID);
+            return $this->model->with($relations)->findByPk($pkID);
 
         else
             return self::AUTH_REQUIRED;

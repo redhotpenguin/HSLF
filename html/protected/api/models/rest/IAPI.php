@@ -4,5 +4,5 @@ interface IAPI {
 
     public function getList($arguments = array());
     
-    public function getSingle($id);
+    public function getSingle($id, $arguments = array());
 }
