@@ -12,6 +12,8 @@
  * @property string $display_name
  * @property string $list_name
  * @property string $slug
+ * @property string $facebook_share
+ * @property string $twitter_share
  */
 class Endorser extends CActiveRecord {
 
@@ -41,11 +43,11 @@ class Endorser extends CActiveRecord {
             array('name, list_name, display_name, slug', 'required'),
             array('name, list_name, slug', 'length', 'max' => 512),
             array('website, image_url', 'length', 'max' => 2048),
+            array('facebook_share', 'length', 'max' => 1024),
+            array('twitter_share', 'length', 'max' => 140),
             array('description, display_name, list_name', 'safe'),
-            // The following rule is used by search().
-            // Please remove those attributes that should not be searched.
             array('website, image_url', 'url'),
-            array('id, name, description, website, image_url, display_name, list_name, slug', 'safe', 'on' => 'search'),
+            array('id, name, description, website, image_url, display_name, list_name, slug, facebook_share, twitter_share', 'safe', 'on' => 'search'),
         );
     }
 

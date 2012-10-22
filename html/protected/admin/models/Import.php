@@ -155,7 +155,7 @@ class Import extends CModel {
 
     public static function importEndorser($tmp_name, $file_name) {
 
-        $fields = array('name', 'description', 'website', 'image_url', 'display_name', 'list_name', 'slug');
+        $fields = array('name', 'description', 'website', 'image_url', 'display_name', 'list_name', 'slug', 'facebook_share', 'twitter_share',);
 
         $result = self::insertDataFromCSV($tmp_name, $file_name, 'endorser', $fields);
 
