@@ -356,7 +356,7 @@ echo Chtml::endForm();
 
     <div class="clearfix"></div>
     <p>
-        <b>CSV structure:</b>id, name, description, website, image_url, display_name,list_name, slug
+        <b>CSV structure:</b>id, name, description, website, image_url, display_name,list_name, slug, facebook_share, twitter_share
         (headers must be included)
     </p>
     <?php

@@ -34,6 +34,8 @@ $this->widget('zii.widgets.CDetailView', array(
             'type' => 'raw',
             'value' => CHtml::link($model->image_url, $model->image_url, array('target' => '_blank')),
         ),
+        'facebook_share',
+        'twitter_share'
     ),
 ));
 

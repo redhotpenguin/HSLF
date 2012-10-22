@@ -64,7 +64,7 @@
     <div class="">
         <?php
         echo $form->labelEx($model, 'website');
-        echo $form->textField($model, 'website', array('size' => 60, 'maxlength' => 2048, 'class' => 'span7'));
+        echo $form->textField($model, 'website', array('size' => 60, 'maxlength' => 2048, 'class' => 'span9'));
         echo $form->error($model, 'website');
         ?>
     </div>
@@ -72,10 +72,28 @@
     <div class="">
         <?php
         echo $form->labelEx($model, 'image_url');
-        echo $form->textField($model, 'image_url', array('size' => 60, 'maxlength' => 2048, 'class' => 'span7'));
+        echo $form->textField($model, 'image_url', array('size' => 60, 'maxlength' => 2048, 'class' => 'span9'));
         echo $form->error($model, 'image_url');
         ?>
     </div>
+
+    <div class="">
+        <?php
+        echo $form->labelEx($model, 'facebook_share');
+        echo $form->textarea($model, 'facebook_share', array('size' => 60, 'maxlength' => 1024, 'class' => 'span9'));
+        echo $form->error($model, 'facebook_share');
+        ?>
+    </div>
+
+
+    <div class="">
+        <?php
+        echo $form->labelEx($model, 'twitter_share');
+        echo $form->textField($model, 'twitter_share', array('size' => 60, 'maxlength' => 140, 'class' => 'span9'));
+        echo $form->error($model, 'twitter_share');
+        ?>
+    </div>
+
 
     <div class="row buttons">
         <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
