@@ -1,13 +1,13 @@
 <?php
 
 class BallotItemsAPI extends APIBase implements IAPI {
-    
-    private $allIncludes = array('districts', 'scorecards','endorsers', 'recommendations', 'news', 'electionResults', 'offices', 'parties');
-    
-    public function __construct(){
-        parent::__construct(new BallotItem );
+
+    private $allIncludes = array('districts', 'scorecards', 'endorsers', 'recommendations', 'news', 'electionResults', 'offices', 'parties');
+
+    public function __construct() {
+        parent::__construct(new BallotItem);
     }
-    
+
     /**
      * return a list of ballot items
      * @param  array $arguments API Get Parameters
@@ -25,7 +25,7 @@ class BallotItemsAPI extends APIBase implements IAPI {
 
             if ($arguments['includes'] == 'all') {
                 $includes = $this->allIncludes;
-                $ballotItemCriteria->addAllRelations();      
+                $ballotItemCriteria->addAllRelations();
             } else {
                 $includes = explode(',', $arguments['includes']);
                 $includes = $this->includeParser($ballotItemCriteria, $includes);
@@ -49,7 +49,7 @@ class BallotItemsAPI extends APIBase implements IAPI {
         // todo: find better way to do this
         $ballot_item = BallotItem::model()->with(array('district', 'recommendation', 'electionResult', 'ballotItemNews', 'scorecards', 'cards', 'office', 'party'))->findByPk($id);
 
-       
+
         if ($ballot_item != false)
             $result = $this->ballotItemWrapper($ballot_item, $this->allIncludes);
         else
@@ -190,6 +190,8 @@ class BallotItemsAPI extends APIBase implements IAPI {
                     'display_name' => $ballotItemEndorsers->endorser->display_name,
                     'list_name' => $ballotItemEndorsers->endorser->list_name,
                     'slug' => $ballotItemEndorsers->endorser->slug,
+                    'facebook_share' => $ballotItemEndorsers->endorser->facebook_share,
+                    'twitter_share' => $ballotItemEndorsers->endorser->twitter_share,
                 ));
                 ++$i;
             }
@@ -215,7 +217,7 @@ class BallotItemsAPI extends APIBase implements IAPI {
         }
 
         if (in_array('districts', $includes)) {
-            $wrapped_ballot_item['districts'] = array( $ballot_item->district );
+            $wrapped_ballot_item['districts'] = array($ballot_item->district);
         }
 
         if (in_array('news', $includes)) {
@@ -255,6 +257,5 @@ class BallotItemsAPI extends APIBase implements IAPI {
 
         return $wrapped_ballots;
     }
-
 
 }
