@@ -252,6 +252,9 @@ class ApiController extends Controller {
                 'display_name' => $ballotItemEndorsers->endorser->display_name,
                 'list_name' => $ballotItemEndorsers->endorser->list_name,
                 'slug' => $ballotItemEndorsers->endorser->slug,
+                'facebook_share' => $ballotItemEndorsers->endorser->facebook_share,
+                'twitter_share' => $ballotItemEndorsers->endorser->twitter_share,
+                
             ));
             ++$i;
         }
