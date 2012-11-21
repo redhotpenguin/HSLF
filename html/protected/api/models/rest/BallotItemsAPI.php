@@ -40,6 +40,14 @@ class BallotItemsAPI extends APIBase implements IAPI {
             return false;
     }
 
+    private function getByGeo($geo) {
+        // $geo can be array (latlong) or string (address)
+    }
+
+    public function getListByCategory($category, $arguments = array()) {
+        return "ok! $category : "  . print_r($arguments, true);
+    }
+
     /**
      * get a single item with relations
      * @param integer $id ballot item id
