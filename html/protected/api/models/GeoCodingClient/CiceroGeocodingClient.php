@@ -43,7 +43,7 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
     }
 
     // return district IDs
-    public function getDistrictsByAddress($address, $options = array()) {
+    public function getDistrictIdsByAddress($address, $options = array()) {
 
         // replace white spaces in the address
         $address = str_replace(' ', '%20', $address);
@@ -91,7 +91,7 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
         return $this->ciceroDistrictsToDistricts($ciceroDistricts);
     }
 
-    public function getDistrictsByLatLong($lat, $long, $options = array()) {
+    public function getDistrictIdsByLatLong($lat, $long, $options = array()) {
         //nonlegislative_district?f=<format>&user=<user>&token=<token>&type=<TYPE>&lat=<lat>&lon=<lon>
         if (empty($lat) || empty($long))
             throw new Exception("LAT_LONG_REQUIRED");

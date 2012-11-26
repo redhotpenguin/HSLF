@@ -20,7 +20,7 @@ class BallotItemsAPI extends APIBase implements IAPI {
         $ballotItemCriteria = new BallotItemCriteria();
 
         if (isset($arguments['address'])) {
-            $districtIds = $this->getDistrictsByAddress($arguments['address']);
+            $districtIds = $this->retrieveDistrictIdsByAddress($arguments['address']);
             if (empty($districtIds)) {
                 return false;
             }
@@ -28,7 +28,7 @@ class BallotItemsAPI extends APIBase implements IAPI {
         }
 
         if (isset($arguments['lat']) && isset($arguments['long'])) {
-            $districtIds = $this->getDistrictsByLatLong($arguments['lat'], $arguments['long']);
+            $districtIds = $this->retrieveDistrictIdsByLatLong($arguments['lat'], $arguments['long']);
             if (empty($districtIds)) {
                 return false;
             }
@@ -57,22 +57,22 @@ class BallotItemsAPI extends APIBase implements IAPI {
             return false;
     }
 
-    private function getDistrictsByAddress($address) {
+    private function retrieveDistrictIdsByAddress($address) {
         $geoCodingClientProvider = new GeoCodingClientProvider();
 
         $geoCodingClient = $geoCodingClientProvider->getGeoCodingClient('cicero');
 
-        $districts = $geoCodingClient->getDistrictsByAddress($address);
+        $districts = $geoCodingClient->getDistrictIdsByAddress($address);
 
         return ($districts) ? $districts : array();
     }
 
-    private function getDistrictsByLatLong($lat, $long) {
+    private function retrieveDistrictIdsByLatLong($lat, $long) {
         $geoCodingClientProvider = new GeoCodingClientProvider();
 
         $geoCodingClient = $geoCodingClientProvider->getGeoCodingClient('cicero');
 
-        $districts = $geoCodingClient->getDistrictsByLatLong($lat, $long);
+        $districts = $geoCodingClient->getDistrictIdsByLatLong($lat, $long);
 
         return ($districts) ? $districts : array();
     }
