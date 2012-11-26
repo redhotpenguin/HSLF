@@ -87,9 +87,6 @@ class Api2Controller extends Controller {
             else
                 $model->setAuthenticated(false);
 
-
-            $message = $model->getSingle($id);
-
             unset($_GET['model']);
             $message = $model->getSingle($id, $_GET);
         }

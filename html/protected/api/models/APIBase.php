@@ -74,13 +74,12 @@ abstract class APIBase implements IAPI {
         }
 
         // doesn't require auth or is authenticated
-        if (!$this->requiresAuth || $this->isAuthenticated)
+        if (!$this->requiresAuth || $this->isAuthenticated) {
             return $this->model->with($relations)->findByPk($pkID);
-
-        else
+        } else {
             return self::AUTH_REQUIRED;
+        }
     }
-    
 
 }
 
