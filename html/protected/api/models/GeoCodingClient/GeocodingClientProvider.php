@@ -1,6 +1,6 @@
 <?php
 
-//  abstract factory
+//  factory
 class GeoCodingClientProvider {
 
     function getGeoCodingClient($type) {
@@ -13,5 +13,3 @@ class GeoCodingClientProvider {
     }
 
 }
-
-?>

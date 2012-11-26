@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Implementation of IHttpRequest using Curl
- *
- * @author jonas
- */
 class CurlHttpRequestClient implements HttpRequestClientInterface {
 
     private $cURL;

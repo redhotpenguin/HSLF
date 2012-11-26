@@ -8,5 +8,3 @@ interface GeoCodingClientInterface {
     
     public function getDistrictIdsByLatLong($lat,$long, $options = array());
 }
-
-?>

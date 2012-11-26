@@ -1,16 +1,5 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of CiceroGeocodingClient
- * Implementation of the IGeocoding interface
- *
- * @author jonas
- */
 class CiceroGeoCodingClient implements GeoCodingClientInterface {
 
     private $username;
