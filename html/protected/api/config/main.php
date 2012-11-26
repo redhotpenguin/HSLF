@@ -46,8 +46,6 @@ return array(
                 array('api2/index', 'pattern' => 'api/v2', 'verb' => 'GET'),
                 array('api2/list', 'pattern' => 'api/v2/<model:\w+>/', 'verb' => 'GET'),
                 array('api2/view', 'pattern' => 'api/v2/<model:\w+>/<id:\d+>', 'verb' => 'GET'),
-              //  array('api2/listbycategory', 'pattern' => 'api/v2/<model:\w+>/<category:\w+>', 'verb' => 'GET'),
-             //   array('api2/listbycategory', 'pattern' => 'api/v2/<model:\w+>/<category:\w+>/<value1:\w+>/<param2:\w+>/<value2:\w+>', 'verb' => 'GET'),
                 // API V1
                 array('api/list', 'pattern' => 'api/<model:\w+>', 'verb' => 'GET'),
                 //   ex: /api/ballot_items/state/or/?districts=...
