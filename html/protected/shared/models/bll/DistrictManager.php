@@ -68,13 +68,14 @@ class DistrictManager {
             $condition_values[":district_type{$i}"] = $district_type;
             $condition_values[":district{$i}"] = $districts[$i];
 
-            if ($localities[$i]) {
+            if (isset($localities[$i])) {
                 $condition_string.= " AND locality=:locality{$i}";
 
                 $condition_values[":locality{$i}"] = $localities[$i];
             }
         }
  
+
 
         // execute the command
         $result = $command->select('id')
@@ -86,7 +87,7 @@ class DistrictManager {
 
         if ($result)
         // return flat array
-            return array_map(array(self, 'extract_id'), $result);
+            return array_map(array('DistrictManager', 'extract_id'), $result);
 
         else
             return false;

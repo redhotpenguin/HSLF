@@ -85,7 +85,7 @@ class BallotItemCriteria extends CDbCriteria {
             $condition = 'district.state_abbr=:stateAbbr AND district.type=:districtType' . $i . ' AND district.number=:districtNumber' . $i;
 
             if (isset($d[2])) { // locality
-                $condition.=" AND district.locality=:districtLocality".$i;
+                $condition.=" AND district.locality=:districtLocality" . $i;
                 $this->params[":districtLocality{$i}"] = $d[2];
             }
 
@@ -94,6 +94,21 @@ class BallotItemCriteria extends CDbCriteria {
             $this->params[":districtType{$i}"] = $districtType;
             $this->params[":districtNumber{$i}"] = $districtNumber;
 
+            ++$i;
+        }
+    }
+
+    public function setDistrictIds(array $districtIds) {
+        $i = 0;
+
+        foreach ($districtIds as $districtId) {
+            if ($i == 0)
+                $operator = 'AND';
+            else
+                $operator = 'OR';
+
+            $this->addCondition('district_id=:districtId' . $i, $operator);
+            $this->params[":districtId{$i}"] = $districtId;
             ++$i;
         }
     }
@@ -156,9 +171,10 @@ class BallotItemCriteria extends CDbCriteria {
      * @return return ballot items
      */
     public function search() {
-        
-        //print_r($this->toArray());
-        
+
+        //  print_r($this->toArray());
+        //   die;
+
         $activeDataProvider = new CActiveDataProvider($this->ballotItem, array(
                     'criteria' => $this,
                     'sort' => $this->sort,

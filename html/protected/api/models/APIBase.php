@@ -81,9 +81,6 @@ abstract class APIBase implements IAPI {
             return self::AUTH_REQUIRED;
     }
     
-    public function getListByCategory($category, $arguments = array()){
-        return "not_supported";
-    }
 
 }
 

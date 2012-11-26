@@ -45,6 +45,7 @@ class Api2Controller extends Controller {
     /**
      * List models according by category
      */
+    /*
     public function actionListByCategory($model, $category) {
         $requested_model = $_GET['model'] . 'API';
 
@@ -55,6 +56,7 @@ class Api2Controller extends Controller {
             $code = 200;
             $model = new $requested_model();
             unset($_GET['model']);
+            unset($_GET['category']);
 
             if ($this->checkAuth())
                 $model->setAuthenticated(true);
@@ -66,7 +68,7 @@ class Api2Controller extends Controller {
 
         $this->sendResponse($code, $message);
     }
-
+*/
     /**
      * List models according to a specific request
      */

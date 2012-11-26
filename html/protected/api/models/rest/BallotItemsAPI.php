@@ -40,12 +40,24 @@ class BallotItemsAPI extends APIBase implements IAPI {
             return false;
     }
 
-    private function getByGeo($geo) {
-        // $geo can be array (latlong) or string (address)
+    private function getDistrictsByAddress($address) {
+        $geoCodingClientProvider = new GeoCodingClientProvider();
+
+        $geoCodingClient = $geoCodingClientProvider->getGeoCodingClient('cicero');
+
+        $districts = $geoCodingClient->getDistrictsByAddress($address);
+
+        return ($districts) ? $districts : array();
     }
 
-    public function getListByCategory($category, $arguments = array()) {
-        return "ok! $category : "  . print_r($arguments, true);
+    private function getDistrictsByLatLong($lat, $long) {
+        $geoCodingClientProvider = new GeoCodingClientProvider();
+
+        $geoCodingClient = $geoCodingClientProvider->getGeoCodingClient('cicero');
+
+        $districts = $geoCodingClient->getDistrictsByLatLong($lat, $long);
+
+        return ($districts) ? $districts : array();
     }
 
     /**
@@ -53,7 +65,7 @@ class BallotItemsAPI extends APIBase implements IAPI {
      * @param integer $id ballot item id
      * @todo Refactor this function to use BallotItemCriteria?
      */
-    public function getSingle($id, $arguments = array() ) {
+    public function getSingle($id, $arguments = array()) {
         // todo: find better way to do this
         $ballot_item = BallotItem::model()->with(array('district', 'recommendation', 'electionResult', 'ballotItemNews', 'scorecards', 'cards', 'office', 'party'))->findByPk($id);
 
@@ -81,6 +93,17 @@ class BallotItemsAPI extends APIBase implements IAPI {
             if (isset($arguments['districts'])) {
                 $ballotItemCriteria->setDistricts(explode(',', $arguments['districts']));
             }
+        }
+
+        if (isset($arguments['address'])) {
+            $districtIds = $this->getDistrictsByAddress($arguments['address']);
+
+            $ballotItemCriteria->setDistrictIds($districtIds);
+        }
+
+        if (isset($arguments['lat']) && isset($arguments['long'])) {
+            $districtIds = $this->getDistrictsByLatLong($arguments['lat'], $arguments['long']);
+            $ballotItemCriteria->setDistrictIds($districtIds);
         }
 
         if (isset($arguments['orderBy']) && isset($arguments['order'])) {
