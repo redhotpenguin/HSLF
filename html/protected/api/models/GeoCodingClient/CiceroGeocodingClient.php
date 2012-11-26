@@ -38,13 +38,107 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
         }
 
         if (empty($this->userId) || empty($this->token)) {
-            echo 'updating DB';
             $this->updateCredentials();
         }
     }
 
-    private function updateCredentials() {
+    // return district IDs
+    public function getDistrictsByAddress($address, $options = array()) {
 
+        // replace white spaces in the address
+        $address = str_replace(' ', '%20', $address);
+
+
+        if (isset($options['requesting']))
+            $requesting = $options['requesting'];
+        else
+            $requesting = 'nonlegislative_district';
+
+        if (isset($options['type']))
+            $type = $options['type'];
+        else
+            $type = 'CENSUS';
+
+        if (isset($options['format']))
+            $format = $options['format'];
+        else
+            $format = 'json';
+
+
+        $destination = "{$this->apiBase}/{$requesting}?f={$format}&user={$this->userId}&token={$this->token}&type={$type}&search_loc={$address}";
+
+        $response = $this->httpRequestClient->getRequest($destination);
+
+        // no response, probably because the token has expired
+        if (( $response == null || empty($response))) {
+            $this->updateCredentials();
+            // update query with new credentials
+            $destination = "{$this->apiBase}/{$requesting}?f={$format}&user={$this->userId}&token={$this->token}&type={$type}&search_loc={$address}";
+
+            $response = $this->httpRequestClient->getRequest($destination);
+        }
+
+
+        $jsonResponse = json_decode($response);
+
+        if (!isset($jsonResponse->response->results->candidates[0]->districts) || empty($jsonResponse->response->results->candidates[0]->districts)) {
+            return false;
+        }
+
+        $ciceroDistricts = $jsonResponse->response->results->candidates[0]->districts;
+
+
+        return $this->ciceroDistrictsToDistricts($ciceroDistricts);
+    }
+
+    public function getDistrictsByLatLong($lat, $long, $options = array()) {
+        //nonlegislative_district?f=<format>&user=<user>&token=<token>&type=<TYPE>&lat=<lat>&lon=<lon>
+        if (empty($lat) || empty($long))
+            throw new Exception("LAT_LONG_REQUIRED");
+
+        if (isset($options['requesting']))
+            $requesting = $options['requesting'];
+        else
+            $requesting = 'nonlegislative_district';
+
+        if (isset($options['type']))
+            $type = $options['type'];
+        else
+            $type = 'CENSUS';
+
+        if (isset($options['format']))
+            $format = $options['format'];
+        else
+            $format = 'json';
+
+        $destination = "{$this->apiBase}/{$requesting}?f={$format}&user={$this->userId}&token={$this->token}&type={$type}&lat={$lat}&lon={$long}";
+
+
+        $response = $this->httpRequestClient->getRequest($destination);
+   
+        // no response, probably because the token has expired
+        if ($response == null || empty($response)) {
+            $this->updateCredentials();
+            $destination = "{$this->apiBase}/{$requesting}?f={$format}&user={$this->userId}&token={$this->token}&type={$type}&lat={$lat}&lon={$long}";
+
+
+            $response = $this->httpRequestClient->getRequest($destination);
+        }
+
+        $jsonResponse = json_decode($response);
+        
+
+        if (!isset($jsonResponse->response->results->districts)) {
+            return false;
+        }
+
+        $ciceroDistricts = $jsonResponse->response->results->districts;
+
+
+        return $this->ciceroDistrictsToDistricts($ciceroDistricts);
+    }
+
+    private function updateCredentials() {
         if (empty($this->username) || empty($this->password))
             throw new Exception("Cicero Credential required (check config.php)");
 
@@ -81,61 +175,12 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
             throw new Exception("Wrong Credential");
     }
 
-    // return district IDs
-    public function getDistrictsByAddress($address, $options = array()) {
-
-        static $failureNumber = 0;
-
-        // replace white spaces in the address
-        $address = str_replace(' ', '%20', $address);
-
-
-        if (isset($options['requesting']))
-            $requesting = $options['requesting'];
-        else
-            $requesting = 'nonlegislative_district';
-
-        if (isset($options['type']))
-            $type = $options['type'];
-        else
-            $type = 'CENSUS';
-
-        if (isset($options['format']))
-            $format = $options['format'];
-        else
-            $format = 'json';
-
-
-        $destination = "{$this->apiBase}/{$requesting}?f={$format}&user={$this->userId}&token={$this->token}&type={$type}&search_loc={$address}";
-
-        $response = $this->httpRequestClient->getRequest($destination);
-
-        // no response, probably because the token has expired
-        if (empty($response) && $failureNumber == 0) {
-            $this->updateCredentials();
-            $response = $this->getDistrictsByAddress($address, $options);
-        }
-
-        $jsonResponse = json_decode($response);
-
-        if (!isset($jsonResponse->response->results->candidates[0])) {
-            return false;
-        }
-
-        $ciceroDistricts = $jsonResponse->response->results->candidates[0]->districts;
-
-
-        return $this->ciceroDistrictsToDistricts($ciceroDistricts);
-    }
-
     private function ciceroDistrictsToDistricts(array $ciceroDistricts) {
 
         $state = "";
         $districtTypes = array("STATEWIDE");
         $districtNumbers = array("");
         $localities = array();
-
-        $i = 0;
 
         foreach ($ciceroDistricts as $ciceroDistrict) {
             $state = $ciceroDistrict->state;
@@ -146,53 +191,6 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
         $districtIds = DistrictManager::getIdsByDistricts($state, $districtTypes, $districtNumbers, $localities);
 
         return $districtIds;
-    }
-
-    public function getDistrictsByLatLong($lat, $long, $options = array()) {
-        static $failureNumber = 0;
-
-
-        //nonlegislative_district?f=<format>&user=<user>&token=<token>&type=<TYPE>&lat=<lat>&lon=<lon>
-        if (empty($lat) || empty($long))
-            throw new Exception("LAT_LONG_REQUIRED");
-
-        if (isset($options['requesting']))
-            $requesting = $options['requesting'];
-        else
-            $requesting = 'nonlegislative_district';
-
-        if (isset($options['type']))
-            $type = $options['type'];
-        else
-            $type = 'CENSUS';
-
-        if (isset($options['format']))
-            $format = $options['format'];
-        else
-            $format = 'json';
-
-        $destination = "{$this->apiBase}/{$requesting}?f={$format}&user={$this->userId}&token={$this->token}&type={$type}&lat={$lat}&lon={$long}";
-
-
-        $response = $this->httpRequestClient->getRequest($destination);
-
-        // no response, probably because the token has expired
-        if (empty($response) && $failureNumber == 0) {
-            $this->updateCredentials();
-            $response = $this->getDistrictsByAddress($address, $options);
-        }
-
-        $jsonResponse = json_decode($response);
-
-
-        if (!isset($jsonResponse->response->results->districts)) {
-            return false;
-        }
-
-        $ciceroDistricts = $jsonResponse->response->results->districts;
-
-
-        return $this->ciceroDistrictsToDistricts($ciceroDistricts);
     }
 
 }

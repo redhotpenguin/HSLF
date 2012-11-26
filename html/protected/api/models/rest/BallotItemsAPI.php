@@ -19,6 +19,23 @@ class BallotItemsAPI extends APIBase implements IAPI {
 
         $ballotItemCriteria = new BallotItemCriteria();
 
+        if (isset($arguments['address'])) {
+            $districtIds = $this->getDistrictsByAddress($arguments['address']);
+            if (empty($districtIds)) {
+                return false;
+            }
+            $ballotItemCriteria->setDistrictIds($districtIds);
+        }
+
+        if (isset($arguments['lat']) && isset($arguments['long'])) {
+            $districtIds = $this->getDistrictsByLatLong($arguments['lat'], $arguments['long']);
+            if (empty($districtIds)) {
+                return false;
+            }
+            $ballotItemCriteria->setDistrictIds($districtIds);
+        }
+
+
         $this->criteriaBuilder($ballotItemCriteria, $arguments);
 
         if (isset($arguments['includes'])) {
@@ -95,16 +112,6 @@ class BallotItemsAPI extends APIBase implements IAPI {
             }
         }
 
-        if (isset($arguments['address'])) {
-            $districtIds = $this->getDistrictsByAddress($arguments['address']);
-
-            $ballotItemCriteria->setDistrictIds($districtIds);
-        }
-
-        if (isset($arguments['lat']) && isset($arguments['long'])) {
-            $districtIds = $this->getDistrictsByLatLong($arguments['lat'], $arguments['long']);
-            $ballotItemCriteria->setDistrictIds($districtIds);
-        }
 
         if (isset($arguments['orderBy']) && isset($arguments['order'])) {
             $ballotItemCriteria->setOrder($arguments['orderBy'], $arguments['order']);
