@@ -24,7 +24,6 @@ class Scorecard extends CActiveRecord {
         return parent::model($className);
     }
 
-
     /**
      * @return string the associated database table name
      */
@@ -55,7 +54,7 @@ class Scorecard extends CActiveRecord {
         // class name for the relations automatically generated below.
         return array(
             'vote' => array(self::BELONGS_TO, 'Vote', 'vote_id'),
-            'scorecardItem' => array(self::BELONGS_TO, 'ScorecardItem', 'scorecard_item_id'),
+            'scorecardItem' => array(self::BELONGS_TO, 'ScorecardItem', 'scorecard_item_id')
         );
     }
 
@@ -87,8 +86,7 @@ class Scorecard extends CActiveRecord {
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
-        ));
+                ));
     }
-
 
 }
