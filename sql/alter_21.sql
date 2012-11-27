@@ -1,8 +1,6 @@
 -- 
--- this is the twentyfirst alter of the database.
+-- this is the twenty-first alter of the database.
 -- dont forget to flush schema cache! Yii::app()->cache->flush();
--- added postgres function: upsert for option table
----  STILL IN DEV
 
 
 -- ballot item news slug
