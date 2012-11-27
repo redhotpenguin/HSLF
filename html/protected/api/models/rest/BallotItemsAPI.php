@@ -57,6 +57,10 @@ class BallotItemsAPI extends APIBase implements IAPI {
             return false;
     }
 
+    /**
+     * Retrieve district ids using an address using a geocoding service
+     * @param string $address address
+     */
     private function retrieveDistrictIdsByAddress($address) {
         $geoCodingClientProvider = new GeoCodingClientProvider();
 
@@ -67,6 +71,11 @@ class BallotItemsAPI extends APIBase implements IAPI {
         return ($districts) ? $districts : array();
     }
 
+    /**
+     * Retrieve district ids given a lat/long using a geocoding service
+     * @param $lat latitude
+     * @param $long longitude
+     */
     private function retrieveDistrictIdsByLatLong($lat, $long) {
         $geoCodingClientProvider = new GeoCodingClientProvider();
 
@@ -129,6 +138,8 @@ class BallotItemsAPI extends APIBase implements IAPI {
             $ballotItemCriteria->addAttributeCondition($arguments['field'], $arguments['fieldValue'], 'AND');
         }
     }
+
+    
 
     private function includeParser(BallotItemCriteria &$ballotItemCriteria, $includeList) {
         $includes = array();
