@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * GeoCoding Provider Unit Tests - uses the Cicero Rest API
+ */
 class GeoProviderTest extends CDbTestCase {
 
     private $ciceroProvider;
@@ -19,7 +22,6 @@ class GeoProviderTest extends CDbTestCase {
         $this->log("testGetDistrictIdsByAddress");
         $districtIds = array();
 
-
         $districtIds = $this->ciceroProvider->getDistrictIdsByAddress("4261 glacier lily street, lake oswego, oregon");
         $this->log($districtIds);
 
@@ -29,7 +31,6 @@ class GeoProviderTest extends CDbTestCase {
     public function testGetDistrictIdsLatLong() {
         $this->log("testGetDistrictIdsByLatLong");
         $districtIds = array();
-
 
         $districtIds = $this->ciceroProvider->getDistrictIdsByLatLong("45.523451", "-122.676206991");
         $this->log($districtIds);
