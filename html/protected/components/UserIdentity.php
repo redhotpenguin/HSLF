@@ -21,9 +21,7 @@ class UserIdentity extends CUserIdentity
 			$this->errorCode=self::ERROR_USERNAME_INVALID;
                         error_log('invalid username: '.$this->username);
 		} else if ($user->password !== get_hash($this->password) ) { // Invalid password!
-			$this->errorCode=self::ERROR_PASSWORD_INVALID;
-                        error_log('invalid password: '.$this->password);
-		
+			$this->errorCode=self::ERROR_PASSWORD_INVALID;		
 		} else { // Okay!
 			$this->errorCode=self::ERROR_NONE;
                         $this->setState('role', $user->role);
