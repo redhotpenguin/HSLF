@@ -1,2 +1,2 @@
-MAILTO="mobile@winningmark.com"
+#MAILTO="mobile@winningmark.com"
 30 05 * * * php /home/dotcloud/code/HSLF/cron.php updatecicero
