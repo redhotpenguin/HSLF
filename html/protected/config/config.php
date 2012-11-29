@@ -17,7 +17,7 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     set_include_path(get_include_path() . PATH_SEPARATOR . '/home/dotcloud/php-env/share/php');
 } else {    //dev server conf
     $dbhost = 'localhost';
-    $dbname = 'ouroregon';
+    $dbname = 'mvg_multitenant';
     $dbuser = 'postgres';
     $dbpass = 'pengu1n';
     $dbport = '5432';
