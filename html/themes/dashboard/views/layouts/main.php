@@ -38,17 +38,16 @@
 
     <body>
 
-        <?php if (Yii::app()->user->id): ?>
-
-
-            <?php
-            //  $this->widget('ext.Caption.Caption');
+        <?php
+        if (Yii::app()->user->id):
+            $tenant = TenantAccount::model()->findByPk(Yii::app()->user->tenant_account_id);
             ?>
+
 
             <div id="menu-top" class="clearfix">
                 <?php
                 $this->widget('bootstrap.widgets.BootNavbar', array(
-                    'brand' => Yii::app()->name,
+                    'brand' => $tenant->display_name,
                     'brandUrl' => '/admin/',
                     'id' => 'main_menu',
                     'items' => array(

@@ -13,10 +13,11 @@ class UserIdentity extends CUserIdentity {
      * @return boolean whether authentication succeeds.
      */
     public function authenticate() {
+
+
         $user = User::model()->findByAttributes(array('username' => $this->username));
-
-
-
+        
+       
         if ($user === null) { // No user found!
             $this->errorCode = self::ERROR_USERNAME_INVALID;
             error_log('invalid username: ' . $this->username);
@@ -29,6 +30,10 @@ class UserIdentity extends CUserIdentity {
         }
 
         return !$this->errorCode;
+    }
+    
+    public function getId(){
+        return "foobar";
     }
 
 }

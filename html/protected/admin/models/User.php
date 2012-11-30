@@ -10,7 +10,7 @@
  * @property string $email
  * $property string $role
  */
-class User extends CActiveRecord {
+class User extends CBaseActiveRecord {
 
     public $repeat_password;
     public $initial_password;
@@ -45,7 +45,7 @@ class User extends CActiveRecord {
             array('email', 'email'),
             array('username, email', 'length', 'max' => 128),
             array('password', 'length', 'max' => 40),
-            array('id, username, email, role', 'safe', 'on' => 'search'),
+            array('id, username, email, role, tenant_account_id', 'safe', 'on' => 'search'),
         );
     }
 
@@ -116,7 +116,7 @@ class User extends CActiveRecord {
             if ($this->password) {
                 $password = get_hash($this->password);
             }
-            
+
             // no password given, restore the initial pass
             else
                 $password = $this->initial_password;
@@ -131,9 +131,13 @@ class User extends CActiveRecord {
      *   Save a User model
      */
     public function save() {
+       $save_result = false;
+        
         try {
             $save_result = parent::save();
         } catch (CDbException $cdbe) {
+            error_log("error");
+            
             switch ($cdbe->getCode()) {
                 case 23505:
                     $this->addError("", 'A user with this username or with this email already exists.');
@@ -142,9 +146,17 @@ class User extends CActiveRecord {
                 default: // we can't handle the error, rethrow it!
                     throw $cdbe;
             }
+            
         }
 
         return $save_result;
+    }
+
+   public function behaviors() {
+        return array(
+            'MultiTenant' => array(
+                'class' => 'MultiTenantBehavior')
+        );
     }
 
 }

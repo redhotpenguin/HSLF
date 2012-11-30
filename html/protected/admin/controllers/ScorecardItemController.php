@@ -79,9 +79,12 @@ class ScorecardItemController extends Controller {
 
         if (isset($_POST['ScorecardItem'])) {
             $model->attributes = $_POST['ScorecardItem'];
-            if ($model->save())
+            if ($model->save()) {
                 $this->redirect(array('view', 'id' => $model->id));
+            }
         }
+
+
 
         $this->render('update', array(
             'model' => $model,
