@@ -4,7 +4,7 @@
 //require_once('urbanairship/urbanairship.php');
 //require_once('urbanairship/rich_urbanairship.php');
 
-class UrbanAirshipNotifier extends CModel {
+class UrbanAirshipNotifier extends CBaseActiveRecord {
 
     private $airship;
     private $rich_airship;

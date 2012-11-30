@@ -19,10 +19,11 @@ class Api2Controller extends Controller {
     /**
      * List supported models
      */
-    public function actionList() {
-
+    public function actionList($tennant_id) {
+        $tennant_id;
+        
         $requested_model = $_GET['model'] . 'API';
-
+        
         if (!class_exists($requested_model)) {
             $code = 404;
             $message = "Not supported";
@@ -36,7 +37,7 @@ class Api2Controller extends Controller {
             else
                 $model->setAuthenticated(false);
 
-            $message = $model->getList($_GET);
+            $message = $model->getList($tennant_id, $_GET);
         }
 
         $this->sendResponse($code, $message);

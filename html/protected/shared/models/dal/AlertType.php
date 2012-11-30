@@ -12,7 +12,7 @@
  * The followings are the available model relations:
  * @property Tag $tag
  */
-class AlertType extends CActiveRecord {
+class AlertType extends CBaseActiveRecord {
 
     public $tag_name; // doesn't belong to table alert_type. This field purpose is to enable tag search in the admin view
 

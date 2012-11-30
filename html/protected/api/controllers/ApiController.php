@@ -22,6 +22,8 @@ class ApiController extends Controller {
     public function actionList() {
         $result = '';
         $code = 200;
+        
+        Yii::app()->params['abc'] = 123;
 
         switch ($_GET['model']) {
             case 'options': // /api/options

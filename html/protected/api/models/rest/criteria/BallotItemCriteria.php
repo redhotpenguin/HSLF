@@ -9,8 +9,8 @@ class BallotItemCriteria extends CDbCriteria {
     /**
      * BallotItemCriteria - extends CDbCriteria
      */
-    public function __construct() {
-        $this->ballotItem = new BallotItem;
+    public function __construct(BallotItem $ballotItem) {
+        $this->ballotItem = $ballotItem;
         $this->tableAlias = $this->ballotItem->getTableAlias(false, false);
 
 

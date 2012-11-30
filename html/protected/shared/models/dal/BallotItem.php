@@ -35,7 +35,7 @@
 
 
  */
-class BallotItem extends CActiveRecord {
+class BallotItem extends CBaseActiveRecord {
 
     public $state_abbr; // not part of the model, here for cgridview (admin search)
     public $district_type; // not part of the model, here for cgridview (admin search)
@@ -271,6 +271,7 @@ class BallotItem extends CActiveRecord {
             'EndorserBehavior' => array(
                 'class' => 'BallotItemEndorserBehavior',
             ),
+            
             'MultiTenant' => array(
                 'class' => 'MultiTenantBehavior')
         );

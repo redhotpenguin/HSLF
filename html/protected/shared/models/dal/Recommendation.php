@@ -12,7 +12,7 @@
  * @property BallotItem[] $ballotItems
  * @property BallotItem[] $ballotItems1
  */
-class Recommendation extends CActiveRecord {
+class Recommendation extends CBaseActiveRecord {
 
     /**
      * Returns the static model of the specified AR class.

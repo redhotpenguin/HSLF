@@ -19,7 +19,8 @@ abstract class APIBase implements IAPI {
         $this->isAuthenticated = $authenticated;
     }
 
-    public function getList($arguments = array()) {
+    public function getList($tenantAccountId, $arguments = array()) {
+        $this->model->sessionTenantAccountId = $tenantAccountId;
 
         // auth is required but user is not authenticated:
         if ($this->requiresAuth && !$this->isAuthenticated)
@@ -60,7 +61,7 @@ abstract class APIBase implements IAPI {
         }
     }
 
-    public function getSingle($pkID, $arguments = array()) {
+    public function getSingle($tenantAccountId, $pkID, $arguments = array()) {
 
         $relations = array();
 

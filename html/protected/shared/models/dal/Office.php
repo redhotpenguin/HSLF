@@ -10,7 +10,7 @@
  * The followings are the available model relations:
  * @property BallotItem[] $ballotItems
  */
-class Office extends CActiveRecord {
+class Office extends CBaseActiveRecord {
 
     /**
      * Returns the static model of the specified AR class.

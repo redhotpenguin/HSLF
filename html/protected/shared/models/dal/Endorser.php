@@ -15,7 +15,7 @@
  * @property string $facebook_share
  * @property string $twitter_share
  */
-class Endorser extends CActiveRecord {
+class Endorser extends CBaseActiveRecord {
 
     /**
      * Returns the static model of the specified AR class.

@@ -13,7 +13,7 @@
  * @property Scorecard[] $scorecards
  * @property Office $office
  */
-class ScorecardItem extends CActiveRecord {
+class ScorecardItem extends CBaseActiveRecord {
 
     public $office_type; //used for admin search
 

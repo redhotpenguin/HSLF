@@ -1,11 +1,11 @@
 <?php
 
-class BallotItemsAPI extends APIBase implements IAPI {
+class BallotItemsAPI implements IAPI {
 
     private $allIncludes = array('districts', 'scorecards', 'endorsers', 'recommendations', 'news', 'electionResults', 'offices', 'parties');
-
+    private $ballotItem;
     public function __construct() {
-        parent::__construct(new BallotItem);
+        $this->ballotItem = new BallotItem();
     }
 
     /**
@@ -13,11 +13,11 @@ class BallotItemsAPI extends APIBase implements IAPI {
      * @param  array $arguments API Get Parameters
      * @return array wrapped ballot items
      */
-    public function getList($arguments = array()) {
-
+    public function getList($tenantAccountId, $arguments = array()) {
+        $this->ballotItem->sessionTenantAccountId = $tenantAccountId;
         $includes = array();
 
-        $ballotItemCriteria = new BallotItemCriteria();
+        $ballotItemCriteria = new BallotItemCriteria($this->ballotItem);
 
         if (isset($arguments['address'])) {
             $districtIds = $this->retrieveDistrictIdsByAddress($arguments['address']);
@@ -91,13 +91,12 @@ class BallotItemsAPI extends APIBase implements IAPI {
      * @param integer $id ballot item id
      * @todo Refactor this function to use BallotItemCriteria?
      */
-    public function getSingle($id, $arguments = array()) {
+    public function getSingle($tenantAccountid, $id, $arguments = array()) {
         // todo: find better way to do this
-        $ballot_item = BallotItem::model()->with(array('district', 'recommendation', 'electionResult', 'ballotItemNews', 'scorecards', 'cards', 'office', 'party'))->findByPk($id);
-
-
-        if ($ballot_item != false)
-            $result = $this->ballotItemWrapper($ballot_item, $this->allIncludes);
+        $this->ballotItem = $this->ballotItem->with(array('district', 'recommendation', 'electionResult', 'ballotItemNews', 'scorecards', 'cards', 'office', 'party'))->findByPk($id);
+        
+        if ($this->ballotItem != false)
+            $result = $this->ballotItemWrapper($this->ballotItem, $this->allIncludes);
         else
             $result = false;
 
@@ -306,5 +305,9 @@ class BallotItemsAPI extends APIBase implements IAPI {
 
         return $wrapped_ballots;
     }
+    
+     public function setAuthenticated($authenticated){
+         
+     }
 
 }

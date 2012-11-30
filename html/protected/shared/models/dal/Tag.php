@@ -8,7 +8,7 @@
  * @property string $name
  * @property string $type
  */
-class Tag extends CActiveRecord {
+class Tag extends CBaseActiveRecord {
 
     /**
      * Returns the static model of the specified AR class.

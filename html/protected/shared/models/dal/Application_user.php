@@ -18,7 +18,7 @@ Yii::import('application.vendors.*');
  * @property string $uap_user_id
  *
  */
-class Application_user extends CActiveRecord {
+class Application_user extends CBaseActiveRecord {
 
     public $state_abbr; // not part of the model, here for cgridview (admin search)
     public $district_type; // not part of the model, here for cgridview (admin search)
