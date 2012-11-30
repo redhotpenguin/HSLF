@@ -37,7 +37,7 @@ class Vote extends CActiveRecord {
         // will receive user inputs.
         return array(
             array('name', 'length', 'max' => 64),
-            array('icon', 'safe'),
+            array('icon, tenant_account_id', 'safe'),
             array('icon', 'url'),
             array('id, name, icon', 'safe', 'on' => 'search'),
         );
@@ -82,6 +82,13 @@ class Vote extends CActiveRecord {
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
                 ));
+    }
+
+    public function behaviors() {
+        return array(
+            'MultiTenant' => array(
+                'class' => 'MultiTenantBehavior')
+        );
     }
 
 }

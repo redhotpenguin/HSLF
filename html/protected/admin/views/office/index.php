@@ -12,6 +12,7 @@ $this->menu = array(
 
 <h1>Offices</h1>
 
+
 <?php
 
 $this->widget('bootstrap.widgets.BootGridView', array(

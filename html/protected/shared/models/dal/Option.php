@@ -34,7 +34,7 @@ class Option extends CActiveRecord {
         // will receive user inputs.
         return array(
             array('name', 'required'),
-            array('value', 'safe'),
+            array('value, tenant_account_id', 'safe'),
             array('id, name, value', 'safe', 'on' => 'search'),
         );
     }
@@ -77,7 +77,14 @@ class Option extends CActiveRecord {
                     'pagination' => array(
                         'pageSize' => 50,
                     ),
-        ));
+                ));
+    }
+
+    public function behaviors() {
+        return array(
+            'MultiTenant' => array(
+                'class' => 'MultiTenantBehavior')
+        );
     }
 
 }

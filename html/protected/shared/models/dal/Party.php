@@ -40,6 +40,7 @@ class Party extends CActiveRecord {
             array('name', 'length', 'max' => 2048),
             array('abbr', 'length', 'max' => 128),
             array('initial', 'length', 'max' => 16),
+            array('tenant_account_id', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, name, abbr, initial', 'safe', 'on' => 'search'),
@@ -87,6 +88,13 @@ class Party extends CActiveRecord {
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
                 ));
+    }
+
+    public function behaviors() {
+        return array(
+            'MultiTenant' => array(
+                'class' => 'MultiTenantBehavior')
+        );
     }
 
 }

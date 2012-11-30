@@ -52,7 +52,7 @@ class Application_user extends CActiveRecord {
             array('district_id', 'numerical', 'integerOnly' => true),
             array('device_token', 'length', 'max' => 128),
             array('user_agent', 'length', 'max' => 1024),
-            array('latitude, longitude, registration, type, tags', 'safe'),
+            array('latitude, longitude, registration, type, tags, tenant_account_id', 'safe'),
             array('registration', 'date', 'format' => 'yyyy-M-d H:m:s'),
             array('id, device_token, latitude, longitude, state_abbr, district_id, district_type, district_number, registration, type, user_agent', 'safe', 'on' => 'search'),
             array('geolocation', 'geolocation'), // test lat and long format
@@ -65,23 +65,21 @@ class Application_user extends CActiveRecord {
      * Set  error field if the lat and long doesnt match a valid format
      */
     public function geolocation() {
-        if (isset($this->latitude) && isset($this->longitude) && $this->isNewRecord ) {
-          
+        if (isset($this->latitude) && isset($this->longitude) && $this->isNewRecord) {
+
             if (!preg_match('/^[-+]?[0-9]*\,?[0-9]+$/', $this->latitude) || !preg_match('/^[-+]?[0-9]*\,?[0-9]+$/', $this->longitude)) {
                 $this->addError("latlong", 'wrong format');
             }
         }
     }
-    
+
     /**
      * Validation rules - test the device type
      */
-    public function device_type(){
-        if(!in_array($this->type, self::$device_types))
-                $this->addError('type', 'invalid device type');
+    public function device_type() {
+        if (!in_array($this->type, self::$device_types))
+            $this->addError('type', 'invalid device type');
     }
-    
-    
 
     /**
      * @return array relational rules.
@@ -166,7 +164,7 @@ class Application_user extends CActiveRecord {
                 ));
     }
 
-    public function beforeSave() { 
+    public function beforeSave() {
         if ($this->isNewRecord) {
             $this->registration = date('Y-m-d H:i:s');
         }
@@ -191,7 +189,9 @@ class Application_user extends CActiveRecord {
             ),
             'tagBehavior' => array(
                 'class' => 'ApplicationUserTagBehavior',
-            )
+            ),
+            'MultiTenant' => array(
+                'class' => 'MultiTenantBehavior')
         );
     }
 

@@ -45,7 +45,7 @@ class Endorser extends CActiveRecord {
             array('website, image_url', 'length', 'max' => 2048),
             array('facebook_share', 'length', 'max' => 1024),
             array('twitter_share', 'length', 'max' => 140),
-            array('description, display_name, list_name', 'safe'),
+            array('description, display_name, list_name, tenant_account_id', 'safe'),
             array('website, image_url', 'url'),
             array('id, name, description, website, image_url, display_name, list_name, slug, facebook_share, twitter_share', 'safe', 'on' => 'search'),
         );
@@ -102,6 +102,13 @@ class Endorser extends CActiveRecord {
                         'pageSize' => 50,
                     ),
                 ));
+    }
+
+    public function behaviors() {
+        return array(
+            'MultiTenant' => array(
+                'class' => 'MultiTenantBehavior')
+        );
     }
 
 }

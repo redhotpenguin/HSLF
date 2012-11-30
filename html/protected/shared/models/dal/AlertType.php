@@ -38,12 +38,13 @@ class AlertType extends CActiveRecord {
      */
     public function rules() {
         return array(
-            array('display_name, category, tag_id','required'),
+            array('display_name, category, tag_id', 'required'),
             array('tag_id', 'numerical', 'integerOnly' => true),
             array('display_name', 'length', 'max' => 1024),
             array('category', 'length', 'max' => 512),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
+            array('tenant_account_id', 'safe'),
             array('id, display_name, tag_id, tag_name, category', 'safe', 'on' => 'search'),
         );
     }
@@ -96,6 +97,13 @@ class AlertType extends CActiveRecord {
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
                 ));
+    }
+
+    public function behaviors() {
+        return array(
+            'MultiTenant' => array(
+                'class' => 'MultiTenantBehavior')
+        );
     }
 
 }

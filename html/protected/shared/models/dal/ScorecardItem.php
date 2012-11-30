@@ -44,7 +44,7 @@ class ScorecardItem extends CActiveRecord {
             array('name, office_id', 'required'),
             array('office_id', 'numerical', 'integerOnly' => true),
             array('name', 'length', 'max' => 4096),
-            array('description, office_type', 'safe'),
+            array('description, office_type, tenant_account_id', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, name, description, office_id, office_type', 'safe', 'on' => 'search'),
@@ -117,6 +117,13 @@ class ScorecardItem extends CActiveRecord {
                             '*',
                     ))
                 ));
+    }
+
+    public function behaviors() {
+        return array(
+            'MultiTenant' => array(
+                'class' => 'MultiTenantBehavior')
+        );
     }
 
 }
