@@ -14,23 +14,22 @@ abstract class CBaseActiveRecord extends CActiveRecord {
 
     public $sessionTenantAccountId;
 
-    public final function defaultScope() {
+    
+    /* override CActiveRecord.count() to trigger beforeFind */
+    public function count($condition = '', $params = array()) {
+        $this->beforeFind();
+        Yii::trace(get_class($this) . '.count()', 'system.db.ar.CActiveRecord');
+        $builder = $this->getCommandBuilder();
+        $criteria = $builder->createCriteria($condition, $params);
+        $this->applyScopes($criteria);
 
-        if (Yii::app()->user->id != null) {
-            $user_tenant_account_id = Yii::app()->user->tenant_account_id;
-        } elseif ($this->sessionTenantAccountId != null) {
-            $user_tenant_account_id = $this->sessionTenantAccountId;
-        } else {
-            return array();
+        if (empty($criteria->with))
+            return $builder->createCountCommand($this->getTableSchema(), $criteria)->queryScalar();
+        else {
+            $finder = new CActiveFinder($this, $criteria->with);
+            return $finder->count($criteria);
         }
-
-        $condition = $this->getTableAlias(false, false) . '.tenant_account_id=' . $user_tenant_account_id;
-
-        return array(
-            'condition' => $condition,
-        );
     }
-   
 
 }
 

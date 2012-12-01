@@ -41,6 +41,7 @@
         <?php
         if (Yii::app()->user->id):
             $tenant = TenantAccount::model()->findByPk(Yii::app()->user->tenant_account_id);
+            $tenantOption = TenantOption::model()->findByAttributes(array("tenant_account_id" => $tenant->id));
             ?>
 
 
@@ -66,7 +67,7 @@
                                         array('label' => 'Parties', 'url' => array('/party/admin'), 'visible' => isAdmin()),
                                         array('label' => 'Endorsers', 'url' => array('/endorser/admin/'), 'visible' => !Yii::app()->user->isGuest),
                                         array('label' => 'Image Upload', 'url' => array('/upload'), 'visible' => !Yii::app()->user->isGuest),
-                                        array('itemOptions' => array('id' => 'external_item'), 'label' => 'Rich Push Notifications', 'linkOptions' => array('target' => '_blank'), 'url' => UA_DASHBOARD_LINK),
+                                        array('itemOptions' => array('id' => 'external_item'), 'label' => 'Rich Push Notifications', 'linkOptions' => array('target' => '_blank'), 'url' => $tenantOption->ua_dashboard_link),
                                 )),
                             ),
                         ),
@@ -95,7 +96,6 @@
                                     'items' => array(
                                         array('label' => 'Users', 'url' => array('/user'), 'visible' => !Yii::app()->user->isGuest),
                                         array('label' => 'Import', 'url' => array('/import'), 'visible' => isAdmin()),
-                                    //  array('label' => 'Help', 'url' => array('/site/help'), 'visible' => isAdmin()),
                                     ),
                             )),
                         ),
@@ -118,15 +118,15 @@
             <div id="container" class="container">
 
                 <div id="wrap">
-                    <?php
-                    $this->widget('bootstrap.widgets.BootBreadcrumbs', array(
-                        'links' => $this->breadcrumbs,
-                        'homeLink' => CHtml::link('Dashboard', array('./'))
-                    ));
+    <?php
+    $this->widget('bootstrap.widgets.BootBreadcrumbs', array(
+        'links' => $this->breadcrumbs,
+        'homeLink' => CHtml::link('Dashboard', array('./'))
+    ));
 
 
-                endif;
-                ?><!-- breadcrumbs -->
+endif;
+?><!-- breadcrumbs -->
 
 
 
@@ -135,21 +135,21 @@
 
                         <div style="float:left;" class="span10">
 
-                            <?php echo $content; ?>
+<?php echo $content; ?>
 
                         </div>
 
                         <div style="float:left;" class="span2">
                             <div id="sidebar">
 
-                                <?php
-                                $this->widget('bootstrap.widgets.BootMenu', array(
-                                    'type' => 'tabs', // '', 'tabs', 'pills' (or 'list')
-                                    'stacked' => true, // whether this is a stacked menu
-                                    'items' => $this->menu,
-                                    'htmlOptions' => array('class' => 'nav nav-pills nav-stacked'),
-                                ));
-                                ?>
+<?php
+$this->widget('bootstrap.widgets.BootMenu', array(
+    'type' => 'tabs', // '', 'tabs', 'pills' (or 'list')
+    'stacked' => true, // whether this is a stacked menu
+    'items' => $this->menu,
+    'htmlOptions' => array('class' => 'nav nav-pills nav-stacked'),
+));
+?>
 
                             </div>
                         </div>

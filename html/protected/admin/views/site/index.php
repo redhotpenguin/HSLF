@@ -25,7 +25,7 @@
             <div class="span3">
                 <h2>Push Notifications</h2>
                 <p>Send Rich Push Notifications to mobile users.</p>
-                <p><a class="btn" href="<?php echo UA_DASHBOARD_LINK ?>">More »</a></p>
+                <p><a class="btn" href="<?php // echo UA_DASHBOARD_LINK ?>">More »</a></p>
             </div>
         </div>
         <br/>

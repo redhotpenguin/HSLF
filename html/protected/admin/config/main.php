@@ -1,5 +1,6 @@
 <?php
 
+
 /* BACKEND CONFIG FILE */
 
 $backend = dirname(dirname(__FILE__));
@@ -110,8 +111,8 @@ return array(
     // using Yii::app()->params['paramName']
     'params' => array(
         'dateFormat' => 'Y-m-d H:i:s',
-        'adminEmail' => ADMIN_EMAIL,
-        'site_url' => SITE_URL,
+        'adminEmail' => null,
+        'site_url' => null,
         'urbanairship_app_key' => UA_API_KEY,
         'urbanairship_app_master_secret' => UA_API_SECRET,
         'upload_path' => SITE_URL . UPLOAD_PATH,
