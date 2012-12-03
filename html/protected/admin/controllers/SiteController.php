@@ -40,10 +40,6 @@ class SiteController extends Controller {
         }
     }
 
-    public function actionHELP() {
-        $this->render('help');
-    }
-
     /**
      * This is the default 'index' action that is invoked
      * when an action is not explicitly requested by users.
@@ -52,7 +48,7 @@ class SiteController extends Controller {
         error_log("actionLogin site controller");
         $data = null;
         if (Yii::app()->user->id) {
-           $this->actionIndex();
+            $this->actionIndex();
         } else {
 
             $model = new LoginForm;
@@ -80,7 +76,7 @@ class SiteController extends Controller {
      */
     public function actionError() {
         logIt($_GET);
-  
+
 
         if ($error = Yii::app()->errorHandler->error) {
             if (Yii::app()->request->isAjaxRequest)
@@ -101,7 +97,7 @@ class SiteController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'publishing', 'messaging', 'administration', 'mobile', 'logout', 'help'),
+                'actions' => array('index', 'publishing', 'messaging', 'administration', 'mobile', 'logout', 'project'),
                 'users' => array('@'),
             ),
             array('allow', // 
@@ -112,6 +108,16 @@ class SiteController extends Controller {
                 'users' => array('*'),
             ),
         );
+    }
+
+    /**
+     * list current users projects (tenants) 
+     */
+    public function actionProject() {
+        $userTenants = TenantUser::model()->findAllByAttributes(array(
+            "user_id" => Yii::app()->user->id
+                ));
+        $this->render('tenant_index', array('userTenants' => $userTenants));
     }
 
     /**
