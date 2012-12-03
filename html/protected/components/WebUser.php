@@ -18,6 +18,23 @@ class WebUser extends CWebUser {
         parent::login($identity, $duration);
     }
 
+    public function setTenant($tennantAccountId) {
+        $userId = Yii::app()->user->id;
+
+        $tenantUser = TenantUser::model()->findByAttributes(
+                array("user_id" => $userId,
+                    "tenant_account_id" => $tennantAccountId
+                )
+        );
+
+        // current user belongs to tenant
+        if ($tenantUser) {
+            $this->setState('tenant_account_id', $tennantAccountId);
+        } else {
+            error_log("current user #$userId does not belong to tenant #$tennantAccountId");
+        }
+    }
+
 }
 
 ?>

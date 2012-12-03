@@ -5,6 +5,17 @@
  * All controller classes for this application should extend from this base class.
  */
 class Controller extends CController {
+    
+    public function __construct($id){
+        parent::__construct($id);
+        
+        // this should be in a route. here as a proof of concept
+        if(isset($_GET['tenantID'])){
+             $tenantId = $_GET['tenantID'];  
+             Yii::app()->user->setTenant($tenantId);
+        }
+
+    }
 
     /**
      * @var string the default layout for the controller view. Defaults to '//layouts/column1',

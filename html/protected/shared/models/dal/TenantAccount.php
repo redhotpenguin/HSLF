@@ -91,4 +91,5 @@ class TenantAccount extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
 }

@@ -94,4 +94,9 @@ class TenantUser extends CActiveRecord {
                 ));
     }
 
+    // @todo: move to behavior
+    public function hasUser($userID) {
+        error_log("checking if tenant $this->id has : " . $userID);
+    }
+
 }
