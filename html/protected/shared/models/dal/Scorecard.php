@@ -13,7 +13,7 @@
  * @property BallotItem $ballotItem
  * @property ScorecardItem $scorecardItem
  */
-class Scorecard extends CActiveRecord {
+class Scorecard extends CBaseActiveRecord {
 
     /**
      * Returns the static model of the specified AR class.
@@ -40,8 +40,7 @@ class Scorecard extends CActiveRecord {
         return array(
             array('ballot_item_id, scorecard_item_id, vote_id', 'required'),
             array('ballot_item_id, scorecard_item_id, vote_id ', 'numerical', 'integerOnly' => true),
-            // The following rule is used by search().
-            // Please remove those attributes that should not be searched.
+            array('tenant_account_id', 'safe'),
             array('id, ballot_item_id, scorecard_item_id, vote_id', 'safe', 'on' => 'search'),
         );
     }
@@ -87,6 +86,13 @@ class Scorecard extends CActiveRecord {
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
                 ));
+    }
+
+    public function behaviors() {
+        return array(
+            'MultiTenant' => array(
+                'class' => 'MultiTenantBehavior')
+        );
     }
 
 }

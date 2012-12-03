@@ -204,7 +204,7 @@ class BallotItemCriteria extends CDbCriteria {
      */
     public function addScorecardRelation() {
         $this->addRelation('scorecards');
-        $this->addRelation('cards');
+    //    $this->addRelation('cards');
     }
 
     /**

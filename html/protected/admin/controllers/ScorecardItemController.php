@@ -81,6 +81,9 @@ class ScorecardItemController extends Controller {
             $model->attributes = $_POST['ScorecardItem'];
             if ($model->save()) {
                 $this->redirect(array('view', 'id' => $model->id));
+            }else{
+                echo 'could not save';
+                exit;
             }
         }
 
