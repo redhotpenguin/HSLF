@@ -19,8 +19,7 @@ class ApiController extends Controller {
     /**
      * List supported models
      */
-    public function actionList($tennant_id) {
-        $tennant_id;
+    public function actionList($tenant_id) {
 
         $requested_model = $_GET['model'] . 'API';
 
@@ -37,7 +36,7 @@ class ApiController extends Controller {
             else
                 $model->setAuthenticated(false);
 
-            $message = $model->getList($tennant_id, $_GET);
+            $message = $model->getList($tenant_id, $_GET);
         }
 
         $this->sendResponse($code, $message);
@@ -46,7 +45,7 @@ class ApiController extends Controller {
     /**
      * List models according to a specific request
      */
-    public function actionView($model, $id) {
+    public function actionView($tenant_id, $model, $id) {
         $requested_model = $model . 'API';
 
         if (!class_exists($requested_model)) {

@@ -111,6 +111,7 @@ class VoteController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
+        
         $dataProvider = new CActiveDataProvider('Vote');
         $this->render('index', array(
             'dataProvider' => $dataProvider,

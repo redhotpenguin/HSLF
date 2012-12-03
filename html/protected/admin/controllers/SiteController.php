@@ -9,7 +9,6 @@ class SiteController extends Controller {
     public function actionIndex() {
         $data = null;
 
-
         if (Yii::app()->user->id) {
 
 
@@ -53,11 +52,7 @@ class SiteController extends Controller {
         error_log("actionLogin site controller");
         $data = null;
         if (Yii::app()->user->id) {
-            $data = array(
-                'total_app_users' => Application_user::model()->count(),
-                'total_ballot_page' => BallotItem::model()->count(),
-            );
-            $this->render('index', $data);
+           $this->actionIndex();
         } else {
 
             $model = new LoginForm;
@@ -84,6 +79,9 @@ class SiteController extends Controller {
      * This is the action to handle external exceptions.
      */
     public function actionError() {
+        logIt($_GET);
+  
+
         if ($error = Yii::app()->errorHandler->error) {
             if (Yii::app()->request->isAjaxRequest)
                 echo $error['message'];

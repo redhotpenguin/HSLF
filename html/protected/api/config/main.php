@@ -42,8 +42,8 @@ return array(
             'rules' => array(
 
                 array('api/index', 'pattern' => 'api', 'verb' => 'GET'),
-                array('api/list', 'pattern' => 'api/<tennant_id:\d+>/<model:\w+>/', 'verb' => 'GET'),
-                array('api/view', 'pattern' => 'api/<model:\w+>/<id:\d+>', 'verb' => 'GET'),
+                array('api/list', 'pattern' => 'api/<tenant_id:\d+>/<model:\w+>/', 'verb' => 'GET'),
+                array('api/view', 'pattern' => 'api/<tenant_id:\d+>/<model:\w+>/<id:\d+>', 'verb' => 'GET'),
 
             ),
         ),

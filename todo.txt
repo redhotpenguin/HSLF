@@ -1,0 +1,19 @@
+Add join_table: Tenant<>Users + column to hold privilege status
+
+
+Move configuration file to the database
+Update Unique constraints to include tenant_id
+Figure out runtime/assets folder
+Super admin back-end
+CDN
+Update Import Script
+Remove state/districts controllers from normal admin dashboard
+Update upsert option to include tenant_id
+Update cronjob command file
+Add cronjob per tenant
+
+
+
+--DONE--
+Foreign key: needs to be checked
+Remove unused files

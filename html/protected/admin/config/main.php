@@ -1,6 +1,5 @@
 <?php
 
-
 /* BACKEND CONFIG FILE */
 
 $backend = dirname(dirname(__FILE__));
@@ -13,7 +12,7 @@ Yii::setPathOfAlias('admin', $backend);
 
 
 return array(
-    //'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
+//'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'basePath' => $frontend,
     'controllerPath' => $backend . '/controllers',
     'viewPath' => $backend . '/views/',
@@ -21,10 +20,10 @@ return array(
     'name' => 'Admin Dashboard - ' . PROJECT_NAME . ' Mobile ',
     // preloading 'log' component
     'preload' => array(
-       // 'log',
+// 'log',
         'bootstrap'
     ), // preload the bootstrap component),
-    // autoloading model and component classes
+// autoloading model and component classes
     'import' => array(
         'admin.models.*',
         'application.shared.models.dal.*', // data access logic classes
@@ -34,36 +33,41 @@ return array(
         'application.components.*',
         'ext.multimodelform.MultiModelForm',
     ),
-    'modules' => array(
-    /*
-      'gii' => array(
-      'class' => 'system.gii.GiiModule',
-      'password' => 'giipass',
-      // If removed, Gii defaults to localhost only. Edit carefully to taste.
-      'ipFilters' => array('127.0.0.1', '::1'),
-      ),
-     */
-    ),
+    'modules' => array(),
     // application components
     'components' => array(
         'user' => array(
-            // enable cookie-based authentication
+// enable cookie-based authentication
             'allowAutoLogin' => true,
-             'class' => 'WebUser',
+            'class' => 'WebUser',
         ),
         // uncomment the following to enable URLs in path-format
 
         'bootstrap' => array(
             'class' => 'ext.bootstrap.components.Bootstrap', // assuming you extracted bootstrap under extensions
-            'responsiveCss'=> true,
+            'responsiveCss' => true,
         ),
         'urlManager' => array(
             'urlFormat' => 'path',
             'showScriptName' => false,
+            // mapping
             'rules' => array(
-                'admin' => 'site/index',
-                'admin/<_c>' => '<_c>',
-                'admin/<_c>/<_a>' => '<_c>/<_a>',
+               
+                  'admin' => 'site/index',
+                  'admin/<_controller>' => '<_controller>',
+                  'admin/<_controller>/<_action>' => '<_controller>/<_action>',
+                 
+                /*
+                array(
+                    'class' => 'MultiTenantRule',
+                    'connectionID' => 'db',
+                ),
+                
+                'admin/<tenant>' => 'site/index',
+                'admin/<tenant>/<_controller>' => '<_controller>',
+                'admin/<tenant>/<_controller>/<_action>' => '<_controller>/<_action>',
+                 * 
+                 */
             ),
         ),
         'db' => array(
@@ -72,44 +76,43 @@ return array(
             'username' => DB_USER,
             'password' => DB_PASS,
             'charset' => 'UTF-8',
-           // 'schemaCachingDuration' => '3600',
+        // 'schemaCachingDuration' => '3600',
         ),
         'cache' => array(
             'class' => 'system.caching.CApcCache',
         ),
         'errorHandler' => array(
-            // use 'site/error' action to display errors
+// use 'site/error' action to display errors
             'errorAction' => 'site/error',
         ),
-        
-        /*'log' => array(
-            'class' => 'CLogRouter',
-            'routes' => array(
-                array(
-                    'class' => 'CFileLogRoute',
-                    'levels' => 'error, warning, info, trace',
-                ),
-            /*
-              array(
-              'class' => 'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
-              'ipFilters' => array('127.0.0.1'),
-              ),
-              array(
-              'class' => 'CWebLogRoute',
-              'enabled' => YII_DEBUG_SHOW_PROFILER,
-              'categories' => 'system.db.*',
-              ),
-              // uncomment the following to show log messages on web pages
+    /* 'log' => array(
+      'class' => 'CLogRouter',
+      'routes' => array(
+      array(
+      'class' => 'CFileLogRoute',
+      'levels' => 'error, warning, info, trace',
+      ),
+      /*
+      array(
+      'class' => 'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
+      'ipFilters' => array('127.0.0.1'),
+      ),
+      array(
+      'class' => 'CWebLogRoute',
+      'enabled' => YII_DEBUG_SHOW_PROFILER,
+      'categories' => 'system.db.*',
+      ),
+      // uncomment the following to show log messages on web pages
 
-             */
-            /* array(
-              'class'=>'CWebLogRoute',
-              ), 
-            ),
-        ),*/
+     */
+    /* array(
+      'class'=>'CWebLogRoute',
+      ),
+      ),
+      ), */
     ),
     // application-level parameters that can be accessed
-    // using Yii::app()->params['paramName']
+// using Yii::app()->params['paramName']
     'params' => array(
         'dateFormat' => 'Y-m-d H:i:s',
         'adminEmail' => null,

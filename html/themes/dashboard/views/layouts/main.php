@@ -105,7 +105,7 @@
                                 '---',
                                 array(
                                     'label' => 'Logout (' . Yii::app()->user->name . ')',
-                                    'url' => '/admin/site/logout',
+                                    'url' => array('site/logout'),
                                     'visible' => !Yii::app()->user->isGuest,
                             )),
                         ),

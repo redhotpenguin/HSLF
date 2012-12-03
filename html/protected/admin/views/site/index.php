@@ -1,8 +1,9 @@
 <?php $this->pageTitle = Yii::app()->name; ?>
 
 <div>
-
+   
     <?php
+   print_r($_GET);
     if (Yii::app()->user->id):
 
 
