@@ -39,11 +39,7 @@
     </div>
 
     <div class="">
-        <?php
-        echo $form->labelEx($model, 'role');
-        echo $form->dropDownList($model, 'role', $model->getRoleOptions());
-        echo $form->error($model, 'role');
-        ?>
+  
     </div>
 
     <div class="buttons">

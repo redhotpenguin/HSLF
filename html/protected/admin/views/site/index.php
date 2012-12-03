@@ -4,6 +4,14 @@
 
     <?php
     if (Yii::app()->user->id):
+
+
+        echo Yii::app()->user->id;
+
+        foreach ($userTenants as $userTenant) {
+            echo $userTenant->tenantAccount->name;
+            echo '<br/>';
+        }
         ?>
         <div class="hero-unit">
             <h1>Dashboard</h1>
@@ -25,7 +33,7 @@
             <div class="span3">
                 <h2>Push Notifications</h2>
                 <p>Send Rich Push Notifications to mobile users.</p>
-                <p><a class="btn" href="<?php // echo UA_DASHBOARD_LINK ?>">More »</a></p>
+                <p><a class="btn" href="<?php // echo UA_DASHBOARD_LINK  ?>">More »</a></p>
             </div>
         </div>
         <br/>
@@ -49,55 +57,8 @@
             </div>
         </div>
 
-        <?php
-    else: // display login form if user not logged in
-        ?>
-
     </div>
 
-
-    <p>Please fill out the following form with your login credentials:</p>
-
-    <div class="form">
-        <?php
-        $form = $this->beginWidget('CActiveForm', array(
-            'id' => 'login-form',
-            'enableClientValidation' => true,
-            'clientOptions' => array(
-                'validateOnSubmit' => true,
-            ),
-                ));
-        ?>
-
-        <p class="note">Fields with <span class="required">*</span> are required.</p>
-
-        <div class="row">
-            <?php echo $form->labelEx($model, 'username'); ?>
-            <?php echo $form->textField($model, 'username'); ?>
-            <?php echo $form->error($model, 'username'); ?>
-        </div>
-
-        <div class="row">
-            <?php echo $form->labelEx($model, 'password'); ?>
-            <?php echo $form->passwordField($model, 'password'); ?>
-            <?php echo $form->error($model, 'password'); ?>
-
-        </div>
-
-        <div class="row rememberMe">
-            <?php echo $form->checkBox($model, 'rememberMe'); ?>
-            <?php echo $form->label($model, 'rememberMe'); ?>
-            <?php echo $form->error($model, 'rememberMe'); ?>
-        </div>
-
-        <div class="row buttons">
-            <?php echo CHtml::submitButton('Login'); ?>
-        </div>
-
-        <?php $this->endWidget(); ?>
-
     <?php
-    endif; //end test is user logged in
-    ?>
-
-</div>
+endif; //end test is user logged in
+?>

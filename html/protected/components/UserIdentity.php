@@ -7,6 +7,8 @@
  */
 class UserIdentity extends CUserIdentity {
 
+    private $user;
+
     /**
      * Authenticates a user.
 
@@ -14,22 +16,26 @@ class UserIdentity extends CUserIdentity {
      */
     public function authenticate() {
 
+        $this->user = User::model()->findByAttributes(array('username' => $this->username));
 
-        $user = User::model()->findByAttributes(array('username' => $this->username));
-
-        if ($user === null) { // No user found!
+        if ($this->user === null) { // No user found!
             $this->errorCode = self::ERROR_USERNAME_INVALID;
             error_log('invalid username: ' . $this->username);
-        } else if ($user->password !== get_hash($this->password)) { // Invalid password!
+        } else if ($this->user->password !== get_hash($this->password)) { // Invalid password!
             $this->errorCode = self::ERROR_PASSWORD_INVALID;
         } else { // Okay!
+            $tenantUser = TenantUser::model()->findByAttributes(array("user_id" => $this->user->id));
+
             $this->errorCode = self::ERROR_NONE;
-            $this->setState('role', $user->role);
-            $this->setState('tenant_account_id', $user->tenant_account_id);
+            $this->setState('role', $tenantUser->role);
+            $this->setState('tenant_account_id', $tenantUser->tenant_account_id);
         }
 
         return !$this->errorCode;
     }
 
+    public function getUser() {
+        return $this->user;
+    }
 
 }

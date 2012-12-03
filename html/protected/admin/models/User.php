@@ -8,15 +8,12 @@
  * @property string $username
  * @property string $password
  * @property string $email
- * $property string $role
  */
-class User extends CBaseActiveRecord {
+class User extends CActiveRecord {
 
     public $repeat_password;
     public $initial_password;
 
-    const ADMIN_ROLE = 'admin';
-    const PUBLISHER_ROLE = 'publisher';
 
     /**
      * Returns the static model of the specified AR class.
@@ -39,13 +36,13 @@ class User extends CBaseActiveRecord {
      */
     public function rules() {
         return array(
-            array('username,email, role', 'required', 'on' => 'update'),
-            array('password, username, email, role, repeat_password', 'required', 'on' => 'insert'),
+            array('username,email', 'required', 'on' => 'update'),
+            array('password, username, email, repeat_password', 'required', 'on' => 'insert'),
             array('repeat_password', 'compare', 'compareAttribute' => 'password', 'on' => 'insert'),
             array('email', 'email'),
             array('username, email', 'length', 'max' => 128),
             array('password', 'length', 'max' => 40),
-            array('id, username, email, role, tenant_account_id', 'safe', 'on' => 'search'),
+            array('id, username, email', 'safe', 'on' => 'search'),
         );
     }
 
@@ -66,7 +63,6 @@ class User extends CBaseActiveRecord {
             'username' => 'Username',
             'password' => 'Password',
             'email' => 'Email',
-            'role' => 'Role',
         );
     }
 
@@ -84,7 +80,6 @@ class User extends CBaseActiveRecord {
         $criteria->compare('username', $this->username, true);
         $criteria->compare('password', $this->password, true);
         $criteria->compare('email', $this->email, true);
-        $criteria->compare('role', $this->role, true);
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
@@ -152,11 +147,6 @@ class User extends CBaseActiveRecord {
         return $save_result;
     }
 
-   public function behaviors() {
-        return array(
-            'MultiTenant' => array(
-                'class' => 'MultiTenantBehavior')
-        );
-    }
+
 
 }

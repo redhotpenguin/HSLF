@@ -23,7 +23,6 @@ $this->widget('bootstrap.widgets.BootGridView', array(
     'columns'=>array(        
         'username',  
         'email',
-        'role',
         array(            // display a column with "view", "update" and "delete" buttons
             'class'=>'bootstrap.widgets.BootButtonColumn',
              'template'=> $template,
