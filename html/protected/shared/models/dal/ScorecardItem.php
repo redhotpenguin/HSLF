@@ -44,7 +44,7 @@ class ScorecardItem extends CBaseActiveRecord {
             array('name, office_id', 'required'),
             array('office_id', 'numerical', 'integerOnly' => true),
             array('name', 'length', 'max' => 4096),
-            array('description, office_type, office, tenant_account_id', 'safe'),
+            array('description, office_type, office, tenant_id', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, name, description, office_id, office_type', 'safe', 'on' => 'search'),

@@ -42,7 +42,7 @@ class BallotItemNews extends CBaseActiveRecord {
         return array(
             array('ballot_item_id, title, date_published, slug', 'required'),
             array('ballot_item_id', 'numerical', 'integerOnly' => true),
-            array('content, excerpt, tenant_account_id', 'safe'),
+            array('content, excerpt, tenant_id', 'safe'),
             array('slug', 'slugValidation'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.

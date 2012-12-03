@@ -36,7 +36,7 @@ class Office extends CBaseActiveRecord {
         // will receive user inputs.
         return array(
             array('name', 'length', 'max' => 256),
-            array('tenant_account_id', 'safe'),
+            array('tenant_id', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, name', 'safe', 'on' => 'search'),

@@ -1,4 +1,3 @@
-Add join_table: Tenant<>Users + column to hold privilege status
 
 
 Move configuration file to the database
@@ -12,6 +11,12 @@ Update upsert option to include tenant_id
 Update cronjob command file
 Add cronjob per tenant
 
+
+-- IN PROGRESS -- 
+Add join_table: Tenant<>Users + column to hold privilege status
+Dynamic admin url with tenants:
+/admin/client1/
+/admin/client2/
 
 
 --DONE--

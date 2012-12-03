@@ -37,7 +37,7 @@ class Vote extends CBaseActiveRecord {
         // will receive user inputs.
         return array(
             array('name', 'length', 'max' => 64),
-            array('icon, tenant_account_id', 'safe'),
+            array('icon, tenant_id', 'safe'),
             array('icon', 'url'),
             array('id, name, icon', 'safe', 'on' => 'search'),
         );

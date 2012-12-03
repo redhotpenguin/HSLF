@@ -12,7 +12,7 @@
  */
 abstract class CBaseActiveRecord extends CActiveRecord {
 
-    public $sessionTenantAccountId;
+    public $sessionTenantId;
 
     
     /* override CActiveRecord.count() to trigger beforeFind */

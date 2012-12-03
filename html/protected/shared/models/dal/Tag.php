@@ -43,7 +43,7 @@ class Tag extends CBaseActiveRecord {
         return array(
             array('name, type', 'length', 'max' => 255),
             array('name, type', 'required'),
-            array('id, name, type, tenant_account_id', 'safe', 'on' => 'search'),
+            array('id, name, type, tenant_id', 'safe', 'on' => 'search'),
             array('name', 'filter', 'filter' => array($this, 'remove_spaces')),
         );
     }

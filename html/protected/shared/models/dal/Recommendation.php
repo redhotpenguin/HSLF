@@ -39,7 +39,7 @@ class Recommendation extends CBaseActiveRecord {
         return array(
             array('value, type', 'required'),
             array('value, type', 'length', 'max' => 64),
-            array('tenant_account_id', 'safe'),
+            array('tenant_id', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, value, type', 'safe', 'on' => 'search'),

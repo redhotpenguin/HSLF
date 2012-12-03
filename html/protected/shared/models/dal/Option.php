@@ -34,7 +34,7 @@ class Option extends CBaseActiveRecord {
         // will receive user inputs.
         return array(
             array('name', 'required'),
-            array('value, tenant_account_id', 'safe'),
+            array('value, tenant_id', 'safe'),
             array('id, name, value', 'safe', 'on' => 'search'),
         );
     }

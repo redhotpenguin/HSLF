@@ -40,7 +40,7 @@ class Party extends CBaseActiveRecord {
             array('name', 'length', 'max' => 2048),
             array('abbr', 'length', 'max' => 128),
             array('initial', 'length', 'max' => 16),
-            array('tenant_account_id', 'safe'),
+            array('tenant_id', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, name, abbr, initial', 'safe', 'on' => 'search'),

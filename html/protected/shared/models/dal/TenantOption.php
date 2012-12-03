@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table 'tenant_option':
  * @property integer $id
- * @property integer $tenant_account_id
+ * @property integer $tenant_id
  * @property string $site_url
  * @property string $email
  * @property string $api_key
@@ -43,12 +43,12 @@ class TenantOption extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('tenant_account_id, site_url, email, api_key, api_secret', 'required'),
-			array('tenant_account_id', 'numerical', 'integerOnly'=>true),
+			array('tenant_id, site_url, email, api_key, api_secret', 'required'),
+			array('tenant_id', 'numerical', 'integerOnly'=>true),
 			array('ua_dashboard_link', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, tenant_account_id, site_url, email, api_key, api_secret, ua_dashboard_link', 'safe', 'on'=>'search'),
+			array('id, tenant_id, site_url, email, api_key, api_secret, ua_dashboard_link', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,7 +60,7 @@ class TenantOption extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'tenantAccount' => array(self::BELONGS_TO, 'TenantAccount', 'tenant_account_id'),
+			'tenantAccount' => array(self::BELONGS_TO, 'TenantAccount', 'tenant_id'),
 		);
 	}
 
@@ -71,7 +71,7 @@ class TenantOption extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'tenant_account_id' => 'Tenant Account',
+			'tenant_id' => 'Tenant Account',
 			'site_url' => 'Site Url',
 			'email' => 'Email',
 			'api_key' => 'Api Key',
@@ -92,7 +92,7 @@ class TenantOption extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('tenant_account_id',$this->tenant_account_id);
+		$criteria->compare('tenant_id',$this->tenant_id);
 		$criteria->compare('site_url',$this->site_url,true);
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('api_key',$this->api_key,true);

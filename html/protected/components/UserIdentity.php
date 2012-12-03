@@ -26,9 +26,13 @@ class UserIdentity extends CUserIdentity {
         } else { // Okay!
             $tenantUser = TenantUser::model()->findByAttributes(array("user_id" => $this->user->id));
 
-            $this->errorCode = self::ERROR_NONE;
-            $this->setState('role', $tenantUser->role);
-            $this->setState('tenant_account_id', $tenantUser->tenant_account_id);
+            if (!$tenantUser) {
+                $this->errorCode = self::ERROR_UNKNOWN_IDENTITY;
+            } else {
+                $this->errorCode = self::ERROR_NONE;
+                $this->setState('role', $tenantUser->role);
+                $this->setState('tenant_id', $tenantUser->tenant_id);
+            }
         }
 
         return !$this->errorCode;

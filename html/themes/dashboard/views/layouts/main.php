@@ -40,8 +40,9 @@
 
         <?php
         if (Yii::app()->user->id):
-            $tenant = TenantAccount::model()->findByPk(Yii::app()->user->tenant_account_id);
-            $tenantOption = TenantOption::model()->findByAttributes(array("tenant_account_id" => $tenant->id));
+            $tenant = Tenant::model()->findByPk(Yii::app()->user->tenant_id);
+       
+            $tenantOption = TenantOption::model()->findByAttributes(array("tenant_id" => $tenant->id));
             ?>
 
 

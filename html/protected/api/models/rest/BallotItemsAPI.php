@@ -13,8 +13,8 @@ class BallotItemsAPI implements IAPI {
      * @param  array $arguments API Get Parameters
      * @return array wrapped ballot items
      */
-    public function getList($tenantAccountId, $arguments = array()) {
-        $this->ballotItem->sessionTenantAccountId = $tenantAccountId;
+    public function getList($tenantId, $arguments = array()) {
+        $this->ballotItem->sessionTenantId = $tenantId;
         $includes = array();
 
         $ballotItemCriteria = new BallotItemCriteria($this->ballotItem);
@@ -91,7 +91,7 @@ class BallotItemsAPI implements IAPI {
      * @param integer $id ballot item id
      * @todo Refactor this function to use BallotItemCriteria?
      */
-    public function getSingle($tenantAccountid, $id, $arguments = array()) {
+    public function getSingle($tenantId, $id, $arguments = array()) {
         // todo: find better way to do this
         $this->ballotItem = $this->ballotItem->with(array('district', 'recommendation', 'electionResult', 'ballotItemNews', 'scorecards', 'cards', 'office', 'party'))->findByPk($id);
         

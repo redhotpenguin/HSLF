@@ -1,18 +1,10 @@
 <?php $this->pageTitle = Yii::app()->name; ?>
 
 <div>
-   
+
     <?php
-   print_r($_GET);
     if (Yii::app()->user->id):
 
-
-        echo Yii::app()->user->id;
-
-        foreach ($userTenants as $userTenant) {
-            echo $userTenant->tenantAccount->name;
-            echo '<br/>';
-        }
         ?>
         <div class="hero-unit">
             <h1>Dashboard</h1>
@@ -34,7 +26,7 @@
             <div class="span3">
                 <h2>Push Notifications</h2>
                 <p>Send Rich Push Notifications to mobile users.</p>
-                <p><a class="btn" href="<?php // echo UA_DASHBOARD_LINK  ?>">More »</a></p>
+                <p><a class="btn" href="<?php // echo UA_DASHBOARD_LINK   ?>">More »</a></p>
             </div>
         </div>
         <br/>

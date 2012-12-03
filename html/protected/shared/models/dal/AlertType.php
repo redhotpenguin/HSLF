@@ -44,7 +44,7 @@ class AlertType extends CBaseActiveRecord {
             array('category', 'length', 'max' => 512),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('tenant_account_id', 'safe'),
+            array('tenant_id', 'safe'),
             array('id, display_name, tag_id, tag_name, category', 'safe', 'on' => 'search'),
         );
     }

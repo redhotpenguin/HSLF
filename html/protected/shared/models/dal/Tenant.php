@@ -1,21 +1,21 @@
 <?php
 
 /**
- * This is the model class for table "tenant_account".
+ * This is the model class for table "tenant".
  *
- * The followings are the available columns in table 'tenant_account':
+ * The followings are the available columns in table 'tenant':
  * @property integer $id
  * @property string $name
  * @property string $display_name
  * @property string $creation_date
  *
  */
-class TenantAccount extends CActiveRecord
+class Tenant extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return TenantAccount the static model class
+	 * @return Tenantthe static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -27,7 +27,7 @@ class TenantAccount extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'tenant_account';
+		return 'tenant';
 	}
 
 	/**

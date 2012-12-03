@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table 'tenant_user':
  * @property integer $id
- * @property integer $tenant_account_id
+ * @property integer $tenant_id
  * @property integer $user_id
  * @property string $role
  *
@@ -41,12 +41,12 @@ class TenantUser extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('tenant_account_id, user_id, role', 'required'),
-            array('tenant_account_id, user_id', 'numerical', 'integerOnly' => true),
+            array('tenant_id, user_id, role', 'required'),
+            array('tenant_id, user_id', 'numerical', 'integerOnly' => true),
             array('role', 'length', 'max' => 128),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, tenant_account_id, user_id, role', 'safe', 'on' => 'search'),
+            array('id, tenant_id, user_id, role', 'safe', 'on' => 'search'),
         );
     }
 
@@ -57,7 +57,7 @@ class TenantUser extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'tenantAccount' => array(self::BELONGS_TO, 'TenantAccount', 'tenant_account_id'),
+            'tenantAccount' => array(self::BELONGS_TO, 'TenantAccount', 'tenant_id'),
             'user' => array(self::BELONGS_TO, 'User', 'user_id'),
         );
     }
@@ -68,7 +68,7 @@ class TenantUser extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'tenant_account_id' => 'Tenant Account',
+            'tenant_id' => 'Tenant Account',
             'user_id' => 'User',
             'role' => 'Role',
         );
@@ -85,7 +85,7 @@ class TenantUser extends CActiveRecord {
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id);
-        $criteria->compare('tenant_account_id', $this->tenant_account_id);
+        $criteria->compare('tenant_id', $this->tenant_id);
         $criteria->compare('user_id', $this->user_id);
         $criteria->compare('role', $this->role, true);
 

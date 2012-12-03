@@ -40,7 +40,7 @@ class Scorecard extends CBaseActiveRecord {
         return array(
             array('ballot_item_id, scorecard_item_id, vote_id', 'required'),
             array('ballot_item_id, scorecard_item_id, vote_id ', 'numerical', 'integerOnly' => true),
-            array('tenant_account_id', 'safe'),
+            array('tenant_id', 'safe'),
             array('id, ballot_item_id, scorecard_item_id, vote_id', 'safe', 'on' => 'search'),
         );
     }

@@ -16,37 +16,37 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
         $alias = $this->owner->getTableAlias(false, false);
 
         if (Yii::app()->user->id != null) {
-            $user_tenant_account_id = Yii::app()->user->tenant_account_id;
-        } elseif ($this->owner->sessionTenantAccountId != null) {
-            $user_tenant_account_id = $this->owner->sessionTenantAccountId;
+            $user_tenant_id = Yii::app()->user->tenant_id;
+        } elseif ($this->owner->sessionTenantId != null) {
+            $user_tenant_id = $this->owner->sessionTenantId;
         } else {
             return;
         }
 
-        $condition.= $alias . '.tenant_account_id = ' . $user_tenant_account_id;
+        $condition.= $alias . '.tenant_id = ' . $user_tenant_id;
         $c->condition = $condition;
     }
 
     public function beforeSave($event) {
         //tie this model to the actual tenant by setting the tenantid attribute
-        $this->owner->tenant_account_id = Yii::app()->user->tenant_account_id;
+        $this->owner->tenant_id = Yii::app()->user->tenant_id;
 
         $relations = $this->owner->relations();
         foreach ($relations as $relation => $value) {
             if (isset($this->owner->$relation->id)) {
                 // check that $relationId actually belongs to the current tenant id
-                $modelTenantAccountId = $this->owner->tenant_account_id;
+                $modelTenantId = $this->owner->tenant_id;
 
-                // relation does not have a tenant account id column. Ex: state, district, true join table
-                if (!isset($this->owner->$relation->tenant_account_id)) {
+                // relation does not have a tenant  id column. Ex: state, district, true join table
+                if (!isset($this->owner->$relation->tenant_id)) {
                     continue;
                 }
 
-                $relationTenantAccountId = $this->owner->$relation->tenant_account_id;
+                $relationTenantId = $this->owner->$relation->tenant_id;
 
-                if ($modelTenantAccountId != $relationTenantAccountId) {
+                if ($modelTenantId != $relationTenantId) {
                     $ownerClassName = get_class($this->owner);
-                    error_log("Model {$ownerClassName} and relation {$relation} tenant id ($modelTenantAccountId != $relationTenantAccountId)does not match");
+                    error_log("Model {$ownerClassName} and relation {$relation} tenant id ($modelTenantId != $relationTenantAccountId)does not match");
                     throw new Exception("Illegal action: action will be reported");
                 }
             } else { // many-many relationship ($this->owner->$relation is an array)
