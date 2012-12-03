@@ -58,17 +58,25 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
 
         $response = $this->httpRequestClient->getRequest($destination);
 
+
         // no response, probably because the token has expired
-        if (( $response == null || empty($response))) {
+        if ($response == null || empty($response)) {
+            error_log("updating");
             $this->updateCredentials();
             // update query with new credentials
             $destination = "{$this->apiBase}/{$requesting}?f={$format}&user={$this->userId}&token={$this->token}&type={$type}&search_loc={$address}";
-
             $response = $this->httpRequestClient->getRequest($destination);
         }
 
-
         $jsonResponse = json_decode($response);
+
+        if (isset($jsonResponse->response->errors[0])) {
+            error_log("error fetching cicero data:" . $jsonResponse->response->errors[0]);
+            // update query with new credentials
+            $destination = "{$this->apiBase}/{$requesting}?f={$format}&user={$this->userId}&token={$this->token}&type={$type}&search_loc={$address}";
+            $response = $this->httpRequestClient->getRequest($destination);
+        }
+
 
         if (!isset($jsonResponse->response->results->candidates[0]->districts) || empty($jsonResponse->response->results->candidates[0]->districts)) {
             return false;
@@ -104,7 +112,7 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
 
 
         $response = $this->httpRequestClient->getRequest($destination);
-   
+
         // no response, probably because the token has expired
         if ($response == null || empty($response)) {
             $this->updateCredentials();
@@ -115,7 +123,14 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
         }
 
         $jsonResponse = json_decode($response);
-        
+
+        if (isset($jsonResponse->response->errors[0])) {
+            error_log("error fetching cicero data:" . $jsonResponse->response->errors[0]);
+            // update query with new credentials
+            $destination = "{$this->apiBase}/{$requesting}?f={$format}&user={$this->userId}&token={$this->token}&type={$type}&search_loc={$address}";
+            $response = $this->httpRequestClient->getRequest($destination);
+        }
+
 
         if (!isset($jsonResponse->response->results->districts)) {
             return false;
@@ -130,6 +145,8 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
     private function updateCredentials() {
         if (empty($this->username) || empty($this->password))
             throw new Exception("Cicero Credential required (check config.php)");
+
+
 
         $ciceroJsonResult = $this->httpRequestClient->postRequest($this->apiBase . '/token/new.json', "username={$this->username}&password={$this->password}", array());
 
@@ -157,6 +174,7 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
                 return true;
             } catch (Exception $e) {
                 $result = $e->getMessage();
+                error_log("failed saving cicero credentials: " . $result);
                 return false;
             }
         }

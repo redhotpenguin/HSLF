@@ -16,6 +16,8 @@ class GeoProviderTest extends CDbTestCase {
     public function testFactory() {
 
         $this->assertNotNull($this->ciceroProvider);
+                
+              
     }
 
     public function testGetDistrictIdsByAddress() {
