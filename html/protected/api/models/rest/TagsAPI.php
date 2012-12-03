@@ -5,7 +5,7 @@ class TagsAPI extends APIBase implements IAPI {
      public function __construct(){
          
         $tag = new Tag();
-        $tag->sessionTenantAccountId = 1;
+        $tag->sessionTenantId = 1;
         parent::__construct( $tag );
     }
 

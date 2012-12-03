@@ -15,7 +15,7 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
 
         $alias = $this->owner->getTableAlias(false, false);
 
-        if (Yii::app()->user->id != null) {
+        if (Yii::app()->user->tenant_id != null) {
             $user_tenant_id = Yii::app()->user->tenant_id;
         } elseif ($this->owner->sessionTenantId != null) {
             $user_tenant_id = $this->owner->sessionTenantId;
@@ -46,7 +46,7 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
 
                 if ($modelTenantId != $relationTenantId) {
                     $ownerClassName = get_class($this->owner);
-                    error_log("Model {$ownerClassName} and relation {$relation} tenant id ($modelTenantId != $relationTenantAccountId)does not match");
+                    error_log("Model {$ownerClassName} and relation {$relation} tenant id ($modelTenantId != $relationTenantId)does not match");
                     throw new Exception("Illegal action: action will be reported");
                 }
             } else { // many-many relationship ($this->owner->$relation is an array)

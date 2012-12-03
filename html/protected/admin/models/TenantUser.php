@@ -10,7 +10,7 @@
  * @property string $role
  *
  * The followings are the available model relations:
- * @property TenantAccount $tenantAccount
+ * @property Tenant $tenant
  * @property User $user
  */
 class TenantUser extends CActiveRecord {
@@ -57,7 +57,7 @@ class TenantUser extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'tenantAccount' => array(self::BELONGS_TO, 'TenantAccount', 'tenant_id'),
+            'tenant' => array(self::BELONGS_TO, 'Tenant', 'tenant_id'),
             'user' => array(self::BELONGS_TO, 'User', 'user_id'),
         );
     }

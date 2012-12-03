@@ -2,9 +2,9 @@
 
 interface IAPI {
 
-    public function getList($tenantAccountId, $arguments = array());
+    public function getList($tenantId, $arguments = array());
     
-    public function getSingle($tenantAccountId, $id, $arguments = array());
+    public function getSingle($tenantId, $id, $arguments = array());
     
     public function setAuthenticated($authenticated);
 }
