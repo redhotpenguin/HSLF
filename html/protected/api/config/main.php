@@ -19,7 +19,6 @@ return array(
         'application.api.models.rest.criteria.*',
         'application.api.models.rest.*',
         'application.api.models.geocodingclient.*',
-        'application.vendors.urbanairship.*',
         'admin.models.*',
         'application.shared.models.dal.*', // data access logic classes
         'application.shared.models.bll.*', // business  logic classes
@@ -41,28 +40,11 @@ return array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'rules' => array(
-                //API V2             
 
-                array('api2/index', 'pattern' => 'api/v2', 'verb' => 'GET'),
-                array('api2/list', 'pattern' => 'api/v2/<tennant_id:\d+>/<model:\w+>/', 'verb' => 'GET'),
-                array('api2/view', 'pattern' => 'api/v2/<model:\w+>/<id:\d+>', 'verb' => 'GET'),
-                // API V1
-                array('api/list', 'pattern' => 'api/<model:\w+>', 'verb' => 'GET'),
-                //   ex: /api/ballot_items/state/or/?districts=...
-                array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>', 'verb' => 'GET'),
-                array('api/view', 'pattern' => 'api/<model:\w+>/state/<state_abbr:\w{2,3}>/district/<district_number:\d+>', 'verb' => 'GET'),
-                // ex: /api/ballot_items/2012/state/or/?districts=...
-                array('api/view', 'pattern' => 'api/<model:\w+>/<year:\d{4}>/state/<state_abbr:\w{2,3}>', 'verb' => 'GET'),
-                // ex: /api/ballot_items/single/4141/
-                //  array('api/view', 'pattern' => 'api/<model:\w+>/single/<id:\d+>', 'verb' => 'GET'),
-                array('api/view', 'pattern' => 'api/<model:\w+>/<filter:\w+>/<id:\d+>', 'verb' => 'GET'),
-                array('api/view', 'pattern' => 'api/<model:\w+>/name/<type:\w+>', 'verb' => 'GET'),
-                array('api/view', 'pattern' => 'api/<model:\w+>/<id:\d+>/', 'verb' => 'GET'),
-                array('api/view', 'pattern' => 'api/<model:\w+>/types', 'verb' => 'GET'), // ex: /api/districts/type
-                array('api/view', 'pattern' => 'api/<model:\w+>/type/<type:\w+>', 'verb' => 'GET'),
-                array('api/create', 'pattern' => 'api/<model:\w+>', 'verb' => 'POST'),
-                array('api/update', 'pattern' => 'api/<model:\w+>/device_token/<device_token:\w+>/<action:\w+>', 'verb' => 'POST'),
-                array('api/search', 'pattern' => 'api/<model:\w+>/search/<query>', 'verb' => 'GET'),
+                array('api/index', 'pattern' => 'api', 'verb' => 'GET'),
+                array('api/list', 'pattern' => 'api/<tennant_id:\d+>/<model:\w+>/', 'verb' => 'GET'),
+                array('api/view', 'pattern' => 'api/<model:\w+>/<id:\d+>', 'verb' => 'GET'),
+
             ),
         ),
         'db' => array(
