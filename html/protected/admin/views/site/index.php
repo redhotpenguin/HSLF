@@ -4,6 +4,8 @@
 
     <?php
     if (Yii::app()->user->id):
+          
+    
         ?>
         <div class="hero-unit">
             <h1>Dashboard</h1>
@@ -27,7 +29,7 @@
             <div class="span3">
                 <h2>Push Notifications</h2>
                 <p>Send Rich Push Notifications to mobile users.</p>
-                <p><a class="btn" href="<?php // echo UA_DASHBOARD_LINK    ?>">More »</a></p>
+                <p><a class="btn" href="<?php echo $tenantOption->ua_dashboard_link;   ?>">More »</a></p>
             </div>
         </div>
         <br/>
