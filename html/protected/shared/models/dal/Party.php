@@ -8,11 +8,8 @@
  * @property string $name
  * @property string $abbr
  * @property string $initial
- *
- * The followings are the available model relations:
- * @property BallotItem[] $ballotItems
- */
-class Party extends CBaseActiveRecord {
+  */
+class Party extends CActiveRecord {
 
     /**
      * Returns the static model of the specified AR class.
@@ -40,7 +37,6 @@ class Party extends CBaseActiveRecord {
             array('name', 'length', 'max' => 2048),
             array('abbr', 'length', 'max' => 128),
             array('initial', 'length', 'max' => 16),
-            array('tenant_id', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, name, abbr, initial', 'safe', 'on' => 'search'),
@@ -51,10 +47,7 @@ class Party extends CBaseActiveRecord {
      * @return array relational rules.
      */
     public function relations() {
-        // NOTE: you may need to adjust the relation name and the related
-        // class name for the relations automatically generated below.
         return array(
-            'ballotItems' => array(self::HAS_MANY, 'BallotItem', 'party_id'),
         );
     }
 
@@ -90,11 +83,6 @@ class Party extends CBaseActiveRecord {
                 ));
     }
 
-    public function behaviors() {
-        return array(
-            'MultiTenant' => array(
-                'class' => 'MultiTenantBehavior')
-        );
-    }
+
 
 }
