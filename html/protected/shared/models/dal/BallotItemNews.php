@@ -17,6 +17,13 @@
  */
 class BallotItemNews extends CBaseActiveRecord {
 
+    public function __construct($scenario = 'insert', $table = "") {
+        $this->parentTenantName = "BallotItem";
+        $this->parentRelationship = "ballotItem";
+
+        parent::__construct($scenario);
+    }
+
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
@@ -42,7 +49,7 @@ class BallotItemNews extends CBaseActiveRecord {
         return array(
             array('ballot_item_id, title, date_published, slug', 'required'),
             array('ballot_item_id', 'numerical', 'integerOnly' => true),
-            array('content, excerpt, tenant_id', 'safe'),
+            array('content, excerpt', 'safe'),
             array('slug', 'slugValidation'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
@@ -120,9 +127,8 @@ class BallotItemNews extends CBaseActiveRecord {
         else
             return false;
     }
-    
-    
-      public function behaviors() {
+
+    public function behaviors() {
         return array(
             'MultiTenant' => array(
                 'class' => 'MultiTenantBehavior')

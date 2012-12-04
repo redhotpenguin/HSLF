@@ -1,10 +1,12 @@
 <?php
 
 class MultiTenantBehavior extends CActiveRecordBehavior {
+    
+   const ILLEGAL_ACTION = 'Illegal action: action will be reported';
 
     public function beforeFind($event) {
 
-        if($this->owner->hasAttribute('tenant_id')) {
+        if ($this->owner->hasAttribute('tenant_id')) {
             //restrict queries to the actual tenant by manipulating the model's DbCriteria
             $c = $this->owner->getDbCriteria();
             $condition = $c->condition;
@@ -13,10 +15,10 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
             }
 
             $alias = $this->owner->getTableAlias(false, false);
-   
-            
-            
-            if (Yii::app()->user->tenant_id != null) { // only logged in users can have a tenant_id
+
+
+
+            if (!Yii::app()->user->isGuest && Yii::app()->user->tenant_id != null) { // only logged in users can have a tenant_id
                 $user_tenant_id = Yii::app()->user->tenant_id;
             } elseif ($this->owner->sessionTenantId != null) {
                 $user_tenant_id = $this->owner->sessionTenantId;
@@ -27,35 +29,52 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
             $condition.= $alias . '.tenant_id = ' . $user_tenant_id;
             $c->condition = $condition;
         }
-        
-        $class = get_class($this->owner);
-        error_log("$class  $condition");
+    }
+
+    public function afterFind($event) {
+
+        if ($this->owner->hasParentTenant()) {
+            error_log("parent tenant yay");
+            $parentModel = $this->owner->getParentTenant();
+                        
+            if($parentModel == null){
+                error_log("Not supposed to be here : ");
+                throw new Exception(self::ILLEGAL_ACTION);
+            }
+            
+            
+        }
     }
 
     public function beforeSave($event) {
-        //tie this model to the actual tenant by setting the tenantid attribute
-        $this->owner->tenant_id = Yii::app()->user->tenant_id;
+        error_log("before save");
 
-        $relations = $this->owner->relations();
-        foreach ($relations as $relation => $value) {
-            if (isset($this->owner->$relation->id)) {
-                // check that $relationId actually belongs to the current tenant id
-                $modelTenantId = $this->owner->tenant_id;
+        if ($this->owner->hasAttribute('tenant_id')) {
+            error_log("not here");
+            //tie this model to the actual tenant by setting the tenantid attribute
+            $this->owner->tenant_id = Yii::app()->user->tenant_id;
 
-                // relation does not have a tenant  id column. Ex: state, district, true join table
-                if (!isset($this->owner->$relation->tenant_id)) {
-                    continue;
+            $relations = $this->owner->relations();
+            foreach ($relations as $relation => $value) {
+                if (isset($this->owner->$relation->id)) {
+                    // check that $relationId actually belongs to the current tenant id
+                    $modelTenantId = $this->owner->tenant_id;
+
+                    // relation does not have a tenant  id column. Ex: state, district, true join table
+                    if (!isset($this->owner->$relation->tenant_id)) {
+                        continue;
+                    }
+
+                    $relationTenantId = $this->owner->$relation->tenant_id;
+
+                    if ($modelTenantId != $relationTenantId) {
+                        $ownerClassName = get_class($this->owner);
+                        error_log("Model {$ownerClassName} and relation {$relation} tenant id ($modelTenantId != $relationTenantId)does not match");
+                        throw new Exception(self::ILLEGAL_ACTION);
+                    }
+                } else { // many-many relationship ($this->owner->$relation is an array)
+                    //   error_log("debug: ". $relation);
                 }
-
-                $relationTenantId = $this->owner->$relation->tenant_id;
-
-                if ($modelTenantId != $relationTenantId) {
-                    $ownerClassName = get_class($this->owner);
-                    error_log("Model {$ownerClassName} and relation {$relation} tenant id ($modelTenantId != $relationTenantId)does not match");
-                    throw new Exception("Illegal action: action will be reported");
-                }
-            } else { // many-many relationship ($this->owner->$relation is an array)
-                //   error_log("debug: ". $relation);
             }
         }
 

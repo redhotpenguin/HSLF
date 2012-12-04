@@ -51,13 +51,14 @@ class BallotItemNewsController extends Controller {
         if (isset($_POST['BallotItemNews'])) {
             $model->attributes = $_POST['BallotItemNews'];
 
-            if ($model->save())
+
+            if ($model->save()) {
                 $this->redirect(array('update', 'id' => $model->id, 'created' => true));
+            }
         }
 
         $this->render('add', array(
             'model' => $model,
-                // 'ballotItem' => $ballotItem,
         ));
     }
 

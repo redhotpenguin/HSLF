@@ -13,16 +13,23 @@
 abstract class CBaseActiveRecord extends CActiveRecord {
 
     public $sessionTenantId;
-    private $parentTenantId;
-    private $parentTenant;
+    public $parentTenantName = null;
+    public $parentRelationship;
 
+    
 
-    public function getParentTenant() {
-        return $this->parentTenant;
+    
+    public function hasParentTenant() {
+        return ($this->parentTenantName != null );
     }
 
-    public function hasParentTenant() {
-        return ($this->parentTenant != null);
+    public function getParentTenant() {
+               
+        $parentId = $this->{$this->parentRelationship}->id;
+                 
+        $parentModel = new $this->parentTenantName();
+        
+        return $parentModel->findByPk($parentId);
     }
 
     /* override CActiveRecord.count() to trigger beforeFind */
