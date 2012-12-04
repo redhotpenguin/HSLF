@@ -30,6 +30,7 @@ class WebUser extends CWebUser {
         // current user belongs to tenant
         if ($tenantUser) {
             $this->setState('tenant_id', $tennantAccountId);
+            $this->setState('role', $tenantUser->role);
         } else {
             error_log("current user #$userId does not belong to tenant #$tennantAccountId");
         }

@@ -4,27 +4,27 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
 
     public function beforeFind($event) {
 
-        //restrict queries to the actual tenant by manipulating the model's DbCriteria
-        $c = $this->owner->getDbCriteria();
-        $condition = $c->condition;
+        if($this->owner->hasAttribute('tenant_id')) {
+            //restrict queries to the actual tenant by manipulating the model's DbCriteria
+            $c = $this->owner->getDbCriteria();
+            $condition = $c->condition;
+            if (strlen($condition) > 0) {
+                $condition = "$condition AND ";
+            }
 
+            $alias = $this->owner->getTableAlias(false, false);
 
-        if (strlen($condition) > 0) {
-            $condition = "$condition AND ";
+            if (Yii::app()->user->tenant_id != null) {
+                $user_tenant_id = Yii::app()->user->tenant_id;
+            } elseif ($this->owner->sessionTenantId != null) {
+                $user_tenant_id = $this->owner->sessionTenantId;
+            } else {
+                return;
+            }
+
+            $condition.= $alias . '.tenant_id = ' . $user_tenant_id;
+            $c->condition = $condition;
         }
-
-        $alias = $this->owner->getTableAlias(false, false);
-
-        if (Yii::app()->user->tenant_id != null) {
-            $user_tenant_id = Yii::app()->user->tenant_id;
-        } elseif ($this->owner->sessionTenantId != null) {
-            $user_tenant_id = $this->owner->sessionTenantId;
-        } else {
-            return;
-        }
-
-        $condition.= $alias . '.tenant_id = ' . $user_tenant_id;
-        $c->condition = $condition;
     }
 
     public function beforeSave($event) {
@@ -50,7 +50,7 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
                     throw new Exception("Illegal action: action will be reported");
                 }
             } else { // many-many relationship ($this->owner->$relation is an array)
-                error_log("debug: ". $relation);
+                //   error_log("debug: ". $relation);
             }
         }
 

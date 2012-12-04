@@ -4,13 +4,14 @@
 
     <?php
     if (Yii::app()->user->id):
-
         ?>
         <div class="hero-unit">
             <h1>Dashboard</h1>
             <p>Welcome to the administration dashboard.</p>
             <p> <b><?php echo $total_ballot_page; ?></b> <a href="/admin/ballotItem/admin/">Ballot items</a></p>
         </div>
+
+        <hr/>
 
         <div class="row">
             <div class="span3">
@@ -26,7 +27,7 @@
             <div class="span3">
                 <h2>Push Notifications</h2>
                 <p>Send Rich Push Notifications to mobile users.</p>
-                <p><a class="btn" href="<?php // echo UA_DASHBOARD_LINK   ?>">More »</a></p>
+                <p><a class="btn" href="<?php // echo UA_DASHBOARD_LINK    ?>">More »</a></p>
             </div>
         </div>
         <br/>
@@ -52,6 +53,9 @@
 
     </div>
 
+    <hr/>
     <?php
+    echo $this->renderPartial('tenant_index', array('userTenants' => $userTenants));
+
 endif; //end test is user logged in
 ?>

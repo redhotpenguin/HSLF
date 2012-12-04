@@ -11,7 +11,6 @@ class SiteController extends Controller {
 
         if (Yii::app()->user->id) {
 
-
             $data = array(
                 'total_ballot_page' => BallotItem::model()->count(),
                 'userTenants' => TenantUser::model()->findAllByAttributes(array("user_id" => Yii::app()->user->id))
@@ -45,7 +44,6 @@ class SiteController extends Controller {
      * when an action is not explicitly requested by users.
      */
     public function actionLogin() {
-        error_log("actionLogin site controller");
         $data = null;
         if (Yii::app()->user->id) {
             $this->actionIndex();
