@@ -15,24 +15,18 @@ class UserIdentity extends CUserIdentity {
      * @return boolean whether authentication succeeds.
      */
     public function authenticate() {
-
         $this->user = User::model()->findByAttributes(array('username' => $this->username));
 
+        
         if ($this->user === null) { // No user found!
             $this->errorCode = self::ERROR_USERNAME_INVALID;
             error_log('invalid username: ' . $this->username);
         } else if ($this->user->password !== get_hash($this->password)) { // Invalid password!
             $this->errorCode = self::ERROR_PASSWORD_INVALID;
         } else { // Okay!
-            $tenantUser = TenantUser::model()->findByAttributes(array("user_id" => $this->user->id));
-
-            if (!$tenantUser) {
-                $this->errorCode = self::ERROR_UNKNOWN_IDENTITY;
-            } else {
-                $this->errorCode = self::ERROR_NONE;
-                $this->setState('role', $tenantUser->role);
-                $this->setState('tenant_id', $tenantUser->tenant_id);
-            }
+            $this->errorCode = self::ERROR_NONE;
+            $this->setState('role', $this->user->role);
+            $this->setState('tenant_id', $this->user->tenant_id);
         }
 
         return !$this->errorCode;

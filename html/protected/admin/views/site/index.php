@@ -57,7 +57,6 @@
 
     <hr/>
     <?php
-    echo $this->renderPartial('tenant_index', array('userTenants' => $userTenants));
 
 endif; //end test is user logged in
 ?>

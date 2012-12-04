@@ -8,12 +8,16 @@
  * @property string $username
  * @property string $password
  * @property string $email
+ * @property string $role
+ * $property integer $tenant_id
  */
-class User extends CActiveRecord {
+class User extends CBaseActiveRecord {
 
     public $repeat_password;
     public $initial_password;
 
+    const ADMIN_ROLE = 'admin';
+    const PUBLISHER_ROLE = 'publisher';
 
     /**
      * Returns the static model of the specified AR class.
@@ -36,13 +40,14 @@ class User extends CActiveRecord {
      */
     public function rules() {
         return array(
-            array('username,email', 'required', 'on' => 'update'),
-            array('password, username, email, repeat_password', 'required', 'on' => 'insert'),
+            array('username,email, role', 'required', 'on' => 'update'),
+            array('password, username, email, role, repeat_password', 'required', 'on' => 'insert'),
             array('repeat_password', 'compare', 'compareAttribute' => 'password', 'on' => 'insert'),
             array('email', 'email'),
             array('username, email', 'length', 'max' => 128),
             array('password', 'length', 'max' => 40),
-            array('id, username, email', 'safe', 'on' => 'search'),
+            array('tenant_id', 'safe'),
+            array('id, username, email, role', 'safe', 'on' => 'search'),
         );
     }
 
@@ -50,8 +55,7 @@ class User extends CActiveRecord {
      * @return array relational rules.
      */
     public function relations() {
-        return array(
-        );
+        return array();
     }
 
     /**
@@ -63,6 +67,7 @@ class User extends CActiveRecord {
             'username' => 'Username',
             'password' => 'Password',
             'email' => 'Email',
+            'role' => 'Role',
         );
     }
 
@@ -80,6 +85,7 @@ class User extends CActiveRecord {
         $criteria->compare('username', $this->username, true);
         $criteria->compare('password', $this->password, true);
         $criteria->compare('email', $this->email, true);
+        $criteria->compare('role', $this->role, true);
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
@@ -119,6 +125,8 @@ class User extends CActiveRecord {
             $this->password = $password;
         }
 
+     //    $this->tenant_id  = Yii::app()->user->tenant_id;
+
         return parent::beforeSave();
     }
 
@@ -126,13 +134,13 @@ class User extends CActiveRecord {
      *   Save a User model
      */
     public function save() {
-       $save_result = false;
-        
+        $save_result = false;
+
         try {
             $save_result = parent::save();
         } catch (CDbException $cdbe) {
             error_log("error");
-            
+
             switch ($cdbe->getCode()) {
                 case 23505:
                     $this->addError("", 'A user with this username or with this email already exists.');
@@ -141,12 +149,18 @@ class User extends CActiveRecord {
                 default: // we can't handle the error, rethrow it!
                     throw $cdbe;
             }
-            
         }
 
         return $save_result;
     }
+    
 
-
+  
+    public function behaviors() {
+        return array(
+            'MultiTenant' => array(
+                'class' => 'MultiTenantBehavior')
+        );
+    }
 
 }
