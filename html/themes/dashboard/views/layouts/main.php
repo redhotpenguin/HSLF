@@ -105,12 +105,6 @@
                             'items' => array(
                                 '---',
                                 array(
-                                    'label' => 'Change Project',
-                                    'url' => array('site/project'),
-                                    'visible' => !Yii::app()->user->isGuest,
-                                ),
-                                '---',
-                                array(
                                     'label' => 'Logout (' . Yii::app()->user->name . ')',
                                     'url' => array('site/logout'),
                                     'visible' => !Yii::app()->user->isGuest,
