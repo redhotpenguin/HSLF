@@ -1,5 +1,3 @@
-
-
 Move configuration file to the database
 Update Unique constraints to include tenant_id
 Figure out runtime/assets folder
@@ -11,12 +9,10 @@ Update upsert option to include tenant_id
 Update cronjob command file
 Add cronjob per tenant
 
+API: single items should be only accessible via their tenants
 
 -- IN PROGRESS -- 
-Add join_table: Tenant<>Users + column to hold privilege status
-Dynamic admin url with tenants:
-/admin/client1/
-/admin/client2/
+Cleaner schema
 
 
 --DONE--
