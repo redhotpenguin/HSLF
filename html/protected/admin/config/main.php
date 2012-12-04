@@ -17,7 +17,7 @@ return array(
     'controllerPath' => $backend . '/controllers',
     'viewPath' => $backend . '/views/',
     'runtimePath' => $backend . '/runtime',
-    'name' => 'Admin Dashboard - ' . PROJECT_NAME . ' Mobile ',
+    'name' => 'Admin Dashboard - Winning Mark Mobile ',
     // preloading 'log' component
     'preload' => array(
 // 'log',
@@ -83,7 +83,6 @@ return array(
             'class' => 'system.caching.CApcCache',
         ),
         'errorHandler' => array(
-// use 'site/error' action to display errors
             'errorAction' => 'site/error',
         ),
     /* 'log' => array(
@@ -116,10 +115,8 @@ return array(
 // using Yii::app()->params['paramName']
     'params' => array(
         'dateFormat' => 'Y-m-d H:i:s',
-        'adminEmail' => null,
-        'site_url' => null,
-        'urbanairship_app_key' => UA_API_KEY,
-        'urbanairship_app_master_secret' => UA_API_SECRET,
+        'adminEmail' => ADMIN_EMAIL,
+        'site_url' => SITE_URL,
         'upload_path' => SITE_URL . UPLOAD_PATH,
         'upload_dir' => UPLOAD_DIR,
         'share_url' => SHARE_URL, // in case we want to store the shared urls in another server
