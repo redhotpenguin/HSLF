@@ -41,7 +41,6 @@
         <?php
         if (Yii::app()->user->id):
             $tenant = Tenant::model()->findByPk(Yii::app()->user->tenant_id);
-       
             ?>
 
 
@@ -56,17 +55,24 @@
                             'class' => 'bootstrap.widgets.BootMenu',
                             'items' => array(
                                 '---',
-                                array('label' => 'Publishing', 'url' => '#', 'items' => array(
+                                array('label' => 'Shared', 'url' => '#', 'items' => array(
                                         array('label' => 'States', 'url' => array('/state/admin'), 'visible' => isAdmin()),
                                         array('label' => 'Districts', 'url' => array('/district/admin'), 'visible' => isAdmin()),
+                                        array('label' => 'Parties', 'url' => array('/party/admin'), 'visible' => isAdmin()),
+                                        array('label' => 'Image Upload', 'url' => array('/upload'), 'visible' => !Yii::app()->user->isGuest),
+                                )))
+                        ),
+                        array(
+                            'class' => 'bootstrap.widgets.BootMenu',
+                            'items' => array(
+                                '---',
+                                array('label' => 'Publishing', 'url' => '#', 'items' => array(
                                         array('label' => 'Votes', 'url' => array('/vote/admin'), 'visible' => isAdmin()),
                                         array('label' => 'Recommendations', 'url' => array('/recommendation/admin'), 'visible' => isAdmin()),
                                         array('label' => 'Ballot Items', 'url' => array('/ballotItem/admin'), 'visible' => !Yii::app()->user->isGuest),
                                         array('label' => 'Scorecard Items', 'url' => array('/scorecardItem/admin'), 'visible' => !Yii::app()->user->isGuest),
                                         array('label' => 'Offices', 'url' => array('/office/admin'), 'visible' => isAdmin()),
-                                        array('label' => 'Parties', 'url' => array('/party/admin'), 'visible' => isAdmin()),
                                         array('label' => 'Endorsers', 'url' => array('/endorser/admin/'), 'visible' => !Yii::app()->user->isGuest),
-                                        array('label' => 'Image Upload', 'url' => array('/upload'), 'visible' => !Yii::app()->user->isGuest),
                                         array('itemOptions' => array('id' => 'external_item'), 'label' => 'Rich Push Notifications', 'linkOptions' => array('target' => '_blank'), 'url' => $tenant->ua_dashboard_link),
                                 )),
                             ),
