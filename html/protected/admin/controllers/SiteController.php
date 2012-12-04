@@ -13,7 +13,7 @@ class SiteController extends Controller {
 
             $data = array(
                 'total_ballot_page' => BallotItem::model()->count(),
-                 'tenantOption' => TenantOption::model()->findByAttributes(array ("tenant_id"=> Yii::app()->user->tenant_id))
+                 'tenant' => Tenant::model()->findByAttributes(array ("id"=> Yii::app()->user->tenant_id))
             );
 
             $this->render('index', $data);

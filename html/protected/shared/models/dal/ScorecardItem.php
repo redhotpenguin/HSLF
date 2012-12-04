@@ -17,12 +17,18 @@ class ScorecardItem extends CBaseActiveRecord {
 
     public $office_type; //used for admin search
 
+    public function __construct($scenario = 'insert', $table = "") {
+        $this->parentName = "Office";
+        $this->parentRelationship = "office";
+
+        parent::__construct($scenario);
+    }
+
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
      * @return ScorecardItem the static model class
      */
-
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }

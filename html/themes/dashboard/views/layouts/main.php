@@ -42,7 +42,6 @@
         if (Yii::app()->user->id):
             $tenant = Tenant::model()->findByPk(Yii::app()->user->tenant_id);
        
-            $tenantOption = TenantOption::model()->findByAttributes(array("tenant_id" => $tenant->id));
             ?>
 
 
@@ -68,7 +67,7 @@
                                         array('label' => 'Parties', 'url' => array('/party/admin'), 'visible' => isAdmin()),
                                         array('label' => 'Endorsers', 'url' => array('/endorser/admin/'), 'visible' => !Yii::app()->user->isGuest),
                                         array('label' => 'Image Upload', 'url' => array('/upload'), 'visible' => !Yii::app()->user->isGuest),
-                                        array('itemOptions' => array('id' => 'external_item'), 'label' => 'Rich Push Notifications', 'linkOptions' => array('target' => '_blank'), 'url' => $tenantOption->ua_dashboard_link),
+                                        array('itemOptions' => array('id' => 'external_item'), 'label' => 'Rich Push Notifications', 'linkOptions' => array('target' => '_blank'), 'url' => $tenant->ua_dashboard_link),
                                 )),
                             ),
                         ),
