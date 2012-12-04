@@ -13,9 +13,20 @@
 abstract class CBaseActiveRecord extends CActiveRecord {
 
     public $sessionTenantId;
+    private $parentTenantId;
+    private $parentTenant;
 
-    
+
+    public function getParentTenant() {
+        return $this->parentTenant;
+    }
+
+    public function hasParentTenant() {
+        return ($this->parentTenant != null);
+    }
+
     /* override CActiveRecord.count() to trigger beforeFind */
+
     public function count($condition = '', $params = array()) {
         $this->beforeFind();
         Yii::trace(get_class($this) . '.count()', 'system.db.ar.CActiveRecord');

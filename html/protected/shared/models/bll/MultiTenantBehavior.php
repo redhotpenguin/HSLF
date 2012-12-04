@@ -13,9 +13,10 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
             }
 
             $alias = $this->owner->getTableAlias(false, false);
-        
+   
             
-            if (!Yii::app()->user->isGuest &&Yii::app()->user->tenant_id != null) { // only logged in users can have a tenant_id
+            
+            if (Yii::app()->user->tenant_id != null) { // only logged in users can have a tenant_id
                 $user_tenant_id = Yii::app()->user->tenant_id;
             } elseif ($this->owner->sessionTenantId != null) {
                 $user_tenant_id = $this->owner->sessionTenantId;
@@ -26,6 +27,9 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
             $condition.= $alias . '.tenant_id = ' . $user_tenant_id;
             $c->condition = $condition;
         }
+        
+        $class = get_class($this->owner);
+        error_log("$class  $condition");
     }
 
     public function beforeSave($event) {

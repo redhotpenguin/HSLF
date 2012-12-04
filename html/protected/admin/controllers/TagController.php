@@ -80,19 +80,18 @@ class TagController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
-
+ 
+     
         if (Yii::app()->request->isPostRequest) {
             // Uncomment the following line if AJAX validation is needed
             $this->performAjaxValidation($model);
-    
+
             if (isset($_POST['Tag'])) {
                 $model->attributes = $_POST['Tag'];
                 if ($model->save())
                     echo 'success';
                 else
                     echo 'failure';
-            
-          
             }
             return;
         }
@@ -149,7 +148,9 @@ class TagController extends Controller {
      * @param integer the ID of the model to be loaded
      */
     public function loadModel($id) {
+        
         $model = Tag::model()->findByPk($id);
+  
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
