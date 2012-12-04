@@ -16,11 +16,6 @@
  * @property BallotItem $ballotItem
  */
 class BallotItemNews extends CBaseActiveRecord {
-    
-    
-    public function __construct(){
-        $this->parentTenantName = 'BallotItem';
-    }
 
     /**
      * Returns the static model of the specified AR class.
