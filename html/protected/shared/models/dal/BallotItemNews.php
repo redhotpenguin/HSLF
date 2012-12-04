@@ -18,7 +18,7 @@
 class BallotItemNews extends CBaseActiveRecord {
 
     public function __construct($scenario = 'insert', $table = "") {
-        $this->parentTenantName = "BallotItem";
+        $this->parentName = "BallotItem";
         $this->parentRelationship = "ballotItem";
 
         parent::__construct($scenario);

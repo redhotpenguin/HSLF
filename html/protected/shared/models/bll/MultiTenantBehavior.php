@@ -1,53 +1,42 @@
 <?php
 
 class MultiTenantBehavior extends CActiveRecordBehavior {
-    
-   const ILLEGAL_ACTION = 'Illegal action: action will be reported';
+
+    const ILLEGAL_ACTION = 'Illegal action: action will be reported';
 
     public function beforeFind($event) {
+        
+        //restrict queries to the actual tenant by manipulating the model's DbCriteria
+        $c = $this->owner->getDbCriteria();
+        $condition = $c->condition;
+        $relations = $c->with;
+
+        if (strlen($condition) > 0) {
+            $condition = "$condition AND ";
+        }
+
+        $alias = $this->owner->getTableAlias(false, false);
+
+        if (!Yii::app()->user->isGuest && Yii::app()->user->tenant_id != null) { // only logged in users can have a tenant_id
+            $user_tenant_id = Yii::app()->user->tenant_id;
+        } elseif ($this->owner->sessionTenantId != null) {
+            $user_tenant_id = $this->owner->sessionTenantId;
+        } else {
+            return;
+        }
 
         if ($this->owner->hasAttribute('tenant_id')) {
-            //restrict queries to the actual tenant by manipulating the model's DbCriteria
-            $c = $this->owner->getDbCriteria();
-            $condition = $c->condition;
-            if (strlen($condition) > 0) {
-                $condition = "$condition AND ";
-            }
-
-            $alias = $this->owner->getTableAlias(false, false);
-
-
-
-            if (!Yii::app()->user->isGuest && Yii::app()->user->tenant_id != null) { // only logged in users can have a tenant_id
-                $user_tenant_id = Yii::app()->user->tenant_id;
-            } elseif ($this->owner->sessionTenantId != null) {
-                $user_tenant_id = $this->owner->sessionTenantId;
-            } else {
-                return;
-            }
-
             $condition.= $alias . '.tenant_id = ' . $user_tenant_id;
             $c->condition = $condition;
-        }
-    }
+        } elseif ($this->owner->parentName) {
+            $relations = array($this->owner->parentRelationship);
+            $c->with = $relations;
 
-    public function afterFind($event) {
-
-        if ($this->owner->hasParentTenant()) {
-            error_log("parent tenant yay");
-            $parentModel = $this->owner->getParentTenant();
-                        
-            if($parentModel == null){
-                error_log("Not supposed to be here : ");
-                throw new Exception(self::ILLEGAL_ACTION);
-            }
-            
-            
+            $c->addCondition("tenant_id =  {$user_tenant_id}", 'AND');
         }
     }
 
     public function beforeSave($event) {
-        error_log("before save");
 
         if ($this->owner->hasAttribute('tenant_id')) {
             error_log("not here");

@@ -16,12 +16,18 @@ class AlertType extends CBaseActiveRecord {
 
     public $tag_name; // doesn't belong to table alert_type. This field purpose is to enable tag search in the admin view
 
+    public function __construct($scenario = 'insert', $table = "") {
+        $this->parentName = "Tag";
+        $this->parentRelationship = "tag";
+
+        parent::__construct($scenario);
+    }
+
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
      * @return AlertType the static model class
      */
-
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
@@ -44,7 +50,6 @@ class AlertType extends CBaseActiveRecord {
             array('category', 'length', 'max' => 512),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('tenant_id', 'safe'),
             array('id, display_name, tag_id, tag_name, category', 'safe', 'on' => 'search'),
         );
     }
