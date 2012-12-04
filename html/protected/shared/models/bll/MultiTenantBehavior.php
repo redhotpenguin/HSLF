@@ -39,7 +39,6 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
     public function beforeSave($event) {
 
         if ($this->owner->hasAttribute('tenant_id')) {
-            error_log("not here");
             //tie this model to the actual tenant by setting the tenantid attribute
             $this->owner->tenant_id = Yii::app()->user->tenant_id;
 
