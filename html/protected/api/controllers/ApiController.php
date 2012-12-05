@@ -5,6 +5,8 @@ class ApiController extends Controller {
     const APPLICATION_ID = 'MOBILE API';
     const API_VERSION = '2.0';
 
+    private $tenantId;
+
     public function actionIndex() {
         $this->sendResponse(404);
     }
@@ -20,6 +22,7 @@ class ApiController extends Controller {
      * List supported models
      */
     public function actionList($tenant_id) {
+        $this->tenantId = $tenant_id;
 
         $requested_model = $_GET['model'] . 'API';
 
@@ -47,6 +50,8 @@ class ApiController extends Controller {
      */
     public function actionView($tenant_id, $model, $id) {
         $requested_model = $model . 'API';
+        $this->tenantId = $tenant_id;
+
 
         if (!class_exists($requested_model)) {
             $code = 404;
@@ -129,8 +134,15 @@ class ApiController extends Controller {
         if (!isset($_GET['api_key']) || !isset($_GET['api_secret']))
             return false;
 
-        $api_key = Yii::app()->params['api_key'];
-        $api_secret = Yii::app()->params['api_secret'];
+        $tenant = Tenant::model()->findByPk($this->tenantId);
+
+        if ($tenant == null) {
+            return;
+        }
+
+        $api_key = $tenant->api_key;
+
+        $api_secret = $tenant->api_secret;
 
         return ( $api_key == $_REQUEST['api_key'] && $api_secret == $_REQUEST['api_secret'] );
     }

@@ -12,7 +12,7 @@ return array(
     'controllerPath' => $api . '/controllers',
     'viewPath' => $api . '/views/',
     'runtimePath' => $api . '/runtime',
-    'name' =>  'MVG - API',
+    'name' => 'MVG - API',
     // 'preload' => array('log'),
     // autoloading model and component classes
     'import' => array(
@@ -79,11 +79,6 @@ return array(
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']
     'params' => array(
-        'dateFormat' => 'Y-m-d H:i:s',
-        'adminEmail' => ADMIN_EMAIL,
-        'api_key' => API_KEY,
-        'api_secret' => API_SECRET,
-        'site_url' => SITE_URL,
-        'share_url' => SHARE_URL, // in case we want to store the shared urls in another server
+        'dateFormat' => 'Y-m-d H:i:s'
     ),
 );

@@ -46,18 +46,16 @@ DEFINE('UPLOAD_PATH', $uploadpath);
 DEFINE('SITE_URL', $siteurl);
 DEFINE('SHARE_URL', $shareurl); // microsite base url
 
+
+
+/*  Tenant specific options */
 // Image File Manager conf:
 // please also update root path in protected/extensions/tinymce/assets/jscripts/tiny_mce/plugins/imagemanager/config.php
 // 
-
-/*  Tenant specific options */
-
+// 
 // API Config
-DEFINE('API_KEY', '52356');
-DEFINE('API_SECRET', 'PqiW_IDKL3mFi_OirCqOe-u');
-// Cicero Config
-DEFINE('CICERO_USERNAME', 'winningmark');
-DEFINE('CICERO_PASSWORD', '3TUuAv5DwNsB');
+//DEFINE('API_KEY', '52356');
+//DEFINE('API_SECRET', 'PqiW_IDKL3mFi_OirCqOe-u');
 
 
 
