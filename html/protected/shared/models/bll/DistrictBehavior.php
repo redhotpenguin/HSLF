@@ -2,6 +2,22 @@
 
 class DistrictBehavior extends CActiveRecordBehavior {
 
+    public function getTagDistrictsByState($state_id) {
+        $districts = District::model()->findAllByAttributes(array('state_id' => state_id), array('order' => 'number ASC'));
+        return CHtml::listData($districts, 'id', 'number');
+    }
+
+    public function getTagDistrictsByStateAndType($state_id, $district_type) {
+        $districts = District::model()->findAllByAttributes(array('state_id' => $state_id, 'type' => $district_type), array('order' => 'number ASC'));
+        foreach ($districts as $district) {
+            if (empty($district->number)) {
+                $district->number = 'N/A';
+            }
+        }
+
+        return CHtml::listData($districts, 'id', 'display_name');
+    }
+
     /**
      * Get all the district ids that match a specified state,specified types and speficied district numbers
      * @param string  $state_abbr  abbreviaton of the state
@@ -10,8 +26,6 @@ class DistrictBehavior extends CActiveRecordBehavior {
      * @return array array of district ids
      */
     public function getIdsByDistricts($state_abbr, array $district_types, array $districts, array $localities) {
-
-
 
         $state_id = State::model()->findByAttributes(array("abbr" => $state_abbr))->id;
         if ($state_id == null) {
@@ -60,7 +74,7 @@ class DistrictBehavior extends CActiveRecordBehavior {
                 $condition_values[":locality{$i}"] = $localities[$i];
             }
         }
-        
+
         // execute the command
         $result = $command->select('id')
                 ->from('district')

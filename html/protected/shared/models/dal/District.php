@@ -124,24 +124,7 @@ class District extends CActiveRecord {
                 ));
     }
 
-    
-    // @todo: move this to district behavior
-    public static function getTagDistrictsByState($state_id) {
-        $districts = District::model()->findAllByAttributes(array('state_id' => state_id), array('order' => 'number ASC'));
-        return CHtml::listData($districts, 'id', 'number');
-    }
-    
-    // @todo: move this to district behavior
-    public static function getTagDistrictsByStateAndType($state_id, $district_type) {
-        $districts = District::model()->findAllByAttributes(array('state_id' => $state_id, 'type' => $district_type), array('order' => 'number ASC'));
-        foreach ($districts as $district) {
-            if (empty($district->number)) {
-                $district->number = 'N/A';
-            }
-        }
-
-        return CHtml::listData($districts, 'id', 'display_name');
-    }
+ 
 
     /**
      * Executed before a District model is saved or updated
