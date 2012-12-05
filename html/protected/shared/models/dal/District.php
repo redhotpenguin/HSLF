@@ -120,14 +120,14 @@ class District extends CActiveRecord {
                 ));
     }
 
-    /*
-    public static function getTagDistrictsByState($state_abbr) {
-        $districts = District::model()->findAllByAttributes(array('state_abbr' => $state_abbr), array('order' => 'number ASC'));
+   
+    public static function getTagDistrictsByState($state_id) {
+        $districts = District::model()->findAllByAttributes(array('state_id' => state_id), array('order' => 'number ASC'));
         return CHtml::listData($districts, 'id', 'number');
     }
 
-    public static function getTagDistrictsByStateAndType($state_abbr, $district_type) {
-        $districts = District::model()->findAllByAttributes(array('state_abbr' => $state_abbr, 'type' => $district_type), array('order' => 'number ASC'));
+    public static function getTagDistrictsByStateAndType($state_id, $district_type) {
+        $districts = District::model()->findAllByAttributes(array('state_id' => $state_id, 'type' => $district_type), array('order' => 'number ASC'));
         foreach ($districts as $district) {
             if (empty($district->number)) {
                 $district->number = 'N/A';
@@ -136,8 +136,7 @@ class District extends CActiveRecord {
 
         return CHtml::listData($districts, 'id', 'display_name');
     }
-     * 
-     */
+  
 
     /**
      * Executed before a District model is saved or updated

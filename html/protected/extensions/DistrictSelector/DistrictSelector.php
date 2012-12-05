@@ -26,9 +26,9 @@ class DistrictSelector extends CInputWidget {
 
         // update model
         if ($this->district->id) {
-            $this->StateSelector($this->district->state_abbr);
+            $this->StateSelector($this->district->state_id);
             $this->DistrictTypeSelector($this->district->type);
-            $this->DistrictNumberSelector($this->district->state_abbr, ($this->district->type), $this->district->id);
+            $this->DistrictNumberSelector($this->district->state_id, ($this->district->type), $this->district->id);
             
         } else { // new model
             $this->StateSelector();
@@ -44,7 +44,7 @@ class DistrictSelector extends CInputWidget {
     private function StateSelector($selected = null) {
         echo '<div class=""> <b>State:</b><br/>';
 
-        $state_list = CHtml::listData($this->state_model->findAll(array('order'=>'name ASC')), 'abbr', 'name');
+        $state_list = CHtml::listData($this->state_model->findAll(array('order'=>'name ASC')), 'id', 'name');
         $options = array(
             'tabindex' => '0',
             'empty' => '(not set)',
@@ -57,7 +57,7 @@ class DistrictSelector extends CInputWidget {
                 'update' => '#' . $this->field_id, //selector to update      
                 ));
 
-        echo CHtml::dropDownList('state_abbr', $selected, $state_list, $options);
+        echo CHtml::dropDownList('state_id', $selected, $state_list, $options);
         echo '</div>';
     }
 
@@ -79,12 +79,12 @@ class DistrictSelector extends CInputWidget {
         echo '</div>';
     }
 
-    private function DistrictNumberSelector($state_abbr = 'OR', $district_type = '', $selected = null) {
+    private function DistrictNumberSelector($state_id = 1, $district_type = '', $selected = null) {
         if($district_type == ''){
             $district_type = District::$district_types[0];
         }
         echo '<div class=""> <b>District:</b><span class="required">*</span><br/>';
-        $district_number_list = District::model()->getTagDistrictsByStateAndType($state_abbr, $district_type);
+        $district_number_list = District::model()->getTagDistrictsByStateAndType($state_id, $district_type);
         echo CHtml::dropDownList($this->field_name, $selected, $district_number_list);
         echo '</div>';
     }
