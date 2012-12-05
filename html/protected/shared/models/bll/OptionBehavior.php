@@ -7,7 +7,6 @@ class OptionBehavior extends CActiveRecordBehavior {
         $option = $this->owner->findByAttributes(array("name" => $name));
 
         if ($option == null) { // insert
-            error_log("insert");
             $this->owner->name = $name;
             $this->owner->value = $value;
             return $this->owner->save();

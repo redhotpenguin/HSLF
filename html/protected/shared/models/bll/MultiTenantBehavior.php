@@ -5,7 +5,7 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
     const ILLEGAL_ACTION = 'Illegal action: action will be reported';
 
     public function beforeFind($event) {
-        
+
         //restrict queries to the actual tenant by manipulating the model's DbCriteria
         $c = $this->owner->getDbCriteria();
         $condition = $c->condition;
@@ -37,10 +37,18 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
     }
 
     public function beforeSave($event) {
-
         if ($this->owner->hasAttribute('tenant_id')) {
+
+            if (!Yii::app()->user->isGuest && Yii::app()->user->tenant_id != null) { // only logged in users can have a tenant_id
+                $user_tenant_id = Yii::app()->user->tenant_id;
+            } elseif ($this->owner->sessionTenantId != null) {
+                $user_tenant_id = $this->owner->sessionTenantId;
+            } else {
+                return;
+            }
+            
             //tie this model to the actual tenant by setting the tenantid attribute
-            $this->owner->tenant_id = Yii::app()->user->tenant_id;
+            $this->owner->tenant_id = $user_tenant_id;
 
             $relations = $this->owner->relations();
             foreach ($relations as $relation => $value) {
@@ -65,8 +73,6 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
                 }
             }
         }
-
-
 
         return parent::beforeSave($event);
     }
