@@ -14,12 +14,39 @@ function getSetting($setting_name) {
     return Yii::app()->params[$setting_name];
 }
 
+
 /**
  * This is the shortcut to Yii::app()->params['my_param'] = "foobar"
  */
 function setSetting($setting_name, $setting_value) {
     Yii::app()->params[$setting_name] = $setting_value;
 }
+
+/**
+ * Retrieve tenant setting by option name and tenant id
+ */
+function getTenantSetting($settingName, $tenantId = null ) {
+    
+    if($setting = getSetting($settingName)){
+        return $setting;
+    }
+
+    if($tenantId == null){ // get connected user's tenant id
+        $tenantId = Yii::app()->user->tenant_id;
+        if(!$tenantId){
+            return false;
+        }
+    }
+    
+    $tenant = Tenant::model()->findByPk($tenantId);
+    if($tenant && $tenant->hasAttribute($settingName)){
+        setSetting($settingName, $tenant->$settingName);
+        return $tenant->$settingName;
+    }
+    return false;
+}
+
+
 
 /**
  * Encapsulate Yii::app()->request->getPost()

@@ -38,13 +38,12 @@ DEFINE('DB_PORT', $dbport);
 DEFINE('ADMIN_THEME', 'dashboard');
 DEFINE('FRONTEND_THEME', 'frontend');
 
-/* Tenant specific options - required by logged in users */
 DEFINE('UPLOAD_DIR', $uploaddir);
 DEFINE('UPLOAD_PATH', $uploadpath);
 DEFINE('SITE_URL', $siteurl);
-DEFINE('SHARE_URL', $shareurl); // microsite base url
 
-/*  Tenant specific options */
+
+
 // Image File Manager conf:
 // please also update root path in protected/extensions/tinymce/assets/jscripts/tiny_mce/plugins/imagemanager/config.php
 // 
