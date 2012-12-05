@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table 'district':
  * @property integer $id
- * @property string $state_abbr
+ * @property integer $state_id
  * @property integer $number
  * @property string  $type
  * @property string $display_name
@@ -58,13 +58,12 @@ class District extends CActiveRecord {
      */
     public function rules() {
         return array(
-            array('state_abbr, type', 'required'),
+            array('state_id, type', 'required'),
             array('number, display_name', 'length', 'max' => 512),
             array('locality', 'length', 'max' => 1024),
-            array('state_abbr', 'length', 'max' => 3),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, state_abbr, number, type, display_name, locality', 'safe', 'on' => 'search'),
+            array('id, number, type, display_name, locality', 'safe', 'on' => 'search'),
         );
     }
 
@@ -78,7 +77,7 @@ class District extends CActiveRecord {
             //  'candidates' => array(self::HAS_MANY, 'Candidate', 'district_id'),
             // 'Application_users' => array(self::HAS_MANY, 'Application_users', 'district_id'),
             //'user_alerts' => array(self::HAS_MANY, 'User_alert', 'district_id'),
-            'stateAbbr' => array(self::BELONGS_TO, 'State', 'state_abbr'),
+            'state' => array(self::BELONGS_TO, 'State', 'state_id'),
         );
     }
 
@@ -88,7 +87,7 @@ class District extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'state_abbr' => 'State Abbreviation',
+            'state_id' => 'State',
             'number' => 'District Number',
             'type' => 'District Type',
             'locality' => 'Locality',
@@ -105,7 +104,7 @@ class District extends CActiveRecord {
 
 
         $criteria->compare('id', $this->id);
-        $criteria->compare('state_abbr', $this->state_abbr, true);
+        $criteria->compare('state_id', $this->state_id, false);
         $criteria->compare('number', $this->number, true);
         $criteria->compare('type', $this->type);
         $criteria->compare('locality', $this->locality, true);
@@ -117,10 +116,11 @@ class District extends CActiveRecord {
                         'pageSize' => 50,
                     ),
                     'sort' => array(
-                        'defaultOrder' => 'state_abbr ASC')
+                        'defaultOrder' => 'state_id ASC')
                 ));
     }
 
+    /*
     public static function getTagDistrictsByState($state_abbr) {
         $districts = District::model()->findAllByAttributes(array('state_abbr' => $state_abbr), array('order' => 'number ASC'));
         return CHtml::listData($districts, 'id', 'number');
@@ -136,6 +136,8 @@ class District extends CActiveRecord {
 
         return CHtml::listData($districts, 'id', 'display_name');
     }
+     * 
+     */
 
     /**
      * Executed before a District model is saved or updated

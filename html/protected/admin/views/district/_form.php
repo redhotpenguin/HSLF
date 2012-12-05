@@ -13,16 +13,16 @@
     <?php echo $form->errorSummary($model); ?>
 
     <div class="">
-        <?php echo $form->labelEx($model, 'state_abbr'); ?>
+        <?php echo $form->labelEx($model, 'state_id'); ?>
         <?php
-        $state_list = CHtml::listData(State::model()->findAll(), 'abbr', 'name');
+        $state_list = CHtml::listData(State::model()->findAll(), 'id', 'name');
         $options = array(
             'tabindex' => '0',
             'empty' => '(not set)',
         );
-        echo $form->dropDownList($model, 'state_abbr', $state_list, $options);
+        echo $form->dropDownList($model, 'state_id', $state_list, $options);
         ?>
-        <?php echo $form->error($model, 'state_abbr'); ?>
+        <?php echo $form->error($model, 'state_id'); ?>
     </div>
 
     <div class="">

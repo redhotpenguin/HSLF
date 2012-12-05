@@ -19,7 +19,7 @@ $this->widget('bootstrap.widgets.BootDetailView', array(
     'data' => $model,
     'attributes' => array(
         'id',
-        'state_abbr',
+        'state_id',
         'number',
         'type',
         'display_name',

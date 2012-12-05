@@ -39,7 +39,7 @@ $('.search-form form').submit(function(){
 </div><!-- search-form -->
 
 <?php
-$state_list = array('' => 'All') + CHtml::listData(State::model()->findAll(), 'abbr', 'name');
+$state_list = array('' => 'All') + CHtml::listData(State::model()->findAll(), 'id', 'name');
 $district_list = array('' => 'All') + District::model()->getTypeOptions();
 
 $this->widget('bootstrap.widgets.BootGridView', array(
@@ -49,10 +49,10 @@ $this->widget('bootstrap.widgets.BootGridView', array(
     'template' => "{pager}{summary}\n{items}\n{pager}", // pagination on top and on bottom
     'columns' => array(
         'id',
-        array('name' => 'state_abbr',
+        array('name' => 'state_id',
             'header' => 'State',
-            'value' => '$data->stateAbbr->name',
-            'filter' => CHtml::dropDownList('District[state_abbr]', $model->state_abbr, $state_list),
+            'value' => '$data->state->name',
+            'filter' => CHtml::dropDownList('District[state_id]', $model->state, $state_list),
         ),
         array(
             'header' => 'District Type',
