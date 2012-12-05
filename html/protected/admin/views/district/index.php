@@ -22,7 +22,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
     'columns' => array(
         array(
             'name' => 'State',
-            'value' => '$data->stateAbbr->name',
+            'value' => '$data->state->name',
         ),
         'type',
         'number',

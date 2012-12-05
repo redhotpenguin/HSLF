@@ -37,7 +37,7 @@
  */
 class BallotItem extends CBaseActiveRecord {
 
-    public $state_abbr; // not part of the model, here for cgridview (admin search)
+    public $state_id; // not part of the model, here for cgridview (admin search)
     public $district_type; // not part of the model, here for cgridview (admin search)
     public $district_number; // not part of the model, here for cgridview (admin search)
     public $district_display_name; // not part of the model, here for cgridview (admin search)
@@ -84,7 +84,7 @@ class BallotItem extends CBaseActiveRecord {
             array('url', 'unique_url'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, district_id, item, item_type, recommendation_id, next_election_date, detail, date_published, published, party_id, url, image_url, election_result_id, district_number, district_type,district_display_name, state_abbr, personal_url, score, office_type, party, facebook_url, facebook_share, twitter_handle, twitter_share, hold_office, measure_number, friendly_name,keywords', 'safe', 'on' => 'search'),
+            array('id, district_id, item, item_type, recommendation_id, next_election_date, detail, date_published, published, party_id, url, image_url, election_result_id, district_number, district_type,district_display_name, state_id, personal_url, score, office_type, party, facebook_url, facebook_share, twitter_handle, twitter_share, hold_office, measure_number, friendly_name,keywords', 'safe', 'on' => 'search'),
         );
     }
 
@@ -109,11 +109,9 @@ class BallotItem extends CBaseActiveRecord {
 
 
             'ballotItemEndorsers' => array(self::HAS_MANY, 'BallotItemEndorser', 'ballot_item_id'),
-        
             'endorsers' => array(self::MANY_MANY, 'Endorser',
                 'endorser_ballot_item(ballot_item_id, endorser_id)'),
         );
-
     }
 
     /**
@@ -152,16 +150,15 @@ class BallotItem extends CBaseActiveRecord {
         $criteria->with = array('district', 'office', 'party');
 
         // search by relationship (district)
-        if ($this->district_number || $this->district_type || $this->district_display_name || $this->state_abbr || $this->office_type || $this->party) {
+        if ($this->district_number || $this->district_type || $this->district_display_name || $this->state_id || $this->office_type || $this->party) {
             $criteria->together = true;
             // Join the 'district' table
-
             if ($this->district_number)
                 $criteria->compare('district.number', $this->district_number, false);
             if ($this->district_type)
                 $criteria->compare('district.type', $this->district_type, true);
-            if ($this->state_abbr)
-                $criteria->compare('district.state_abbr', $this->state_abbr, true);
+            if ($this->state_id)
+                $criteria->compare('district.state_id', $this->state_id, false);
 
             if ($this->district_display_name)
                 $criteria->compare('district.display_name', $this->district_display_name, true);
@@ -214,9 +211,9 @@ class BallotItem extends CBaseActiveRecord {
                     'sort' => array(
                         'defaultOrder' => $this->getTableAlias(false, false) . '.id DESC',
                         'attributes' => array(
-                            'state_abbr' => array(
-                                'asc' => 'district.state_abbr',
-                                'desc' => 'district.state_abbr DESC',
+                            'state_id' => array(
+                                'asc' => 'district.state_id',
+                                'desc' => 'district.state_id DESC',
                             ),
                             'district_type' => array(
                                 'asc' => 'district.type',
@@ -234,8 +231,6 @@ class BallotItem extends CBaseActiveRecord {
                     ))
                 ));
     }
-
-
 
     /**
      * Return the different item options
@@ -271,7 +266,6 @@ class BallotItem extends CBaseActiveRecord {
             'EndorserBehavior' => array(
                 'class' => 'BallotItemEndorserBehavior',
             ),
-            
             'MultiTenant' => array(
                 'class' => 'MultiTenantBehavior')
         );

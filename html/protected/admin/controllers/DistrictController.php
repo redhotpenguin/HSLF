@@ -111,7 +111,7 @@ class DistrictController extends Controller {
      */
     public function actionIndex() {
         $dataProvider = new CActiveDataProvider('District', array(
-                    'sort' => array('defaultOrder' => 'state_abbr ASC')));
+                    'sort' => array('defaultOrder' => 'state_id ASC')));
         $this->render('index', array(
             'dataProvider' => $dataProvider,
         ));
