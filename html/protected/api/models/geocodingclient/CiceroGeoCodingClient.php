@@ -8,13 +8,15 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
     private $token;
     private $httpRequestClient;
     private $apiBase = "http://cicero.azavea.com/v3.1";
+    private $tenantId;
 
-    public function __construct(HttpRequestClientInterface $httpRequestClient) {
+    public function __construct(HttpRequestClientInterface $httpRequestClient, $options = array()) {
         $this->httpRequestClient = $httpRequestClient;
 
 
-        $this->username = CICERO_USERNAME;
-        $this->password = CICERO_PASSWORD;
+        $this->username = $options['username'];
+        $this->password = $options['password'];
+        $this->tenantId = $options['tenantId'];
 
         //@todo: check if any of those two values are empty and call updateToken
 
@@ -58,10 +60,8 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
 
         $response = $this->httpRequestClient->getRequest($destination);
 
-
         // no response, probably because the token has expired
         if ($response == null || empty($response)) {
-            error_log("updating");
             $this->updateCredentials();
             // update query with new credentials
             $destination = "{$this->apiBase}/{$requesting}?f={$format}&user={$this->userId}&token={$this->token}&type={$type}&search_loc={$address}";
@@ -70,9 +70,10 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
 
         $jsonResponse = json_decode($response);
 
-        if (isset($jsonResponse->response->errors[0])) {
-            error_log("error fetching cicero data:" . $jsonResponse->response->errors[0]);
+        if (isset($jsonResponse->response->errors)) {
+            error_log("error fetching cicero data:" . print_r($jsonResponse->response->errors, true));
             // update query with new credentials
+            $this->updateCredentials();
             $destination = "{$this->apiBase}/{$requesting}?f={$format}&user={$this->userId}&token={$this->token}&type={$type}&search_loc={$address}";
             $response = $this->httpRequestClient->getRequest($destination);
         }
@@ -124,8 +125,9 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
 
         $jsonResponse = json_decode($response);
 
-        if (isset($jsonResponse->response->errors[0])) {
-            error_log("error fetching cicero data:" . $jsonResponse->response->errors[0]);
+        if (isset($jsonResponse->response->errors)) {
+            error_log("error fetching cicero data:" . print_r($jsonResponse->response->errors, true));
+            $this->updateCredentials();
             // update query with new credentials
             $destination = "{$this->apiBase}/{$requesting}?f={$format}&user={$this->userId}&token={$this->token}&type={$type}&search_loc={$address}";
             $response = $this->httpRequestClient->getRequest($destination);
@@ -143,15 +145,14 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
     }
 
     private function updateCredentials() {
+
         if (empty($this->username) || empty($this->password))
             throw new Exception("Cicero Credential required (check config.php)");
-
 
 
         $ciceroJsonResult = $this->httpRequestClient->postRequest($this->apiBase . '/token/new.json', "username={$this->username}&password={$this->password}", array());
 
         $result = json_decode($ciceroJsonResult);
-
 
         // we have a new userId and token, save it in the DB
         if (isset($result->success) && $result->success == 1) {
@@ -163,9 +164,11 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
 
             try {
                 // upsert_option is a custom postesgsql function
-                $update_cicero_token_query = "SELECT upsert_option('cicero_token', '$this->token')";
-                $update_cicero_user_query = "SELECT upsert_option('cicero_user', '$this->userId')";
+                $update_cicero_token_query = "SELECT upsert_option('cicero_token', '$this->token', 1)";
+                $update_cicero_user_query = "SELECT upsert_option('cicero_user', '$this->userId', 1)";
 
+                error_log($this->tenantId);
+                
                 $connection->createCommand($update_cicero_token_query)->execute();
                 $connection->createCommand($update_cicero_user_query)->execute();
 

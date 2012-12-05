@@ -8,7 +8,7 @@ class GeoProviderTest extends CDbTestCase {
     private $ciceroProvider;
 
     public function __construct() {
-        $providerFactory = new GeoCodingClientProvider();
+        $providerFactory = new GeoCodingClientProvider(1);
 
         $this->ciceroProvider = $providerFactory->getGeoCodingClient('cicero');
     }

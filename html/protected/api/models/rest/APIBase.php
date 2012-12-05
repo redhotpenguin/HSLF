@@ -62,7 +62,7 @@ abstract class APIBase implements IAPI {
     }
 
     public function getSingle($tenantId, $pkID, $arguments = array()) {
-
+        $this->model->sessionTenantId = $tenantId;
         $relations = array();
 
         if (isset($arguments['relations']) && $arguments['relations'] == 'all') {

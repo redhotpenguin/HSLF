@@ -2,7 +2,7 @@
 
 interface GeoCodingClientInterface {
     
-    public function __construct(HttpRequestClientInterface $httpRequestClient);
+    public function __construct(HttpRequestClientInterface $httpRequestClient, $options = array());
     
     public function getDistrictIdsByAddress($address, $options = array());
     

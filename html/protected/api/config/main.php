@@ -12,8 +12,8 @@ return array(
     'controllerPath' => $api . '/controllers',
     'viewPath' => $api . '/views/',
     'runtimePath' => $api . '/runtime',
-    'name' => PROJECT_NAME . ' - API',
-    'preload' => array('log'),
+    'name' =>  'MVG - API',
+    // 'preload' => array('log'),
     // autoloading model and component classes
     'import' => array(
         'application.api.models.rest.criteria.*',
@@ -40,11 +40,9 @@ return array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'rules' => array(
-
                 array('api/index', 'pattern' => 'api', 'verb' => 'GET'),
                 array('api/list', 'pattern' => 'api/<tenant_id:\d+>/<model:\w+>/', 'verb' => 'GET'),
                 array('api/view', 'pattern' => 'api/<tenant_id:\d+>/<model:\w+>/<id:\d+>', 'verb' => 'GET'),
-
             ),
         ),
         'db' => array(
@@ -85,8 +83,6 @@ return array(
         'adminEmail' => ADMIN_EMAIL,
         'api_key' => API_KEY,
         'api_secret' => API_SECRET,
-        'urbanairship_app_key' => UA_API_KEY,
-        'urbanairship_app_master_secret' => UA_API_SECRET,
         'site_url' => SITE_URL,
         'share_url' => SHARE_URL, // in case we want to store the shared urls in another server
     ),

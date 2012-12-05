@@ -62,7 +62,7 @@ class BallotItemsAPI implements IAPI {
      * @param string $address address
      */
     private function retrieveDistrictIdsByAddress($address) {
-        $geoCodingClientProvider = new GeoCodingClientProvider();
+        $geoCodingClientProvider = new GeoCodingClientProvider($this->ballotItem->sessionTenantId);
 
         $geoCodingClient = $geoCodingClientProvider->getGeoCodingClient('cicero');
 
@@ -77,7 +77,7 @@ class BallotItemsAPI implements IAPI {
      * @param $long longitude
      */
     private function retrieveDistrictIdsByLatLong($lat, $long) {
-        $geoCodingClientProvider = new GeoCodingClientProvider();
+        $geoCodingClientProvider = new GeoCodingClientProvider($this->ballotItem->sessionTenantId);
 
         $geoCodingClient = $geoCodingClientProvider->getGeoCodingClient('cicero');
 
@@ -92,6 +92,7 @@ class BallotItemsAPI implements IAPI {
      * @todo Refactor this function to use BallotItemCriteria?
      */
     public function getSingle($tenantId, $id, $arguments = array()) {
+        $this->ballotItem->sessionTenantId = $tenantId;
         // todo: find better way to do this
         $this->ballotItem = $this->ballotItem->with(array('district', 'recommendation', 'electionResult', 'ballotItemNews', 'scorecards', 'cards', 'office', 'party'))->findByPk($id);
         

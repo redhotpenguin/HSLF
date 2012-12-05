@@ -14,6 +14,8 @@
  * @property string $api_key
  * @property string $api_secret
  * @property string $ua_dashboard_link
+ * @property string $cicero_user
+ * @property string $cicero_password
  *
  */
 class Tenant extends CActiveRecord {

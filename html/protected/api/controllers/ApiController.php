@@ -61,7 +61,7 @@ class ApiController extends Controller {
                 $model->setAuthenticated(false);
 
             unset($_GET['model']);
-            $message = $model->getSingle($id, $_GET);
+            $message = $model->getSingle($tenant_id, $id, $_GET);
         }
         $this->sendResponse($code, $message);
     }
