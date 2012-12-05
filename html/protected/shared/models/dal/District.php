@@ -104,7 +104,11 @@ class District extends CActiveRecord {
 
 
         $criteria->compare('id', $this->id);
-        $criteria->compare('state_id', $this->state_id, false);
+
+        if ($this->state_id != "") {
+            $criteria->compare('state_id', $this->state_id, false);
+        }
+
         $criteria->compare('number', $this->number, true);
         $criteria->compare('type', $this->type);
         $criteria->compare('locality', $this->locality, true);
@@ -115,17 +119,19 @@ class District extends CActiveRecord {
                     'pagination' => array(
                         'pageSize' => 50,
                     ),
-                    'sort' => array(
-                        'defaultOrder' => 'state_id ASC')
+                        //  'sort' => array(
+                        // 'defaultOrder' => 'state_id ASC')
                 ));
     }
 
-   
+    
+    // @todo: move this to district behavior
     public static function getTagDistrictsByState($state_id) {
         $districts = District::model()->findAllByAttributes(array('state_id' => state_id), array('order' => 'number ASC'));
         return CHtml::listData($districts, 'id', 'number');
     }
-
+    
+    // @todo: move this to district behavior
     public static function getTagDistrictsByStateAndType($state_id, $district_type) {
         $districts = District::model()->findAllByAttributes(array('state_id' => $state_id, 'type' => $district_type), array('order' => 'number ASC'));
         foreach ($districts as $district) {
@@ -136,7 +142,6 @@ class District extends CActiveRecord {
 
         return CHtml::listData($districts, 'id', 'display_name');
     }
-  
 
     /**
      * Executed before a District model is saved or updated
@@ -187,8 +192,8 @@ class District extends CActiveRecord {
     public static function isValidDistrictType($district_type) {
         return in_array($district_type, self::$district_types);
     }
-    
-        /*
+
+    /*
      * Attach external behaviors 
      */
 
@@ -197,7 +202,6 @@ class District extends CActiveRecord {
             'DistrictBehavior' => array(
                 'class' => 'DistrictBehavior',
             ),
-           
         );
     }
 

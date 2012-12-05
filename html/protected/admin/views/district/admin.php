@@ -39,7 +39,7 @@ $('.search-form form').submit(function(){
 </div><!-- search-form -->
 
 <?php
-$state_list = array('' => 'All') + CHtml::listData(State::model()->findAll(), 'id', 'name');
+$state_list = CHtml::listData(State::model()->findAll(), 'id', 'name');
 $district_list = array('' => 'All') + District::model()->getTypeOptions();
 
 $this->widget('bootstrap.widgets.BootGridView', array(
