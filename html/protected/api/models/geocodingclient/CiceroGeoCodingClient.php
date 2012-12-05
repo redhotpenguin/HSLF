@@ -35,7 +35,6 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
 
     // return district IDs
     public function getDistrictIdsByAddress($address, $options = array()) {
-
         // replace white spaces in the address
         $address = str_replace(' ', '%20', $address);
 
@@ -70,21 +69,18 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
 
         $jsonResponse = json_decode($response);
 
-        if (isset($jsonResponse->response->errors)) {
-            error_log("error fetching cicero data:" . print_r($jsonResponse->response->errors, true));
+        if (isset($jsonResponse->response->errors) && !empty($jsonResponse->response->errors)) {
             // update query with new credentials
             $this->updateCredentials();
             $destination = "{$this->apiBase}/{$requesting}?f={$format}&user={$this->userId}&token={$this->token}&type={$type}&search_loc={$address}";
             $response = $this->httpRequestClient->getRequest($destination);
         }
 
-
         if (!isset($jsonResponse->response->results->candidates[0]->districts) || empty($jsonResponse->response->results->candidates[0]->districts)) {
             return false;
         }
 
         $ciceroDistricts = $jsonResponse->response->results->candidates[0]->districts;
-
 
         return $this->ciceroDistrictsToDistricts($ciceroDistricts);
     }
@@ -110,8 +106,6 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
             $format = 'json';
 
         $destination = "{$this->apiBase}/{$requesting}?f={$format}&user={$this->userId}&token={$this->token}&type={$type}&lat={$lat}&lon={$long}";
-
-
         $response = $this->httpRequestClient->getRequest($destination);
 
         // no response, probably because the token has expired
@@ -125,11 +119,10 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
 
         $jsonResponse = json_decode($response);
 
-        if (isset($jsonResponse->response->errors)) {
-            error_log("error fetching cicero data:" . print_r($jsonResponse->response->errors, true));
+        if (isset($jsonResponse->response->errors) && !empty($jsonResponse->response->errors)) {
             $this->updateCredentials();
             // update query with new credentials
-            $destination = "{$this->apiBase}/{$requesting}?f={$format}&user={$this->userId}&token={$this->token}&type={$type}&search_loc={$address}";
+            $destination = "{$this->apiBase}/{$requesting}?f={$format}&user={$this->userId}&token={$this->token}&type={$type}&lat={$lat}&lon={$long}";
             $response = $this->httpRequestClient->getRequest($destination);
         }
 
@@ -160,22 +153,20 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
             $this->userId = $result->user;
 
             $connection = Yii::app()->db;
+
             $transaction = $connection->beginTransaction();
-
             try {
-                // upsert_option is a custom postesgsql function
-                $update_cicero_token_query = "SELECT upsert_option('cicero_token', '$this->token', 1)";
-                $update_cicero_user_query = "SELECT upsert_option('cicero_user', '$this->userId', 1)";
-
-                error_log($this->tenantId);
-                
-                $connection->createCommand($update_cicero_token_query)->execute();
-                $connection->createCommand($update_cicero_user_query)->execute();
-
-                // commit the transaction
+                $opt = new Option();
+                $opt->sessionTenantId = $this->tenantId;
+                $opt->upsert('cicero_token', $this->token);
+                $opt = new Option();
+                $opt->sessionTenantId = $this->tenantId;
+                $opt->upsert('cicero_user', $this->userId);
                 $transaction->commit();
+
                 return true;
             } catch (Exception $e) {
+                $transaction->rollback();
                 $result = $e->getMessage();
                 error_log("failed saving cicero credentials: " . $result);
                 return false;
