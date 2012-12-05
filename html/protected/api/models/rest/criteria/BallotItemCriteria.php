@@ -51,9 +51,12 @@ class BallotItemCriteria extends CDbCriteria {
      * @param string $stateAbbr - state abbreviation
      */
     public function setState($stateAbbr) {
-        $this->addCondition('district.state_abbr=:stateAbbr', 'AND');
+        // @todo: optimize this
+        $state_id = State::model()->findByAttributes(array("abbr" => $stateAbbr))->id;
+
+        $this->addCondition('district.state_id=:state_id', 'AND');
         $this->addRelation('district');
-        $this->params[':stateAbbr'] = $stateAbbr;
+        $this->params[':state_id'] = $state_id;
     }
 
     /**
@@ -82,7 +85,7 @@ class BallotItemCriteria extends CDbCriteria {
             else
                 $operator = 'OR';
 
-            $condition = 'district.state_abbr=:stateAbbr AND district.type=:districtType' . $i . ' AND district.number=:districtNumber' . $i;
+            $condition = 'district.state_id=:state_id AND district.type=:districtType' . $i . ' AND district.number=:districtNumber' . $i;
 
             if (isset($d[2])) { // locality
                 $condition.=" AND district.locality=:districtLocality" . $i;
@@ -171,7 +174,7 @@ class BallotItemCriteria extends CDbCriteria {
      * @return return ballot items
      */
     public function search() {
-
+        // echo '<pre>';
         //  print_r($this->toArray());
         //   die;
 
@@ -204,7 +207,7 @@ class BallotItemCriteria extends CDbCriteria {
      */
     public function addScorecardRelation() {
         $this->addRelation('scorecards');
-    //    $this->addRelation('cards');
+        //    $this->addRelation('cards');
     }
 
     /**
