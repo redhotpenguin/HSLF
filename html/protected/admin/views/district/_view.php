@@ -8,8 +8,8 @@
 	<?php echo CHtml::encode($data->id); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('state_abbr')); ?>:</b>
-	<?php echo CHtml::encode($data->state_abbr); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('state_id')); ?>:</b>
+	<?php echo CHtml::encode($data->state_id); ?>
 	<br />
 
 

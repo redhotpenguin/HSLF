@@ -74,7 +74,7 @@ class Import extends CModel {
     public static function importDistrict($tmp_name, $file_name) {
 
 
-        $fields = array('state_abbr', 'number', 'type', 'display_name', 'locality');
+        $fields = array( 'number', 'type', 'display_name', 'locality', 'state_id');
 
         $result = self::insertDataFromCSV($tmp_name, $file_name, 'district', $fields);
 
