@@ -168,7 +168,7 @@ class DistrictController extends Controller {
         error_log(print_r($_REQUEST, true));
 
 
-        $data = District::model()->findAllByAttributes(array('state_abbr' => $_POST[$model]['state_abbr']), $params);
+        $data = District::model()->findAllByAttributes(array('state_id' => $_POST[$model]['state_id']), $params);
 
         $data = CHtml::listData($data, 'id', 'number');
 
@@ -180,14 +180,14 @@ class DistrictController extends Controller {
     // print a list of district tag <select>
     public function actionDynamicDistrictNumber() {
 
-        $state_abbr = $_POST['state_abbr'];
+        $state_id = $_POST['state_id'];
         $district_type = $_POST['district_type'];
 
         $params = array(
             'order' => 'number ASC',
         );
 
-        $data = District::model()->findAllByAttributes(array('state_abbr' => $state_abbr, 'type' => $district_type), $params);
+        $data = District::model()->findAllByAttributes(array('state_id' => $state_id, 'type' => $district_type), $params);
 
         $data = CHtml::listData($data, 'id', 'display_name');
         asort($data);
