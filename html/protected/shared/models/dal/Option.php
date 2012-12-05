@@ -83,7 +83,10 @@ class Option extends CBaseActiveRecord {
     public function behaviors() {
         return array(
             'MultiTenant' => array(
-                'class' => 'MultiTenantBehavior')
+                'class' => 'MultiTenantBehavior'),
+            'Behavior' => array(
+                'class' => 'OptionBehavior'),
+            
         );
     }
 
