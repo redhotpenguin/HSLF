@@ -68,7 +68,7 @@ echo Chtml::endForm();
 
     <div class="clearfix"></div>
     <p>
-        <b>CSV structure:</b><br/>id, number, type, display_name, locality, state_abbr
+        <b>CSV structure:</b><br/>id, number, type, display_name, locality, state_id
         (headers must be included)<br/>
 
     </p>

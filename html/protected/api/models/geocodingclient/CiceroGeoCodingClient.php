@@ -198,7 +198,7 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
             array_push($districtNumbers, $ciceroDistrict->district_id);
         }
 
-        $districtIds = DistrictManager::getIdsByDistricts($state, $districtTypes, $districtNumbers, $localities);
+        $districtIds = District::model()->getIdsByDistricts($state, $districtTypes, $districtNumbers, $localities);
 
         return $districtIds;
     }

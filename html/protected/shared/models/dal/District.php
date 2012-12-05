@@ -187,5 +187,18 @@ class District extends CActiveRecord {
     public static function isValidDistrictType($district_type) {
         return in_array($district_type, self::$district_types);
     }
+    
+        /*
+     * Attach external behaviors 
+     */
+
+    public function behaviors() {
+        return array(
+            'DistrictBehavior' => array(
+                'class' => 'DistrictBehavior',
+            ),
+           
+        );
+    }
 
 }
