@@ -65,14 +65,7 @@ class BallotItemController extends Controller {
 
             // a file for image_url has been uploded
             if (!empty($_FILES['image_url']['tmp_name'])) {
-                $fileUpload = new FileUpload('image_url', array('image/jpeg', 'image/gif', 'image/png'));
-
-                $year_month = date('Y_m');
-                $destPath = '/' . $year_month; //ex: /2012_06/
-
-                $saved_file_url = $fileUpload->save($_FILES['image_url'], $destPath);
-
-                if ($saved_file_url)
+                if ($this->upload($_FILES))
                     $model->image_url = $saved_file_url;
             }
 
@@ -173,18 +166,9 @@ class BallotItemController extends Controller {
                 $this->performAjaxValidation($model);
             }
 
-
-
             // a file for image_url has been uploded
             if (!empty($_FILES['image_url']['tmp_name'])) {
-                $fileUpload = new FileUpload('image_url', array('image/jpeg', 'image/gif', 'image/png'));
-
-                $year_month = date('Y_m');
-                $destPath = '/' . $year_month; //ex: /2012_06/
-
-                $saved_file_url = $fileUpload->save($_FILES['image_url'], $destPath);
-
-                if ($saved_file_url)
+                if ($this->upload($_FILES))
                     $model->image_url = $saved_file_url;
             }
             if (Yii::app()->request->isAjaxRequest) { // AJAX Post Request
@@ -253,21 +237,37 @@ class BallotItemController extends Controller {
      * Updates a file
      */
     public function actionUpload() {
+        logIt($_FILES);
 
         if (Yii::app()->request->isPostRequest) {
-            // import FileUpload helper class
-            Yii::import('admin.models.helpers.FileUpload');
-
             if (!empty($_FILES['image_url']['tmp_name'])) {
-                $fileUpload = new FileUpload('image_url', array('image/jpeg', 'image/gif', 'image/png'));
-
-                $year_month = date('Y_m');
-                $destPath = '/' . $year_month; //ex: /2012_06/
-
-                echo $t = $fileUpload->save($_FILES['image_url'], $destPath);
+                echo $t = $this->upload($_FILES);
             }
         }else
             $this->renderPartial('upload');
+    }
+
+    /**
+     * Call FileUpload to actually save the file
+     * Multi Tenant compatible
+     */
+    private function upload(array $userFile) {
+
+        Yii::import('admin.models.helpers.FileUpload');
+
+        $fileUpload = new FileUpload('image_url', array('image/jpeg', 'image/gif', 'image/png'));
+
+        $year_month = date('Y_m');
+
+
+        if ($tenantId = Yii::app()->user->tenant_id) {
+            $tenant = Tenant::model()->findByPk($tenantId);
+            $destPath = '/'.$tenant->name;
+        }
+
+        $destPath .= '/' . $year_month; //ex: /2012_06/
+        
+        return $fileUpload->save($userFile['image_url'], $destPath);
     }
 
     /**

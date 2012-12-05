@@ -115,7 +115,6 @@ return array(
 // using Yii::app()->params['paramName']
     'params' => array(
         'dateFormat' => 'Y-m-d H:i:s',
-        'adminEmail' => ADMIN_EMAIL,
         'site_url' => SITE_URL,
         'upload_path' => SITE_URL . UPLOAD_PATH,
         'upload_dir' => UPLOAD_DIR,

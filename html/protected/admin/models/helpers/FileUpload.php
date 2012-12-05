@@ -11,19 +11,17 @@ class FileUpload {
 
     private $allowed_mime_types;
     private $field_attribute; // model field
-
+    
     public function __construct($field_attribute, array $allowed_mime_types = null) {
         $this->field_attribute = $field_attribute;
         $this->allowed_mime_types = $allowed_mime_types;
     }
 
     public function save($file, $upload_directory) {
-
         if (!$this->verifyMimeType($file)) {
             return false;
         }
-
-       
+        
         Yii::import('application.extensions.upload.Upload');
 
         // create a new Upload object

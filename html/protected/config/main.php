@@ -2,7 +2,7 @@
 // frontend config
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
-    'name' => PROJECT_NAME,
+    'name' => "WM Mobile",
     // preloading 'log' component
     'preload' => array('log', 'bootstrap'),
     // autoloading model and component classes
@@ -75,7 +75,6 @@ return array(
     // using Yii::app()->params['paramName']
     'params' => array(
         'dateFormat' => 'Y-m-d H:i:s',
-        'adminEmail' => ADMIN_EMAIL,
         'site_url' => SITE_URL,
     ),
     'theme' => FRONTEND_THEME,
