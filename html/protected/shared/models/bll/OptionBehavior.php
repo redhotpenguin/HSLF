@@ -9,10 +9,16 @@ class OptionBehavior extends CActiveRecordBehavior {
         if ($option == null) { // insert
             $this->owner->name = $name;
             $this->owner->value = $value;
-            return $this->owner->save();
+            $saveResult = $this->owner->save(false);
+
+            return $saveResult;
         } else { // update
-            $option->value = $value;
-            return $option->save();
+            $this->owner->isNewRecord = false;
+            $this->owner->id = $option->id;
+            $this->owner->name = $option->name;
+            $this->owner->value = $value;
+            $updateResult = $this->owner->save();
+            return $updateResult;
         }
     }
 

@@ -13,14 +13,14 @@ class OptionTest extends CDbTestCase {
 
         $this->option->attachBehavior('Behavior', $this->optionBehavior);
         $this->option->attachBehavior('MultiTenant', $this->tenantBehavior);
-        
+
         $this->option->sessionTenantId = 1;
     }
 
     public function testUpsert() {
 
         $result = $this->option->upsert("foo", "bar");
-         $result = $this->option->upsert("foo", "bar41");
+        $result = $this->option->upsert("foo", "bar41");
 
         error_log("result: $result");
 

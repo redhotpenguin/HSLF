@@ -1,12 +1,15 @@
-Update Unique constraints to include tenant_id
-Super admin back-end
-CDN
-Update Import Script
+-- UNSURE --
+Super admin back-end?
+CDN?
 Remove state/districts controllers from normal admin dashboard?
+
+
+-- REMAINING -- 
+Update Unique constraints to include tenant_id
+Update Import Script
 Update cronjob command file
 Add cronjob per tenant
 
-API: single items should be only accessible via their tenants
 
 -- IN PROGRESS -- 
 Cleaner schema
@@ -16,3 +19,4 @@ Move configuration file to the database
 Foreign key: needs to be checked
 Remove unused files
 Update upsert option to include tenant_id
+API: single items should be only accessible via their tenants

@@ -4,7 +4,7 @@
 
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
-    'name' => PROJECT_NAME,
+    'name' => 'WM Mobile',
     // preloading 'log' component
     'preload' => array('log'),
     // autoloading model and component classes
@@ -37,11 +37,8 @@ return array(
             'username' => DB_USER,
             'password' => DB_PASS,
             'charset' => 'UTF-8',
-            'schemaCachingDuration' => '3600',
         ),
-        'cache' => array(
-            'class' => 'system.caching.CApcCache',
-        ),
+  
         'errorHandler' => array(
             'errorAction' => 'site/error',
         ),
