@@ -8,9 +8,6 @@
  * @property string $value
  * @property string $type
  *
- * The followings are the available model relations:
- * @property BallotItem[] $ballotItems
- * @property BallotItem[] $ballotItems1
  */
 class Recommendation extends CBaseActiveRecord {
 
@@ -39,22 +36,12 @@ class Recommendation extends CBaseActiveRecord {
         return array(
             array('value, type', 'required'),
             array('value, type', 'length', 'max' => 64),
-            array('tenant_id', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, value, type', 'safe', 'on' => 'search'),
         );
     }
 
-    /**
-     * @return array relational rules.
-     */
-    public function relations() {
-        return array(
-            'ballotItems' => array(self::HAS_MANY, 'BallotItem', 'recommendation_id'),
-            'ballotItems1' => array(self::HAS_MANY, 'BallotItem', 'election_result_id'),
-        );
-    }
 
     /**
      * @return array customized attribute labels (name=>label)
@@ -94,11 +81,5 @@ class Recommendation extends CBaseActiveRecord {
         );
     }
 
-    public function behaviors() {
-        return array(
-            'MultiTenant' => array(
-                'class' => 'MultiTenantBehavior')
-        );
-    }
 
 }

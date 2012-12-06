@@ -19,6 +19,9 @@ $this->widget('bootstrap.widgets.BootGridView', array(
         'id',
         'type',
         'value',
+        array(
+            'class' => 'bootstrap.widgets.BootButtonColumn',
+        ),
     ),
 ));
 ?>

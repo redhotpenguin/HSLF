@@ -15,7 +15,7 @@ $this->menu = array(
 <h1>View Ballot item: <?php echo $model->item; ?></h1>
 
 <?php
-$state_name = $model->district->stateAbbr->name;
+$state_name = $model->district->state->name;
 $district_type = $model->district->type;
 $district_number = $model->district->number;
 

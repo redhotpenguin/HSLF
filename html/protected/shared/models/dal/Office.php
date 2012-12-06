@@ -8,9 +8,8 @@
  * @property string $name
  *
  * The followings are the available model relations:
- * @property BallotItem[] $ballotItems
  */
-class Office extends CBaseActiveRecord {
+class Office extends CActiveRecord {
 
     /**
      * Returns the static model of the specified AR class.
@@ -36,7 +35,6 @@ class Office extends CBaseActiveRecord {
         // will receive user inputs.
         return array(
             array('name', 'length', 'max' => 256),
-            array('tenant_id', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, name', 'safe', 'on' => 'search'),
@@ -50,7 +48,6 @@ class Office extends CBaseActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'ballotItems' => array(self::HAS_MANY, 'BallotItem', 'office_id'),
         );
     }
 
@@ -82,15 +79,7 @@ class Office extends CBaseActiveRecord {
                 ));
     }
 
-    public static function getOfficesByType($office_type) {
-        
-    }
 
-    public function behaviors() {
-        return array(
-            'MultiTenant' => array(
-                'class' => 'MultiTenantBehavior')
-        );
-    }
+
 
 }
