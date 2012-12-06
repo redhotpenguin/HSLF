@@ -1,11 +1,8 @@
-Move configuration file to the database
 Update Unique constraints to include tenant_id
-Figure out runtime/assets folder
 Super admin back-end
 CDN
 Update Import Script
-Remove state/districts controllers from normal admin dashboard
-Update upsert option to include tenant_id
+Remove state/districts controllers from normal admin dashboard?
 Update cronjob command file
 Add cronjob per tenant
 
@@ -13,8 +10,9 @@ API: single items should be only accessible via their tenants
 
 -- IN PROGRESS -- 
 Cleaner schema
-
+Move configuration file to the database
 
 --DONE--
 Foreign key: needs to be checked
 Remove unused files
+Update upsert option to include tenant_id
