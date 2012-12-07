@@ -46,76 +46,84 @@
 
             <div id="menu-top" class="clearfix">
                 <?php
+                $publishingItems = array(
+                    'class' => 'bootstrap.widgets.BootMenu',
+                    'items' => array(
+                        '---',
+                        array('label' => 'Publishing', 'url' => '#', 'items' => array(
+                                array('label' => 'Votes', 'url' => array('/vote/admin'), 'visible' => isAdmin()),
+                                array('label' => 'Ballot Items', 'url' => array('/ballotItem/admin'), 'visible' => !Yii::app()->user->isGuest),
+                                array('label' => 'Scorecard Items', 'url' => array('/scorecardItem/admin'), 'visible' => !Yii::app()->user->isGuest),
+                                array('label' => 'Endorsers', 'url' => array('/endorser/admin/'), 'visible' => !Yii::app()->user->isGuest),
+                                array('itemOptions' => array('id' => 'external_item'), 'label' => 'Rich Push Notifications', 'linkOptions' => array('target' => '_blank'), 'url' => $tenant->ua_dashboard_link),
+                                array('label' => 'Image Upload', 'url' => array('/upload'), 'visible' => !Yii::app()->user->isGuest),
+                        )),
+                    ),
+                );
+
+                $applicationItems = array(
+                    'class' => 'bootstrap.widgets.BootMenu',
+                    'items' => array(
+                        '---',
+                        array(
+                            'label' => 'Application Manager',
+                            'url' => '#',
+                            'items' => array(
+                                array('label' => 'Tags', 'url' => array('/tag'), 'visible' => !Yii::app()->user->isGuest),
+                                array('label' => 'Alert types', 'url' => array('/alertType'), 'visible' => !Yii::app()->user->isGuest),
+                                array('label' => 'Options', 'url' => array('/option'), 'visible' => !Yii::app()->user->isGuest),
+                            ),
+                    )),
+                );
+
+                $adminItems = array(
+                    'class' => 'bootstrap.widgets.BootMenu',
+                    'items' => array(
+                        '---',
+                        array(
+                            'label' => 'Admin',
+                            'url' => '#',
+                            'items' => array(
+                                array('label' => 'Users', 'url' => array('/user'), 'visible' => !Yii::app()->user->isGuest),
+                                array('label' => 'Import', 'url' => array('/import'), 'visible' => isAdmin()),
+                                array('label' => 'States', 'url' => array('/state/admin'), 'visible' => isAdmin()),
+                                array('label' => 'Districts', 'url' => array('/district/admin'), 'visible' => isAdmin()),
+                                array('label' => 'Parties', 'url' => array('/party/admin'), 'visible' => isAdmin()),
+                                array('label' => 'Recommendations', 'url' => array('/recommendation/admin'), 'visible' => isAdmin()),
+                                array('label' => 'Offices', 'url' => array('/office/admin'), 'visible' => isAdmin()),
+                            ),
+                    )),
+                );
+
+                $loginItems = array(
+                    'class' => 'bootstrap.widgets.BootMenu',
+                    'htmlOptions' => array('class' => 'pull-right'),
+                    'items' => array(
+                        '---',
+                        array(
+                            'label' => 'Logout (' . Yii::app()->user->name . ')',
+                            'url' => array('site/logout'),
+                            'visible' => !Yii::app()->user->isGuest,
+                    )),
+                );
+
+                $items = array(
+                    $publishingItems,
+                    $applicationItems
+                );
+
+
+                if (isAdmin()) {
+                    array_push($items, $adminItems);
+                }
+
+                array_push($items, $loginItems);
+
                 $this->widget('bootstrap.widgets.BootNavbar', array(
                     'brand' => $tenant->display_name,
                     'brandUrl' => '/admin/',
                     'id' => 'main_menu',
-                    'items' => array(
-                        array(
-                            'class' => 'bootstrap.widgets.BootMenu',
-                            'items' => array(
-                                '---',
-                                array('label' => 'Shared', 'url' => '#', 'items' => array(
-                                        array('label' => 'States', 'url' => array('/state/admin'), 'visible' => isAdmin()),
-                                        array('label' => 'Districts', 'url' => array('/district/admin'), 'visible' => isAdmin()),
-                                        array('label' => 'Parties', 'url' => array('/party/admin'), 'visible' => isAdmin()),
-                                        array('label' => 'Recommendations', 'url' => array('/recommendation/admin'), 'visible' => isAdmin()),
-                                        array('label' => 'Offices', 'url' => array('/office/admin'), 'visible' => isAdmin()),
-                                        array('label' => 'Image Upload', 'url' => array('/upload'), 'visible' => !Yii::app()->user->isGuest),
-                                )))
-                        ),
-                        array(
-                            'class' => 'bootstrap.widgets.BootMenu',
-                            'items' => array(
-                                '---',
-                                array('label' => 'Publishing', 'url' => '#', 'items' => array(
-                                        array('label' => 'Votes', 'url' => array('/vote/admin'), 'visible' => isAdmin()),
-                                        array('label' => 'Ballot Items', 'url' => array('/ballotItem/admin'), 'visible' => !Yii::app()->user->isGuest),
-                                        array('label' => 'Scorecard Items', 'url' => array('/scorecardItem/admin'), 'visible' => !Yii::app()->user->isGuest),
-                                        array('label' => 'Endorsers', 'url' => array('/endorser/admin/'), 'visible' => !Yii::app()->user->isGuest),
-                                        array('itemOptions' => array('id' => 'external_item'), 'label' => 'Rich Push Notifications', 'linkOptions' => array('target' => '_blank'), 'url' => $tenant->ua_dashboard_link),
-                                )),
-                            ),
-                        ),
-                        array(
-                            'class' => 'bootstrap.widgets.BootMenu',
-                            'items' => array(
-                                '---',
-                                array(
-                                    'label' => 'Application Manager',
-                                    'url' => '#',
-                                    'items' => array(
-                                        array('label' => 'Tags', 'url' => array('/tag'), 'visible' => !Yii::app()->user->isGuest),
-                                        array('label' => 'Alert types', 'url' => array('/alertType'), 'visible' => !Yii::app()->user->isGuest),
-                                        array('label' => 'Options', 'url' => array('/option'), 'visible' => !Yii::app()->user->isGuest),
-                                    ),
-                            )),
-                        ),
-                        array(
-                            'class' => 'bootstrap.widgets.BootMenu',
-                            'items' => array(
-                                '---',
-                                array(
-                                    'label' => 'Administration',
-                                    'url' => '#',
-                                    'items' => array(
-                                        array('label' => 'Users', 'url' => array('/user'), 'visible' => !Yii::app()->user->isGuest),
-                                        array('label' => 'Import', 'url' => array('/import'), 'visible' => isAdmin()),
-                                    ),
-                            )),
-                        ),
-                        array(
-                            'class' => 'bootstrap.widgets.BootMenu',
-                            'htmlOptions' => array('class' => 'pull-right'),
-                            'items' => array(
-                                '---',
-                                array(
-                                    'label' => 'Logout (' . Yii::app()->user->name . ')',
-                                    'url' => array('site/logout'),
-                                    'visible' => !Yii::app()->user->isGuest,
-                            )),
-                        ),
-                    ),
+                    'items' => $items,
                 ));
                 ?>
             </div>

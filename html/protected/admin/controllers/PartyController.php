@@ -24,9 +24,11 @@ class PartyController extends Controller {
      */
     public function accessRules() {
         return array(
-            array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete', 'exportCSV'),
+            array(// restrict Paty to admins only
+                'allow',
+                'actions' => array('create', 'delete', 'update', 'admin', 'index', 'view', 'exportCSV'),
                 'users' => array('@'),
+                'expression' => 'isset($user->role) && ($user->role==="admin")'
             ),
             array('deny', // deny all users
                 'users' => array('*'),
