@@ -31,7 +31,6 @@ return array(
         'admin.components.*',
         'application.models.*',
         'application.components.*',
-        'ext.multimodelform.MultiModelForm',
     ),
     'modules' => array(),
     // application components

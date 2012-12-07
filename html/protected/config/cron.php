@@ -13,7 +13,6 @@ return array(
         'application.shared.models.dal.*', // data access logic classes
         'application.shared.models.bll.*', // business  logic classes
         'application.components.*',
-        'ext.multimodelform.MultiModelForm',
     ),
     'modules' => array(
     ),
