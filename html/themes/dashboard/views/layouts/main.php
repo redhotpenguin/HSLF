@@ -51,12 +51,14 @@
                     'items' => array(
                         '---',
                         array('label' => 'Publishing', 'url' => '#', 'items' => array(
-                                array('label' => 'Votes', 'url' => array('/vote/admin'), 'visible' => isAdmin()),
                                 array('label' => 'Ballot Items', 'url' => array('/ballotItem/admin'), 'visible' => !Yii::app()->user->isGuest),
-                                array('label' => 'Scorecard Items', 'url' => array('/scorecardItem/admin'), 'visible' => !Yii::app()->user->isGuest),
                                 array('label' => 'Endorsers', 'url' => array('/endorser/admin/'), 'visible' => !Yii::app()->user->isGuest),
-                                array('itemOptions' => array('id' => 'external_item'), 'label' => 'Rich Push Notifications', 'linkOptions' => array('target' => '_blank'), 'url' => $tenant->ua_dashboard_link),
+                                array('label' => 'Scorecard Items', 'url' => array('/scorecardItem/admin'), 'visible' => !Yii::app()->user->isGuest),
+                                array('label' => 'Votes', 'url' => array('/vote/admin'), 'visible' => !Yii::app()->user->isGuest),
+                                '',
                                 array('label' => 'Image Upload', 'url' => array('/upload'), 'visible' => !Yii::app()->user->isGuest),
+                                '',
+                                array('itemOptions' => array('id' => 'external_item'), 'label' => 'Rich Push Notifications', 'linkOptions' => array('target' => '_blank'), 'url' => $tenant->ua_dashboard_link),
                         )),
                     ),
                 );
@@ -69,9 +71,9 @@
                             'label' => 'Application Manager',
                             'url' => '#',
                             'items' => array(
-                                array('label' => 'Tags', 'url' => array('/tag'), 'visible' => !Yii::app()->user->isGuest),
                                 array('label' => 'Alert types', 'url' => array('/alertType'), 'visible' => !Yii::app()->user->isGuest),
                                 array('label' => 'Options', 'url' => array('/option'), 'visible' => !Yii::app()->user->isGuest),
+                                array('label' => 'Tags', 'url' => array('/tag'), 'visible' => !Yii::app()->user->isGuest),
                             ),
                     )),
                 );
@@ -84,13 +86,16 @@
                             'label' => 'Admin',
                             'url' => '#',
                             'items' => array(
-                                array('label' => 'Users', 'url' => array('/user'), 'visible' => !Yii::app()->user->isGuest),
-                                array('label' => 'Import', 'url' => array('/import'), 'visible' => isAdmin()),
                                 array('label' => 'States', 'url' => array('/state/admin'), 'visible' => isAdmin()),
                                 array('label' => 'Districts', 'url' => array('/district/admin'), 'visible' => isAdmin()),
+                                '',
+                                array('label' => 'Offices', 'url' => array('/office/admin'), 'visible' => isAdmin()),
                                 array('label' => 'Parties', 'url' => array('/party/admin'), 'visible' => isAdmin()),
                                 array('label' => 'Recommendations', 'url' => array('/recommendation/admin'), 'visible' => isAdmin()),
-                                array('label' => 'Offices', 'url' => array('/office/admin'), 'visible' => isAdmin()),
+                                '',
+                                array('label' => 'Users', 'url' => array('/user'), 'visible' => !Yii::app()->user->isGuest),
+                                '',
+                                array('label' => 'Import', 'url' => array('/import'), 'visible' => isAdmin()),
                             ),
                     )),
                 );

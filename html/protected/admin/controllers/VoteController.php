@@ -27,9 +27,7 @@ class VoteController extends Controller {
             array(// restrict State to admins only
                 'allow',
                 'actions' => array('create', 'delete', 'update', 'admin', 'index', 'view', 'exportCSV'),
-                'users' => array('@'),
-                'expression' => 'isset($user->role) && ($user->role==="admin")'
-            ),
+                'users' => array('@')),
             array('deny', // deny all users
                 'users' => array('*'),
             ),
@@ -111,7 +109,7 @@ class VoteController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-        
+
         $dataProvider = new CActiveDataProvider('Vote');
         $this->render('index', array(
             'dataProvider' => $dataProvider,
