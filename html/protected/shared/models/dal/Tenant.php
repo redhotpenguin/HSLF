@@ -43,7 +43,7 @@ class Tenant extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('creation_date', 'required'),
+            array('name, display_name,  creation_date, site_url, web_app_url, email, api_key, api_secret, ua_dashboard_link, cicero_user, cicero_password', 'required'),
             array('name', 'length', 'max' => 32),
             array('display_name', 'length', 'max' => 256),
             array('ua_dashboard_link', 'safe'),
