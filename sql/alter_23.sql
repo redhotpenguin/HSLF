@@ -15,7 +15,7 @@ create table tenant(
 );
 ALTER TABLE tenant ADD CONSTRAINT unique_name UNIQUE (name);
 
-INSERT INTO tenant (name, display_name, creation_date, site_url, web_app_url, email, api_key, api_secret, ua_dashboard_link) VALUES (
+INSERT INTO tenant (name, display_name, creation_date, site_url, web_app_url, email, api_key, api_secret, ua_dashboard_link, cicero_user, cicero_password) VALUES (
 	'ouroregon', 
 	'Our Oregon',
 	NOW(),
