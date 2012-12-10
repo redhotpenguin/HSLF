@@ -1,7 +1,5 @@
 -- UNSURE --
-Super admin back-end?
 CDN?
-Remove state/districts controllers from normal admin dashboard?
 
 
 -- REMAINING -- 
@@ -16,6 +14,7 @@ Update Unique constraints to include tenant_id
 
 
 -- DONE --
+Remove state/districts controllers from normal admin dashboard?
 Foreign key: needs to be checked
 Remove unused files
 Update upsert option to include tenant_id
