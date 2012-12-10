@@ -83,7 +83,8 @@ UPDATE district   SET state_id = 1;
 
 ALTER TABLE district ALTER COLUMN state_id SET NOT NULL;
 
-ALTER TABLE ballot_item_news DROP CONSTRAINT IF EXISTS ballot_item_news_ballot_item_id_fkey1;
+
+--ALTER TABLE ballot_item_news DROP CONSTRAINT IF EXISTS ballot_item_news_ballot_item_id_fkey1;
 
 
 -- option table: update unique constraint
