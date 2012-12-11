@@ -39,88 +39,62 @@ class ImportController extends Controller {
     /**
      * Display the Import home page
      */
-    public function actionIndex() {
+    public function actionIndex($modelName = "") {
         $result = "";
-        $error_msg = "";
-
-        if (!isset($_FILES['import']['tmp_name']) || !is_uploaded_file($_FILES['import']['tmp_name'])) {
-            $this->render('index');
-            return;
-        }
-
+        $errorMsg = "";
         $allowed_mimes = array('application/vnd.ms-excel', 'text/plain', 'text/csv', 'text/tsv');
-        if (!in_array($_FILES['import']['type'], $allowed_mimes)) {
-            $this->render('index', array('result' => 'File format not allowed. Please use CSV.'));
-            return;
+        $models = array();
+
+        // allowed models for imports
+        $allowedModelNames = array(
+            "BallotItem" => "Ballot Items",
+            "District" => "Districts",
+            "Endorser" => "Endorser",
+            "Office" => "Offices",
+            "Party" => "Parties",
+            "Recommendation" => "Recommendations",
+            "State" => "States",
+            "Tag" => "Tags",
+            "Vote" => "Votes",
+        );
+
+        //
+        // if a file has been submitted
+        if (( isset($_FILES['import']) && in_array($_FILES['import']['type'], $allowed_mimes))) {
+
+            // if the file has been successfully uploaded
+            if (isset($_FILES['import']['tmp_name']) || is_uploaded_file($_FILES['import']['tmp_name'])) {
+
+                // restrict model import to the one defined in $allowedModelNames
+                if (array_key_exists($modelName, $allowedModelNames)) {
+
+                    $importResult = Import::importModel($modelName, $_FILES['import']['tmp_name'], $_FILES['import']['tmp_name']);
+
+                    if ($importResult === true)
+                        $result = 'success';
+                    else {
+                        $result = 'failure';
+                        $errorMsg = '<b>Something went wrong:</b><br/>' . $importResult;
+                    }
+                }
+            }
         }
 
+        foreach ($allowedModelNames as $allowedModelName => $friendlyName) {
+            $model = new $allowedModelName();
 
-
-        switch (getParam('action')) {
-            case 'importState':
-                $import_result = Import::importState($_FILES['import']['tmp_name'], $_FILES['import']['name']);
-                break;
-
-
-            case 'importDistrict':
-                $import_result = Import::importDistrict($_FILES['import']['tmp_name'], $_FILES['import']['name']);
-                break;
-
-            case 'importBallotItem':
-                $import_result = Import::importBallot($_FILES['import']['tmp_name'], $_FILES['import']['name']);
-                break;
-
-            case 'importScorecard':
-                $import_result = Import::importScorecard($_FILES['import']['tmp_name'], $_FILES['import']['name']);
-                break;
-
-            case 'importVote':
-                $import_result = Import::importeVote($_FILES['import']['tmp_name'], $_FILES['import']['name']);
-                break;
-
-            case 'importRecommendation':
-                $import_result = Import::importRecommendation($_FILES['import']['tmp_name'], $_FILES['import']['name']);
-                break;
-
-            case 'importOffice':
-                $import_result = Import::importOffice($_FILES['import']['tmp_name'], $_FILES['import']['name']);
-                break;
-
-            case 'importParty':
-                $import_result = Import::importParty($_FILES['import']['tmp_name'], $_FILES['import']['name']);
-                break;
-
-            case 'importScorecardItem':
-                $import_result = Import::importScorecardItem($_FILES['import']['tmp_name'], $_FILES['import']['name']);
-                break;
-
-            case 'importTag':
-                $import_result = Import::importTag($_FILES['import']['tmp_name'], $_FILES['import']['name']);
-                break;
-
-            case 'importEndorser':
-                $import_result = Import::importEndorser($_FILES['import']['tmp_name'], $_FILES['import']['name']);
-                break;
-
-            case 'importEndorserBallotItem':
-                $import_result = Import::importEndorserBallotItem($_FILES['import']['tmp_name'], $_FILES['import']['name']);
-                break;
-
-            default:
-                $result = 'failure';
-                $error_msg = 'Operation not supported';
-                break;
+            array_push($models, array(
+                'name' => $allowedModelName,
+                'friendlyName' => $friendlyName,
+                'attributes' => $model->getAttributes()
+            ));
         }
 
-        if ($import_result === true)
-            $result = 'success';
-        else {
-            $result = 'failure';
-            $error_msg = '<b>Something went wrong:</b><br/>' . $import_result;
-        }
-
-        $this->render('index', array('result' => $result, 'error_msg' => $error_msg));
-        return;
+        $this->render('index', array(
+            'result' => $result,
+            'errorMsg' => $errorMsg,
+            'models' => $models
+        ));
     }
 
 }
