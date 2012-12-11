@@ -2,8 +2,7 @@
 CDN?
 
 
--- REMAINING -- 
-Update Import Script
+-- REMAINING --
 Adding tenants
 
 
@@ -21,3 +20,4 @@ Update upsert option to include tenant_id
 API: single items should be only accessible via their tenants
 Update cicero console command to support multi tenancy
 Add cronjob per tenant
+Update Import Script

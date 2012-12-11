@@ -46,7 +46,10 @@ class Tenant extends CActiveRecord {
             array('name, display_name,  creation_date, site_url, web_app_url, email, api_key, api_secret, ua_dashboard_link, cicero_user, cicero_password', 'required'),
             array('name', 'length', 'max' => 32),
             array('display_name', 'length', 'max' => 256),
+            array('name', 'match', 'pattern' => '/^([a-z0-9_])+$/'),
             array('ua_dashboard_link', 'safe'),
+            array('email', 'email'),
+            array('site_url, web_app_url, ua_dashboard_link', 'url'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, name, display_name, creation_date, tenant_id, site_url, email, api_key, api_secret, ua_dashboard_link', 'safe', 'on' => 'search'),
