@@ -1,17 +1,17 @@
 <?php
 
-class BallotItemCriteria extends CDbCriteria {
+class ItemCriteria extends CDbCriteria {
 
-    private $ballotItem;
+    private $item;
     private $tableAlias;
     private $sort;
 
     /**
-     * BallotItemCriteria - extends CDbCriteria
+     * ItemCriteria - extends CDbCriteria
      */
-    public function __construct(BallotItem $ballotItem) {
-        $this->ballotItem = $ballotItem;
-        $this->tableAlias = $this->ballotItem->getTableAlias(false, false);
+    public function __construct(Item $item) {
+        $this->item = $item;
+        $this->tableAlias = $this->item->getTableAlias(false, false);
 
 
         // order by descending ID by default.
@@ -24,7 +24,7 @@ class BallotItemCriteria extends CDbCriteria {
     }
 
     /**
-     * Set the taxonomy that a ballot item lives in
+     * Set the taxonomy that an item lives in
      * @param string $taxonomy - taxonomy name
      * @param integer $taxonomyID - taxonomy id
      */
@@ -117,7 +117,7 @@ class BallotItemCriteria extends CDbCriteria {
     }
 
     /**
-     * Add a condition based on the ballot item published status
+     * Add a condition based on the item published status
      * @param string $published - yes or no
      */
     public function setPublishedStatus($published) {
@@ -131,7 +131,7 @@ class BallotItemCriteria extends CDbCriteria {
      * @param string $order - order value ( ASC/DESC)
      */
     public function setOrder($orderBy, $order) {
-        if ($this->ballotItem->hasAttribute($orderBy)) {
+        if ($this->item->hasAttribute($orderBy)) {
             if (strtoupper($order) == 'ASC' || strtoupper($order) == 'DESC')
                 $this->order = "{$this->tableAlias}.{$orderBy} {$order}";
         }
@@ -170,15 +170,15 @@ class BallotItemCriteria extends CDbCriteria {
     }
 
     /**
-     * Search ballot items based on the criteria
-     * @return return ballot items
+     * Search  items based on the criteria
+     * @return return  items
      */
     public function search() {
         // echo '<pre>';
         //  print_r($this->toArray());
         //   die;
 
-        $activeDataProvider = new CActiveDataProvider($this->ballotItem, array(
+        $activeDataProvider = new CActiveDataProvider($this->item, array(
                     'criteria' => $this,
                     'sort' => $this->sort,
                 ));
@@ -186,13 +186,13 @@ class BallotItemCriteria extends CDbCriteria {
         $activeDataProvider->pagination = false;
 
         try {
-            $ballotItems = $activeDataProvider->getData();
+            $items = $activeDataProvider->getData();
         } catch (CDbException $cdbE) {
             echo $cdbE->getMessage(); // debug
-            $ballotItems = false;
+            $items = false;
         }
 
-        return $ballotItems;
+        return $items;
     }
 
     /**
@@ -214,7 +214,7 @@ class BallotItemCriteria extends CDbCriteria {
      * Set the relation for news
      */
     public function addNewsRelation() {
-        $this->addRelation('ballotItemNews');
+        $this->addRelation('itemNews');
     }
 
     /**
@@ -265,7 +265,7 @@ class BallotItemCriteria extends CDbCriteria {
      */
     public function addAttributeCondition($attribute, $value, $operator = 'AND') {
 
-        if (!$this->ballotItem->hasAttribute($attribute))
+        if (!$this->item->hasAttribute($attribute))
             return false;
 
         $condition = "$attribute=:$attribute";
