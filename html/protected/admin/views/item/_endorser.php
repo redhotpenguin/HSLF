@@ -12,12 +12,12 @@
             <?php
             
             // move to model:
-            $position_list = BallotItemEndorser::$positions;
+            $position_list = ItemEndorser::$positions;
             
             foreach ($endorser_list as $endorser):
 
-                $ballotItemEndorser = BallotItemEndorser::model()->findByAttributes(array(
-                    "ballot_item_id" => $model->id,
+                $itemEndorser = ItemEndorser::model()->findByAttributes(array(
+                    "item_id" => $model->id,
                     "endorser_id" => $endorser->id
                         ));
                 ?>
@@ -36,8 +36,8 @@
 
                     <td>
                         <?php
-                        if ($ballotItemEndorser) {
-                            echo CHtml::dropDownList("endorsers[{$ballotItemEndorser->endorser->id}]", $ballotItemEndorser->position, $position_list);
+                        if ($itemEndorser) {
+                            echo CHtml::dropDownList("endorsers[{$itemEndorser->endorser->id}]", $itemEndorser->position, $position_list);
                         } else {
                             echo CHtml::dropDownList("endorsers[{$endorser->id}]", 0, $position_list);
                         }

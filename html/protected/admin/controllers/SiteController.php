@@ -12,7 +12,7 @@ class SiteController extends Controller {
         if (Yii::app()->user->id) {
 
             $data = array(
-                'total_ballot_page' => BallotItem::model()->count(),
+                'total_item_page' => Item::model()->count(),
                  'tenant' => Tenant::model()->findByAttributes(array ("id"=> Yii::app()->user->tenant_id))
             );
 

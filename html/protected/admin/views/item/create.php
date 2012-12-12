@@ -1,15 +1,15 @@
 <?php
 $this->breadcrumbs = array(
-    'Ballot Items' => array('index'),
+    'Items' => array('index'),
     'Create',
 );
 
 $this->menu = array(
-    array('label' => 'Manage ballot items', 'url' => array('admin')),
+    array('label' => 'Manage items', 'url' => array('admin')),
 );
 ?>
 
-<h1>Add a Ballot Item</h1>
+<h1>Add an item</h1>
 
 <?php
 echo $this->renderPartial('_form', array(

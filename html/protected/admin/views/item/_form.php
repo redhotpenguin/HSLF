@@ -5,20 +5,20 @@ if ($model->isNewRecord) {
     
     $ns = "var ns  = {site_url: '" . getSetting('site_url') . "',share_url: '" . getTenantSetting('web_app_url') . "' };";
 } else {
-    $ns = "var ns  = {site_url: '" . getSetting('site_url') . "',share_url: '" . getTenantSetting('web_app_url') . "', ballot_id: " . $model->id . " };";
+    $ns = "var ns  = {site_url: '" . getSetting('site_url') . "',share_url: '" . getTenantSetting('web_app_url') . "', item_id: " . $model->id . " };";
 }
 
 Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::POS_HEAD);
 $baseUrl = Yii::app()->baseUrl;
 $cs = Yii::app()->getClientScript();
-$cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
+$cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
 ?>
 
 <div class="form">
     <?php
     if ($model->id) {
         $form = $this->beginWidget('CActiveForm', array(
-            'id' => 'ballot-item-form',
+            'id' => 'item-form',
             'enableAjaxValidation' => true,
             'stateful' => true,
             'htmlOptions' => array(
@@ -27,7 +27,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
                 ));
     } else {
         $form = $this->beginWidget('CActiveForm', array(
-            'id' => 'ballot-item-form',
+            'id' => 'item-form',
             'enableAjaxValidation' => false,
             'stateful' => false,
             'htmlOptions' => array(
@@ -68,7 +68,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
                 'model' => $model,
                 'attribute' => 'district_id',
                 'options' => array(
-                    'model_name' => 'BallotItem',
+                    'model_name' => 'Item',
                 ),
             ));
             echo $form->error($model, 'district_id');
@@ -95,9 +95,9 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
                 'model' => $model,
                 'attribute' => 'image_url',
                 'options' => array(
-                    'model_name' => 'BallotItem',
-                    'upload_handler' => CHtml::normalizeUrl(array('ballotItem/upload')),
-                    'modal_view' => CHtml::normalizeUrl(array('ballotItem/upload')),
+                    'model_name' => 'Item',
+                    'upload_handler' => CHtml::normalizeUrl(array('item/upload')),
+                    'modal_view' => CHtml::normalizeUrl(array('item/upload')),
                 ),
             ))->start();
 
@@ -110,7 +110,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
             <?php echo $form->labelEx($model, 'next_election_date'); ?>
             <?php
             $this->widget('zii.widgets.jui.CJuiDatePicker', array(
-                'name' => 'BallotItem[next_election_date]',
+                'name' => 'Item[next_election_date]',
                 'value' => $model->next_election_date,
                 // additional javascript options for the date picker plugin
                 'options' => array(
@@ -337,7 +337,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
         <?php echo $form->labelEx($model, 'date_published'); ?>
         <?php
         $this->widget('zii.widgets.jui.CJuiDatePicker', array(
-            'name' => 'BallotItem[date_published]',
+            'name' => 'Item[date_published]',
             'value' => $model->date_published,
             // additional javascript options for the date picker plugin
             'options' => array(
@@ -367,7 +367,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
     if (!$model->isNewRecord) {
 
         $url = CHtml::normalizeUrl(array(
-                    'ballotItem/update',
+                    'item/update',
                     'id' => $model->id,
                     'enctype' => 'multipart/form-data',
                 ));
@@ -390,13 +390,13 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
                  target.removeClass("hidden");
                  
                   if ( response == "success" ){
-                         sessionStorage.setItem("BallotItemContent", "");
+                         sessionStorage.setItem("ItemContent", "");
                          target.addClass("btn-success");
-                         target.html( "ballot item saved" );
+                         target.html( "item saved" );
                     }
                     else{
                     target.addClass("btn-danger");
-                      target.html( "Could not save ballot item." );
+                      target.html( "Could not save item." );
                   }
                 target.fadeOut(5000, function(){
                  target.removeClass("btn-danger");
@@ -413,7 +413,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
                  target.removeClass("hidden");
                    target.addClass("btn-danger");
          
-                   target.html( "Could not save ballot item:<br/>" + object.responseText );
+                   target.html( "Could not save item:<br/>" + object.responseText );
              
                 //target.fadeOut(5000, function(){
                 // target.removeClass("btn-danger");
@@ -433,33 +433,33 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
 
     <?php
     if ($model->id):
-        $new_ballot_item_news_url = CHtml::normalizeUrl(array('ballotItemNews/add', 'ballot_item_id' => $model->id));
+        $new_item_news_url = CHtml::normalizeUrl(array('itemNews/add', 'item_id' => $model->id));
 
-        echo CHtml::link('Add a news update', $new_ballot_item_news_url, array('target' => '_blank'));
+        echo CHtml::link('Add a news update', $new_item_news_url, array('target' => '_blank'));
         ?>
         <br/>
         <br/>
 
         <?php
-        if ($model->ballotItemNews):
+        if ($model->itemNews):
 
-            foreach ($model->ballotItemNews as $ballotItemNew) {
+            foreach ($model->itemNews as $itemNew) {
                 ?>
 
-                <div class="ballot_news_item">
+                <div class="news_item">
                     <span class="btn floatright">
 
 
                         <?php
-                        $edit_ballot_item_news_url = CHtml::normalizeUrl(array('ballotItemNews/update', 'id' => $ballotItemNew->id));
-                        echo CHtml::link('Edit', $edit_ballot_item_news_url, array('target' => '_blank'));
+                        $edit_item_news_url = CHtml::normalizeUrl(array('itemNews/update', 'id' => $itemNew->id));
+                        echo CHtml::link('Edit', $edit_item_news_url, array('target' => '_blank'));
                         ?>
 
                     </span>
 
-                    <b> <?php echo $ballotItemNew->title; ?>:</b>
+                    <b> <?php echo $itemNew->title; ?>:</b>
                     <br/>
-                    <p><?php echo $ballotItemNew->getExcerpt() ?></p>
+                    <p><?php echo $itemNew->getExcerpt() ?></p>
 
                     <?php ?> 
                 </div>
@@ -472,7 +472,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/ballotItem.js');
 
     else:
         echo 'You must save an item before you can add a news.';
-    endif; // end test $model->BallotItemNews
+    endif; // end test $model->itemNews
     ?>
 
 

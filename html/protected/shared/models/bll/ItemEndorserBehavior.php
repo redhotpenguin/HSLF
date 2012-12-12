@@ -1,17 +1,17 @@
 <?php
 
-class BallotItemEndorserBehavior extends CBehavior {
+class ItemEndorserBehavior extends CBehavior {
 
     /**
-     * Get array of endorsers a ballot item has
+     * Get array of endorsers an item has
      * @return array of endorsers
      */
     public function getEndorsers() {
 
-        $endorsers = Endorser::model()->with('ballot_items')->find(
+        $endorsers = Endorser::model()->with('items')->find(
                 array(
-                    'condition' => 'ballot_item_id = :ballot_item_id',
-                    'params' => array(':ballot_item_id' => $this->owner->id)
+                    'condition' => 'item_id = :item_id',
+                    'params' => array(':item_id' => $this->owner->id)
                 ));
 
 
@@ -19,12 +19,12 @@ class BallotItemEndorserBehavior extends CBehavior {
     }
 
     /**
-     * Get array of ballot items by endorser id
+     * Get array of items by endorser id
      * @param integer $endorser_id
-     * @return array of ballot items
+     * @return array of items
      */
     public function findByEndorser($endorser_id) {
-        $ballot_items = BallotItem::model()->with('ballotItemEndorsers')->findAll(
+        $items = Item::model()->with('itemEndorsers')->findAll(
                 array(
                     'condition' => "endorser_id = :endorser_id AND published =:published",
                     'params' => array(
@@ -34,16 +34,16 @@ class BallotItemEndorserBehavior extends CBehavior {
                 ));
 
 
-        return $ballot_items;
+        return $items;
     }
 
     /**
-     * Get array of ballot items by endorser id
+     * Get array of items by endorser id
      * @param integer $endorser_id
-     * @return array of ballot items
+     * @return array of items
      */
     public function findByEndorserWithPosition($endorser_id) {
-        $ballot_items = BallotItem::model()->with('ballotItemEndorsers')->findAll(
+        $items = Item::model()->with('itemEndorsers')->findAll(
                 array(
                     'condition' => "endorser_id = :endorser_id AND published =:published AND  position !=:position   ",
                     'params' => array(
@@ -54,11 +54,11 @@ class BallotItemEndorserBehavior extends CBehavior {
                 ));
 
 
-        return $ballot_items;
+        return $items;
     }
 
     /**
-     * Verifiy if a ballot item has a specific endorser
+     * Verifiy if a item has a specific endorser
      * @param integer $endorser_id
      * @return boolean
      */
@@ -68,8 +68,8 @@ class BallotItemEndorserBehavior extends CBehavior {
 
 
         $result = $command->select('id')
-                ->from('endorser_ballot_item')
-                ->where('endorser_id=:endorser_id AND ballot_item_id=:ballot_item_id', array(':endorser_id' => $endorser_id, ':ballot_item_id' => $this->owner->id))
+                ->from('endorser_item')
+                ->where('endorser_id=:endorser_id AND item_id=:item_id', array(':endorser_id' => $endorser_id, ':item_id' => $this->owner->id))
                 ->queryRow();
 
         if (isset($result['id']))
@@ -79,7 +79,7 @@ class BallotItemEndorserBehavior extends CBehavior {
     }
 
     /**
-     * Add an endorser to a ballot item
+     * Add an endorser to an item
      * @param integer $endorser_id
      * @param string $position
      * @return boolean
@@ -89,48 +89,48 @@ class BallotItemEndorserBehavior extends CBehavior {
         $command = $connection->createCommand();
         $add_endorser_result = "";
 
-        // if the ballot item is already endorsed, return false;
+        // if the  item is already endorsed, return false;
         if ($this->hasEndorser($endorser_id)) {
             return $this->updateEndorserPosition($endorser_id, $position);
         }
 
-        $ballotItemEndorser = new BallotItemEndorser();
-        $ballotItemEndorser->ballot_item_id = $this->owner->id;
-        $ballotItemEndorser->endorser_id = $endorser_id;
-        $ballotItemEndorser->position = $position;
-        $ballotItemEndorser->save();
+        $itemEndorser = new ItemEndorser();
+        $itemEndorser->item_id = $this->owner->id;
+        $itemEndorser->endorser_id = $endorser_id;
+        $itemEndorser->position = $position;
+        $itemEndorser->save();
 
         return (boolean) $add_endorser_result;
     }
 
     /**
-     * Update the position of a ballot item endorser
+     * Update the position of an item endorser
      * @param integer $endorser_id
      * @param string $position
      * @return boolean
      */
     public function updateEndorserPosition($endorser_id, $position = 'np') {
-        $ballotItemEndorser = BallotItemEndorser::model()->findByAttributes(array(
+        $itemEndorser = ItemEndorser::model()->findByAttributes(array(
             'endorser_id' => $endorser_id,
-            'ballot_item_id' => $this->owner->id
+            'item_id' => $this->owner->id
                 ));
 
-        if ($ballotItemEndorser) {
-            $ballotItemEndorser->position = $position;
-            $ballotItemEndorser->save();
+        if ($itemEndorser) {
+            $itemEndorser->position = $position;
+            $itemEndorser->save();
         }else
             return false;
     }
 
     /**
-     * Remove all endorsers for a ballot item
+     * Remove all endorsers for an item
      * return boolean true or false
      */
     public function removeEndorsers() {
         $connection = Yii::app()->db;
         $command = $connection->createCommand();
         $delete_endorsers_result = $command->delete(
-                'endorser_ballot_item', 'ballot_item_id=:ballot_item_id', array(':ballot_item_id' => $this->owner->id)
+                'endorser_item', 'item_id=:item_id', array(':item_id' => $this->owner->id)
         );
 
 
@@ -138,7 +138,7 @@ class BallotItemEndorserBehavior extends CBehavior {
     }
 
     /**
-     * Remove all endorsers for a ballot item not present in the argument
+     * Remove all endorsers for an item not present in the argument
      * @param array endorser IDs to keep
      * return boolean true or false
      */
@@ -153,8 +153,8 @@ class BallotItemEndorserBehavior extends CBehavior {
         $connection = Yii::app()->db;
         $command = $connection->createCommand();
         $delete_endorsers_result = $command->delete(
-                'endorser_ballot_item', "ballot_item_id =:ballot_item_id  AND endorser_id NOT IN( {$endorser_ids_str} )", array(
-            ':ballot_item_id' => $this->owner->id,
+                'endorser_item', "item_id =:item_id  AND endorser_id NOT IN( {$endorser_ids_str} )", array(
+            ':item_id' => $this->owner->id,
                 )
         );
 

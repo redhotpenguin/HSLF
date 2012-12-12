@@ -1,6 +1,6 @@
 <?php
 
-class BallotItemController extends Controller {
+class ItemController extends Controller {
 
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -58,10 +58,10 @@ class BallotItemController extends Controller {
         //   error_log(print_r($_REQUEST, true ));
 
 
-        $model = new BallotItem;
+        $model = new Item;
 
-        if (isset($_POST['BallotItem'])) {
-            $model->attributes = $_POST['BallotItem'];
+        if (isset($_POST['Item'])) {
+            $model->attributes = $_POST['Item'];
 
             // a file for image_url has been uploded
             if (!empty($_FILES['image_url']['tmp_name'])) {
@@ -93,7 +93,7 @@ class BallotItemController extends Controller {
                 foreach ($scorecard_item_ids as $scorecard_item_id => $vote_id) {
 
                     $scorecard = $scorecard_model->findByAttributes(array(
-                        "ballot_item_id" => $model->id,
+                        "item_id" => $model->id,
                         "scorecard_item_id" => $scorecard_item_id
                             ));
 
@@ -109,7 +109,7 @@ class BallotItemController extends Controller {
                             continue;
 
                         $scorecard_model = new Scorecard();
-                        $scorecard_model->attributes = array('ballot_item_id' => $model->id, 'scorecard_item_id' => $scorecard_item_id, 'vote_id' => $vote_id);
+                        $scorecard_model->attributes = array('item_id' => $model->id, 'scorecard_item_id' => $scorecard_item_id, 'vote_id' => $vote_id);
                         $scorecard_model->save();
                     }
                 }
@@ -160,7 +160,7 @@ class BallotItemController extends Controller {
 
 
         if (Yii::app()->request->isPostRequest) {
-            $model->attributes = $_POST['BallotItem'];
+            $model->attributes = $_POST['Item'];
 
             if (Yii::app()->request->isAjaxRequest) { // if ajax request, perform ajax validation.
                 $this->performAjaxValidation($model);
@@ -189,7 +189,7 @@ class BallotItemController extends Controller {
                 foreach ($scorecard_item_ids as $scorecard_item_id => $vote_id) {
 
                     $scorecard = $scorecard_model->findByAttributes(array(
-                        "ballot_item_id" => $id,
+                        "item_id" => $id,
                         "scorecard_item_id" => $scorecard_item_id
                             ));
 
@@ -205,7 +205,7 @@ class BallotItemController extends Controller {
                             continue;
 
                         $scorecard_model = new Scorecard();
-                        $scorecard_model->attributes = array('ballot_item_id' => $id, 'scorecard_item_id' => $scorecard_item_id, 'vote_id' => $vote_id);
+                        $scorecard_model->attributes = array('item_id' => $id, 'scorecard_item_id' => $scorecard_item_id, 'vote_id' => $vote_id);
                         $scorecard_model->save();
                     }
                 }
@@ -292,7 +292,7 @@ class BallotItemController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('BallotItem');
+        $dataProvider = new CActiveDataProvider('Item');
         $this->render('index', array(
             'dataProvider' => $dataProvider,
         ));
@@ -302,10 +302,10 @@ class BallotItemController extends Controller {
      * Manages all models.
      */
     public function actionAdmin() {
-        $model = new BallotItem('search');
+        $model = new Item('search');
         $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['BallotItem']))
-            $model->attributes = $_GET['BallotItem'];
+        if (isset($_GET['Item']))
+            $model->attributes = $_GET['Item'];
 
         $this->render('admin', array(
             'model' => $model,
@@ -318,7 +318,7 @@ class BallotItemController extends Controller {
      * @param integer the ID of the model to be loaded
      */
     public function loadModel($id) {
-        $model = BallotItem::model()->findByPk($id);
+        $model = Item::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
@@ -329,7 +329,7 @@ class BallotItemController extends Controller {
      * @param CModel the model to be validated
      */
     protected function performAjaxValidation($model) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'ballot-item-form') {
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'item-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
@@ -341,11 +341,11 @@ class BallotItemController extends Controller {
     public function actionExportCSV() {
         Yii::import('ext.csv.ESCVExport');
 
-        $csv = new ESCVExport(BallotItem::model()->findAll());
+        $csv = new ESCVExport(Item::model()->findAll());
 
 
         $content = $csv->toCSV();
-        Yii::app()->getRequest()->sendFile('ballot_items.csv', $content, "text/csv", false);
+        Yii::app()->getRequest()->sendFile('items.csv', $content, "text/csv", false);
     }
 
     /**
@@ -362,19 +362,19 @@ class BallotItemController extends Controller {
     }
 
     /**
-     * Handle ajax requests for /admin/ballotItem/ajax
+     * Handle ajax requests for /admin/item/ajax
      */
     public function actionAjax() {
         switch (getParam('a')) {
-            // validate a ballot item URL (see ballotItem.js)
+            // validate an item URL (see Item.js)
             case 'validateURL':
                 // get the current record if an ID is provided
                 if (getParam('id')) {
-                    $ballot = BallotItem::model()->findByPk(getParam('id'));
-                    $validated_url = $ballot->validateURL(getParam('url'));
+                    $item = Item::model()->findByPk(getParam('id'));
+                    $validated_url = $item->validateURL(getParam('url'));
                 }
                 else
-                    $validated_url = BallotItem::model()->validateURL(getParam('url'));
+                    $validated_url = Item::model()->validateURL(getParam('url'));
 
                 if ($validated_url == false)
                     echo 'invalid_url';
@@ -386,8 +386,8 @@ class BallotItemController extends Controller {
 
             case 'getScorecardTable':
                 if (getParam('id')) {
-                    $ballot_item = BallotItem::model()->findByPk(getParam('id'));
-                    $this->renderPartial('_scorecardTable', array('model' => $ballot_item, 'office_id' => getParam('office_id')));
+                    $item = Item::model()->findByPk(getParam('id'));
+                    $this->renderPartial('_scorecardTable', array('model' => $item, 'office_id' => getParam('office_id')));
                 }else
                     $this->renderPartial('_scorecardTable', array('office_id' => getParam('office_id')));
                 break;

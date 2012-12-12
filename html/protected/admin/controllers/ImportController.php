@@ -47,7 +47,7 @@ class ImportController extends Controller {
 
         // allowed models for imports
         $allowedModelNames = array(
-            "BallotItem" => "Ballot Items",
+            "Item" => "Items",
             "District" => "Districts",
             "Endorser" => "Endorser",
             "Office" => "Offices",

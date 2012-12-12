@@ -5,12 +5,12 @@
  *
  * The followings are the available columns in table 'scorecard':
  * @property integer $id
- * @property integer $ballot_item_id
+ * @property integer $item_id
  * @property integer $scorecard_item_id
  * @property string $vote_id
  *
  * The followings are the available model relations:
- * @property BallotItem $ballotItem
+ * @property Item $item
  * @property ScorecardItem $scorecardItem
  */
 class Scorecard extends CBaseActiveRecord {
@@ -38,10 +38,10 @@ class Scorecard extends CBaseActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('ballot_item_id, scorecard_item_id, vote_id', 'required'),
-            array('ballot_item_id, scorecard_item_id, vote_id ', 'numerical', 'integerOnly' => true),
+            array('item_id, scorecard_item_id, vote_id', 'required'),
+            array('item_id, scorecard_item_id, vote_id ', 'numerical', 'integerOnly' => true),
             array('tenant_id', 'safe'),
-            array('id, ballot_item_id, scorecard_item_id, vote_id', 'safe', 'on' => 'search'),
+            array('id, item_id, scorecard_item_id, vote_id', 'safe', 'on' => 'search'),
         );
     }
 
@@ -63,7 +63,7 @@ class Scorecard extends CBaseActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'ballot_item_id' => 'Ballot Item',
+            'item_id' => 'Item',
             'scorecard_item_id' => 'Scorecard Item',
             'vote_id' => 'Vote',
         );
@@ -80,7 +80,7 @@ class Scorecard extends CBaseActiveRecord {
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id);
-        $criteria->compare('ballot_item_id', $this->ballot_item_id);
+        $criteria->compare('item_id', $this->item_id);
         $criteria->compare('scorecard_item_id', $this->scorecard_item_id);
 
         return new CActiveDataProvider($this, array(

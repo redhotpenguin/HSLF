@@ -1,21 +1,21 @@
 <?php
 
 /**
- * External Behaviors for the Ballot Item class
+ * External Behaviors for the Item class
  *
  * @author jonas
  */
-class BallotItemBehavior extends CActiveRecordBehavior {
+class ItemBehavior extends CActiveRecordBehavior {
 
     public function beforeSave($event) {
 
         if (!empty($this->owner->url)) {
 
-            $ballots = BallotItem::model()->findAllByAttributes(
+            $items = Item::model()->findAllByAttributes(
                     array('url' => $this->owner->url), 'id!=:the_id', array(':the_id' => $this->owner->id)
             );
 
-            if ($ballots) {
+            if ($items) {
                 throw new CHttpException(400, Yii::t('error', 'URL already taken'));
             }
         }
@@ -54,7 +54,7 @@ class BallotItemBehavior extends CActiveRecordBehavior {
                 return $this->filterSlug($url);
             }
         }
-        // validation for a new record ( no ballot id avalaible)
+        // validation for a new record ( no item id avalaible)
         else {
             if ($this->isURLUnique($url)) {
                 return $this->filterSlug($url);
@@ -65,21 +65,21 @@ class BallotItemBehavior extends CActiveRecordBehavior {
     /**
      * Make sure an URL is unique
      * @param string $url url to be validated
-     * &param integer $ballot_item_id id of the ballot item (optionnal)
+     * &param integer $item_id id of the item (optionnal)
      * @return boolean true = unique . false = already used
      */
-    public function isURLUnique($url, $ballot_item_id = null) {
+    public function isURLUnique($url, $item_id = null) {
         // avoid returning false positive
-        if (isset($ballot_item_id)) {
-            $ballots = BallotItem::model()->findAllByAttributes(
-                    array('url' => $url), 'id!=:ballot_id', array(':ballot_id' => $ballot_item_id)
+        if (isset($item_id)) {
+            $items = Item::model()->findAllByAttributes(
+                    array('url' => $url), 'id!=:item_id', array(':item_id' => $item_id)
             );
         } else {
-            $ballots = BallotItem::model()->findAllByAttributes(
+            $items = Item::model()->findAllByAttributes(
                     array('url' => $url));
         }
 
-        if ($ballots)
+        if ($items)
             return false;
         else
             return true;

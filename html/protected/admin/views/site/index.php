@@ -9,14 +9,14 @@
         <div class="hero-unit">
             <h1>Dashboard</h1>
             <p>Welcome to the administration dashboard.</p>
-            <p> <b><?php echo $total_ballot_page; ?></b> <a href="/admin/ballotItem/admin/">Ballot items</a></p>
+            <p> <b><?php echo $total_item_page; ?></b> <a href="/admin/item/admin/">Items</a></p>
         </div>
 
         <div class="row">
             <div class="span3">
-                <h2>Ballot Items</h2>
-                <p>Add, edit, delete, search ballot items. </p>
-                <p><a class="btn" href="/admin/ballotItem/admin/">More »</a></p>
+                <h2>Items</h2>
+                <p>Add, edit, delete, search items. </p>
+                <p><a class="btn" href="/admin/item/admin/">More »</a></p>
             </div>
             <div class="span3">
                 <h2>Image Uploader</h2>

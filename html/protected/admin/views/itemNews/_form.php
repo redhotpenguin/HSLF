@@ -57,7 +57,7 @@ echo $updated = (isset($updated) ? $updated : "");
             $model->date_published = date('Y-m-d h:i:s');
 
         $this->widget('zii.widgets.jui.CJuiDatePicker', array(
-            'name' => 'BallotItemNews[date_published]',
+            'name' => 'ItemNews[date_published]',
             'value' => $model->date_published,
             // additional javascript options for the date picker plugin
             'options' => array(

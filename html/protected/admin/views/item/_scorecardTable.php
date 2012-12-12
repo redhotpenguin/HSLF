@@ -19,7 +19,7 @@
 
         if (isset($model))
             $scorecard = Scorecard::model()->findByAttributes(array(
-                "ballot_item_id" => $model->id,
+                "item_id" => $model->id,
                 "scorecard_item_id" => $scorecardItem->id
                     ));
 

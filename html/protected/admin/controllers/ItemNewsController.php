@@ -1,6 +1,6 @@
 <?php
 
-class BallotItemNewsController extends Controller {
+class ItemNewsController extends Controller {
 
     public $layout = '//layouts/column2';
 
@@ -35,21 +35,21 @@ class BallotItemNewsController extends Controller {
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
-    public function actionAdd($ballot_item_id) {
-        if (!is_numeric($ballot_item_id))
+    public function actionAdd($item_id) {
+        if (!is_numeric($item_id))
             return false;
 
-        $ballotItem = BallotItem::model()->findByPk($ballot_item_id);
+        $item = Item::model()->findByPk($item_id);
 
-        if (!$ballotItem)
+        if (!$item)
             return false;
 
 
-        $model = new BallotItemNews;
-        $model->ballot_item_id = $ballot_item_id;
+        $model = new ItemNews;
+        $model->item_id = $item_id;
 
-        if (isset($_POST['BallotItemNews'])) {
-            $model->attributes = $_POST['BallotItemNews'];
+        if (isset($_POST['ItemNews'])) {
+            $model->attributes = $_POST['ItemNews'];
 
 
             if ($model->save()) {
@@ -72,8 +72,8 @@ class BallotItemNewsController extends Controller {
         $model = $this->loadModel($id);
 
 
-        if (isset($_POST['BallotItemNews'])) {
-            $model->attributes = $_POST['BallotItemNews'];
+        if (isset($_POST['ItemNews'])) {
+            $model->attributes = $_POST['ItemNews'];
 
 
             if ($model->save())
@@ -86,7 +86,7 @@ class BallotItemNewsController extends Controller {
     }
 
     public function loadModel($id) {
-        $model = BallotItemNews::model()->findByPk($id);
+        $model = ItemNews::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
@@ -102,13 +102,13 @@ class BallotItemNewsController extends Controller {
             // we only allow deletion via POST request
             $model = $this->loadModel($id);
 
-            $ballot_item_id = $model->ballot_item_id;
+            $item_id = $model->item_id;
 
             $model->delete();
 
-            // if not ajax edirect to the ballot item update view
+            // if not ajax edirect to the item update view
             if (!isset($_GET['ajax']))
-                $this->redirect(array('ballotItem/update', 'id' => $ballot_item_id));
+                $this->redirect(array('item/update', 'id' => $item_id));
         }
         else
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');

@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This is the model class for table "ballot_item".
+ * This is the model class for table "item".
  *
- * The followings are the available columns in table 'ballot_item':
+ * The followings are the available columns in table 'item':
  * @property integer $id
  * @property integer $district_id
  * @property string $item
@@ -35,7 +35,7 @@
 
 
  */
-class BallotItem extends CBaseActiveRecord {
+class Item extends CBaseActiveRecord {
 
     public $state_id; // not part of the model, here for cgridview (admin search)
     public $district_type; // not part of the model, here for cgridview (admin search)
@@ -47,7 +47,7 @@ class BallotItem extends CBaseActiveRecord {
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
-     * @return BallotItem the static model class
+     * @return Item the static model class
      */
 
     public static function model($className = __CLASS__) {
@@ -58,7 +58,7 @@ class BallotItem extends CBaseActiveRecord {
      * @return string the associated database table name
      */
     public function tableName() {
-        return 'ballot_item';
+        return 'item';
     }
 
     /**
@@ -98,19 +98,19 @@ class BallotItem extends CBaseActiveRecord {
             'district' => array(self::BELONGS_TO, 'District', 'district_id'),
             'recommendation' => array(self::BELONGS_TO, 'Recommendation', 'recommendation_id'),
             'electionResult' => array(self::BELONGS_TO, 'Recommendation', 'election_result_id'),
-            'ballotItemNews' => array(self::HAS_MANY, 'BallotItemNews', 'ballot_item_id'),
-            'scorecards' => array(self::HAS_MANY, 'Scorecard', 'ballot_item_id'),
+            'itemNews' => array(self::HAS_MANY, 'ItemNews', 'item_id'),
+            'scorecards' => array(self::HAS_MANY, 'Scorecard', 'item_id'),
             'cards' => array(self::MANY_MANY, 'ScorecardItem',
-                'scorecard(ballot_item_id, scorecard_item_id)'),
+                'scorecard(item_id, scorecard_item_id)'),
             'office' => array(self::BELONGS_TO, 'Office', 'office_id'),
             'party' => array(self::BELONGS_TO, 'Party', 'party_id'),
             //'endorsers' => array(self::MANY_MANY, 'Endorser',
-            //'endorser_ballot_item(endorser_id, ballot_item_id)'),
+            //'endorser_item(endorser_id, item_id)'),
 
 
-            'ballotItemEndorsers' => array(self::HAS_MANY, 'BallotItemEndorser', 'ballot_item_id'),
+            'ItemEndorsers' => array(self::HAS_MANY, 'ItemEndorser', 'item_id'),
             'endorsers' => array(self::MANY_MANY, 'Endorser',
-                'endorser_ballot_item(ballot_item_id, endorser_id)'),
+                'endorser_item(item_id, endorser_id)'),
         );
     }
 
@@ -121,8 +121,8 @@ class BallotItem extends CBaseActiveRecord {
         return array(
             'id' => 'ID',
             'district_id' => 'District',
-            'item' => 'Ballot Item Name',
-            'item_type' => 'Ballot Item Type',
+            'item' => 'Item Name',
+            'item_type' => 'Item Type',
             'recommendation_id' => 'Recommendation',
             'next_election_date' => 'Election Date',
             'detail' => 'Detail',
@@ -259,12 +259,12 @@ class BallotItem extends CBaseActiveRecord {
     public function behaviors() {
         return array(
             'beforeSave' => array(
-                'class' => 'BallotItemBehavior',
+                'class' => 'ItemBehavior',
             //  'property1'=>'value1',
             // 'property2'=>'value2',
             ),
             'EndorserBehavior' => array(
-                'class' => 'BallotItemEndorserBehavior',
+                'class' => 'ItemEndorserBehavior',
             ),
             'MultiTenant' => array(
                 'class' => 'MultiTenantBehavior')
@@ -272,16 +272,16 @@ class BallotItem extends CBaseActiveRecord {
     }
 
     /**
-     * Validation rules - make sure the ballot item url is unique
+     * Validation rules - make sure the item url is unique
      * @param string $attribute model attribute
      */
     public function unique_url($attribute) {
         if ($this->isNewRecord && !empty($this->url)) {
-            $ballots = BallotItem::model()->findAllByAttributes(
+            $items = Item::model()->findAllByAttributes(
                     array('url' => $this->url)
             );
 
-            if ($ballots) {
+            if ($items) {
                 $this->addError($attribute, 'The url is already taken.');
             }
         }
