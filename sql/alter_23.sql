@@ -67,24 +67,23 @@ DROP TABLE app_user;
 
 
 -- update state table: make state.id the primary key instead of state.abbr
-ALTER TABLE district DROP CONSTRAINT district_state_abbr_fkey ;
+ALTER TABLE district RENAME COLUMN state_abbr to state_id;
 
-ALTER TABLE state DROP CONSTRAINT state_pkey;
+ALTER TABLE district DROP CONSTRAINT district_state_abbr_fkey;
 
-ALTER TABLE state ADD PRIMARY KEY (id); 
+ALTER TABLE district DROP CONSTRAINT district_state_abbr_number_locality_type_key;
 
-ALTER TABLE district DROP COLUMN state_abbr;
+UPDATE district SET state_id = 1;
 
-ALTER TABLE district ADD COLUMN state_id INTEGER;
+ALTER TABLE district ALTER COLUMN state_id TYPE INTEGER using cast(state_id as integer);
 
 ALTER TABLE district ADD FOREIGN KEY (state_id) REFERENCES state (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
-UPDATE district   SET state_id = 1;
-
-ALTER TABLE district ALTER COLUMN state_id SET NOT NULL;
+ALTER TABLE district ADD UNIQUE  (state_id, number, locality, type);
 
 
---ALTER TABLE ballot_item_news DROP CONSTRAINT IF EXISTS ballot_item_news_ballot_item_id_fkey1;
+
+
 
 
 -- option table: update unique constraint
