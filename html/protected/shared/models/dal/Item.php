@@ -108,7 +108,7 @@ class Item extends CBaseActiveRecord {
             //'endorser_item(endorser_id, item_id)'),
 
 
-            'ItemEndorsers' => array(self::HAS_MANY, 'ItemEndorser', 'item_id'),
+            'itemEndorsers' => array(self::HAS_MANY, 'ItemEndorser', 'item_id'),
             'endorsers' => array(self::MANY_MANY, 'Endorser',
                 'endorser_item(item_id, endorser_id)'),
         );
