@@ -18,6 +18,11 @@ EOD;
     }
 
     public function run($args) {
+        if(!isset($args) ||  empty($args)){
+            echo "A tenant id must be indicated";
+            return;
+        }
+        
         $tenantId = $args[0];
 
         if (!isset($tenantId)) {

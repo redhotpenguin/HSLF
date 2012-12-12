@@ -1,6 +1,7 @@
 <?php
 
-// frontend config
+$cronAlias = dirname(dirname(__FILE__)).'/admin';
+Yii::setPathOfAlias('admin', $cronAlias);
 
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
@@ -9,6 +10,7 @@ return array(
     'preload' => array('log'),
     // autoloading model and component classes
     'import' => array(
+        'admin.models.User',
         'application.models.*',
         'application.shared.models.dal.*', // data access logic classes
         'application.shared.models.bll.*', // business  logic classes
@@ -37,7 +39,6 @@ return array(
             'password' => DB_PASS,
             'charset' => 'UTF-8',
         ),
-  
         'errorHandler' => array(
             'errorAction' => 'site/error',
         ),
@@ -55,6 +56,4 @@ return array(
             ),
         ),
     ),
-
- 
 );

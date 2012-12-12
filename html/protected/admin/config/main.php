@@ -4,7 +4,6 @@
 
 $backend = dirname(dirname(__FILE__));
 $frontend = dirname($backend);
-
 $html_directory = dirname($_SERVER['SCRIPT_FILENAME']);
 
 
@@ -56,18 +55,7 @@ return array(
                   'admin' => 'site/index',
                   'admin/<_controller>' => '<_controller>',
                   'admin/<_controller>/<_action>' => '<_controller>/<_action>',
-                 
-                /*
-                array(
-                    'class' => 'MultiTenantRule',
-                    'connectionID' => 'db',
-                ),
-                
-                'admin/<tenant>' => 'site/index',
-                'admin/<tenant>/<_controller>' => '<_controller>',
-                'admin/<tenant>/<_controller>/<_action>' => '<_controller>/<_action>',
-                 * 
-                 */
+
             ),
         ),
         'db' => array(
