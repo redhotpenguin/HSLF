@@ -7,7 +7,7 @@ $this->breadcrumbs = array(
 $this->menu = array(
     array('label' => 'Add a district', 'url' => array('create')),
     array('label' => 'Update', 'url' => array('update', 'id' => $model->id)),
-    array('label' => 'Delete', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Deleting this District will also delete every ballot items associated to it, continue?')),
+    array('label' => 'Delete', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Deleting this District will also delete every items associated to it, continue?')),
     array('label' => 'Manage districts', 'url' => array('admin')),
 );
 ?>

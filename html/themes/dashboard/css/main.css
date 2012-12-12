@@ -53,7 +53,7 @@ h1{
 }
 
 .candidate_issue_item,
-.ballot_news_item{
+.news_item{
     padding: 5px;
     margin-bottom: 5px;
     position: relative;

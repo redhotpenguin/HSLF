@@ -55,7 +55,7 @@
                  target.removeClass("hidden");
                    target.addClass("btn-danger");
          
-                   target.html( "Could not save ballot item:<br/>" + object.responseText );
+                   target.html( "Could not save tag:<br/>" + object.responseText );
              
                 //target.fadeOut(5000, function(){
                 // target.removeClass("btn-danger");

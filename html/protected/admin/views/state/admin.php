@@ -50,7 +50,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
         'name',
         array(
             'class' => 'bootstrap.widgets.BootButtonColumn',
-            'deleteConfirmation' => "js:'Deleting this State will also delete every districts and ballot items associated to it, continue?'",
+            'deleteConfirmation' => "js:'Deleting this State will also delete every districts and  items associated to it, continue?'",
         ),
     ),
 ));

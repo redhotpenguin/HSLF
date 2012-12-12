@@ -3,7 +3,7 @@
   <h1>Dashboard Help</h1><br/>
   <div class="subnav">
     <ul class="nav">
-      <li class=""><h3><a href="#BallotItems">Ballot items</a></h3></li>
+      <li class=""><h3><a href="#Items">Items</a></h3></li>
       <li class=""><h3><a href="#ImageUpload">Image Upload</a></h3></li>
       <li class=""><h3><a href="#pushNotifications">Push Notifications</a></h3></li>
     </ul>
@@ -14,9 +14,9 @@
 <hr/>
 
 
-<h3>Ballot items</h3>
+<h3>Items</h3>
 
-<p id="BallotItems">Coming soon.</p>
+<p id="Items">Coming soon.</p>
     
 <hr/>
 
