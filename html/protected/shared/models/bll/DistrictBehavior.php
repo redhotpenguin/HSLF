@@ -26,8 +26,14 @@ class DistrictBehavior extends CActiveRecordBehavior {
      * @return array array of district ids
      */
     public function getIdsByDistricts($state_abbr, array $district_types, array $districts, array $localities) {
+        
+        $state = State::model()->findByAttributes(array("abbr" => $state_abbr));
+        
+        if(!$state){
+            return array();
+        }
 
-        $state_id = State::model()->findByAttributes(array("abbr" => $state_abbr))->id;
+        $state_id = $state->id;
         if ($state_id == null) {
             return array();
         }

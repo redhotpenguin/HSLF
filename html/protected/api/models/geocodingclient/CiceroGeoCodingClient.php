@@ -38,7 +38,6 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
         // replace white spaces in the address
         $address = str_replace(' ', '%20', $address);
 
-
         if (isset($options['requesting']))
             $requesting = $options['requesting'];
         else
@@ -66,7 +65,7 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
             $destination = "{$this->apiBase}/{$requesting}?f={$format}&user={$this->userId}&token={$this->token}&type={$type}&search_loc={$address}";
             $response = $this->httpRequestClient->getRequest($destination);
         }
-
+        
         $jsonResponse = json_decode($response);
 
         if (isset($jsonResponse->response->errors) && !empty($jsonResponse->response->errors)) {
@@ -79,9 +78,9 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
         if (!isset($jsonResponse->response->results->candidates[0]->districts) || empty($jsonResponse->response->results->candidates[0]->districts)) {
             return false;
         }
-
+        
+        
         $ciceroDistricts = $jsonResponse->response->results->candidates[0]->districts;
-
         return $this->ciceroDistrictsToDistricts($ciceroDistricts);
     }
 
@@ -177,7 +176,6 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
     }
 
     private function ciceroDistrictsToDistricts(array $ciceroDistricts) {
-
         $state = "";
         $districtTypes = array("STATEWIDE");
         $districtNumbers = array("");
@@ -190,7 +188,6 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
         }
 
         $districtIds = District::model()->getIdsByDistricts($state, $districtTypes, $districtNumbers, $localities);
-
         return $districtIds;
     }
 
