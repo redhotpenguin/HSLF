@@ -122,7 +122,12 @@ class ItemController extends Controller {
                 //   $model->removeEndorsersNotIn($endorser_ids);
                 // add endorsers
                 foreach ($endorser_ids as $endorser_id => $position) {
-                    $model->addEndorser($endorser_id, $position);
+                    if ($position != 'na') {
+                        $model->addEndorser($endorser_id, $position);
+                    } else {
+                        // @todo: remove endorser if exist
+                        $model->removeEndorser($endorser_id);
+                    }
                 }
             }
 
@@ -218,7 +223,12 @@ class ItemController extends Controller {
                 //   $model->removeEndorsersNotIn($endorser_ids);
                 // add endorsers
                 foreach ($endorser_ids as $endorser_id => $position) {
-                    $model->addEndorser($endorser_id, $position);
+                    if ($position != 'na') {
+                        $model->addEndorser($endorser_id, $position);
+                    } else {
+                        // @todo: remove endorser if exist
+                        $model->removeEndorser($endorser_id);
+                    }
                 }
             }
 
@@ -262,11 +272,11 @@ class ItemController extends Controller {
 
         if ($tenantId = Yii::app()->user->tenant_id) {
             $tenant = Tenant::model()->findByPk($tenantId);
-            $destPath = '/'.$tenant->name;
+            $destPath = '/' . $tenant->name;
         }
 
         $destPath .= '/' . $year_month; //ex: /2012_06/
-        
+
         return $fileUpload->save($userFile['image_url'], $destPath);
     }
 

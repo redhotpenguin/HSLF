@@ -16,6 +16,7 @@
 class ItemEndorser extends CActiveRecord {
 
     public static $positions = array(
+        'na' => 'N/A',
         'np' => 'No Position',
         'yes' => 'Yes',
         'no' => 'No',

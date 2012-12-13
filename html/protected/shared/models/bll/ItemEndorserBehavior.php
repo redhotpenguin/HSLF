@@ -123,6 +123,27 @@ class ItemEndorserBehavior extends CBehavior {
     }
 
     /**
+     * Remove an endorsers for an item
+     * @param integer $endorserId
+     * return boolean true or false
+     */
+    public function removeEndorser($endorserId) {
+        $connection = Yii::app()->db;
+        $command = $connection->createCommand();
+        $delete_endorsers_result = $command->delete(
+                'endorser_item', 'item_id=:item_id AND endorser_id=:endorser_id',
+                array(
+                    ':item_id' => $this->owner->id,
+                    ':endorser_id' => $endorserId
+                    
+                )
+        );
+
+
+        return $delete_endorsers_result;
+    }
+
+    /**
      * Remove all endorsers for an item
      * return boolean true or false
      */
