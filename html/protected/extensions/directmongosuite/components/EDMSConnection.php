@@ -105,12 +105,13 @@ class EDMSConnection extends CApplicationComponent
 	/**
 	 * Returns edmsMongo connection instance if not exists will create new
 	 *
-	 * @return edmsMongo
+	 * @return MongoClient
 	 * @throws EMongoException
 	 * @since v1.0
 	 */
 	public function getMongo()
 	{
+            
 		if (!isset(self::$_mongo))
 		{
 			try
@@ -126,8 +127,9 @@ class EDMSConnection extends CApplicationComponent
 
 				if (!isset($this->server))
 					$this->server = 'mongodb://localhost:27017';
-
-				self::$_mongo = new Mongo($this->server, $options);
+                                
+                   
+				self::$_mongo = new MongoClient($this->server, $options);
 
 			}
 			catch(MongoConnectionException $e)

@@ -30,6 +30,7 @@ return array(
         'admin.components.*',
         'application.models.*',
         'application.components.*',
+        'ext.directmongosuite.components.*',
     ),
     'modules' => array(),
     // application components
@@ -39,7 +40,6 @@ return array(
             'allowAutoLogin' => true,
             'class' => 'WebUser',
         ),
-   
         // uncomment the following to enable URLs in path-format
 
         'bootstrap' => array(
@@ -51,11 +51,9 @@ return array(
             'showScriptName' => false,
             // mapping
             'rules' => array(
-               
-                  'admin' => 'site/index',
-                  'admin/<_controller>' => '<_controller>',
-                  'admin/<_controller>/<_action>' => '<_controller>/<_action>',
-
+                'admin' => 'site/index',
+                'admin/<_controller>' => '<_controller>',
+                'admin/<_controller>/<_action>' => '<_controller>/<_action>',
             ),
         ),
         'db' => array(
@@ -72,6 +70,16 @@ return array(
         'errorHandler' => array(
             'errorAction' => 'site/error',
         ),
+        'edms' => array(
+            'class' => 'EDMSConnection',
+            'server' => 'mongodb://localhost:27017',
+            'dbName' => 'test',
+            'options' => array(
+                'db' => 'test',
+                'username' => 'admin',
+                'password' => 'admin')
+        )
+    ,
     /* 'log' => array(
       'class' => 'CLogRouter',
       'routes' => array(
@@ -106,6 +114,11 @@ return array(
         'upload_path' => SITE_URL . UPLOAD_PATH,
         'upload_dir' => UPLOAD_DIR,
         'html_directory' => $html_directory
+    ),
+    'behaviors' => array(
+        'edms' => array(
+            'class' => 'EDMSBehavior'
+        )
     ),
     'theme' => ADMIN_THEME,
 );

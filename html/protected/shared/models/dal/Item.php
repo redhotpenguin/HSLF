@@ -255,7 +255,6 @@ class Item extends CBaseActiveRecord {
     /*
      * Attach external behaviors 
      */
-
     public function behaviors() {
         return array(
             'beforeSave' => array(

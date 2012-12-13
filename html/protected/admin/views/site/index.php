@@ -5,6 +5,24 @@
     <?php
     if (Yii::app()->user->id):
 
+
+        $test = new MobileUser();
+        $test->fields = array(
+            "email" => "jojo@gmail.com",
+            "tags" => array(
+                "tag 1",
+                "tag 2"
+            ),
+            "interests" => array(
+                "facebook",
+                "twitter"
+            )
+        );
+
+
+        
+     
+
         ?>
         <div class="hero-unit">
             <h1>Dashboard</h1>
@@ -26,7 +44,7 @@
             <div class="span3">
                 <h2>Push Notifications</h2>
                 <p>Send Rich Push Notifications to mobile users.</p>
-                <p><a class="btn" href="<?php echo $tenant->ua_dashboard_link;   ?>">More »</a></p>
+                <p><a class="btn" href="<?php echo $tenant->ua_dashboard_link; ?>">More »</a></p>
             </div>
         </div>
         <br/>
@@ -53,5 +71,27 @@
     </div>
 
     <?php
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 endif; //end test is user logged in
