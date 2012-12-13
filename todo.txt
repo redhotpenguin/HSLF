@@ -3,12 +3,10 @@ CDN?
 
 
 -- REMAINING --
-Add users via a console application
 
 -- IN PROGRESS -- 
 Cleaner schema
 Move configuration file to the database
-Update Unique constraints to include tenant_id
 
 
 -- DONE --
@@ -21,3 +19,6 @@ Update cicero console command to support multi tenancy
 Add cronjob per tenant
 Update Import Script
 Add tenants via a console application
+Add users via a console application
+Update Unique constraints to include tenant_id
+
