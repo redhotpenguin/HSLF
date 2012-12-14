@@ -103,7 +103,9 @@ class ActiveMongoDocument extends CModel {
      * @todo: enforce tenant compliancy
      */
     public function delete($ackLevel = 1) {
+        error_log("delete result:" . $this->fields['_id']);
         $result = $this->collection->remove(array('_id' => new MongoId($this->_id)), array('w' => $ackLevel, 'justOne' => true));
+
         error_log(print_r($result, true));
 
         return $this->checkResult($result);
@@ -117,6 +119,10 @@ class ActiveMongoDocument extends CModel {
      */
     public function findByPk($oid) {
         $this->fields = $this->collection->findOne(array('_id' => new MongoId($oid)));
+        
+        if (empty($this->fields))
+            return null;
+
         return $this;
     }
 
@@ -128,6 +134,7 @@ class ActiveMongoDocument extends CModel {
      */
     public function findByAttributes(array $attributes) {
         $this->fields = $this->collection->findOne($attributes);
+
         if (empty($this->fields))
             return null;
 
@@ -160,11 +167,9 @@ class ActiveMongoDocument extends CModel {
     private function checkResult($result) {
         if (isset($result['ok']) && $result['ok'] == 1) {
             return true;
-        } elseif (isset($result['err']) && !empty($result['err'])) {
-            return false;
         }
 
-        return false; // unsure
+        return false;
     }
 
 }
