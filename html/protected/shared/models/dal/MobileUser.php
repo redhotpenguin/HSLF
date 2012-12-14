@@ -6,7 +6,6 @@
 class MobileUser extends CModel {
 
     private $collectionName = "mobile_user";
-    public $tenantId;
     public $fields;
     private $collection;
     public static $mongoClient;
@@ -20,12 +19,13 @@ class MobileUser extends CModel {
     }
 
     public function __set($attribute, $value) {
-     //   if (isset($this->fields[$attribute]))
-            $this->fields[$attribute] = $value;
-      //  else
-       //     array_push($this->fields, array($attribute => $value));
+        $this->fields[$attribute] = $value;
     }
 
+    /**
+     * Constructor
+     * @param array $fields fields of the document
+     */
     public function __construct($fields = array()) {
         $this->attachBehaviors($this->behaviors());
         $this->afterConstruct();
@@ -37,10 +37,16 @@ class MobileUser extends CModel {
         $this->collection = Yii::app()->edmsMongoCollection($this->collectionName);
     }
 
+    /**
+     * Return attributes of this class
+     */
     public function attributeNames() {
         return array();
     }
 
+    /**
+     * Return an instance of this class
+     */
     public static function model($className = __CLASS__) {
         if (self::$model == null)
             self::$model = new MobileUser();
@@ -53,11 +59,10 @@ class MobileUser extends CModel {
      * @return boolean
      */
     public function save($writeConcern = 1) {
-        if(!$this->tenantId){
+        if (!isset($this->fields['tenant_id'])) {
             return false;
         }
-        $this->fields['tenant_id'] = $this->tenantId;
-        
+
         try {
             $result = $this->collection->insert($this->fields, array($writeConcern));
         } catch (Exception $e) {
@@ -69,27 +74,54 @@ class MobileUser extends CModel {
         return $result;
     }
 
+    /**
+     * Save the changes made to the instance of this class
+     * @todo: validation
+     */
     public function update() {
-        logIt($this->fields);
-        
-      $test =   $this->collection->update( array('_id' => new MongoId($this->_id ) ), $this->fields);
-      error_log(logIt($test));
-    }
-    
-    public function delete(){
-        return $this->collection->remove( array('_id' => new MongoId($this->_id )));
+        if (!isset($this->fields['tenant_id'])) {
+            return false;
+        }
+        $this->collection->update(array('_id' => new MongoId($this->_id)), $this->fields);
     }
 
+    /**
+     * delete the document representing the instance of this class
+     * @todo: validation
+     * @todo: enforce tenant compliancy
+     */
+    public function delete() {
+        return $this->collection->remove(array('_id' => new MongoId($this->_id)));
+    }
+
+    /**
+     * Find a document by ObjectId
+     * @param string object id
+     * @todo: validation
+     * @todo: enforce tenant compliancy
+     */
     public function findByPk($oid) {
         $this->fields = $this->collection->findOne(array('_id' => new MongoId($oid)));
         return $this;
     }
 
+    /**
+     * Find a document that match the attributes and values
+     * @param array array of attribute and values
+     * @todo: validation
+     * @todo: enforce tenant compliancy
+     */
     public function findByAttributes(array $attributes) {
         $this->fields = $this->collection->findOne($attributes);
         return $this;
     }
 
+    /**
+     * Find all documents that match the attributes and values
+     * @param array array of attribute and values
+     * @todo: validation
+     * @todo: enforce tenant compliancy
+     */
     public function findAllByAttributes(array $attributes) {
         $result = array();
 
