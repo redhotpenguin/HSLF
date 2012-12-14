@@ -7,12 +7,13 @@
  */
 class ActiveMongoDocument extends CModel {
 
-    private $collectionName = "mobile_user";
     public $fields;
-    private $collection;
+    public $lastErrorCode;
     public static $mongoClient;
     public $lastError;
-    public $lastErrorCode;
+    public $sessionTenantId;
+    private $collectionName = "mobile_user";
+    private $collection;
     private static $model;
 
     /**
@@ -85,7 +86,6 @@ class ActiveMongoDocument extends CModel {
     /**
      * Save the changes made to the instance of this class
      * @param integer acknoledgement level
-     * @todo: validation
      */
     public function update($ackLevel = 1) {
         if (!isset($this->fields['tenant_id'])) {
@@ -99,14 +99,10 @@ class ActiveMongoDocument extends CModel {
     /**
      * Delete at most one document representing the instance of this class
      * @param integer acknoledgement level
-     * @todo: validation
      * @todo: enforce tenant compliancy
      */
     public function delete($ackLevel = 1) {
-        error_log("delete result:" . $this->fields['_id']);
         $result = $this->collection->remove(array('_id' => new MongoId($this->_id)), array('w' => $ackLevel, 'justOne' => true));
-
-        error_log(print_r($result, true));
 
         return $this->checkResult($result);
     }
@@ -114,12 +110,11 @@ class ActiveMongoDocument extends CModel {
     /**
      * Find a document by ObjectId
      * @param string object id
-     * @todo: validation
      * @todo: enforce tenant compliancy
      */
     public function findByPk($oid) {
         $this->fields = $this->collection->findOne(array('_id' => new MongoId($oid)));
-        
+
         if (empty($this->fields))
             return null;
 
@@ -129,10 +124,11 @@ class ActiveMongoDocument extends CModel {
     /**
      * Find a document that match the attributes and values
      * @param array array of attribute and values
-     * @todo: validation
-     * @todo: enforce tenant compliancy
      */
     public function findByAttributes(array $attributes) {
+        if (isset($this->sessionTenantId))
+            $attributes['tenant_id'] = $this->sessionTenantId;
+
         $this->fields = $this->collection->findOne($attributes);
 
         if (empty($this->fields))
@@ -144,11 +140,13 @@ class ActiveMongoDocument extends CModel {
     /**
      * Find all documents that match the attributes and values
      * @param array array of attribute and values
-     * @todo: validation
-     * @todo: enforce tenant compliancy
+     * @todo: add unit test to check tenant compliancy
      */
     public function findAllByAttributes(array $attributes) {
         $result = array();
+
+        if (isset($this->sessionTenantId))
+            $attributes['tenant_id'] = $this->sessionTenantId;
 
         $resultSet = $this->collection->find($attributes);
 
@@ -173,9 +171,4 @@ class ActiveMongoDocument extends CModel {
     }
 
 }
-?>
 
-
-}
-
-?>

@@ -1,8 +1,6 @@
 <?php
 
-// Experimental class  - uses MongoDb for storage (no schema!)
-// represent mobile_user document
-// @todo: massive unit testing!
+// Class for mobile_user document
 class MobileUser extends ActiveMongoDocument {
 
     public function __construct($fields = array()) {
