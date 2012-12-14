@@ -56,15 +56,16 @@ class MobileUser extends CModel {
 
     /**
      * Add the current instance to the mobile_user collection
+     * @param integer acknoledgement level
      * @return boolean
      */
-    public function save($writeConcern = 1) {
+    public function save($ackLevel = 1) {
         if (!isset($this->fields['tenant_id'])) {
             return false;
         }
 
         try {
-            $result = $this->collection->insert($this->fields, array($writeConcern));
+            $result = $this->collection->insert($this->fields, array('w' => $ackLevel));
         } catch (Exception $e) {
             $this->lastError = $e->getMessage();
             $this->lastErrorCode = $e->getCode();
@@ -76,22 +77,24 @@ class MobileUser extends CModel {
 
     /**
      * Save the changes made to the instance of this class
+     * @param integer acknoledgement level
      * @todo: validation
      */
-    public function update() {
+    public function update($ackLevel) {
         if (!isset($this->fields['tenant_id'])) {
             return false;
         }
-        $this->collection->update(array('_id' => new MongoId($this->_id)), $this->fields);
+        $this->collection->update(array('_id' => new MongoId($this->_id)), $this->fields, array('w' => $ackLevel));
     }
 
     /**
-     * delete the document representing the instance of this class
+     * Delete at most one document representing the instance of this class
+     * @param integer acknoledgement level
      * @todo: validation
      * @todo: enforce tenant compliancy
      */
     public function delete() {
-        return $this->collection->remove(array('_id' => new MongoId($this->_id)));
+        return $this->collection->remove(array('_id' => new MongoId($this->_id)), array('w' => $ackLevel, 'justOne'=> true));
     }
 
     /**
