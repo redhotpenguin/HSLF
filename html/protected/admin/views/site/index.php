@@ -5,8 +5,6 @@
     <?php
     if (Yii::app()->user->id):
 
-
-        $test = new MobileUser();
         $test->fields = array(
             "email" => "jojo@gmail.com",
             "tags" => array(
@@ -18,10 +16,6 @@
                 "twitter"
             )
         );
-
-
-        
-     
 
         ?>
         <div class="hero-unit">
@@ -71,6 +65,8 @@
     </div>
 
     <?php
+
+
 
 
 
