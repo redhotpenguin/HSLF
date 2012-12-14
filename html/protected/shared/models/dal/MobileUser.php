@@ -72,7 +72,7 @@ class MobileUser extends CModel {
             $result = false;
         }
 
-        return $result;
+        return $this->checkResult($result);
     }
 
     /**
@@ -80,11 +80,13 @@ class MobileUser extends CModel {
      * @param integer acknoledgement level
      * @todo: validation
      */
-    public function update($ackLevel) {
+    public function update($ackLevel = 1) {
         if (!isset($this->fields['tenant_id'])) {
             return false;
         }
-        $this->collection->update(array('_id' => new MongoId($this->_id)), $this->fields, array('w' => $ackLevel));
+        $result = $this->collection->update(array('_id' => new MongoId($this->_id)), $this->fields, array('w' => $ackLevel));
+
+        return $this->checkResult($result);
     }
 
     /**
@@ -93,8 +95,11 @@ class MobileUser extends CModel {
      * @todo: validation
      * @todo: enforce tenant compliancy
      */
-    public function delete() {
-        return $this->collection->remove(array('_id' => new MongoId($this->_id)), array('w' => $ackLevel, 'justOne'=> true));
+    public function delete($ackLevel = 1) {
+        $result = $this->collection->remove(array('_id' => new MongoId($this->_id)), array('w' => $ackLevel, 'justOne' => true));
+        error_log(print_r($result, true));
+
+        return $this->checkResult($result);
     }
 
     /**
@@ -116,6 +121,9 @@ class MobileUser extends CModel {
      */
     public function findByAttributes(array $attributes) {
         $this->fields = $this->collection->findOne($attributes);
+        if (empty($this->fields))
+            return null;
+
         return $this;
     }
 
@@ -135,6 +143,21 @@ class MobileUser extends CModel {
         }
 
         return $result;
+    }
+
+    /**
+     * Helper function: check the result of an operation
+     * @param arary $result result returned by a write/update/delete operation
+     * return boolean operation result
+     */
+    private function checkResult($result) {
+        if (isset($result['ok']) && $result['ok'] == 1) {
+            return true;
+        } elseif (isset($result['err']) && !empty($result['err'])) {
+            return false;
+        }
+
+        return false; // unsure
     }
 
 }
