@@ -47,16 +47,25 @@ class MobileUserTest extends CDbTestCase {
         $this->assertEquals($this->newName, $mobileUser2->name);
     }
 
-    public function _testDelete() {
-        $mobileUser = MobileUser::model()->findByAttributes(array("name" => $this->newName));
-
-        $this->assertNotNull($mobileUser);
-
+    public function testDelete() {
+     
+        $mobileUser = MobileUser::model();
+        
+        $mobileUser = new MobileUser();
+        $mobileUser->tenant_id = 14;
+                
+        $this->assertTrue($mobileUser->save());
+        
+        $oid = $mobileUser->_oid;
+        
         $deleteResult = $mobileUser->delete();
 
         $this->assertTrue($deleteResult);
 
-        $deletedUser = MobileUser::model()->findByAttributes(array("name" => $this->newName));
+        $deletedUser = MobileUser::model()->findByPk($oid);
+        
+        $this->log("wut");
+        $this->log($deletedUser);
 
         $this->assertNull($deletedUser);
     }
