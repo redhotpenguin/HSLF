@@ -3,7 +3,7 @@
 /**
  * Unitary tests for MobileUser
  *
- * @author jonas
+ * @author Jonas
  */
 class MobileUserTest extends CDbTestCase {
 
