@@ -8,5 +8,12 @@ class MobileUser extends ActiveMongoDocument {
         $this->fields = $fields;
     }
 
+    public function behaviors() {
+        return array(
+            'MultiTenant' => array(
+                'class' => 'MultiTenantBehavior')
+        );
+    }
+
 }
 

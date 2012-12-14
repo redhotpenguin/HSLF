@@ -4,19 +4,6 @@
 
     <?php
     if (Yii::app()->user->id):
-
-        $test->fields = array(
-            "email" => "jojo@gmail.com",
-            "tags" => array(
-                "tag 1",
-                "tag 2"
-            ),
-            "interests" => array(
-                "facebook",
-                "twitter"
-            )
-        );
-
         ?>
         <div class="hero-unit">
             <h1>Dashboard</h1>
@@ -65,6 +52,9 @@
     </div>
 
     <?php
+
+
+
 
 
 
