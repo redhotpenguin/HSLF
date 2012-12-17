@@ -2,63 +2,48 @@
 
 abstract class APIBase implements IAPI {
 
-    const AUTH_REQUIRED = 'Authentication required';
-
     protected $model;
     protected $tableAlias;
-    protected $isAuthenticated;
-    protected $requiresAuth;
 
-    public function __construct(CActiveRecord $model, $requiresAuth = false) {
+    public function __construct(CActiveRecord $model) {
         $this->model = $model;
         $this->tableAlias = $model->getTableAlias();
-        $this->requiresAuth = $requiresAuth;
-    }
-
-    public final function setAuthenticated($authenticated) {
-        $this->isAuthenticated = $authenticated;
     }
 
     public function getList($tenantId, $arguments = array()) {
         $this->model->sessionTenantId = $tenantId;
 
-        // auth is required but user is not authenticated:
-        if ($this->requiresAuth && !$this->isAuthenticated)
-            return self::AUTH_REQUIRED;;
 
-        // doesn't require auth or is authenticated
-        if (!$this->requiresAuth || $this->isAuthenticated) {
-            $relations = array();
-            $attributes = array();
-            $options = array('order' => $this->tableAlias . '.id desc');
+        $relations = array();
+        $attributes = array();
+        $options = array('order' => $this->tableAlias . '.id desc');
 
-            // check if relationships are set
-            if (isset($arguments['relations'])) {
-                $relations = explode(',', $arguments['relations']);
-            }
-
-            // handle orderering
-            if (isset($arguments['orderBy']) && isset($arguments['order'])) {
-                $arguments['order'] = strtoupper($arguments['order']);
-                if ($this->model->hasAttribute($arguments['orderBy']) && ( $arguments['order'] == 'ASC' || $arguments['order'] == 'DESC')) {
-                    $options['order'] = $arguments['orderBy'] . " " . $arguments['order'];
-
-                    $options['order'] = "{$this->tableAlias}.{$arguments['orderBy']} {$arguments['order']}";
-                }
-            }
-
-            // filter by attribute
-            if (isset($arguments['attributeValue']) && isset($arguments['attribute']) && $this->model->hasAttribute($arguments['attribute'])) {
-                $attributes = array($arguments['attribute'] => $arguments['attributeValue']);
-            }
-            try {
-                $result = $this->model->with($relations)->findAllByAttributes($attributes, $options);
-            } catch (CDbException $cdbE) {
-                //echo $cdbE->getMessage();
-                $result = "no_results";
-            }
-            return $result;
+        // check if relationships are set
+        if (isset($arguments['relations'])) {
+            $relations = explode(',', $arguments['relations']);
         }
+
+        // handle orderering
+        if (isset($arguments['orderBy']) && isset($arguments['order'])) {
+            $arguments['order'] = strtoupper($arguments['order']);
+            if ($this->model->hasAttribute($arguments['orderBy']) && ( $arguments['order'] == 'ASC' || $arguments['order'] == 'DESC')) {
+                $options['order'] = $arguments['orderBy'] . " " . $arguments['order'];
+
+                $options['order'] = "{$this->tableAlias}.{$arguments['orderBy']} {$arguments['order']}";
+            }
+        }
+
+        // filter by attribute
+        if (isset($arguments['attributeValue']) && isset($arguments['attribute']) && $this->model->hasAttribute($arguments['attribute'])) {
+            $attributes = array($arguments['attribute'] => $arguments['attributeValue']);
+        }
+        try {
+            $result = $this->model->with($relations)->findAllByAttributes($attributes, $options);
+        } catch (CDbException $cdbE) {
+            //echo $cdbE->getMessage();
+            $result = "no_results";
+        }
+        return $result;
     }
 
     public function getSingle($tenantId, $pkID, $arguments = array()) {
@@ -74,12 +59,7 @@ abstract class APIBase implements IAPI {
             }
         }
 
-        // doesn't require auth or is authenticated
-        if (!$this->requiresAuth || $this->isAuthenticated) {
-            return $this->model->with($relations)->findByPk($pkID);
-        } else {
-            return self::AUTH_REQUIRED;
-        }
+        return $this->model->with($relations)->findByPk($pkID);
     }
 
     public function create($tenantId, $arguments = array()) {
@@ -88,6 +68,10 @@ abstract class APIBase implements IAPI {
 
     public function update($tenantId, $id, $arguments = array()) {
         return "operation not supported";
+    }
+
+    public function requiresAuthentification() {
+        return false;
     }
 
 }

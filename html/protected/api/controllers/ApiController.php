@@ -5,8 +5,6 @@ class ApiController extends Controller {
     const APPLICATION_ID = 'MOBILE API';
     const API_VERSION = '2.0';
 
-    private $tenantId;
-
     public function actionIndex() {
         $this->sendResponse(404);
     }
@@ -22,53 +20,33 @@ class ApiController extends Controller {
      * List supported models
      */
     public function actionList($tenant_id) {
-        $this->tenantId = $tenant_id;
-
-        $requested_model = $_GET['model'] . 'API';
-
-        if (!class_exists($requested_model)) {
-            $code = 404;
-            $message = "Not supported";
-        } else {
-            $code = 200;
-            $model = new $requested_model();
-            unset($_GET['model']);
-
-            if ($this->checkAuth($tenant_id))
-                $model->setAuthenticated(true);
-            else
-                $model->setAuthenticated(false);
-            
-            $message = $model->getList($tenant_id, $_GET);
+        if (!is_object($model = $this->getRequestedModel($_GET['model'], $tenant_id))) {
+            $this->sendResponse(404, $model);
+            return;
         }
+        unset($_GET['model']);
 
-        $this->sendResponse($code, $message);
+        $message = $model->getList($tenant_id, $_GET);
+
+        $this->sendResponse(200, $message);
     }
 
     /**
      * List models according to a specific request
      */
     public function actionView($tenant_id, $model, $id) {
-        $requested_model = $model . 'API';
-        $this->tenantId = $tenant_id;
 
-
-        if (!class_exists($requested_model)) {
-            $code = 404;
-            $message = "Not supported";
-        } else {
-            $code = 200;
-            $model = new $requested_model();
-
-            if ($this->checkAuth($tenant_id))
-                $model->setAuthenticated(true);
-            else
-                $model->setAuthenticated(false);
-
-            unset($_GET['model']);
-            $message = $model->getSingle($tenant_id, $id, $_GET);
+        if (!is_object($model = $this->getRequestedModel($_GET['model'], $tenant_id))) {
+            $this->sendResponse(404, $model);
+            return;
         }
-        $this->sendResponse($code, $message);
+
+
+
+        unset($_GET['model']);
+        $message = $model->getSingle($tenant_id, $id, $_GET);
+
+        $this->sendResponse(200, $message);
     }
 
     /**
@@ -76,54 +54,57 @@ class ApiController extends Controller {
      */
     public function actionCreate($tenant_id, $model) {
 
-        $requested_model = $model . 'API';
-        $this->tenantId = $tenant_id;
-
-
-        if (!class_exists($requested_model)) {
-            $code = 404;
-            $message = "Not supported";
-        } else {
-            $code = 200;
-            $model = new $requested_model();
-
-            if ($this->checkAuth($tenant_id))
-                $model->setAuthenticated(true);
-            else
-                $model->setAuthenticated(false);
-
-            $message = $model->create($tenant_id, $_POST);
+        if (!is_object($model = $this->getRequestedModel($_GET['model'], $tenant_id))) {
+            $this->sendResponse(404, $model);
+            return;
         }
-        $this->sendResponse($code, $message);
+
+        $message = $model->create($tenant_id, $_POST);
+
+        $this->sendResponse(200, $message);
     }
 
     /**
      * Handle PUT Requests
      */
     public function actionUpdate($tenant_id, $model, $id) {
-        $requested_model = $model . 'API';
-        $this->tenantId = $tenant_id;
         $data = array();
 
-
-        if (!class_exists($requested_model)) {
-            $code = 404;
-            $message = "Not supported";
-        } else {
-            $code = 200;
-            $model = new $requested_model();
-
-            if ($this->checkAuth($tenant_id))
-                $model->setAuthenticated(true);
-            else
-                $model->setAuthenticated(false);
-
-            // retrieve PUT data
-            parse_str(file_get_contents("php://input"), $data);
-
-            $message = $model->update($tenant_id, $id, $data);
+        if (!is_object($model = $this->getRequestedModel($_GET['model'], $tenant_id))) {
+            $this->sendResponse(404, $model);
+            return;
         }
-        $this->sendResponse($code, $message);
+
+        // retrieve PUT data
+        parse_str(file_get_contents("php://input"), $data);
+
+        $message = $model->update($tenant_id, $id, $data);
+
+        $this->sendResponse(200, $message);
+    }
+
+    /**
+     * Helpers - return a $requestModelName object 
+     * Also set the authentification flag
+     * @param string $requestModelName model name
+     * @param integer $tenantId tenant id - needed for checking authorization
+     * @return mixed
+     */
+    private function getRequestedModel($requestModelName, $tenantId) {
+        $modelName = $requestModelName . 'API';
+        if (class_exists($modelName)) {
+            $model = new $modelName();
+
+            if ($model->requiresAuthentification()) {
+                if ($this->checkAuth($tenantId)) {
+                    return $model;
+                } else {
+                    return "authentification required";
+                }
+            }
+
+            return $model;
+        }
     }
 
     /**
@@ -186,7 +167,7 @@ class ApiController extends Controller {
      * @return boolean return authentification result
      */
     private function checkAuth($tenantId) {
-        
+
         // Check if we have the USERNAME and PASSWORD HTTP headers set?
         if (!(isset($_SERVER['PHP_AUTH_USER']) and isset($_SERVER['PHP_AUTH_PW']))) {
             return false;
@@ -203,7 +184,7 @@ class ApiController extends Controller {
         $api_key = $tenant->api_key;
 
         $api_secret = $tenant->api_secret;
-        
+
         return ( $api_key == $http_key && $api_secret == $http_pass );
     }
 

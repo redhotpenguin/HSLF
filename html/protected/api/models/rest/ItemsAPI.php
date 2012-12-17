@@ -306,8 +306,8 @@ class ItemsAPI implements IAPI {
         return $wrapped_items;
     }
 
-    public function setAuthenticated($authenticated) {
-        
+    public function requiresAuthentification() {
+        return false;
     }
 
     public function create($tenantId, $arguments = array()) {

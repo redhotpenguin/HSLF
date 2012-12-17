@@ -1,10 +1,13 @@
 <?php
 
 class OptionsAPI extends APIBase implements IAPI {
-    
-    public function __construct(){
-        // turn on authentification check
-        parent::__construct(new Option, true );
+
+    public function __construct() {
+        parent::__construct(new Option);
+    }
+
+    public function requiresAuthentification() {
+        return true;
     }
 
 }

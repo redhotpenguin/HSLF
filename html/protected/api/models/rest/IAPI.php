@@ -9,6 +9,7 @@ interface IAPI {
     public function create($tenantId, $arguments = array());
 
     public function update($tenantId, $id, $arguments = array());
-
-    public function setAuthenticated($authenticated);
+    
+    public function requiresAuthentification();
+    
 }

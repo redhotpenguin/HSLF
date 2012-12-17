@@ -7,13 +7,12 @@
  */
 class MobileUsersAPI implements IAPI {
 
-    //put your code here
     public function getList($tenantId, $arguments = array()) {
-        return "denied";
+        return "not supported";
     }
 
     public function getSingle($tenantId, $id, $arguments = array()) {
-        return "denied";
+        return "not supported";
     }
 
     public function create($tenantId, $arguments = array()) {
@@ -87,8 +86,8 @@ class MobileUsersAPI implements IAPI {
 
     }
 
-    public function setAuthenticated($authenticated) {
-        //  echo "auhtentidcated:? $authenticated";
+    public function requiresAuthentification() {
+        return true;
     }
 
 }
