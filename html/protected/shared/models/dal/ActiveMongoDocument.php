@@ -89,9 +89,9 @@ class ActiveMongoDocument extends CModel {
      * @param integer acknoledgement level - optionnal
      */
     public function update($conditions = array(), $method = "", $ackLevel = 1) {
-        
+
         $this->beforeSave();
-        
+
         if (empty($conditions)) {
             $conditions = array('_id' => new MongoId($this->_id));
         }
@@ -100,16 +100,12 @@ class ActiveMongoDocument extends CModel {
             $data = array(
                 $method => $this->fields
             );
-        }
-        else{
+        } else {
             $data = $this->fields;
         }
-       
+
         $result = $this->collection->update($conditions, $data, array('w' => $ackLevel));
-        
-        
-        logIt($result);
-        
+
         return $this->checkResult($result);
     }
 

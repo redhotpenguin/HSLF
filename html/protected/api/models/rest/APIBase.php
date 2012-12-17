@@ -82,6 +82,14 @@ abstract class APIBase implements IAPI {
         }
     }
 
+    public function create($tenantId, $arguments = array()) {
+        return "operation not supported";
+    }
+
+    public function update($tenantId, $id, $arguments = array()) {
+        return "operation not supported";
+    }
+
 }
 
 ?>

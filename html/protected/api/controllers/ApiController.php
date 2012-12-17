@@ -38,7 +38,7 @@ class ApiController extends Controller {
                 $model->setAuthenticated(true);
             else
                 $model->setAuthenticated(false);
-
+            
             $message = $model->getList($tenant_id, $_GET);
         }
 
@@ -186,6 +186,7 @@ class ApiController extends Controller {
      * @return boolean return authentification result
      */
     private function checkAuth($tenantId) {
+        
         // Check if we have the USERNAME and PASSWORD HTTP headers set?
         if (!(isset($_SERVER['PHP_AUTH_USER']) and isset($_SERVER['PHP_AUTH_PW']))) {
             return false;
@@ -202,7 +203,7 @@ class ApiController extends Controller {
         $api_key = $tenant->api_key;
 
         $api_secret = $tenant->api_secret;
-
+        
         return ( $api_key == $http_key && $api_secret == $http_pass );
     }
 

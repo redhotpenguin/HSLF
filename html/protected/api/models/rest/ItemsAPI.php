@@ -4,6 +4,7 @@ class ItemsAPI implements IAPI {
 
     private $allIncludes = array('districts', 'scorecards', 'endorsers', 'recommendations', 'news', 'electionResults', 'offices', 'parties');
     private $item;
+
     public function __construct() {
         $this->item = new Item();
     }
@@ -95,7 +96,7 @@ class ItemsAPI implements IAPI {
         $this->item->sessionTenantId = $tenantId;
         // todo: find better way to do this
         $this->item = $this->item->with(array('district', 'recommendation', 'electionResult', 'itemNews', 'scorecards', 'cards', 'office', 'party'))->findByPk($id);
-        
+
         if ($this->item != false)
             $result = $this->itemWrapper($this->item, $this->allIncludes);
         else
@@ -138,8 +139,6 @@ class ItemsAPI implements IAPI {
             $itemCriteria->addAttributeCondition($arguments['field'], $arguments['fieldValue'], 'AND');
         }
     }
-
-    
 
     private function includeParser(ItemCriteria &$itemCriteria, $includeList) {
         $includes = array();
@@ -306,9 +305,17 @@ class ItemsAPI implements IAPI {
 
         return $wrapped_items;
     }
-    
-     public function setAuthenticated($authenticated){
-         
-     }
+
+    public function setAuthenticated($authenticated) {
+        
+    }
+
+    public function create($tenantId, $arguments = array()) {
+        return "operation not supported";
+    }
+
+    public function update($tenantId, $id, $arguments = array()) {
+        return "operation not supported";
+    }
 
 }
