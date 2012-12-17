@@ -54,8 +54,6 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
     }
 
     public function beforeSave($event) {
-
-
         if ($this->owner instanceof ActiveMongoDocument) {
 
             if ($this->owner->sessionTenantId != null) {
@@ -67,7 +65,11 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
                 return;
             }
 
-            $this->owner->fields['tenant_id'] = $user_tenant_id;
+            // MongoDB does not allow other fields when '$set' or '$push' are set
+            if (!isset($this->owner->fields['$set']) && !isset($this->owner->fields['$push'])) {
+                $this->owner->fields['tenant_id'] = (int) $user_tenant_id;
+            }
+            
         } else {
             if ($this->owner->hasAttribute('tenant_id')) {
 

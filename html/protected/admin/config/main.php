@@ -72,39 +72,14 @@ return array(
         ),
         'edms' => array(
             'class' => 'EDMSConnection',
-            'server' => 'mongodb://localhost:27017',
-            'dbName' => 'test',
+            'server' => MONGODB_HOST,
+            'dbName' => MONGODB_NAME,
             'options' => array(
-                'db' => 'test',
-                'username' => 'admin',
-                'password' => 'admin')
+                'db' => MONGODB_NAME,
+                'username' => MONGODB_USER,
+                'password' => MONGODB_PASS)
         )
     ,
-    /* 'log' => array(
-      'class' => 'CLogRouter',
-      'routes' => array(
-      array(
-      'class' => 'CFileLogRoute',
-      'levels' => 'error, warning, info, trace',
-      ),
-      /*
-      array(
-      'class' => 'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
-      'ipFilters' => array('127.0.0.1'),
-      ),
-      array(
-      'class' => 'CWebLogRoute',
-      'enabled' => YII_DEBUG_SHOW_PROFILER,
-      'categories' => 'system.db.*',
-      ),
-      // uncomment the following to show log messages on web pages
-
-     */
-    /* array(
-      'class'=>'CWebLogRoute',
-      ),
-      ),
-      ), */
     ),
     // application-level parameters that can be accessed
 // using Yii::app()->params['paramName']

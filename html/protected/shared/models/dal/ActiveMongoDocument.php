@@ -85,13 +85,31 @@ class ActiveMongoDocument extends CModel {
 
     /**
      * Save the changes made to the instance of this class
-     * @param integer acknoledgement level
+     * @param array condition - optionnal
+     * @param integer acknoledgement level - optionnal
      */
-    public function update($ackLevel = 1) {
+    public function update($conditions = array(), $method = "", $ackLevel = 1) {
+        
         $this->beforeSave();
+        
+        if (empty($conditions)) {
+            $conditions = array('_id' => new MongoId($this->_id));
+        }
 
-        $result = $this->collection->update(array('_id' => new MongoId($this->_id)), $this->fields, array('w' => $ackLevel));
-
+        if ($method) {
+            $data = array(
+                $method => $this->fields
+            );
+        }
+        else{
+            $data = $this->fields;
+        }
+       
+        $result = $this->collection->update($conditions, $data, array('w' => $ackLevel));
+        
+        
+        logIt($result);
+        
         return $this->checkResult($result);
     }
 

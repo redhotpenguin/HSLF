@@ -98,6 +98,35 @@ class ApiController extends Controller {
     }
 
     /**
+     * Handle PUT Requests
+     */
+    public function actionUpdate($tenant_id, $model, $id) {
+        $requested_model = $model . 'API';
+        $this->tenantId = $tenant_id;
+        $data = array();
+
+
+        if (!class_exists($requested_model)) {
+            $code = 404;
+            $message = "Not supported";
+        } else {
+            $code = 200;
+            $model = new $requested_model();
+
+            if ($this->checkAuth($tenant_id))
+                $model->setAuthenticated(true);
+            else
+                $model->setAuthenticated(false);
+
+            // retrieve PUT data
+            parse_str(file_get_contents("php://input"), $data);
+
+            $message = $model->update($tenant_id, $id, $data);
+        }
+        $this->sendResponse($code, $message);
+    }
+
+    /**
      * Print json data . Set http headers to application/json
      * @param integer $status HTTP status
      * @param mixed $body content to print

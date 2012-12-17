@@ -9,6 +9,13 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $dbuser = $env['DOTCLOUD_DB_SQL_LOGIN'];
     $dbpass = $env['DOTCLOUD_DB_SQL_PASSWORD'];
     $dbport = $env['DOTCLOUD_DB_SQL_PORT'];
+
+    $mongodbhost = "mongodb://localhost:27017";
+    $mongodbname = "test";
+    $mongodbuser = "admin";
+    $mongdbpass = "admin";
+
+
     $siteurl = 'http://oo.m.winningmark.com';
     $uploaddir = '/../content/img'; // physical path
     $uploadpath = '/content/img'; // wwww path
@@ -21,6 +28,12 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $dbuser = 'postgres';
     $dbpass = 'pengu1n';
     $dbport = '5432';
+
+    $mongodbhost = "mongodb://localhost:27017";
+    $mongodbname = "test";
+    $mongodbuser = "admin";
+    $mongdbpass = "admin";
+
     $siteurl = 'http://www.voterguide.com';
     $uploaddir = '/../content/img'; // physical path
     $uploadpath = '/content/img'; // wwww path
@@ -33,6 +46,14 @@ DEFINE('DB_HOST', $dbhost);
 DEFINE('DB_USER', $dbuser);
 DEFINE('DB_PASS', $dbpass);
 DEFINE('DB_PORT', $dbport);
+
+// MongoDB Config
+DEFINE('MONGODB_HOST', $mongodbhost);
+DEFINE('MONGODB_NAME', $mongodbname);
+DEFINE('MONGODB_USER', $mongodbuser);
+DEFINE('MONGODB_PASS', $mongdbpass);
+
+
 
 // Theme config
 DEFINE('ADMIN_THEME', 'dashboard');

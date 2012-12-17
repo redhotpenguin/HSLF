@@ -45,7 +45,7 @@ return array(
                 array('api/list', 'pattern' => 'api/<tenant_id:\d+>/<model:\w+>/', 'verb' => 'GET'),
                 array('api/view', 'pattern' => 'api/<tenant_id:\d+>/<model:\w+>/<id:\d+>', 'verb' => 'GET'),
                 array('api/create', 'pattern' => 'api/<tenant_id:\d+>/<model:\w+>/', 'verb' => 'POST'),
-                array('api/update', 'pattern' => 'api/<tenant_id:\d+>/<model:\w+>/<id:\d+>', 'verb' => 'PUT'),
+                array('api/update', 'pattern' => 'api/<tenant_id:\d+>/<model:\w+>/<id:\w+>', 'verb' => 'PUT'),
             ),
         ),
         'db' => array(
@@ -65,12 +65,12 @@ return array(
         ),
         'edms' => array(
             'class' => 'EDMSConnection',
-            'server' => 'mongodb://localhost:27017',
-            'dbName' => 'test',
+            'server' => MONGODB_HOST,
+            'dbName' => MONGODB_NAME,
             'options' => array(
-                'db' => 'test',
-                'username' => 'admin',
-                'password' => 'admin')
+                'db' => MONGODB_NAME,
+                'username' => MONGODB_USER,
+                'password' => MONGODB_PASS)
         )
     ),
     'behaviors' => array(

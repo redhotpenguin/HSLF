@@ -22,8 +22,13 @@ class MobileUserTest extends CDbTestCase {
 
     public function testSave() {
         $mUser = $this->getMobileUser();
+        $mUser->name="testSave";
         $mUser->sessionTenantId = 13;
         $saveResult = $mUser->save();
+        if($saveResult == false){
+            $this->log("testSaveError:");
+            $this->log($mUser->lastError);
+        }
         $this->assertTrue($saveResult);
     }
 
@@ -52,7 +57,7 @@ class MobileUserTest extends CDbTestCase {
 
     public function testDelete() {
 
-        $mobileUser =  $this->getMobileUser();
+        $mobileUser = $this->getMobileUser();
         $mobileUser->sessionTenantId = 14;
 
         $this->assertTrue($mobileUser->save());
@@ -63,7 +68,7 @@ class MobileUserTest extends CDbTestCase {
 
         $this->assertTrue($deleteResult);
 
-        $t =  $this->getMobileUser();
+        $t = $this->getMobileUser();
         $t->sessionTenantId = 14;
         $deletedUser = $t->findByPk($oid);
 
@@ -114,12 +119,36 @@ class MobileUserTest extends CDbTestCase {
         $this->assertNotEmpty($mobileUser->findByAttributes(array("email" => $email)));
     }
 
-
     private function log($a) {
         if (is_object($a) || is_array($a)) {
             $a = print_r($a, true);
         }
         error_log($a);
+    }
+
+    public function testUpdateWithConditions() {
+        $mUser = $this->getMobileUser();
+
+        $deviceIdentifier = "foobar123";
+
+        $conditions = array(
+            "device_identifier" => $deviceIdentifier
+        );
+
+        $mUser->device_identifier = $deviceIdentifier;
+        $mUser->last_connection_date = new MongoDate();
+        $mUser->name = "Jonas Antoine Etienne Palmero";
+        $mUser->tags = array("a", "new", "set");
+
+
+        error_log('-----------------------------------------------------------');
+
+        $result = $mUser->update($conditions, '$set');
+
+
+        $this->assertTrue($result);
+
+        error_log("update result:" . $result . " code: " . $mUser->lastError);
     }
 
 }
