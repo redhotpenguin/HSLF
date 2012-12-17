@@ -34,7 +34,7 @@ class ApiController extends Controller {
             $model = new $requested_model();
             unset($_GET['model']);
 
-            if ($this->checkAuth())
+            if ($this->checkAuth($tenant_id))
                 $model->setAuthenticated(true);
             else
                 $model->setAuthenticated(false);
@@ -60,13 +60,39 @@ class ApiController extends Controller {
             $code = 200;
             $model = new $requested_model();
 
-            if ($this->checkAuth())
+            if ($this->checkAuth($tenant_id))
                 $model->setAuthenticated(true);
             else
                 $model->setAuthenticated(false);
 
             unset($_GET['model']);
             $message = $model->getSingle($tenant_id, $id, $_GET);
+        }
+        $this->sendResponse($code, $message);
+    }
+
+    /**
+     * Handle POST Requests
+     */
+    public function actionCreate($tenant_id, $model) {
+
+        $requested_model = $model . 'API';
+        $this->tenantId = $tenant_id;
+
+
+        if (!class_exists($requested_model)) {
+            $code = 404;
+            $message = "Not supported";
+        } else {
+            $code = 200;
+            $model = new $requested_model();
+
+            if ($this->checkAuth($tenant_id))
+                $model->setAuthenticated(true);
+            else
+                $model->setAuthenticated(false);
+
+            $message = $model->create($tenant_id, $_POST);
         }
         $this->sendResponse($code, $message);
     }
@@ -127,24 +153,28 @@ class ApiController extends Controller {
 
     /**
      * Check that the given api credentials are valid
+     * @param integer $tenantId tenant id to check against
      * @return boolean return authentification result
      */
-    private function checkAuth() {
-
-        if (!isset($_GET['api_key']) || !isset($_GET['api_secret']))
+    private function checkAuth($tenantId) {
+        // Check if we have the USERNAME and PASSWORD HTTP headers set?
+        if (!(isset($_SERVER['PHP_AUTH_USER']) and isset($_SERVER['PHP_AUTH_PW']))) {
             return false;
+        }
 
-        $tenant = Tenant::model()->findByPk($this->tenantId);
+        $http_key = $_SERVER['PHP_AUTH_USER'];
+        $http_pass = $_SERVER['PHP_AUTH_PW'];
+
+        $tenant = Tenant::model()->findByPk($tenantId);
 
         if ($tenant == null) {
             return;
         }
-
         $api_key = $tenant->api_key;
 
         $api_secret = $tenant->api_secret;
 
-        return ( $api_key == $_REQUEST['api_key'] && $api_secret == $_REQUEST['api_secret'] );
+        return ( $api_key == $http_key && $api_secret == $http_pass );
     }
 
 }

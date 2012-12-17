@@ -25,6 +25,7 @@ return array(
         'admin.components.*',
         'application.models.*',
         'application.components.*',
+        'ext.directmongosuite.components.*',
     ),
     'modules' => array(
     ),
@@ -43,6 +44,8 @@ return array(
                 array('api/index', 'pattern' => 'api', 'verb' => 'GET'),
                 array('api/list', 'pattern' => 'api/<tenant_id:\d+>/<model:\w+>/', 'verb' => 'GET'),
                 array('api/view', 'pattern' => 'api/<tenant_id:\d+>/<model:\w+>/<id:\d+>', 'verb' => 'GET'),
+                array('api/create', 'pattern' => 'api/<tenant_id:\d+>/<model:\w+>/', 'verb' => 'POST'),
+                array('api/update', 'pattern' => 'api/<tenant_id:\d+>/<model:\w+>/<id:\d+>', 'verb' => 'PUT'),
             ),
         ),
         'db' => array(
@@ -60,21 +63,20 @@ return array(
             // use 'api/error' action to display errors
             'errorAction' => 'api/index',
         ),
-        'log' => array(
-            'class' => 'CLogRouter',
-            'routes' => array(
-                array(
-                    'class' => 'CWebLogRoute',
-                    'levels' => 'trace,info,error,warning',
-                    'categories' => 'system.db.CDbCommand',
-                    'filter' => array(
-                        'class' => 'CLogFilter',
-                        'prefixSession' => true,
-                        'prefixUser' => false,
-                        'logUser' => false,
-                        'logVars' => array(),
-                    ),
-            ))),
+        'edms' => array(
+            'class' => 'EDMSConnection',
+            'server' => 'mongodb://localhost:27017',
+            'dbName' => 'test',
+            'options' => array(
+                'db' => 'test',
+                'username' => 'admin',
+                'password' => 'admin')
+        )
+    ),
+    'behaviors' => array(
+        'edms' => array(
+            'class' => 'EDMSBehavior'
+        )
     ),
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']
