@@ -21,6 +21,50 @@ class MobileUserTest extends CDbTestCase {
         return $mUser;
     }
 
+    // designed to check multi tenant compliancy
+    public function testFindAllByAttributes() {
+        $tenantId = 15;
+
+        $mobileUser = $this->getMobileUser();
+        $mobileUser->sessionTenantId = $tenantId;
+        $mobileUser->interests = "salad";
+        $this->assertTrue($mobileUser->save());
+
+        $mobileUser = $this->getMobileUser();
+        $mobileUser->sessionTenantId = $tenantId;
+        $mobileUser->interests = "salad";
+        $this->assertTrue($mobileUser->save());
+
+        $test = $this->getMobileUser();
+        $test->sessionTenantId = 15;
+
+        $mobileUsers = $test->findAllByAttributes(array("interests" => "salad"));
+
+        $this->assertNotEmpty($mobileUsers);
+
+        $test = $this->getMobileUser();
+        $test->sessionTenantId = 1;
+        $mobileUsers = $test->findAllByAttributes(array("interests" => "salad"));
+
+        $this->assertEmpty($mobileUsers);
+    }
+
+    // designed to also check tenant compliancy
+    public function testFindByAttributes() {
+        $email = "jonas.palmero@gmail.com";
+        $mobileUser = $this->getMobileUser();
+        $mobileUser->sessionTenantId = 17;
+        $mobileUser->email = $email;
+        $this->assertTrue($mobileUser->save());
+
+        $mobileUser2 = $this->getMobileUser();
+        $mobileUser2->sessionTenantId = 18;
+        $result = $mobileUser2->findByAttributes(array("email" => $email));
+
+        $this->assertNull($result);
+        $this->assertNotEmpty($mobileUser->findByAttributes(array("email" => $email)));
+    }
+
     public function testSave() {
         $mUser = $this->getMobileUser();
         $mUser->name = "testSave";
@@ -80,50 +124,6 @@ class MobileUserTest extends CDbTestCase {
         $deletedUser = $t->findByPk($oid);
 
         $this->assertNull($deletedUser);
-    }
-
-    // designed to also check tenant compliancy
-    public function testFindAllByAttributes() {
-        $tenantId = 15;
-
-        $mobileUser = $this->getMobileUser();
-        $mobileUser->sessionTenantId = $tenantId;
-        $mobileUser->interests = "salad";
-        $this->assertTrue($mobileUser->save());
-
-        $mobileUser = $this->getMobileUser();
-        $mobileUser->sessionTenantId = $tenantId;
-        $mobileUser->interests = "salad";
-        $this->assertTrue($mobileUser->save());
-
-        $test = $this->getMobileUser();
-        $test->sessionTenantId = 15;
-
-        $mobileUsers = $test->findAllByAttributes(array("interests" => "salad"));
-
-        $this->assertNotEmpty($mobileUsers);
-
-        $test = $this->getMobileUser();
-        $test->sessionTenantId = 1;
-        $mobileUsers = $test->findAllByAttributes(array("interests" => "salad"));
-
-        $this->assertEmpty($mobileUsers);
-    }
-
-    // designed to also check tenant compliancy
-    public function testFindByAttributes() {
-        $email = "jonas.palmero@gmail.com";
-        $mobileUser = $this->getMobileUser();
-        $mobileUser->sessionTenantId = 17;
-        $mobileUser->email = $email;
-        $this->assertTrue($mobileUser->save());
-
-        $mobileUser2 = $this->getMobileUser();
-        $mobileUser2->sessionTenantId = 18;
-        $result = $mobileUser2->findByAttributes(array("email" => $email));
-
-        $this->assertNull($result);
-        $this->assertNotEmpty($mobileUser->findByAttributes(array("email" => $email)));
     }
 
     public function testUpdatePushSet() {
