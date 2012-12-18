@@ -17,6 +17,7 @@ class MobileUserTest extends CDbTestCase {
     private function getMobileUser() {
         $mUser = new MobileUser();
         $mUser->attachBehavior('MultiTenant', $this->tenantBehavior);
+        $mUser->device_identifier = md5(microtime());
         return $mUser;
     }
 
