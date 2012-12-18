@@ -7,11 +7,12 @@ class MobileUsersController extends Controller {
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
     public $layout = '//layouts/column2';
-    public $category = array( 'Application Manager'=>array('/site/mobile/')); // used by the breadcrumb
+    public $category = array('Application Manager' => array('/site/mobile/')); // used by the breadcrumb
 
     /**
      * @return array action filters
      */
+
     public function filters() {
         return array(
             'accessControl', // perform access control for CRUD operations
@@ -39,13 +40,12 @@ class MobileUsersController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('AlertType');
+
+        $dataProvider = new EDMSDataProvider( MobileUser::model()->find() );
+
         $this->render('index', array(
             'dataProvider' => $dataProvider,
         ));
     }
-
-    
-
 
 }
