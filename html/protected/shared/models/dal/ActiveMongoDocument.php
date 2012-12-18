@@ -11,11 +11,11 @@ class ActiveMongoDocument extends CModel {
     public $lastErrorCode;
     public static $mongoClient;
     public $lastError;
-    public $sessionTenantId;
-    // public $tenant_id; // required document field
     private $collectionName = "mobile_user";
     private $collection;
     private static $model;
+    
+    public $searchAttributes = array(); // search attributes
 
     /**
      * Constructor
@@ -131,7 +131,6 @@ class ActiveMongoDocument extends CModel {
     /**
      * Delete at most one document representing the instance of this class
      * @param integer acknoledgement level
-     * @todo: enforce tenant compliancy
      */
     public function delete($ackLevel = 1) {
         $result = $this->collection->remove(array('_id' => new MongoId($this->_id)), array('w' => $ackLevel, 'justOne' => true));
@@ -142,7 +141,6 @@ class ActiveMongoDocument extends CModel {
     /**
      * Find a document by ObjectId
      * @param string object id
-     * @todo: enforce tenant compliancy
      */
     public function findByPk($oid) {
         $this->fields = $this->collection->findOne(array('_id' => new MongoId($oid)));
@@ -152,6 +150,15 @@ class ActiveMongoDocument extends CModel {
 
         return $this;
     }
+    
+    /**
+     * Return a cursor
+     */
+    public function find(){
+        $this->beforeFind();
+                
+        return  $this->collection->find($this->searchAttributes);
+    }
 
     /**
      * Find a document that match the attributes and values
@@ -160,9 +167,7 @@ class ActiveMongoDocument extends CModel {
     public function findByAttributes(array $attributes) {
         $this->beforeFind();
 
-        $attributes['tenant_id'] = $this->sessionTenantId;
-
-        $this->fields = $this->collection->findOne($attributes);
+        $this->fields = $this->collection->findOne(array_merge($this->searchAttributes, $attributes));
 
         if (empty($this->fields))
             return null;
@@ -173,17 +178,14 @@ class ActiveMongoDocument extends CModel {
     /**
      * Find all documents that match the attributes and values
      * @param array array of attribute and values
-     * @todo: add unit test to check tenant compliancy
      */
     public function findAllByAttributes(array $attributes) {
         $result = array();
-
-
         $this->beforeFind();
 
-        $attributes['tenant_id'] = $this->sessionTenantId;
-
-        $resultSet = $this->collection->find($attributes);
+        error_log("attributes");
+        error_log(print_r($this->searchAttributes, true ));
+        $resultSet = $this->collection->find($this->searchAttributes);
 
 
         foreach ($resultSet as $document) {
