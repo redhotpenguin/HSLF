@@ -74,6 +74,7 @@
                                 array('label' => 'Alert types', 'url' => array('/alertType'), 'visible' => !Yii::app()->user->isGuest),
                                 array('label' => 'Options', 'url' => array('/option'), 'visible' => !Yii::app()->user->isGuest),
                                 array('label' => 'Tags', 'url' => array('/tag'), 'visible' => !Yii::app()->user->isGuest),
+                                array('label' => 'Mobile Users', 'url' => array('/mobileUsers'), 'visible' => !Yii::app()->user->isGuest),
                             ),
                     )),
                 );

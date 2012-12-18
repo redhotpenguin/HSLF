@@ -38,7 +38,6 @@ class MobileUsersAPI implements IAPI {
             $mUser->$key = $value;
         }
 
-
         // device_identifier + tenant_id == unique 
         $mUser->sessionTenantId = $tenantId;
         $mUser->registration_date = $currentDate;
