@@ -11,6 +11,7 @@ class MobileUsersAPI implements IAPI {
     const ERROR_USER_ALREADY_EXISTS = "user already exists";
     const ERROR_INCORRECT_USAGE = "incorrect usage";
     const ERROR_INCORRECT_DATA = "incorrect data";
+    const ERROR_IDENTIFIER_MISSING = "a device identifier is required";
     const SUCCESS = "success";
 
     public function getList($tenantId, $arguments = array()) {
@@ -30,6 +31,9 @@ class MobileUsersAPI implements IAPI {
         if (!is_object($userData))
             return self::ERROR_INCORRECT_DATA;
 
+        if (!isset($userData->device_identifier)) {
+            return self::ERROR_IDENTIFIER_MISSING;
+        }
         $currentDate = new MongoDate();
         $mUser = new MobileUser();
 
@@ -56,11 +60,14 @@ class MobileUsersAPI implements IAPI {
     }
 
     public function update($tenantId, $mobileUserId, $arguments = array()) {
+
         if (!isset($arguments['user']))
             return self::ERROR_INCORRECT_USAGE;
-        
+
         $mUser = new MobileUser();
         $tenantId = (int) $tenantId;
+        $set = array();
+        $push = array();
 
         $userData = CJSON::decode($arguments['user'], true); // decode json string as an array
 
@@ -72,8 +79,12 @@ class MobileUsersAPI implements IAPI {
             "device_identifier" => $mobileUserId
         );
 
-        $set = $userData['set'];
-        $push = $userData['push'];
+        if (isset($userData['set'])) {
+            $set = $userData['set'];
+        }
+        if (isset($userData['push'])) {
+            $push = $userData['push'];
+        }
 
         $set['last_connection_date'] = new MongoDate();
 

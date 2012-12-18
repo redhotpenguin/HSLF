@@ -14,13 +14,13 @@ class ActiveMongoDocument extends CModel {
     private $collectionName = "mobile_user";
     private $collection;
     private static $model;
-    
     public $searchAttributes = array(); // search attributes
 
     /**
      * Constructor
      * @param array $fields fields of the document
      */
+
     public function __construct($collectionName) {
         $this->attachBehaviors($this->behaviors());
         $this->afterConstruct();
@@ -104,10 +104,12 @@ class ActiveMongoDocument extends CModel {
         }
 
         if (!empty($push) || !empty($set)) {
-            $data = array(
-                '$push' => $push,
-                '$set' => $set
-            );
+            if (!empty($push))
+                $data['$push'] = $push;
+
+            if (!empty($set))
+                $data['$set'] = $set;
+            
         } else {
             $data = $this->fields;
         }
@@ -150,14 +152,14 @@ class ActiveMongoDocument extends CModel {
 
         return $this;
     }
-    
+
     /**
      * Return a cursor
      */
-    public function find(){
+    public function find() {
         $this->beforeFind();
-                
-        return  $this->collection->find($this->searchAttributes);
+
+        return $this->collection->find($this->searchAttributes);
     }
 
     /**
@@ -167,7 +169,7 @@ class ActiveMongoDocument extends CModel {
     public function findByAttributes(array $attributes) {
         $this->beforeFind();
 
-        $this->fields = $this->collection->findOne(array_merge($this->searchAttributes, $attributes));
+        $this->fields = $this->collection->findOne(array_merge($attributes, $this->searchAttributes));
 
         if (empty($this->fields))
             return null;
@@ -183,10 +185,7 @@ class ActiveMongoDocument extends CModel {
         $result = array();
         $this->beforeFind();
 
-        error_log("attributes");
-        error_log(print_r($this->searchAttributes, true ));
-        $resultSet = $this->collection->find($this->searchAttributes);
-
+        $resultSet = $this->collection->find(array_merge($attributes, $this->searchAttributes));
 
         foreach ($resultSet as $document) {
             array_push($result, new MobileUser($document));
