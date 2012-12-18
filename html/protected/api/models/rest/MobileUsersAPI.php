@@ -16,19 +16,20 @@ class MobileUsersAPI implements IAPI {
     }
 
     public function create($tenantId, $arguments = array()) {
+
         if (!isset($arguments['user']))
             return "Incorrect usage";
 
-        $newUser = CJSON::decode($arguments['user'], false); // decode json string to an stdobject
+        $userData = CJSON::decode($arguments['user'], false); // decode json string to an stdobject
 
-        if (!is_object($newUser))
+        if (!is_object($userData))
             return "Incorrect data";
 
         $currentDate = new MongoDate();
         $mUser = new MobileUser();
 
         // save everything
-        foreach ($newUser as $key => $value) {
+        foreach ($userData as $key => $value) {
             $mUser->$key = $value;
         }
 
@@ -57,9 +58,10 @@ class MobileUsersAPI implements IAPI {
         $mUser = new MobileUser();
         $tenantId = (int) $tenantId;
 
-        $user = CJSON::decode($arguments['user'], false); // decode json string to an stdobject
+        $userData = CJSON::decode($arguments['user'], true); // decode json string as an array
+        //  logIt($userData);
 
-        if (!is_object($user))
+        if (!is_array($userData))
             return "Incorrect data";
 
         $conditions = array(
@@ -67,18 +69,18 @@ class MobileUsersAPI implements IAPI {
             "device_identifier" => $mobileUserId
         );
 
-        foreach ($user as $key => $value) {
-            $mUser->$key = $value;
-        }
+        $set = $userData['set'];
+        $push = $userData['push'];
 
-        $mUser->sessionTenantId = $tenantId;
-        $mUser->device_identifier = $mobileUserId;
-        $mUser->last_connection_date = new MongoDate();
+        $set['last_connection_date'] = new MongoDate();
 
-
-        if ($mUser->update($conditions, '$set')) {
+        $updateResult = $mUser->update($conditions, $set, $push);
+        
+        if ( $updateResult === true ) {
             return "success";
-        } else {
+        } elseif($updateResult === -1) {
+            return "record does not exist";
+        }else{
             return "failure #{$mUser->lastErrorCode}";
         }
     }

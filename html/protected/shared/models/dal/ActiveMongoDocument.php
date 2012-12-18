@@ -85,10 +85,13 @@ class ActiveMongoDocument extends CModel {
 
     /**
      * Save the changes made to the instance of this class
-     * @param array condition - optionnal
-     * @param integer acknoledgement level - optionnal
+     * Use MongoDBCollection::findAndModify
+     * @param array $condition - conditions used to find the document - optionnal
+     * @param array $set  - fields to update -  optionnal
+     * @param array $push - fields to append -  optionnal
+     * @return mixed true for success - false is record didnt't get updated. -1 if record doesn't exist
      */
-    public function update($conditions = array(), $method = "", $ackLevel = 1) {
+    public function update(array $conditions = array(), array $set = array(), array $push = array()) {
 
         $this->beforeSave();
 
@@ -96,17 +99,33 @@ class ActiveMongoDocument extends CModel {
             $conditions = array('_id' => new MongoId($this->_id));
         }
 
-        if ($method) {
+        if (empty($conditions)) {
+            throw new InvalidArgumentException("Conditions are missing");
+        }
+
+        if (!empty($push) || !empty($set)) {
             $data = array(
-                $method => $this->fields
+                '$push' => $push,
+                '$set' => $set
             );
         } else {
             $data = $this->fields;
         }
 
-        $result = $this->collection->update($conditions, $data, array('w' => $ackLevel));
+        try {
+            $result = $this->collection->findAndModify($conditions, $data, null, array('new' => true));
+        } catch (Exception $e) {
+            $this->lastError = $e->getMessage();
+            $this->lastErrorCode = $e->getCode();
+            return false;
+        }
 
-        return $this->checkResult($result);
+        if (isset($result['_id'])) {
+            $this->fields = $result;
+            return true;
+        } else {
+            return -1;
+        }
     }
 
     /**

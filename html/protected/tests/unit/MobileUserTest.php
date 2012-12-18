@@ -23,10 +23,10 @@ class MobileUserTest extends CDbTestCase {
 
     public function testSave() {
         $mUser = $this->getMobileUser();
-        $mUser->name="testSave";
+        $mUser->name = "testSave";
         $mUser->sessionTenantId = 13;
         $saveResult = $mUser->save();
-        if($saveResult == false){
+        if ($saveResult == false) {
             $this->log("testSaveError:");
             $this->log($mUser->lastError);
         }
@@ -34,15 +34,21 @@ class MobileUserTest extends CDbTestCase {
     }
 
     public function testUpdate() {
+
+        // add a new mobile user
         $mobileUser = $this->getMobileUser();
         $mobileUser->sessionTenantId = 2;
         $mobileUser->name = "jonas palmero";
-
         $this->assertTrue($mobileUser->save());
 
+        //
         $mobileUser2 = $this->getMobileUser();
         $mobileUser2->sessionTenantId = 2;
 
+        error_log("updated $mobileUser->_id");
+
+
+        // get another instance of MobileUser
         $test = $mobileUser2->findByAttributes(array("name" => $mobileUser->name));
 
         $this->assertNotNull($test);
@@ -120,6 +126,42 @@ class MobileUserTest extends CDbTestCase {
         $this->assertNotEmpty($mobileUser->findByAttributes(array("email" => $email)));
     }
 
+    public function testUpdatePushSet() {
+        $result = false;
+
+        $mUser = $this->getMobileUser();
+
+        $mUser->sessionTenantId = 3;
+        $mUser->tags = array("tag1", "tag2");
+        $this->assertTrue($mUser->save());
+        $oid = $mUser->_id;
+
+
+        $set = array(
+            "name" => "new name",
+            "age" => 14
+        );
+
+
+        $push = array(
+            "tags" => "tag3"
+        );
+
+        $deviceIdentifier = $mUser->device_identifier;
+
+        $conditions = array(
+            "tenant_id" => 3,
+            "device_identifier" => $deviceIdentifier
+        );
+
+        $result = $mUser->update($conditions, $set, $push, 1);
+
+
+        $this->log($mUser->fields);
+
+        $this->assertTrue($result);
+    }
+
     private function log($a) {
         if (is_object($a) || is_array($a)) {
             $a = print_r($a, true);
@@ -127,29 +169,12 @@ class MobileUserTest extends CDbTestCase {
         error_log($a);
     }
 
-    public function testUpdateWithConditions() {
-        $mUser = $this->getMobileUser();
-
-        $deviceIdentifier = "foobar123";
-
-        $conditions = array(
-            "device_identifier" => $deviceIdentifier
-        );
-
-        $mUser->device_identifier = $deviceIdentifier;
-        $mUser->last_connection_date = new MongoDate();
-        $mUser->name = "Jonas Antoine Etienne Palmero";
-        $mUser->tags = array("a", "new", "set");
-
-
-        error_log('-----------------------------------------------------------');
-
-        $result = $mUser->update($conditions, '$set');
-
-
-        $this->assertTrue($result);
-
-        error_log("update result:" . $result . " code: " . $mUser->lastError);
+    private function dump($x) {
+        ob_start();
+        var_dump($x);
+        $contents = ob_get_contents();
+        ob_end_clean();
+        error_log($contents);
     }
 
 }
