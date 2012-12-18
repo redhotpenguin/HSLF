@@ -14,6 +14,7 @@ class MobileUserTest extends CDbTestCase {
         $this->tenantBehavior = new MultiTenantBehavior();
     }
 
+
     private function getMobileUser() {
         $mUser = new MobileUser();
         $mUser->attachBehavior('MultiTenant', $this->tenantBehavior);
@@ -21,34 +22,7 @@ class MobileUserTest extends CDbTestCase {
         return $mUser;
     }
 
-    // designed to check multi tenant compliancy
-    public function testFindAllByAttributes() {
-        $tenantId = 15;
-
-        $mobileUser = $this->getMobileUser();
-        $mobileUser->sessionTenantId = $tenantId;
-        $mobileUser->interests = "salad";
-        $this->assertTrue($mobileUser->save());
-
-        $mobileUser = $this->getMobileUser();
-        $mobileUser->sessionTenantId = $tenantId;
-        $mobileUser->interests = "salad";
-        $this->assertTrue($mobileUser->save());
-
-        $test = $this->getMobileUser();
-        $test->sessionTenantId = 15;
-
-        $mobileUsers = $test->findAllByAttributes(array("interests" => "salad"));
-
-        $this->assertNotEmpty($mobileUsers);
-
-        $test = $this->getMobileUser();
-        $test->sessionTenantId = 1;
-        $mobileUsers = $test->findAllByAttributes(array("interests" => "salad"));
-
-        $this->assertEmpty($mobileUsers);
-    }
-
+   
     // designed to also check tenant compliancy
     public function testFindByAttributes() {
         $email = "jonas.palmero@gmail.com";
@@ -160,6 +134,38 @@ class MobileUserTest extends CDbTestCase {
         $this->log($mUser->fields);
 
         $this->assertTrue($result);
+    }
+    
+     // designed to check multi tenant compliancy
+    public function testFindAllByAttributes() {
+   
+        $tenantId = 15;
+
+        $mobileUser = $this->getMobileUser();
+        $mobileUser->sessionTenantId = $tenantId;
+        $mobileUser->interests = "salad";
+        $this->assertTrue($mobileUser->save());
+
+        $mobileUser = $this->getMobileUser();
+        $mobileUser->sessionTenantId = $tenantId;
+        $mobileUser->interests = "salad";
+        $this->assertTrue($mobileUser->save());
+
+        $test = $this->getMobileUser();
+        $test->sessionTenantId = 15;
+
+        $mobileUsers = $test->findAllByAttributes(array("interests" => "salad"));
+
+        $this->assertNotEmpty($mobileUsers);
+
+        
+        
+        $test = $this->getMobileUser();
+        $test->sessionTenantId = 1;
+        $mobileUsers = $test->findAllByAttributes(array("interests" => "salad", "tenant_id"=> 15));
+
+        
+        $this->assertEmpty($mobileUsers);
     }
 
     private function log($a) {
