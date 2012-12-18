@@ -7,6 +7,12 @@
  */
 class MobileUsersAPI implements IAPI {
 
+    const ERROR_USER_NOT_FOUND = "user not found";
+    const ERROR_USER_ALREADY_EXISTS = "user already exists";
+    const ERROR_INCORRECT_USAGE = "incorrect usage";
+    const ERROR_INCORRECT_DATA = "incorrect data";
+    const SUCCESS = "success";
+
     public function getList($tenantId, $arguments = array()) {
         return "not supported";
     }
@@ -16,14 +22,13 @@ class MobileUsersAPI implements IAPI {
     }
 
     public function create($tenantId, $arguments = array()) {
-
         if (!isset($arguments['user']))
-            return "Incorrect usage";
+            return self::ERROR_INCORRECT_USAGE;
 
         $userData = CJSON::decode($arguments['user'], false); // decode json string to an stdobject
 
         if (!is_object($userData))
-            return "Incorrect data";
+            return self::ERROR_INCORRECT_DATA;
 
         $currentDate = new MongoDate();
         $mUser = new MobileUser();
@@ -41,11 +46,11 @@ class MobileUsersAPI implements IAPI {
 
 
         if ($mUser->save()) {
-            return "success";
+            return self::SUCCESS;
         }
 
         if ($mUser->lastErrorCode == 11000) {
-            return "Error: User already exists";
+            return self::ERROR_USER_ALREADY_EXISTS;
         }
 
         return "failure #{$mUser->lastErrorCode}";
@@ -53,16 +58,15 @@ class MobileUsersAPI implements IAPI {
 
     public function update($tenantId, $mobileUserId, $arguments = array()) {
         if (!isset($arguments['user']))
-            return "Incorrect usage";
-
+            return self::ERROR_INCORRECT_USAGE;
+        
         $mUser = new MobileUser();
         $tenantId = (int) $tenantId;
 
         $userData = CJSON::decode($arguments['user'], true); // decode json string as an array
-        //  logIt($userData);
 
         if (!is_array($userData))
-            return "Incorrect data";
+            return self::ERROR_INCORRECT_DATA;
 
         $conditions = array(
             "tenant_id" => $tenantId,
@@ -75,12 +79,12 @@ class MobileUsersAPI implements IAPI {
         $set['last_connection_date'] = new MongoDate();
 
         $updateResult = $mUser->update($conditions, $set, $push);
-        
-        if ( $updateResult === true ) {
-            return "success";
-        } elseif($updateResult === -1) {
-            return "record does not exist";
-        }else{
+
+        if ($updateResult === true) {
+            return self::SUCCESS;
+        } elseif ($updateResult === -1) {
+            return self::ERROR_USER_NOT_FOUND;
+        } else {
             return "failure #{$mUser->lastErrorCode}";
         }
     }
