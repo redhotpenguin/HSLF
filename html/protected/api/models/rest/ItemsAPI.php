@@ -17,7 +17,7 @@ class ItemsAPI implements IAPI {
     public function getList($tenantId, $arguments = array()) {
         $this->item->sessionTenantId = $tenantId;
         $includes = array();
-
+        
         $itemCriteria = new ItemCriteria($this->item);
 
         if (isset($arguments['address'])) {

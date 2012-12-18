@@ -19,49 +19,22 @@ class ApiController extends Controller {
     /**
      * List supported models
      */
-    public function actionList($tenant_id) {
-        if (!is_object($model = $this->getRequestedModel($_GET['model'], $tenant_id))) {
-            $this->sendResponse(404, $model);
-            return;
-        }
-        unset($_GET['model']);
-
-        $message = $model->getList($tenant_id, $_GET);
-
-        $this->sendResponse(200, $message);
+    public function actionList($tenant_id, $model) {
+        $this->resolveAction($model, $tenant_id, 'getList', null, $_GET);
     }
 
     /**
      * List models according to a specific request
      */
     public function actionView($tenant_id, $model, $id) {
-
-        if (!is_object($model = $this->getRequestedModel($_GET['model'], $tenant_id))) {
-            $this->sendResponse(404, $model);
-            return;
-        }
-
-
-
-        unset($_GET['model']);
-        $message = $model->getSingle($tenant_id, $id, $_GET);
-
-        $this->sendResponse(200, $message);
+        $this->resolveAction($model, $tenant_id, 'getSingle', $id, $_GET);
     }
 
     /**
      * Handle POST Requests
      */
     public function actionCreate($tenant_id, $model) {
-
-        if (!is_object($model = $this->getRequestedModel($_GET['model'], $tenant_id))) {
-            $this->sendResponse(404, $model);
-            return;
-        }
-
-        $message = $model->create($tenant_id, $_POST);
-
-        $this->sendResponse(200, $message);
+        $this->resolveAction($model, $tenant_id, 'create', null, $_POST);
     }
 
     /**
@@ -70,15 +43,36 @@ class ApiController extends Controller {
     public function actionUpdate($tenant_id, $model, $id) {
         $data = array();
 
-        if (!is_object($model = $this->getRequestedModel($_GET['model'], $tenant_id))) {
-            $this->sendResponse(404, $model);
-            return;
-        }
-
         // retrieve PUT data
         parse_str(file_get_contents("php://input"), $data);
 
-        $message = $model->update($tenant_id, $id, $data);
+        $this->resolveAction($model, $tenant_id, 'update', $id, $data);
+    }
+
+    /**
+     * Helpers - call the correct rest model based on the given arguments
+     * @param string $requestModelName model name
+     * @param integer $tenantId tenant id
+     * @param string $actionName action name
+     *  @param integer $id id - optionnal
+     *  @param array $data extra parameters - optionnal
+     * @return array
+     */
+    private function resolveAction($modelName, $tenantId, $actionName, $id = null, $data = array()) {
+        if (( $requestedModel = $this->getRequestedModel($modelName, $tenantId) ) && $requestedModel['model'] != null) {
+            $model = $requestedModel['model'];
+        } else {
+            $this->sendResponse($requestedModel['code'], $requestedModel['message']);
+            return;
+        }
+
+        unset($data['model']);
+
+        if ($id == null) {
+            $message = $model->$actionName($tenantId, $data);
+        } else {
+            $message = $model->$actionName($tenantId, $id, $data);
+        }
 
         $this->sendResponse(200, $message);
     }
@@ -88,23 +82,36 @@ class ApiController extends Controller {
      * Also set the authentification flag
      * @param string $requestModelName model name
      * @param integer $tenantId tenant id - needed for checking authorization
-     * @return mixed
+     * @return array
      */
     private function getRequestedModel($requestModelName, $tenantId) {
         $modelName = $requestModelName . 'API';
+        $message = "";
+        $code = 200;
+        $model = null;
+
         if (class_exists($modelName)) {
             $model = new $modelName();
 
             if ($model->requiresAuthentification()) {
                 if ($this->checkAuth($tenantId)) {
-                    return $model;
+                    $model = $model;
                 } else {
-                    return "authentification required";
+                    $message = 'invalid credentials';
+                    $model = null;
                 }
             }
-
-            return $model;
+        } else {
+            $message = 'not found';
+            $code = 404;
         }
+
+
+        return array(
+            'model' => $model,
+            'code' => $code,
+            'message' => $message
+        );
     }
 
     /**

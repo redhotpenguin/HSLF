@@ -51,7 +51,6 @@ class MobileUsersAPI implements IAPI {
     }
 
     public function update($tenantId, $mobileUserId, $arguments = array()) {
-
         if (!isset($arguments['user']))
             return "Incorrect usage";
 
@@ -75,15 +74,13 @@ class MobileUsersAPI implements IAPI {
         $mUser->sessionTenantId = $tenantId;
         $mUser->device_identifier = $mobileUserId;
         $mUser->last_connection_date = new MongoDate();
-        
-        
+
+
         if ($mUser->update($conditions, '$set')) {
             return "success";
         } else {
             return "failure #{$mUser->lastErrorCode}";
         }
-
-
     }
 
     public function requiresAuthentification() {
