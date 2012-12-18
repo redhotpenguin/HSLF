@@ -114,9 +114,16 @@ class ActiveMongoDocument extends CModel {
             $data = $this->fields;
         }
 
+		logIt($conditions);
         try {
             $result = $this->collection->findAndModify($conditions, $data, null, array('new' => true));
         } catch (Exception $e) {
+			$code = $e->getCode();
+			
+			// Mongodb Driver bug fix
+			if($code === 0){
+				return true;
+			}
             $this->lastError = $e->getMessage();
             $this->lastErrorCode = $e->getCode();
             return false;
