@@ -14,11 +14,7 @@
 		<?php echo $form->label($model,'device_identifier'); ?>
 		<?php echo $form->textField($model,'device_identifier',array('size'=>60,'maxlength'=>256)); ?>
 	</div>
-    
-         <div class="row">
-		<?php echo $form->label($model,'device_identifier'); ?>
-		<?php echo $form->textField($model,'device_identifier',array('size'=>60,'maxlength'=>256)); ?>
-	</div>
+   
 
 	<div class="row">
 		<?php echo $form->label($model,'device_type'); ?>
