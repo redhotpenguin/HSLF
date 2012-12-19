@@ -47,11 +47,22 @@ class MobileUser extends ActiveMongoDocument {
         if ($this->device_type != "") {
             $criteria['device_type'] = $this->device_type;
         }
-        
-        if ($this->_id != "") {
-            $criteria['_id'] =  new MongoId ( $this->_id ) ;
+
+        if ($this->device_identifier != "") {
+            $criteria['device_identifier'] = $this->device_identifier;
         }
 
+        if ($this->tags != "") {
+            $criteria['tags'] = $this->tags;
+        }
+
+        if ($this->districts != "") {
+            $criteria['districts'] = $this->districts;
+        }
+
+        if ($this->_id != "") {
+            $criteria['_id'] = new MongoId($this->_id);
+        }
 
         $cursor = MobileUser::model()->find($criteria); // $cursor acts as a Cdbcriteria
 

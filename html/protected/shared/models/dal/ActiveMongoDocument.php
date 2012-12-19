@@ -7,14 +7,13 @@
  */
 class ActiveMongoDocument extends CModel {
 
-    public $fields;
+    public $fields = array();
     public $lastErrorCode;
     public static $mongoClient;
     public $lastError;
     private $collectionName;
     private $collection;
     private static $model;
-    public $attributes = array();
     public $searchAttributes = array(); // search attributes
 
     /**
