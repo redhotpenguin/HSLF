@@ -19,15 +19,6 @@ class MobileUser extends ActiveMongoDocument {
         );
     }
 
-    /**
-     * @return array customized attribute labels (name=>label)
-     */
-    public function attributeLabels() {
-        return array(
-            '_id' => 'ID'
-        );
-    }
-
     public function behaviors() {
         return array(
             'MultiTenant' => array(

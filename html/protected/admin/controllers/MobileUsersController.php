@@ -41,7 +41,13 @@ class MobileUsersController extends Controller {
      */
     public function actionIndex() {
 
-        $dataProvider = new EDMSDataProvider(MobileUser::model()->find());
+        $dataProvider = new EDMSDataProvider(MobileUser::model()->find(),
+                        array(
+                            'pagination' => array(
+                                'pageSize' => 100,
+                            )
+                        )
+        );
 
         $this->render('index', array(
             'dataProvider' => $dataProvider,
