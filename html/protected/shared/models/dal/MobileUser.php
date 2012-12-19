@@ -2,6 +2,7 @@
 
 // Class for mobile_user document
 class MobileUser extends ActiveMongoDocument {
+
     public $sessionTenantId;
 
     public function __construct($fields = array()) {
