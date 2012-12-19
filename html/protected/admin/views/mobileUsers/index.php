@@ -24,7 +24,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
                     (
                     'label' => '',
                     //   'url' => '"http://www.google.fr"' // works
-                    'url' => 'error_log(print_r($data["_id"]->{\'$id\'}, true));Yii::app()->createUrl("mobileUsers/view",array("id"=>$data["_id"]->{\'$id\'}))',
+                    'url' => 'Yii::app()->createUrl("mobileUsers/view",array("id"=>$data["_id"]->{\'$id\'}))',
                 ),
             ),
         ),
