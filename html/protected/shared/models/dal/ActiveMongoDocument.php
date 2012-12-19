@@ -114,7 +114,6 @@ class ActiveMongoDocument extends CModel {
             $data = $this->fields;
         }
 
-		logIt($conditions);
         try {
             $result = $this->collection->findAndModify($conditions, $data, null, array('new' => true));
         } catch (Exception $e) {
@@ -152,7 +151,9 @@ class ActiveMongoDocument extends CModel {
      * @param string object id
      */
     public function findByPk($oid) {
-        $this->fields = $this->collection->findOne(array('_id' => new MongoId($oid)));
+        $this->beforeFind();
+        
+        $this->fields = $this->collection->findOne(array_merge(array('_id' => new MongoId($oid)), $this->searchAttributes));
 
         if (empty($this->fields))
             return null;
