@@ -12,8 +12,9 @@ class SiteController extends Controller {
         if (Yii::app()->user->id) {
 
             $data = array(
-                'total_item_page' => Item::model()->count(),
-                 'tenant' => Tenant::model()->findByAttributes(array ("id"=> Yii::app()->user->tenant_id))
+                'total_item_number' => Item::model()->count(),
+                'total_user_number' => MobileUser::model()->count(),
+                'tenant' => Tenant::model()->findByAttributes(array("id" => Yii::app()->user->tenant_id))
             );
 
             $this->render('index', $data);
@@ -108,8 +109,6 @@ class SiteController extends Controller {
             ),
         );
     }
-
-
 
     /**
      * @return array action filters
