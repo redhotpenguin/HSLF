@@ -40,17 +40,14 @@ class MobileUsersController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
+        $model = new MobileUser('search');
 
-        $dataProvider = new EDMSDataProvider(MobileUser::model()->find(),
-                        array(
-                            'pagination' => array(
-                                'pageSize' => 100,
-                            )
-                        )
-        );
-
+        if (isset($_GET['MobileUser'])) {
+            $model->fields = $_GET['MobileUser'];
+        }
+        
         $this->render('index', array(
-            'dataProvider' => $dataProvider,
+            'model' => $model,
         ));
     }
 

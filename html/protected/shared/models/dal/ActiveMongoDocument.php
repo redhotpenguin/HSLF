@@ -11,9 +11,10 @@ class ActiveMongoDocument extends CModel {
     public $lastErrorCode;
     public static $mongoClient;
     public $lastError;
-    private $collectionName = "mobile_user";
+    private $collectionName;
     private $collection;
     private static $model;
+    public $attributes = array();
     public $searchAttributes = array(); // search attributes
 
     /**
@@ -21,7 +22,10 @@ class ActiveMongoDocument extends CModel {
      * @param array $fields fields of the document
      */
 
-    public function __construct($collectionName) {
+    public function __construct($scenario = 'insert') {
+        $this->collectionName = $this->tableName();
+        $this->setScenario($scenario);
+
         $this->attachBehaviors($this->behaviors());
         $this->afterConstruct();
 
@@ -169,11 +173,14 @@ class ActiveMongoDocument extends CModel {
 
     /**
      * Return a cursor
+     * @param array array of attribute and values
      */
-    public function find() {
+    public function find($attributes = array()) {
         $this->beforeFind();
 
-        return $this->collection->find($this->searchAttributes);
+        $cursor = $this->collection->find(array_merge($attributes, $this->searchAttributes));
+
+        return $cursor;
     }
 
     /**
@@ -202,16 +209,19 @@ class ActiveMongoDocument extends CModel {
         $resultSet = $this->collection->find(array_merge($attributes, $this->searchAttributes));
 
         foreach ($resultSet as $document) {
-            array_push($result, new MobileUser($document));
+            $mUser = new MobileUser;
+            $mUser->fields = $document;
+            array_push($result, $mUser);
         }
 
         return $result;
     }
-    
+
     /*
      * count the number of documents
      */
-    public function count(){
+
+    public function count() {
         $this->beforeFind();
         return $this->collection->count($this->searchAttributes);
     }
