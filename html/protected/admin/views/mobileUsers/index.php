@@ -17,14 +17,18 @@ $this->widget('bootstrap.widgets.BootGridView', array(
         array
             (
             'class' => 'CButtonColumn',
-            'template' => '{view}',
+            'template' => '{view}{delete}',
             'buttons' => array
                 (
                 'view' => array
                     (
                     'label' => '',
-                    //   'url' => '"http://www.google.fr"' // works
                     'url' => 'Yii::app()->createUrl("mobileUsers/view",array("id"=>$data["_id"]->{\'$id\'}))',
+                ),
+                'delete' => array
+                    (
+                    'label' => '',
+                    'url' => 'Yii::app()->createUrl("mobileUsers/delete",array("id"=>$data["_id"]->{\'$id\'}))',
                 ),
             ),
         ),

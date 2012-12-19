@@ -27,7 +27,7 @@ class MobileUsersController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'view'),
+                'actions' => array('index', 'view', 'delete'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -69,6 +69,25 @@ class MobileUsersController extends Controller {
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
+    }
+
+    /**
+     * Deletes a mobile user
+     * If deletion is successful, the browser will be redirected to the 'admin' page.
+     * @param integer $id the ID of the model to be deleted
+     */
+    public function actionDelete($id) {
+        error_log("delte");
+        if (Yii::app()->request->isPostRequest) {
+            // we only allow deletion via POST request
+            $this->loadModel($id)->delete();
+
+            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+            if (!isset($_GET['ajax']))
+                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+        }
+        else
+            throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
     }
 
 }
