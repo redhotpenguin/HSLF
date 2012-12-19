@@ -17,13 +17,13 @@ return CMap::mergeArray(
 
                 'edms' => array(
                     'class' => 'EDMSConnection',
-                    'server' => 'mongodb://localhost:27017',
-                    'dbName' => 'test',
+                    'server' => MONGODB_HOST,
+                    'dbName' => MONGODB_NAME,
                     'options' => array(
-                        'db' => 'test',
-                        'username' => 'admin',
-                        'password' => 'admin')
-                ),
+                        'db' => MONGODB_NAME,
+                        'username' => MONGODB_USER,
+                        'password' => MONGODB_PASS)
+                )
             ),
             'behaviors' => array(
                 'edms' => array(

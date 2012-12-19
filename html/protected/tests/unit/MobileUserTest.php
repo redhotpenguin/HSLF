@@ -172,7 +172,7 @@ class MobileUserTest extends CDbTestCase {
         $mUser = $this->getMobileUser();
 
         $mUser->sessionTenantId = 1;
-        $mUser->device_type =  null;
+        $mUser->device_type = null;
         $result = $mUser->save();
 
         $this->assertFalse($result);
@@ -186,6 +186,50 @@ class MobileUserTest extends CDbTestCase {
         $result = $mUser->save();
 
         $this->assertTrue($result);
+    }
+
+    public function testNoDupesInArrays() {
+
+
+        $mUser = $this->getMobileUser();
+        $mUser->sessionTenantId = 1;
+        $mUser->events = array("event1");
+        $result = $mUser->save();
+
+        $identifier = $mUser->device_identifier;
+        $this->assertTrue($result);
+
+
+        $mUser = new MobileUser();
+        $mUser->sessionTenantId = 1;
+
+        $conditions = array(
+            "tenant_id" => 1,
+            "device_identifier" => $identifier
+        );
+
+        $set = array(
+        );
+
+        $push = array(
+            'events' => "event1"
+        );
+
+        $updateResult = $mUser->update($conditions, $set, $push);
+
+        $this->assertTrue($updateResult);
+
+
+        $mUser = MobileUser::model()->findByAttributes(
+                array(
+                    "tenant_id" => 1,
+                    "device_identifier" => $identifier
+                )
+        );
+
+        $this->assertNotEmpty($mUser);
+
+        $this->assertEquals(1, count($mUser->events));
     }
 
     private function log($a) {

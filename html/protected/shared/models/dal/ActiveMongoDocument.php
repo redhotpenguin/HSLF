@@ -115,7 +115,7 @@ class ActiveMongoDocument extends CModel {
 
         if (!empty($push) || !empty($set)) {
             if (!empty($push))
-                $data['$push'] = $push;
+                $data['$addToSet'] = $push; // The $addToSet operator adds a value to an array only if the value is not in the array already. 
 
             if (!empty($set))
                 $data['$set'] = $set;
