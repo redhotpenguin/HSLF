@@ -88,7 +88,8 @@ return array(
         'site_url' => SITE_URL,
         'upload_path' => SITE_URL . UPLOAD_PATH,
         'upload_dir' => UPLOAD_DIR,
-        'html_directory' => $html_directory
+        'html_directory' => $html_directory,
+        'mongodb_ack_level' => MONGODB_ACK_LEVEL
     ),
     'behaviors' => array(
         'edms' => array(

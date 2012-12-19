@@ -14,12 +14,13 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $mongodbname = "test";
     $mongodbuser = "admin";
     $mongdbpass = "admin";
-
+    $mongodbacklevel = 1;
 
     $siteurl = 'http://oo.m.winningmark.com';
     $uploaddir = '/../content/img'; // physical path
     $uploadpath = '/content/img'; // wwww path
     $shareurl = 'http://vote.ouroregon.org';
+
 
     set_include_path(get_include_path() . PATH_SEPARATOR . '/home/dotcloud/php-env/share/php');
 } else {    //dev server conf
@@ -33,6 +34,7 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $mongodbname = "mobile_advocacy_platform";
     $mongodbuser = "admin";
     $mongdbpass = "admin";
+    $mongodbacklevel = 1;
 
     $siteurl = 'http://www.voterguide.com';
     $uploaddir = '/../content/img'; // physical path
@@ -52,7 +54,7 @@ DEFINE('MONGODB_HOST', $mongodbhost);
 DEFINE('MONGODB_NAME', $mongodbname);
 DEFINE('MONGODB_USER', $mongodbuser);
 DEFINE('MONGODB_PASS', $mongdbpass);
-
+DEFINE('MONGODB_ACK_LEVEL', $mongodbacklevel);
 
 
 // Theme config

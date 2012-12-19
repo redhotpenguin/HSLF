@@ -13,6 +13,12 @@ class MobileUsersAPI implements IAPI {
     const ERROR_INCORRECT_DATA = "incorrect data";
     const ERROR_IDENTIFIER_MISSING = "a device identifier is required";
     const SUCCESS = "success";
+    
+    private $ackLevel;
+    
+    public function __construct(){
+        $this->ackLevel  = (Yii::app()->params['mongodb_ack_level']) ? Yii::app()->params['mongodb_ack_level'] : 1;
+    }
 
     public function getList($tenantId, $arguments = array()) {
         return "not supported";
@@ -47,8 +53,7 @@ class MobileUsersAPI implements IAPI {
         $mUser->registration_date = $currentDate;
         $mUser->last_connection_date = $currentDate;
 
-
-        if ($mUser->save()) {
+        if ($mUser->save($this->ackLevel)) {
             return self::SUCCESS;
         }
 

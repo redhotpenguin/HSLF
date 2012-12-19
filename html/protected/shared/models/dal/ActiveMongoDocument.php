@@ -5,7 +5,7 @@
  *
  * @author jonas
  */
-class ActiveMongoDocument extends CModel {
+abstract class ActiveMongoDocument extends CModel {
 
     public $fields = array();
     public $lastErrorCode;

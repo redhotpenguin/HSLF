@@ -30,5 +30,9 @@ return CMap::mergeArray(
                     'class' => 'EDMSBehavior'
                 )
             ),
+            'params' => array(
+                'dateFormat' => 'Y-m-d H:i:s',
+                'mongodb_ack_level' => MONGODB_ACK_LEVEL
+            ),
                 )
 );

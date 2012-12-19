@@ -75,6 +75,7 @@ return array(
     'params' => array(
         'dateFormat' => 'Y-m-d H:i:s',
         'site_url' => SITE_URL,
+        'mongodb_ack_level'=> MONGODB_ACK_LEVEL
     ),
     'theme' => FRONTEND_THEME,
 );
