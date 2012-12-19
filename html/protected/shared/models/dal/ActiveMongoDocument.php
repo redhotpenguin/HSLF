@@ -70,6 +70,13 @@ class ActiveMongoDocument extends CModel {
      */
     public function save($ackLevel = 1) {
 
+        if (!$this->validate()) {
+            $this->lastErrorCode = 0;
+            $this->lastError = "a required field is missing";
+            return false;
+        }
+
+
         $this->beforeSave();
 
         try {
@@ -109,7 +116,6 @@ class ActiveMongoDocument extends CModel {
 
             if (!empty($set))
                 $data['$set'] = $set;
-            
         } else {
             $data = $this->fields;
         }
@@ -117,12 +123,12 @@ class ActiveMongoDocument extends CModel {
         try {
             $result = $this->collection->findAndModify($conditions, $data, null, array('new' => true));
         } catch (Exception $e) {
-			$code = $e->getCode();
-			
-			// Mongodb Driver bug fix
-			if($code === 0){
-				return true;
-			}
+            $code = $e->getCode();
+
+            // Mongodb Driver bug fix
+            if ($code === 0) {
+                return true;
+            }
             $this->lastError = $e->getMessage();
             $this->lastErrorCode = $e->getCode();
             return false;
@@ -152,7 +158,7 @@ class ActiveMongoDocument extends CModel {
      */
     public function findByPk($oid) {
         $this->beforeFind();
-        
+
         $this->fields = $this->collection->findOne(array_merge(array('_id' => new MongoId($oid)), $this->searchAttributes));
 
         if (empty($this->fields))

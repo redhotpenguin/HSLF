@@ -14,15 +14,14 @@ class MobileUserTest extends CDbTestCase {
         $this->tenantBehavior = new MultiTenantBehavior();
     }
 
-
     private function getMobileUser() {
         $mUser = new MobileUser();
         $mUser->attachBehavior('MultiTenant', $this->tenantBehavior);
         $mUser->device_identifier = md5(microtime());
+        $mUser->device_type = "android";
         return $mUser;
     }
 
-   
     // designed to also check tenant compliancy
     public function testFindByAttributes() {
         $email = "jonas.palmero@gmail.com";
@@ -135,10 +134,10 @@ class MobileUserTest extends CDbTestCase {
 
         $this->assertTrue($result);
     }
-    
-     // designed to check multi tenant compliancy
+
+    // designed to check multi tenant compliancy
     public function testFindAllByAttributes() {
-   
+
         $tenantId = 15;
 
         $mobileUser = $this->getMobileUser();
@@ -158,14 +157,35 @@ class MobileUserTest extends CDbTestCase {
 
         $this->assertNotEmpty($mobileUsers);
 
-        
-        
+
+
         $test = $this->getMobileUser();
         $test->sessionTenantId = 1;
-        $mobileUsers = $test->findAllByAttributes(array("interests" => "salad", "tenant_id"=> 15));
+        $mobileUsers = $test->findAllByAttributes(array("interests" => "salad", "tenant_id" => 15));
 
-        
+
         $this->assertEmpty($mobileUsers);
+    }
+
+    public function testRules() {
+
+        $mUser = $this->getMobileUser();
+
+        $mUser->sessionTenantId = 1;
+        $mUser->device_type =  null;
+        $result = $mUser->save();
+
+        $this->assertFalse($result);
+
+
+        $mUser = $this->getMobileUser();
+
+        $mUser->sessionTenantId = 1;
+        $mUser->device_type = "android";
+
+        $result = $mUser->save();
+
+        $this->assertTrue($result);
     }
 
     private function log($a) {

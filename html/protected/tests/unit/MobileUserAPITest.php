@@ -8,19 +8,37 @@
 class MobileUserAPITest extends CDbTestCase {
 
     private $mobileUserAPI1 = "http://www.voterguide.com/api/1/MobileUsers";
-    
- // private $mobileUserAPI1 = "http://23.24.252.203/api/1/MobileUsers";
-    
+    // private $mobileUserAPI1 = "http://23.24.252.203/api/1/MobileUsers";
+
     private $tenant1 = array(
         'username' => "52356", // api key
         'password' => "PqiW_IDKL3mFi_OirCqOe-u"// api secret
     );
 
-    public function __construct() {
-        
+    public function testCreateUser() {
+        $response = "failure";
+
+        $deviceIdentifier = md5(microtime());
+        $userData = array(
+            "name" => "jonas",
+            "device_type" => "android",
+            "device_identifier" => $deviceIdentifier
+        );
+
+        $jsonUserData = json_encode($userData);
+
+        $data = array(
+            "user" => $jsonUserData
+        );
+
+        $requestResult = $this->post($this->tenant1, $data, $this->mobileUserAPI1);
+
+        $response = $requestResult->results;
+
+        $this->assertEquals("success", $response);
     }
 
-    public function testCreateUser() {
+    public function testCreateUserMissingRequiredParameter() {
         $response = "failure";
 
         $deviceIdentifier = md5(microtime());
@@ -39,10 +57,10 @@ class MobileUserAPITest extends CDbTestCase {
 
         $response = $requestResult->results;
 
-        $this->assertEquals("success", $response);
-    }
-    
+        $this->log($response);
 
+        $this->assertNotEquals("success", $response);
+    }
 
     public function testUpdateUser() {
 
@@ -51,6 +69,7 @@ class MobileUserAPITest extends CDbTestCase {
         $deviceIdentifier = md5(microtime());
         $userData = array(
             "name" => "jonas",
+            "device_type" => "ios",
             "device_identifier" => $deviceIdentifier
         );
 
@@ -87,7 +106,6 @@ class MobileUserAPITest extends CDbTestCase {
         $this->assertEquals("success", $response);
     }
 
-
     public function testUpdateUserExistingFields() {
 
         $response = "failure";
@@ -95,6 +113,7 @@ class MobileUserAPITest extends CDbTestCase {
         $deviceIdentifier = md5(microtime());
         $userData = array(
             "name" => "robert",
+            "device_type" => "android",
             "device_identifier" => $deviceIdentifier
         );
 
@@ -140,6 +159,7 @@ class MobileUserAPITest extends CDbTestCase {
         $userData = array(
             "name" => "robert",
             "device_identifier" => $deviceIdentifier,
+            "device_type" => 'ios',
             "tags" => array("default tag")
         );
 

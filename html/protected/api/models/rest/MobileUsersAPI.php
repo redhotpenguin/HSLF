@@ -55,8 +55,8 @@ class MobileUsersAPI implements IAPI {
         if ($mUser->lastErrorCode == 11000) {
             return self::ERROR_USER_ALREADY_EXISTS;
         }
-
-        return "failure #{$mUser->lastErrorCode}";
+        
+        return "failure #{$mUser->lastErrorCode} : $mUser->lastError";
     }
 
     public function update($tenantId, $mobileUserId, $arguments = array()) {

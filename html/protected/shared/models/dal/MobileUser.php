@@ -11,6 +11,15 @@ class MobileUser extends ActiveMongoDocument {
     }
 
     /**
+     * @return array validation rules for model attributes.
+     */
+    public function rules() {
+        return array(
+            array('device_identifier, device_type', 'required')
+        );
+    }
+
+    /**
      * @return array customized attribute labels (name=>label)
      */
     public function attributeLabels() {
