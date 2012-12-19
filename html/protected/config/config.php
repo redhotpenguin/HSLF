@@ -30,7 +30,7 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $dbport = '5432';
 
     $mongodbhost = "mongodb://localhost:27017";
-    $mongodbname = "test";
+    $mongodbname = "mobile_advocacy_platform";
     $mongodbuser = "admin";
     $mongdbpass = "admin";
 
