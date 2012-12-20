@@ -17,7 +17,7 @@ class ItemsAPI implements IAPI {
     public function getList($tenantId, $arguments = array()) {
         $this->item->sessionTenantId = $tenantId;
         $includes = array();
-        
+
         $itemCriteria = new ItemCriteria($this->item);
 
         if (isset($arguments['address'])) {
@@ -95,7 +95,7 @@ class ItemsAPI implements IAPI {
     public function getSingle($tenantId, $id, $arguments = array()) {
         $this->item->sessionTenantId = $tenantId;
         // todo: find better way to do this
-        $this->item = $this->item->with(array('district', 'recommendation', 'itemNews',  'party'))->findByPk($id);
+        $this->item = $this->item->with(array('district', 'recommendation', 'itemNews', 'party'))->findByPk($id);
 
         if ($this->item != false)
             $result = $this->itemWrapper($this->item, $this->allIncludes);
@@ -198,6 +198,8 @@ class ItemsAPI implements IAPI {
             'twitter_handle' => $item->twitter_handle,
             'measure_number' => $item->measure_number,
             'friendly_name' => $item->friendly_name,
+            'first_name' => $item->first_name,
+            'last_name' => $item->last_name,
         );
 
         if (in_array('endorsers', $includes)) {

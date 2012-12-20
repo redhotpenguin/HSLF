@@ -25,6 +25,8 @@
  * @property string twitter_handle
  * @property string measure_number
  * @property string friendly_name
+ * @property string first_name
+ * @Property string last_name
 
 
  */
@@ -63,7 +65,7 @@ class Item extends CBaseActiveRecord {
             array('district_id, item, recommendation_id, date_published, published, url', 'required'),
             array('district_id, recommendation_id, party_id', 'numerical', 'integerOnly' => true),
             array('item_type, twitter_handle', 'length', 'max' => 128),
-            array('friendly_name', 'length', 'max' => 1024),
+            array('friendly_name, first_name, last_name', 'length', 'max' => 1024),
             array('measure_number', 'length', 'max' => 24),
             array('url', 'length', 'max' => 500),
             array('personal_url, facebook_url', 'length', 'max' => 2048),
@@ -75,7 +77,7 @@ class Item extends CBaseActiveRecord {
             array('url', 'unique_url'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, district_id, item, item_type, recommendation_id, next_election_date, detail, date_published, published, party_id, url, image_url, election_result_id, district_number, district_type,district_display_name, state_id, personal_url, party, facebook_url, twitter_handle, measure_number, friendly_name', 'safe', 'on' => 'search'),
+            array('id, district_id, item, item_type, recommendation_id, next_election_date, detail, date_published, published, party_id, url, image_url, election_result_id, district_number, district_type,district_display_name, state_id, personal_url, party, facebook_url, twitter_handle, measure_number, friendly_name, first_name, last_name', 'safe', 'on' => 'search'),
         );
     }
 
@@ -117,6 +119,8 @@ class Item extends CBaseActiveRecord {
             'party_id' => 'Party',
             'url' => 'URL',
             'image_url' => 'Image',
+            'first_name' => 'First Name',
+            'last_name' => 'Last Name',
         );
     }
 

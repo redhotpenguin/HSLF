@@ -6,3 +6,5 @@ ALTER TABLE item DROP score;
 ALTER TABLE item DROP twitter_share;
 ALTER TABLE item DROP facebook_share;
 ALTER TABLE scorecard DROP item_id;
+ALTER TABLE item ADD COLUMN first_name VARCHAR(1024);
+ALTER TABLE item ADD COLUMN last_name VARCHAR(1024);

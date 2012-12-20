@@ -1,8 +1,8 @@
 <?php
 if ($model->isNewRecord) {
-    
 
-    
+
+
     $ns = "var ns  = {site_url: '" . getSetting('site_url') . "',share_url: '" . getTenantSetting('web_app_url') . "' };";
 } else {
     $ns = "var ns  = {site_url: '" . getSetting('site_url') . "',share_url: '" . getTenantSetting('web_app_url') . "', item_id: " . $model->id . " };";
@@ -141,6 +141,25 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
 
     <div class="left_col">
         <?php
+        echo $form->labelEx($model, 'first_name');
+        echo $form->textField($model, 'first_name', array('size' => 50, 'maxlength' => 1024, 'placeholder' => ''));
+        echo $form->error($model, 'first_name');
+        ?>
+    </div>
+    <div class="right_col">
+        <?php
+        echo $form->labelEx($model, 'last_name');
+        echo $form->textField($model, 'last_name', array('size' => 50, 'maxlength' => 1024, 'placeholder' => ''));
+        echo $form->error($model, 'last_name');
+        ?>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <hr/>
+
+    <div class="left_col">
+        <?php
         echo $form->labelEx($model, 'measure_number');
         echo $form->textField($model, 'measure_number', array('size' => 50, 'maxlength' => 24, 'placeholder' => 'Measure Number'));
         echo $form->error($model, 'measure_number');
@@ -229,7 +248,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
         ?>
 
     </div>
-    
+
     <div class="clearfix"></div>
 
     <hr/>

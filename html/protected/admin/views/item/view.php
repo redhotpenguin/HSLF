@@ -30,6 +30,14 @@ $this->widget('bootstrap.widgets.BootDetailView', array(
             'value' => $model->item
         ),
         array(
+            'label' => 'First name',
+            'value' => $model->first_name
+        ),
+             array(
+            'label' => 'Last name',
+            'value' => $model->last_name
+        ),
+        array(
             'label' => 'Type',
             'value' => $model->item_type
         ),
