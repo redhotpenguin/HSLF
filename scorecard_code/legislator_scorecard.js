@@ -144,6 +144,45 @@ function itemForm($){
 
     }
    
+    
+    // dynamic scorecard
+    var office_input = $('#Item_office_id');
+    var dynamic_scorecard_table = $('#dynamic_scorecard_table');
+    
+    // only bind event for existing  items
+    // if(ns.item_id){
+    office_input.change(function(){
+        dynamic_scorecard_table.updateScorecards( ns.item_id, office_input.val() );
+         
+    });
+    $("#scorecard_spin").hide();
+    office_input.change();
  
 } //  ready function  end
 
+jQuery.fn.updateScorecards = function(item_id, office_id) {
+    var o = $(this[0]);
+    o.html("");
+    
+    ajax_url = ns.site_url+ "/admin/item/ajax/?a=getScorecardTable&office_id="+office_id;
+
+    
+    if(typeof item_id != 'undefined')
+        ajax_url += "&id="+item_id; 
+
+   
+    $("#scorecard_spin").show();
+    
+ 
+    jQuery.ajax({
+        url:    ajax_url,
+
+        success: function(result) {
+            $("#scorecard_spin").hide();
+            o.html(result);
+        },
+        async:   true
+    });  
+    
+      
+}

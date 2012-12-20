@@ -1,0 +1,128 @@
+legislator _form?
+
+<?php
+    if (ScorecardItem::model()->count() > 0):
+        ?>
+
+        <br/>
+        <label>Scorecard</label>
+        <span id="scorecard_spin" class="ajax_wheel_spin"><img src="/themes/dashboard/img/64_orange_wheel.gif"/></span>
+        <div id ="dynamic_scorecard_table"> 
+            <?php
+            //  endif;
+            ?>
+        </div>
+        <?php
+    endif;
+ ?>
+ 
+ Legislator CActiveRecord:
+ relations:
+ 
+        'scorecards' => array(self::HAS_MANY, 'Scorecard', 'item_id'),
+            'cards' => array(self::MANY_MANY, 'ScorecardItem',
+                'scorecard(item_id, scorecard_item_id)'),
+				
+				
+Legislator rest api:
+getSingle(){
+	...
+	        $this->item = $this->item->with(array(..., 'scorecards', 'cards', ...))->findByPk($id);
+	...
+}
+    private $allIncludes = array(..., 'scorecards', ...);
+
+        if (in_array('scorecards', $includes)) {
+            $scorecards = array();
+            $i = 0;
+            foreach ($item->scorecards as $scorecard) {
+                array_push($scorecards, array(
+                    'id' => $scorecard->id,
+                    'name' => $item->cards[$i]->name,
+                    'description' => $item->cards[$i]->description,
+                    'vote' => $scorecard->vote->name,
+                    'vote_icon' => $scorecard->vote->icon,
+                ));
+                ++$i;
+            }
+
+            $wrapped_item['scorecards'] = $scorecards;
+        }
+		
+Scorecard Criteria;
+    public function addAllRelations() {
+        $this->with = array(); // remove existing relarions
+        $this->addScorecardRelation();
+		...
+    }
+	
+    /**
+     * Set the relation for scorecards
+     */
+    public function addScorecardRelation() {
+        $this->addRelation('scorecards');
+        //    $this->addRelation('cards');
+    }
+	
+	
+	
+	controller:
+	            // savescorecards
+
+            $r = $model->validate();
+
+
+            $save = $model->save();
+            if ($save == false) {
+                $this->render('create', array(
+                    'model' => $model,
+                    'endorser_list' => Endorser::model()->findAll(array('order' => 'name')),
+                ));
+                return;
+            }
+
+            // savescorecards
+            if ($scorecard_item_ids = getPost('scorecards')) {
+
+                $scorecard_model = new Scorecard();
+                foreach ($scorecard_item_ids as $scorecard_item_id => $vote_id) {
+
+                    $scorecard = $scorecard_model->findByAttributes(array(
+                        "item_id" => $model->id,
+                        "scorecard_item_id" => $scorecard_item_id
+                            ));
+
+                    if ($scorecard) { // update or delete existing scorecard 
+                        if (!$vote_id)
+                            $scorecard->delete();
+
+
+                        $scorecard->vote_id = $vote_id;
+                        $scorecard->save();
+                    } else { // insert new scorecard
+                        if (!$vote_id)
+                            continue;
+
+                        $scorecard_model = new Scorecard();
+                        $scorecard_model->attributes = array('item_id' => $model->id, 'scorecard_item_id' => $scorecard_item_id, 'vote_id' => $vote_id);
+                        $scorecard_model->save();
+                    }
+                }
+            }
+			
+						public function actionAjax() {
+        switch (getParam('a')) {
+      
+            case 'getScorecardTable':
+                if (getParam('id')) {
+                    $item = Item::model()->findByPk(getParam('id'));
+                    $this->renderPartial('_scorecardTable', array('model' => $item, 'office_id' => getParam('office_id')));
+                }else
+                    $this->renderPartial('_scorecardTable', array('office_id' => getParam('office_id')));
+                break;
+
+            default:
+                break;
+        }
+        exit;
+    }

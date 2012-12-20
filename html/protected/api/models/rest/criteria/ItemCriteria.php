@@ -196,19 +196,12 @@ class ItemCriteria extends CDbCriteria {
     }
 
     /**
-     * Set the relation for scorecards
+     * Set the relation for districts
      */
     public function addDistrictRelation() {
         $this->addRelation('district');
     }
 
-    /**
-     * Set the relation for scorecards
-     */
-    public function addScorecardRelation() {
-        $this->addRelation('scorecards');
-        //    $this->addRelation('cards');
-    }
 
     /**
      * Set the relation for news
@@ -277,7 +270,6 @@ class ItemCriteria extends CDbCriteria {
     public function addAllRelations() {
         $this->with = array(); // remove existing relarions
         $this->addDistrictRelation();
-        $this->addScorecardRelation();
         $this->addEndorserRelation();
         $this->addRecommendationRelation();
         $this->addElectionResultRelation();

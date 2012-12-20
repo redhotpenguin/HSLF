@@ -17,20 +17,14 @@
  * @property string $url
  * @property string $image_url
  * @property string $personal_url
- * @property integer score
- * @property integer office_id
  * The followings are the available model relations:
  * @property District $district
  * @property Recommendation $recommendation
  * @property Recommendation $electionResult
  * @property string facebook_url
- * @property string facebook_share
  * @property string twitter_handle
- * @property string twitter_share
- * @property string hold_office
  * @property string measure_number
  * @property string friendly_name
- * @property string keywords
 
 
  */
@@ -40,7 +34,6 @@ class Item extends CBaseActiveRecord {
     public $district_type; // not part of the model, here for cgridview (admin search)
     public $district_number; // not part of the model, here for cgridview (admin search)
     public $district_display_name; // not part of the model, here for cgridview (admin search)
-    public $office_type; // not part of the model, here for cgridview (admin search)
     public $party_name; // not part of the model, here for cgridview (admin search)
 
     /**
@@ -67,23 +60,22 @@ class Item extends CBaseActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('district_id, item, recommendation_id, office_id, date_published, published, url', 'required'),
-            array('district_id, recommendation_id, score, party_id', 'numerical', 'integerOnly' => true),
+            array('district_id, item, recommendation_id, date_published, published, url', 'required'),
+            array('district_id, recommendation_id, party_id', 'numerical', 'integerOnly' => true),
             array('item_type, twitter_handle', 'length', 'max' => 128),
-            array('facebook_share, friendly_name', 'length', 'max' => 1024),
+            array('friendly_name', 'length', 'max' => 1024),
             array('measure_number', 'length', 'max' => 24),
-            array('twitter_share', 'length', 'max' => 140),
             array('url', 'length', 'max' => 500),
             array('personal_url, facebook_url', 'length', 'max' => 2048),
             array('personal_url, facebook_url', 'url'),
-            array('published, hold_office', 'length', 'max' => 16),
+            array('published', 'length', 'max' => 16),
             array('date_published', 'date', 'format' => 'yyyy-M-d H:m:s'),
             array('next_election_date', 'date', 'format' => 'yyyy-M-d'),
-            array('next_election_date, detail, url, image_url, keywords, tenant_id', 'safe'),
+            array('next_election_date, detail, url, image_url, tenant_id', 'safe'),
             array('url', 'unique_url'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, district_id, item, item_type, recommendation_id, next_election_date, detail, date_published, published, party_id, url, image_url, election_result_id, district_number, district_type,district_display_name, state_id, personal_url, score, office_type, party, facebook_url, facebook_share, twitter_handle, twitter_share, hold_office, measure_number, friendly_name,keywords', 'safe', 'on' => 'search'),
+            array('id, district_id, item, item_type, recommendation_id, next_election_date, detail, date_published, published, party_id, url, image_url, election_result_id, district_number, district_type,district_display_name, state_id, personal_url, party, facebook_url, twitter_handle, measure_number, friendly_name', 'safe', 'on' => 'search'),
         );
     }
 
@@ -97,10 +89,6 @@ class Item extends CBaseActiveRecord {
             'district' => array(self::BELONGS_TO, 'District', 'district_id'),
             'recommendation' => array(self::BELONGS_TO, 'Recommendation', 'recommendation_id'),
             'itemNews' => array(self::HAS_MANY, 'ItemNews', 'item_id'),
-            'scorecards' => array(self::HAS_MANY, 'Scorecard', 'item_id'),
-            'cards' => array(self::MANY_MANY, 'ScorecardItem',
-                'scorecard(item_id, scorecard_item_id)'),
-            'office' => array(self::BELONGS_TO, 'Office', 'office_id'),
             'party' => array(self::BELONGS_TO, 'Party', 'party_id'),
             //'endorsers' => array(self::MANY_MANY, 'Endorser',
             //'endorser_item(endorser_id, item_id)'),
@@ -129,11 +117,6 @@ class Item extends CBaseActiveRecord {
             'party_id' => 'Party',
             'url' => 'URL',
             'image_url' => 'Image',
-            'office_id' => 'Office',
-            'office_type' => 'Office',
-            'facebook_share' => 'Facebook Share Text',
-            'twitter_share' => 'Twitter Share Text',
-            'keywords' => 'Keywords'
         );
     }
 
@@ -144,10 +127,10 @@ class Item extends CBaseActiveRecord {
     public function search() {
         $criteria = new CDbCriteriaInsensitive();
 
-        $criteria->with = array('district', 'office', 'party');
+        $criteria->with = array('district',  'party');
 
         // search by relationship (district)
-        if ($this->district_number || $this->district_type || $this->district_display_name || $this->state_id || $this->office_type || $this->party) {
+        if ($this->district_number || $this->district_type || $this->district_display_name || $this->state_id  || $this->party) {
             $criteria->together = true;
             // Join the 'district' table
             if ($this->district_number)
@@ -159,9 +142,6 @@ class Item extends CBaseActiveRecord {
 
             if ($this->district_display_name)
                 $criteria->compare('district.display_name', $this->district_display_name, true);
-
-            if ($this->office_type)
-                $criteria->compare('office.name', $this->office_type, false);
 
             if ($this->party)
                 $criteria->compare('party.name', $this->party, false);
@@ -217,10 +197,6 @@ class Item extends CBaseActiveRecord {
                             'district_number' => array(
                                 'asc' => 'district.number ASC',
                                 'desc' => 'district.number DESC',
-                            ),
-                            'office_type' => array(
-                                'asc' => 'office.name ASC',
-                                'desc' => 'office.name DESC',
                             ),
                             '*',
                     ))

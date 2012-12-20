@@ -28,7 +28,7 @@ class ItemController extends Controller {
 
         return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete', 'exportCSV', 'upload', 'ajax', 'exportScorecardCSV'),
+                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete', 'exportCSV', 'upload', 'ajax'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -71,49 +71,6 @@ class ItemController extends Controller {
 
 
             $model->save();
-
-            // savescorecards
-
-            $r = $model->validate();
-
-
-            $save = $model->save();
-            if ($save == false) {
-                $this->render('create', array(
-                    'model' => $model,
-                    'endorser_list' => Endorser::model()->findAll(array('order' => 'name')),
-                ));
-                return;
-            }
-
-            // savescorecards
-            if ($scorecard_item_ids = getPost('scorecards')) {
-
-                $scorecard_model = new Scorecard();
-                foreach ($scorecard_item_ids as $scorecard_item_id => $vote_id) {
-
-                    $scorecard = $scorecard_model->findByAttributes(array(
-                        "item_id" => $model->id,
-                        "scorecard_item_id" => $scorecard_item_id
-                            ));
-
-                    if ($scorecard) { // update or delete existing scorecard 
-                        if (!$vote_id)
-                            $scorecard->delete();
-
-
-                        $scorecard->vote_id = $vote_id;
-                        $scorecard->save();
-                    } else { // insert new scorecard
-                        if (!$vote_id)
-                            continue;
-
-                        $scorecard_model = new Scorecard();
-                        $scorecard_model->attributes = array('item_id' => $model->id, 'scorecard_item_id' => $scorecard_item_id, 'vote_id' => $vote_id);
-                        $scorecard_model->save();
-                    }
-                }
-            }
 
             $endorser_ids = getPost('endorsers');
             // if any endorsers are selected
@@ -160,9 +117,6 @@ class ItemController extends Controller {
         if (!$model->recommendation_id)
             $model->recommendation_id = Recommendation::model()->findByAttributes(array('value' => 'N/A'))->id;
 
-        if (!$model->election_result_id)
-            $model->election_result_id = Recommendation::model()->findByAttributes(array('value' => 'N/A'))->id;
-
 
         if (Yii::app()->request->isPostRequest) {
             $model->attributes = $_POST['Item'];
@@ -187,34 +141,6 @@ class ItemController extends Controller {
                     $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
             }
 
-            // save scorecards
-            if ($scorecard_item_ids = getPost('scorecards')) {
-
-                $scorecard_model = new Scorecard();
-                foreach ($scorecard_item_ids as $scorecard_item_id => $vote_id) {
-
-                    $scorecard = $scorecard_model->findByAttributes(array(
-                        "item_id" => $id,
-                        "scorecard_item_id" => $scorecard_item_id
-                            ));
-
-                    if ($scorecard) { // update or delete existing scorecard 
-                        if (!$vote_id)
-                            $scorecard->delete();
-
-
-                        $scorecard->vote_id = $vote_id;
-                        $scorecard->save();
-                    } else { // insert new scorecard
-                        if (!$vote_id)
-                            continue;
-
-                        $scorecard_model = new Scorecard();
-                        $scorecard_model->attributes = array('item_id' => $id, 'scorecard_item_id' => $scorecard_item_id, 'vote_id' => $vote_id);
-                        $scorecard_model->save();
-                    }
-                }
-            }
 
             $endorser_ids = getPost('endorsers');
             // if any endorsers are selected
@@ -358,18 +284,6 @@ class ItemController extends Controller {
         Yii::app()->getRequest()->sendFile('items.csv', $content, "text/csv", false);
     }
 
-    /**
-     * Export scorecards to CSV
-     */
-    public function actionExportScorecardCSV() {
-        Yii::import('ext.csv.ESCVExport');
-
-        $csv = new ESCVExport(Scorecard::model()->findAll());
-
-
-        $content = $csv->toCSV();
-        Yii::app()->getRequest()->sendFile('scorecard.csv', $content, "text/csv", false);
-    }
 
     /**
      * Handle ajax requests for /admin/item/ajax
@@ -391,15 +305,6 @@ class ItemController extends Controller {
                 else
                     echo $validated_url;
 
-                break;
-
-
-            case 'getScorecardTable':
-                if (getParam('id')) {
-                    $item = Item::model()->findByPk(getParam('id'));
-                    $this->renderPartial('_scorecardTable', array('model' => $item, 'office_id' => getParam('office_id')));
-                }else
-                    $this->renderPartial('_scorecardTable', array('office_id' => getParam('office_id')));
                 break;
 
             default:

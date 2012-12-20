@@ -2,7 +2,7 @@
 
 class ItemsAPI implements IAPI {
 
-    private $allIncludes = array('districts', 'scorecards', 'endorsers', 'recommendations', 'news', 'offices', 'parties');
+    private $allIncludes = array('districts', 'endorsers', 'recommendations', 'news', 'parties');
     private $item;
 
     public function __construct() {
@@ -95,7 +95,7 @@ class ItemsAPI implements IAPI {
     public function getSingle($tenantId, $id, $arguments = array()) {
         $this->item->sessionTenantId = $tenantId;
         // todo: find better way to do this
-        $this->item = $this->item->with(array('district', 'recommendation', 'itemNews', 'scorecards', 'cards', 'office', 'party'))->findByPk($id);
+        $this->item = $this->item->with(array('district', 'recommendation', 'itemNews',  'party'))->findByPk($id);
 
         if ($this->item != false)
             $result = $this->itemWrapper($this->item, $this->allIncludes);
@@ -152,11 +152,6 @@ class ItemsAPI implements IAPI {
             $itemCriteria->addDistrictRelation();
         }
 
-        if (array_key_exists('scorecards', $includeList)) {
-            array_push($includes, 'scorecards');
-            $itemCriteria->addScorecardRelation();
-        }
-
         if (array_key_exists('endorsers', $includeList)) {
             array_push($includes, 'endorsers');
             $itemCriteria->addEndorserRelation();
@@ -170,11 +165,6 @@ class ItemsAPI implements IAPI {
         if (array_key_exists('news', $includeList)) {
             array_push($includes, 'news');
             $itemCriteria->addNewsRelation();
-        }
-
-        if (array_key_exists('offices', $includeList)) {
-            array_push($includes, 'offices');
-            $itemCriteria->addOfficeRelation();
         }
 
         if (array_key_exists('parties', $includeList)) {
@@ -191,7 +181,6 @@ class ItemsAPI implements IAPI {
      * @return array wrapped item
      */
     private function itemWrapper(Item $item, $includes = array()) {
-        $scorecards = array();
         $endorsers = array();
         $i = 0;
 
@@ -205,15 +194,10 @@ class ItemsAPI implements IAPI {
             'image_url' => $item->image_url,
             'url' => $item->url,
             'personal_url' => $item->personal_url,
-            'score' => $item->score,
             'facebook_url' => $item->facebook_url,
-            'facebook_share' => $item->facebook_share,
             'twitter_handle' => $item->twitter_handle,
-            'twitter_share' => $item->twitter_share,
-            'hold_office' => $item->hold_office,
             'measure_number' => $item->measure_number,
             'friendly_name' => $item->friendly_name,
-            'keywords' => $item->keywords,
         );
 
         if (in_array('endorsers', $includes)) {
@@ -242,23 +226,6 @@ class ItemsAPI implements IAPI {
             $wrapped_item['endorsers'] = $endorsers;
         }
 
-        if (in_array('scorecards', $includes)) {
-            $scorecards = array();
-            $i = 0;
-            foreach ($item->scorecards as $scorecard) {
-                array_push($scorecards, array(
-                    'id' => $scorecard->id,
-                    'name' => $item->cards[$i]->name,
-                    'description' => $item->cards[$i]->description,
-                    'vote' => $scorecard->vote->name,
-                    'vote_icon' => $scorecard->vote->icon,
-                ));
-                ++$i;
-            }
-
-            $wrapped_item['scorecards'] = $scorecards;
-        }
-
         if (in_array('districts', $includes)) {
             $wrapped_item['districts'] = array($item->district);
         }
@@ -273,11 +240,6 @@ class ItemsAPI implements IAPI {
 
         if (in_array('parties', $includes)) {
             $wrapped_item['party'] = $item->party;
-        }
-
-
-        if (in_array('offices', $includes)) {
-            $wrapped_item['office'] = $item->office;
         }
 
         return $wrapped_item;

@@ -51,10 +51,6 @@ $this->widget('bootstrap.widgets.BootDetailView', array(
             'value' => $model->party->name
         ),
         array(
-            'label' => 'Office',
-            'value' => $model->office->name
-        ),
-        array(
             'name' => 'image_url',
             'label' => 'Image',
             'value' => "<a href='$model->image_url' target='_blank'> $model->image_url </a>",
@@ -62,30 +58,22 @@ $this->widget('bootstrap.widgets.BootDetailView', array(
         ),
         'url',
         array(
-            'label' => 'Election result',
-            'value' => $model->electionResult->value
-        ),
-        array(
             'name' => 'personal_url',
             'type' => 'raw',
             'value' => CHtml::link($model->personal_url, $model->personal_url, array('target' => '_blank')),
         ),
-        'hold_office',
         array(
             'name' => 'facebook_url',
             'type' => 'raw',
             'value' => CHtml::link($model->facebook_url, $model->facebook_url, array('target' => '_blank')),
         ),
-        'facebook_share',
         array(
             'name' => 'twitter_handle',
             'type' => 'raw',
             'value' => CHtml::link($model->twitter_handle, "https://twitter.com/" . $model->twitter_handle, array('target' => '_blank')),
         ),
-        'twitter_share',
         'friendly_name',
         'measure_number',
-        'keywords',
         'published',
         'date_published',
     ),

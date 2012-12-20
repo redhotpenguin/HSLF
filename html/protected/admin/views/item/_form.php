@@ -216,13 +216,6 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
         echo $form->error($model, 'facebook_url');
         ?>
 
-        <?php
-        echo $form->labelEx($model, 'facebook_share');
-        echo $form->textField($model, 'facebook_share', array('size' => 50, 'maxlength' => 1041, 'placeholder' => 'Facebook Share Text'));
-        ?>
-        <?php
-        echo $form->error($model, 'facebook_share');
-        ?>
     </div>
 
 
@@ -235,59 +228,9 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
         echo $form->error($model, 'twitter_handle');
         ?>
 
-        <?php
-        echo $form->labelEx($model, 'twitter_share');
-        echo $form->textField($model, 'twitter_share', array('size' => 50, 'maxlength' => 1041, 'placeholder' => 'Twitter Share Text'));
-        ?>
-        <?php
-        echo $form->error($model, 'twitter_share');
-        ?>
     </div>
-
-
-    <hr/>
     
-    <div class="right_col">
-        <?php
-        echo $form->labelEx($model, 'score');
-
-        $this->widget('ext.UIWidgets.SliderWidget', array(
-            'model' => $model,
-            'attribute' => 'score',
-            'options' => array(
-                'min' => 0,
-                'max' => 101,
-                'width' => 200
-            ),
-        ));
-
-        echo $form->error($model, 'score');
-        ?>
-    </div>
-
     <div class="clearfix"></div>
-
-    <hr/>
-
-    <div class="left_col">
-        <?php
-        $office_list = CHtml::listData(Office::model()->findAll(), 'id', 'name');
-
-        echo $form->labelEx($model, 'office_id');
-        echo $form->dropDownList($model, 'office_id', $office_list);
-        echo $form->error($model, 'office_id');
-        ?>
-    </div>
-
-    <div class="right_col">
-        <?php
-        echo $form->labelEx($model, 'hold_office');
-        echo $form->dropDownList($model, 'hold_office', array('na' => 'Not Applicable', 'no' => 'No', 'yes' => 'Yes',));
-        echo $form->error($model, 'hold_office');
-        ?>
-    </div>
-
-
 
     <hr/>
 
@@ -298,33 +241,6 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
     ));
     ?>
 
-    <?php
-    if (ScorecardItem::model()->count() > 0):
-        ?>
-
-        <br/>
-        <label>Scorecard</label>
-        <span id="scorecard_spin" class="ajax_wheel_spin"><img src="/themes/dashboard/img/64_orange_wheel.gif"/></span>
-        <div id ="dynamic_scorecard_table"> 
-            <?php
-            //  endif;
-            ?>
-        </div>
-        <?php
-    endif;
-    ?>
-
-
-    <hr/>
-
-    <div class="">
-        <?php echo $form->labelEx($model, 'keywords'); ?>
-        <?php echo $form->textField($model, 'keywords', array('class' => 'span7', 'placeholder'=>'Revenue schools education teachers students  class size')); ?>
-        <?php echo $form->error($model, 'keywords'); ?>
-    </div>
-
-
-    <hr/>
     <div class="left_col">
         <?php echo $form->labelEx($model, 'date_published'); ?>
         <?php
