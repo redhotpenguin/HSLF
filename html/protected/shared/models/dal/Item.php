@@ -16,7 +16,6 @@
  * @property string $party_id
  * @property string $url
  * @property string $image_url
- * @property integer $election_result_id
  * @property string $personal_url
  * @property integer score
  * @property integer office_id
@@ -68,8 +67,8 @@ class Item extends CBaseActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('district_id, item, recommendation_id, office_id, date_published, published, election_result_id, url', 'required'),
-            array('district_id, recommendation_id, election_result_id, score, party_id', 'numerical', 'integerOnly' => true),
+            array('district_id, item, recommendation_id, office_id, date_published, published, url', 'required'),
+            array('district_id, recommendation_id, score, party_id', 'numerical', 'integerOnly' => true),
             array('item_type, twitter_handle', 'length', 'max' => 128),
             array('facebook_share, friendly_name', 'length', 'max' => 1024),
             array('measure_number', 'length', 'max' => 24),
@@ -97,7 +96,6 @@ class Item extends CBaseActiveRecord {
         return array(
             'district' => array(self::BELONGS_TO, 'District', 'district_id'),
             'recommendation' => array(self::BELONGS_TO, 'Recommendation', 'recommendation_id'),
-            'electionResult' => array(self::BELONGS_TO, 'Recommendation', 'election_result_id'),
             'itemNews' => array(self::HAS_MANY, 'ItemNews', 'item_id'),
             'scorecards' => array(self::HAS_MANY, 'Scorecard', 'item_id'),
             'cards' => array(self::MANY_MANY, 'ScorecardItem',
@@ -131,7 +129,6 @@ class Item extends CBaseActiveRecord {
             'party_id' => 'Party',
             'url' => 'URL',
             'image_url' => 'Image',
-            'election_result_id' => 'Election Result',
             'office_id' => 'Office',
             'office_type' => 'Office',
             'facebook_share' => 'Facebook Share Text',
@@ -179,8 +176,6 @@ class Item extends CBaseActiveRecord {
         $criteria->compare('published', $this->published, true);
         $criteria->compare('party_id', $this->party_id, true);
         $criteria->compare('url', $this->url, true);
-        $criteria->compare('image_url', $this->image_url, true);
-        $criteria->compare('election_result_id', $this->election_result_id);
 
 
         $criteria->compare('item_type', $this->item_type);

@@ -8,7 +8,7 @@
         <div class="hero-unit">
             <h1>Dashboard</h1>
             <p>Welcome to the administration dashboard.</p>
-            <p> <b><?php echo $total_item_number; ?></b> <a href="/admin/item/admin/">Items</a></p>
+            <p> <b><?php echo $total_item_number; ?></b> <a href="/admin/item/admin/">Ballot Items</a></p>
             <p> <b><?php echo $total_user_number; ?></b> <a href="/admin/mobileUser/">Mobile Users</a></p>
 
         </div>

@@ -2,7 +2,7 @@
 
 class ItemsAPI implements IAPI {
 
-    private $allIncludes = array('districts', 'scorecards', 'endorsers', 'recommendations', 'news', 'electionResults', 'offices', 'parties');
+    private $allIncludes = array('districts', 'scorecards', 'endorsers', 'recommendations', 'news', 'offices', 'parties');
     private $item;
 
     public function __construct() {
@@ -95,7 +95,7 @@ class ItemsAPI implements IAPI {
     public function getSingle($tenantId, $id, $arguments = array()) {
         $this->item->sessionTenantId = $tenantId;
         // todo: find better way to do this
-        $this->item = $this->item->with(array('district', 'recommendation', 'electionResult', 'itemNews', 'scorecards', 'cards', 'office', 'party'))->findByPk($id);
+        $this->item = $this->item->with(array('district', 'recommendation', 'itemNews', 'scorecards', 'cards', 'office', 'party'))->findByPk($id);
 
         if ($this->item != false)
             $result = $this->itemWrapper($this->item, $this->allIncludes);
@@ -165,11 +165,6 @@ class ItemsAPI implements IAPI {
         if (array_key_exists('recommendations', $includeList)) {
             array_push($includes, 'recommendations');
             $itemCriteria->addRecommendationRelation();
-        }
-
-        if (array_key_exists('electionResults', $includeList)) {
-            array_push($includes, 'electionResults');
-            $itemCriteria->addElectionResultRelation();
         }
 
         if (array_key_exists('news', $includeList)) {
@@ -275,11 +270,6 @@ class ItemsAPI implements IAPI {
         if (in_array('recommendations', $includes)) {
             $wrapped_item['recommendation'] = $item->recommendation;
         }
-
-        if (in_array('electionResults', $includes)) {
-            $wrapped_item['electionResult'] = $item->electionResult;
-        }
-
 
         if (in_array('parties', $includes)) {
             $wrapped_item['party'] = $item->party;

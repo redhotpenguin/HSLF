@@ -246,15 +246,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
 
 
     <hr/>
-
-    <div class="left_col">
-        <?php
-        echo $form->labelEx($model, 'election_result_id');
-        echo $form->dropDownList($model, 'election_result_id', $recommendation_list);
-        echo $form->error($model, 'election_result_id');
-        ?>
-    </div>
-
+    
     <div class="right_col">
         <?php
         echo $form->labelEx($model, 'score');
