@@ -1,6 +1,6 @@
 <?php
 
-class EndorserController extends Controller {
+class OrganizationController extends Controller {
 
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -49,13 +49,13 @@ class EndorserController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new Endorser;
+        $model = new Organization;
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['Endorser'])) {
-            $model->attributes = $_POST['Endorser'];
+        if (isset($_POST['Organization'])) {
+            $model->attributes = $_POST['Organization'];
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->id));
         }
@@ -76,8 +76,8 @@ class EndorserController extends Controller {
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['Endorser'])) {
-            $model->attributes = $_POST['Endorser'];
+        if (isset($_POST['Organization'])) {
+            $model->attributes = $_POST['Organization'];
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->id));
         }
@@ -109,7 +109,7 @@ class EndorserController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('Endorser');
+        $dataProvider = new CActiveDataProvider('Organization');
         $this->render('index', array(
             'dataProvider' => $dataProvider,
         ));
@@ -119,10 +119,10 @@ class EndorserController extends Controller {
      * Manages all models.
      */
     public function actionAdmin() {
-        $model = new Endorser('search');
+        $model = new Organization('search');
         $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['Endorser']))
-            $model->attributes = $_GET['Endorser'];
+        if (isset($_GET['Organization']))
+            $model->attributes = $_GET['Organization'];
 
         $this->render('admin', array(
             'model' => $model,
@@ -135,7 +135,7 @@ class EndorserController extends Controller {
      * @param integer the ID of the model to be loaded
      */
     public function loadModel($id) {
-        $model = Endorser::model()->findByPk($id);
+        $model = Organization::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
@@ -146,7 +146,7 @@ class EndorserController extends Controller {
      * @param CModel the model to be validated
      */
     protected function performAjaxValidation($model) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'endorser-form') {
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'organization-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
@@ -158,11 +158,11 @@ class EndorserController extends Controller {
     public function actionExportCSV() {
         Yii::import('ext.csv.ESCVExport');
 
-        $csv = new ESCVExport(Endorser::model()->findAll());
+        $csv = new ESCVExport(Organization::model()->findAll());
 
 
         $content = $csv->toCSV();
-        Yii::app()->getRequest()->sendFile('endorsers.csv', $content, "text/csv", false);
+        Yii::app()->getRequest()->sendFile('organizations.csv', $content, "text/csv", false);
     }
 
 }

@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This is the model class for table "endorser".
+ * This is the model class for table "organization".
  *
- * The followings are the available columns in table 'endorser':
+ * The followings are the available columns in table 'organization':
  * @property integer $id
  * @property string $name
  * @property string $description
@@ -15,12 +15,12 @@
  * @property string $facebook_share
  * @property string $twitter_share
  */
-class Endorser extends CBaseActiveRecord {
+class Organization extends CBaseActiveRecord {
 
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
-     * @return Endorser the static model class
+     * @return Organization the static model class
      */
     public static function model($className = __CLASS__) {
         return parent::model($className);
@@ -30,7 +30,7 @@ class Endorser extends CBaseActiveRecord {
      * @return string the associated database table name
      */
     public function tableName() {
-        return 'endorser';
+        return 'organization';
     }
 
     /**
@@ -59,7 +59,7 @@ class Endorser extends CBaseActiveRecord {
         // class name for the relations automatically generated below.
         return array(
             'items' => array(self::MANY_MANY, 'Item',
-                'endorser_item(endorser_id, item_id)'),
+                'organization_item(organization_id, item_id)'),
         );
     }
 

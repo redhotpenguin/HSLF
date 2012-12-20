@@ -36,7 +36,7 @@ class ItemCriteria extends CDbCriteria {
                 return false;
 
 
-            $this->addCondition('endorsers.id = :endorserID ', 'AND');
+            $this->addCondition('organizations.id = :endorserID ', 'AND');
             $this->addCondition('position !=:position', 'AND');
 
             $this->params[':endorserID'] = $taxonomyID;
@@ -211,15 +211,15 @@ class ItemCriteria extends CDbCriteria {
     }
 
     /**
-     * Set the relation for endorsers
+     * Set the relation for organizaitons
      */
-    public function addEndorserRelation() {
-        $withEndorsers = array(
+    public function addOrganizationRelation() {
+        $withOrganizations = array(
             'together' => true,
             'joinType' => 'LEFT JOIN',
         );
 
-        $this->addRelation('endorsers', $withEndorsers);
+        $this->addRelation('organizations', $withOrganizations);
     }
 
     /**

@@ -1,11 +1,11 @@
 <?php
 $this->breadcrumbs = array(
-    'Endorsers' => array('index'),
+    'Organizations' => array('index'),
     'Manage',
 );
 
 $this->menu = array(
-    array('label' => 'Add an endorser', 'url' => array('create')),
+    array('label' => 'Add an organization', 'url' => array('create')),
     array('label' => 'Export to CSV file', 'url' => array('exportCSV')),
 );
 
@@ -15,7 +15,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$.fn.yiiGridView.update('endorser-grid', {
+	$.fn.yiiGridView.update('organization-grid', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -23,7 +23,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Endorsers</h1>
+<h1>Manage Organizations</h1>
 
 <p>
     You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>

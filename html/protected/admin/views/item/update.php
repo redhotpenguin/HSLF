@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs = array(
-    'Items' => array('index'),
+    'Ballot Items' => array('index'),
     $model->item => array('view', 'id' => $model->id),
     'Update',
 );
@@ -22,7 +22,7 @@ if (getParam('updated') == 1) {
 
 echo $this->renderPartial('_form', array(
     'model' => $model,
-    'endorser_list' => $endorser_list,
+    'organization_list' => $organization_list,
         )
 );
 ?>

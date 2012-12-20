@@ -2,7 +2,7 @@
 
 class ItemsAPI implements IAPI {
 
-    private $allIncludes = array('districts', 'endorsers', 'recommendations', 'news', 'parties');
+    private $allIncludes = array('districts', 'organizations', 'recommendations', 'news', 'parties');
     private $item;
 
     public function __construct() {
@@ -152,9 +152,9 @@ class ItemsAPI implements IAPI {
             $itemCriteria->addDistrictRelation();
         }
 
-        if (array_key_exists('endorsers', $includeList)) {
-            array_push($includes, 'endorsers');
-            $itemCriteria->addEndorserRelation();
+        if (array_key_exists('organizations', $includeList)) {
+            array_push($includes, 'organizations');
+            $itemCriteria->addOrganizationRelation();
         }
 
         if (array_key_exists('recommendations', $includeList)) {
@@ -181,7 +181,7 @@ class ItemsAPI implements IAPI {
      * @return array wrapped item
      */
     private function itemWrapper(Item $item, $includes = array()) {
-        $endorsers = array();
+        $organizations = array();
         $i = 0;
 
         $wrapped_item = array(
@@ -202,30 +202,30 @@ class ItemsAPI implements IAPI {
             'last_name' => $item->last_name,
         );
 
-        if (in_array('endorsers', $includes)) {
+        if (in_array('organizations', $includes)) {
             $i = 0;
-            $endorsers = array();
+            $organizations = array();
 
 
-            foreach ($item->itemEndorsers as $itemEndorsers) {
+            foreach ($item->itemOrganizations as $itemOrganizations) {
 
-                array_push($endorsers, array(
-                    'id' => $itemEndorsers->endorser->id,
-                    'position' => $itemEndorsers->position,
-                    'name' => $itemEndorsers->endorser->name,
-                    'description' => $itemEndorsers->endorser->description,
-                    'website' => $itemEndorsers->endorser->website,
-                    'image_url' => $itemEndorsers->endorser->image_url,
-                    'display_name' => $itemEndorsers->endorser->display_name,
-                    'list_name' => $itemEndorsers->endorser->list_name,
-                    'slug' => $itemEndorsers->endorser->slug,
-                    'facebook_share' => $itemEndorsers->endorser->facebook_share,
-                    'twitter_share' => $itemEndorsers->endorser->twitter_share,
+                array_push($organizations, array(
+                    'id' => $itemOrganizations->organization->id,
+                    'position' => $itemOrganizations->position,
+                    'name' => $itemOrganizations->organization->name,
+                    'description' => $itemOrganizations->organization->description,
+                    'website' => $itemOrganizations->organization->website,
+                    'image_url' => $itemOrganizations->organization->image_url,
+                    'display_name' => $itemOrganizations->organization->display_name,
+                    'list_name' => $itemOrganizations->organization->list_name,
+                    'slug' => $itemOrganizations->organization->slug,
+                    'facebook_share' => $itemOrganizations->organization->facebook_share,
+                    'twitter_share' => $itemOrganizations->organization->twitter_share,
                 ));
                 ++$i;
             }
 
-            $wrapped_item['endorsers'] = $endorsers;
+            $wrapped_item['organizations'] = $organizations;
         }
 
         if (in_array('districts', $includes)) {

@@ -1,16 +1,16 @@
 <?php
 $this->breadcrumbs = array(
-    'Endorsers',
+    'Organizations',
 );
 
 $this->menu = array(
-    array('label' => 'Add an endorser', 'url' => array('create')),
-    array('label' => 'Manage endorsers', 'url' => array('admin')),
+    array('label' => 'Add an organization', 'url' => array('create')),
+    array('label' => 'Manage organizations', 'url' => array('admin')),
     array('label' => 'Export to CSV file', 'url' => array('exportCSV')),
 );
 ?>
 
-<h1>Endorsers</h1>
+<h1>Organizations</h1>
 
 <?php
 $this->widget('bootstrap.widgets.BootGridView', array(

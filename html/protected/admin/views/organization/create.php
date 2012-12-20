@@ -1,14 +1,14 @@
 <?php
 $this->breadcrumbs=array(
-	'Endorsers'=>array('index'),
+	'Organizations'=>array('index'),
 	'Create',
 );
 
 $this->menu=array(
-	array('label'=>'Manage endorsers', 'url'=>array('admin')),
+	array('label'=>'Manage organizations', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Add an Endorser</h1>
+<h1>Add an Organization</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

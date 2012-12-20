@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs = array(
-    'Items' => array('index'),
+    'Ballot Items' => array('index'),
     'Create',
 );
 
@@ -9,11 +9,11 @@ $this->menu = array(
 );
 ?>
 
-<h1>Add an item</h1>
+<h1>Add a Ballot Item</h1>
 
 <?php
 echo $this->renderPartial('_form', array(
     'model' => $model,
-    'endorser_list' => $endorser_list,
+    'organization_list' => $organization_list,
 ));
 ?>

@@ -1,15 +1,15 @@
 <?php
 $this->breadcrumbs = array(
-    'Items' => array('index'),
+    'Ballot Items' => array('index'),
     'Manage',
 );
 
 $this->menu = array(
-    array('label' => 'Create an item', 'url' => array('create')),
+    array('label' => 'Create a ballot item', 'url' => array('create')),
     array('label' => 'Export to CSV', 'url' => array('exportCSV')));
 ?>
 
-<h1>Manage Items</h1>
+<h1>Manage Ballot Items</h1>
 
 <?php
 $state_list = array('' => 'All') + CHtml::listData(State::model()->findAll(), 'id', 'name');

@@ -52,7 +52,7 @@
                         '---',
                         array('label' => 'Publishing', 'url' => '#', 'items' => array(
                                 array('label' => 'Ballot Items', 'url' => array('/item/admin'), 'visible' => !Yii::app()->user->isGuest),
-                                array('label' => 'Organizations', 'url' => array('/endorser/admin/'), 'visible' => !Yii::app()->user->isGuest),
+                                array('label' => 'Organizations', 'url' => array('/organization/admin/'), 'visible' => !Yii::app()->user->isGuest),
                                 array('label' => 'Scorecard Items', 'url' => array('/scorecardItem/admin'), 'visible' => !Yii::app()->user->isGuest),
                                 array('label' => 'Votes', 'url' => array('/vote/admin'), 'visible' => !Yii::app()->user->isGuest),
                                 '',

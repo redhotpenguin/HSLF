@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs = array(
-    'Items' => array('index'),
+    'Ballot Items' => array('index'),
     $model->item,
 );
 

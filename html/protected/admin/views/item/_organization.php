@@ -1,5 +1,5 @@
-<label>Endorsers</label>
-<div id="endorsers">
+<label>Organizations</label>
+<div id="organizations">
     <table class="table table-bordered table-striped ">
         <thead>
             <tr>
@@ -12,34 +12,34 @@
             <?php
             
             // move to model:
-            $position_list = ItemEndorser::$positions;
+            $position_list = ItemOrganization::$positions;
             
-            foreach ($endorser_list as $endorser):
+            foreach ($organization_list as $organization):
 
-                $itemEndorser = ItemEndorser::model()->findByAttributes(array(
+                $itemOrganization = ItemOrganization::model()->findByAttributes(array(
                     "item_id" => $model->id,
-                    "endorser_id" => $endorser->id
+                    "organization_id" => $organization->id
                         ));
                 ?>
                 <tr>
                     <td> 
                         <label class="checkbox">
 
-                            <?php echo $endorser->name; ?>
+                            <?php echo $organization->name; ?>
                         </label>
                     </td>
                     <td>
                         <?php
-                        echo CHtml::link(substr(strip_tags($endorser->description), 0, 100) . '...', Chtml::normalizeUrl(array('endorser/update', 'id' => $endorser->id)), array('target' => '_blank'));
+                        echo CHtml::link(substr(strip_tags($organization->description), 0, 100) . '...', Chtml::normalizeUrl(array('organization/update', 'id' => $organization->id)), array('target' => '_blank'));
                         ?>
                     </td>
 
                     <td>
                         <?php
-                        if ($itemEndorser) {
-                            echo CHtml::dropDownList("endorsers[{$itemEndorser->endorser->id}]", $itemEndorser->position, $position_list);
+                        if ($itemOrganization) {
+                            echo CHtml::dropDownList("organizations[{$itemOrganization->organization->id}]", $itemOrganization->position, $position_list);
                         } else {
-                            echo CHtml::dropDownList("endorsers[{$endorser->id}]", 0, $position_list);
+                            echo CHtml::dropDownList("organizations[{$organization->id}]", 0, $position_list);
                         }
                         ?>
 

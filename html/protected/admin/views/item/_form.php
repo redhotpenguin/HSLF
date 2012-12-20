@@ -1,8 +1,6 @@
 <?php
 if ($model->isNewRecord) {
 
-
-
     $ns = "var ns  = {site_url: '" . getSetting('site_url') . "',share_url: '" . getTenantSetting('web_app_url') . "' };";
 } else {
     $ns = "var ns  = {site_url: '" . getSetting('site_url') . "',share_url: '" . getTenantSetting('web_app_url') . "', item_id: " . $model->id . " };";
@@ -254,9 +252,9 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
     <hr/>
 
     <?php
-    echo $this->renderPartial('_endorser', array(
+    echo $this->renderPartial('_organization', array(
         'model' => $model,
-        'endorser_list' => $endorser_list
+        'organization_list' => $organization_list
     ));
     ?>
 

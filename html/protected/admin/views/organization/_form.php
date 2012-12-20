@@ -2,7 +2,7 @@
 
     <?php
     $form = $this->beginWidget('CActiveForm', array(
-        'id' => 'endorser-form',
+        'id' => 'organization-form',
         'enableAjaxValidation' => false,
             ));
     ?>

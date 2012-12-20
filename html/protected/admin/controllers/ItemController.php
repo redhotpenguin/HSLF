@@ -72,18 +72,18 @@ class ItemController extends Controller {
 
             $model->save();
 
-            $endorser_ids = getPost('endorsers');
-            // if any endorsers are selected
-            if ($endorser_ids) {
-                // remove endorsers that are not selected ( unselected )
-                //   $model->removeEndorsersNotIn($endorser_ids);
-                // add endorsers
-                foreach ($endorser_ids as $endorser_id => $position) {
+            $organization_ids = getPost('organizations');
+            // if any organizations are selected
+            if ($organization_ids) {
+                // remove organizations that are not selected ( unselected )
+                //   $model->removeOrganizationsNotIn($organization_ids);
+                // add organizations
+                foreach ($organization_ids as $organization_id => $position) {
                     if ($position != 'na') {
-                        $model->addEndorser($endorser_id, $position);
+                        $model->addOrganization($organization_id, $position);
                     } else {
-                        // @todo: remove endorser if exist
-                        $model->removeEndorser($endorser_id);
+                        // @todo: remove organization if exist
+                        $model->removeOrganization($organization_id);
                     }
                 }
             }
@@ -97,7 +97,7 @@ class ItemController extends Controller {
 
         $this->render('create', array(
             'model' => $model,
-            'endorser_list' => Endorser::model()->findAll(array('order' => 'name')),
+            'organization_list' => Organization::model()->findAll(array('order' => 'name')),
         ));
     }
 
@@ -142,18 +142,18 @@ class ItemController extends Controller {
             }
 
 
-            $endorser_ids = getPost('endorsers');
-            // if any endorsers are selected
-            if ($endorser_ids) {
-                // remove endorsers that are not selected ( unselected )
-                //   $model->removeEndorsersNotIn($endorser_ids);
-                // add endorsers
-                foreach ($endorser_ids as $endorser_id => $position) {
+            $organization_ids = getPost('organizations');
+            // if any organizations are selected
+            if ($organization_ids) {
+                // remove organizations that are not selected ( unselected )
+                //   $model->removeOrganizationsNotIn($organization_ids);
+                // add organizations
+                foreach ($organization_ids as $organization_id => $position) {
                     if ($position != 'na') {
-                        $model->addEndorser($endorser_id, $position);
+                        $model->addOrganization($organization_id, $position);
                     } else {
-                        // @todo: remove endorser if exist
-                        $model->removeEndorser($endorser_id);
+                        // @todo: remove organization if exist
+                        $model->removeOrganization($organization_id);
                     }
                 }
             }
@@ -165,7 +165,7 @@ class ItemController extends Controller {
 
         $this->render('update', array(
             'model' => $model,
-            'endorser_list' => Endorser::model()->findAll(array('order' => 'name')),
+            'organization_list' => Organization::model()->findAll(array('order' => 'name')),
         ));
     }
 

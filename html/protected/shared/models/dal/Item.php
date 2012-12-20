@@ -92,13 +92,11 @@ class Item extends CBaseActiveRecord {
             'recommendation' => array(self::BELONGS_TO, 'Recommendation', 'recommendation_id'),
             'itemNews' => array(self::HAS_MANY, 'ItemNews', 'item_id'),
             'party' => array(self::BELONGS_TO, 'Party', 'party_id'),
-            //'endorsers' => array(self::MANY_MANY, 'Endorser',
-            //'endorser_item(endorser_id, item_id)'),
 
-
-            'itemEndorsers' => array(self::HAS_MANY, 'ItemEndorser', 'item_id'),
-            'endorsers' => array(self::MANY_MANY, 'Endorser',
-                'endorser_item(item_id, endorser_id)'),
+            'itemOrganizations' => array(self::HAS_MANY, 'ItemOrganization', 'item_id'),
+            
+            'organizations' => array(self::MANY_MANY, 'Organization',
+                'organization_item(item_id, organization_id)'),
         );
     }
 
@@ -237,8 +235,8 @@ class Item extends CBaseActiveRecord {
             //  'property1'=>'value1',
             // 'property2'=>'value2',
             ),
-            'EndorserBehavior' => array(
-                'class' => 'ItemEndorserBehavior',
+            'OrganizationBehavior' => array(
+                'class' => 'ItemOrganizationBehavior',
             ),
             'MultiTenant' => array(
                 'class' => 'MultiTenantBehavior')

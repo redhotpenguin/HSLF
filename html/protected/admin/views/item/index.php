@@ -1,17 +1,17 @@
 <?php
 $this->breadcrumbs = array(
-    'Items',
+    'Balot Items',
 );
 
 $this->menu = array(
-    array('label' => 'Add an item', 'url' => array('create')),
+    array('label' => 'Add a ballot item', 'url' => array('create')),
     array('label' => 'Manage items', 'url' => array('admin')),
     array('label' => 'Export to CSV file', 'url' => array('exportCSV')),
     array('label' => 'Export Scorecards', 'url' => array('exportScorecardCSV')),
 );
 ?>
 
-<h1>Items</h1>
+<h1>Ballot Items</h1>
 
 <?php
 $dataProvider->pagination->pageSize = 50;
