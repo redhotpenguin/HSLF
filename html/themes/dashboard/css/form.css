@@ -207,7 +207,7 @@ input{
     text-align: center;
 }
 
-div#endorsers{
+div#organizations{
     height:250px;
     overflow: scroll;
     overflow-x:hidden;

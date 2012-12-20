@@ -30,19 +30,19 @@ class ItemCriteria extends CDbCriteria {
      */
     public function setTaxonomy($taxonomy, $taxonomyID) {
 
-        if ($taxonomy == 'endorser') {
+        if ($taxonomy == 'organization') {
 
             if (!is_numeric($taxonomyID))
                 return false;
 
 
-            $this->addCondition('organizations.id = :endorserID ', 'AND');
+            $this->addCondition('organizations.id = :organizationID ', 'AND');
             $this->addCondition('position !=:position', 'AND');
 
-            $this->params[':endorserID'] = $taxonomyID;
+            $this->params[':organizationID'] = $taxonomyID;
             $this->params[':position'] = 'np';
 
-            $this->addEndorserRelation();
+            $this->addOrganizationRelation();
         }
     }
 
@@ -270,7 +270,7 @@ class ItemCriteria extends CDbCriteria {
     public function addAllRelations() {
         $this->with = array(); // remove existing relarions
         $this->addDistrictRelation();
-        $this->addEndorserRelation();
+        $this->addOrganizationRelation();
         $this->addRecommendationRelation();
         $this->addElectionResultRelation();
         $this->addNewsRelation();
