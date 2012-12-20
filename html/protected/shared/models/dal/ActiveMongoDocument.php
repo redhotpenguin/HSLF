@@ -216,10 +216,9 @@ abstract class ActiveMongoDocument extends CModel {
         return $result;
     }
 
-    /*
+    /**
      * count the number of documents
      */
-
     public function count() {
         $this->beforeFind();
         return $this->collection->count($this->searchAttributes);
