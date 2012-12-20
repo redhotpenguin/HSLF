@@ -217,10 +217,9 @@ class ItemsAPI implements IAPI {
                     'website' => $itemOrganizations->organization->website,
                     'image_url' => $itemOrganizations->organization->image_url,
                     'display_name' => $itemOrganizations->organization->display_name,
-                    'list_name' => $itemOrganizations->organization->list_name,
                     'slug' => $itemOrganizations->organization->slug,
-                    'facebook_share' => $itemOrganizations->organization->facebook_share,
-                    'twitter_share' => $itemOrganizations->organization->twitter_share,
+                    'facebook_url' => $itemOrganizations->organization->facebook_url,
+                    'twitter_handle' => $itemOrganizations->organization->twitter_handle,
                 ));
                 ++$i;
             }

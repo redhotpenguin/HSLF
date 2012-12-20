@@ -27,13 +27,6 @@
         ?>
     </div>
 
-    <div class="">
-        <?php
-        echo $form->labelEx($model, 'list_name');
-        echo $form->textField($model, 'list_name', array('size' => 60, 'class' => 'span9'));
-        echo $form->error($model, 'list_name');
-        ?>
-    </div>
 
     <div class="">
         <?php
@@ -79,18 +72,18 @@
 
     <div class="">
         <?php
-        echo $form->labelEx($model, 'facebook_share');
-        echo $form->textarea($model, 'facebook_share', array('size' => 60, 'maxlength' => 1024, 'class' => 'span9'));
-        echo $form->error($model, 'facebook_share');
+        echo $form->labelEx($model, 'facebook_url');
+        echo $form->textarea($model, 'facebook_url', array('size' => 60, 'maxlength' => 1024, 'class' => 'span9'));
+        echo $form->error($model, 'facebook_url');
         ?>
     </div>
 
 
     <div class="">
         <?php
-        echo $form->labelEx($model, 'twitter_share');
-        echo $form->textField($model, 'twitter_share', array('size' => 60, 'maxlength' => 140, 'class' => 'span9'));
-        echo $form->error($model, 'twitter_share');
+        echo $form->labelEx($model, 'twitter_handle');
+        echo $form->textField($model, 'twitter_handle', array('size' => 60, 'maxlength' => 140, 'class' => 'span9'));
+        echo $form->error($model, 'twitter_handle');
         ?>
     </div>
 

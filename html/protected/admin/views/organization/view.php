@@ -21,7 +21,6 @@ $this->widget('zii.widgets.CDetailView', array(
         'id',
         'name',
         'display_name',
-        'list_name',
         'description',
         'slug',
         array(
@@ -34,8 +33,16 @@ $this->widget('zii.widgets.CDetailView', array(
             'type' => 'raw',
             'value' => CHtml::link($model->image_url, $model->image_url, array('target' => '_blank')),
         ),
-        'facebook_share',
-        'twitter_share'
+        array(
+            'name' => 'facebook_url',
+            'type' => 'raw',
+            'value' => CHtml::link($model->facebook_url, $model->facebook_url, array('target' => '_blank')),
+        ),
+        array(
+            'name' => 'twitter_handle',
+            'type' => 'raw',
+            'value' => CHtml::link($model->twitter_handle, 'http://www.twitter.com/'.$model->twitter_handle, array('target' => '_blank')),
+        ),
     ),
 ));
 

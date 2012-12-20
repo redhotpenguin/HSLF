@@ -10,10 +10,9 @@
  * @property string $website
  * @property string $image_url
  * @property string $display_name
- * @property string $list_name
  * @property string $slug
- * @property string $facebook_share
- * @property string $twitter_share
+ * @property string $facebook_url
+ * @property string $twitter_handle
  */
 class Organization extends CBaseActiveRecord {
 
@@ -40,14 +39,14 @@ class Organization extends CBaseActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('name, list_name, display_name, slug', 'required'),
-            array('name, list_name, slug', 'length', 'max' => 512),
+            array('name, display_name, slug', 'required'),
+            array('name, slug', 'length', 'max' => 512),
             array('website, image_url', 'length', 'max' => 2048),
-            array('facebook_share', 'length', 'max' => 1024),
-            array('twitter_share', 'length', 'max' => 140),
-            array('description, display_name, list_name, tenant_id', 'safe'),
+            array('facebook_url', 'length', 'max' => 1024),
+            array('twitter_handle', 'length', 'max' => 140),
+            array('description, display_name, tenant_id', 'safe'),
             array('website, image_url', 'url'),
-            array('id, name, description, website, image_url, display_name, list_name, slug, facebook_share, twitter_share', 'safe', 'on' => 'search'),
+            array('id, name, description, website, image_url, display_name, slug, facebook_url, twitter_handle', 'safe', 'on' => 'search'),
         );
     }
 
@@ -73,8 +72,7 @@ class Organization extends CBaseActiveRecord {
             'description' => 'Description',
             'website' => 'Website',
             'image_url' => 'Image url',
-            'display_name' => 'Name in Title Bar',
-            'list_name' => 'Name In Lists',
+            'display_name' => 'Display Name',
             'slug' => 'Slug'
         );
     }
