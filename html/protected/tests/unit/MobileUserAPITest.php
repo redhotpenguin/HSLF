@@ -35,6 +35,8 @@ class MobileUserAPITest extends CDbTestCase {
 
         $response = $requestResult->results;
 
+        $this->log($response);
+
         $this->assertEquals("success", $response);
     }
 
@@ -57,9 +59,9 @@ class MobileUserAPITest extends CDbTestCase {
 
         $response = $requestResult->results;
 
-        $this->log($response);
-
         $this->assertNotEquals("success", $response);
+
+        $this->assertEquals("a required field is missing", $response->failure->reason);
     }
 
     public function testUpdateUser() {
@@ -104,6 +106,27 @@ class MobileUserAPITest extends CDbTestCase {
         $response = $requestResult->results;
 
         $this->assertEquals("success", $response);
+    }
+
+    public function testUpdateNotExistingUser() {
+        
+        $userData = array(
+            "name" => "troll",
+            "device_type" => "android",
+        );
+
+        $jsonUserData = json_encode($userData);
+
+        $data = array(
+            "user" => $jsonUserData
+        );
+
+        $requestResult = json_decode( $this->put($this->tenant1, $data, $this->mobileUserAPI1.'/youwontfindme') ) ;
+        $this->log($requestResult);
+        
+        $response = $requestResult->results->failure->reason;
+
+        $this->assertEquals("user not found", $response);
     }
 
     public function testUpdateUserExistingFields() {
