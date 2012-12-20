@@ -74,7 +74,7 @@ abstract class ActiveMongoDocument extends CModel {
     public function save($ackLevel = 1) {
 
         if (!$this->validate()) {
-            $this->lastErrorCode = 0;
+            $this->lastErrorCode = -1;
             $this->lastError = "a required field is missing";
             return false;
         }
