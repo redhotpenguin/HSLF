@@ -57,12 +57,12 @@ $this->widget('bootstrap.widgets.BootGridView', array(
                 'view' => array
                     (
                     'label' => '',
-                    'url' => 'Yii::app()->createUrl("mobileUsers/view",array("id"=>$data["_id"]->{\'$id\'}))',
+                    'url' => 'Yii::app()->createUrl("mobileUser/view",array("id"=>$data["_id"]->{\'$id\'}))',
                 ),
                 'delete' => array
                     (
                     'label' => '',
-                    'url' => 'Yii::app()->createUrl("mobileUsers/delete",array("id"=>$data["_id"]->{\'$id\'}))',
+                    'url' => 'Yii::app()->createUrl("mobileUser/delete",array("id"=>$data["_id"]->{\'$id\'}))',
                 ),
             ),
         ),
