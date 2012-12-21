@@ -76,7 +76,7 @@ class ItemBehavior extends CActiveRecordBehavior {
             );
         } else {
             $items = Item::model()->findAllByAttributes(
-                    array('url' => $url));
+                    array('slug' => $url));
         }
 
         if ($items)

@@ -195,13 +195,13 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
 
     <div class="left_col">
         <?php
-        echo $form->labelEx($model, 'url');
-        echo $form->textField($model, 'url', array('size' => 50, 'maxlength' => 1000, 'placeholder' => 'Microsite URL'));
+        echo $form->labelEx($model, 'slug');
+        echo $form->textField($model, 'slug', array('size' => 50, 'maxlength' => 1000, 'placeholder' => 'Web app. slug'));
         ?>
-        <a  rel="tooltip" href="#" data-original-title="Microsite link. Click the input field to update it."><i class="icon-question-sign"></i></a>
+        <a  rel="tooltip" href="#" data-original-title="Web app link. Click the input field to update it."><i class="icon-question-sign"></i></a>
 
         <?php
-        echo $form->error($model, 'url');
+        echo $form->error($model, 'slug');
         ?>
         <br/>
         <span id="dynamic_site_url"></span>
@@ -211,13 +211,13 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
 
     <div class="right_col">
         <?php
-        echo $form->labelEx($model, 'personal_url');
-        echo $form->textField($model, 'personal_url', array('size' => 50, 'maxlength' => 2048, 'placeholder' => 'External candidate or measure url'));
+        echo $form->labelEx($model, 'website');
+        echo $form->textField($model, 'website', array('size' => 50, 'maxlength' => 2048, 'placeholder' => 'External candidate or measure url'));
         ?>
         <a  rel="tooltip" href="#" data-original-title="Candidate or measure's website."><i class="icon-question-sign"></i></a>
 
         <?php
-        echo $form->error($model, 'personal_url');
+        echo $form->error($model, 'website');
         ?>
         <br/>
         External candidate or measure site

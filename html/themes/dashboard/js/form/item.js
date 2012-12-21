@@ -86,7 +86,7 @@ function itemForm($){
     site_url_span = $("#dynamic_site_url");
     date_published_input = $("#Item_date_published");
     item_name_input = $("#Item_item");
-    site_url_input = $("#Item_url");
+    site_url_input = $("#Item_slug");
 
     site_url_input.focusout(function(){
         site_url_span.updateURLUsingInput();

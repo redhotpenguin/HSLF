@@ -64,11 +64,11 @@ $this->widget('bootstrap.widgets.BootDetailView', array(
             'value' => "<a href='$model->image_url' target='_blank'> $model->image_url </a>",
             'type' => 'raw',
         ),
-        'url',
+        'slug',
         array(
-            'name' => 'personal_url',
+            'name' => 'website',
             'type' => 'raw',
-            'value' => CHtml::link($model->personal_url, $model->personal_url, array('target' => '_blank')),
+            'value' => CHtml::link($model->website, $model->website, array('target' => '_blank')),
         ),
         array(
             'name' => 'facebook_url',

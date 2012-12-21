@@ -9,7 +9,8 @@ ALTER TABLE item DROP facebook_share;
 ALTER TABLE scorecard DROP item_id;
 ALTER TABLE item ADD COLUMN first_name VARCHAR(1024);
 ALTER TABLE item ADD COLUMN last_name VARCHAR(1024);
-
+ALTER TABLE item RENAME COLUMN url TO slug;
+ALTER TABLE item RENAME COLUMN personal_url TO website;
 
 -- endorser updates
 ALTER TABLE endorser RENAME TO organization;
@@ -17,4 +18,4 @@ ALTER TABLE endorser_item RENAME TO organization_item;
 ALTER TABLE organization_item RENAME COLUMN endorser_id TO organization_id;
 ALTER TABLE organization RENAME COLUMN twitter_share TO twitter_handle;
 ALTER TABLE organization RENAME COLUMN facebook_share TO facebook_url;
-;ALTER TABLE organization DROP COLUMN list_name;
+ALTER TABLE organization DROP COLUMN list_name;

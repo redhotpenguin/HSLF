@@ -27,7 +27,6 @@ $this->widget('bootstrap.widgets.BootGridView', array(
             'header' => 'District',
             'value' => '$data->district->display_name'
         ),
-        'url',
         array(
             'header' => 'Election date',
             'value' => '$data->next_election_date',

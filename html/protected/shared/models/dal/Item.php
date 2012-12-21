@@ -14,9 +14,9 @@
  * @property string $date_published
  * @property string $published
  * @property string $party_id
- * @property string $url
+ * @property string $slug
  * @property string $image_url
- * @property string $personal_url
+ * @property string $website
  * The followings are the available model relations:
  * @property District $district
  * @property Recommendation $recommendation
@@ -62,22 +62,22 @@ class Item extends CBaseActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('district_id, item, recommendation_id, date_published, published, url', 'required'),
+            array('district_id, item, recommendation_id, date_published, published, slug', 'required'),
             array('district_id, recommendation_id, party_id', 'numerical', 'integerOnly' => true),
             array('item_type, twitter_handle', 'length', 'max' => 128),
             array('friendly_name, first_name, last_name', 'length', 'max' => 1024),
             array('measure_number', 'length', 'max' => 24),
-            array('url', 'length', 'max' => 500),
-            array('personal_url, facebook_url', 'length', 'max' => 2048),
-            array('personal_url, facebook_url', 'url'),
+            array('slug', 'length', 'max' => 500),
+            array('website, facebook_url', 'length', 'max' => 2048),
+            array('website, facebook_url', 'url'),
             array('published', 'length', 'max' => 16),
             array('date_published', 'date', 'format' => 'yyyy-M-d H:m:s'),
             array('next_election_date', 'date', 'format' => 'yyyy-M-d'),
-            array('next_election_date, detail, url, image_url, tenant_id', 'safe'),
-            array('url', 'unique_url'),
+            array('next_election_date, detail, slug, image_url, tenant_id', 'safe'),
+            array('slug', 'unique_url'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, district_id, item, item_type, recommendation_id, next_election_date, detail, date_published, published, party_id, url, image_url, election_result_id, district_number, district_type,district_display_name, state_id, personal_url, party, facebook_url, twitter_handle, measure_number, friendly_name, first_name, last_name', 'safe', 'on' => 'search'),
+            array('id, district_id, item, item_type, recommendation_id, next_election_date, detail, date_published, published, party_id, url, image_url, election_result_id, district_number, district_type,district_display_name, state_id, website, party, facebook_url, twitter_handle, measure_number, friendly_name, first_name, last_name', 'safe', 'on' => 'search'),
         );
     }
 
@@ -115,7 +115,7 @@ class Item extends CBaseActiveRecord {
             'date_published' => 'Date Published',
             'published' => 'Published',
             'party_id' => 'Party',
-            'url' => 'URL',
+            'slug' => 'Slug',
             'image_url' => 'Image',
             'first_name' => 'First Name',
             'last_name' => 'Last Name',
@@ -157,9 +157,6 @@ class Item extends CBaseActiveRecord {
         $criteria->compare('detail', $this->detail, true);
         $criteria->compare('published', $this->published, true);
         $criteria->compare('party_id', $this->party_id, true);
-        $criteria->compare('url', $this->url, true);
-
-
         $criteria->compare('item_type', $this->item_type);
 
 
