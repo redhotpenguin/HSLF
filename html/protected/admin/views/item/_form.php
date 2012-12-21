@@ -187,7 +187,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
 
     </div>
     <br/>
-    <div class="">
+    <div>
         <?php
         echo $form->labelEx($model, 'detail');
         $this->widget('ext.tinymce.TinyMce', array(
@@ -195,8 +195,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
             'attribute' => 'detail',
             'htmlOptions' => array(
                 'rows' => 20,
-                'cols' => 185,
-                'class' => 'span9 ',
+                'class' => 'span9',
             ),
         ));
 

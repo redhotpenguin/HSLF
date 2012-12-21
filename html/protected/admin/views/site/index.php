@@ -45,9 +45,9 @@
             </div>
 
             <div class="span3">
-                <h2>Dashboard users</h2>
-                <p>Manage who can access this dashboard.</p>
-                <p><a class="btn" href="/admin/user/">More »</a></p>
+                <h2>Mobile Users</h2>
+                <p>Mobile user list</p>
+                <p><a class="btn" href="/admin/mobileUser/">More »</a></p>
             </div>
         </div>
 
