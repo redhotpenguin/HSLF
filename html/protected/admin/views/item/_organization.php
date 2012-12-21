@@ -1,10 +1,9 @@
-<h3>Organizations info:</h3>
-<div id="organizations">
-    <table class="table table-bordered table-striped ">
+<h3>Organization info:</h3>
+<div id="organizations" class="resize-vertical">
+    <table class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>Organization</th>
-                <th>Description</th>
                 <th>Position</th>
             </tr>
         <thead>
@@ -28,11 +27,7 @@
                             <?php echo $organization->name; ?>
                         </label>
                     </td>
-                    <td>
-                        <?php
-                        echo CHtml::link(substr(strip_tags($organization->description), 0, 100) . '...', Chtml::normalizeUrl(array('organization/update', 'id' => $organization->id)), array('target' => '_blank'));
-                        ?>
-                    </td>
+               
 
                     <td>
                         <?php

@@ -82,3 +82,8 @@ h1{
   visibility: hidden;
   font-size: 0;
 }
+
+.resize-vertical{
+    resize:vertical;
+    overflow:auto;
+}

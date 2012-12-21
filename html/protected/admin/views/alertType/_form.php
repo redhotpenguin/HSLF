@@ -5,7 +5,7 @@
         'id' => 'alert-type-form',
         'enableAjaxValidation' => false,
         'htmlOptions' => array(
-            'class' => 'well form-vertical'),
+            'class' => 'form-vertical'),
             ));
     ?>
 

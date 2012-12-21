@@ -5,7 +5,7 @@
         'id' => 'option-form',
         'enableAjaxValidation' => false,
         'htmlOptions' => array(
-            'class' => 'well form-vertical'),
+            'class' => 'form-vertical'),
             ));
     ?>
 

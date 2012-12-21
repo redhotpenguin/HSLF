@@ -24,7 +24,6 @@
 		["Silverlight", "dfeaf541-f3e1-4c24-acac-99c30715084a", "application/x-silverlight-2"],
 		["Iframe"],
 		["Video"],
-		["EmbeddedAudio"],
 		["Audio"]
 	];
 
@@ -251,8 +250,6 @@
 				id : data.id,
 				style : data.style,
 				align : data.align,
-				hspace : data.hspace,
-				vspace : data.vspace,
 				src : self.editor.theme.url + '/img/trans.gif',
 				'class' : 'mceItemMedia mceItem' + self.getType(data.type).name,
 				'data-mce-json' : JSON.serialize(data, "'")
@@ -497,28 +494,6 @@
 				data.params.src = '';
 			}
 
-			if (typeItem.name === 'EmbeddedAudio') {
-				embed = new Node('embed', 1);
-				embed.shortEnded = true;
-				embed.attr({
-					id: node.attr('id'),
-					width: node.attr('width'),
-					height: node.attr('height'),
-					style : style,
-					type: node.attr('type')
-				});
-
-				for (name in data.params)
-					embed.attr(name, data.params[name]);
-
-				tinymce.each(rootAttributes, function(name) {
-					if (data[name] && name != 'type')
-						embed.attr(name, data[name]);
-				});
-
-				data.params.src = '';
-			}
-
 			// Do we have a params src then we can generate object
 			if (data.params.src) {
 				// Is flv movie add player for it
@@ -537,13 +512,8 @@
 				});
 
 				tinymce.each(rootAttributes, function(name) {
-					var value = data[name];
-
-					if (name == 'class' && value)
-						value = value.replace(/mceItem.+ ?/g, '');
-
-					if (value && name != 'type')
-						object.attr(name, value);
+					if (data[name] && name != 'type')
+						object.attr(name, data[name]);
 				});
 
 				// Add params
@@ -626,9 +596,8 @@
 				}
 			}
 
-			var n = video || audio || object || embed;
-			if (n)
-				node.replace(n);
+			if (video || audio || object)
+				node.replace(video || audio || object);
 			else
 				node.remove();
 		},
@@ -646,8 +615,7 @@
 			var object, embed, video, iframe, img, name, id, width, height, style, i, html,
 				param, params, source, sources, data, type, lookup = this.lookup,
 				matches, attrs, urlConverter = this.editor.settings.url_converter,
-				urlConverterScope = this.editor.settings.url_converter_scope,
-				hspace, vspace, align, bgcolor;
+				urlConverterScope = this.editor.settings.url_converter_scope;
 
 			function getInnerHTML(node) {
 				return new tinymce.html.Serializer({
@@ -655,15 +623,6 @@
 					validate: false
 				}).serialize(node);
 			};
-
-			function lookupAttribute(o, attr) {
-				return lookup[(o.attr(attr) || '').toLowerCase()];
-			}
-
-			function lookupExtension(src) {
-				var ext = src.replace(/^.*\.([^.]+)$/, '$1');
-				return lookup[ext.toLowerCase() || ''];
-			}
 
 			// If node isn't in document
 			if (!node.parent)
@@ -754,11 +713,6 @@
 				height = height || object.attr('height');
 				style = style || object.attr('style');
 				id = id || object.attr('id');
-				hspace = hspace || object.attr('hspace');
-				vspace = vspace || object.attr('vspace');
-				align = align || object.attr('align');
-				bgcolor = bgcolor || object.attr('bgcolor');
-				data.name = object.attr('name');
 
 				// Get all object params
 				params = object.getAll("param");
@@ -779,10 +733,6 @@
 				height = height || embed.attr('height');
 				style = style || embed.attr('style');
 				id = id || embed.attr('id');
-				hspace = hspace || embed.attr('hspace');
-				vspace = vspace || embed.attr('vspace');
-				align = align || embed.attr('align');
-				bgcolor = bgcolor || embed.attr('bgcolor');
 
 				// Get all embed attributes
 				for (name in embed.attributes.map) {
@@ -797,10 +747,6 @@
 				height = iframe.attr('height');
 				style = style || iframe.attr('style');
 				id = iframe.attr('id');
-				hspace = iframe.attr('hspace');
-				vspace = iframe.attr('vspace');
-				align = iframe.attr('align');
-				bgcolor = iframe.attr('bgcolor');
 
 				tinymce.each(rootAttributes, function(name) {
 					img.attr(name, iframe.attr(name));
@@ -831,15 +777,10 @@
 			}
 
 			if (object && !type)
-				type = (lookupAttribute(object, 'clsid') || lookupAttribute(object, 'classid') || lookupAttribute(object, 'type') || {}).name;
+				type = (lookup[(object.attr('clsid') || '').toLowerCase()] || lookup[(object.attr('type') || '').toLowerCase()] || {}).name;
 
 			if (embed && !type)
-				type = (lookupAttribute(embed, 'type') || lookupExtension(data.params.src) || {}).name;
-
-			// for embedded audio we preserve the original specified type
-			if (embed && type == 'EmbeddedAudio') {
-				data.params.type = embed.attr('type');
-			}
+				type = (lookup[(embed.attr('type') || '').toLowerCase()] || {}).name;
 
 			// Replace the video/object/embed element with a placeholder image containing the data
 			node.replace(img);
@@ -864,11 +805,6 @@
 					data.video_html = html;
 			}
 
-			data.hspace = hspace;
-			data.vspace = vspace;
-			data.align = align;
-			data.bgcolor = bgcolor;
-
 			// Set width/height of placeholder
 			img.attr({
 				id : id,
@@ -876,10 +812,6 @@
 				style : style,
 				width : width || (node.name == 'audio' ? "300" : "320"),
 				height : height || (node.name == 'audio' ? "32" : "240"),
-				hspace : hspace,
-				vspace : vspace,
-				align : align,
-				bgcolor : bgcolor,
 				"data-mce-json" : JSON.serialize(data, "'")
 			});
 		}

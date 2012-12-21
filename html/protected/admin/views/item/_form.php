@@ -21,7 +21,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
             'stateful' => true,
             'htmlOptions' => array(
                 'enctype' => 'multipart/form-data',
-                'class' => 'well form-vertical'),
+                'class' => 'form-vertical'),
                 ));
     } else {
         $form = $this->beginWidget('CActiveForm', array(
@@ -30,7 +30,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
             'stateful' => false,
             'htmlOptions' => array(
                 'enctype' => 'multipart/form-data',
-                'class' => 'well form-vertical'),
+                'class' => 'form-vertical'),
                 ));
     }
 
@@ -196,7 +196,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
             'htmlOptions' => array(
                 'rows' => 20,
                 'cols' => 185,
-                'class' => 'span9',
+                'class' => 'span9 ',
             ),
         ));
 

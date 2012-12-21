@@ -3,7 +3,7 @@
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'recommendation-form',
 	'enableAjaxValidation'=>false,
-            'htmlOptions' => array('class' => 'well form-vertical'),
+            'htmlOptions' => array('class' => 'form-vertical'),
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
