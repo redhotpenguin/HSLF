@@ -38,53 +38,137 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
     $recommendation_list = CHtml::listData(Recommendation::model()->findAll(), 'id', 'value');
     ?>
 
-    <p class="note">Fields with <span class="required">*</span> are required.</p>
-
     <?php echo $form->errorSummary($model); ?>
 
+    <h3>Basic info:</h3>
+    <div class="row-fluid">
 
 
-    <div class="">
-        <?php echo $form->labelEx($model, 'item'); ?>
-        <?php echo $form->textField($model, 'item', array('class' => 'span7', 'maxlength' => 1000, 'placeholder' => 'i.e Candidate or Measure Name')); ?>
-        <?php echo $form->error($model, 'item'); ?>
-    </div>
+        <div class="span8">
+            <?php echo $form->labelEx($model, 'item'); ?>
+            <?php echo $form->textField($model, 'item', array('class' => 'span12', 'maxlength' => 1000, 'placeholder' => 'i.e Candidate or Measure\'s name')); ?>
+            <?php echo $form->error($model, 'item'); ?>
+        </div>
 
-    <div class="left_col">
-
-        <div class="">
+        <div class="span4">
             <?php
             echo $form->labelEx($model, 'item_type');
             echo $form->dropDownList($model, 'item_type', $model->getItemTypeOptions());
             echo $form->error($model, 'item_type');
             ?>
         </div>
+    </div>
 
-        <div class="">
-            <?php
-            $this->widget('ext.DistrictSelector.DistrictSelector', array(
-                'model' => $model,
-                'attribute' => 'district_id',
-                'options' => array(
-                    'model_name' => 'Item',
-                ),
-            ));
-            echo $form->error($model, 'district_id');
-            ?>
+    <div class="clearfix"></div>
+
+    <hr/>
+
+    <h3>Location info:</h3>
+    <div class="row-fluid">
+        <?php
+        $this->widget('ext.DistrictSelector.DistrictSelector', array(
+            'model' => $model,
+            'attribute' => 'district_id',
+            'options' => array(
+                'model_name' => 'Item',
+            ),
+        ));
+        echo $form->error($model, 'district_id');
+        ?>
+    </div>
+
+    <hr/>
+
+    <div  id="candidate_related_inputs" >
+        <h3>Candidate info:</h3>
+        <div class="row-fluid">
+            <div class="span6">
+                <?php
+                echo $form->labelEx($model, 'first_name');
+                echo $form->textField($model, 'first_name', array('class' => 'span12', 'maxlength' => 1024, 'placeholder' => ''));
+                echo $form->error($model, 'first_name');
+                ?>
+            </div>
+            <div class="span6">
+                <?php
+                echo $form->labelEx($model, 'last_name');
+                echo $form->textField($model, 'last_name', array('class' => 'span12', 'maxlength' => 1024, 'placeholder' => ''));
+                echo $form->error($model, 'last_name');
+                ?>
+            </div>
         </div>
     </div>
 
-    <div class="right_col">
-        <div class="">
+
+    <div id ="measure_related_inputs">
+        <h3>Measure info:</h3>
+        <div class="row-fluid">
+            <div class="span6">
+                <?php
+                echo $form->labelEx($model, 'measure_number');
+                echo $form->textField($model, 'measure_number', array('class' => 'span12', 'maxlength' => 24, 'placeholder' => 'Measure Number'));
+                echo $form->error($model, 'measure_number');
+                ?>
+            </div>
+            <div class="span6">
+                <?php
+                echo $form->labelEx($model, 'friendly_name');
+                echo $form->textField($model, 'friendly_name', array('class' => 'span12', 'maxlength' => 1024, 'placeholder' => 'Friendly Name'));
+                echo $form->error($model, 'friendly_name');
+                ?>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <hr/>
+
+    <h3>Extra info:</h3>
+    <div class="row-fluid">
+        <div class="span6">
             <?php
             echo $form->labelEx($model, 'party_id');
-            echo $form->dropDownList($model, 'party_id', CHtml::listData(Party::model()->findAll(), 'id', 'name'));
+            echo $form->dropDownList($model, 'party_id', CHtml::listData(Party::model()->findAll(), 'id', 'name'), array('class' => 'span12'));
             echo $form->error($model, 'party_id');
             ?>
         </div>
 
-        <div class="clearfix">
+        <div class="span6">
+            <?php echo $form->labelEx($model, 'next_election_date'); ?>
+            <?php
+            $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+                'name' => 'Item[next_election_date]',
+                'value' => $model->next_election_date,
+                // additional javascript options for the date picker plugin
+                'options' => array(
+                    'showAnim' => 'fold',
+                    'dateFormat' => 'yy-mm-dd',
+                // 'buttonImageOnly' => 'true',
+                // 'buttonImage' => '/themes/dashboard/img/calendar.png',
+                // 'showOn' => 'button',
+                ),
+                'htmlOptions' => array(
+                    'style' => 'height:20px;',
+                    'class' => 'span12'
+                ),
+            ));
+            ?>
+            <?php echo $form->error($model, 'next_election_date'); ?>
+        </div>   
+    </div>
 
+    <div class="row-fluid">
+
+        <div class="span6">
+            <?php
+            echo $form->labelEx($model, 'recommendation_id');
+            echo $form->dropDownList($model, 'recommendation_id', $recommendation_list, array('class' => 'span12'));
+            echo $form->error($model, 'recommendation_id');
+            ?>
+        </div>
+
+        <div class="span6">
             <?php
             echo $form->labelEx($model, 'image_url');
 
@@ -96,6 +180,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
                     'model_name' => 'Item',
                     'upload_handler' => CHtml::normalizeUrl(array('item/upload')),
                     'modal_view' => CHtml::normalizeUrl(array('item/upload')),
+                    'class' => 'span12'
                 ),
             ))->start();
 
@@ -103,84 +188,15 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
             ?>
         </div>
 
-
-        <div class="clearfix">
-            <?php echo $form->labelEx($model, 'next_election_date'); ?>
-            <?php
-            $this->widget('zii.widgets.jui.CJuiDatePicker', array(
-                'name' => 'Item[next_election_date]',
-                'value' => $model->next_election_date,
-                // additional javascript options for the date picker plugin
-                'options' => array(
-                    'showAnim' => 'fold',
-                    'dateFormat' => 'yy-mm-dd',
-                    'buttonImageOnly' => 'true',
-                    'buttonImage' => '/themes/dashboard/img/calendar.png',
-                    'showOn' => 'button',
-                ),
-                'htmlOptions' => array(
-                    'style' => 'height:20px;float:left;'
-                ),
-            ));
-            ?>
-            <?php echo $form->error($model, 'next_election_date'); ?>
-        </div>    
-
-        <?php
-        echo $form->labelEx($model, 'recommendation_id');
-        echo $form->dropDownList($model, 'recommendation_id', $recommendation_list);
-        echo $form->error($model, 'recommendation_id');
-        ?>
-
-
     </div>
 
-    <hr/>
-
-    <div  id="candidate_related_inputs">
-        <div class="left_col">
-            <?php
-            echo $form->labelEx($model, 'first_name');
-            echo $form->textField($model, 'first_name', array('size' => 50, 'maxlength' => 1024, 'placeholder' => ''));
-            echo $form->error($model, 'first_name');
-            ?>
-        </div>
-        <div class="right_col">
-            <?php
-            echo $form->labelEx($model, 'last_name');
-            echo $form->textField($model, 'last_name', array('size' => 50, 'maxlength' => 1024, 'placeholder' => ''));
-            echo $form->error($model, 'last_name');
-            ?>
-        </div>
-    </div>
-
-    <div class="clearfix"></div>
-
-
-
-    <div id ="measure_related_inputs">
-        <div class="left_col">
-            <?php
-            echo $form->labelEx($model, 'measure_number');
-            echo $form->textField($model, 'measure_number', array('size' => 50, 'maxlength' => 24, 'placeholder' => 'Measure Number'));
-            echo $form->error($model, 'measure_number');
-            ?>
-        </div>
-        <div class="right_col">
-            <?php
-            echo $form->labelEx($model, 'friendly_name');
-            echo $form->textField($model, 'friendly_name', array('size' => 50, 'maxlength' => 1024, 'placeholder' => 'Friendly Name'));
-            echo $form->error($model, 'friendly_name');
-            ?>
-        </div>
-    </div>
 
     <div class="clearfix"></div>
     <hr/>
 
+    <h3>Detail:</h3>
     <div class="">
         <?php
-        echo $form->labelEx($model, 'detail');
         $this->widget('ext.tinymce.TinyMce', array(
             'model' => $model,
             'attribute' => 'detail',
@@ -197,61 +213,54 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
 
     <hr/>
 
-    <div class="left_col">
-        <?php
-        echo $form->labelEx($model, 'slug');
-        echo $form->textField($model, 'slug', array('size' => 50, 'maxlength' => 1000, 'placeholder' => 'Web app. slug'));
-        ?>
-        <a  rel="tooltip" href="#" data-original-title="Web application link."><i class="icon-question-sign"></i></a>
+    <h3>Social info:</h3>
+    <div class="row-fluid">
+        <div class="span6">
+            <?php
+            echo $form->labelEx($model, 'slug');
+            echo $form->textField($model, 'slug', array('class' => 'span12', 'maxlength' => 1000, 'placeholder' => 'Web app. slug'));
+            ?>
 
-        <?php
-        echo $form->error($model, 'slug');
-        ?>
-        <br/>
-        <span id="dynamic_site_url"></span>
+            <?php
+            echo $form->error($model, 'slug');
+            ?>
+            <br/>
+            <span id="dynamic_site_url"></span>
 
-        <br/> <br/> 
+        </div>
+
+        <div class="span6">
+            <?php
+            echo $form->labelEx($model, 'website');
+            echo $form->textField($model, 'website', array('class' => 'span12', 'maxlength' => 2048, 'placeholder' => 'Candidate or measure\'s website'));
+            ?>
+
+            <?php
+            echo $form->error($model, 'website');
+            ?>
+        </div>
     </div>
 
-    <div class="right_col">
-        <?php
-        echo $form->labelEx($model, 'website');
-        echo $form->textField($model, 'website', array('size' => 50, 'maxlength' => 2048, 'placeholder' => 'Candidate or measure\'s website'));
-        ?>
-        <a  rel="tooltip" href="#" data-original-title="Candidate or measure's website."><i class="icon-question-sign"></i></a>
+    <div class="row-fluid">
+        <div class="span6">
+            <?php
+            echo $form->labelEx($model, 'facebook_url');
+            echo $form->textField($model, 'facebook_url', array('class' => 'span12', 'maxlength' => 2048, 'placeholder' => 'Facebook URL'));
+            ?>
+            <?php
+            echo $form->error($model, 'facebook_url');
+            ?>
+        </div>
 
-        <?php
-        echo $form->error($model, 'website');
-        ?>
-        <br/>
-        External candidate or measure site
-    </div>
-
-    <hr/>
-    <div class="clearfix"></div>
-
-
-
-
-
-    <div class="left_col">
-        <?php
-        echo $form->labelEx($model, 'facebook_url');
-        echo $form->textField($model, 'facebook_url', array('size' => 50, 'maxlength' => 2048, 'placeholder' => 'Facebook URL'));
-        ?>
-        <?php
-        echo $form->error($model, 'facebook_url');
-        ?>
-    </div>
-
-    <div class="right_col">
-        <?php
-        echo $form->labelEx($model, 'twitter_handle');
-        echo $form->textField($model, 'twitter_handle', array('size' => 50, 'maxlength' => 16, 'placeholder' => 'Twitter handle'));
-        ?>
-        <?php
-        echo $form->error($model, 'twitter_handle');
-        ?>
+        <div class="span6">
+            <?php
+            echo $form->labelEx($model, 'twitter_handle');
+            echo $form->textField($model, 'twitter_handle', array('class' => 'span12', 'maxlength' => 16, 'placeholder' => 'Twitter handle'));
+            ?>
+            <?php
+            echo $form->error($model, 'twitter_handle');
+            ?>
+        </div>
     </div>
 
 
@@ -268,32 +277,41 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
     ));
     ?>
 
-    <div class="left_col">
-        <?php echo $form->labelEx($model, 'date_published'); ?>
-        <?php
-        $this->widget('zii.widgets.jui.CJuiDatePicker', array(
-            'name' => 'Item[date_published]',
-            'value' => $model->date_published,
-            // additional javascript options for the date picker plugin
-            'options' => array(
-                'showAnim' => 'fold',
-                'dateFormat' => 'yy-mm-dd ' . date('h:i:s'),
-                'buttonImageOnly' => 'true',
-                'buttonImage' => '/themes/dashboard/img/calendar.png',
-                'showOn' => 'button',
-            ),
-            'htmlOptions' => array(
-                'style' => 'height:20px;float:left;'
-            ),
-        ));
-        ?>
-        <?php echo $form->error($model, 'date_published'); ?>
-    </div>
+    <hr/>
+    <div>
+        <h3>Publication info:</h3>
+        <div class="row-fluid">
+            <div class="span6">
+                <?php echo $form->labelEx($model, 'date_published'); ?>
+                <?php
+                $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+                    'name' => 'Item[date_published]',
+                    'value' => $model->date_published,
+                    // additional javascript options for the date picker plugin
+                    'options' => array(
+                        'showAnim' => 'fold',
+                        'dateFormat' => 'yy-mm-dd ' . date('h:i:s'),
+                    //     'buttonImageOnly' => 'true',
+                    //    'buttonImage' => '/themes/dashboard/img/calendar.png',
+                    //   'showOn' => 'button',
+                    ),
+                    'htmlOptions' => array(
+                        'style' => 'height:20px;',
+                        'class' => 'span12'
+                    ),
+                ));
+                ?>
+                <?php echo $form->error($model, 'date_published'); ?>
+            </div>
 
-    <div class="right_col ">
-        <?php echo $form->labelEx($model, 'published'); ?>
-        <?php echo $form->dropDownList($model, 'published', array('yes' => 'Yes', 'no' => 'No')); ?>
-        <?php echo $form->error($model, 'published'); ?>
+
+            <div class="span6">
+                <?php echo $form->labelEx($model, 'published'); ?>
+                <?php echo $form->dropDownList($model, 'published', array('yes' => 'Yes', 'no' => 'No')); ?>
+                <?php echo $form->error($model, 'published'); ?>
+            </div>
+
+        </div>
     </div>
 
     <div class="clearfix"></div>

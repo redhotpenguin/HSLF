@@ -62,7 +62,7 @@ class Item extends CBaseActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('district_id, item, recommendation_id, date_published, published, slug, item_type, party_id, recommnendation_id', 'required'),
+            array('district_id, item, recommendation_id, date_published, published, slug, item_type, party_id, recommendation_id', 'required'),
             array('district_id, recommendation_id, party_id', 'numerical', 'integerOnly' => true),
             array('item_type, twitter_handle', 'length', 'max' => 128),
             array('friendly_name, first_name, last_name', 'length', 'max' => 1024),
@@ -107,8 +107,8 @@ class Item extends CBaseActiveRecord {
         return array(
             'id' => 'ID',
             'district_id' => 'District',
-            'item' => 'Item Name',
-            'item_type' => 'Item Type',
+            'item' => 'Name',
+            'item_type' => 'Type',
             'recommendation_id' => 'Recommendation',
             'next_election_date' => 'Election Date',
             'detail' => 'Detail',

@@ -6,9 +6,9 @@ $this->breadcrumbs = array(
 );
 
 $this->menu = array(
-    array('label' => 'Create another item', 'url' => array('create')),
-    array('label' => 'Delete this item', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this item?')),
-    array('label' => 'Manage items', 'url' => array('admin')),
+    array('label' => 'Create another ballot item', 'url' => array('create')),
+    array('label' => 'Delete this ballot item', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this item?')),
+    array('label' => 'Manage ballot items', 'url' => array('admin')),
 );
 ?>
 
@@ -16,7 +16,7 @@ $this->menu = array(
 
 <?php
 if (getParam('updated') == 1) {
-    echo '<div class="success_update_box">Item updated</div>';
+    echo '<div class="success_update_box">Ballot Item updated</div>';
 }
 
 

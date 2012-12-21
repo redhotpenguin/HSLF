@@ -5,7 +5,7 @@ $this->breadcrumbs = array(
 );
 
 $this->menu = array(
-    array('label' => 'Manage items', 'url' => array('admin')),
+    array('label' => 'Manage ballot items', 'url' => array('admin')),
 );
 ?>
 

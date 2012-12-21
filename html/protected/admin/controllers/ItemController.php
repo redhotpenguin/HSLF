@@ -69,7 +69,6 @@ class ItemController extends Controller {
                     $model->image_url = $saved_file_url;
             }
 
-
             $model->save();
 
             $organization_ids = getPost('organizations');

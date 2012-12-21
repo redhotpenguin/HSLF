@@ -1,4 +1,4 @@
-<label>Organizations</label>
+<h3>Organizations info:</h3>
 <div id="organizations">
     <table class="table table-bordered table-striped ">
         <thead>
