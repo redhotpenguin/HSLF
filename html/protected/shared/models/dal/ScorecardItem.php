@@ -8,6 +8,7 @@
  * @property string $name
  * @property string $description
  * @property integer $office_id
+ * @property integer $tenant_id
  *
  * The followings are the available model relations:
  * @property Scorecard[] $scorecards
@@ -16,13 +17,6 @@
 class ScorecardItem extends CBaseActiveRecord {
 
     public $office_type; //used for admin search
-
-    public function __construct($scenario = 'insert', $table = "") {
-        $this->parentName = "Office";
-        $this->parentRelationship = "office";
-
-        parent::__construct($scenario);
-    }
 
     /**
      * Returns the static model of the specified AR class.
@@ -50,10 +44,10 @@ class ScorecardItem extends CBaseActiveRecord {
             array('name, office_id', 'required'),
             array('office_id', 'numerical', 'integerOnly' => true),
             array('name', 'length', 'max' => 4096),
-            array('description, office_type, office, tenant_id', 'safe'),
+            array('description, office_type, office', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, name, description, office_id, office_type', 'safe', 'on' => 'search'),
+            array('id, name, description, office_id, office_type, tenant_id', 'safe', 'on' => 'search'),
         );
     }
 
