@@ -1,8 +1,9 @@
 jQuery(document).ready(itemForm);
 
 jQuery.fn.updateURLUsingName = function() {
-    var o = $(this[0]);
-    
+    var o = $(this[0]),
+    item_name_input = $("#Item_item"),
+
     // retrieve the item name
     item_name = item_name_input.val();
     
@@ -20,7 +21,8 @@ jQuery.fn.updateURLUsingName = function() {
 };
 
 jQuery.fn.updateURLUsingInput = function() {
-    var o = $(this[0]);
+    var o = $(this[0]),
+    site_url_input = $("#Item_slug"),
 
     
     // retrieve the item site url
@@ -83,10 +85,14 @@ function filterURL(item_name, id, _cb){
 // executed when the page is Ready
 function itemForm($){
 
-    site_url_span = $("#dynamic_site_url");
-    date_published_input = $("#Item_date_published");
-    item_name_input = $("#Item_item");
-    site_url_input = $("#Item_slug");
+    var site_url_span = $("#dynamic_site_url"),
+    date_published_input = $("#Item_date_published"),
+    item_name_input = $("#Item_item"),
+    site_url_input = $("#Item_slug"),
+    item_item_type = $("#Item_item_type");
+    candidate_related_inputs = $("#candidate_related_inputs");
+    measure_related_inputs = $("#measure_related_inputs");
+    
 
     site_url_input.focusout(function(){
         site_url_span.updateURLUsingInput();
@@ -102,6 +108,25 @@ function itemForm($){
     date_published_input.change(function(){
         site_url_span.updateURLUsingInput();
     });
+    
+    
+    item_item_type.change(function(){
+        var item_type = this.value;
+        
+        if(item_type == 'candidate'){
+            console.log("candidate");
+            candidate_related_inputs.show();
+            measure_related_inputs.hide();
+        }else{ // measure
+            console.log("measure");
+            candidate_related_inputs.hide();
+            measure_related_inputs.show();
+
+        }
+    });
+    
+    item_item_type.trigger('change');
+    
     
     // only trigger the events on page load when a new item is created
     if(!ns.item_id){

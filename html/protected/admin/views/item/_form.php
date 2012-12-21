@@ -137,38 +137,42 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
 
     <hr/>
 
-    <div class="left_col">
-        <?php
-        echo $form->labelEx($model, 'first_name');
-        echo $form->textField($model, 'first_name', array('size' => 50, 'maxlength' => 1024, 'placeholder' => ''));
-        echo $form->error($model, 'first_name');
-        ?>
-    </div>
-    <div class="right_col">
-        <?php
-        echo $form->labelEx($model, 'last_name');
-        echo $form->textField($model, 'last_name', array('size' => 50, 'maxlength' => 1024, 'placeholder' => ''));
-        echo $form->error($model, 'last_name');
-        ?>
+    <div  id="candidate_related_inputs">
+        <div class="left_col">
+            <?php
+            echo $form->labelEx($model, 'first_name');
+            echo $form->textField($model, 'first_name', array('size' => 50, 'maxlength' => 1024, 'placeholder' => ''));
+            echo $form->error($model, 'first_name');
+            ?>
+        </div>
+        <div class="right_col">
+            <?php
+            echo $form->labelEx($model, 'last_name');
+            echo $form->textField($model, 'last_name', array('size' => 50, 'maxlength' => 1024, 'placeholder' => ''));
+            echo $form->error($model, 'last_name');
+            ?>
+        </div>
     </div>
 
     <div class="clearfix"></div>
 
-    <hr/>
+  
 
-    <div class="left_col">
-        <?php
-        echo $form->labelEx($model, 'measure_number');
-        echo $form->textField($model, 'measure_number', array('size' => 50, 'maxlength' => 24, 'placeholder' => 'Measure Number'));
-        echo $form->error($model, 'measure_number');
-        ?>
-    </div>
-    <div class="right_col">
-        <?php
-        echo $form->labelEx($model, 'friendly_name');
-        echo $form->textField($model, 'friendly_name', array('size' => 50, 'maxlength' => 1024, 'placeholder' => 'Friendly Name'));
-        echo $form->error($model, 'friendly_name');
-        ?>
+    <div id ="measure_related_inputs">
+        <div class="left_col">
+            <?php
+            echo $form->labelEx($model, 'measure_number');
+            echo $form->textField($model, 'measure_number', array('size' => 50, 'maxlength' => 24, 'placeholder' => 'Measure Number'));
+            echo $form->error($model, 'measure_number');
+            ?>
+        </div>
+        <div class="right_col">
+            <?php
+            echo $form->labelEx($model, 'friendly_name');
+            echo $form->textField($model, 'friendly_name', array('size' => 50, 'maxlength' => 1024, 'placeholder' => 'Friendly Name'));
+            echo $form->error($model, 'friendly_name');
+            ?>
+        </div>
     </div>
 
     <div class="clearfix"></div>
@@ -198,7 +202,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
         echo $form->labelEx($model, 'slug');
         echo $form->textField($model, 'slug', array('size' => 50, 'maxlength' => 1000, 'placeholder' => 'Web app. slug'));
         ?>
-        <a  rel="tooltip" href="#" data-original-title="Web app link. Click the input field to update it."><i class="icon-question-sign"></i></a>
+        <a  rel="tooltip" href="#" data-original-title="Web application link."><i class="icon-question-sign"></i></a>
 
         <?php
         echo $form->error($model, 'slug');
@@ -212,7 +216,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
     <div class="right_col">
         <?php
         echo $form->labelEx($model, 'website');
-        echo $form->textField($model, 'website', array('size' => 50, 'maxlength' => 2048, 'placeholder' => 'External candidate or measure url'));
+        echo $form->textField($model, 'website', array('size' => 50, 'maxlength' => 2048, 'placeholder' => 'Candidate or measure\'s website'));
         ?>
         <a  rel="tooltip" href="#" data-original-title="Candidate or measure's website."><i class="icon-question-sign"></i></a>
 
