@@ -41,12 +41,14 @@ jQuery.fn.updateURLUsingInput = function() {
 };
 
 jQuery.fn.printURL = function(filtered_url) {
- 
+    var date_published_input = $("#Item_date_published"),
+    site_url_input = $("#Item_slug");
+
     // get the year from the publication field
-    year_published = date_published_input.val().substr(0, 4);
+    var  year_published = date_published_input.val().substr(0, 4);
     
     // URL minus the slug
-    url = ns.share_url+"/#!/items/";
+    var url = ns.share_url+"/#!/items/";
    
     var o = $(this[0]);
         
@@ -114,11 +116,9 @@ function itemForm($){
         var item_type = this.value;
         
         if(item_type == 'candidate'){
-            console.log("candidate");
             candidate_related_inputs.show();
             measure_related_inputs.hide();
         }else{ // measure
-            console.log("measure");
             candidate_related_inputs.hide();
             measure_related_inputs.show();
 

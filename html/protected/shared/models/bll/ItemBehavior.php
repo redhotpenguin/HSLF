@@ -64,19 +64,19 @@ class ItemBehavior extends CActiveRecordBehavior {
 
     /**
      * Make sure an URL is unique
-     * @param string $url url to be validated
+     * @param string $slug slug to be validated
      * &param integer $item_id id of the item (optionnal)
      * @return boolean true = unique . false = already used
      */
-    public function isURLUnique($url, $item_id = null) {
+    public function isURLUnique($slug, $item_id = null) {
         // avoid returning false positive
         if (isset($item_id)) {
             $items = Item::model()->findAllByAttributes(
-                    array('url' => $url), 'id!=:item_id', array(':item_id' => $item_id)
+                    array('slug' => $slug), 'id!=:item_id', array(':item_id' => $item_id)
             );
         } else {
             $items = Item::model()->findAllByAttributes(
-                    array('slug' => $url));
+                    array('slug' => $slug));
         }
 
         if ($items)

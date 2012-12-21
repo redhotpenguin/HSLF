@@ -156,7 +156,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
 
     <div class="clearfix"></div>
 
-  
+
 
     <div id ="measure_related_inputs">
         <div class="left_col">
@@ -228,6 +228,12 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
     </div>
 
     <hr/>
+    <div class="clearfix"></div>
+
+
+
+
+
     <div class="left_col">
         <?php
         echo $form->labelEx($model, 'facebook_url');
@@ -236,9 +242,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
         <?php
         echo $form->error($model, 'facebook_url');
         ?>
-
     </div>
-
 
     <div class="right_col">
         <?php
@@ -248,8 +252,10 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
         <?php
         echo $form->error($model, 'twitter_handle');
         ?>
-
     </div>
+
+
+
 
     <div class="clearfix"></div>
 
