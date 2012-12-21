@@ -55,8 +55,7 @@ class ItemController extends Controller {
         // import FileUpload helper class
         Yii::import('admin.models.helpers.FileUpload');
 
-        //   error_log(print_r($_REQUEST, true ));
-
+      //  error_log(print_r($_REQUEST, true));
 
         $model = new Item;
 
@@ -69,26 +68,27 @@ class ItemController extends Controller {
                     $model->image_url = $saved_file_url;
             }
 
-            $model->save();
+            if ($model->save()) {
 
-            $organization_ids = getPost('organizations');
-            // if any organizations are selected
-            if ($organization_ids) {
-                // remove organizations that are not selected ( unselected )
-                //   $model->removeOrganizationsNotIn($organization_ids);
-                // add organizations
-                foreach ($organization_ids as $organization_id => $position) {
-                    if ($position != 'na') {
-                        $model->addOrganization($organization_id, $position);
-                    } else {
-                        // @todo: remove organization if exist
-                        $model->removeOrganization($organization_id);
+                $organization_ids = getPost('organizations');
+                // if any organizations are selected
+                if ($organization_ids) {
+                    // remove organizations that are not selected ( unselected )
+                    //   $model->removeOrganizationsNotIn($organization_ids);
+                    // add organizations
+                    foreach ($organization_ids as $organization_id => $position) {
+                        if ($position != 'na') {
+                            $model->addOrganization($organization_id, $position);
+                        } else {
+                            // @todo: remove organization if exist
+                            $model->removeOrganization($organization_id);
+                        }
                     }
                 }
+
+
+                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
             }
-
-
-            $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
         }
 
         $model->date_published = date('Y-m-d h:i:s');
@@ -172,8 +172,6 @@ class ItemController extends Controller {
      * Updates a file
      */
     public function actionUpload() {
-        logIt($_FILES);
-
         if (Yii::app()->request->isPostRequest) {
             if (!empty($_FILES['image_url']['tmp_name'])) {
                 echo $t = $this->upload($_FILES);
@@ -282,7 +280,6 @@ class ItemController extends Controller {
         $content = $csv->toCSV();
         Yii::app()->getRequest()->sendFile('items.csv', $content, "text/csv", false);
     }
-
 
     /**
      * Handle ajax requests for /admin/item/ajax
