@@ -12,7 +12,7 @@ $this->menu = array(
 );
 ?>
 
-<h1>View item: <?php echo $model->item; ?></h1>
+<h1><?php echo $model->item; ?></h1>
 
 <?php
 $state_name = $model->district->state->name;

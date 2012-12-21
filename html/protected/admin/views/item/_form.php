@@ -40,13 +40,13 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
 
     <?php echo $form->errorSummary($model); ?>
 
-    <h3>Basic info:</h3>
+    <h4>Basic info:</h4>
     <div class="row-fluid">
 
 
         <div class="span8">
             <?php echo $form->labelEx($model, 'item'); ?>
-            <?php echo $form->textField($model, 'item', array('class' => 'span12', 'maxlength' => 1000, 'placeholder' => 'i.e Candidate or Measure\'s name')); ?>
+            <?php echo $form->textField($model, 'item', array('class' => 'span11', 'maxlength' => 1000, 'placeholder' => 'i.e Candidate or Measure\'s name')); ?>
             <?php echo $form->error($model, 'item'); ?>
         </div>
 
@@ -63,7 +63,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
 
     <hr/>
 
-    <h3>Location info:</h3>
+    <h4>Location info:</h4>
     <div class="row-fluid">
         <?php
         $this->widget('ext.DistrictSelector.DistrictSelector', array(
@@ -80,7 +80,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
     <hr/>
 
     <div  id="candidate_related_inputs" >
-        <h3>Candidate info:</h3>
+        <h4>Candidate info:</h4>
         <div class="row-fluid">
             <div class="span6">
                 <?php
@@ -101,7 +101,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
 
 
     <div id ="measure_related_inputs">
-        <h3>Measure info:</h3>
+        <h4>Measure info:</h4>
         <div class="row-fluid">
             <div class="span6">
                 <?php
@@ -120,11 +120,11 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
         </div>
     </div>
 
-    <div class="clearfix"></div>
+ 
 
     <hr/>
 
-    <h3>Extra info:</h3>
+    <h4>Extra info:</h4>
     <div class="row-fluid">
         <div class="span6">
             <?php
@@ -205,7 +205,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
 
     <hr/>
 
-    <h3>Social info:</h3>
+    <h4>Social info:</h4>
     <div class="row-fluid">
         <div class="span6">
             <?php
@@ -271,7 +271,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
 
     <hr/>
     <div>
-        <h3>Publication info:</h3>
+        <h4>Publication info:</h4>
         <div class="row-fluid">
             <div class="span6">
                 <?php echo $form->labelEx($model, 'date_published'); ?>
@@ -334,11 +334,11 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
                   if ( response == "success" ){
                          sessionStorage.setItem("ItemContent", "");
                          target.addClass("btn-success");
-                         target.html( "item saved" );
+                         target.html( "Ballot item saved" );
                     }
                     else{
                     target.addClass("btn-danger");
-                      target.html( "Could not save item." );
+                      target.html( "Could not save ballot item." );
                   }
                 target.fadeOut(5000, function(){
                  target.removeClass("btn-danger");

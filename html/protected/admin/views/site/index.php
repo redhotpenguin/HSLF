@@ -15,8 +15,8 @@
 
         <div class="row">
             <div class="span3">
-                <h2>Items</h2>
-                <p>Add, edit, delete, search items. </p>
+                <h2>Ballot Items</h2>
+                <p>Add, edit, delete, search ballot items. </p>
                 <p><a class="btn" href="/admin/item/admin/">More »</a></p>
             </div>
             <div class="span3">
