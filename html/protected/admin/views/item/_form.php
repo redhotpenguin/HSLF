@@ -144,9 +144,6 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
                 'options' => array(
                     'showAnim' => 'fold',
                     'dateFormat' => 'yy-mm-dd',
-                // 'buttonImageOnly' => 'true',
-                // 'buttonImage' => '/themes/dashboard/img/calendar.png',
-                // 'showOn' => 'button',
                 ),
                 'htmlOptions' => array(
                     'style' => 'height:20px;',
@@ -157,7 +154,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
             <?php echo $form->error($model, 'next_election_date'); ?>
         </div>   
     </div>
-
+    <br/>
     <div class="row-fluid">
 
         <div class="span6">
@@ -189,14 +186,10 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
         </div>
 
     </div>
-
-
-    <div class="clearfix"></div>
-    <hr/>
-
-    <h3>Detail:</h3>
+    <br/>
     <div class="">
         <?php
+        echo $form->labelEx($model, 'detail');
         $this->widget('ext.tinymce.TinyMce', array(
             'model' => $model,
             'attribute' => 'detail',
@@ -214,6 +207,28 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
     <hr/>
 
     <h3>Social info:</h3>
+    <div class="row-fluid">
+        <div class="span6">
+            <?php
+            echo $form->labelEx($model, 'facebook_url');
+            echo $form->textField($model, 'facebook_url', array('class' => 'span12', 'maxlength' => 2048, 'placeholder' => 'Facebook URL'));
+            ?>
+            <?php
+            echo $form->error($model, 'facebook_url');
+            ?>
+        </div>
+
+        <div class="span6">
+            <?php
+            echo $form->labelEx($model, 'twitter_handle');
+            echo $form->textField($model, 'twitter_handle', array('class' => 'span12', 'maxlength' => 16, 'placeholder' => 'Twitter handle'));
+            ?>
+            <?php
+            echo $form->error($model, 'twitter_handle');
+            ?>
+        </div>
+    </div>
+
     <div class="row-fluid">
         <div class="span6">
             <?php
@@ -237,28 +252,6 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
 
             <?php
             echo $form->error($model, 'website');
-            ?>
-        </div>
-    </div>
-
-    <div class="row-fluid">
-        <div class="span6">
-            <?php
-            echo $form->labelEx($model, 'facebook_url');
-            echo $form->textField($model, 'facebook_url', array('class' => 'span12', 'maxlength' => 2048, 'placeholder' => 'Facebook URL'));
-            ?>
-            <?php
-            echo $form->error($model, 'facebook_url');
-            ?>
-        </div>
-
-        <div class="span6">
-            <?php
-            echo $form->labelEx($model, 'twitter_handle');
-            echo $form->textField($model, 'twitter_handle', array('class' => 'span12', 'maxlength' => 16, 'placeholder' => 'Twitter handle'));
-            ?>
-            <?php
-            echo $form->error($model, 'twitter_handle');
             ?>
         </div>
     </div>
@@ -291,9 +284,6 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
                     'options' => array(
                         'showAnim' => 'fold',
                         'dateFormat' => 'yy-mm-dd ' . date('h:i:s'),
-                    //     'buttonImageOnly' => 'true',
-                    //    'buttonImage' => '/themes/dashboard/img/calendar.png',
-                    //   'showOn' => 'button',
                     ),
                     'htmlOptions' => array(
                         'style' => 'height:20px;',
@@ -368,9 +358,6 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
          
                    target.html( "Could not save item:<br/>" + object.responseText );
              
-                //target.fadeOut(5000, function(){
-                // target.removeClass("btn-danger");
-              //  });
             }',
         ));
     }else
