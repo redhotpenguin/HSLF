@@ -11,6 +11,12 @@ ALTER TABLE item ADD COLUMN first_name VARCHAR(1024);
 ALTER TABLE item ADD COLUMN last_name VARCHAR(1024);
 ALTER TABLE item RENAME COLUMN url TO slug;
 ALTER TABLE item RENAME COLUMN personal_url TO website;
+ALTER TABLE item ALTER COLUMN item_type SET NOT NULL;
+ALTER TABLE item ALTER COLUMN party_id SET NOT NULL;
+ALTER TABLE item ALTER COLUMN recommendation_id SET NOT NULL;
+ALTER TABLE item ALTER COLUMN slug SET NOT NULL;
+
+
 
 -- endorser updates
 ALTER TABLE endorser RENAME TO organization;
@@ -25,3 +31,6 @@ ALTER TABLE scorecard_item ADD COLUMN tenant_id INTEGER;
 ALTER TABLE scorecard_item ADD FOREIGN KEY (tenant_id) REFERENCES tenant (id) ON UPDATE CASCADE ON DELETE CASCADE;
 UPDATE scorecard_item  SET tenant_id = 1;
 ALTER TABLE scorecard_item   ALTER COLUMN tenant_id SET NOT NULL;
+
+
+ALTER TABLE alert_type ALTER COLUMN tag_id SET NOT NULL;
