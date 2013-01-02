@@ -5,10 +5,10 @@ $this->breadcrumbs = array(
 );
 
 $this->menu = array(
-    array('label' => 'Create another item', 'url' => array('create')),
-    array('label' => 'Edit this item', 'url' => array('update', 'id' => $model->id)),
-    array('label' => 'Delete this item', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this item?')),
-    array('label' => 'Manage items', 'url' => array('admin')),
+    array('label' => 'Create another ballot item', 'url' => array('create')),
+    array('label' => 'Edit this ballot item', 'url' => array('update', 'id' => $model->id)),
+    array('label' => 'Delete this ballot item', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this item?')),
+    array('label' => 'Manage ballot items', 'url' => array('admin')),
 );
 ?>
 
