@@ -73,7 +73,7 @@
     <div class="">
         <?php
         echo $form->labelEx($model, 'facebook_url');
-        echo $form->textarea($model, 'facebook_url', array('size' => 60, 'maxlength' => 1024, 'class' => 'span9'));
+        echo $form->textField($model, 'facebook_url', array('size' => 60, 'maxlength' => 1024, 'class' => 'span9'));
         echo $form->error($model, 'facebook_url');
         ?>
     </div>
