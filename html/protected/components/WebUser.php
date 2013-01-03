@@ -4,8 +4,6 @@ class WebUser extends CWebUser {
 
     public function __get($name) {
     
-        
-        
         if ($this->hasState('__userInfo')) {
             
             $user = $this->getState('__userInfo', array());

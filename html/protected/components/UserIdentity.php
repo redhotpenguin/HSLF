@@ -20,7 +20,6 @@ class UserIdentity extends CUserIdentity {
         
         if ($this->user === null) { // No user found!
             $this->errorCode = self::ERROR_USERNAME_INVALID;
-            error_log('invalid username: ' . $this->username);
         } else if ($this->user->password !== get_hash($this->password)) { // Invalid password!
             $this->errorCode = self::ERROR_PASSWORD_INVALID;
         } else { // Okay!
