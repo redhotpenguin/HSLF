@@ -25,7 +25,7 @@ CREATE TABLE state (
 
 CREATE TABLE district (
     id SERIAL PRIMARY KEY,
-    state_abbr character varying(3) NOT NULL,
+    state_id INTEGER NOT NULL,
     number character varying(512),
     type character varying(128) NOT NULL,
     display_name character varying(512),
@@ -159,7 +159,7 @@ ALTER TABLE tenant ADD CONSTRAINT unique_name UNIQUE (name);
 ALTER TABLE item ADD CONSTRAINT unique_url UNIQUE(slug);
 
 
-ALTER TABLE district ADD CONSTRAINT district_state_abbr_number_locality_type_key UNIQUE (state_abbr, number, type, locality);
+ALTER TABLE district ADD CONSTRAINT district_state_id_number_locality_type_key UNIQUE (state_id, number, type, locality);
 ALTER TABLE option ADD CONSTRAINT option_name_key UNIQUE (name);
 --ALTER TABLE scorecard ADD CONSTRAINT scorecard_item_id_scorecard_item_id_key UNIQUE (item_id, scorecard_item_id);
 
@@ -179,7 +179,7 @@ ALTER TABLE item ADD CONSTRAINT item_recommendation_id_fkey FOREIGN KEY (recomme
 
 ALTER TABLE item_news ADD CONSTRAINT item_news_item_id_fkey FOREIGN KEY (item_id) REFERENCES item(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
-ALTER TABLE district ADD CONSTRAINT district_state_abbr_fkey FOREIGN KEY (state_abbr) REFERENCES state(abbr) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE district ADD CONSTRAINT district_state_id_fkey FOREIGN KEY (state_id) REFERENCES state(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE organization_item ADD CONSTRAINT organization_item_item_id_fkey FOREIGN KEY (item_id) REFERENCES item(id) ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE organization_item ADD CONSTRAINT organization_item_organization_id_fkey FOREIGN KEY (organization_id) REFERENCES organization(id) ON UPDATE CASCADE ON DELETE CASCADE;
