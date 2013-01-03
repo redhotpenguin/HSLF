@@ -8,7 +8,6 @@ $this->breadcrumbs = array(
 
     <h1>Login</h1><br/>
 
-
     <div class="form">
         <?php
         $form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
@@ -25,7 +24,6 @@ $this->breadcrumbs = array(
         <?php echo $form->labelEx($model, 'username'); ?>
         <?php echo $form->textField($model, 'username'); ?>
         <?php echo $form->error($model, 'username'); ?>
-
 
 
         <?php echo $form->labelEx($model, 'password'); ?>

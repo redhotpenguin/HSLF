@@ -8,9 +8,9 @@ class SiteController extends Controller {
      */
     public function actionIndex() {
         $data = null;
-
+        
+        //user is already authenticated
         if (Yii::app()->user->id) {
-
             $data = array(
                 'total_item_number' => Item::model()->count(),
                 'total_user_number' => MobileUser::model()->count(),
@@ -19,7 +19,6 @@ class SiteController extends Controller {
 
             $this->render('index', $data);
         } else {
-
             $model = new LoginForm;
 
             // if it is ajax validation request
@@ -31,9 +30,10 @@ class SiteController extends Controller {
             // collect user input data
             if (isset($_POST['LoginForm'])) {
                 $model->attributes = $_POST['LoginForm'];
-                // validate user input and redirect to the previous page if valid
+                
+                // validate user input and redirect to the admin home page if valid
                 if ($model->validate() && $model->login()) {
-                    $this->redirect(Yii::app()->user->returnUrl);
+                    $this->redirect('site/index');
                 }
             }
             // display the login form
@@ -46,7 +46,6 @@ class SiteController extends Controller {
      * when an action is not explicitly requested by users.
      */
     public function actionLogin() {
-        $data = null;
         if (Yii::app()->user->id) {
             $this->actionIndex();
         } else {
@@ -75,9 +74,6 @@ class SiteController extends Controller {
      * This is the action to handle external exceptions.
      */
     public function actionError() {
-        logIt($_GET);
-
-
         if ($error = Yii::app()->errorHandler->error) {
             if (Yii::app()->request->isAjaxRequest)
                 echo $error['message'];
