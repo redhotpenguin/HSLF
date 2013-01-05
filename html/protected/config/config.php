@@ -24,13 +24,13 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
 
     set_include_path(get_include_path() . PATH_SEPARATOR . '/home/dotcloud/php-env/share/php');
 } else {    //dev server conf
-    $dbhost = 'localhost';
-    $dbname = 'mobile_platform';
+    $dbhost = '127.0.0.1';
+    $dbname = 'mobile_advocacy_platform';
     $dbuser = 'postgres';
     $dbpass = 'pengu1n';
     $dbport = '5432';
 
-    $mongodbhost = "mongodb://localhost:27018";
+    $mongodbhost = "mongodb://localhost:27017";
     $mongodbname = "mobile_advocacy_platform";
     $mongodbuser = "admin";
     $mongdbpass = "admin";
