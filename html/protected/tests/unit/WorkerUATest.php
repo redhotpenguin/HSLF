@@ -6,9 +6,21 @@ use WorkerLibrary\UrbanAirship as UrbanAirship;
 
 class WorkerUATest extends CDbTestCase {
 
-    public function testFoo() {
-        $this->assertTrue(true);
-        new UrbanAirship();
+    private $airship;
+
+    public function __construct() {
+       
+        $this->airship = new UrbanAirship("G3QQPQEERdKchSqDPq6Gag", "FT98LRhLRNOPHBg8k-5iyg");
+    }
+
+    public function testSendPushNotification() {
+        $apids = array(
+            "5d1cf0cb-90ce-4960-8c12-adc8c8bec35e"
+        );
+
+        $result = $this->airship->sendPushNotification("hello jonas!", null, $apids);
+
+        $this->assertTrue($result);
     }
 
 }
