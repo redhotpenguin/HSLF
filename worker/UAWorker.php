@@ -9,7 +9,6 @@ class UAWorker extends Worker {
     public function __construct() {
 
         /*
-          @todo: message persistance
           @todo: unit tests
           @todo: test uap pushes on a phone
           @todo: UA push code
@@ -37,7 +36,7 @@ class UAWorker extends Worker {
 
         $uaMessage = AMQPUAMessage::unserialize($message->getBody());
 
-        var_dump($uaMessage);
+        printf("got a message from %s", $uaMessage->clientName);
         
         $this->acknowledge( $message->getDeliveryTag() );
 

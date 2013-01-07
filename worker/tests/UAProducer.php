@@ -15,15 +15,19 @@ $apids = array();
 $tokens = array();
 
 // generate fake apids
-for($i=0; $i< 1000; $i++){
+for($i=0; $i < 1000; $i++){
     array_push($apids, md5(microtime()));
 }
 
 // generate fake tokens
-for($i=0; $i< 1000; $i++){
+for($i=0; $i < 1000; $i++){
     array_push($tokens, md5(microtime()));
 }
 
+$testMessage->clientName = "jonas palmero";
+$testMessage->clientEmail = "jonas@winningmark.com";
+$testMessage->apiKey = "abc";
+$testMessage->apiSecret = "adfg";
 $testMessage->apids = $apids;
 $testMessage->tokens = $tokens;
 $testMessage->customData = array("foo"=>"bar", "open"=>"screen4");
