@@ -77,10 +77,7 @@ class UrbanAirship {
             }
         }
 
-
-
         $jsonPayload = json_encode($payload);
-
 
         $ch = curl_init(self::PUSH_API);
         curl_setopt($ch, CURLOPT_USERPWD, $this->apiKey . ":" . $this->apiSecret);
@@ -89,16 +86,23 @@ class UrbanAirship {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'Content-Type: application/json',
-                // 'Content-Length: ' . strlen($jsonPayload)
                 )
         );
 
 
-        $result = curl_exec($ch);
+        $jsonResult = curl_exec($ch);
 
         $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-        return ($status === 200);
+        if ($status === 200) {
+            $result = json_decode($jsonResult, true);
+            
+            if (isset($result['push_id'])) {
+                return $result['push_id'];
+            }
+        } else {
+            return false;
+        }
     }
 
 }

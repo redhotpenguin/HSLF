@@ -18,9 +18,10 @@ class WorkerUATest extends CDbTestCase {
             "5d1cf0cb-90ce-4960-8c12-adc8c8bec35e"
         );
 
-        $result = $this->airship->sendPushNotification("hello jonas!", null, $apids);
+        $result = $this->airship->sendPushNotification("hello jonas!!", null, $apids);
 
-        $this->assertTrue($result);
+        $this->assertNotEquals(false, $result);
+
     }
 
 }
