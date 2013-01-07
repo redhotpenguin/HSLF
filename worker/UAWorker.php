@@ -4,8 +4,11 @@ class UAWorker{
     
     
     public function __construct(){
-        new Airship();
+        echo "hey";
+        error_log("foobar");
+     //   new \worker_library\Airship();
     }
+    
     
 }
 
@@ -14,7 +17,3 @@ class UAWorker{
 
 
 
-
-
-
-new UAWorker();
