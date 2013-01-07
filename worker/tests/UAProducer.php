@@ -45,12 +45,15 @@ $channel = new AMQPChannel( $cnn );
 // get a queue object
 
 $queue = new AMQPQueue( $channel );
+
 /*
 The queue name must be set before we call declare(). 
 Otherwise, a random queue name will be generated
 */
 $queue->setName( $queueName );
  
+$queue->setFlags(AMQP_DURABLE);
+
 $queue->declare();
 
 
@@ -68,8 +71,8 @@ $exchange->declare();
 $queue->bind( $exchangeName , $queueName );
  
 
-// Publish our message!
-$ep = $exchange->publish( $message,  $queueName );
+// Publish our persistant message!
+$ep = $exchange->publish( $message, $queueName, AMQP_NOPARAM, array('delivery_mode' => 2) );
  
 if(!$ep){
 	printf("could not publish :(\n ");

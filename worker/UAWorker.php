@@ -9,7 +9,6 @@ class UAWorker extends Worker {
     public function __construct() {
 
         /*
-          @todo: test effective message size
           @todo: message persistance
           @todo: unit tests
           @todo: test uap pushes on a phone
@@ -25,23 +24,23 @@ class UAWorker extends Worker {
             'password' => 'guest'
         );
 
-        
+
         parent::__construct('uap_queue', 'urbanairship_exchange', $credentials);
 
         $message = $this->getMessage();
-        
+
         if ($message == false) {
             printf("no messages in queue");
             return;
         }
 
 
-    
-       $uaMessage = AMQPUAMessage::unserialize($message->getBody());
- 
-       var_dump($uaMessage);
-       
-       
+        $uaMessage = AMQPUAMessage::unserialize($message->getBody());
+
+        var_dump($uaMessage);
+        
+        $this->acknowledge( $message->getDeliveryTag() );
+
         $this->disconnect();
     }
 

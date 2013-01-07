@@ -2,6 +2,7 @@
 
 /**
  * Abstract AMQP Worker (direct exchange)
+ * Queues are persistant and manually acknowledged
  *
  * @author jonas
  */
@@ -34,6 +35,8 @@ abstract class Worker {
             $this->queue = new AMQPQueue($this->channel);
 
             $this->queue->setName($queueName);
+            
+            $this->queue->setFlags(AMQP_DURABLE);
 
             $this->queue->declare();
         } catch (AMQPQueueException $e) {
@@ -74,11 +77,15 @@ abstract class Worker {
     }
 
     protected function getMessage() {
-        return $this->queue->get(AMQP_AUTOACK);
+        return $this->queue->get(AMQP_NOPARAM);
+    }
+    
+    protected function acknowledge($deliveryTag){
+        $this->queue->ack($deliveryTag);
     }
 
     protected function disconnect() {
         return $this->connection->disconnect();
     }
-
+    
 }
