@@ -34,6 +34,12 @@ class AMQPUAMessage {
     public $apiSecret;
 
     /**
+     * Push notification
+     * @var string 
+     */
+    public $alert;
+
+    /**
      * array of tokens (ios)
      * @var array 
      */
@@ -49,7 +55,7 @@ class AMQPUAMessage {
      * array of key/value pairs
      * @var array 
      */
-    public $customData = array();
+    public $extra = array();
 
     /**
      * Helper - Unserialize a message

@@ -88,6 +88,8 @@ class UrbanAirship {
             'Content-Type: application/json',
                 )
         );
+        
+        printf("json: %s\n", $jsonPayload);
 
 
         $jsonResult = curl_exec($ch);

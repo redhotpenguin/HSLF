@@ -10,27 +10,21 @@ use WorkerLibrary\AMQPUAMessage as AMQPUAMessage;
 
 $testMessage = new AMQPUAMessage();
 
-$apids = array();
+$apids = array(
+    '5d1cf0cb-90ce-4960-8c12-adc8c8bec35e'
+);
 
 $tokens = array();
 
-// generate fake apids
-for($i=0; $i < 1000; $i++){
-    array_push($apids, md5(microtime()));
-}
-
-// generate fake tokens
-for($i=0; $i < 1000; $i++){
-    array_push($tokens, md5(microtime()));
-}
 
 $testMessage->clientName = "jonas palmero";
 $testMessage->clientEmail = "jonas@winningmark.com";
-$testMessage->apiKey = "abc";
-$testMessage->apiSecret = "adfg";
+$testMessage->apiKey = "G3QQPQEERdKchSqDPq6Gag";
+$testMessage->apiSecret = "FT98LRhLRNOPHBg8k-5iyg";
 $testMessage->apids = $apids;
 $testMessage->tokens = $tokens;
-$testMessage->customData = array("foo"=>"bar", "open"=>"screen4");
+$testMessage->extra = array("foo"=>"bar", "open"=>"screen4");
+$testMessage->alert = "hello RabbitMQ";
 
 $message = $testMessage->serialize();
 
