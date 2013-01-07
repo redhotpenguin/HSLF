@@ -3,7 +3,7 @@
 namespace WorkerLibrary;
 
 /**
- * AMQP urbanairship - message structure
+ * AMQP urbanairship - message structure - UTF8 should be used
  *
  * @author jonas
  */
@@ -12,7 +12,6 @@ class AMQPUAMessage {
     public $tokens = array();
     public $apids = array();
     public $customData = array();
-
     
     // helpers
     public static function unserialize($serializedMsg) {

@@ -9,33 +9,40 @@ class UAWorker extends Worker {
     public function __construct() {
 
         /*
-          @todo: abstract UAWorker->Worker
           @todo: test effective message size
           @todo: message persistance
           @todo: unit tests
+          @todo: test uap pushes on a phone
+          @todo: UA push code
+          @todo: supervisor
          */
 
-        $queueName = 'uap_queue';
-        $exchangeName = 'urbanairship_exchange';
+        $credentials = array(
+            'host' => 'localhost',
+            'vhost' => '/',
+            'port' => 5672,
+            'login' => 'guest',
+            'password' => 'guest'
+        );
 
-        parent::__construct($queueName, $exchangeName);
         
-  
+        parent::__construct('uap_queue', 'urbanairship_exchange', $credentials);
 
-        $message = $this->queue->get(AMQP_AUTOACK);
-
+        $message = $this->getMessage();
+        
         if ($message == false) {
-            printf("no messages in queue $queueName");
+            printf("no messages in queue");
             return;
         }
 
-        $uaMessage = AMQPUAMessage::unserialize($message->getBody());
-        var_dump($uaMessage);
 
-        //  echo $message->getBody(); // print Hello World!	
-
-
-        $cnn->disconnect();
+    
+       $uaMessage = AMQPUAMessage::unserialize($message->getBody());
+ 
+       var_dump($uaMessage);
+       
+       
+        $this->disconnect();
     }
 
 }

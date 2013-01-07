@@ -1,12 +1,7 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * AMQP Worker (direct exchange)
+ * Abstract AMQP Worker (direct exchange)
  *
  * @author jonas
  */
@@ -15,16 +10,17 @@ abstract class Worker {
     private $connection;
     private $channel;
     private $exchange;
-    protected $queue;
+    private $queue;
 
-    public function __construct($queueName, $exchangeName, $options = array()) {
-
+    public function __construct($queueName, $exchangeName, $credentials = array()) {
 
         // create a new connection
         try {
-            $this->connection = new AMQPConnection();
+            $this->connection = new AMQPConnection($credentials);
+
             $this->connection->connect();
         } catch (AMQPException $e) {
+            echo $e->getMessage();
             error_log('connection error: ' . $e->getMessage());
             die;
         }
@@ -77,6 +73,12 @@ abstract class Worker {
         }
     }
 
-}
+    protected function getMessage() {
+        return $this->queue->get(AMQP_AUTOACK);
+    }
 
-?>
+    protected function disconnect() {
+        return $this->connection->disconnect();
+    }
+
+}

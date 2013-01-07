@@ -9,8 +9,23 @@ function __autoload($class)
 use WorkerLibrary\AMQPUAMessage as AMQPUAMessage;
 
 $testMessage = new AMQPUAMessage();
-$testMessage->apids = array(1, 2, 3, 4);
-$testMessage->tokens = array(4,6,7);
+
+$apids = array();
+
+$tokens = array();
+
+// generate fake apids
+for($i=0; $i< 1000; $i++){
+    array_push($apids, md5(microtime()));
+}
+
+// generate fake tokens
+for($i=0; $i< 1000; $i++){
+    array_push($tokens, md5(microtime()));
+}
+
+$testMessage->apids = $apids;
+$testMessage->tokens = $tokens;
 $testMessage->customData = array("foo"=>"bar", "open"=>"screen4");
 
 $message = $testMessage->serialize();
@@ -57,10 +72,10 @@ $queue->bind( $exchangeName , $queueName );
 $ep = $exchange->publish( $message,  $queueName );
  
 if(!$ep){
-	printf("could not publish :( ");
+	printf("could not publish :(\n ");
 }
 else{
-	printf("message published");
+	printf("message published\n");
 }
  
 // close the connection to the amqp broker
