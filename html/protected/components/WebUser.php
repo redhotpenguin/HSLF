@@ -16,7 +16,7 @@ class WebUser extends CWebUser {
         return parent::__get($name);
     }
 
-    public function login($identity, $duration) {        
+    public function login($identity,  $duration = 0) {        
         $this->setState('__userInfo', $identity->getUser());
         parent::login($identity, $duration);
     }
@@ -40,5 +40,3 @@ class WebUser extends CWebUser {
     }
 
 }
-
-?>
