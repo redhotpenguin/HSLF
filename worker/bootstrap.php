@@ -1,8 +1,7 @@
 <?php
 
-
-function __autoload($class)
-{
+function __autoload($class) {
     $parts = explode('\\', $class);
-    require __DIR__.'/WorkerLibrary/'.end($parts) . '.php';
+    $file = __DIR__ . '/WorkerLibrary/' . end($parts) . '.php';
+    require $file;
 }

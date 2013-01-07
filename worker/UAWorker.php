@@ -4,6 +4,7 @@ include_once("bootstrap.php");
 
 use WorkerLibrary\AMQPUAMessage as AMQPUAMessage;
 
+
 class UAWorker extends Worker {
 
     public function __construct() {
