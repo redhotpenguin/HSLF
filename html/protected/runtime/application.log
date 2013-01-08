@@ -1,0 +1,24 @@
+2013/01/04 16:33:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "worker/UAWorker.php".' in /var/www/html/mobile_platform/framework/yiilite.php:1729
+Stack trace:
+#0 /var/www/html/mobile_platform/framework/yiilite.php(1645): CWebApplication->runController('worker/UAWorker...')
+#1 /var/www/html/mobile_platform/framework/yiilite.php(1170): CWebApplication->processRequest()
+#2 /var/www/html/mobile_platform/html/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/worker/UAWorker.php
+---
+2013/01/07 15:19:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "worker/WorkerLibrary/UrbanAirship.php".' in /var/www/html/mobile_platform/framework/yiilite.php:1729
+Stack trace:
+#0 /var/www/html/mobile_platform/framework/yiilite.php(1645): CWebApplication->runController('worker/WorkerLi...')
+#1 /var/www/html/mobile_platform/framework/yiilite.php(1170): CWebApplication->processRequest()
+#2 /var/www/html/mobile_platform/html/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/worker/WorkerLibrary/UrbanAirship.php
+---
+2013/01/07 15:21:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "worker/WorkerLibrary/UrbanAirship.php".' in /var/www/html/mobile_platform/framework/yiilite.php:1729
+Stack trace:
+#0 /var/www/html/mobile_platform/framework/yiilite.php(1645): CWebApplication->runController('worker/WorkerLi...')
+#1 /var/www/html/mobile_platform/framework/yiilite.php(1170): CWebApplication->processRequest()
+#2 /var/www/html/mobile_platform/html/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/worker/WorkerLibrary/UrbanAirship.php
+---
