@@ -9,19 +9,12 @@ class UAWorker extends Worker {
 
     public function __construct() {
 
-        /*
-          @todo: unit tests
-          @todo: test uap pushes on a phone
-          @todo: UA push code
-          @todo: supervisor
-         */
-
         $credentials = array(
-            'host' => 'localhost',
-            'vhost' => '/',
-            'port' => 5672,
-            'login' => 'guest',
-            'password' => 'guest'
+            'host' => RABBITMQ_HOST,
+            'vhost' => RABBITMQ_VHOST,
+            'port' => RABBITMQ_PORT,
+            'login' =>  RABBITMQ_LOGIN,
+            'password' =>  RABBITMQ_PASSWORD
         );
 
 
