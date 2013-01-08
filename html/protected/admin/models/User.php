@@ -133,7 +133,7 @@ class User extends CBaseActiveRecord {
     /**
      *   Save a User model
      */
-    public function save() {
+    public function save($runValidation = true, $attributes = null) {
         $save_result = false;
 
         try {
