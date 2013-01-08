@@ -1,7 +1,5 @@
 <?php
 
-
-
 /**
  * Description of ClientInfo
  *
@@ -44,6 +42,20 @@ class ClientInfo {
      * @param string $apiSecret api secret
      */
     public function __construct($name, $email, $apiKey, $apiSecret) {
+
+        if (empty($name))
+            throw new \InvalidArgumentException("Client name is required");
+
+        if (empty($email))
+            throw new \InvalidArgumentException("Client email is required");
+
+        if (empty($apiKey))
+            throw new \InvalidArgumentException("Client api key is required");
+
+        if (empty($apiSecret))
+            throw new \InvalidArgumentException("Client api secret is required");
+
+
         $this->name = $name;
         $this->email = $email;
         $this->apiKey = $apiKey;

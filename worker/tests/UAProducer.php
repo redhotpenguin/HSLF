@@ -26,6 +26,10 @@ $extra = array("foo" => "bar", "open" => "screen4");
 
 $clientInfo = new \WorkerLibrary\ClientInfo("Jonas", "jonas@winningmark.com", "G3QQPQEERdKchSqDPq6Gag", "FT98LRhLRNOPHBg8k-5iyg");
 
+//$clientInfo = new \WorkerLibrary\ClientInfo("Jonas", "jonas@winningmark.com", "", "abc");
+   
+
+
 $payload = new \WorkerLibrary\Payload($msg, $tokens, $apids, $extra);
 
 

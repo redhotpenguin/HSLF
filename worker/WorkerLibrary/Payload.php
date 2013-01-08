@@ -36,18 +36,22 @@ class Payload {
      * @param array $extra custom data
      */
     public function __construct($alert, array $tokens = null, array $apids = null, array $extra = null) {
+
+        if (empty($alert))
+            throw new \InvalidArgumentException("An alert is required");
+
+
         $this->alert = $alert;
         $this->tokens = $tokens;
         $this->apids = $apids;
         $this->extra = $extra;
     }
-    
-    
+
     /**
      * Get the push notification (alert)
      * @return string alert
      */
-    public function getAlert(){
+    public function getAlert() {
         return $this->alert;
     }
 
