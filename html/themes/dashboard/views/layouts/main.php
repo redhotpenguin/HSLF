@@ -56,8 +56,6 @@
                                 array('label' => 'Scorecard Items', 'url' => array('/scorecardItem/admin'), 'visible' => !Yii::app()->user->isGuest),
                                 array('label' => 'Votes', 'url' => array('/vote/admin'), 'visible' => !Yii::app()->user->isGuest),
                                 '',
-                                array('label' => 'Messaging', 'url' => array('/messaging'), 'visible' => !Yii::app()->user->isGuest),
-                                '',
                                 array('label' => 'Image Upload', 'url' => array('/upload'), 'visible' => !Yii::app()->user->isGuest),
                                 '',
                                 array('itemOptions' => array('id' => 'external_item'), 'label' => 'Urban Airship', 'linkOptions' => array('target' => '_blank'), 'url' => $tenant->ua_dashboard_link),

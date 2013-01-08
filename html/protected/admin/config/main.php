@@ -32,7 +32,8 @@ return array(
         'application.components.*',
         'ext.directmongosuite.components.*',
     ),
-    'modules' => array(),
+    'modules' => array(
+    ),
     // application components
     'components' => array(
         'user' => array(
