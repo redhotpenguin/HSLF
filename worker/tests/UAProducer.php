@@ -1,5 +1,14 @@
 <?php
 
+$opt = getopt("m:");
+
+
+if(isset($opt['m']))
+    $message = $opt['m'];
+else
+    $message = "hello world";
+
+
 function __autoload($class)
 {
     $parts = explode('\\', $class);
@@ -24,7 +33,7 @@ $testMessage->apiSecret = "FT98LRhLRNOPHBg8k-5iyg";
 $testMessage->apids = $apids;
 $testMessage->tokens = $tokens;
 $testMessage->extra = array("foo"=>"bar", "open"=>"screen4");
-$testMessage->alert = "hello RabbitMQ";
+$testMessage->alert = $message;
 
 $message = $testMessage->serialize();
 
