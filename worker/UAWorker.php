@@ -3,6 +3,8 @@
 include_once("bootstrap.php");
 
 use WorkerLibrary\AMQPUAMessage as AMQPUAMessage;
+use WorkerLibrary\ClientInfo as ClientInfo;
+use WorkerLibrary\Payload as Payload;
 use WorkerLibrary\UrbanAirship as messenger;
 
 class UAWorker extends Worker {
@@ -13,8 +15,8 @@ class UAWorker extends Worker {
             'host' => RABBITMQ_HOST,
             'vhost' => RABBITMQ_VHOST,
             'port' => RABBITMQ_PORT,
-            'login' =>  RABBITMQ_LOGIN,
-            'password' =>  RABBITMQ_PASSWORD
+            'login' => RABBITMQ_LOGIN,
+            'password' => RABBITMQ_PASSWORD
         );
 
 
@@ -30,16 +32,20 @@ class UAWorker extends Worker {
 
         $uaMessage = AMQPUAMessage::unserialize($message->getBody());
 
-        printf("got a message from %s\n", $uaMessage->clientName);
-        printf("sending %s \n", $uaMessage->alert);
-        
-        $messenger = new messenger($uaMessage->apiKey, $uaMessage->apiSecret);
-        
-        $result = $messenger->sendPushNotification($uaMessage->alert, $uaMessage->tokens, $uaMessage->apids, $uaMessage->extra);
-        
-        printf (  "push result: %s \n", $result);
-        
-        $this->acknowledge( $message->getDeliveryTag() );
+        printf("got a message from %s\n", $uaMessage->getClientInfo()->getName());
+        printf("sending %s \n", $uaMessage->getPayload()->getAlert());
+
+        $messenger = new messenger($uaMessage->getClientInfo()->getApiKey(), $uaMessage->getClientInfo()->getApiSecret());
+
+        $result = $messenger->sendPushNotification($uaMessage->getPayload()->getAlert(),
+                $uaMessage->getPayload()->getTokens(), 
+                $uaMessage->getPayload()->getApids(), 
+                $uaMessage->getPayload()->getExtra()
+                );
+
+        printf("push result: %s \n", $result);
+
+        $this->acknowledge($message->getDeliveryTag());
 
         $this->disconnect();
     }

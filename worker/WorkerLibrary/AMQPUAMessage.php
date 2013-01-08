@@ -2,6 +2,9 @@
 
 namespace WorkerLibrary;
 
+use WorkerLibrary\ClientInfo as ClientInfo;
+use WorkerLibrary\Payload as Payload;
+
 /**
  * AMQP urbanairship - message structure - UTF8 should be used
  *
@@ -10,52 +13,26 @@ namespace WorkerLibrary;
 class AMQPUAMessage {
 
     /**
-     * Client Name
-     * @var string 
+     * Client info
+     * @var Client 
      */
-    public $clientName;
+    public $clientInfo;
 
     /**
-     * Client Email
-     * @var string 
+     * Payload
+     * @var payload 
      */
-    public $clientEmail;
+    public $payload;
 
     /**
-     * Urban Airship API Key
-     * @var string 
+     * AMQPUAMessage
+     * @param Client $clientInfo client info
+     * @param Payload $payload  payload
      */
-    public $apiKey;
-
-    /**
-     * Urban Airship API Secret
-     * @var string 
-     */
-    public $apiSecret;
-
-    /**
-     * Push notification
-     * @var string 
-     */
-    public $alert;
-
-    /**
-     * array of tokens (ios)
-     * @var array 
-     */
-    public $tokens = array();
-
-    /**
-     * array of apids (androids)
-     * @var array 
-     */
-    public $apids = array();
-
-    /**
-     * array of key/value pairs
-     * @var array 
-     */
-    public $extra = array();
+    public function __construct(ClientInfo $clientInfo, Payload $payload) {
+        $this->clientInfo = $clientInfo;
+        $this->payload = $payload;
+    }
 
     /**
      * Helper - Unserialize a message
@@ -79,5 +56,20 @@ class AMQPUAMessage {
         return serialize($this);
     }
 
-}
+    /**
+     * return client info
+     * @return ClientInfo
+     */
+    public function getClientInfo() {
+        return $this->clientInfo;
+    }
 
+    /**
+     * return payload
+     * @return Payload
+     */
+    public function getPayload() {
+        return $this->payload;
+    }
+
+}
