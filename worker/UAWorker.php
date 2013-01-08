@@ -2,6 +2,7 @@
 
 include_once("bootstrap.php");
 
+use WorkerLibrary\Worker as Worker;
 use WorkerLibrary\AMQPUAMessage as AMQPUAMessage;
 use WorkerLibrary\ClientInfo as ClientInfo;
 use WorkerLibrary\Payload as Payload;

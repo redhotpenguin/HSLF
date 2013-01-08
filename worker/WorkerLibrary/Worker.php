@@ -1,5 +1,6 @@
 <?php
 
+namespace WorkerLibrary;
 /**
  * Abstract AMQP Worker (direct exchange)
  * Queues are persistant and manually acknowledged
@@ -17,7 +18,7 @@ abstract class Worker {
 
         // create a new connection
         try {
-            $this->connection = new AMQPConnection($credentials);
+            $this->connection = new \AMQPConnection($credentials);
 
             $this->connection->connect();
         } catch (AMQPException $e) {
@@ -27,12 +28,12 @@ abstract class Worker {
         }
 
         // get a channel
-        $this->channel = new AMQPChannel($this->connection);
+        $this->channel = new \AMQPChannel($this->connection);
 
 
         // declare a queue
         try {
-            $this->queue = new AMQPQueue($this->channel);
+            $this->queue = new \AMQPQueue($this->channel);
 
             $this->queue->setName($queueName);
             
@@ -49,7 +50,7 @@ abstract class Worker {
 
         // declare an exchange
         try {
-            $this->exchange = new AMQPExchange($this->channel);
+            $this->exchange = new \AMQPExchange($this->channel);
 
             $this->exchange->setName($exchangeName);
 
