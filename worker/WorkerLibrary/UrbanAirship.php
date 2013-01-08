@@ -89,22 +89,14 @@ class UrbanAirship {
                 )
         );
         
-        printf("json: %s\n", $jsonPayload);
+       // printf("json: %s\n", $jsonPayload);
 
 
         $jsonResult = curl_exec($ch);
 
         $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-        if ($status === 200) {
-            $result = json_decode($jsonResult, true);
-            
-            if (isset($result['push_id'])) {
-                return $result['push_id'];
-            }
-        } else {
-            return false;
-        }
+        return ($status === 200);
     }
 
 }
