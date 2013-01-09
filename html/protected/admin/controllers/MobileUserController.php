@@ -27,7 +27,7 @@ class MobileUserController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'view', 'delete'),
+                'actions' => array('index', 'view', 'delete', 'push'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -45,9 +45,10 @@ class MobileUserController extends Controller {
         if (isset($_GET['MobileUser'])) {
             $model->fields = $_GET['MobileUser'];
         }
-        
+
         $this->render('index', array(
             'model' => $model,
+            'mobile_user_count' => MobileUser::model()->count(),
         ));
     }
 
@@ -90,6 +91,32 @@ class MobileUserController extends Controller {
         }
         else
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
+    }
+
+    /**
+     * Push action - experimental
+     */
+    public function actionPush() {
+        echo '<pre>';
+        print_r($_POST);
+
+        if (count($_POST['filters']) != count($_POST['filterValues']))
+            return false;
+
+        $attributes = array();
+
+        $i = 0;
+        foreach ($_POST['filters'] as $filter) {
+            $attributes[$filter] = $_POST['filterValues'][$i];
+            $i++;
+        }
+
+
+        print_r($attributes);
+
+        $count = MobileUser::model()->find($attributes)->count();
+
+        echo $count;
     }
 
 }

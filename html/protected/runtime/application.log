@@ -22,3 +22,38 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/messaging
 ---
+2013/01/09 09:34:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "path/to/your/script.js".' in /var/www/html/mobile_platform/framework/yiilite.php:1729
+Stack trace:
+#0 /var/www/html/mobile_platform/framework/yiilite.php(1645): CWebApplication->runController('path/to/your/sc...')
+#1 /var/www/html/mobile_platform/framework/yiilite.php(1170): CWebApplication->processRequest()
+#2 /var/www/html/mobile_platform/html/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/path/to/your/script.js
+HTTP_REFERER=http://www.voterguide.com/admin/mobileUser
+---
+2013/01/09 09:36:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/dashboard/js/form/mobileuser.js".' in /var/www/html/mobile_platform/framework/yiilite.php:1729
+Stack trace:
+#0 /var/www/html/mobile_platform/framework/yiilite.php(1645): CWebApplication->runController('themes/dashboar...')
+#1 /var/www/html/mobile_platform/framework/yiilite.php(1170): CWebApplication->processRequest()
+#2 /var/www/html/mobile_platform/html/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/dashboard/js/form/mobileuser.js
+HTTP_REFERER=http://www.voterguide.com/admin/mobileUser
+---
+2013/01/09 09:36:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/dashboard/js/form/mobileuser.js".' in /var/www/html/mobile_platform/framework/yiilite.php:1729
+Stack trace:
+#0 /var/www/html/mobile_platform/framework/yiilite.php(1645): CWebApplication->runController('themes/dashboar...')
+#1 /var/www/html/mobile_platform/framework/yiilite.php(1170): CWebApplication->processRequest()
+#2 /var/www/html/mobile_platform/html/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/dashboard/js/form/mobileuser.js
+HTTP_REFERER=http://www.voterguide.com/admin/mobileUser
+---
+2013/01/09 10:53:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "worker/WorkerLibrary/UrbanAirship.php".' in /var/www/html/mobile_platform/framework/yiilite.php:1729
+Stack trace:
+#0 /var/www/html/mobile_platform/framework/yiilite.php(1645): CWebApplication->runController('worker/WorkerLi...')
+#1 /var/www/html/mobile_platform/framework/yiilite.php(1170): CWebApplication->processRequest()
+#2 /var/www/html/mobile_platform/html/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/worker/WorkerLibrary/UrbanAirship.php
+---
