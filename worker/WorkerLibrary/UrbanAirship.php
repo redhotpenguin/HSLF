@@ -60,12 +60,15 @@ class UrbanAirship {
          */
 
         $payload = array();
-
+        
+        // ios payload
         if (!empty($deviceTokens)) {
             $payload = $extra;
             $payload['device_tokens'] = $deviceTokens;
+            $payload['aps']['alert'] = $message;
         }
 
+        // android payload
         if (!empty($apids)) {
             $payload['apids'] = $apids;
             $payload['android'] = array(

@@ -15,8 +15,8 @@ function __autoload($class) {
 
 use WorkerLibrary\AMQPUAMessage as AMQPUAMessage;
 
+$tokens = array("120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232"); // dev iphone
 
-$tokens = array();
 $apids = array(
     '5d1cf0cb-90ce-4960-8c12-adc8c8bec35e'
 );
@@ -26,9 +26,14 @@ $extra = array("foo" => "bar", "open" => "screen4");
 
 $clientInfo = new \WorkerLibrary\ClientInfo("Jonas", "jonas@winningmark.com", "G3QQPQEERdKchSqDPq6Gag", "FT98LRhLRNOPHBg8k-5iyg");
 
-//$clientInfo = new \WorkerLibrary\ClientInfo("Jonas", "jonas@winningmark.com", "", "abc");
-   
+// allow
+$clientInfo = new \WorkerLibrary\ClientInfo("Jonas", "jonas@winningmark.com", "3ZdPxcFfSda0rpWtlwE68w", "42YO18MlSBC6JC-ewFoK2w");
 
+
+        
+//$clientInfo = new \WorkerLibrary\ClientInfo("Jonas", "jonas@winningmark.com", "", "abc");
+
+$apids = null;
 
 $payload = new \WorkerLibrary\Payload($msg, $tokens, $apids, $extra);
 
