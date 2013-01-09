@@ -27,7 +27,7 @@ class MobileUserController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'view', 'delete', 'push'),
+                'actions' => array('index', 'view', 'delete', 'push', 'getCount'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -93,30 +93,61 @@ class MobileUserController extends Controller {
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
     }
 
-    /**
-     * Push action - experimental
-     */
-    public function actionPush() {
-        echo '<pre>';
-        print_r($_POST);
+    public function actionGetCount() {
 
-        if (count($_POST['filters']) != count($_POST['filterValues']))
-            return false;
+        $attributes = $this->parseFilters($_REQUEST);
+      //  echo '<pre>';
+       // print_r($attributes);
 
-        $attributes = array();
-
-        $i = 0;
-        foreach ($_POST['filters'] as $filter) {
-            $attributes[$filter] = $_POST['filterValues'][$i];
-            $i++;
-        }
-
-
-        print_r($attributes);
 
         $count = MobileUser::model()->find($attributes)->count();
 
         echo $count;
+
+        die;
+    }
+
+    /**
+     * Push action - experimental
+     */
+    public function actionPush() {
+        $attributes = $this->parseFilters($_POST);
+
+        print_r($attributes);
+
+        die;
+    }
+
+    /**
+     * parse filters - experimental
+     * return a search array usable by activemongodb
+     */
+    private function parseFilters($data) {
+
+        foreach ($data as $k => $v) {
+            if (empty($v)) {
+                unset($data[$k]);
+            }
+        }
+
+        foreach ($data['tags'] as $k => $v) {
+            if (empty($v)) {
+                unset($data['tags'][$k]);
+            }
+        }
+
+        if (empty($data['tags'])) {
+            unset($data['tags']);
+        } else {
+            // AND TAGS
+            $tags = $data['tags'];
+
+            $data['tags'] = array(
+                '$all' => $tags
+            );
+        }
+
+        return $data;
     }
 
 }

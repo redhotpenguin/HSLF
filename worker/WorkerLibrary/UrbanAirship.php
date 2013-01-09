@@ -39,23 +39,24 @@ class UrbanAirship {
          * 
          * 
           {
-          "apids": [
-          "some APID",
-          "another APID"
+            "apids": [
+            "some APID",
+            "another APID"
           ],
-          "android": {
-          "alert": "Hello from Urban Airship!",
-          "extra": {"a_key":"a_value"} #android extra
+            "android": {
+            "alert": "Hello from Urban Airship!",
+            "extra": {"a_key":"a_value"} #android extra
           },
-          "device_tokens": [
-          "some device token",
-          "another device token"
+            "device_tokens": [
+            "some device token",
+            "another device token"
           ],
           "aps": {
-          "alert": "Hello from Urban Airship!",
+            "alert": "Hello from Urban Airship!",
           }
 
           "foo": "bar"  # ios extra
+         
           }
          */
 
@@ -86,16 +87,16 @@ class UrbanAirship {
         curl_setopt($ch, CURLOPT_USERPWD, $this->apiKey . ":" . $this->apiSecret);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonPayload);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, false); // ignore result. we just use the http code for validation
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'Content-Type: application/json',
                 )
         );
         
-       // printf("json: %s\n", $jsonPayload);
+        printf("json: %s\n", $jsonPayload);
 
 
-        $jsonResult = curl_exec($ch);
+        curl_exec($ch);
 
         $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 

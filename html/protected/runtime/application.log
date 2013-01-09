@@ -57,3 +57,28 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/worker/WorkerLibrary/UrbanAirship.php
 ---
+2013/01/09 11:20:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "worker/WorkerLibrary/UrbanAirship.php".' in /var/www/html/mobile_platform/framework/yiilite.php:1729
+Stack trace:
+#0 /var/www/html/mobile_platform/framework/yiilite.php(1645): CWebApplication->runController('worker/WorkerLi...')
+#1 /var/www/html/mobile_platform/framework/yiilite.php(1170): CWebApplication->processRequest()
+#2 /var/www/html/mobile_platform/html/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/worker/WorkerLibrary/UrbanAirship.php
+---
+2013/01/09 11:42:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "mobileUser/getCount".' in /var/www/html/mobile_platform/framework/yiilite.php:1729
+Stack trace:
+#0 /var/www/html/mobile_platform/framework/yiilite.php(1645): CWebApplication->runController('mobileUser/getC...')
+#1 /var/www/html/mobile_platform/framework/yiilite.php(1170): CWebApplication->processRequest()
+#2 /var/www/html/mobile_platform/html/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobileUser/getCount
+HTTP_REFERER=http://www.voterguide.com/admin/mobileUser/
+---
+2013/01/09 11:42:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "mobileUser/getCount".' in /var/www/html/mobile_platform/framework/yiilite.php:1729
+Stack trace:
+#0 /var/www/html/mobile_platform/framework/yiilite.php(1645): CWebApplication->runController('mobileUser/getC...')
+#1 /var/www/html/mobile_platform/framework/yiilite.php(1170): CWebApplication->processRequest()
+#2 /var/www/html/mobile_platform/html/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobileUser/getCount
+---
