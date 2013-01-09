@@ -82,3 +82,11 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/mobileUser/getCount
 ---
+2013/01/09 15:01:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "worker/tests/UAProducer.php".' in /var/www/html/mobile_platform/framework/yiilite.php:1729
+Stack trace:
+#0 /var/www/html/mobile_platform/framework/yiilite.php(1645): CWebApplication->runController('worker/tests/UA...')
+#1 /var/www/html/mobile_platform/framework/yiilite.php(1170): CWebApplication->processRequest()
+#2 /var/www/html/mobile_platform/html/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/worker/tests/UAProducer.php
+---

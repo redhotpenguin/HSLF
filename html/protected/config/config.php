@@ -11,7 +11,7 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $dbport = $env['DOTCLOUD_DB_SQL_PORT'];
 
     $mongodbhost = "mongodb://localhost:27017";
-    $mongodbname = "test";
+    $mongodbname = "mobile_advocacy_platform";
     $mongodbuser = "admin";
     $mongdbpass = "admin";
     $mongodbacklevel = 1;

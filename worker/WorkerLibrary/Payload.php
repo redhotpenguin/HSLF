@@ -11,16 +11,12 @@ class Payload {
     protected $alert;
 
     /**
-     * array of tokens (ios)
+     * array of search attribute
      * @var array 
      */
-    protected $tokens = array();
+    protected $searchAttributes = array();
 
-    /**
-     * array of apids (androids)
-     * @var array 
-     */
-    protected $apids = array();
+
 
     /**
      * array of key/value pairs
@@ -31,19 +27,17 @@ class Payload {
     /**
      * Payload
      * @param string $alert alert to send
-     * @param array $tokens ios tokens
-     * @param array $apids android apids
+     * @param array $searchAttributes search attributes
      * @param array $extra custom data
      */
-    public function __construct($alert, array $tokens = null, array $apids = null, array $extra = null) {
+    public function __construct($alert, array $searchAttributes = null, array $extra = null) {
 
         if (empty($alert))
             throw new \InvalidArgumentException("An alert is required");
 
 
         $this->alert = $alert;
-        $this->tokens = $tokens;
-        $this->apids = $apids;
+        $this->searchAttributes = $searchAttributes;
         $this->extra = $extra;
     }
 
@@ -56,27 +50,19 @@ class Payload {
     }
 
     /**
-     * Get Tokens
+     * Get Search attributes
      * return array tokens
      */
-    public function getTokens() {
-        return $this->tokens;
-    }
-
-    /**
-     * Get Apids
-     * return array tokens
-     */
-    public function getApids() {
-        return $this->apids;
+    public function getSearchAttributes() {
+        return $this->searchAttributes;
     }
 
     /**
      * Get custom data
-     * return array tokens
+     * return array of custom data
      */
     public function getExtra() {
-        return $this->tokens;
+        return $this->extra;
     }
 
 }

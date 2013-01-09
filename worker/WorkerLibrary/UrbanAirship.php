@@ -87,13 +87,13 @@ class UrbanAirship {
         curl_setopt($ch, CURLOPT_USERPWD, $this->apiKey . ":" . $this->apiSecret);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonPayload);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, false); // ignore result. we just use the http code for validation
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'Content-Type: application/json',
                 )
         );
         
-        printf("json: %s\n", $jsonPayload);
+       // printf("json: %s\n", $jsonPayload);
 
 
         curl_exec($ch);
