@@ -19,7 +19,7 @@ class WorkerUATest extends CDbTestCase {
     // directly use the uap library
     public function testSendPushNotification() {
         $apids = array(
-            "5d1cf0cb-90ce-4960-8c12-adc8c8bec35e"
+            "9fffae32-b3f5-4836-9078-e42e9f34f830"
         );
 
         $tokens = array( 

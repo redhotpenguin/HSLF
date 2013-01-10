@@ -19,16 +19,15 @@ $extra = array("foo" => "bar", "open" => "screen4");
 
 
 
-$clientInfo = new \WorkerLibrary\ClientInfo("Jonas", "jonas@winningmark.com", "G3QQPQEERdKchSqDPq6Gag", "FT98LRhLRNOPHBg8k-5iyg");
 
 // allow
-//$clientInfo = new \WorkerLibrary\ClientInfo("Jonas", "jonas@winningmark.com", "3ZdPxcFfSda0rpWtlwE68w", "42YO18MlSBC6JC-ewFoK2w");
+$clientInfo = new \WorkerLibrary\ClientInfo("Jonas", "jonas@winningmark.com", "3ZdPxcFfSda0rpWtlwE68w", "42YO18MlSBC6JC-ewFoK2w");
+
 //$clientInfo = new \WorkerLibrary\ClientInfo("Jonas", "jonas@winningmark.com", "", "abc");
 
 
 $searchAttributes = array(
     'tenant_id' => 1,
-    'device_type' => 'android'
 );
 
 $payload = new \WorkerLibrary\Payload($msg, $searchAttributes, $extra);
