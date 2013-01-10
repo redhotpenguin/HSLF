@@ -5,7 +5,7 @@ html,body
 }
 
 body{
-        background-color:#EFEFEF!important;
+    background-color:#EFEFEF!important;
 }
 
 h1{
@@ -19,19 +19,19 @@ h4{
     margin-bottom:10px;
 }
 .container{
-   min-height: 90%; 
-    
+    min-height: 90%; 
+
 }
 
 #container{
-       background-color: white;
-       padding:20px;
+    background-color: white;
+    padding:20px;
 }
 
 #wrap
 {
     margin-top:50px;
- 
+
 }
 
 #main{
@@ -43,7 +43,7 @@ h4{
 .footer 
 {
     position: relative;
-   
+
     height: 50px;
     clear:both;
     padding:20px;
@@ -82,12 +82,12 @@ h4{
 }
 
 .clearfix:after{
-  clear: both;
-  content: ".";
-  display: block;
-  height: 0;
-  visibility: hidden;
-  font-size: 0;
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+    font-size: 0;
 }
 
 .resize-vertical{

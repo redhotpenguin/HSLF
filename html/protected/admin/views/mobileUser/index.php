@@ -17,48 +17,78 @@ $this->menu = array(
 
 
 <div class="form">
-    
-    <span class="delete_tag" style="display:none;" id="delete_tag_original">X</span>
 
-    <?php
-    echo CHtml::beginForm('mobileUser/push', "POST", array("id" => "mobile_user_form"));
-    ?>
+    <div id="filters"">
 
+        <span class="delete_tag" style="display:none;" id="delete_tag_original">X</span>
 
-    <div class="row">
         <?php
-        echo CHtml::label("Device type", "device_type");
-        echo CHtml::dropDownList("device_type", "device_type", array("" => "", "ios" => "iOS", "android" => "Android"));
+        echo CHtml::beginForm('mobileUser/sendAlert', "POST", array("id" => "mobile_user_form"));
         ?>
+
+
+        <div class="row">
+            <?php
+            echo CHtml::label("Device type", "device_type");
+            echo CHtml::dropDownList("device_type", "device_type", array("" => "", "ios" => "iOS", "android" => "Android"));
+            ?>
+        </div>
+
+        <hr/>
+
+        <div id="tag_list">
+            <div class="row tagBox" id="original_tag">
+                <?php
+                echo CHtml::label("Tag", "tags[]");
+
+                echo CHtml::textField("tags[]", "", array('class' => 'tagInput'))
+                ?>
+            </div>
+        </div>
+
+        <div class="row">
+            <?php
+            echo CHtml::button("Add a tag", array('id' => 'add_tag_btn'));
+            ?>
+        </div>
+
+
+        <div class="row">
+            <?php
+            echo CHtml::button("Send an alert", array('id' => 'send_alert_btn', 'class' => 'btn-large btn-primary'));
+            ?>
+
+            <?php
+            echo CHtml::button("Export current selection", array('id' => 'export_btn', 'class' => 'btn-large btn-info'));
+            ?>
+        </div>
+
     </div>
 
-    <hr/>
 
-    <div id="tag_list">
-        <div class="row tagBox" id="original_tag">
+    <div id="composer" style="display:none;">
+        <div class="row-fluid">
+
             <?php
-            echo CHtml::label("Tag", "tags[]");
+            echo CHtml::label("Alert", "alert");
+            echo CHtml::textArea("alert", null, array('class' => 'span12', 'rows' => 3));
+            ?>
 
-            echo CHtml::textField("tags[]","" ,array('class'=>'tagInput'))
+        </div>
+        <div class="row-fluid">
+
+            <?php
+            echo CHtml::submitButton("Go!", array('id' => 'push_alert_btn', 'class' => 'btn-large btn-primary'));
+            ?>
+
+            <?php
+            echo CHtml::button("Cancel", array('id' => 'cancel_alert_btn', 'class' => 'btn-large btn-warning'));
             ?>
         </div>
     </div>
-
-    <div class="row">
-        <?php
-        echo CHtml::button("Add a tag", array('id' => 'add_tag_btn'));
-        ?>
-    </div>
-
-
-    <div class="row">
-        <?php
-        // echo CHtml::button("Send a notification", array('id'=>'push_btn'));
-        ?>
-    </div>
-
     <?php
     echo CHtml::endForm();
-    ?>    
+    ?>
+
 </div>
 

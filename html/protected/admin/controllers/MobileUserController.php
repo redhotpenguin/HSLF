@@ -27,7 +27,7 @@ class MobileUserController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'browse', 'view', 'delete', 'push', 'getCount'),
+                'actions' => array('index', 'browse', 'view', 'delete', 'getCount', 'sendAlert'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -102,30 +102,23 @@ class MobileUserController extends Controller {
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
     }
 
+    /**
+     * Print a count of mobile users - ajax 
+     */
     public function actionGetCount() {
 
-       // logIt($_POST);
 
-
-        $attributes = $this->parseFilters($_POST);
-
+        $attributes = $this->parseFilters($_GET); // @todo: filter $_GET
 
         $count = MobileUser::model()->find($attributes)->count();
-        
         echo $count;
         die;
     }
-
-    /**
-     * Push action - experimental
-     */
-    public function actionPush() {
-        $attributes = $this->parseFilters($_POST);
-
-        print_r($attributes);
-
-        die;
+    
+    public function actionSendAlert(){
+        print_r($_REQUEST);
     }
+
 
     /**
      * parse filters - experimental
@@ -151,7 +144,7 @@ class MobileUserController extends Controller {
             unset($data['tags']);
         } else {
             // AND TAGS
-            $tags = array_values( $data['tags'] ) ; // reindex tags (otherwise mongodb driver fail when using $all)
+            $tags = array_values($data['tags']); // reindex tags (otherwise mongodb driver fail when using $all)
             $data['tags'] = array(
                 '$all' => $tags
             );

@@ -3,10 +3,13 @@ jQuery(document).ready(mobileUser);
 
 function mobileUser($){
     
-    var filterInputs = $('input:text'),
+    var 
+    filters = $("#filters"),
+    composer = $("#composer"),
+    filterInputs = $('input:text'),
     mobileUserCount = $("#mobile_user_count"),
     mobileUserForm = $("#mobile_user_form"),
-    pushBtn = $("#push_btn"),
+    sendAlertBtn = $("#send_alert_btn"),
     addTagBtn = $("#add_tag_btn"),
     deleteTagSpan = $("#delete_tag_original")
 
@@ -20,25 +23,16 @@ function mobileUser($){
     $("#device_type").change(function(){
         updateCount();
     });
-    
-   
-    
-    pushBtn.click(function(){
-        var count = mobileUserCount.text();
-        if(count == 0){
-            alert("Please change the filters")
-        }
-        
-        var r=confirm("Send a message to " + count +  " users?");
-        
-        
-        postForm('/admin/mobileUser/push', function(result){
-            console.log(result);
-        });
+
+    sendAlertBtn.click(function(){
+        filters.hide(100);
+        composer.show(100);
     });
     
+    
+    
     addTagBtn.click(function(){
-        
+       
         var clonedTagBoxCount = $("#tag_list .tagBox").length;
         
         var newTagBox =   $("#original_tag").clone().attr("id", "tagBox"+clonedTagBoxCount);
@@ -52,6 +46,11 @@ function mobileUser($){
        
         
         $("#tag_list").append(newTagBox);
+    });
+    
+    $("#cancel_alert_btn").click(function(){
+        filters.show(100);
+        composer.hide(100);
     });
     
     function deleteTagBox(ev){
@@ -71,7 +70,7 @@ function mobileUser($){
         jQuery.ajax({
             url:    actionUrl,
             data: mobileUserForm.serialize(),
-            type: 'POST',
+            type: 'GET',
             
             success: function(result) {
                 _cb(result)
