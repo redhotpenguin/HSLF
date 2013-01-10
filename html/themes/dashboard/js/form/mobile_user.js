@@ -9,9 +9,10 @@ function mobileUser($){
     filterInputs = $('input:text'),
     mobileUserCount = $("#mobile_user_count"),
     mobileUserForm = $("#mobile_user_form"),
-    sendAlertBtn = $("#send_alert_btn"),
+    composerBtn = $("#compose_alert_btn"),
     addTagBtn = $("#add_tag_btn"),
-    deleteTagSpan = $("#delete_tag_original")
+    deleteTagSpan = $("#delete_tag_original"),
+    send_alert_btn = $("#send_alert_btn")
 
     
     filterInputs.live('blur', function(){
@@ -24,7 +25,7 @@ function mobileUser($){
         updateCount();
     });
 
-    sendAlertBtn.click(function(){
+    composerBtn.click(function(){
         filters.hide(100);
         composer.show(100);
     });
@@ -32,7 +33,6 @@ function mobileUser($){
     
     
     addTagBtn.click(function(){
-       
         var clonedTagBoxCount = $("#tag_list .tagBox").length;
         
         var newTagBox =   $("#original_tag").clone().attr("id", "tagBox"+clonedTagBoxCount);
@@ -51,6 +51,15 @@ function mobileUser($){
     $("#cancel_alert_btn").click(function(){
         filters.show(100);
         composer.hide(100);
+    });
+    
+    
+    send_alert_btn.click(function(){
+        
+        postForm('/admin/mobileUser/sendAlert', function(result){
+            $("#push_result").html(result);
+        });
+            
     });
     
     function deleteTagBox(ev){

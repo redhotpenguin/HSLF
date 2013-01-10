@@ -55,7 +55,7 @@ $this->menu = array(
 
         <div class="row">
             <?php
-            echo CHtml::button("Send an alert", array('id' => 'send_alert_btn', 'class' => 'btn-large btn-primary'));
+            echo CHtml::button("Compose an alert", array('id' => 'compose_alert_btn', 'class' => 'btn-large btn-primary'));
             ?>
 
             <?php
@@ -66,19 +66,19 @@ $this->menu = array(
     </div>
 
 
-    <div id="composer" style="display:none;">
+    <div id="composer" style="display:block;">
         <div class="row-fluid">
 
             <?php
             echo CHtml::label("Alert", "alert");
-            echo CHtml::textArea("alert", null, array('class' => 'span12', 'rows' => 3));
+            echo CHtml::textArea("alert", null, array('placeholder' => 'Message goes here', 'class' => 'span12', 'rows' => 3));
             ?>
 
         </div>
         <div class="row-fluid">
 
             <?php
-            echo CHtml::submitButton("Go!", array('id' => 'push_alert_btn', 'class' => 'btn-large btn-primary'));
+            echo CHtml::button("Go!", array('id' => 'send_alert_btn', 'class' => 'btn-large btn-primary'));
             ?>
 
             <?php
@@ -86,6 +86,9 @@ $this->menu = array(
             ?>
         </div>
     </div>
+    
+    <div id="push_result"></div>
+    
     <?php
     echo CHtml::endForm();
     ?>
