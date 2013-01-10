@@ -9,13 +9,11 @@ $this->breadcrumbs = array(
 $this->menu = array(
     array('label' => 'Browse', 'url' => array('browse')),
 );
-
 ?>
 
-<h1>Mobile Users</h1>
-
-<h3> <span id="mobile_user_count"><?php echo $mobile_user_count; ?></span> mobile users</h3>
-
+<div class="hero-unit">
+    <h1> <span id="mobile_user_count"><?php echo $mobile_user_count; ?></span> mobile users</h1>
+</div>
 
 
 <div class="form">
@@ -28,7 +26,7 @@ $this->menu = array(
     <div class="row">
         <?php
         echo CHtml::label("Device type", "device_type");
-        echo CHtml::dropDownList("device_type", "device_type", array("" => "", "ios" => "IOS", "android" => "Android"));
+        echo CHtml::dropDownList("device_type", "device_type", array("" => "", "ios" => "iOS", "android" => "Android"));
         ?>
     </div>
 
