@@ -89,6 +89,11 @@ div.form select.success
 
 }
 
+.delete_tag{
+    font-weight:bold;
+    color:#DD5336;
+}
+
 
 div.form .errorSummary
 {

@@ -17,6 +17,8 @@ $this->menu = array(
 
 
 <div class="form">
+    
+    <span class="delete_tag" style="display:none;" id="delete_tag_original">X</span>
 
     <?php
     echo CHtml::beginForm('mobileUser/push', "POST", array("id" => "mobile_user_form"));
@@ -32,19 +34,19 @@ $this->menu = array(
 
     <hr/>
 
-    <div class="row">
-        <?php
-        echo CHtml::label("Tag", "tags[]");
+    <div id="tag_list">
+        <div class="row tagBox" id="original_tag">
+            <?php
+            echo CHtml::label("Tag", "tags[]");
 
-        echo CHtml::textField("tags[]")
-        ?>
+            echo CHtml::textField("tags[]","" ,array('class'=>'tagInput'))
+            ?>
+        </div>
     </div>
 
     <div class="row">
         <?php
-        echo CHtml::label("Tag", "tags[]");
-
-        echo CHtml::textField("tags[]")
+        echo CHtml::button("Add a tag", array('id' => 'add_tag_btn'));
         ?>
     </div>
 

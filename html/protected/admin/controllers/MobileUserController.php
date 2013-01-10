@@ -139,9 +139,11 @@ class MobileUserController extends Controller {
             }
         }
 
-        foreach ($data['tags'] as $k => $v) {
-            if (empty($v)) {
-                unset($data['tags'][$k]);
+        if (isset($data['tags'])) {
+            foreach ($data['tags'] as $k => $v) {
+                if (empty($v)) {
+                    unset($data['tags'][$k]);
+                }
             }
         }
 
