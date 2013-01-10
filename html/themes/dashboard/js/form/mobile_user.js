@@ -16,7 +16,7 @@ function mobileUser($){
 
     
     filterInputs.live('blur', function(){
-        postForm('/admin/mobileUser/getCount', function(count){
+        submitForm('/admin/mobileUser/getCount', function(count){
             mobileUserCount.html(count)
         });
     });
@@ -56,9 +56,9 @@ function mobileUser($){
     
     send_alert_btn.click(function(){
         
-        postForm('/admin/mobileUser/sendAlert', function(result){
+        submitForm('/admin/mobileUser/sendAlert', function(result){
             $("#push_result").html(result);
-        });
+        }, 'POST');
             
     });
     
@@ -69,17 +69,20 @@ function mobileUser($){
     
     function updateCount(){
         console.log('updating count');
-        postForm('/admin/mobileUser/getCount', function(count){
+        submitForm('/admin/mobileUser/getCount', function(count){
             console.log('new count: ' + count);
             mobileUserCount.html(count)
         });
     }
     
-    function postForm(actionUrl, _cb){         
+    function submitForm(actionUrl, _cb, method){  
+        if(method == 'undefined')
+            method = 'GET';
+
         jQuery.ajax({
             url:    actionUrl,
             data: mobileUserForm.serialize(),
-            type: 'GET',
+            type: method,
             
             success: function(result) {
                 _cb(result)
