@@ -104,15 +104,15 @@ class MobileUserController extends Controller {
 
     public function actionGetCount() {
 
-        $attributes = $this->parseFilters($_REQUEST);
-        //  echo '<pre>';
-        // print_r($attributes);
+       // logIt($_POST);
+
+
+        $attributes = $this->parseFilters($_POST);
 
 
         $count = MobileUser::model()->find($attributes)->count();
-
+        
         echo $count;
-
         die;
     }
 
@@ -151,8 +151,7 @@ class MobileUserController extends Controller {
             unset($data['tags']);
         } else {
             // AND TAGS
-            $tags = $data['tags'];
-
+            $tags = array_values( $data['tags'] ) ; // reindex tags (otherwise mongodb driver fail when using $all)
             $data['tags'] = array(
                 '$all' => $tags
             );
