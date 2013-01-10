@@ -163,10 +163,7 @@ class DistrictController extends Controller {
         $params = array(
             'order' => 'number ASC',
         );
-
-        error_log('called');
-        error_log(print_r($_REQUEST, true));
-
+        
 
         $data = District::model()->findAllByAttributes(array('state_id' => $_POST[$model]['state_id']), $params);
 
