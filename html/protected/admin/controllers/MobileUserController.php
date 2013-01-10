@@ -1,5 +1,7 @@
 <?php
 
+Yii::import("admin.models.Queues.*");
+
 class MobileUserController extends Controller {
 
     /**
@@ -108,25 +110,107 @@ class MobileUserController extends Controller {
     public function actionGetCount() {
 
 
-        $attributes = $this->parseFilters($_GET); // @todo: filter $_GET
+        $attributes = $this->parseSearchAttributes($_GET); // @todo: filter $_GET
 
         $count = MobileUser::model()->find($attributes)->count();
         echo $count;
         die;
     }
-    
-    public function actionSendAlert(){
-        print_r($_REQUEST);
-    }
 
+    public function actionSendAlert() {
+
+        if (!isset($_POST['alert']) || empty($_POST['alert'])) {
+            echo 'missing_alert';
+            die;
+        }
+
+        if (!isset($_POST['extra'])) {
+            $extra = array();
+        } else {
+            $extra = $_POST['extra'];
+        }
+
+
+
+        $searchAttributes = $this->parseSearchAttributes($_POST);
+
+        $alert = $_POST['alert'];
+
+        $payload = new Payload($alert, $searchAttributes, $extra);
+
+        $clientInfo = new ClientInfo("jonas", "jonas.palmero@gmail.com", "3ZdPxcFfSda0rpWtlwE68w", "42YO18MlSBC6JC-ewFoK2w");
+
+        $messageObject = new AMQPUAMessage($clientInfo, $payload);
+
+        $message = $messageObject->serialize();
+
+        $queueName = 'uap_queue';
+        $exchangeName = 'urbanairship_exchange';
+
+// Create a new connection
+        $cnn = new AMQPConnection();
+
+        $cnn->connect();
+
+// create a new channel, based on our existing connection
+        $channel = new AMQPChannel($cnn);
+
+// get a queue object
+
+        $queue = new AMQPQueue($channel);
+
+        /*
+          The queue name must be set before we call declare().
+          Otherwise, a random queue name will be generated
+         */
+        $queue->setName($queueName);
+
+        $queue->setFlags(AMQP_DURABLE);
+
+        $queue->declare();
+
+
+// get an exchange
+        $exchange = new AMQPExchange($channel);
+
+        $exchange->setName($exchangeName);
+
+        $exchange->setType(AMQP_EX_TYPE_DIRECT);
+
+        $exchange->declare();
+
+// bind our queue to the exchange using the routing key
+// direct exchange: routing key == queue name
+        $queue->bind($exchangeName, $queueName);
+
+
+// Publish our persistant message!
+        $ep = $exchange->publish($message, $queueName, AMQP_NOPARAM, array('delivery_mode' => 2));
+
+        if (!$ep) {
+            printf("could not publish :(\n ");
+        } else {
+            printf("message published\n");
+        }
+
+// close the connection to the amqp broker
+        $cnn->disconnect();
+    }
 
     /**
      * parse filters - experimental
      * return a search array usable by activemongodb
      */
-    private function parseFilters($data) {
-
+    private function parseSearchAttributes($data) {
+        $searchAttributes = array(
+            "tags", "device_type"
+        );
         foreach ($data as $k => $v) {
+            if (!in_array($k, $searchAttributes)) {
+                unset($data[$k]);
+                continue;
+            }
+
             if (empty($v)) {
                 unset($data[$k]);
             }
