@@ -27,7 +27,7 @@ class MobileUserController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'view', 'delete', 'push', 'getCount'),
+                'actions' => array('index', 'browse', 'view', 'delete', 'push', 'getCount'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -37,16 +37,25 @@ class MobileUserController extends Controller {
     }
 
     /**
-     * Lists all models.
+     * Index
      */
     public function actionIndex() {
+        $this->render('index', array(
+            'mobile_user_count' => MobileUser::model()->count(),
+        ));
+    }
+
+    /**
+     * Browse all models.
+     */
+    public function actionBrowse() {
         $model = new MobileUser('search');
 
         if (isset($_GET['MobileUser'])) {
             $model->fields = $_GET['MobileUser'];
         }
 
-        $this->render('index', array(
+        $this->render('browse', array(
             'model' => $model,
             'mobile_user_count' => MobileUser::model()->count(),
         ));
@@ -96,8 +105,8 @@ class MobileUserController extends Controller {
     public function actionGetCount() {
 
         $attributes = $this->parseFilters($_REQUEST);
-      //  echo '<pre>';
-       // print_r($attributes);
+        //  echo '<pre>';
+        // print_r($attributes);
 
 
         $count = MobileUser::model()->find($attributes)->count();

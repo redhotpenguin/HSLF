@@ -6,7 +6,10 @@ $this->breadcrumbs = array(
     'Mobile users',
 );
 
-$data = array("tags" => "Tag");
+$this->menu = array(
+    array('label' => 'Browse', 'url' => array('browse')),
+);
+
 ?>
 
 <h1>Mobile Users</h1>

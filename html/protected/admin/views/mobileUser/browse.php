@@ -1,6 +1,7 @@
 <?php
 $this->breadcrumbs = array(
-    'Mobile users',
+    'Mobile Users' => array('index'),
+    'Browse',
 );
 ?>
 
@@ -20,15 +21,14 @@ $('.search-form form').submit(function(){
 });
 ");
 
-echo '<b>'.CHtml::link('Search', '#', array('class' => 'search-button')).'</b>';
-
+echo '<b>' . CHtml::link('Search', '#', array('class' => 'search-button')) . '</b>';
 ?>
 <div class="search-form" style="display:none">
-<?php
-$this->renderPartial('_search', array(
-    'model' => $model,
-));
-?>
+    <?php
+    $this->renderPartial('_search', array(
+        'model' => $model,
+    ));
+    ?>
 </div><!-- search-form -->
 
 <?php
