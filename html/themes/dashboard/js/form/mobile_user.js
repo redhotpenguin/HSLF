@@ -122,6 +122,20 @@ function mobileUser($){
     });
     
     
+    $("#export_btn").click(function(){
+     
+     var serializedForm = mobileUserForm.serialize();
+     
+     window.location = "/admin/mobileUser/export?"+serializedForm;
+
+
+     /*submitForm('/admin/mobileUser/export', function(result){
+            console.log(result);
+            
+            
+        }, 'GET');*/
+    });
+    
     function submitForm(actionUrl, _cb, method){  
         if(method == 'undefined')
             method = 'GET';

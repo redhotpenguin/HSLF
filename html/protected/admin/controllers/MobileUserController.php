@@ -29,7 +29,7 @@ class MobileUserController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'browse', 'view', 'delete', 'getCount', 'sendAlert'),
+                'actions' => array('index', 'browse', 'view', 'delete', 'getCount', 'sendAlert', 'export'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -117,6 +117,9 @@ class MobileUserController extends Controller {
         die;
     }
 
+    /**
+     * Push an alert to a worker
+     */
     public function actionSendAlert() {
 
         $extra = array();
@@ -125,7 +128,6 @@ class MobileUserController extends Controller {
             echo 'Alert missing.';
             die;
         }
-
 
 
         $searchAttributes = $this->parseSearchAttributes($_POST);
@@ -160,6 +162,55 @@ class MobileUserController extends Controller {
         echo ($jobResult === true ? "success" : $jobResult);
 
         die;
+    }
+
+    public function actionExport() {
+        $searchAttributes = $this->parseSearchAttributes($_GET);
+
+        $fp = fopen('php://temp', 'w');
+
+
+        $headers = array(
+            'device_type',
+            'tags',
+            'device_identifier',
+            'registration_date',
+            'last_connection_date'
+        );
+
+        fputcsv($fp, $headers);
+
+        $mobileUserCursor = MobileUser::model()->find($searchAttributes);
+
+        foreach ($mobileUserCursor as $mobileUser) {
+            $row = array();
+            foreach ($headers as $head) {
+                $data = null;
+
+                if (isset($mobileUser[$head])) {
+                    if (is_array($mobileUser[$head])) {
+                        $data = implode(', ', $mobileUser[$head]);
+                    } 
+                    elseif ($mobileUser[$head] instanceof MongoDate) {
+                        $data =  date('m-d-Y h:i:s', $mobileUser[$head]->sec);
+                    } else {
+                        $data = $mobileUser[$head];
+                    }
+                }
+
+                $row[] = $data;
+            }
+            fputcsv($fp, $row);
+        }
+
+        rewind($fp);
+        $content = stream_get_contents($fp);
+        fclose($fp);
+
+
+
+
+        Yii::app()->getRequest()->sendFile('mobileUsers.csv', $content, "text/csv", false);
     }
 
     /**

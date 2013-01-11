@@ -15,6 +15,8 @@ abstract class ActiveMongoDocument extends CModel {
     private $collection;
     private static $model;
     public $searchAttributes = array(); // search attributes
+    
+    public function relations(){ return array(); }
 
     /**
      * Constructor
