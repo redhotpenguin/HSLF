@@ -16,6 +16,8 @@
  * @property string $ua_dashboard_link
  * @property string $cicero_user
  * @property string $cicero_password
+ * @property string $ua_api_key
+ * @property string $ua_api_secret
  *
  */
 class Tenant extends CActiveRecord {
@@ -43,7 +45,7 @@ class Tenant extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('name, display_name,  creation_date, site_url, web_app_url, email, api_key, api_secret, ua_dashboard_link, cicero_user, cicero_password', 'required'),
+            array('name, display_name,  creation_date, site_url, web_app_url, email, api_key, api_secret, ua_dashboard_link,ua_api_key,ua_api_secret, cicero_user, cicero_password', 'required'),
             array('name', 'length', 'max' => 32),
             array('display_name', 'length', 'max' => 256),
             array('name', 'match', 'pattern' => '/^([a-z0-9_])+$/'),

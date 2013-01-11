@@ -16,6 +16,10 @@ class TenantCommand extends EConsoleCommand {
 
         $uaLink = $this->promptString('Urban Airship Link');
 
+        $uaApiKey = $this->promptString('Urban Airship Application key:');
+
+        $uaApiSecret = $this->promptString('Urban Airship Application secret(master):');
+
         $ciceroUSer = $this->promptString('Cicero Username');
 
         $ciceroPass = $this->promptString('Cicero Password');
@@ -40,6 +44,8 @@ class TenantCommand extends EConsoleCommand {
         $tenant->api_key = rand(10000, 99999);
         $tenant->api_secret = md5(rand(10000, 99999));
         $tenant->ua_dashboard_link = $uaLink;
+        $tenant->uaApiKey = $uaApiKey;
+        $tenant->uaApiSecret = $uaApiSecret;
         $tenant->cicero_user = $ciceroUSer;
         $tenant->cicero_password = $ciceroPass;
 
@@ -59,8 +65,8 @@ class TenantCommand extends EConsoleCommand {
                 }
             }
         } catch (Exception $e) {
-             $this->printlnError("Could not add tenant: ");
-             $this->println($e->getMessage());
+            $this->printlnError("Could not add tenant: ");
+            $this->println($e->getMessage());
         }
     }
 

@@ -118,6 +118,9 @@ class MobileUserController extends Controller {
     }
 
     public function actionSendAlert() {
+        $tenant =  Tenant::model()->findByAttributes(array("id" => Yii::app()->user->tenant_id));
+        
+        echo $tenant->ua_api_secret;
 
         if (!isset($_POST['alert']) || empty($_POST['alert'])) {
             echo 'missing_alert';
