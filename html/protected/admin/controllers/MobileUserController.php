@@ -120,7 +120,7 @@ class MobileUserController extends Controller {
     public function actionSendAlert() {
 
         if (!isset($_POST['alert']) || empty($_POST['alert'])) {
-            echo 'Alert missing';
+            echo 'Alert missing.';
             die;
         }
 

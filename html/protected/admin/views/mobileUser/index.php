@@ -41,7 +41,7 @@ $this->menu = array(
                 <?php
                 echo CHtml::label("Tag", "tags[]");
 
-                echo CHtml::textField("tags[]", "", array('class' => 'tagInput'))
+                echo CHtml::textField("tags[]", "", array('class' => 'tagInput'));
                 ?>
             </div>
         </div>
@@ -52,6 +52,28 @@ $this->menu = array(
             ?>
         </div>
 
+        <div id="key_value_list">
+            <?php
+            echo CHtml::label("Options", "keys");
+            ?>
+
+            <div class="row keyValueBox" id="original_key_value">
+                <?php
+                echo ' Key: ' . CHtml::textField("keys[]", "", array('class' => 'keyInput'));
+
+                echo ' Value: ' . CHtml::textField("values[]", "", array('class' => 'valueInput'));
+                ?>
+
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <?php
+            echo CHtml::button("Add an option", array('id' => 'add_option_btn'));
+            ?>
+        </div>
 
         <div class="row">
             <?php
@@ -66,12 +88,14 @@ $this->menu = array(
     </div>
 
 
-    <div id="composer" style="display:none;">
+
+    <div id="composer" style="display:none;
+         ">
         <div class="row-fluid">
 
             <?php
             echo CHtml::label("Alert", "alert");
-            echo CHtml::textArea("alert", null, array('id'=>'composer_input','placeholder' => 'Message goes here', 'class' => 'span12', 'rows' => 3));
+            echo CHtml::textArea("alert", null, array('id' => 'composer_input', 'placeholder' => 'Message goes here', 'class' => 'span12', 'rows' => 3));
             ?>
 
         </div>
@@ -86,9 +110,9 @@ $this->menu = array(
             ?>
         </div>
     </div>
-    
+
     <div id="push_result"></div>
-    
+
     <?php
     echo CHtml::endForm();
     ?>

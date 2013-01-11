@@ -12,6 +12,7 @@ function mobileUser($){
     mobileUserForm = $("#mobile_user_form"),
     composerBtn = $("#compose_alert_btn"),
     addTagBtn = $("#add_tag_btn"),
+    addOptionBtn = $("#add_option_btn"),
     deleteTagSpan = $("#delete_tag_original"),
     send_alert_btn = $("#send_alert_btn"),
     resultBox =   $("#push_result");
@@ -90,6 +91,32 @@ function mobileUser($){
             mobileUserCount.html(count)
         });
     }
+    
+    
+    addOptionBtn.click(function(){
+        var clonedKeyValueBoxCount = $("#key_value_list .keyValueBox").length;
+        
+        var newKeyValueBox =   $("#original_key_value").clone().attr("id", "keyValueBox"+clonedKeyValueBoxCount);
+      
+       
+        var keyInput = newKeyValueBox.find(".keyInput");
+        keyInput.val("")
+        keyInput.attr("id", "");
+        
+        var valueInput = newKeyValueBox.find(".valueInput");
+        valueInput.val("")
+        valueInput.attr("id", "");
+        
+        
+        newKeyValueBox.append(deleteTagSpan.clone().css("display", "inline").click(function(){
+            $(this).parent(".keyValueBox").remove();
+
+        }));
+       
+        
+        $("#key_value_list").append(newKeyValueBox);
+    });
+    
     
     function submitForm(actionUrl, _cb, method){  
         if(method == 'undefined')
