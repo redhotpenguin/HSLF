@@ -63,13 +63,13 @@ function mobileUser($){
             
             
             if(result == "success"){
-                resultBox.html("message successfuly sent");
+                resultBox.html("<div class='alert alert-success'>Message successfuly sent.</div>");
+                $("#alert").val('');
             }
             else{
-                resultBox.html("Could not deliver message. Please try again later");
+                resultBox.html("<div class='alert alert-error'>Could not deliver message. Please try again later.</div>");
             }
           
-       
         }, 'POST');
             
     });

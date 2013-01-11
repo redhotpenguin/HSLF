@@ -66,7 +66,7 @@ $this->menu = array(
     </div>
 
 
-    <div id="composer" style="display:block;">
+    <div id="composer" style="display:none;">
         <div class="row-fluid">
 
             <?php
