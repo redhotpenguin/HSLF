@@ -7,8 +7,8 @@
  */
 class MobileUserAPITest extends CDbTestCase {
 
-  private $mobileUserAPI1 = "http://www.voterguide.com/api/1/MobileUsers";
-    // private $mobileUserAPI1 = "http://23.24.252.203/api/1/MobileUsers";
+ // private $mobileUserAPI1 = "http://www.voterguide.com/api/1/MobileUsers";
+  // private $mobileUserAPI1 = "http://23.24.252.203/api/1/MobileUsers";
  //   private $mobileUserAPI1 = "http://192.168.100.136/api/1/MobileUsers";
 
     private $tenant1 = array(
@@ -125,10 +125,13 @@ class MobileUserAPITest extends CDbTestCase {
         $requestResult = json_decode( $this->put($this->tenant1, $data, $this->mobileUserAPI1.'/youwontfindme') ) ;
         $this->log($requestResult);
         
+        
+        
         $response = $requestResult->results->failure->reason;
 
         $this->assertEquals("user not found", $response);
     }
+
 
     public function testUpdateUserExistingFields() {
 
@@ -221,6 +224,7 @@ class MobileUserAPITest extends CDbTestCase {
         $this->assertEquals("success", $response);
     }
 
+    
     private function post($credentials, $data, $endPoint) {
 
         $session = curl_init($endPoint);
