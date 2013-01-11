@@ -1,4 +1,4 @@
-c<?php
+<?php
 include_once("bootstrap.php");
 
 use WorkerLibrary\Worker as Worker;

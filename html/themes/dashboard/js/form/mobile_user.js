@@ -67,7 +67,7 @@ function mobileUser($){
                 $("#alert").val('');
             }
             else{
-                resultBox.html("<div class='alert alert-error'>Could not deliver message. Please try again later.</div>");
+                resultBox.html("<div class='alert alert-error'>Error: "+result+"</div>");
             }
           
         }, 'POST');

@@ -93,10 +93,10 @@ class MobileUserController extends Controller {
      */
     public function actionDelete($id) {
         if (Yii::app()->request->isPostRequest) {
-            // we only allow deletion via POST request
+// we only allow deletion via POST request
             $this->loadModel($id)->delete();
 
-            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
                 $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
         }
@@ -118,9 +118,9 @@ class MobileUserController extends Controller {
     }
 
     public function actionSendAlert() {
-      
+
         if (!isset($_POST['alert']) || empty($_POST['alert'])) {
-            echo 'failure';
+            echo 'Alert missing';
             die;
         }
 
@@ -136,11 +136,17 @@ class MobileUserController extends Controller {
 
         $tenant = Tenant::model()->findByAttributes(array("id" => Yii::app()->user->tenant_id));
 
-        $jobProducer = new JobProducer($tenant);
+        $jobProducer = new UAJobProducer($tenant);
 
-        $jobResult = $jobProducer->pushUrbanAirshipMessage($alert, $searchAttributes, $extra);
+        try {
 
-        echo ($jobResult ? "success" : "failure");
+            $jobResult = $jobProducer->pushUrbanAirshipMessage($alert, $searchAttributes, $extra);
+        } catch (JobProducerException $e) {
+
+
+            $jobResult = $e->getMessage();
+        }
+        echo ($jobResult === true ? "success" : $jobResult);
 
         die;
     }
@@ -175,7 +181,7 @@ class MobileUserController extends Controller {
         if (empty($data['tags'])) {
             unset($data['tags']);
         } else {
-            // AND TAGS
+// AND TAGS
             $tags = array_values($data['tags']); // reindex tags (otherwise mongodb driver fail when using $all)
             $data['tags'] = array(
                 '$all' => $tags
