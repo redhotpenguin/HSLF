@@ -13,7 +13,6 @@ function __autoload($class) {
     require __DIR__ . '/../WorkerLibrary/' . end($parts) . '.php';
 }
 
-use WorkerLibrary\AMQPUAMessage as AMQPUAMessage;
 
 $extra = array("foo" => "bar", "open" => "screen4");
 
@@ -21,7 +20,7 @@ $extra = array("foo" => "bar", "open" => "screen4");
 
 
 // allow
-$clientInfo = new \WorkerLibrary\ClientInfo("Jonas", "jonas@winningmark.com", "3ZdPxcFfSda0rpWtlwE68w", "42YO18MlSBC6JC-ewFoK2w");
+$clientInfo = new ClientInfo("Jonas", "jonas@winningmark.com", "3ZdPxcFfSda0rpWtlwE68w", "42YO18MlSBC6JC-ewFoK2w");
 
 //$clientInfo = new \WorkerLibrary\ClientInfo("Jonas", "jonas@winningmark.com", "", "abc");
 
@@ -30,7 +29,7 @@ $searchAttributes = array(
     'tenant_id' => 1,
 );
 
-$payload = new \WorkerLibrary\Payload($msg, $searchAttributes, $extra);
+$payload = new Payload($msg, $searchAttributes, $extra);
 
 $testMessage = new AMQPUAMessage($clientInfo, $payload);
 
