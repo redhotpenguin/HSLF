@@ -52,6 +52,32 @@ $this->menu = array(
             ?>
         </div>
         <hr/>
+
+
+        <div style="margin-top:20px" class="row">
+            <?php
+            echo CHtml::button("Compose an alert", array('id' => 'compose_alert_btn', 'class' => 'btn-large btn-primary'));
+            ?>
+
+            <?php
+            echo CHtml::button("Export current selection", array('id' => 'export_btn', 'style' => 'float:right;', 'class' => 'btn-large btn-info'));
+            ?>
+        </div>
+
+    </div>
+
+
+
+    <div id="composer" style="display:none;
+         ">
+        <div class="row-fluid">
+            <h4>Alert:</h4>
+            <?php
+            echo CHtml::textArea("alert", null, array('id' => 'composer_input', 'placeholder' => 'Message goes here', 'class' => 'span12', 'rows' => 3));
+            ?>
+
+        </div>
+        <hr/>
         <div id="key_value_list">
             <h4>Options:</h4>
 
@@ -66,40 +92,14 @@ $this->menu = array(
             </div>
         </div>
 
-
-
         <div class="row">
             <?php
             echo CHtml::button("Add an option", array('id' => 'add_option_btn'));
             ?>
         </div>
-        
+
         <hr/>
 
-        <div style="margin-top:20px" class="row">
-            <?php
-            echo CHtml::button("Compose an alert", array('id' => 'compose_alert_btn', 'class' => 'btn-large btn-primary'));
-            ?>
-
-            <?php
-            echo CHtml::button("Export current selection", array('id' => 'export_btn',  'style'=>'float:right;', 'class' => 'btn-large btn-info'));
-            ?>
-        </div>
-
-    </div>
-
-
-
-    <div id="composer" style="display:none;
-         ">
-        <div class="row-fluid">
-
-            <?php
-            echo CHtml::label("Alert", "alert");
-            echo CHtml::textArea("alert", null, array('id' => 'composer_input', 'placeholder' => 'Message goes here', 'class' => 'span12', 'rows' => 3));
-            ?>
-
-        </div>
         <div class="row-fluid">
 
             <?php

@@ -58,6 +58,10 @@ function mobileUser($){
         composerInput.val("");
         resultBox.html("");
         resultBox.hide();
+        
+        $.each($("#key_value_list").find(':input'), function(){
+            $(this).val(""); 
+        });
     });
     
     
