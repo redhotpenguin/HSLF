@@ -1,6 +1,6 @@
 <?php
 
-Yii::import("admin.models.Queues.*");
+Yii::import("application.vendors.Winningmark.Queues.*", true);
 
 class MobileUserController extends Controller {
 
@@ -130,19 +130,20 @@ class MobileUserController extends Controller {
             $extra = $_POST['extra'];
         }
 
-
-
         $searchAttributes = $this->parseSearchAttributes($_POST);
 
         $alert = $_POST['alert'];
 
+
         $payload = new Payload($alert, $searchAttributes, $extra);
+
 
         $clientInfo = new ClientInfo("jonas", "jonas.palmero@gmail.com", "3ZdPxcFfSda0rpWtlwE68w", "42YO18MlSBC6JC-ewFoK2w");
 
         $messageObject = new AMQPUAMessage($clientInfo, $payload);
 
         $message = $messageObject->serialize();
+
 
         $queueName = 'uap_queue';
         $exchangeName = 'urbanairship_exchange';

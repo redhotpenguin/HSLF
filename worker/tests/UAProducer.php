@@ -36,7 +36,6 @@ $testMessage = new AMQPUAMessage($clientInfo, $payload);
 
 $message = $testMessage->serialize();
 
-
 $queueName = 'uap_queue';
 $exchangeName = 'urbanairship_exchange';
 

@@ -6,7 +6,6 @@
  * @author jonas
  */
 
-namespace WorkerLibrary;
 
 class ClientInfo {
 
@@ -95,4 +94,3 @@ class ClientInfo {
     }
 
 }
-

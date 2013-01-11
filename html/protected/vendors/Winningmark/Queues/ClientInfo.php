@@ -6,6 +6,7 @@
  * @author jonas
  */
 
+
 class ClientInfo {
 
     /**
@@ -93,4 +94,3 @@ class ClientInfo {
     }
 
 }
-

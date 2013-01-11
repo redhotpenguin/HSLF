@@ -1,9 +1,8 @@
 <?php
 
-namespace WorkerLibrary;
-
-use WorkerLibrary\ClientInfo as ClientInfo;
-use WorkerLibrary\Payload as Payload;
+/**
+ * @todo: When Yii 2.0 is released: update this class to uses namespace
+ */
 
 /**
  * AMQP urbanairship - message structure - UTF8 should be used

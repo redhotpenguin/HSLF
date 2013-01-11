@@ -1,7 +1,5 @@
 <?php
 
-namespace WorkerLibrary;
-
 class Payload {
 
     /**
