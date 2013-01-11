@@ -118,9 +118,9 @@ class MobileUserController extends Controller {
     }
 
     public function actionSendAlert() {
-
+      
         if (!isset($_POST['alert']) || empty($_POST['alert'])) {
-            echo 'missing_alert';
+            echo 'failure';
             die;
         }
 
@@ -135,12 +135,12 @@ class MobileUserController extends Controller {
         $alert = $_POST['alert'];
 
         $tenant = Tenant::model()->findByAttributes(array("id" => Yii::app()->user->tenant_id));
-        
+
         $jobProducer = new JobProducer($tenant);
 
         $jobResult = $jobProducer->pushUrbanAirshipMessage($alert, $searchAttributes, $extra);
 
-        echo $jobResult;
+        echo ($jobResult ? "success" : "failure");
 
         die;
     }

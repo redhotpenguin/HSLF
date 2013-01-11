@@ -55,9 +55,21 @@ function mobileUser($){
     
     
     send_alert_btn.click(function(){
+        var resultBox =   $("#push_result");
         
         submitForm('/admin/mobileUser/sendAlert', function(result){
-            $("#push_result").html(result);
+            
+            console.log(result);
+            
+            
+            if(result == "success"){
+                resultBox.html("message successfuly sent");
+            }
+            else{
+                resultBox.html("Could not deliver message. Please try again later");
+            }
+          
+       
         }, 'POST');
             
     });

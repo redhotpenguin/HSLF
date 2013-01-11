@@ -2,6 +2,7 @@
 
 /**
  * @todo: unit tests
+ * @todo: refactor this class
  * JobProducer
  * Add jobs to a RabbitMQ queue
  * @author jonas
