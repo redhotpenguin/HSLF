@@ -118,9 +118,6 @@ class MobileUserController extends Controller {
     }
 
     public function actionSendAlert() {
-        $tenant =  Tenant::model()->findByAttributes(array("id" => Yii::app()->user->tenant_id));
-        
-        echo $tenant->ua_api_secret;
 
         if (!isset($_POST['alert']) || empty($_POST['alert'])) {
             echo 'missing_alert';
@@ -137,68 +134,15 @@ class MobileUserController extends Controller {
 
         $alert = $_POST['alert'];
 
+        $tenant = Tenant::model()->findByAttributes(array("id" => Yii::app()->user->tenant_id));
+        
+        $jobProducer = new JobProducer($tenant);
 
-        $payload = new Payload($alert, $searchAttributes, $extra);
+        $jobResult = $jobProducer->pushUrbanAirshipMessage($alert, $searchAttributes, $extra);
 
+        echo $jobResult;
 
-        $clientInfo = new ClientInfo("jonas", "jonas.palmero@gmail.com", "3ZdPxcFfSda0rpWtlwE68w", "42YO18MlSBC6JC-ewFoK2w");
-
-        $messageObject = new AMQPUAMessage($clientInfo, $payload);
-
-        $message = $messageObject->serialize();
-
-
-        $queueName = 'uap_queue';
-        $exchangeName = 'urbanairship_exchange';
-
-// Create a new connection
-        $cnn = new AMQPConnection();
-
-        $cnn->connect();
-
-// create a new channel, based on our existing connection
-        $channel = new AMQPChannel($cnn);
-
-// get a queue object
-
-        $queue = new AMQPQueue($channel);
-
-        /*
-          The queue name must be set before we call declare().
-          Otherwise, a random queue name will be generated
-         */
-        $queue->setName($queueName);
-
-        $queue->setFlags(AMQP_DURABLE);
-
-        $queue->declare();
-
-
-// get an exchange
-        $exchange = new AMQPExchange($channel);
-
-        $exchange->setName($exchangeName);
-
-        $exchange->setType(AMQP_EX_TYPE_DIRECT);
-
-        $exchange->declare();
-
-// bind our queue to the exchange using the routing key
-// direct exchange: routing key == queue name
-        $queue->bind($exchangeName, $queueName);
-
-
-// Publish our persistant message!
-        $ep = $exchange->publish($message, $queueName, AMQP_NOPARAM, array('delivery_mode' => 2));
-
-        if (!$ep) {
-            printf("could not publish :(\n ");
-        } else {
-            printf("message published\n");
-        }
-
-// close the connection to the amqp broker
-        $cnn->disconnect();
+        die;
     }
 
     /**

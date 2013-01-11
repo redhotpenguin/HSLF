@@ -1,10 +1,8 @@
 c<?php
-
 include_once("bootstrap.php");
 
 use WorkerLibrary\Worker as Worker;
 use WorkerLibrary\UrbanAirship as messenger;
-
 
 class UAWorker extends Worker {
 
@@ -55,7 +53,6 @@ class UAWorker extends Worker {
 
 
         $uaMessage = AMQPUAMessage::unserialize($message->getBody());
-        
 
 
         printf("Got a message from: %s\n", $uaMessage->getClientInfo()->getName());
@@ -84,8 +81,9 @@ class UAWorker extends Worker {
         printf("Sending to %d ios users \n", count($tokens));
 
 
-        $result = $messenger->sendPushNotification($uaMessage->getPayload()->getAlert(), $tokens, $apids, $uaMessage->getPayload()->getExtra()
-        );
+        $result = $messenger->sendPushNotification($uaMessage->getPayload()->getAlert(), $tokens, $apids, $uaMessage->getPayload()->getExtra());
+
+        $result = ($result?'success':'failure');
 
         printf("Push result: %s \n", $result);
 
