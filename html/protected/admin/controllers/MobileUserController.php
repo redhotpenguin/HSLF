@@ -119,20 +119,34 @@ class MobileUserController extends Controller {
 
     public function actionSendAlert() {
 
+        $extra = array();
+
         if (!isset($_POST['alert']) || empty($_POST['alert'])) {
             echo 'Alert missing.';
             die;
         }
 
-        if (!isset($_POST['extra'])) {
-            $extra = array();
-        } else {
-            $extra = $_POST['extra'];
-        }
+
 
         $searchAttributes = $this->parseSearchAttributes($_POST);
 
         $alert = $_POST['alert']; //@todo: filter  + check length
+        // parse key value (extra)
+        if (isset($_POST['keys']) && isset($_POST['values'])) {
+            $keys = $_POST['keys'];
+            $values = $_POST['values'];
+
+
+            if (count($keys) == count($values)) {
+
+                $i = 0;
+
+                foreach ($keys as $key) {
+                    $extra[$key] = $values[$i];
+                    $i++;
+                }
+            }
+        }
 
         $tenant = Tenant::model()->findByAttributes(array("id" => Yii::app()->user->tenant_id));
 
@@ -142,7 +156,7 @@ class MobileUserController extends Controller {
         } catch (JobProducerException $e) {
             $jobResult = $e->getMessage();
         }
-      
+
         echo ($jobResult === true ? "success" : $jobResult);
 
         die;

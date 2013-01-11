@@ -28,8 +28,8 @@ $this->menu = array(
 
 
         <div class="row">
+            <h4>Device Type:</h4>
             <?php
-            echo CHtml::label("Device type", "device_type");
             echo CHtml::dropDownList("device_type", "device_type", array("" => "", "ios" => "iOS", "android" => "Android"));
             ?>
         </div>
@@ -37,10 +37,10 @@ $this->menu = array(
         <hr/>
 
         <div id="tag_list">
+            <h4>Tags:</h4>
+
             <div class="row tagBox" id="original_tag">
                 <?php
-                echo CHtml::label("Tag", "tags[]");
-
                 echo CHtml::textField("tags[]", "", array('class' => 'tagInput'));
                 ?>
             </div>
@@ -51,17 +51,16 @@ $this->menu = array(
             echo CHtml::button("Add a tag", array('id' => 'add_tag_btn'));
             ?>
         </div>
-
+        <hr/>
         <div id="key_value_list">
-            <?php
-            echo CHtml::label("Options", "keys");
-            ?>
+            <h4>Options:</h4>
+
 
             <div class="row keyValueBox" id="original_key_value">
                 <?php
-                echo ' Key: ' . CHtml::textField("keys[]", "", array('class' => 'keyInput'));
+                echo ' <b>key:</b> ' . CHtml::textField("keys[]", "", array('class' => 'keyInput'));
 
-                echo ' Value: ' . CHtml::textField("values[]", "", array('class' => 'valueInput'));
+                echo ' <b> value:</b> ' . CHtml::textField("values[]", "", array('class' => 'valueInput'));
                 ?>
 
             </div>
@@ -74,14 +73,16 @@ $this->menu = array(
             echo CHtml::button("Add an option", array('id' => 'add_option_btn'));
             ?>
         </div>
+        
+        <hr/>
 
-        <div class="row">
+        <div style="margin-top:20px" class="row">
             <?php
             echo CHtml::button("Compose an alert", array('id' => 'compose_alert_btn', 'class' => 'btn-large btn-primary'));
             ?>
 
             <?php
-            echo CHtml::button("Export current selection", array('id' => 'export_btn', 'class' => 'btn-large btn-info'));
+            echo CHtml::button("Export current selection", array('id' => 'export_btn',  'style'=>'float:right;', 'class' => 'btn-large btn-info'));
             ?>
         </div>
 
