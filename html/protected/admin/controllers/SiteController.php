@@ -33,7 +33,7 @@ class SiteController extends Controller {
                 
                 // validate user input and redirect to the admin home page if valid
                 if ($model->validate() && $model->login()) {
-                    $this->redirect('site/index');
+                    $this->redirect("/admin");
                 }
             }
             // display the login form
