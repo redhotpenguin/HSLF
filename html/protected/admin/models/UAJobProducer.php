@@ -30,8 +30,17 @@ class UAJobProducer {
         $exchangeName = 'urbanairship_exchange';
 
 
+
+        $credentials = array(
+            'host' => Yii::app()->params['rabbitMQHost'],
+            'port' => Yii::app()->params['rabbitMQPort'],
+            'vhost' => Yii::app()->params['RABBITMQ_VHOST'],
+            'login' => Yii::app()->params['rabbitMQLogin'],
+            'password' => Yii::app()->params['rabbitMQPassword'],
+        );
+
         try {
-            $cnn = new AMQPConnection();
+            $cnn = new AMQPConnection($credentials);
             $cnn->connect();
             $channel = new AMQPChannel($cnn);
         } catch (Exception $e) {
@@ -66,7 +75,6 @@ class UAJobProducer {
         } catch (AMQPConnectionException $e) {
             throw new JobProducerException(JobProducerException::CONNECTION_ERROR);
         }
-
 
         try {
             // bind our queue to the exchange using the routing key

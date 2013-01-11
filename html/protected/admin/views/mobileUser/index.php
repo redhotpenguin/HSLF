@@ -71,7 +71,7 @@ $this->menu = array(
 
             <?php
             echo CHtml::label("Alert", "alert");
-            echo CHtml::textArea("alert", null, array('placeholder' => 'Message goes here', 'class' => 'span12', 'rows' => 3));
+            echo CHtml::textArea("alert", null, array('id'=>'composer_input','placeholder' => 'Message goes here', 'class' => 'span12', 'rows' => 3));
             ?>
 
         </div>

@@ -22,6 +22,12 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $shareurl = 'http://vote.ouroregon.org';
 
 
+    $rabbitMQHost = "localhost";
+    $rabbitMQPort = 5672;
+    $rabbitMQVhost = '/';
+    $rabbitMQLogin = 'guest';
+    $rabbitMQPassword = 'guest';
+    
     set_include_path(get_include_path() . PATH_SEPARATOR . '/home/dotcloud/php-env/share/php');
 } else {    //dev server conf
     $dbhost = '127.0.0.1';
@@ -40,6 +46,13 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $uploaddir = '/../content/img'; // physical path
     $uploadpath = '/content/img'; // wwww path
     $shareurl = 'http://vote.ouroregon.org';
+
+
+    $rabbitMQHost = "localhost";
+    $rabbitMQPort = 5672;
+    $rabbitMQVhost = '/';
+    $rabbitMQLogin = 'guest';
+    $rabbitMQPassword = 'guest';
 }
 
 // DB Config
@@ -56,6 +69,13 @@ DEFINE('MONGODB_USER', $mongodbuser);
 DEFINE('MONGODB_PASS', $mongdbpass);
 DEFINE('MONGODB_ACK_LEVEL', $mongodbacklevel);
 
+
+// RabitMQ Config
+DEFINE("RABBITMQ_HOST", $rabbitMQHost);
+DEFINE("RABBITMQ_PORT", $rabbitMQPort);
+DEFINE("RABBITMQ_VHOST", $rabbitMQVhost);
+DEFINE("RABBITMQ_LOGIN", $rabbitMQLogin);
+DEFINE("RABBITMQ_PASSWORD", $rabbitMQPassword);
 
 // Theme config
 DEFINE('ADMIN_THEME', 'dashboard');
