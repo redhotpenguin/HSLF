@@ -132,20 +132,17 @@ class MobileUserController extends Controller {
 
         $searchAttributes = $this->parseSearchAttributes($_POST);
 
-        $alert = $_POST['alert'];
+        $alert = $_POST['alert']; //@todo: filter  + check length
 
         $tenant = Tenant::model()->findByAttributes(array("id" => Yii::app()->user->tenant_id));
 
-        $jobProducer = new UAJobProducer($tenant);
-
         try {
-
+            $jobProducer = new UAJobProducer($tenant);
             $jobResult = $jobProducer->pushUrbanAirshipMessage($alert, $searchAttributes, $extra);
         } catch (JobProducerException $e) {
-
-
             $jobResult = $e->getMessage();
         }
+      
         echo ($jobResult === true ? "success" : $jobResult);
 
         die;

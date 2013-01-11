@@ -12,6 +12,8 @@ class UAJobProducer {
     private $tenant;
 
     public function __construct(Tenant $tenant) {
+        if (!extension_loaded('amqp'))
+            throw new JobProducerException(JobProducerException::AMQP_EXTENSION_ERROR);
         $this->tenant = $tenant;
     }
 

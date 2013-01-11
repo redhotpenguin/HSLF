@@ -16,6 +16,7 @@ class JobProducerException extends Exception {
     const QUEUE_ERROR = "Could not create a queue";
     const EXCHANGE_ERROR = "Could not get an exchange";
     const BIND_ERROR = "Could not bind the queue to the exchange";
+    const AMQP_EXTENSION_ERROR = "AMQP extension is missing";
 
     // Redefine the exception so message isn't optional
     public function __construct($message, $code = 0, Exception $previous = null) {
