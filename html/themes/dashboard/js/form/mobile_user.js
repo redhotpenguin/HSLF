@@ -6,13 +6,16 @@ function mobileUser($){
     var 
     filters = $("#filters"),
     composer = $("#composer"),
+    composerInput = $("#composer_input");
     filterInputs = $('input:text'),
     mobileUserCount = $("#mobile_user_count"),
     mobileUserForm = $("#mobile_user_form"),
     composerBtn = $("#compose_alert_btn"),
     addTagBtn = $("#add_tag_btn"),
     deleteTagSpan = $("#delete_tag_original"),
-    send_alert_btn = $("#send_alert_btn")
+    send_alert_btn = $("#send_alert_btn"),
+    resultBox =   $("#push_result");
+
 
     
     filterInputs.live('blur', function(){
@@ -51,15 +54,16 @@ function mobileUser($){
     $("#cancel_alert_btn").click(function(){
         filters.show(100);
         composer.hide(100);
+        composerInput.val("");
+        resultBox.html("");
+        resultBox.hide();
     });
     
     
     send_alert_btn.click(function(){
-        var resultBox =   $("#push_result");
         
         submitForm('/admin/mobileUser/sendAlert', function(result){
-            
-            console.log(result);
+            resultBox.show(100);
             
             
             if(result == "success"){
