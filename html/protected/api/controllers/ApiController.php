@@ -69,12 +69,19 @@ class ApiController extends Controller {
         unset($data['model']);
 
         if ($id == null) {
-            $message = $model->$actionName($tenantId, $data);
+            $result = $model->$actionName($tenantId, $data);
         } else {
-            $message = $model->$actionName($tenantId, $id, $data);
+            $result = $model->$actionName($tenantId, $id, $data);
         }
 
-        $this->sendResponse(200, $message);
+        if ($result instanceof RestFailure) {
+            $code = $result->getHttpCode();
+            $result = $result->getReason();
+        } else {
+            $code = 200;
+        }
+
+        $this->sendResponse($code, $result);
     }
 
     /**
@@ -97,6 +104,7 @@ class ApiController extends Controller {
                 if ($this->checkAuth($tenantId)) {
                     $model = $model;
                 } else {
+                    $code = 401;
                     $message = 'invalid credentials';
                     $model = null;
                 }

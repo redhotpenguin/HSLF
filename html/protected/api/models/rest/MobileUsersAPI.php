@@ -11,10 +11,9 @@ class MobileUsersAPI implements IAPI {
     const ERROR_USER_ALREADY_EXISTS_MSG = "user already exists";
     const ERROR_INCORRECT_USAGE_MSG = "incorrect usage";
     const ERROR_INCORRECT_DATA_MSG = "incorrect data";
-    const ERROR_IDENTIFIER_MISSING = "a device identifier is required";
     const SUCCESS_MSG = "success";
-    const ERROR_INVALID_DATA_CODE = -1;
-
+    const ERROR_INVALID_DATA_CODE = 409;
+    
     private $ackLevel;
 
     public function __construct() {
@@ -57,10 +56,6 @@ class MobileUsersAPI implements IAPI {
         if (!is_object($userData))
             return $this->buildErrorResponse(self::ERROR_INVALID_DATA_CODE, self::ERROR_INCORRECT_DATA_MSG);
 
-        if (!isset($userData->device_identifier)) {
-            return $this->buildErrorResponse(self::ERROR_INVALID_DATA_CODE, self::ERROR_IDENTIFIER_MISSING);
-        }
-
 
         $currentDate = new MongoDate();
         $mUser = new MobileUser();
@@ -75,24 +70,24 @@ class MobileUsersAPI implements IAPI {
         $mUser->last_connection_date = $currentDate;
 
         if ($mUser->save($this->ackLevel)) {
-            return self::SUCCESS_MSG;
+            return $mUser->_id->{'$id'};
         }
 
         if ($mUser->lastErrorCode == 11000) {
-            return $this->buildErrorResponse(self::ERROR_INVALID_DATA_CODE, self::ERROR_USER_ALREADY_EXISTS_MSG);
+            return $this->buildErrorResponse(409,  self::ERROR_USER_ALREADY_EXISTS_MSG);
         }
 
-        return $this->buildErrorResponse($mUser->lastErrorCode, $mUser->lastError);
+        return $this->buildErrorResponse(409, $mUser->lastError);
     }
 
     /**
      * Update an existing MobileUser
      * @param integer $tenantId - tenant id
-     * @param integer $deviceIdentifier - device identifier
+     * @param integer $id - object identifier
      * @param array $arguments - options
      * @return mixed success or failure (array)
      */
-    public function update($tenantId, $deviceIdentifier, $arguments = array()) {
+    public function update($tenantId, $id, $arguments = array()) {
         if (!isset($arguments['user']))
             return $this->buildErrorResponse(self::ERROR_INVALID_DATA_CODE, self::ERROR_INCORRECT_USAGE_MSG);
 
@@ -107,8 +102,7 @@ class MobileUsersAPI implements IAPI {
             return $this->buildErrorResponse(self::ERROR_INVALID_DATA_CODE, self::ERROR_INCORRECT_DATA_MSG);
 
         $conditions = array(
-            "tenant_id" => $tenantId,
-            "device_identifier" => $deviceIdentifier
+            "_id" => new MongoId($id)
         );
 
         if (isset($userData['set'])) {
@@ -121,29 +115,26 @@ class MobileUsersAPI implements IAPI {
         $set['last_connection_date'] = new MongoDate();
 
         $updateResult = $mUser->update($conditions, $set, $push);
-
+        
+  
         if ($updateResult === true) {
             return self::SUCCESS_MSG;
         } elseif ($updateResult === -1) {
-            return $this->buildErrorResponse(self::ERROR_INVALID_DATA_CODE, self::ERROR_USER_NOT_FOUND_MSG);
+            return $this->buildErrorResponse(404, self::ERROR_USER_NOT_FOUND_MSG);
         } else {
-            return $this->buildErrorResponse($mUser->lastErrorCode, $mUser->lastError);
+            return $this->buildErrorResponse(409, $mUser->lastError);
         }
     }
 
     /**
      * Helper - generate a unifor error response
-     * @param integer $code - error code
+     * @param integer $httpCode -  http error code
      * @param string $reason - failure reason
      * @return array failure 
      */
-    private function buildErrorResponse($code, $reason) {
-        return array(
-            "failure" => array(
-                'code' => $code,
-                'reason' => $reason
-            )
-        );
+    private function buildErrorResponse($httpCode, $reason) {
+        return new RestFailure($httpCode, $reason);
+
     }
 
     /**
