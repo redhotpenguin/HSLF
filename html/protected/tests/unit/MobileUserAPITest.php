@@ -7,9 +7,9 @@
  */
 class MobileUserAPITest extends CDbTestCase {
 
- // private $mobileUserAPI1 = "http://www.voterguide.com/api/1/MobileUsers";
-  // private $mobileUserAPI1 = "http://23.24.252.203/api/1/MobileUsers";
- //   private $mobileUserAPI1 = "http://192.168.100.136/api/1/MobileUsers";
+    private $mobileUserAPI1 = "http://www.voterguide.com/api/1/MobileUsers";
+// private $mobileUserAPI1 = "http://23.24.252.203/api/1/MobileUsers";
+//   private $mobileUserAPI1 = "http://192.168.100.136/api/1/MobileUsers";
 
     private $tenant1 = array(
         'username' => "52356", // api key
@@ -19,11 +19,9 @@ class MobileUserAPITest extends CDbTestCase {
     public function testCreateUser() {
         $response = "failure";
 
-        $deviceIdentifier = md5(microtime());
         $userData = array(
             "name" => "jonas",
             "device_type" => "android",
-            "device_identifier" => $deviceIdentifier
         );
 
         $jsonUserData = json_encode($userData);
@@ -32,22 +30,23 @@ class MobileUserAPITest extends CDbTestCase {
             "user" => $jsonUserData
         );
 
-        $requestResult = $this->post($this->tenant1, $data, $this->mobileUserAPI1);
+        $requestResult = $this->post($this->tenant1, $data, $this->mobileUserAPI1, $httpCode);
+
 
         $response = $requestResult->results;
 
         $this->log($response);
 
-        $this->assertEquals("success", $response);
+        $this->assertEquals($httpCode, 200);
+
+        $this->assertNotEmpty($response);
     }
 
     public function testCreateUserMissingRequiredParameter() {
-        $response = "failure";
 
         $deviceIdentifier = md5(microtime());
         $userData = array(
             "name" => "jonas",
-            "device_identifier" => $deviceIdentifier
         );
 
         $jsonUserData = json_encode($userData);
@@ -56,24 +55,22 @@ class MobileUserAPITest extends CDbTestCase {
             "user" => $jsonUserData
         );
 
-        $requestResult = $this->post($this->tenant1, $data, $this->mobileUserAPI1);
+        $requestResult = $this->post($this->tenant1, $data, $this->mobileUserAPI1, $code);
 
         $response = $requestResult->results;
 
         $this->assertNotEquals("success", $response);
 
-        $this->assertEquals("a required field is missing", $response->failure->reason);
+        $this->assertEquals($code, 409);
     }
 
     public function testUpdateUser() {
 
         $response = "failure";
 
-        $deviceIdentifier = md5(microtime());
         $userData = array(
             "name" => "jonas",
             "device_type" => "ios",
-            "device_identifier" => $deviceIdentifier
         );
 
         $jsonUserData = json_encode($userData);
@@ -82,17 +79,22 @@ class MobileUserAPITest extends CDbTestCase {
             "user" => $jsonUserData
         );
 
-        $requestResult = $this->post($this->tenant1, $data, $this->mobileUserAPI1);
+        $requestResult = $this->post($this->tenant1, $data, $this->mobileUserAPI1, $code);
 
-        $response = $requestResult->results;
+        $newUserId = $requestResult->results;
 
-        $this->assertEquals("success", $response);
+        $this->assertEquals(200, $code);
+
+        $this->assertNotEmpty($newUserId);
 
         sleep(1);
 
-        $response = null;
 
         $newUserData = array(
+            'push' => array(
+                'tags' => 'a new updated tag',
+                'interest' => 'ping pong'
+            )
         );
 
         $newJsonData = json_encode($newUserData);
@@ -101,16 +103,20 @@ class MobileUserAPITest extends CDbTestCase {
             "user" => $newJsonData
         );
 
-        $requestResult = json_decode($this->put($this->tenant1, $newData, $this->mobileUserAPI1 . '/' . $deviceIdentifier));
 
+        $code = null;
+
+        $requestResult = json_decode($this->put($this->tenant1, $newData, $this->mobileUserAPI1 . '/' . $newUserId, $code));
+
+        $this->log($newData);
 
         $response = $requestResult->results;
 
-        $this->assertEquals("success", $response);
+        $this->assertEquals(200, $code);
     }
 
     public function testUpdateNotExistingUser() {
-        
+
         $userData = array(
             "name" => "troll",
             "device_type" => "android",
@@ -122,26 +128,25 @@ class MobileUserAPITest extends CDbTestCase {
             "user" => $jsonUserData
         );
 
-        $requestResult = json_decode( $this->put($this->tenant1, $data, $this->mobileUserAPI1.'/youwontfindme') ) ;
+        $requestResult = json_decode($this->put($this->tenant1, $data, $this->mobileUserAPI1 . '/youwontfindme', $code));
         $this->log($requestResult);
-        
-        
-        
-        $response = $requestResult->results->failure->reason;
+
+
+
+        $response = $requestResult->results;
+
+        $this->assertEquals(404, $code);
 
         $this->assertEquals("user not found", $response);
     }
-
 
     public function testUpdateUserExistingFields() {
 
         $response = "failure";
 
-        $deviceIdentifier = md5(microtime());
         $userData = array(
             "name" => "robert",
             "device_type" => "android",
-            "device_identifier" => $deviceIdentifier
         );
 
         $jsonUserData = json_encode($userData);
@@ -150,13 +155,14 @@ class MobileUserAPITest extends CDbTestCase {
             "user" => $jsonUserData
         );
 
-        $requestResult = $this->post($this->tenant1, $data, $this->mobileUserAPI1);
+        $result = $this->post($this->tenant1, $data, $this->mobileUserAPI1, $code);
+        $userId = $result->results;
 
-        $response = $requestResult->results;
 
-        $this->assertEquals("success", $response);
 
-        $response = null;
+        $this->assertEquals(200, $code);
+
+        $code = null;
 
         $newUserData = array(
             'set' => array(
@@ -170,22 +176,18 @@ class MobileUserAPITest extends CDbTestCase {
             "user" => $newJsonData
         );
 
-        $requestResult = json_decode($this->put($this->tenant1, $newData, $this->mobileUserAPI1 . '/' . $deviceIdentifier));
+        $requestResult = json_decode($this->put($this->tenant1, $newData, $this->mobileUserAPI1 . '/' . $userId, $code));
 
 
-        $response = $requestResult->results;
 
-        $this->assertEquals("success", $response);
+        $this->assertEquals(200, $code);
     }
 
     public function testUpdateUserAddCollections() {
 
-        $response = "failure";
 
-        $deviceIdentifier = md5(microtime());
         $userData = array(
-            "name" => "robert",
-            "device_identifier" => $deviceIdentifier,
+            "name" => "Thomas",
             "device_type" => 'ios',
             "tags" => array("default tag")
         );
@@ -196,13 +198,14 @@ class MobileUserAPITest extends CDbTestCase {
             "user" => $jsonUserData
         );
 
-        $requestResult = $this->post($this->tenant1, $data, $this->mobileUserAPI1);
+        $requestResult = $this->post($this->tenant1, $data, $this->mobileUserAPI1, $code);
+        
+        $userId = $requestResult->results;
+        
+        
+        $this->assertEquals(200, $code);
 
-        $response = $requestResult->results;
-
-        $this->assertEquals("success", $response);
-
-        $response = null;
+        $code = null;
 
         $newUserData = array(
             'push' => array(
@@ -216,16 +219,15 @@ class MobileUserAPITest extends CDbTestCase {
             "user" => $newJsonData
         );
 
-        $requestResult = json_decode($this->put($this->tenant1, $newData, $this->mobileUserAPI1 . '/' . $deviceIdentifier));
+        $requestResult = json_decode($this->put($this->tenant1, $newData, $this->mobileUserAPI1 . '/' . $userId, $code));
 
 
         $response = $requestResult->results;
 
-        $this->assertEquals("success", $response);
+        $this->assertEquals(200, $code);
     }
 
-    
-    private function post($credentials, $data, $endPoint) {
+    private function post($credentials, $data, $endPoint, &$httpResponseCode) {
 
         $session = curl_init($endPoint);
         curl_setopt($session, CURLOPT_USERPWD, $credentials['username'] . ':' . $credentials['password']);
@@ -236,6 +238,9 @@ class MobileUserAPITest extends CDbTestCase {
         $content = curl_exec($session);
         $response = curl_getinfo($session);
 
+
+        $httpResponseCode = curl_getinfo($session, CURLINFO_HTTP_CODE);
+
         $content = json_decode($content);
 
         curl_close($session);
@@ -243,7 +248,7 @@ class MobileUserAPITest extends CDbTestCase {
         return $content;
     }
 
-    private function put($credentials, $data, $endPoint) {
+    private function put($credentials, $data, $endPoint, &$httpResponseCode) {
         $t = http_build_query($data);
 
         $session = curl_init($endPoint);
@@ -253,6 +258,7 @@ class MobileUserAPITest extends CDbTestCase {
         curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
         $content = curl_exec($session);
         $response = curl_getinfo($session);
+        $httpResponseCode = curl_getinfo($session, CURLINFO_HTTP_CODE);
 
         curl_close($session);
 
