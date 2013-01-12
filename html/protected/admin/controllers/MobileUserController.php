@@ -108,8 +108,6 @@ class MobileUserController extends Controller {
      * Print a count of mobile users - ajax 
      */
     public function actionGetCount() {
-
-
         $attributes = $this->parseSearchAttributes($_GET); // @todo: filter $_GET
 
         $count = MobileUser::model()->find($attributes)->count();
@@ -131,6 +129,8 @@ class MobileUserController extends Controller {
 
 
         $searchAttributes = $this->parseSearchAttributes($_POST);
+
+        $searchAttributes['ua_identifier'] = array('$exists' => true); // make sure we only select users with a ua identifier
 
         $alert = $_POST['alert']; //@todo: filter  + check length
         // parse key value (extra)
@@ -190,9 +190,8 @@ class MobileUserController extends Controller {
                 if (isset($mobileUser[$head])) {
                     if (is_array($mobileUser[$head])) {
                         $data = implode(', ', $mobileUser[$head]);
-                    } 
-                    elseif ($mobileUser[$head] instanceof MongoDate) {
-                        $data =  date('m-d-Y h:i:s', $mobileUser[$head]->sec);
+                    } elseif ($mobileUser[$head] instanceof MongoDate) {
+                        $data = date('m-d-Y h:i:s', $mobileUser[$head]->sec);
                     } else {
                         $data = $mobileUser[$head];
                     }
@@ -219,7 +218,7 @@ class MobileUserController extends Controller {
      */
     private function parseSearchAttributes($data) {
         $searchAttributes = array(
-            "tags", "device_type"
+            "tags", "device_type", "push_only"
         );
         foreach ($data as $k => $v) {
             if (!in_array($k, $searchAttributes)) {
@@ -248,6 +247,13 @@ class MobileUserController extends Controller {
             $data['tags'] = array(
                 '$all' => $tags
             );
+        }
+
+
+
+        if (isset($data['push_only']) && $data['push_only'] === '1') {
+            unset($data['push_only']);
+            $data['ua_identifier'] = array('$exists' => true);
         }
 
         return $data;

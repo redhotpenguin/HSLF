@@ -71,9 +71,9 @@ class UAWorker extends Worker {
         foreach ($cursor as $user) {
 
             if ($user['device_type'] === 'android') {
-                array_push($apids, $user['device_identifier']);
+                array_push($apids, $user['ua_identifier']);
             } elseif ($user['device_type'] === 'ios') {
-                array_push($tokens, $user['device_identifier']);
+                array_push($tokens, $user['ua_identifier']);
             }
         }
 

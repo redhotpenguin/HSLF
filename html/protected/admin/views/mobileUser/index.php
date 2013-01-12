@@ -51,6 +51,17 @@ $this->menu = array(
             echo CHtml::button("Add a tag", array('id' => 'add_tag_btn'));
             ?>
         </div>
+
+        <hr/>
+
+        <div class="row">
+            <h4>Push only:</h4>
+            <?php
+            echo CHtml::checkBox("push_only", false, array("id" => "push_only_checkbox"));
+            ?>
+
+        </div>
+
         <hr/>
 
 

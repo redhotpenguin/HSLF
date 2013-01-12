@@ -8,9 +8,7 @@
 class MobileUserAPITest extends CDbTestCase {
 
     private $mobileUserAPI1 = "http://www.voterguide.com/api/1/MobileUsers";
-// private $mobileUserAPI1 = "http://23.24.252.203/api/1/MobileUsers";
-//   private $mobileUserAPI1 = "http://192.168.100.136/api/1/MobileUsers";
-
+  //  private $mobileUserAPI1 = "http://23.24.252.203/api/1/MobileUsers";
     private $tenant1 = array(
         'username' => "52356", // api key
         'password' => "PqiW_IDKL3mFi_OirCqOe-u"// api secret
@@ -38,6 +36,7 @@ class MobileUserAPITest extends CDbTestCase {
         $this->log($response);
 
         $this->assertEquals($httpCode, 200);
+
 
         $this->assertNotEmpty($response);
     }
@@ -199,10 +198,10 @@ class MobileUserAPITest extends CDbTestCase {
         );
 
         $requestResult = $this->post($this->tenant1, $data, $this->mobileUserAPI1, $code);
-        
+
         $userId = $requestResult->results;
-        
-        
+
+
         $this->assertEquals(200, $code);
 
         $code = null;

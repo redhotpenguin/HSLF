@@ -15,6 +15,7 @@ function mobileUser($){
     addOptionBtn = $("#add_option_btn"),
     deleteTagSpan = $("#delete_tag_original"),
     send_alert_btn = $("#send_alert_btn"),
+    pushOnlyCheckBox = $("#push_only_checkbox");
     resultBox =   $("#push_result");
 
 
@@ -28,8 +29,15 @@ function mobileUser($){
     $("#device_type").change(function(){
         updateCount();
     });
+    
+    pushOnlyCheckBox.change(function(){
+        updateCount();
+    });
+    
 
     composerBtn.click(function(){
+        pushOnlyCheckBox.attr('checked', 'checked');
+        pushOnlyCheckBox.trigger('change');
         filters.hide(100);
         composer.show(100);
     });
@@ -124,12 +132,12 @@ function mobileUser($){
     
     $("#export_btn").click(function(){
      
-     var serializedForm = mobileUserForm.serialize();
+        var serializedForm = mobileUserForm.serialize();
      
-     window.location = "/admin/mobileUser/export?"+serializedForm;
+        window.location = "/admin/mobileUser/export?"+serializedForm;
 
 
-     /*submitForm('/admin/mobileUser/export', function(result){
+    /*submitForm('/admin/mobileUser/export', function(result){
             console.log(result);
             
             
