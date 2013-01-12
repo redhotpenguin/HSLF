@@ -21,7 +21,7 @@ class MobileUser extends ActiveMongoDocument {
      */
     public function rules() {
         return array(
-            array('device_identifier, device_type', 'required'),
+            array('device_type', 'required'),
             array('device_identifier, device_type', 'safe', 'on' => 'search'),
         );
     }
