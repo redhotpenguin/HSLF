@@ -9,6 +9,22 @@ class RestFailure {
     private $reason;
     private $httpCode;
 
+    /**
+     * @const Bad Request
+     */
+
+    const HTTP_BAD_REQUEST_CODE = 400;
+
+    /**
+     * @const Conflict
+     */
+    const HTTP_CONFLICT_CODE = 409;
+
+    /**
+     * @const Not Found
+     */
+    const HTTP_NOT_FOUND_CODE = 404;
+
     public function __construct($httpCode, $reason = null) {
         $this->httpCode = $httpCode;
 

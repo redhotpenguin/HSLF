@@ -12,7 +12,9 @@ class MobileUsersAPI implements IAPI {
     const ERROR_INCORRECT_USAGE_MSG = "incorrect usage";
     const ERROR_INCORRECT_DATA_MSG = "incorrect data";
     const SUCCESS_MSG = "success";
-    const ERROR_INVALID_DATA_CODE = 409;
+    
+
+    
 
     private $ackLevel;
 
@@ -49,12 +51,12 @@ class MobileUsersAPI implements IAPI {
      */
     public function create($tenantId, $arguments = array()) {
         if (!isset($arguments['user']))
-            return $this->buildErrorResponse(self::ERROR_INVALID_DATA_CODE, self::ERROR_INCORRECT_USAGE_MSG);
+            return $this->buildErrorResponse(RestFailure::HTTP_BAD_REQUEST_CODE, self::ERROR_INCORRECT_USAGE_MSG);
 
-        $userData = CJSON::decode($arguments['user'], false); // decode json string to an stdobject
+        $userData = CJSON::decode($arguments['user'], false); // map json string to an stdobject
 
         if (!is_object($userData))
-            return $this->buildErrorResponse(self::ERROR_INVALID_DATA_CODE, self::ERROR_INCORRECT_DATA_MSG);
+            return $this->buildErrorResponse(RestFailure::HTTP_BAD_REQUEST_CODE, self::ERROR_INCORRECT_DATA_MSG);
 
 
         $currentDate = new MongoDate();
@@ -69,15 +71,15 @@ class MobileUsersAPI implements IAPI {
         $mUser->registration_date = $currentDate;
         $mUser->last_connection_date = $currentDate;
 
-        if ($mUser->save($this->ackLevel)) {
+        if ($mUser->save($this->ackLevel)) { // user saved successfully
             return array( 'id' => $mUser->_id->{'$id'});
         }
 
-        if ($mUser->lastErrorCode == 11000) {
-            return $this->buildErrorResponse(409, self::ERROR_USER_ALREADY_EXISTS_MSG);
+        if ($mUser->lastErrorCode == 11000) { // duplicate key error. Should not happen unless unique constraints are set
+            return $this->buildErrorResponse(RestFailure::HTTP_CONFLICT_CODE, self::ERROR_USER_ALREADY_EXISTS_MSG);
         }
 
-        return $this->buildErrorResponse(409, $mUser->lastError);
+        return $this->buildErrorResponse(RestFailure::HTTP_CONFLICT_CODE, $mUser->lastError);
     }
 
     /**
@@ -89,7 +91,7 @@ class MobileUsersAPI implements IAPI {
      */
     public function update($tenantId, $id, $arguments = array()) {
         if (!isset($arguments['user']))
-            return $this->buildErrorResponse(self::ERROR_INVALID_DATA_CODE, self::ERROR_INCORRECT_USAGE_MSG);
+            return $this->buildErrorResponse(RestFailure::HTTP_BAD_REQUEST_CODE, self::ERROR_INCORRECT_USAGE_MSG);
 
         $mUser = new MobileUser();
         $tenantId = (int) $tenantId;
@@ -99,7 +101,7 @@ class MobileUsersAPI implements IAPI {
         $userData = CJSON::decode($arguments['user'], true); // decode json string as an array
 
         if (!is_array($userData))
-            return $this->buildErrorResponse(self::ERROR_INVALID_DATA_CODE, self::ERROR_INCORRECT_DATA_MSG);
+            return $this->buildErrorResponse(RestFailure::HTTP_BAD_REQUEST_CODE, self::ERROR_INCORRECT_DATA_MSG);
 
         $conditions = array(
             "_id" => new MongoId($id)
@@ -120,9 +122,9 @@ class MobileUsersAPI implements IAPI {
         if ($updateResult === true) {
             return self::SUCCESS_MSG;
         } elseif ($updateResult === -1) {
-            return $this->buildErrorResponse(404, self::ERROR_USER_NOT_FOUND_MSG);
+            return $this->buildErrorResponse(RestFailure::HTTP_NOT_FOUND_CODE, self::ERROR_USER_NOT_FOUND_MSG);
         } else {
-            return $this->buildErrorResponse(409, $mUser->lastError);
+            return $this->buildErrorResponse(RestFailure::HTTP_BAD_REQUEST_CODE, $mUser->lastError);
         }
     }
 
@@ -145,5 +147,3 @@ class MobileUsersAPI implements IAPI {
     }
 
 }
-
-?>
