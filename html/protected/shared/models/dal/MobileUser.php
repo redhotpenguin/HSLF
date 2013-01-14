@@ -83,13 +83,9 @@ class MobileUser extends ActiveMongoDocument {
      * Set a model error if the format is not correct
      */
     public function uaIdentifierFormat($attributes) {
-        error_log("id: ". $this->ua_identifier);
         if ( $this->ua_identifier == "") {
             return;
         }
-        error_log("uaIdentifierFormat");
-
-        error_log($this->ua_identifier);
 
         if ($this->device_type == 'ios') {
             // 64 hex characters ( only alpha and num)
@@ -103,8 +99,6 @@ class MobileUser extends ActiveMongoDocument {
         } else {
             return;
         }
-
-        print_r($this->ua_identifier);
 
         if (preg_match($pattern, $this->ua_identifier) !== 1) {
             $this->addError('ua_identifier', 'Invalid UA Identifier');
