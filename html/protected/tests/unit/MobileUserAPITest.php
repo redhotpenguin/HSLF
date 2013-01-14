@@ -80,7 +80,7 @@ class MobileUserAPITest extends CDbTestCase {
 
         $requestResult = $this->post($this->tenant1, $data, $this->mobileUserAPI1, $code);
 
-        $newUserId = $requestResult->results;
+        $newUserId = $requestResult->results->id;
 
         $this->assertEquals(200, $code);
 
@@ -155,7 +155,7 @@ class MobileUserAPITest extends CDbTestCase {
         );
 
         $result = $this->post($this->tenant1, $data, $this->mobileUserAPI1, $code);
-        $userId = $result->results;
+        $userId = $result->results->id;
 
 
 
@@ -199,7 +199,7 @@ class MobileUserAPITest extends CDbTestCase {
 
         $requestResult = $this->post($this->tenant1, $data, $this->mobileUserAPI1, $code);
 
-        $userId = $requestResult->results;
+        $userId = $requestResult->results->id;
 
 
         $this->assertEquals(200, $code);

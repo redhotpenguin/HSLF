@@ -13,7 +13,7 @@ class MobileUsersAPI implements IAPI {
     const ERROR_INCORRECT_DATA_MSG = "incorrect data";
     const SUCCESS_MSG = "success";
     const ERROR_INVALID_DATA_CODE = 409;
-    
+
     private $ackLevel;
 
     public function __construct() {
@@ -70,11 +70,11 @@ class MobileUsersAPI implements IAPI {
         $mUser->last_connection_date = $currentDate;
 
         if ($mUser->save($this->ackLevel)) {
-            return $mUser->_id->{'$id'};
+            return array( 'id' => $mUser->_id->{'$id'});
         }
 
         if ($mUser->lastErrorCode == 11000) {
-            return $this->buildErrorResponse(409,  self::ERROR_USER_ALREADY_EXISTS_MSG);
+            return $this->buildErrorResponse(409, self::ERROR_USER_ALREADY_EXISTS_MSG);
         }
 
         return $this->buildErrorResponse(409, $mUser->lastError);
@@ -115,8 +115,8 @@ class MobileUsersAPI implements IAPI {
         $set['last_connection_date'] = new MongoDate();
 
         $updateResult = $mUser->update($conditions, $set, $push);
-        
-  
+
+
         if ($updateResult === true) {
             return self::SUCCESS_MSG;
         } elseif ($updateResult === -1) {
@@ -134,7 +134,6 @@ class MobileUsersAPI implements IAPI {
      */
     private function buildErrorResponse($httpCode, $reason) {
         return new RestFailure($httpCode, $reason);
-
     }
 
     /**
