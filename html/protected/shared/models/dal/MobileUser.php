@@ -74,7 +74,7 @@ class MobileUser extends ActiveMongoDocument {
                         )
         );
     }
-
+    
 
 }
 

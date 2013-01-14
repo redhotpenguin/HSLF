@@ -164,7 +164,7 @@ class MobileUserController extends Controller {
         die;
     }
 
-    public function actionExport() {
+    public function actionExport() { // @todo: move logic to a model
         $searchAttributes = $this->parseSearchAttributes($_GET);
 
         $fp = fopen('php://temp', 'w');
@@ -173,7 +173,6 @@ class MobileUserController extends Controller {
         $headers = array(
             'device_type',
             'tags',
-            'device_identifier',
             'registration_date',
             'last_connection_date'
         );
@@ -205,9 +204,6 @@ class MobileUserController extends Controller {
         rewind($fp);
         $content = stream_get_contents($fp);
         fclose($fp);
-
-
-
 
         Yii::app()->getRequest()->sendFile('mobileUsers.csv', $content, "text/csv", false);
     }

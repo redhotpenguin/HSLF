@@ -41,10 +41,6 @@ $this->widget('bootstrap.widgets.BootGridView', array(
             'header' => 'ID'
         ),
         array(
-            'name' => 'device_identifier',
-            'header' => 'Device Identifier'
-        ),
-        array(
             'name' => 'device_type',
             'header' => 'Device Type'
         ),
