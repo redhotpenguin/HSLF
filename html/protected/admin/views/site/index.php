@@ -4,6 +4,7 @@
 
     <?php
     if (Yii::app()->user->id):
+       
         ?>
         <div class="hero-unit">
             <h1>Dashboard</h1>

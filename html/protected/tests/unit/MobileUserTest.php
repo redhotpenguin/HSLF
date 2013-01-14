@@ -17,7 +17,6 @@ class MobileUserTest extends CDbTestCase {
     private function getMobileUser() {
         $mUser = new MobileUser();
         $mUser->attachBehavior('MultiTenant', $this->tenantBehavior);
-        $mUser->device_identifier = md5(microtime());
         $mUser->device_type = "android";
         return $mUser;
     }
@@ -230,6 +229,42 @@ class MobileUserTest extends CDbTestCase {
         $this->assertNotEmpty($mUser);
 
         $this->assertEquals(1, count($mUser->events));
+    }
+
+    public function testApidValidationFormat() {
+        $mobileUser = $this->getMobileUser();
+        $mobileUser->device_type = 'android';
+        $mobileUser->ua_identifier = "9fffae32-b3f5-4836-9078-e42e9f34f830";
+        $validationResult = $mobileUser->validate('ua_identifier');
+        $this->assertEmpty($mobileUser->getError('ua_identifier'));
+        $this->assertTrue($validationResult);
+    }
+
+    public function testInvalidApidValidationFormat() {
+        $mobileUser = $this->getMobileUser();
+        $mobileUser->device_type = 'android';
+        $mobileUser->ua_identifier = "19fffae32-b3f5-4836-9078-e42e9f34f830";
+        $validationResult = $mobileUser->validate('ua_identifier');
+        $this->assertNotEmpty($mobileUser->getError('ua_identifier'));
+        $this->assertFalse($validationResult);
+    }
+
+    public function testTokenValidationFormat() {
+        $mobileUser = $this->getMobileUser();
+        $mobileUser->device_type = 'ios';
+        $mobileUser->ua_identifier = "120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232";
+        $validationResult = $mobileUser->validate('ua_identifier');
+        $this->assertEmpty($mobileUser->getError('ua_identifier'));
+        $this->assertTrue($validationResult);
+    }
+    
+    public function testInvalidTokenValidationFormat() {
+        $mobileUser = $this->getMobileUser();
+        $mobileUser->device_type = 'ios';
+        $mobileUser->ua_identifier = "1120231606E4C8C45F50DA3D0CFB59D78CBE22E0192F63E5A08401BC3BA610232";
+        $validationResult = $mobileUser->validate('ua_identifier');
+        $this->assertNotEmpty($mobileUser->getError('ua_identifier'));
+        $this->assertFalse($validationResult);
     }
 
     private function log($a) {
