@@ -71,10 +71,10 @@ class MobileUsersAPI implements IAPI {
         if ($mUser->save($this->ackLevel)) { // user saved successfully
             return array('id' => $mUser->_id->{'$id'});
         }
-
+        
         if ($mUser->lastErrorCode == 11000) { // duplicate key error. Should not happen unless unique constraints are set
             return $this->buildErrorResponse(RestFailure::HTTP_CONFLICT_CODE, self::ERROR_USER_ALREADY_EXISTS_MSG);
-        } elseif ($mUser->lastErrorCode == -1) {
+        } elseif (!empty( $mUser->lastError ) ) {
             return $this->buildErrorResponse(RestFailure::HTTP_CONFLICT_CODE, $mUser->lastError);
         }
 
