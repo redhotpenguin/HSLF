@@ -24,6 +24,13 @@ class RestFailure {
      * @const Not Found
      */
     const HTTP_NOT_FOUND_CODE = 404;
+    
+    
+    /**
+     * @const Internel Server error
+     */
+    const HTTP_INTERNAL_ERROR_CODE = 500;
+    
 
     public function __construct($httpCode, $reason = null) {
         $this->httpCode = $httpCode;

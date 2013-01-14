@@ -42,10 +42,10 @@ class MobileUserAPITest extends CDbTestCase {
     }
 
     public function testCreateUserMissingRequiredParameter() {
-
-        $deviceIdentifier = md5(microtime());
+        
+        // device_type is missing
         $userData = array(
-            "name" => "jonas",
+            "name" => "jonas invalid",
         );
 
         $jsonUserData = json_encode($userData);
@@ -57,10 +57,10 @@ class MobileUserAPITest extends CDbTestCase {
         $requestResult = $this->post($this->tenant1, $data, $this->mobileUserAPI1, $code);
 
         $response = $requestResult->results;
-
+        
         $this->assertNotEquals("success", $response);
 
-        $this->assertEquals($code, 409);
+        $this->assertEquals(409, $code);
     }
 
     public function testUpdateUser() {
@@ -107,7 +107,7 @@ class MobileUserAPITest extends CDbTestCase {
 
         $requestResult = json_decode($this->put($this->tenant1, $newData, $this->mobileUserAPI1 . '/' . $newUserId, $code));
 
-        $this->log($newData);
+ //       $this->log($newData);
 
         $response = $requestResult->results;
 
@@ -128,7 +128,7 @@ class MobileUserAPITest extends CDbTestCase {
         );
 
         $requestResult = json_decode($this->put($this->tenant1, $data, $this->mobileUserAPI1 . '/youwontfindme', $code));
-        $this->log($requestResult);
+  //      $this->log($requestResult);
 
 
 
@@ -136,7 +136,7 @@ class MobileUserAPITest extends CDbTestCase {
 
         $this->assertEquals(404, $code);
 
-        $this->assertEquals("user not found", $response);
+        $this->assertEquals("user not found", $response->error);
     }
 
     public function testUpdateUserExistingFields() {
@@ -146,6 +146,7 @@ class MobileUserAPITest extends CDbTestCase {
         $userData = array(
             "name" => "robert",
             "device_type" => "android",
+            "age" => 41
         );
 
         $jsonUserData = json_encode($userData);
@@ -281,4 +282,3 @@ class MobileUserAPITest extends CDbTestCase {
 
 }
 
-?>

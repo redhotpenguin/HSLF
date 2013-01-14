@@ -12,9 +12,6 @@ class MobileUsersAPI implements IAPI {
     const ERROR_INCORRECT_USAGE_MSG = "incorrect usage";
     const ERROR_INCORRECT_DATA_MSG = "incorrect data";
     const SUCCESS_MSG = "success";
-    
-
-    
 
     private $ackLevel;
 
@@ -72,14 +69,16 @@ class MobileUsersAPI implements IAPI {
         $mUser->last_connection_date = $currentDate;
 
         if ($mUser->save($this->ackLevel)) { // user saved successfully
-            return array( 'id' => $mUser->_id->{'$id'});
+            return array('id' => $mUser->_id->{'$id'});
         }
 
         if ($mUser->lastErrorCode == 11000) { // duplicate key error. Should not happen unless unique constraints are set
             return $this->buildErrorResponse(RestFailure::HTTP_CONFLICT_CODE, self::ERROR_USER_ALREADY_EXISTS_MSG);
+        } elseif ($mUser->lastErrorCode == -1) {
+            return $this->buildErrorResponse(RestFailure::HTTP_CONFLICT_CODE, $mUser->lastError);
         }
 
-        return $this->buildErrorResponse(RestFailure::HTTP_CONFLICT_CODE, $mUser->lastError);
+        return $this->buildErrorResponse(RestFailure::HTTP_INTERNAL_ERROR_CODE, $mUser->lastError);
     }
 
     /**
@@ -124,7 +123,7 @@ class MobileUsersAPI implements IAPI {
         } elseif ($updateResult === -1) {
             return $this->buildErrorResponse(RestFailure::HTTP_NOT_FOUND_CODE, self::ERROR_USER_NOT_FOUND_MSG);
         } else {
-            return $this->buildErrorResponse(RestFailure::HTTP_BAD_REQUEST_CODE, $mUser->lastError);
+            return $this->buildErrorResponse(RestFailure::HTTP_INTERNAL_ERROR_CODE, $mUser->lastError);
         }
     }
 
@@ -135,7 +134,7 @@ class MobileUsersAPI implements IAPI {
      * @return array failure 
      */
     private function buildErrorResponse($httpCode, $reason) {
-        return new RestFailure($httpCode, $reason);
+        return new RestFailure($httpCode, array('error' => $reason ));
     }
 
     /**
