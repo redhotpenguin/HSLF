@@ -169,21 +169,15 @@ class MobileUserController extends Controller {
 
         $fp = fopen('php://temp', 'w');
 
-
-        $headers = array(
-            'device_type',
-            'tags',
-            'registration_date',
-            'last_connection_date'
-        );
-
+        
+        $headers =  MobileUser::model()->getAttributes();
+     
         fputcsv($fp, $headers);
 
         $mobileUserCursor = MobileUser::model()->find($searchAttributes);
-
         foreach ($mobileUserCursor as $mobileUser) {
             $row = array();
-            foreach ($headers as $head) {
+            foreach ($headers as $head=>$friendlyHeadName) {
                 $data = null;
 
                 if (isset($mobileUser[$head])) {
@@ -203,8 +197,9 @@ class MobileUserController extends Controller {
 
         rewind($fp);
         $content = stream_get_contents($fp);
+        
         fclose($fp);
-
+        
         Yii::app()->getRequest()->sendFile('mobileUsers.csv', $content, "text/csv", false);
     }
 

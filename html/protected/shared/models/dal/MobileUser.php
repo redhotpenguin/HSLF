@@ -18,6 +18,21 @@ class MobileUser extends ActiveMongoDocument {
         return 'mobile_user';
     }
 
+    public function getAttributes($names = NULL) {
+        return array(
+            'tenant_id' => 'Tenant ID',
+            'device_type' => 'Device Type',
+            'ua_identifier' => 'Urban Airship Identifier',
+            'districts' => 'Districts',
+            'action_taken' => 'Action Taken',
+            'tags' => 'Tags',
+            'name' => 'Name',
+            'email' => 'Email',
+            'registration_date' => 'Registration Date',
+            'last_connection_date' => 'Last Connection date',
+        );
+    }
+
     /**
      * @return array validation rules for model attributes.
      */
@@ -83,7 +98,7 @@ class MobileUser extends ActiveMongoDocument {
      * Set a model error if the format is not correct
      */
     public function uaIdentifierFormat($attributes) {
-        if ( $this->ua_identifier == "") {
+        if ($this->ua_identifier == "") {
             return;
         }
 

@@ -8,6 +8,7 @@
 abstract class ActiveMongoDocument extends CModel {
 
     public $fields = array();
+    private $attributeNames = array();
     public $lastErrorCode;
     public static $mongoClient;
     public $lastError;
@@ -15,14 +16,15 @@ abstract class ActiveMongoDocument extends CModel {
     private $collection;
     private static $model;
     public $searchAttributes = array(); // search attributes
-    
-    public function relations(){ return array(); }
+
+    public function relations() {
+        return array();
+    }
 
     /**
      * Constructor
      * @param array $fields fields of the document
      */
-
     public function __construct($scenario = 'insert') {
         $this->collectionName = $this->tableName();
         $this->setScenario($scenario);
@@ -52,7 +54,7 @@ abstract class ActiveMongoDocument extends CModel {
     }
 
     /**
-     * Return attributes of this class
+     *  Return attributes of this class
      */
     public function attributeNames() {
         return array();
@@ -77,7 +79,7 @@ abstract class ActiveMongoDocument extends CModel {
 
         if (!$this->validate()) {
             $errors = $this->getErrors();
-            $this->lastError = $errors[ key($errors) ];
+            $this->lastError = $errors[key($errors)];
             return false;
         }
 
