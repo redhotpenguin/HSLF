@@ -1,4 +1,4 @@
--- last alter file merged: alter_24.sql
+-- last alter file merged: alter_26.sql
 
 -- tables creation --
 
@@ -14,7 +14,7 @@ create table tenant(
 	api_secret TEXT NOT NULL,
 	ua_dashboard_link TEXT NOT NULL,
         ua_api_key TEXT NOT NULL,
-        ua_api_secret NOT NULL,
+        ua_api_secret TEXT NOT NULL,
 	cicero_user TEXT NOT NULL,
 	cicero_password TEXT NOT NULL
 );
