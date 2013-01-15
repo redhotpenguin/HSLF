@@ -82,6 +82,7 @@ function mobileUser($){
             if(result == "success"){
                 resultBox.html("<div class='alert alert-success'>Message successfuly sent.</div>");
                 $("#alert").val('');
+                $("#composer_input").val('');
             }
             else{
                 resultBox.html("<div class='alert alert-error'>Error: "+result+"</div>");
