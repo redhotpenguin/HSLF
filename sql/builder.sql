@@ -13,6 +13,8 @@ create table tenant(
 	api_key TEXT NOT NULL,
 	api_secret TEXT NOT NULL,
 	ua_dashboard_link TEXT NOT NULL,
+        ua_api_key TEXT NOT NULL,
+        ua_api_secret NOT NULL,
 	cicero_user TEXT NOT NULL,
 	cicero_password TEXT NOT NULL
 );
