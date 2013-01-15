@@ -59,7 +59,7 @@ $this->menu = array(
 
         <div id="district_list">
             <h4>Districts:</h4>
-            <em>Users who are least in one of these districts</em>
+            <em>Users who are least in one of the following districts</em>
 
             <div class="row districtBox" id="original_district">
                 <?php
