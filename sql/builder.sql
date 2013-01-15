@@ -35,13 +35,13 @@ CREATE TABLE district (
 CREATE TABLE alert_type (
     id SERIAL PRIMARY KEY,
     display_name character varying(1024),
-    tag_id integer,
-	category VARCHAR(512)
+    tag_id integer NOT NULL,
+    category VARCHAR(512)
 );
 
 CREATE TABLE tag (
     id SERIAL PRIMARY KEY,
-	tenant_id integer NOT NULL,
+    tenant_id integer NOT NULL,
     name character varying(255),
     type character varying(255)
 );
@@ -120,6 +120,7 @@ CREATE TABLE scorecard (
 
 CREATE TABLE scorecard_item (
     id SERIAL PRIMARY KEY,
+    tenant_id integer NOT NULL,
     name character varying(4096) NOT NULL,
     office_id integer NOT NULL,
     description text
@@ -132,21 +133,21 @@ CREATE TABLE office (
 
 CREATE TABLE vote (
     id SERIAL PRIMARY KEY,
-	tenant_id integer NOT NULL,
+    tenant_id integer NOT NULL,
     name character varying(64),
     icon text
 );
 
 CREATE TABLE option (
     id SERIAL PRIMARY KEY,
-	tenant_id integer NOT NULL,
+    tenant_id integer NOT NULL,
     name character varying(256) NOT NULL,
     value text NOT NULL
 );
 
 CREATE TABLE "user" (
     id SERIAL PRIMARY KEY,
-	tenant_id integer NOT NULL,
+    tenant_id integer NOT NULL,
     username character varying(128) NOT NULL,
     password character(40) NOT NULL,
     email character varying(128) NOT NULL,
@@ -189,6 +190,9 @@ ALTER TABLE scorecard ADD CONSTRAINT scorecard_scorecard_item_id_fkey FOREIGN KE
 ALTER TABLE scorecard ADD CONSTRAINT scorecard_vote_id_fkey FOREIGN KEY (vote_id) REFERENCES vote(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE scorecard_item ADD CONSTRAINT scorecard_item_office_id_fkey FOREIGN KEY (office_id) REFERENCES office(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+ALTER TABLE scorecard_item	ADD FOREIGN KEY (tenant_id) REFERENCES tenant (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE item	ADD FOREIGN KEY (tenant_id) REFERENCES tenant (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
