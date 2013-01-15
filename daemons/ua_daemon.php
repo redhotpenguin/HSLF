@@ -1,7 +1,8 @@
 #!/usr/bin/env php
 <?php
     
-    require_once("../worker/UAWorker.php");
+    require("config.php");
+    require_once(WORKER_DIRECTORY."UAWorker.php");
     
     // This is mandatory to use the UNIX signal functions:
     // http://php.net/manual/en/function.pcntl-signal.php
