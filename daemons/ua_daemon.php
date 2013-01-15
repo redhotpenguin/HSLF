@@ -32,7 +32,7 @@
             if($worker->isHealthy() && $worker->processJob() === true ){
              //   warn('OK');
             }else{
-                warn("Not healthy: please start mongodb,rabbitmq and restart this deamon.\n");
+                warn("Not healthy: please start mongodb,rabbitmq and restart this daemon.\n");
                 sleep(5);
             }
            
