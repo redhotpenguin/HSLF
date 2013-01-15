@@ -1,4 +1,5 @@
 <?php
+
 include_once("bootstrap.php");
 
 use WorkerLibrary\Worker as Worker;
@@ -6,57 +7,53 @@ use WorkerLibrary\UrbanAirship as messenger;
 
 class UAWorker extends Worker {
 
+    private $credentials = array(
+        'host' => RABBITMQ_HOST,
+        'vhost' => RABBITMQ_VHOST,
+        'port' => RABBITMQ_PORT,
+        'login' => RABBITMQ_LOGIN,
+        'password' => RABBITMQ_PASSWORD
+    );
+    private $mongoCredentials = array(
+        'db' => MONGODB_NAME,
+        'password' => MONGODB_PASSWORD,
+        'username' => MONGODB_USERNAME,
+        'timeout' => MONGODB_CONNECT_TIMEOUT
+    );
+    private $mongoClient;
+    private $db;
+    private $collection;
+
     public function __construct() {
 
-        $credentials = array(
-            'host' => RABBITMQ_HOST,
-            'vhost' => RABBITMQ_VHOST,
-            'port' => RABBITMQ_PORT,
-            'login' => RABBITMQ_LOGIN,
-            'password' => RABBITMQ_PASSWORD
-        );
+        parent::__construct('uap_queue', 'urbanairship_exchange', $this->credentials);
 
-        $mongoCredentials = array(
-            'db' => MONGODB_NAME,
-            'password' => MONGODB_PASSWORD,
-            'username' => MONGODB_USERNAME,
-            'timeout' => MONGODB_CONNECT_TIMEOUT
-        );
+        $this->connect();
 
-        try {
-            $mongoClient = new MongoClient(MONGODB_HOST, $mongoCredentials); // connect
-        } catch (MongoConnectionException $e) {
-            printf("Could not connect to mongodb database: %s\n ", $e->getMessage());
-            printf("Not acknowledging");
-            return;
-        }
+        $this->mongoDBConnect();
+    }
 
-        $db = $mongoClient->selectDB(MONGODB_NAME);
+    public function __destruct() {
+        // disconnect from the broker
+        $this->disconnect();
 
-        try {
-            $collection = new MongoCollection($db, MONGODB_COLLECTION_NAME); // @todo: exception handling
-        } catch (Exception $e) {
-            printf("Could not get a collection: %s\n ", $e->getMessage());
-            printf("Not acknowledging");
-            return;
-        }
+        $this->mongoClient->close();
+    }
 
-        parent::__construct('uap_queue', 'urbanairship_exchange', $credentials);
+    public function processJob() {
+        if (!$this->isHealthy())
+            return false;
 
         $message = $this->getMessage();
 
         if ($message == false) {
-            printf("no messages in queue\n");
-            return;
+            return true;
         }
-
-
 
         $uaMessage = AMQPUAMessage::unserialize($message->getBody());
 
-
-        printf("Got a message from: %s\n", $uaMessage->getClientInfo()->getName());
-        printf("Sending: %s \n", $uaMessage->getPayload()->getAlert());
+       // printf("Got a message from: %s\n", $uaMessage->getClientInfo()->getName());
+      //  printf("Sending: %s \n", $uaMessage->getPayload()->getAlert());
 
         $messenger = new messenger($uaMessage->getClientInfo()->getApiKey(), $uaMessage->getClientInfo()->getApiSecret());
 
@@ -64,7 +61,7 @@ class UAWorker extends Worker {
         $searchAttributes = $uaMessage->getPayload()->getSearchAttributes();
 
 
-        $cursor = $collection->find($searchAttributes);
+        $cursor = $this->collection->find($searchAttributes);
 
         $apids = array();
         $tokens = array();
@@ -83,15 +80,41 @@ class UAWorker extends Worker {
 
         $result = $messenger->sendPushNotification($uaMessage->getPayload()->getAlert(), $tokens, $apids, $uaMessage->getPayload()->getExtra());
 
-        $result = ($result?'success':'failure');
+        $result = ($result ? 'success' : 'failure');
 
         printf("Push result: %s \n", $result);
 
         $this->acknowledge($message->getDeliveryTag());
 
-        $this->disconnect();
+        return true;
+    }
+
+    private function mongoDBConnect() {
+        try {
+            $this->mongoClient = new MongoClient(MONGODB_HOST, $this->mongoCredentials); // connect
+        } catch (MongoConnectionException $e) {
+            printf("Could not connect to mongodb database: %s\n ", $e->getMessage());
+            return;
+        }
+
+        $this->db = $this->mongoClient->selectDB(MONGODB_NAME);
+
+        try {
+            $this->collection = new MongoCollection($this->db, MONGODB_COLLECTION_NAME); // @todo: exception handling
+        } catch (Exception $e) {
+            printf("Could not get a collection: %s\n ", $e->getMessage());
+            return;
+        }
+    }
+
+    public function isHealthy() {
+        if ($this->mongoClient == null)
+            return false;
+        
+        return ($this->mongoClient->connected === true && $this->connection->isConnected() === true );
     }
 
 }
 
-new UAWorker();
+//$worker = new UAWorker();
+//$worker->processJob();

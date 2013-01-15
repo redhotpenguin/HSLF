@@ -1,6 +1,7 @@
 <?php
 
 namespace WorkerLibrary;
+
 /**
  * Abstract AMQP Worker (direct exchange)
  * Queues are persistant and manually acknowledged
@@ -9,19 +10,30 @@ namespace WorkerLibrary;
  */
 abstract class Worker {
 
-    private $connection;
+    protected $connection;
     private $channel;
-    private $exchange;
+    private $exchangeName;
     private $queue;
+    private $credentials;
 
     public function __construct($queueName, $exchangeName, $credentials = array()) {
+        $this->queueName = $queueName;
+        $this->exchangeName = $exchangeName;
+        $this->credentials = $credentials;
+    }
+
+    public function connect() {
 
         // create a new connection
         try {
-            $this->connection = new \AMQPConnection($credentials);
+            $this->connection = new \AMQPConnection($this->credentials);
 
             $this->connection->connect();
-        } catch (AMQPException $e) {
+        } catch (AMQPConnectionException $e) {
+            echo $e->getMessage();
+            error_log('connection error: ' . $e->getMessage());
+            die;
+        } catch (Exception $e) {
             echo $e->getMessage();
             error_log('connection error: ' . $e->getMessage());
             die;
@@ -35,8 +47,8 @@ abstract class Worker {
         try {
             $this->queue = new \AMQPQueue($this->channel);
 
-            $this->queue->setName($queueName);
-            
+            $this->queue->setName($this->queueName);
+
             $this->queue->setFlags(AMQP_DURABLE);
 
             $this->queue->declare();
@@ -52,7 +64,7 @@ abstract class Worker {
         try {
             $this->exchange = new \AMQPExchange($this->channel);
 
-            $this->exchange->setName($exchangeName);
+            $this->exchange->setName($this->exchangeName);
 
             $this->exchange->setType(AMQP_EX_TYPE_DIRECT);
 
@@ -67,7 +79,7 @@ abstract class Worker {
 
         // bind the queue to the exchange
         try {
-            $this->queue->bind($exchangeName, $queueName);
+            $this->queue->bind($this->exchangeName, $this->queueName);
         } catch (AMQPChannelException $e) {
             error_log('Queue binding error:' . $e->getMessage());
             die();
@@ -80,13 +92,13 @@ abstract class Worker {
     protected function getMessage() {
         return $this->queue->get(AMQP_NOPARAM);
     }
-    
-    protected function acknowledge($deliveryTag){
+
+    protected function acknowledge($deliveryTag) {
         $this->queue->ack($deliveryTag);
     }
 
     protected function disconnect() {
         return $this->connection->disconnect();
     }
-    
+
 }
