@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
     
-    require("config.php");
+    require("deamon_config.php");
     require_once(WORKER_DIRECTORY."UAWorker.php");
     
     // This is mandatory to use the UNIX signal functions:
