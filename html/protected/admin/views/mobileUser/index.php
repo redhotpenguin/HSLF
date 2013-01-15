@@ -69,7 +69,7 @@ $this->menu = array(
         <div class="row">
             <h4>Device Type:</h4>
             <?php
-            echo CHtml::dropDownList("device_type", "device_type", array("" => "", "ios" => "iOS", "android" => "Android"));
+            echo CHtml::dropDownList("device_type", "device_type", array("" => "Any", "ios" => "iOS", "android" => "Android"));
             ?>
         </div>
 
