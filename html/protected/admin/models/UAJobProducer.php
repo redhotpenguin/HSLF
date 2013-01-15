@@ -20,6 +20,8 @@ class UAJobProducer {
     public function pushUrbanAirshipMessage($alert, $searchAttributes, $extra) {
 
         $payload = new Payload($alert, $searchAttributes, $extra);
+        
+        $searchAttributes['tenant_id'] = $this->tenant->id;
 
         $clientInfo = new ClientInfo($this->tenant->name, $this->tenant->email, $this->tenant->ua_api_key, $this->tenant->ua_api_secret);
 
