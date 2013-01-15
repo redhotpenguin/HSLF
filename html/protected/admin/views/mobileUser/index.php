@@ -28,16 +28,6 @@ $this->menu = array(
         echo CHtml::beginForm('mobileUser/sendAlert', "POST", array("id" => "mobile_user_form"));
         ?>
 
-
-        <div class="row">
-            <h4>Device Type:</h4>
-            <?php
-            echo CHtml::dropDownList("device_type", "device_type", array("" => "", "ios" => "iOS", "android" => "Android"));
-            ?>
-        </div>
-
-        <hr/>
-
         <div id="tag_list">
             <h4>Tags: </h4>
             <em>Users who have at least one of the following tags</em>
@@ -75,6 +65,16 @@ $this->menu = array(
         </div>
 
         <hr/>
+
+        <div class="row">
+            <h4>Device Type:</h4>
+            <?php
+            echo CHtml::dropDownList("device_type", "device_type", array("" => "", "ios" => "iOS", "android" => "Android"));
+            ?>
+        </div>
+
+        <hr/>
+
 
         <div class="row">
             <h4>Push only:</h4>
