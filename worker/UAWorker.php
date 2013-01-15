@@ -52,8 +52,8 @@ class UAWorker extends Worker {
 
         $uaMessage = AMQPUAMessage::unserialize($message->getBody());
 
-       // printf("Got a message from: %s\n", $uaMessage->getClientInfo()->getName());
-      //  printf("Sending: %s \n", $uaMessage->getPayload()->getAlert());
+        // printf("Got a message from: %s\n", $uaMessage->getClientInfo()->getName());
+        //  printf("Sending: %s \n", $uaMessage->getPayload()->getAlert());
 
         $messenger = new messenger($uaMessage->getClientInfo()->getApiKey(), $uaMessage->getClientInfo()->getApiSecret());
 
@@ -65,6 +65,8 @@ class UAWorker extends Worker {
 
         $apids = array();
         $tokens = array();
+
+
         foreach ($cursor as $user) {
 
             if ($user['device_type'] === 'android') {
@@ -73,6 +75,12 @@ class UAWorker extends Worker {
                 array_push($tokens, $user['ua_identifier']);
             }
         }
+
+        if (empty($apids) && empty($tokens)) {
+            $this->acknowledge($message->getDeliveryTag());
+            return true;
+        }
+
 
         printf("Sending to %d android users \n", count($apids));
         printf("Sending to %d ios users \n", count($tokens));
@@ -110,7 +118,7 @@ class UAWorker extends Worker {
     public function isHealthy() {
         if ($this->mongoClient == null)
             return false;
-        
+
         return ($this->mongoClient->connected === true && $this->connection->isConnected() === true );
     }
 
