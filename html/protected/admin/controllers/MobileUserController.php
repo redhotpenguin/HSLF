@@ -169,15 +169,15 @@ class MobileUserController extends Controller {
 
         $fp = fopen('php://temp', 'w');
 
-        
-        $headers =  MobileUser::model()->getAttributes();
-     
+
+        $headers = MobileUser::model()->getAttributes();
+
         fputcsv($fp, $headers);
 
         $mobileUserCursor = MobileUser::model()->find($searchAttributes);
         foreach ($mobileUserCursor as $mobileUser) {
             $row = array();
-            foreach ($headers as $head=>$friendlyHeadName) {
+            foreach ($headers as $head => $friendlyHeadName) {
                 $data = null;
 
                 if (isset($mobileUser[$head])) {
@@ -197,9 +197,9 @@ class MobileUserController extends Controller {
 
         rewind($fp);
         $content = stream_get_contents($fp);
-        
+
         fclose($fp);
-        
+
         Yii::app()->getRequest()->sendFile('mobileUsers.csv', $content, "text/csv", false);
     }
 
@@ -208,9 +208,14 @@ class MobileUserController extends Controller {
      * return a search array usable by activemongodb
      */
     private function parseSearchAttributes($data) {
+
+        // allowed search attributes @todo: move to MobileUser Model
         $searchAttributes = array(
-            "tags", "device_type", "push_only"
+            "tags", "device_type", "push_only", "districts"
         );
+        
+        // strip out key/values that are not in $searchAttributes
+        // remove keys with empty values
         foreach ($data as $k => $v) {
             if (!in_array($k, $searchAttributes)) {
                 unset($data[$k]);
@@ -222,6 +227,7 @@ class MobileUserController extends Controller {
             }
         }
 
+        // remove empty tags
         if (isset($data['tags'])) {
             foreach ($data['tags'] as $k => $v) {
                 if (empty($v)) {
@@ -230,17 +236,35 @@ class MobileUserController extends Controller {
             }
         }
 
+        // remove empty districts
+        if (isset($data['districts'])) {
+            foreach ($data['districts'] as $k => $v) {
+                if (empty($v)) {
+                    unset($data['districts'][$k]);
+                }
+            }
+        }
+
         if (empty($data['tags'])) {
             unset($data['tags']);
         } else {
-// AND TAGS
+            // OR TAGS
             $tags = array_values($data['tags']); // reindex tags (otherwise mongodb driver fail when using $all)
             $data['tags'] = array(
-                '$all' => $tags
+                '$in' => $tags
             );
         }
 
 
+        if (empty($data['districts'])) {
+            unset($data['districts']);
+        } else {
+            // OR Districts 
+            $districts = array_values($data['districts']); // reindex tags (otherwise mongodb driver fail when using $all)
+            $data['districts'] = array(
+                '$in' => $districts
+            );
+        }
 
         if (isset($data['push_only']) && $data['push_only'] === '1') {
             unset($data['push_only']);

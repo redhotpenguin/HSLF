@@ -21,6 +21,8 @@ $this->menu = array(
     <div id="filters"">
 
         <span class="delete_tag" style="display:none;" id="delete_tag_original">X</span>
+        <span class="delete_tag" style="display:none;" id="delete_district_original">X</span>
+
 
         <?php
         echo CHtml::beginForm('mobileUser/sendAlert', "POST", array("id" => "mobile_user_form"));
@@ -37,7 +39,8 @@ $this->menu = array(
         <hr/>
 
         <div id="tag_list">
-            <h4>Tags:</h4>
+            <h4>Tags: </h4>
+            <em>Users who have at least one of the following tags</em>
 
             <div class="row tagBox" id="original_tag">
                 <?php
@@ -54,8 +57,29 @@ $this->menu = array(
 
         <hr/>
 
+        <div id="district_list">
+            <h4>Districts:</h4>
+            <em>Users who are least in one of these districts</em>
+
+            <div class="row districtBox" id="original_district">
+                <?php
+                echo CHtml::textField("districts[]", "", array('class' => 'districtInput'));
+                ?>
+            </div>
+        </div>
+
+        <div class="row">
+            <?php
+            echo CHtml::button("Add a district", array('id' => 'add_district_btn'));
+            ?>
+        </div>
+
+        <hr/>
+
         <div class="row">
             <h4>Push only:</h4>
+            <em>Users who have push enabled</em>
+
             <?php
             echo CHtml::checkBox("push_only", false, array("id" => "push_only_checkbox"));
             ?>

@@ -16,7 +16,9 @@ function mobileUser($){
     deleteTagSpan = $("#delete_tag_original"),
     send_alert_btn = $("#send_alert_btn"),
     pushOnlyCheckBox = $("#push_only_checkbox");
-    resultBox =   $("#push_result");
+    resultBox =   $("#push_result"),
+    addDistrictBtn = $("#add_district_btn"),
+    deleteDistrictSpan = $("#delete_district_original");
 
 
     
@@ -60,6 +62,23 @@ function mobileUser($){
         $("#tag_list").append(newTagBox);
     });
     
+        
+    addDistrictBtn.click(function(){
+        var clonedDistrictBoxCount = $("#district_list .districtBox").length;
+        
+        var newBox =   $("#original_district").clone().attr("id", "districtBox"+clonedDistrictBoxCount);
+      
+        
+        var districtInput = newBox.find(".districtInput");
+        
+        districtInput.val("")
+        districtInput.attr("id", "");
+        newBox.append(deleteDistrictSpan.clone().css("display", "inline").click(deleteDistrictBox));
+       
+        
+        $("#district_list").append(newBox);
+    });
+    
     $("#cancel_alert_btn").click(function(){
         filters.show(100);
         composer.hide(100);
@@ -94,6 +113,11 @@ function mobileUser($){
     
     function deleteTagBox(ev){
         $(this).parent(".tagBox").remove();
+        updateCount();
+    }
+    
+    function deleteDistrictBox(ev){
+        $(this).parent(".districtBox").remove();
         updateCount();
     }
     
