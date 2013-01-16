@@ -5,6 +5,8 @@ html/img/*
 html/protected/admin/config/main.php
 html/protected/config/main.php
 html/protected/api/config/main.php
+html/protected/api/runtime/*
+html/protected/admin/runtime/*
 /var/www/mvg.winningmark.com/html/themes/hslf_frontend/css/client_app.css
 /.dotcloud/
 /nbproject/private/
