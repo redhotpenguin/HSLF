@@ -16,7 +16,7 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $mongdbpass = "admin";
     $mongodbacklevel = 1;
 
-    $siteurl = 'http://oo.m.winningmark.com';
+    $siteurl = 'http://' . $_SERVER['SERVER_NAME'];
     $uploaddir = '/../content/img'; // physical path
     $uploadpath = '/content/img'; // wwww path
     $shareurl = 'http://vote.ouroregon.org';
@@ -27,7 +27,7 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $rabbitMQVhost = '/';
     $rabbitMQLogin = 'guest';
     $rabbitMQPassword = 'guest';
-    
+
     set_include_path(get_include_path() . PATH_SEPARATOR . '/home/dotcloud/php-env/share/php');
 } else {    //dev server conf
     $dbhost = '127.0.0.1';
@@ -42,7 +42,7 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $mongdbpass = "admin";
     $mongodbacklevel = 1;
 
-    $siteurl = 'http://www.voterguide.com';
+    $siteurl = 'http://' . $_SERVER['SERVER_NAME'];
     $uploaddir = '/../content/img'; // physical path
     $uploadpath = '/content/img'; // wwww path
     $shareurl = 'http://vote.ouroregon.org';
