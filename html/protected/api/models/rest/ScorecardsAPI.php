@@ -7,5 +7,3 @@ class ScorecardsAPI extends APIBase implements IAPI {
     }
 
 }
-
-?>

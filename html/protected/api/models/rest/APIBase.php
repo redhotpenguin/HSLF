@@ -75,5 +75,3 @@ abstract class APIBase implements IAPI {
     }
 
 }
-
-?>
