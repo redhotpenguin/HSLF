@@ -12,6 +12,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create SharePayload</h1>
+<h1>Create a share payload:</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
