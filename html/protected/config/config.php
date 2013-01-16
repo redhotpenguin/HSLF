@@ -3,6 +3,8 @@
 $dotcloud_conf = "/home/dotcloud/environment.json";
 
 if (file_exists($dotcloud_conf)) {     // prod server conf
+   $yiiDebug = true;
+      
     $env = json_decode(file_get_contents($dotcloud_conf), true);
     $dbhost = $env['DOTCLOUD_DB_SQL_HOST'];
     $dbname = 'mobile_advocacy_platform';
@@ -16,17 +18,17 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $mongdbpass = "admin";
     $mongodbacklevel = 1;
 
-    $siteurl = 'http://' . $_SERVER['SERVER_NAME'];
+    $siteurl = $env['DOTCLOUD_WWW_HTTP_URL'];
     $uploaddir = '/../content/img'; // physical path
     $uploadpath = '/content/img'; // wwww path
     $shareurl = 'http://vote.ouroregon.org';
 
 
-    $rabbitMQHost = "localhost";
-    $rabbitMQPort = 5672;
-    $rabbitMQVhost = '/';
-    $rabbitMQLogin = 'guest';
-    $rabbitMQPassword = 'guest';
+    $rabbitMQHost = $env['DOTCLOUD_QUEUE_HTTP_HOST'];
+    $rabbitMQPort = $env['DOTCLOUD_QUEUE_AMQP_PORT'];
+    $rabbitMQVhost = $env['DOTCLOUD_QUEUE_HTTP_VHOSTS_LIST']; // might not be that
+    $rabbitMQLogin = $env['DOTCLOUD_QUEUE_AMQP_LOGIN'];
+    $rabbitMQPassword = $env['DOTCLOUD_QUEUE_AMQP_PASSWORD'];
 
     set_include_path(get_include_path() . PATH_SEPARATOR . '/home/dotcloud/php-env/share/php');
 } else {    //dev server conf
@@ -53,7 +55,13 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $rabbitMQVhost = '/';
     $rabbitMQLogin = 'guest';
     $rabbitMQPassword = 'guest';
+   
+    $yiiDebug = true;
+    
 }
+
+define('YII_DEBUG', $yiiDebug  );
+
 
 // DB Config
 DEFINE('DB_NAME', $dbname);
