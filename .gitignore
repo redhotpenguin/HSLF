@@ -2,8 +2,6 @@ html/.htaccess
 html/protected/config/*
 html/content/*
 html/img/*
-html/protected/api/runtime/*
-html/protected/admin/runtime/*
 html/protected/admin/config/main.php
 html/protected/config/main.php
 html/protected/api/config/main.php
