@@ -8,8 +8,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List SharePayload', 'url'=>array('index')),
-	array('label'=>'Manage SharePayload', 'url'=>array('admin')),
+	array('label'=>'Manage share payloads', 'url'=>array('admin')),
 );
 ?>
 

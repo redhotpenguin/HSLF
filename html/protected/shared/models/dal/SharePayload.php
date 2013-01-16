@@ -40,14 +40,14 @@ class SharePayload extends CBaseActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('tenant_id, url, title, description, tweet, email', 'required'),
+            array('url, title, description, tweet, email', 'required'),
             array('tenant_id', 'numerical', 'integerOnly' => true),
             array('url', 'length', 'max' => 2048),
             array('title', 'length', 'max' => 512),
             array('tweet', 'length', 'max' => 140),
             array('email', 'length', 'max' => 320),
-            // The following rule is used by search().
-            // Please remove those attributes that should not be searched.
+            array('url', 'url'),
+            array('email', 'email'),
             array('id, tenant_id, url, title, description, tweet, email', 'safe', 'on' => 'search'),
         );
     }
@@ -89,7 +89,6 @@ class SharePayload extends CBaseActiveRecord {
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id);
-        $criteria->compare('tenant_id', $this->tenant_id);
         $criteria->compare('url', $this->url, true);
         $criteria->compare('title', $this->title, true);
         $criteria->compare('description', $this->description, true);
