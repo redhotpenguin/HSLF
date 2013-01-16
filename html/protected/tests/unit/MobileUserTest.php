@@ -217,7 +217,7 @@ class MobileUserTest extends CDbTestCase {
         $updateResult = $mUser->update($conditions, $set, $push);
 
         $this->assertTrue($updateResult);
-
+        $mUser = null;
 
         $mUser = MobileUser::model()->findByAttributes(
                 array(

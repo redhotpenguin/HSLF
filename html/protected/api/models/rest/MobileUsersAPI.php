@@ -50,11 +50,25 @@ class MobileUsersAPI implements IAPI {
         if (!isset($arguments['user']))
             return $this->buildErrorResponse(RestFailure::HTTP_BAD_REQUEST_CODE, self::ERROR_INCORRECT_USAGE_MSG);
 
+        $tenantId = (int) $tenantId;
+
         $userData = CJSON::decode($arguments['user'], false); // map json string to an stdobject
 
         if (!is_object($userData))
             return $this->buildErrorResponse(RestFailure::HTTP_BAD_REQUEST_CODE, self::ERROR_INCORRECT_DATA_MSG);
 
+        if (isset($userData->ua_identifier)) {
+
+            $mUser = MobileUser::model()->findByAttributes(
+                    array(
+                        "tenant_id" => 1,
+                        "ua_identifier" => $userData->ua_identifier
+                    ));
+
+            if ($mUser != null && $mUser->ua_identifier == $userData->ua_identifier) {
+                return $this->buildErrorResponse(RestFailure::HTTP_CONFLICT_CODE, "ua identifier already used");
+            }
+        }
 
         $currentDate = new MongoDate();
         $mUser = new MobileUser();
