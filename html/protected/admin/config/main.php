@@ -24,13 +24,13 @@ return array(
     ), // preload the bootstrap component),
 // autoloading model and component classes
     'import' => array(
+        'ext.directmongosuite.components.*',
         'admin.models.*',
         'application.shared.models.dal.*', // data access logic classes
         'application.shared.models.bll.*', // business  logic classes
         'admin.components.*',
         'application.models.*',
         'application.components.*',
-        'ext.directmongosuite.components.*',
     ),
     'modules' => array(),
     // application components

@@ -4,7 +4,6 @@
 
     <?php
     if (Yii::app()->user->id):
-       
         ?>
         <div class="hero-unit">
             <h1>Dashboard</h1>
@@ -55,6 +54,7 @@
     </div>
 
     <?php
+
 
 
 endif; //end test is user logged in

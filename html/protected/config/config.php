@@ -46,7 +46,8 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $mongdbpass = "admin";
     $mongodbacklevel = 1;
 
-    $siteurl = 'http://' . $_SERVER['SERVER_NAME'];
+    $siteurl =  ( isset($_SERVER['SERVER_NAME'])? 'http://'.$_SERVER['SERVER_NAME']:'http://www.voterguide.com' ) ; // necessary since SERVER_NAME is not set during unit tests
+    
     $uploaddir = '/../content/img'; // physical path
     $uploadpath = '/content/img'; // wwww path
     $shareurl = 'http://vote.ouroregon.org';

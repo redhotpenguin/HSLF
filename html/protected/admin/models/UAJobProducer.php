@@ -43,6 +43,8 @@ class UAJobProducer {
             'password' => Yii::app()->params['rabbitMQPassword'],
         );
 
+        print_r($credentials);
+        
         try {
             $cnn = new AMQPConnection($credentials);
             $cnn->connect();
