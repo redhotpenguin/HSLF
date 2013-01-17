@@ -19,7 +19,7 @@ class UAJobProducerTest extends CDbTestCase {
     public function testPushUrbanAirshipMessage(){
         $result = false;
         
-        $alert = "unit tests!";
+        $alert = "unit tests!!";
         $searchAttributes = array(
             'tenant_id' => 1
         );

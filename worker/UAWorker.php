@@ -45,7 +45,7 @@ class UAWorker extends Worker {
             return false;
 
         $message = $this->getMessage();
-
+        
         if ($message == false) {
             return true;
         }
