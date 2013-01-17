@@ -12,11 +12,17 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $dbuser = $env['DOTCLOUD_DB_SQL_LOGIN'];
     $dbpass = $env['DOTCLOUD_DB_SQL_PASSWORD'];
     $dbport = $env['DOTCLOUD_DB_SQL_PORT'];
+    
 
-    $mongodbhost = "mongodb://localhost:27017";
+   // $mongodbhost = "mongodb://localhost:27017";
+    
+    $mongodbhost = 'mongodb://'.$env['DOTCLOUD_DATA_MONGODB_HOST'].':'.$env['DOTCLOUD_DATA_MONGODB_PORT']; // connection string
+    
+    
+    
     $mongodbname = "mobile_advocacy_platform";
-    $mongodbuser = "admin";
-    $mongdbpass = "admin";
+    $mongodbuser = "map_user"; // mongo user is set using the mongo shell in dotcloud
+    $mongdbpass = "jeMEwRArEKwBg7Q"; // same as above
     $mongodbacklevel = 1;
 
     $siteurl = $env['DOTCLOUD_WWW_HTTP_URL'];
