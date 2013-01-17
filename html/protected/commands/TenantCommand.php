@@ -18,7 +18,7 @@ class TenantCommand extends EConsoleCommand {
 
         $uaApiKey = $this->promptString('Urban Airship Application key:');
 
-        $uaApiSecret = $this->promptString('Urban Airship Application secret(master):');
+        $uaApiSecret = $this->promptString('Urban Airship Application secret(master)');
 
         $ciceroUSer = $this->promptString('Cicero Username');
 
@@ -44,8 +44,8 @@ class TenantCommand extends EConsoleCommand {
         $tenant->api_key = rand(10000, 99999);
         $tenant->api_secret = md5(rand(10000, 99999));
         $tenant->ua_dashboard_link = $uaLink;
-        $tenant->uaApiKey = $uaApiKey;
-        $tenant->uaApiSecret = $uaApiSecret;
+        $tenant->ua_api_key = $uaApiKey;
+        $tenant->ua_api_secret = $uaApiSecret;
         $tenant->cicero_user = $ciceroUSer;
         $tenant->cicero_password = $ciceroPass;
 
