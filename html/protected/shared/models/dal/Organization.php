@@ -13,6 +13,8 @@
  * @property string $slug
  * @property string $facebook_url
  * @property string $twitter_handle
+ * @tenant_id integer tenant id
+ * @address string address
  */
 class Organization extends CBaseActiveRecord {
 
@@ -39,14 +41,14 @@ class Organization extends CBaseActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('name, display_name, slug', 'required'),
+            array('name, display_name, slug, address', 'required'),
             array('name, slug', 'length', 'max' => 512),
             array('website, image_url', 'length', 'max' => 2048),
             array('facebook_url', 'length', 'max' => 1024),
             array('twitter_handle', 'length', 'max' => 140),
             array('description, display_name, tenant_id', 'safe'),
             array('website, image_url', 'url'),
-            array('id, name, description, website, image_url, display_name, slug, facebook_url, twitter_handle', 'safe', 'on' => 'search'),
+            array('id, name, description, website, image_url, display_name, slug, facebook_url, twitter_handle, address', 'safe', 'on' => 'search'),
         );
     }
 
@@ -73,7 +75,8 @@ class Organization extends CBaseActiveRecord {
             'website' => 'Website',
             'image_url' => 'Image url',
             'display_name' => 'Display Name',
-            'slug' => 'Slug'
+            'slug' => 'Slug',
+            'address' => 'Address'
         );
     }
 
