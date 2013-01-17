@@ -89,4 +89,3 @@ ALTER TABLE option DROP CONSTRAINT option_name_key;
 ALTER TABLE option ADD UNIQUE  (name, tenant_id);
 
 
-ALTER TABLE item_news  DROP CONSTRAINT ballot_item_news_ballot_item_id_fkey1 ;

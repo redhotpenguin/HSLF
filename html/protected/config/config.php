@@ -3,11 +3,12 @@
 $dotcloud_conf = "/home/dotcloud/environment.json";
 
 if (file_exists($dotcloud_conf)) {     // prod server conf
-   $yiiDebug = true;
-      
+    $yiiDebug = true;
+
     $env = json_decode(file_get_contents($dotcloud_conf), true);
-    $dbhost = $env['DOTCLOUD_DB_SQL_HOST'];
     $dbname = 'mobile_advocacy_platform';
+    
+    $dbhost = $env['DOTCLOUD_DB_SQL_HOST'];
     $dbuser = $env['DOTCLOUD_DB_SQL_LOGIN'];
     $dbpass = $env['DOTCLOUD_DB_SQL_PASSWORD'];
     $dbport = $env['DOTCLOUD_DB_SQL_PORT'];
@@ -33,7 +34,7 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     set_include_path(get_include_path() . PATH_SEPARATOR . '/home/dotcloud/php-env/share/php');
 } else {    //dev server conf
     $dbhost = '127.0.0.1';
-    $dbname = 'mobile_advocacy_platform';
+    $dbname = 'my_db';
     $dbuser = 'postgres';
     $dbpass = 'pengu1n';
     $dbport = '5432';
@@ -55,12 +56,11 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $rabbitMQVhost = '/';
     $rabbitMQLogin = 'guest';
     $rabbitMQPassword = 'guest';
-   
+
     $yiiDebug = true;
-    
 }
 
-define('YII_DEBUG', $yiiDebug  );
+define('YII_DEBUG', $yiiDebug);
 
 
 // DB Config
