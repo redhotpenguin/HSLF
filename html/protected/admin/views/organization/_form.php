@@ -88,6 +88,15 @@
     </div>
 
 
+    <div class="">
+        <?php
+        echo $form->labelEx($model, 'address');
+        echo $form->textArea($model, 'address', array('cols' => 60, 'rows' => 3, 'class' => 'span9'));
+        echo $form->error($model, 'address');
+        ?>
+    </div>
+
+
     <div class="row buttons">
         <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
     </div>

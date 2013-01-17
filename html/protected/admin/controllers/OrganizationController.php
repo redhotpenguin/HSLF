@@ -57,7 +57,7 @@ class OrganizationController extends Controller {
         if (isset($_POST['Organization'])) {
             $model->attributes = $_POST['Organization'];
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
         }
 
         $this->render('create', array(
@@ -79,7 +79,7 @@ class OrganizationController extends Controller {
         if (isset($_POST['Organization'])) {
             $model->attributes = $_POST['Organization'];
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
         }
 
         $this->render('update', array(
