@@ -1,28 +1,36 @@
 <?php
 
+/**
+ * behavior to enable multi tenancy
+ * @todo: refactor this class and improve unit tests
+ */
 class MultiTenantBehavior extends CActiveRecordBehavior {
 
     const ILLEGAL_ACTION = 'Illegal action: action will be reported';
 
-    public function beforeFind($event) {
-        if ($this->owner instanceof ActiveMongoDocument) {
+    private function getCurrentTenantId(CModel $owner) {
+        if ($owner->sessionTenantId != null) {
+            return $this->owner->sessionTenantId;
+        } elseif (!Yii::app()->user->isGuest && Yii::app()->user->tenant_id != null) { // only logged in users can have a tenant_id
+            return Yii::app()->user->tenant_id;
+        } else {
+            return null;
+        }
+    }
 
+    /**
+     * Handle Multi tenancy for CActiveRecord models (find and save)
+     * @param CActiveRecord model
+     * @param string $action - find or save
+     */
+    private function handleActiveRecord(CActiveRecord $owner, $action, $event = null) {
+        $user_tenant_id = $this->getCurrentTenantId($owner);
+        if ($user_tenant_id == null) {
+            return;
+        } 
 
-
-// sessionTenantId: required when doing unit tests and by API 
-// Yii::app()->user->tenant_id: tenant id of the logged in user
-
-            if ($this->owner->sessionTenantId != null) {
-                $user_tenant_id = $this->owner->sessionTenantId;
-            } else if (!Yii::app()->user->isGuest && Yii::app()->user->tenant_id != null) { // only logged in users can have a tenant_id
-                $user_tenant_id = Yii::app()->user->tenant_id;
-            }else
-                return;
-
-            $this->owner->searchAttributes['tenant_id'] = $user_tenant_id;
-        } else { // activerecord
-//restrict queries to the actual tenant by manipulating the model's DbCriteria
-            $c = $this->owner->getDbCriteria();
+        if ($action == 'find') {
+            $c = $owner->getDbCriteria();
             $condition = $c->condition;
             $relations = $c->with;
 
@@ -30,84 +38,98 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
                 $condition = "$condition AND ";
             }
 
-            $alias = $this->owner->getTableAlias(false, false);
+            $alias = $owner->getTableAlias(false, false);
 
-
-            // find the current user tenant id
-            if ($this->owner->sessionTenantId != null) {
-                $user_tenant_id = $this->owner->sessionTenantId;
-            } elseif (!Yii::app()->user->isGuest && Yii::app()->user->tenant_id != null) { // only logged in users can have a tenant_id
-                $user_tenant_id = Yii::app()->user->tenant_id;
-            } else {
-                return;
-            }
-            
-            if ($this->owner->hasAttribute('tenant_id')) {
-                $condition.= $alias . '.tenant_id = ' . $user_tenant_id;
-                $c->condition = $condition;
-            } elseif ($this->owner->parentName) {
-                $relations = array($this->owner->parentRelationship);
-                $c->with = $relations;
-                $c->addCondition("tenant_id =  {$user_tenant_id}", 'AND');
-            }
-        }
-    }
-
-    public function beforeSave($event) {
-        if ($this->owner instanceof ActiveMongoDocument) {
-
-            if ($this->owner->sessionTenantId != null) {
-                $user_tenant_id = $this->owner->sessionTenantId;
-            } elseif (!Yii::app()->user->isGuest && Yii::app()->user->tenant_id != null) { // only logged in users can have a tenant_id
-                $user_tenant_id = Yii::app()->user->tenant_id;
-                $this->owner->sessionTenantId = $user_tenant_id;
-            } else {
-                return;
-            }
-
-// MongoDB does not allow other fields when '$set' or '$push' are set
-            if (!isset($this->owner->fields['$set']) && !isset($this->owner->fields['$push'])) {
-                $this->owner->fields['tenant_id'] = (int) $user_tenant_id;
-            }
-        } else {
-            if ($this->owner->hasAttribute('tenant_id')) {
-
-                if ($this->owner->sessionTenantId != null) {
-                    $user_tenant_id = $this->owner->sessionTenantId;
-                } elseif (!Yii::app()->user->isGuest && Yii::app()->user->tenant_id != null) { // only logged in users can have a tenant_id
-                    $user_tenant_id = Yii::app()->user->tenant_id;
-                } else {
-                    return;
+            if ($action == 'find') {
+                if ($owner->hasAttribute('tenant_id')) {
+                    $condition.= $alias . '.tenant_id = ' . $user_tenant_id;
+                    $c->condition = $condition;
+                } elseif ($owner->parentName) {
+                    $relations = array($owner->parentRelationship);
+                    $c->with = $relations;
+                    $c->addCondition("tenant_id =  {$user_tenant_id}", 'AND');
                 }
+            }
+        } elseif ($action == 'save') {
 
-//tie this model to the actual tenant by setting the tenantid attribute
-                $this->owner->tenant_id = $user_tenant_id;
+            if ($owner->hasAttribute('tenant_id')) {
+                //tie this model to the actual tenant by setting the tenantid attribute
+                $owner->tenant_id = $user_tenant_id;
+            }
 
-                $relations = $this->owner->relations();
-                foreach ($relations as $relation => $value) {
-                    if (isset($this->owner->$relation->id)) {
-// check that $relationId actually belongs to the current tenant id
-                        $modelTenantId = $this->owner->tenant_id;
+            $relations = $owner->relations();
 
-// relation does not have a tenant  id column. Ex: state, district, true join table
-                        if (!isset($this->owner->$relation->tenant_id)) {
-                            continue;
-                        }
+            foreach ($relations as $relation => $value) {
 
-                        $relationTenantId = $this->owner->$relation->tenant_id;
+                if (isset($owner->$relation->id)) {
 
-                        if ($modelTenantId != $relationTenantId) {
-                            $ownerClassName = get_class($this->owner);
-                            error_log("Model {$ownerClassName} and relation {$relation} tenant id ($modelTenantId != $relationTenantId)does not match");
-                            throw new Exception(self::ILLEGAL_ACTION);
-                        }
-                    } else { // many-many relationship ($this->owner->$relation is an array)
+                    // relation does not have a tenant  id column. Ex: state, district, true join table
+                    if (!isset($owner->$relation->tenant_id)) {
+                        continue;
+                    }
+
+                    $relationTenantId = $owner->$relation->tenant_id;
+
+                    if ($user_tenant_id != $relationTenantId) {
+                        $ownerClassName = get_class($this->owner);
+                        error_log("Model {$ownerClassName} and relation {$relation} tenant id ($user_tenant_id != $relationTenantId)does not match");
+                        throw new Exception(self::ILLEGAL_ACTION);
                     }
                 }
             }
 
 
+
             return parent::beforeSave($event);
+        }
+    }
+
+    /**
+     * Handle Multi tenancy for ActiveMongoDocument models (find and save)
+     * @param ActiveMongoDocument model
+     * @param string $action - find or save
+     */
+    private function handleActiveMongoDocument(ActiveMongoDocument $owner, $action) {
+
+        $user_tenant_id = $this->getCurrentTenantId($this->owner);
+        if ($user_tenant_id == null) {
+            return;
+        }
+
+        if ($action == 'find') {
+            $owner->searchAttributes['tenant_id'] = $user_tenant_id;
+        } elseif ($action == 'save') {
+
+            // MongoDB does not allow other fields when '$set' or '$push' are set
+            if (!isset($this->owner->fields['$set']) && !isset($this->owner->fields['$push'])) {
+                $this->owner->fields['tenant_id'] = (int) $user_tenant_id;
+            }
+        }
+    }
+
+    /**
+     * beforeFind - event handler
+     * Make sure that only models with a matching tenant id can be retrieved
+     * @param CEvent event
+     */
+    public function beforeFind($event) {
+        if ($this->owner instanceof ActiveMongoDocument) {
+            $this->handleActiveMongoDocument($this->owner, 'find');
+        } else {
+            $this->handleActiveRecord($this->owner, 'find');
+        }
+    }
+
+    /**
+     * beforeFind - event handler
+     * Make sure that only models with a matching tenant id can be saved
+     * @param CEvent event
+     */
+    public function beforeSave($event) {
+        if ($this->owner instanceof ActiveMongoDocument) {
+            $this->handleActiveMongoDocument($this->owner, 'save');
+        } else { //active record 
+            $this->handleActiveRecord($this->owner, 'save', $event);
         }
     }
 

@@ -7,11 +7,12 @@ class AlertTypeController extends Controller {
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
     public $layout = '//layouts/column2';
-    public $category = array( 'Application Manager'=>array('/site/mobile/')); // used by the breadcrumb
+    public $category = array('Application Manager' => array('/site/mobile/')); // used by the breadcrumb
 
     /**
      * @return array action filters
      */
+
     public function filters() {
         return array(
             'accessControl', // perform access control for CRUD operations
@@ -51,6 +52,18 @@ class AlertTypeController extends Controller {
      */
     public function actionCreate() {
         $model = new AlertType;
+
+        /*
+
+          echo '<pre>';
+          print_r($_POST);
+
+          echo Yii::app()->user->tenant_id;
+          $model->attributes = $_POST['AlertType'];
+          $model->save();
+
+
+          exit; */
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
@@ -123,8 +136,8 @@ class AlertTypeController extends Controller {
         $model = new AlertType('search');
         $model->unsetAttributes();  // clear any default values
 
-      
-        if (isset($_GET['AlertType'])){
+
+        if (isset($_GET['AlertType'])) {
             $model->attributes = $_GET['AlertType'];
         }
 
