@@ -26,8 +26,7 @@ class StateController extends Controller {
      */
     public function accessRules() {
         return array(
-       
-             array( // restrict State to admins only
+            array(// restrict State to admins only
                 'allow',
                 'actions' => array('create', 'delete', 'update', 'admin', 'index', 'view', 'exportCSV'),
                 'users' => array('@'),
@@ -62,8 +61,9 @@ class StateController extends Controller {
         if (isset($_POST['State'])) {
             $model->attributes = $_POST['State'];
             try {
-                if ($model->save())
+                if ($model->save()) {
                     $this->redirect(array('view', 'id' => $model->id));
+                }
             } catch (Exception $e) {
                 error_log("State controller:" . $e->getMessage());
             }
