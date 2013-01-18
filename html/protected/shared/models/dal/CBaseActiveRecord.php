@@ -36,5 +36,3 @@ abstract class CBaseActiveRecord extends CActiveRecord {
     }
 
 }
-
-?>
