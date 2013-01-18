@@ -1,0 +1,9 @@
+ALTER TABLE state DROP CONSTRAINT state_pkey;
+
+ALTER TABLE state ADD PRIMARY KEY (id);
+
+ALTER TABLE district DROP CONSTRAINT district_state_id_fkey;
+
+ALTER TABLE state DROP CONSTRAINT state_id_key;
+
+ALTER TABLE district ADD FOREIGN KEY (state_id) REFERENCES state (id) ON UPDATE CASCADE ON DELETE CASCADE;
