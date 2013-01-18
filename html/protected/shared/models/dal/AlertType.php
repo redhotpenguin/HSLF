@@ -16,7 +16,7 @@ class AlertType extends CBaseActiveRecord {
 
     public $tag_name; // doesn't belong to table alert_type. This field purpose is to enable tag search in the admin view
 
-    public function __construct($scenario = 'insert', $table = "") {
+    public function construct($scenario = 'insert', $table = "") {
         $this->parentName = "Tag";
         $this->parentRelationship = "tag";
 
