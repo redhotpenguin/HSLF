@@ -21,37 +21,34 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
 
             $this->owner->searchAttributes['tenant_id'] = $user_tenant_id;
         } else { // activerecord
-            if ($this->owner->hasAttribute('tenant_id')) {
-
 //restrict queries to the actual tenant by manipulating the model's DbCriteria
-                $c = $this->owner->getDbCriteria();
-                $condition = $c->condition;
-                $relations = $c->with;
+            $c = $this->owner->getDbCriteria();
+            $condition = $c->condition;
+            $relations = $c->with;
 
-                if (strlen($condition) > 0) {
-                    $condition = "$condition AND ";
-                }
+            if (strlen($condition) > 0) {
+                $condition = "$condition AND ";
+            }
 
-                $alias = $this->owner->getTableAlias(false, false);
+            $alias = $this->owner->getTableAlias(false, false);
 
 
-                if ($this->owner->sessionTenantId != null) {
-                    $user_tenant_id = $this->owner->sessionTenantId;
-                } elseif (!Yii::app()->user->isGuest && Yii::app()->user->tenant_id != null) { // only logged in users can have a tenant_id
-                    $user_tenant_id = Yii::app()->user->tenant_id;
-                } else {
-                    return;
-                }
-
-                if ($this->owner->hasAttribute('tenant_id')) {
-                    $condition.= $alias . '.tenant_id = ' . $user_tenant_id;
-                    $c->condition = $condition;
-                } elseif ($this->owner->parentName) {
-                    $relations = array($this->owner->parentRelationship);
-                    $c->with = $relations;
-
-                    $c->addCondition("tenant_id =  {$user_tenant_id}", 'AND');
-                }
+            // find the current user tenant id
+            if ($this->owner->sessionTenantId != null) {
+                $user_tenant_id = $this->owner->sessionTenantId;
+            } elseif (!Yii::app()->user->isGuest && Yii::app()->user->tenant_id != null) { // only logged in users can have a tenant_id
+                $user_tenant_id = Yii::app()->user->tenant_id;
+            } else {
+                return;
+            }
+            
+            if ($this->owner->hasAttribute('tenant_id')) {
+                $condition.= $alias . '.tenant_id = ' . $user_tenant_id;
+                $c->condition = $condition;
+            } elseif ($this->owner->parentName) {
+                $relations = array($this->owner->parentRelationship);
+                $c->with = $relations;
+                $c->addCondition("tenant_id =  {$user_tenant_id}", 'AND');
             }
         }
     }
@@ -105,7 +102,6 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
                             throw new Exception(self::ILLEGAL_ACTION);
                         }
                     } else { // many-many relationship ($this->owner->$relation is an array)
-//   error_log("debug: ". $relation);
                     }
                 }
             }
@@ -116,5 +112,3 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
     }
 
 }
-
-?>
