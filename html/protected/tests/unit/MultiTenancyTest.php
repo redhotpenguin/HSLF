@@ -10,7 +10,6 @@ class MultiTenanctTest extends CDbTestCase {
 
     private function getOptionModel() {
         $option = new Option();
-        $option->attachBehavior('MultiTenant', $this->tenantBehavior);
         $option->name = "unit_test_" . md5(microtime());
         $option->value = "a_value";
         return $option;
@@ -20,8 +19,6 @@ class MultiTenanctTest extends CDbTestCase {
 
 
         $alertType = new AlertType();
-
-        $alertType->attachBehavior('MultiTenant', $this->tenantBehavior);
 
         $tag = new Tag();
         $tag->attachBehavior('MultiTenant', $this->tenantBehavior);
@@ -45,11 +42,12 @@ class MultiTenanctTest extends CDbTestCase {
         $alertType->category = "unitary_test";
         return $alertType;
     }
+    
 
     /**
      * direct tenancy = model with a tenant_id attribute
      */
-    public function testDirectTenancy() {
+    public function _testDirectTenancy() {
 
         // save a direct tenant model
         $option = $this->getOptionModel();
@@ -88,7 +86,7 @@ class MultiTenanctTest extends CDbTestCase {
     /**
      * indirect tenancy = model with no tenant_id attribute. Ex: alert_type
      */
-    public function testIndirectTenancy() {
+    public function _testIndirectTenancy() {
 
         $alertType = $this->getAlertTypeModel(1);
         $alertType->sessionTenantId = 1;
@@ -98,7 +96,7 @@ class MultiTenanctTest extends CDbTestCase {
         $this->assertTrue($result);
     }
 
-    public function testIndirectTenancy2() {
+    public function _testIndirectTenancy2() {
         // test that a tenant can't save a model for another tenant
         $alertType = $this->getAlertTypeModel(1);
         $alertType->display_name = $alertType->display_name . 'hacked';
@@ -114,22 +112,26 @@ class MultiTenanctTest extends CDbTestCase {
 
         $this->assertNull($result);
     }
+    
 
     public function testIndirectTenancy3() {
-        // test that a tenant can't save a model for another tenant
         $alertType = new AlertType();
-        $alertType->attachBehavior('MultiTenant', $this->tenantBehavior);
+        
+        $attributes = array(
+            'display_name' => 'hack',
+            'category' =>'foo',
+            'tag_id' => 10
+        );
+        
+        $alertType->attributes = $attributes;
         $alertType->sessionTenantId = 2;
-        $alertType->tag_id = 10;
-        $alertType->display_name = "you suck";
-        $alertType->category = "tests";
-
 
         // an exception happens when there is a tenant id mismatch
         try {
             $result = $alertType->save();
         } catch (Exception $e) {
             $result = null;
+            error_log($e->getMessage());
         }
 
         $this->assertNull($result);

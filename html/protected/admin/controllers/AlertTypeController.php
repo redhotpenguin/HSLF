@@ -51,19 +51,7 @@ class AlertTypeController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new AlertType;
-
-        /*
-
-          echo '<pre>';
-          print_r($_POST);
-
-          echo Yii::app()->user->tenant_id;
-          $model->attributes = $_POST['AlertType'];
-          $model->save();
-
-
-          exit; */
+        $model = new AlertType();
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
