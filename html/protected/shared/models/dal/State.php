@@ -8,8 +8,6 @@
  * @property string $abbr
  * @property string $name
  *
- * The followings are the available model relations:
- * @property District[] $districts
  */
 class State extends CActiveRecord
 {
@@ -53,10 +51,7 @@ class State extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
-		return array(
-		);
+		return array();
 	}
 
 	/**
@@ -71,23 +66,9 @@ class State extends CActiveRecord
 		);
 	}
 
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	
-	public function search_by_abbr($abbr){
-		//todo: sanitize $abbr
-		$test=State::model()->find('abbr=:abbr', array(':abbr'=>$abbr));
-		
-		
-		//print_r($test);
-		return $test;
-	}
+
 	public function search()
 	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
 
 		$criteria=new CDbCriteria;
 
@@ -104,8 +85,4 @@ class State extends CActiveRecord
 		));
 	}
 	
-	public function __toString(){
-		
-		return "$this->id, $this->abbr, $this->name";
-	}
 }
