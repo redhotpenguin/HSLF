@@ -24,8 +24,8 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
      * @param string $action - find or save
      */
     private function handleActiveRecord(CActiveRecord $owner, $action, $event = null) {
-        $user_tenant_id = $this->getCurrentTenantId($owner);
-        if ($user_tenant_id == null) {
+        $userTenantId = $this->getCurrentTenantId($owner);
+        if ($userTenantId == null) {
             return;
         } 
 
@@ -40,21 +40,21 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
 
             $alias = $owner->getTableAlias(false, false);
 
-            if ($action == 'find') {
+            if ($action == 'find') { // direct relationship between model and tenant table
                 if ($owner->hasAttribute('tenant_id')) {
-                    $condition.= $alias . '.tenant_id = ' . $user_tenant_id;
+                    $condition.= $alias . '.tenant_id = ' . $userTenantId;
                     $c->condition = $condition;
-                } elseif ($owner->parentName) {
+                } elseif ($owner->parentName) { // indirect relationship between model and tenant table
                     $relations = array($owner->parentRelationship);
                     $c->with = $relations;
-                    $c->addCondition("tenant_id =  {$user_tenant_id}", 'AND');
+                    $c->addCondition("tenant_id =  {$userTenantId}", 'AND');
                 }
             }
         } elseif ($action == 'save') {
 
             if ($owner->hasAttribute('tenant_id')) {
                 //tie this model to the actual tenant by setting the tenantid attribute
-                $owner->tenant_id = $user_tenant_id;
+                $owner->tenant_id = $userTenantId;
             }
 
             $relations = $owner->relations();
@@ -70,9 +70,9 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
 
                     $relationTenantId = $owner->$relation->tenant_id;
 
-                    if ($user_tenant_id != $relationTenantId) {
+                    if ($userTenantId != $relationTenantId) {
                         $ownerClassName = get_class($this->owner);
-                        error_log("Model {$ownerClassName} and relation {$relation} tenant id ($user_tenant_id != $relationTenantId)does not match");
+                        error_log("Model {$ownerClassName} and relation {$relation} tenant id ($userTenantId != $relationTenantId)does not match");
                         throw new Exception(self::ILLEGAL_ACTION);
                     }
                 }
@@ -91,18 +91,18 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
      */
     private function handleActiveMongoDocument(ActiveMongoDocument $owner, $action) {
 
-        $user_tenant_id = $this->getCurrentTenantId($this->owner);
-        if ($user_tenant_id == null) {
+        $userTenantId = $this->getCurrentTenantId($this->owner);
+        if ($userTenantId == null) {
             return;
         }
 
         if ($action == 'find') {
-            $owner->searchAttributes['tenant_id'] = $user_tenant_id;
+            $owner->searchAttributes['tenant_id'] = $userTenantId;
         } elseif ($action == 'save') {
 
             // MongoDB does not allow other fields when '$set' or '$push' are set
             if (!isset($this->owner->fields['$set']) && !isset($this->owner->fields['$push'])) {
-                $this->owner->fields['tenant_id'] = (int) $user_tenant_id;
+                $this->owner->fields['tenant_id'] = (int) $userTenantId;
             }
         }
     }
