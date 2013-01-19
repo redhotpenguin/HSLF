@@ -76,6 +76,7 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
      * @param CEvent event
      */
     private function handleActiveRecordBeforeFind(CActiveRecord $owner, $userTenantId, $event) {
+        
         $c = $owner->getDbCriteria();
         $condition = $c->condition;
         $relations = $c->with;
