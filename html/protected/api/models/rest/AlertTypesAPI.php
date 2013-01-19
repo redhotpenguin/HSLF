@@ -7,5 +7,3 @@ class AlertTypesAPI extends APIBase implements IAPI {
     }
 
 }
-
-?>
