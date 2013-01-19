@@ -229,8 +229,6 @@ class Item extends CBaseActiveRecord {
         return array(
             'beforeSave' => array(
                 'class' => 'ItemBehavior',
-            //  'property1'=>'value1',
-            // 'property2'=>'value2',
             ),
             'OrganizationBehavior' => array(
                 'class' => 'ItemOrganizationBehavior',

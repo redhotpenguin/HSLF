@@ -76,7 +76,7 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
      * @param CEvent event
      */
     private function handleActiveRecordBeforeFind(CActiveRecord $owner, $userTenantId, $event) {
-        
+
         $c = $owner->getDbCriteria();
         $condition = $c->condition;
         $relations = $c->with;
@@ -91,7 +91,17 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
             $condition.= $alias . '.tenant_id = ' . $userTenantId;
             $c->condition = $condition;
         } elseif ($owner->parentName) { // indirect relationship between model and tenant table
-            $relations = array($owner->parentRelationship);
+            if ($c->with == null) {
+                $c->with = array();
+            }
+
+            // make sure relation array doesnt have dupes
+            if (in_array($owner->parentRelationship, $c->with)) {
+                $relations = $c->with;
+            } else { // relation (withs) array has been set before this behavior has been executed, make sure we don't override values
+                $relations = array_merge($c->with, array($owner->parentRelationship));
+            }
+
             $c->with = $relations;
             $c->addCondition("tenant_id =  {$userTenantId}", 'AND');
         }

@@ -33,10 +33,18 @@ abstract class APIBase implements IAPI {
             }
         }
 
+        // limit results
+        if (isset($arguments['limit']) && is_numeric($arguments['limit'])) {
+            $options['limit'] = $arguments['limit'];
+        }
+
+
         // filter by attribute
         if (isset($arguments['attributeValue']) && isset($arguments['attribute']) && $this->model->hasAttribute($arguments['attribute'])) {
             $attributes = array($arguments['attribute'] => $arguments['attributeValue']);
         }
+
+
         try {
             $result = $this->model->with($relations)->findAllByAttributes($attributes, $options);
         } catch (CDbException $cdbE) {
@@ -50,6 +58,7 @@ abstract class APIBase implements IAPI {
         $this->model->sessionTenantId = $tenantId;
         $relations = array();
 
+     
         if (isset($arguments['relations']) && $arguments['relations'] == 'all') {
             $modelRelations = $this->model->relations();
 
