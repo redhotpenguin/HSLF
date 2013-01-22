@@ -21,9 +21,21 @@ class ItemNewsController extends Controller {
     public function accessRules() {
 
         return array(
-            array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('add', 'update', 'delete'),
-                'roles' => array('publisher'),
+            array('allow',
+                'actions' => array('index', 'admin', 'view', 'exportCSV'),
+                'roles' => array('readBallotItemNews'),
+            ),
+            array('allow',
+                'actions' => array('create'),
+                'roles' => array('createBallotItemNews'),
+            ),
+            array('allow',
+                'actions' => array('update'),
+                'roles' => array('updateBallotItemNews'),
+            ),
+            array('allow',
+                'actions' => array('delete'),
+                'roles' => array('deleteBallotItemNews'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),

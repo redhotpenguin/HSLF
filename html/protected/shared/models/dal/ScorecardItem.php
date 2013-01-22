@@ -58,7 +58,7 @@ class ScorecardItem extends CBaseActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'scorecards' => array(self::HAS_MANY, 'Scorecard', 'scorecard_item_id'),
+      //      'scorecards' => array(self::HAS_MANY, 'Scorecard', 'scorecard_item_id'),
             'office' => array(self::BELONGS_TO, 'Office', 'office_id'),
             
 			/*'items' => array(self::MANY_MANY, 'Item',

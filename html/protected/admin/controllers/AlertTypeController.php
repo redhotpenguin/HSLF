@@ -26,9 +26,21 @@ class AlertTypeController extends Controller {
      */
     public function accessRules() {
         return array(
-            array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete'),
-                'roles' => array('publisher'),
+            array('allow',
+                'actions' => array('index', 'admin', 'view', 'exportCSV'),
+                'roles' => array('readAlertType'),
+            ),
+            array('allow',
+                'actions' => array('create'),
+                'roles' => array('createAlertType'),
+            ),
+            array('allow',
+                'actions' => array('update'),
+                'roles' => array('updateAlertType'),
+            ),
+            array('allow',
+                'actions' => array('delete'),
+                'roles' => array('deleteAlertType'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),

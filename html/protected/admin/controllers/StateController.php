@@ -27,11 +27,21 @@ class StateController extends Controller {
      */
     public function accessRules() {
         return array(
-            array(// restrict State to admins only
-                'allow',
-                'actions' => array('create', 'delete', 'update', 'admin', 'index', 'view', 'exportCSV'),
-                'roles' => array('admin'),
-                
+            array('allow',
+                'actions' => array('index', 'admin', 'view'),
+                'roles' => array('readState'),
+            ),
+            array('allow',
+                'actions' => array('create'),
+                'roles' => array('createState'),
+            ),
+            array('allow',
+                'actions' => array('update'),
+                'roles' => array('updateState'),
+            ),
+            array('allow',
+                'actions' => array('delete'),
+                'roles' => array('deleteState'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -91,8 +101,8 @@ class StateController extends Controller {
             $model->attributes = $_POST['State'];
             try {
                 if ($model->save())
-                    $this->redirect(array('view', 
-            'id' => $model->id));
+                    $this->redirect(array('view',
+                        'id' => $model->id));
             } catch (Exception $e) {
                 error_log("State controller:" . $e->getMessage());
             }
@@ -117,7 +127,7 @@ class StateController extends Controller {
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
                 $this->redirect(isset($_POST['returnUrl'
-            ]) ? $_POST['returnUrl'] : array('admin'));
+                        ]) ? $_POST['returnUrl'] : array('admin'));
         }
         else
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
@@ -156,8 +166,8 @@ class StateController extends Controller {
         $model = State::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
-    
-                return $model;
+
+        return $model;
     }
 
     /**

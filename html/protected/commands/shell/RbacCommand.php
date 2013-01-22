@@ -29,6 +29,7 @@ EOD;
 
         $publisherCrudAndTasks = array(
             'BallotItem',
+            'BallotItemNews',
             'Organization',
             'ScorecardItem',
             'Vote',
@@ -53,7 +54,10 @@ EOD;
         // assign tasks and operation to the 'admin' role
         $adminCrudAndTask = array(
             'State',
-            'District'
+            'District',
+            'User',
+            'Party',
+            'Recommendation',
         );
         foreach ($adminCrudAndTask as $ct) {
             $this->addCrudOperation($ct);
@@ -65,8 +69,9 @@ EOD;
 
         // assign publisher role to admin role
         $this->assignRoleToRole('publisher', 'admin');
-                
-        $this->authManager->assign('admin', 14);
+
+        $this->authManager->assign('admin', 1);
+        $this->authManager->assign('publisher', 14);
     }
 
     private function initializeAuthManager() {

@@ -24,10 +24,21 @@ class PartyController extends Controller {
      */
     public function accessRules() {
         return array(
-            array(// restrict Paty to admins only
-                'allow',
-                'actions' => array('create', 'delete', 'update', 'admin', 'index', 'view', 'exportCSV'),
-                'roles' => array('admin'),    
+            array('allow',
+                'actions' => array('index', 'admin', 'view', 'exportCSV'),
+                'roles' => array('readParty'),
+            ),
+            array('allow',
+                'actions' => array('create'),
+                'roles' => array('createParty'),
+            ),
+            array('allow',
+                'actions' => array('update'),
+                'roles' => array('updateParty'),
+            ),
+            array('allow',
+                'actions' => array('delete'),
+                'roles' => array('deleteParty'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),

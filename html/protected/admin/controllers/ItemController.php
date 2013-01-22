@@ -27,9 +27,21 @@ class ItemController extends Controller {
     public function accessRules() {
 
         return array(
-            array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete', 'exportCSV', 'upload', 'ajax'),
-                'roles' => array('publisher'),
+            array('allow',
+                'actions' => array('index', 'admin', 'view', 'exportCSV'),
+                'roles' => array('readBallotItem'),
+            ),
+            array('allow',
+                'actions' => array('create'),
+                'roles' => array('createBallotItem'),
+            ),
+            array('allow',
+                'actions' => array('update'),
+                'roles' => array('updateBallotItem'),
+            ),
+            array('allow',
+                'actions' => array('delete'),
+                'roles' => array('deleteBallotItem'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -55,7 +67,7 @@ class ItemController extends Controller {
         // import FileUpload helper class
         Yii::import('admin.models.helpers.FileUpload');
 
-      //  error_log(print_r($_REQUEST, true));
+        //  error_log(print_r($_REQUEST, true));
 
         $model = new Item;
 

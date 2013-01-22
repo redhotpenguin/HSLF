@@ -26,10 +26,21 @@ class RecommendationController extends Controller {
      */
     public function accessRules() {
         return array(
-            array(// restrict State to admins only
-                'allow',
-                'actions' => array('create', 'delete', 'update', 'admin', 'index', 'view', 'exportCSV'),
-                'roles' => array('admin'),
+            array('allow',
+                'actions' => array('index', 'admin', 'view'),
+                'roles' => array('readRecommendation'),
+            ),
+            array('allow',
+                'actions' => array('create'),
+                'roles' => array('createRecommendation'),
+            ),
+            array('allow',
+                'actions' => array('update'),
+                'roles' => array('updateRecommendation'),
+            ),
+            array('allow',
+                'actions' => array('delete'),
+                'roles' => array('deleteRecommendation'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),
