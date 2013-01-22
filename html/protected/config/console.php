@@ -4,7 +4,7 @@
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'name' => "WM Mobile - Console",
-    'preload' => array('bootstrap'),
+    'preload' => array('rbac'),
     // preloading 'log' component
     // autoloading model and component classes
     'import' => array(

@@ -67,6 +67,7 @@ return array(
         'authManager' => array(
             'class' => 'CDbAuthManager',
             'connectionID' => 'db',
+            'defaultRoles' => array('authenticated', 'admin'),
         ),
         'cache' => array(
             'class' => 'system.caching.CApcCache',

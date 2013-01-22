@@ -27,14 +27,8 @@ class TagController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'view', 'create', 'update', 'admin'),
-                'users' => array('@'),
-            ),
-            array(
-                'allow',
-                'actions' => array('delete'),
-                'users' => array('@'),
-                'expression' => 'isset($user->role) && ($user->role==="admin")'
+                'actions' => array('index', 'view', 'create', 'update', 'delete', 'admin'),
+                'expression' => 'Yii::app()->user->checkAccess("manageTag")',
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -80,8 +74,8 @@ class TagController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
- 
-     
+
+
         if (Yii::app()->request->isPostRequest) {
             // Uncomment the following line if AJAX validation is needed
             $this->performAjaxValidation($model);
@@ -148,9 +142,9 @@ class TagController extends Controller {
      * @param integer the ID of the model to be loaded
      */
     public function loadModel($id) {
-        
+
         $model = Tag::model()->findByPk($id);
-  
+
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
