@@ -27,7 +27,7 @@ class OfficeController extends Controller {
             array(// restrict State to admins only
                 'allow',
                 'actions' => array('create', 'delete', 'update', 'admin', 'index', 'view', 'exportCSV'),
-                'roles' => array('admin'),
+                'roles' => array('manageOffices'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),

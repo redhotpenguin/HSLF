@@ -30,7 +30,7 @@ class MobileUserController extends Controller {
         return array(
             array('allow',
                 'actions' => array('index', 'browse', 'view', 'delete', 'getCount', 'sendAlert', 'export'),
-                'roles' => array('publisher'),
+                'roles' => array('manageMobileUsers'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),

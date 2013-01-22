@@ -28,7 +28,6 @@ class ImportController extends Controller {
                 'allow',
                 'actions' => array('index'),
                 'roles' => array('admin'),
-                'expression' => 'isset($user->role) && ($user->role==="admin")'
             ),
             array('deny', // deny all users
                 'users' => array('*'),

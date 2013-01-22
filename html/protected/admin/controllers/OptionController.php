@@ -25,14 +25,21 @@ class OptionController extends Controller {
      * @return array access control rules
      */ public function accessRules() {
         return array(
-            array('allow', //
-                'actions' => array('index', 'view', 'update'),
-                'roles' => array('publisher'),
+            array('allow',
+                'actions' => array('index', 'admin', 'view', 'exportCSV'),
+                'roles' => array('readOption'),
             ),
-            array(
-                'allow',
-                'actions' => array('create', 'delete', 'update', 'admin', 'editor'),
-                'roles' => array('admin'),
+            array('allow',
+                'actions' => array('create'),
+                'roles' => array('createOption'),
+            ),
+            array('allow',
+                'actions' => array('update'),
+                'roles' => array('updateOption'),
+            ),
+            array('allow',
+                'actions' => array('delete'),
+                'roles' => array('deleteOption'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -157,17 +164,17 @@ class OptionController extends Controller {
             Yii::app()->end();
         }
     }
-    
-   /**
+
+    /**
      * Displays the editor index page
      */
     public function actionEditor() {
-        
+
         $html_directory = getSetting('html_directory');
-        
+
         $this->render('file_editor', array(
             'edit_files' => array(
-                $html_directory.'/themes/frontend/css/client_app.css',
+                $html_directory . '/themes/frontend/css/client_app.css',
             )
                 )
         );

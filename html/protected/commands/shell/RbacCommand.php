@@ -58,6 +58,7 @@ EOD;
             'User',
             'Party',
             'Recommendation',
+            'Office'
         );
         foreach ($adminCrudAndTask as $ct) {
             $this->addCrudOperation($ct);

@@ -26,7 +26,7 @@ class DistrictController extends Controller {
             array(// restrict State to admins only
                 'allow',
                 'actions' => array('create', 'delete', 'update', 'admin', 'index', 'view'),
-                'roles' => array('admin'),
+                'roles' => array('manageDistricts'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),
