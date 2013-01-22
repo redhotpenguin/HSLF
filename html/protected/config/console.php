@@ -4,6 +4,7 @@
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'name' => "WM Mobile - Console",
+    'preload' => array('bootstrap'),
     // preloading 'log' component
     // autoloading model and component classes
     'import' => array(
@@ -25,6 +26,22 @@ return array(
         'authManager' => array(
             'class' => 'CDbAuthManager',
             'connectionID' => 'db',
+        ),
+        'log' => array(
+            'class' => 'CLogRouter',
+            'routes' => array(
+                array(
+                    'class' => 'CFileLogRoute',
+                    'levels' => 'error, warning',
+                ),
+            // uncomment the following to show log messages on web pages
+            /*
+              array(
+              'class' => 'CWebLogRoute',
+              ),
+             * 
+             */
+            ),
         ),
     ),
 );

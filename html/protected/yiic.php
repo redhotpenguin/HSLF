@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * usage:
+ * php html/protected/yiic.php shell /var/www/html/mobile_platform/html/protected/config/console.php
+ */
+
 // change the following paths if necessary
 
 require_once(dirname(__FILE__).'/config/config.php');
