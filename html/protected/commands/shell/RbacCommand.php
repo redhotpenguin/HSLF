@@ -23,8 +23,8 @@ EOD;
         $this->initializeAuthManager();
 
         $this->resetAll();
-        
-        $this->createDefaultRoles();
+
+        $this->createRoles();
 
 
         $publisherCrudAndTasks = array(
@@ -64,8 +64,9 @@ EOD;
         }
 
         // assign publisher role to admin role
-        $adminRole = $this->getItem('admin');
-        $adminRole->addChild('publisher');
+        $this->assignRoleToRole('publisher', 'admin');
+                
+        $this->authManager->assign('admin', 14);
     }
 
     private function initializeAuthManager() {
@@ -84,17 +85,16 @@ EOD;
         return $this->authManager->getAuthItem($name);
     }
 
-    private function createDefaultRoles() {
+    private function createRoles() {
         $adminRole = 'admin';
         $publisherRole = 'publisher';
 
 
         try {
-            // create default roles
-            $bizRule = 'return Yii::app()->user->role === "publisher";';
-            $this->authManager->createRole($publisherRole, 'publisher user', $bizRule); // 
+            // create  roles
+            $this->authManager->createRole($publisherRole, 'publisher user'); // 
             $bizRule = 'return Yii::app()->user->role === "admin";';
-            $this->authManager->createRole($adminRole, 'admin user', $bizRule);
+            $this->authManager->createRole($adminRole, 'admin user');
         } catch (CDbException $e) {
             if ($e->getCode() == 23505) {
                 printf("Roles already exists. \n");
@@ -140,10 +140,15 @@ EOD;
 
         $t->addChild('manage' . $taskName);
     }
-    
-    private function resetAll(){
+
+    private function resetAll() {
         $this->authManager->clearAll();
         $this->authManager->clearAuthAssignments();
+    }
+
+    private function assignRoleToRole($childRole, $parentRole) {
+        $parentRole = $this->getItem($parentRole);
+        $parentRole->addChild($childRole);
     }
 
 }
