@@ -4,6 +4,12 @@
 
     <?php
     if (Yii::app()->user->id):
+
+        if (Yii::app()->user->checkAccess('admin')) {
+            echo 'manage tag right';
+        }
+        else
+            echo 'no manage tag right';
         ?>
         <div class="hero-unit">
             <h1>Dashboard</h1>
@@ -54,6 +60,7 @@
     </div>
 
     <?php
+
 
 
 

@@ -10,12 +10,23 @@ class TagController extends Controller {
     public $category = array('Application Manager' => array('/site/mobile/')); // used by the breadcrumb
 
     /**
-     * @return array action filters
+     * Displays a particular model.
+     * @param integer $id the ID of the model to be displayed
      */
 
+    public function actionView($id) {
+        $this->render('view', array(
+            'model' => $this->loadModel($id),
+        ));
+    }
+
+    /**
+     * @return array action filters
+     */
     public function filters() {
         return array(
-            'accessControl', // perform access control for CRUD operations
+            'accessControl', // perform access control for CRUD operations,
+            'postOnly + delete', // we only allow deletion via POST request
         );
     }
 
@@ -23,12 +34,11 @@ class TagController extends Controller {
      * Specifies the access control rules.
      * This method is used by the 'accessControl' filter.
      * @return array access control rules
-     */
-    public function accessRules() {
+     */ public function accessRules() {
         return array(
-            array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'view', 'create', 'update', 'delete', 'admin'),
-                'expression' => 'Yii::app()->user->checkAccess("manageTag")',
+            array('allow', // allow authenticated to do the following users
+                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete'),
+                'roles' => array('manageTags'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -37,20 +47,11 @@ class TagController extends Controller {
     }
 
     /**
-     * Displays a particular model.
-     * @param integer $id the ID of the model to be displayed
-     */
-    public function actionView($id) {
-        $this->render('view', array(
-            'model' => $this->loadModel($id),
-        ));
-    }
-
-    /**
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
+        
         $model = new Tag;
 
         // Uncomment the following line if AJAX validation is needed

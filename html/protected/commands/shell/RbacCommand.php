@@ -12,12 +12,6 @@ DESCRIPTION
   This command generates an initial RBAC authorization hierarchy.
 EOD;
     }
-    
-
-   
-    private function getItem($name){
-        return $this->authManager->getAuthItem($name);
-    }
 
     /**
      * Execute the action.
@@ -25,10 +19,56 @@ EOD;
      */
     public function run($args) {
 
-        $adminRole = 'admin';
-        $authenticatedRole = 'authenticated';
+
+        $this->initializeAuthManager();
+
+        $this->resetAll();
+        
+        $this->createDefaultRoles();
 
 
+        $publisherCrudAndTasks = array(
+            'BallotItem',
+            'Organization',
+            'ScorecardItem',
+            'Vote',
+            'SharePayload',
+            'AlertType',
+            'Option',
+            'Tag',
+            'MobileUser',
+        );
+
+
+        // assign basic tasks and operation to the 'publisher' role
+        foreach ($publisherCrudAndTasks as $ct) {
+            $this->addCrudOperation($ct);
+
+            $this->addCrudTask($ct);
+
+            $this->assignTaskToRole($ct . 's', 'publisher');
+        }
+
+
+        // assign tasks and operation to the 'admin' role
+        $adminCrudAndTask = array(
+            'State',
+            'District'
+        );
+        foreach ($adminCrudAndTask as $ct) {
+            $this->addCrudOperation($ct);
+
+            $this->addCrudTask($ct);
+
+            $this->assignTaskToRole($ct . 's', 'admin');
+        }
+
+        // assign publisher role to admin role
+        $adminRole = $this->getItem('admin');
+        $adminRole->addChild('publisher');
+    }
+
+    private function initializeAuthManager() {
         //ensure that an authManager is defined as this is mandatory for creating an auth heirarchy
         if (($this->authManager = Yii::app()->authManager) === null) {
             echo "Error: an authorization manager, named 'authManager' must be configured to use this command.\n";
@@ -37,16 +77,24 @@ EOD;
             return;
         }
 
-        $auth = Yii::app()->authManager;
+        $this->authManager = Yii::app()->authManager;
+    }
+
+    private function getItem($name) {
+        return $this->authManager->getAuthItem($name);
+    }
+
+    private function createDefaultRoles() {
+        $adminRole = 'admin';
+        $publisherRole = 'publisher';
 
 
         try {
             // create default roles
-            $bizRule = 'return !Yii::app()->user->isGuest;';
-            $auth->createRole($authenticatedRole, 'authenticated user', $bizRule);
-            $bizRule = 'return Yii::app()->user->name === "admin";';
-
-            $auth->createRole($adminRole, 'admin user', $bizRule);
+            $bizRule = 'return Yii::app()->user->role === "publisher";';
+            $this->authManager->createRole($publisherRole, 'publisher user', $bizRule); // 
+            $bizRule = 'return Yii::app()->user->role === "admin";';
+            $this->authManager->createRole($adminRole, 'admin user', $bizRule);
         } catch (CDbException $e) {
             if ($e->getCode() == 23505) {
                 printf("Roles already exists. \n");
@@ -54,39 +102,48 @@ EOD;
             else
                 throw $e;
         }
+    }
 
-
+    private function addCrudOperation($name) {
         try {
-            $auth->createOperation('createTag', 'Create a tag');
-            $auth->createOperation('readTag', 'Read a tag');
-            $auth->createOperation('updateTag', 'Update a tag');
-            $auth->createOperation('deleteTag', 'Delete a tag');
+            $this->authManager->createOperation('create' . $name, 'Create a ' . $name);
+            $this->authManager->createOperation('read' . $name, 'Read a ' . $name);
+            $this->authManager->createOperation('update' . $name, 'Update a ' . $name);
+            $this->authManager->createOperation('delete' . $name, 'Delete a ' . $name);
         } catch (CDbException $e) {
             if ($e->getCode() == 23505) {
-                printf("Tag Tasks already exists. \n");
+                printf("$s Tasks already exists. \n", $name);
             }
             else
                 throw $e;
         }
+    }
 
+    private function addCrudTask($name) {
         try {
-            $task = $auth->createTask('manageTag', 'Manage Tags', null); // no biz rule
-            $task->addChild('createTag');
-            $task->addChild('readTag');
-            $task->addChild('updateTag');
-            $task->addChild('deleteTag');
-            
-            $authenticatedRole = $this->getItem('authenticated');
-            
-            $authenticatedRole->addChild('manageTag');
-            
+            $task = $this->authManager->createTask('manage' . $name . 's', 'Manage ' . $name, null); // no biz rule
+            $task->addChild('create' . $name);
+            $task->addChild('read' . $name);
+            $task->addChild('update' . $name);
+            $task->addChild('delete' . $name);
         } catch (CDbException $e) {
             if ($e->getCode() == 23505) {
-                printf("Tag Role already exists. \n");
+                printf("Tasks already has %s \n ", $name);
             }
             else
                 throw $e;
         }
+    }
+
+    private function assignTaskToRole($taskName, $role) {
+        $t = $this->getItem($role);
+
+        $t->addChild('manage' . $taskName);
+    }
+    
+    private function resetAll(){
+        $this->authManager->clearAll();
+        $this->authManager->clearAuthAssignments();
     }
 
 }
