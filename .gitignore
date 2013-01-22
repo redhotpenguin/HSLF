@@ -1,5 +1,4 @@
 html/.htaccess
-html/protected/config/*
 html/content/*
 html/img/*
 html/protected/admin/config/main.php
