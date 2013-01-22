@@ -64,6 +64,10 @@ return array(
             'charset' => 'UTF-8',
             'schemaCachingDuration' => '60',
         ),
+        'authManager' => array(
+            'class' => 'CDbAuthManager',
+            'connectionID' => 'db',
+        ),
         'cache' => array(
             'class' => 'system.caching.CApcCache',
         ),
