@@ -27,13 +27,12 @@ class OptionController extends Controller {
         return array(
             array('allow', //
                 'actions' => array('index', 'view', 'update'),
-                'users' => array('@'),
+                'roles' => array('publisher'),
             ),
             array(
                 'allow',
                 'actions' => array('create', 'delete', 'update', 'admin', 'editor'),
-                'users' => array('@'),
-                'expression' => 'isset($user->role) && ($user->role==="admin")'
+                'roles' => array('admin'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),

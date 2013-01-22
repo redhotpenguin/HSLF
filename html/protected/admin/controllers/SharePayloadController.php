@@ -24,9 +24,21 @@ class SharePayloadController extends Controller {
      * @return array access control rules
      */ public function accessRules() {
         return array(
-            array('allow', // allow authenticated to do the following users
-                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete'),
-                'users' => array('@'),
+            array('allow',
+                'actions' => array('index', 'admin', 'view'),
+                'roles' => array('readSharePayload'),
+            ),
+            array('allow',
+                'actions' => array('create'),
+                'roles' => array('createSharePayload'),
+            ),
+            array('allow',
+                'actions' => array('update'),
+                'roles' => array('updateSharePayload'),
+            ),
+            array('allow',
+                'actions' => array('delete'),
+                'roles' => array('deleteSharePayload'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -79,7 +91,7 @@ class SharePayloadController extends Controller {
         if (isset($_POST['SharePayload'])) {
             $model->attributes = $_POST['SharePayload'];
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id, 'updated' => true ));
+                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
         }
 
         $this->render('update', array(

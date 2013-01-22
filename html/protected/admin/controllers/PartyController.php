@@ -27,8 +27,7 @@ class PartyController extends Controller {
             array(// restrict Paty to admins only
                 'allow',
                 'actions' => array('create', 'delete', 'update', 'admin', 'index', 'view', 'exportCSV'),
-                'users' => array('@'),
-                'expression' => 'isset($user->role) && ($user->role==="admin")'
+                'roles' => array('admin'),    
             ),
             array('deny', // deny all users
                 'users' => array('*'),

@@ -24,10 +24,22 @@ class VoteController extends Controller {
      */
     public function accessRules() {
         return array(
-            array(// restrict State to admins only
-                'allow',
-                'actions' => array('create', 'delete', 'update', 'admin', 'index', 'view', 'exportCSV'),
-                'users' => array('@')),
+            array('allow',
+                'actions' => array('index', 'admin', 'view', 'exportCSV'),
+                'roles' => array('readVote'),
+            ),
+            array('allow',
+                'actions' => array('create'),
+                'roles' => array('createVote'),
+            ),
+            array('allow',
+                'actions' => array('update'),
+                'roles' => array('updateVote'),
+            ),
+            array('allow',
+                'actions' => array('delete'),
+                'roles' => array('deleteVote'),
+            ),
             array('deny', // deny all users
                 'users' => array('*'),
             ),

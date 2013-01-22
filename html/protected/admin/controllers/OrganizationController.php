@@ -24,9 +24,21 @@ class OrganizationController extends Controller {
      */
     public function accessRules() {
         return array(
-            array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete', 'exportCSV'),
-                'users' => array('@'),
+            array('allow',
+                'actions' => array('index', 'admin', 'view', 'exportCSV'),
+                'roles' => array('readOrganization'),
+            ),
+            array('allow',
+                'actions' => array('create'),
+                'roles' => array('createOrganization'),
+            ),
+            array('allow',
+                'actions' => array('update'),
+                'roles' => array('updateOrganization'),
+            ),
+            array('allow',
+                'actions' => array('delete'),
+                'roles' => array('deleteOrganization'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),

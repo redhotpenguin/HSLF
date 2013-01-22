@@ -26,13 +26,23 @@ class UserController extends Controller {
      */
     public function accessRules() {
         return array(
-            array(
-                'allow', // admins only can perform 'create', 'delete', 'update', and 'admin' actions
-                'actions' => array('index', 'view', 'create', 'delete', 'update', 'admin'),
-                'users' => array('@'),
-                'expression' => 'isset($user->role) && ($user->role==="admin")'
+            array('allow',
+                'actions' => array('index', 'admin', 'view'),
+                'roles' => array('readUser'),
             ),
-            array('deny', // deny all other users
+            array('allow',
+                'actions' => array('create'),
+                'roles' => array('createUser'),
+            ),
+            array('allow',
+                'actions' => array('update'),
+                'roles' => array('updateUser'),
+            ),
+            array('allow',
+                'actions' => array('delete'),
+                'roles' => array('deleteUser'),
+            ),
+            array('deny', // deny all users
                 'users' => array('*'),
             ),
         );
@@ -54,14 +64,14 @@ class UserController extends Controller {
      */
     public function actionCreate() {
         $model = new User;
-        
+
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
         if (isset($_POST['User'])) {
 
             $model->attributes = $_POST['User'];
-          //  $model->password = sha1($_POST['User']['password']);
+            //  $model->password = sha1($_POST['User']['password']);
 
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->id));
@@ -71,10 +81,7 @@ class UserController extends Controller {
             'model' => $model,
         ));
     }
-    
-    
 
-    
     /**
      * Updates a particular model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -85,20 +92,20 @@ class UserController extends Controller {
 
         // hold the current password ( before it might gets updated)
         $current_password = $model->password;
-        
+
 
         if (isset($_POST['User'])) {
             $model->attributes = $_POST['User'];
-            
+
             // if a new password has been given
-            if($model->password)
+            if ($model->password)
                 $model->initial_password = $model->password;
-            
+
             else
                 $model->initial_password = $current_password;
 
-            
-            
+
+
 
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->id));

@@ -28,7 +28,7 @@ class AlertTypeController extends Controller {
         return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
                 'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete'),
-                'users' => array('@'),
+                'roles' => array('publisher'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),

@@ -27,7 +27,7 @@ class ImportController extends Controller {
             array(// restrict State to admins only
                 'allow',
                 'actions' => array('index'),
-                'users' => array('@'),
+                'roles' => array('admin'),
                 'expression' => 'isset($user->role) && ($user->role==="admin")'
             ),
             array('deny', // deny all users

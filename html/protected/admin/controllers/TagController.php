@@ -36,9 +36,21 @@ class TagController extends Controller {
      * @return array access control rules
      */ public function accessRules() {
         return array(
-            array('allow', // allow authenticated to do the following users
-                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete'),
-                'roles' => array('manageTags'),
+            array('allow',
+                'actions' => array('index', 'admin', 'view'),
+                'roles' => array('readTag'),
+            ),
+            array('allow',
+                'actions' => array('create'),
+                'roles' => array('createTag'),
+            ),
+            array('allow',
+                'actions' => array('update'),
+                'roles' => array('updateTag'),
+            ),
+            array('allow',
+                'actions' => array('delete'),
+                'roles' => array('deleteTag'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -51,7 +63,7 @@ class TagController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        
+
         $model = new Tag;
 
         // Uncomment the following line if AJAX validation is needed

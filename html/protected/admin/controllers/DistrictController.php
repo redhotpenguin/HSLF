@@ -21,13 +21,12 @@ class DistrictController extends Controller {
         return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
                 'actions' => array('dynamicdistrictnumber', 'dynamicdistrict', 'exportCSV'),
-                'users' => array('@'),
+                'roles' => array('publisher'),
             ),
             array(// restrict State to admins only
                 'allow',
                 'actions' => array('create', 'delete', 'update', 'admin', 'index', 'view'),
-                'users' => array('@'),
-                'expression' => 'isset($user->role) && ($user->role==="admin")'
+                'roles' => array('admin'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),

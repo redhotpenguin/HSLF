@@ -23,7 +23,7 @@ class ItemNewsController extends Controller {
         return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
                 'actions' => array('add', 'update', 'delete'),
-                'users' => array('@'),
+                'roles' => array('publisher'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),

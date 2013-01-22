@@ -16,6 +16,7 @@ class StateController extends Controller {
     public function filters() {
         return array(
             'accessControl', // perform access control for CRUD operations
+            'postOnly + delete', // we only allow deletion via POST request
         );
     }
 
@@ -29,8 +30,8 @@ class StateController extends Controller {
             array(// restrict State to admins only
                 'allow',
                 'actions' => array('create', 'delete', 'update', 'admin', 'index', 'view', 'exportCSV'),
-                'users' => array('@'),
-                'expression' => 'isset($user->role) && ($user->role==="admin")'
+                'roles' => array('admin'),
+                
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -90,7 +91,8 @@ class StateController extends Controller {
             $model->attributes = $_POST['State'];
             try {
                 if ($model->save())
-                    $this->redirect(array('view', 'id' => $model->id));
+                    $this->redirect(array('view', 
+            'id' => $model->id));
             } catch (Exception $e) {
                 error_log("State controller:" . $e->getMessage());
             }
@@ -114,7 +116,8 @@ class StateController extends Controller {
 
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
-                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+                $this->redirect(isset($_POST['returnUrl'
+            ]) ? $_POST['returnUrl'] : array('admin'));
         }
         else
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
@@ -153,7 +156,8 @@ class StateController extends Controller {
         $model = State::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
-        return $model;
+    
+                return $model;
     }
 
     /**
@@ -174,7 +178,24 @@ class StateController extends Controller {
         Yii::import('ext.csv.ESCVExport');
         $csv = new ESCVExport(State::model()->findAll());
         $content = $csv->toCSV();
-        Yii::app()->getRequest()->sendFile('states.csv', $content, "text/csv", false);
+        Yii::app()->getRequest()->sendFile('states.csv
+
+        
+
+        
+
+        
+
+     
+               
+
+        
+
+        
+
+        
+
+        ', $content, "text/csv", false);
     }
 
 }
