@@ -29,4 +29,14 @@ create table "AuthAssignment"
    foreign key ("itemname") references "AuthItem" ("name") on delete cascade on update cascade
 );
 
+
+-- add roles
+INSERT INTO "AuthItem" (name, type) VALUES('admin', 2);
+INSERT INTO "AuthItem" (name, type) VALUES('publisher', 2);
+
+-- copy current user.role to AuthAssignment
+
+INSERT INTO "AuthAssignment" (itemname, userid) SELECT "role", id FROM "user"
+
+
 ALTER TABLE "user" DROP COLUMN "role";
