@@ -36,7 +36,7 @@ INSERT INTO "AuthItem" (name, type) VALUES('publisher', 2);
 
 -- copy current user.role to AuthAssignment
 
-INSERT INTO "AuthAssignment" (itemname, userid) SELECT "role", id FROM "user"
+INSERT INTO "AuthAssignment" (itemname, userid) SELECT "role", id FROM "user";
 
 
 ALTER TABLE "user" DROP COLUMN "role";

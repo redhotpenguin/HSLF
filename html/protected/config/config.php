@@ -35,7 +35,7 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     set_include_path(get_include_path() . PATH_SEPARATOR . '/home/dotcloud/php-env/share/php');
 } else {    //dev server conf
     $dbhost = '127.0.0.1';
-    $dbname = 'sandbox';
+    $dbname = 'mobile_advocacy_platform';
     $dbuser = 'postgres';
     $dbpass = 'pengu1n';
     $dbport = '5432';
