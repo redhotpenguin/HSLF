@@ -5,7 +5,7 @@ require_once(dirname(__FILE__).'/html/protected/config/config.php');
 
 // change the following paths if necessary
 $yii=dirname(__FILE__).'/framework/yii.php';
-$config=dirname(__FILE__).'/html/protected/config/cron.php';
+$config=dirname(__FILE__).'/html/protected/config/console.php';
 
 // remove the following lines when in production mode
 defined('YII_DEBUG') or define('YII_DEBUG',true);

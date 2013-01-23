@@ -26,6 +26,7 @@ return array(
     'import' => array(
         'ext.directmongosuite.components.*',
         'admin.models.*',
+        'admin.models.behaviors.*',
         'application.shared.models.dal.*', // data access logic classes
         'application.shared.models.bll.*', // business  logic classes
         'admin.components.*',

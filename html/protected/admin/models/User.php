@@ -17,6 +17,8 @@ class User extends CBaseActiveRecord {
 
     public $repeat_password;
     public $initial_password;
+    
+    public $role;
 
     /**
      * Returns the static model of the specified AR class.
@@ -45,7 +47,7 @@ class User extends CBaseActiveRecord {
             array('email', 'email'),
             array('username, email', 'length', 'max' => 128),
             array('password', 'length', 'max' => 40),
-            array('tenant_id', 'safe'),
+            array('tenant_id, role', 'safe'),
             array('id, username, email', 'safe', 'on' => 'search'),
         );
     }
@@ -142,8 +144,8 @@ class User extends CBaseActiveRecord {
 
     public function behaviors() {
         return array(
-            'MultiTenant' => array(
-                'class' => 'MultiTenantBehavior')
+            'UserRbacBehavior' => array( 'class' => 'UserRbacBehavior'),
+            'MultiTenant' => array( 'class' => 'MultiTenantBehavior')
         );
     }
 

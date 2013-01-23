@@ -74,10 +74,7 @@ class UserController extends Controller {
             //  $model->password = sha1($_POST['User']['password']);
 
             if ($model->save()) {
-
-                $this->updateRole($_POST['role'], $model->id);
-
-                $this->redirect(array('view', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
             }
         }
 
@@ -92,13 +89,10 @@ class UserController extends Controller {
      * @param integer $id the ID of the model to be updated
      */
     public function actionUpdate($id) {
-        $userId = Yii::app()->user->id;
-        $item = Yii::app()->authManager->getAuthAssignment('admin', $userId) or Yii::app()->authManager->getAuthAssignment('publisher', $userId);
-        $role = $item->itemName;
-
-
-
         $model = $this->loadModel($id);
+
+
+        $model->getRole();
 
         // hold the current password ( before it might gets updated)
         $current_password = $model->password;
@@ -114,17 +108,16 @@ class UserController extends Controller {
             else
                 $model->initial_password = $current_password;
 
-
-            $this->updateRole($_POST['role'], $id);
-
-
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+                $this->redirect(
+                        array('update',
+                            'id' => $model->id,
+                            'updated' => true
+                ));
         }
 
         $this->render('update', array(
             'model' => $model,
-            'role' => $role
         ));
     }
 
@@ -136,8 +129,6 @@ class UserController extends Controller {
     public function actionDelete($id) {
         if (Yii::app()->request->isPostRequest) {
             // we only allow deletion via POST request
-
-
             $user = $this->loadModel($id);
 
             if ($user->username == 'admin') {
@@ -188,6 +179,9 @@ class UserController extends Controller {
         $model = User::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
+
+        $model->afterLoadModel();
+
         return $model;
     }
 
@@ -200,17 +194,6 @@ class UserController extends Controller {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
-    }
-
-    private function updateRole($role, $userId) {
-        // @todo: check $role
-        $assignments = Yii::app()->authManager->getAuthAssignments($userId);
-
-        foreach ($assignments as $assignment) {
-            Yii::app()->authManager->revoke($assignment->itemName, $userId);
-        }
-
-        Yii::app()->authManager->assign($role, $userId);
     }
 
 }
