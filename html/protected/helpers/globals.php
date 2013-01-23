@@ -93,13 +93,6 @@ function get_hash($string) {
     return hash('sha1', $string);
 }
 
-/**
- * Return wether the user is an admin or not
- * @return boolean
- */
-function isAdmin() {
-    return ( "admin" == Yii::app()->user->role );
-}
 
 /**
  * Debug function

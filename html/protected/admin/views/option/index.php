@@ -13,10 +13,9 @@ $this->menu = array(
 <h1>Options</h1>
 
 <?php
-if (isAdmin())
-    $template = '{view}{update}{delete}';
-else
-    $template = '{view}{update}';
+
+ $template = '{view}{update}{delete}';
+
 
 
 $dataProvider->pagination->pageSize=50;

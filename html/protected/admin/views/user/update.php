@@ -6,7 +6,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Add a user', 'url'=>array('create'),  'visible'=>  isset($user->role) && ($user->role==="admin")),
+	array('label'=>'Add a user', 'url'=>array('create')),
 	array('label'=>'Manage users', 'url'=>array('admin')),
 );
 ?>

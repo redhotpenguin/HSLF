@@ -4,8 +4,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Add a user', 'url'=>array('create'), 'visible'=>Yii::app()->user->getState('role') == 'admin'),
-	array('label'=>'Manage users', 'url'=>array('admin'), 'visible'=>Yii::app()->user->getState('role') == 'admin'),
+	array('label'=>'Add a user', 'url'=>array('create')),
+	array('label'=>'Manage users', 'url'=>array('admin')),
 );
 ?>
 
@@ -13,17 +13,15 @@ $this->menu=array(
 
 <?php 
 
-if(isAdmin())
-    $template = '{view}{update}{delete}';
-else
-    $template = '{view}';
+
+$template = '{view}{update}{delete}';
+
 
 $this->widget('bootstrap.widgets.BootGridView', array(
     'dataProvider'=>$dataProvider,
     'columns'=>array(        
         'username',  
         'email',
-        'role',
         array(            // display a column with "view", "update" and "delete" buttons
             'class'=>'bootstrap.widgets.BootButtonColumn',
              'template'=> $template,

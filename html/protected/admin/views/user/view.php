@@ -7,10 +7,10 @@ $this->breadcrumbs = array(
 
 
 $this->menu = array(
-    array('label' => 'Add another user', 'url' => array('create'), 'visible' => Yii::app()->user->getState('role') == 'admin'),
-    array('label' => 'Update this user', 'url' => array('update', 'id' => $model->id), 'visible' => Yii::app()->user->getState('role') == 'admin'),
-    array('label' => 'Delete this user', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this user?'), 'visible' => Yii::app()->user->getState('role') == 'admin'),
-    array('label' => 'Manage users', 'url' => array('admin'), 'visible' => Yii::app()->user->getState('role') == 'admin'),
+    array('label' => 'Add another user', 'url' => array('create')),
+    array('label' => 'Update this user', 'url' => array('update', 'id' => $model->id) ),
+    array('label' => 'Delete this user', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this user?')),
+    array('label' => 'Manage users', 'url' => array('admin')),
 );
 ?>
 
@@ -23,7 +23,6 @@ $this->widget('bootstrap.widgets.BootDetailView', array(
         'id',
         'username',
         'email',
-        'role',
     ),
 ));
 ?>

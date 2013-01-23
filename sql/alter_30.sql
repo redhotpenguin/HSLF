@@ -28,3 +28,5 @@ create table "AuthAssignment"
    primary key ("itemname","userid"),
    foreign key ("itemname") references "AuthItem" ("name") on delete cascade on update cascade
 );
+
+ALTER TABLE "user" DROP COLUMN "role";

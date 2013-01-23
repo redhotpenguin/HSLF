@@ -8,7 +8,6 @@
  * @property string $username
  * @property string $password
  * @property string $email
- * @property string $role
  * $property integer $tenant_id
  */
 class User extends CBaseActiveRecord {
@@ -16,8 +15,6 @@ class User extends CBaseActiveRecord {
     public $repeat_password;
     public $initial_password;
 
-    const ADMIN_ROLE = 'admin';
-    const PUBLISHER_ROLE = 'publisher';
 
     /**
      * Returns the static model of the specified AR class.
@@ -40,14 +37,14 @@ class User extends CBaseActiveRecord {
      */
     public function rules() {
         return array(
-            array('username,email, role', 'required', 'on' => 'update'),
-            array('password, username, email, role, repeat_password', 'required', 'on' => 'insert'),
+            array('username,email', 'required', 'on' => 'update'),
+            array('password, username, email, repeat_password', 'required', 'on' => 'insert'),
             array('repeat_password', 'compare', 'compareAttribute' => 'password', 'on' => 'insert'),
             array('email', 'email'),
             array('username, email', 'length', 'max' => 128),
             array('password', 'length', 'max' => 40),
             array('tenant_id', 'safe'),
-            array('id, username, email, role', 'safe', 'on' => 'search'),
+            array('id, username, email', 'safe', 'on' => 'search'),
         );
     }
 
@@ -67,7 +64,6 @@ class User extends CBaseActiveRecord {
             'username' => 'Username',
             'password' => 'Password',
             'email' => 'Email',
-            'role' => 'Role',
         );
     }
 
@@ -85,23 +81,12 @@ class User extends CBaseActiveRecord {
         $criteria->compare('username', $this->username, true);
         $criteria->compare('password', $this->password, true);
         $criteria->compare('email', $this->email, true);
-        $criteria->compare('role', $this->role, true);
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
                 ));
     }
 
-    /**
-     * Retrieves a list of possible user roles.
-     * @return array of roles
-     */
-    public function getRoleOptions() {
-        return array(
-            self::ADMIN_ROLE => 'Administrator',
-            self::PUBLISHER_ROLE => 'Publisher',
-        );
-    }
 
     public function beforeSave() {
 

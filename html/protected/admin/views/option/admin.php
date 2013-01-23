@@ -40,10 +40,9 @@ $('.search-form form').submit(function(){
 </div><!-- search-form -->
 
 <?php
-if (isAdmin())
-    $template = '{view}{update}{delete}';
-else
-    $template = '{view}{update}';
+
+$template = '{view}{update}{delete}';
+
 
 $this->widget('bootstrap.widgets.BootGridView', array(
     'id' => 'option-grid',

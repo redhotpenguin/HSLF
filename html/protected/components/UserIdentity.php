@@ -24,7 +24,6 @@ class UserIdentity extends CUserIdentity {
             $this->errorCode = self::ERROR_PASSWORD_INVALID;
         } else { // Okay!
             $this->errorCode = self::ERROR_NONE;
-            $this->setState('role', $this->user->role);
             $this->setState('tenant_id', $this->user->tenant_id);
         }
 

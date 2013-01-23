@@ -35,7 +35,6 @@ class WebUser extends CWebUser {
         // current user belongs to tenant
         if ($tenantUser) {
             $this->setState('tenant_id', $tennantAccountId);
-            $this->setState('role', $tenantUser->role);
         } else {
             error_log("current user #$userId does not belong to tenant #$tennantAccountId");
         }
@@ -52,7 +51,6 @@ class WebUser extends CWebUser {
      */
     public function checkAccess($operation, $params = array(), $allowCaching = true) {
         if ($allowCaching && isset($this->_access[$operation])) {
-
             return $this->_access[$operation];
         }
 
@@ -60,7 +58,6 @@ class WebUser extends CWebUser {
         if ($allowCaching) {            
             $this->_access[$operation] = $access;
         }
-
 
         return $access;
     }
