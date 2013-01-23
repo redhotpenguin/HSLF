@@ -47,7 +47,6 @@ $this->widget('bootstrap.widgets.BootGridView', array(
         'id',
         'username',
         'email',
-        'role',
         array(
             'class' => 'bootstrap.widgets.BootButtonColumn',
         ),

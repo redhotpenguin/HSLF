@@ -73,8 +73,12 @@ class UserController extends Controller {
             $model->attributes = $_POST['User'];
             //  $model->password = sha1($_POST['User']['password']);
 
-            if ($model->save())
+            if ($model->save()) {
+
+                $this->updateRole($_POST['role'], $model->id);
+
                 $this->redirect(array('view', 'id' => $model->id));
+            }
         }
 
         $this->render('create', array(
@@ -88,6 +92,12 @@ class UserController extends Controller {
      * @param integer $id the ID of the model to be updated
      */
     public function actionUpdate($id) {
+        $userId = Yii::app()->user->id;
+        $item = Yii::app()->authManager->getAuthAssignment('admin', $userId) or Yii::app()->authManager->getAuthAssignment('publisher', $userId);
+        $role = $item->itemName;
+
+
+
         $model = $this->loadModel($id);
 
         // hold the current password ( before it might gets updated)
@@ -105,6 +115,7 @@ class UserController extends Controller {
                 $model->initial_password = $current_password;
 
 
+            $this->updateRole($_POST['role'], $id);
 
 
             if ($model->save())
@@ -113,6 +124,7 @@ class UserController extends Controller {
 
         $this->render('update', array(
             'model' => $model,
+            'role' => $role
         ));
     }
 
@@ -163,6 +175,7 @@ class UserController extends Controller {
 
         $this->render('admin', array(
             'model' => $model,
+            'role' => 'publisher'
         ));
     }
 
@@ -187,6 +200,17 @@ class UserController extends Controller {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
+    }
+
+    private function updateRole($role, $userId) {
+        // @todo: check $role
+        $assignments = Yii::app()->authManager->getAuthAssignments($userId);
+
+        foreach ($assignments as $assignment) {
+            Yii::app()->authManager->revoke($assignment->itemName, $userId);
+        }
+
+        Yii::app()->authManager->assign($role, $userId);
     }
 
 }

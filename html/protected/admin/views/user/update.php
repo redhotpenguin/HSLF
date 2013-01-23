@@ -15,5 +15,5 @@ $this->menu=array(
 
 <?php 
 $model->password='';
-echo $this->renderPartial('_update_form', array('model'=>$model));
+echo $this->renderPartial('_update_form', array('model'=>$model, 'role' => $role));
 ?>

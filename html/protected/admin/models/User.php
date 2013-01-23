@@ -12,9 +12,11 @@
  */
 class User extends CBaseActiveRecord {
 
+    const ADMIN_ROLE = 'admin';
+    const PUBLISHER_ROLE = 'publisher';
+
     public $repeat_password;
     public $initial_password;
-
 
     /**
      * Returns the static model of the specified AR class.
@@ -87,7 +89,6 @@ class User extends CBaseActiveRecord {
                 ));
     }
 
-
     public function beforeSave() {
 
         // a new record is added
@@ -110,7 +111,7 @@ class User extends CBaseActiveRecord {
             $this->password = $password;
         }
 
-     //    $this->tenant_id  = Yii::app()->user->tenant_id;
+        //    $this->tenant_id  = Yii::app()->user->tenant_id;
 
         return parent::beforeSave();
     }
@@ -138,13 +139,22 @@ class User extends CBaseActiveRecord {
 
         return $save_result;
     }
-    
 
-  
     public function behaviors() {
         return array(
             'MultiTenant' => array(
                 'class' => 'MultiTenantBehavior')
+        );
+    }
+
+    /**
+     * Retrieves a list of possible user roles.
+     * @return array of roles
+     */
+    public function getRoleOptions() {
+        return array(
+            self::ADMIN_ROLE => 'Administrator',
+            self::PUBLISHER_ROLE => 'Publisher',
         );
     }
 
