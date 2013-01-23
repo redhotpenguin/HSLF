@@ -90,16 +90,16 @@
                             'label' => 'Admin',
                             'url' => '#',
                             'items' => array(
-                                array('label' => 'States', 'url' => array('/state/admin'), 'visible' => isAdmin()),
-                                array('label' => 'Districts', 'url' => array('/district/admin'), 'visible' => isAdmin()),
+                                array('label' => 'States', 'url' => array('/state/admin')),
+                                array('label' => 'Districts', 'url' => array('/district/admin')),
                                 '',
-                                array('label' => 'Offices', 'url' => array('/office/admin'), 'visible' => isAdmin()),
-                                array('label' => 'Parties', 'url' => array('/party/admin'), 'visible' => isAdmin()),
-                                array('label' => 'Recommendations', 'url' => array('/recommendation/admin'), 'visible' => isAdmin()),
+                                array('label' => 'Offices', 'url' => array('/office/admin')),
+                                array('label' => 'Parties', 'url' => array('/party/admin')),
+                                array('label' => 'Recommendations', 'url' => array('/recommendation/admin')),
                                 '',
-                                array('label' => 'Users', 'url' => array('/user'), 'visible' => !Yii::app()->user->isGuest),
+                                array('label' => 'Users', 'url' => array('/user')),
                                 '',
-                                array('label' => 'Import', 'url' => array('/import'), 'visible' => isAdmin()),
+                                array('label' => 'Import', 'url' => array('/import')),
                             ),
                     )),
                 );
@@ -122,7 +122,7 @@
                 );
 
 
-                if (isAdmin()) {
+                if (Yii::app()->authManager->checkAccess('admin', Yii::app()->user->id)) {
                     array_push($items, $adminItems);
                 }
 
