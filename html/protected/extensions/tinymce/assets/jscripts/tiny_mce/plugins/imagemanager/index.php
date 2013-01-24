@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 // Use specified session instead
 if (isset($_REQUEST['sessionid']))
