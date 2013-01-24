@@ -1,0 +1,1 @@
+ALTER TABLE share_payload ALTER email DROP NOT NULL;

@@ -40,7 +40,7 @@ class SharePayload extends CBaseActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('url, title, description, tweet, email', 'required'),
+            array('url, title, description, tweet', 'required'),
             array('tenant_id', 'numerical', 'integerOnly' => true),
             array('url', 'length', 'max' => 2048),
             array('title', 'length', 'max' => 512),
