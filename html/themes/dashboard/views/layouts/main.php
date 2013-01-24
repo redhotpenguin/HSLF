@@ -51,15 +51,15 @@
                     'items' => array(
                         '---',
                         array('label' => 'Publishing', 'url' => '#', 'items' => array(
-                                array('label' => 'Ballot Items', 'url' => array('/item/admin'), 'visible' => !Yii::app()->user->isGuest),
-                                array('label' => 'Organizations', 'url' => array('/organization/admin/'), 'visible' => !Yii::app()->user->isGuest),
-                                array('label' => 'Scorecard Items', 'url' => array('/scorecardItem/admin'), 'visible' => !Yii::app()->user->isGuest),
+                                array('label' => 'Ballot Items', 'url' => array('/item/admin')),
+                                array('label' => 'Organizations', 'url' => array('/organization/admin/')),
+                                array('label' => 'Scorecard Items', 'url' => array('/scorecardItem/admin')),
                                 '',
-                                array('label' => 'Votes', 'url' => array('/vote/admin'), 'visible' => !Yii::app()->user->isGuest),
+                                array('label' => 'Votes', 'url' => array('/vote/admin')),
                                 '',
-                                array('label' => 'Image Upload', 'url' => array('/upload'), 'visible' => !Yii::app()->user->isGuest),
+                                array('label' => 'Image Upload', 'url' => array('/upload')),
                                 '',
-                                array('label' => 'Share Payloads', 'url' => array('/sharePayload/admin'), 'visible' => !Yii::app()->user->isGuest),
+                                array('label' => 'Share Payloads', 'url' => array('/sharePayload/admin')),
                                 '',
                                 array('itemOptions' => array('id' => 'external_item'), 'label' => 'Urban Airship', 'linkOptions' => array('target' => '_blank'), 'url' => $tenant->ua_dashboard_link),
                         )),
@@ -74,10 +74,10 @@
                             'label' => 'Application Manager',
                             'url' => '#',
                             'items' => array(
-                                array('label' => 'Alert types', 'url' => array('/alertType'), 'visible' => !Yii::app()->user->isGuest),
-                                array('label' => 'Options', 'url' => array('/option'), 'visible' => !Yii::app()->user->isGuest),
-                                array('label' => 'Tags', 'url' => array('/tag'), 'visible' => !Yii::app()->user->isGuest),
-                                array('label' => 'Mobile Users', 'url' => array('/mobileUser'), 'visible' => !Yii::app()->user->isGuest),
+                                array('label' => 'Alert types', 'url' => array('/alertType'), 'visible'),
+                                array('label' => 'Options', 'url' => array('/option'), 'visible'),
+                                array('label' => 'Tags', 'url' => array('/tag')),
+                                array('label' => 'Mobile Users', 'url' => array('/mobileUser')),
                             ),
                     )),
                 );
@@ -116,11 +116,13 @@
                     )),
                 );
 
-                $items = array(
-                    $publishingItems,
-                    $applicationItems
-                );
+                // build menu options based on user privilege level
+                $items = array();
 
+                if (Yii::app()->authManager->checkAccess('publisher', Yii::app()->user->id)) {
+                    array_push($items, $publishingItems);
+                    array_push($items, $applicationItems);
+                }
 
                 if (Yii::app()->authManager->checkAccess('admin', Yii::app()->user->id)) {
                     array_push($items, $adminItems);
