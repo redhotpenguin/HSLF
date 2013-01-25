@@ -3,8 +3,6 @@
 $dotcloud_conf = "/home/dotcloud/environment.json";
 
 if (file_exists($dotcloud_conf)) {     // prod server conf
-    $yiiDebug = true;
-
     $env = json_decode(file_get_contents($dotcloud_conf), true);
     $dbname = 'mobile_advocacy_platform';
     
@@ -59,10 +57,11 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $rabbitMQLogin = 'guest';
     $rabbitMQPassword = 'guest';
 
-    $yiiDebug = true;
+    defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
+    define('YII_DEBUG', TRUE);
+
 }
 
-define('YII_DEBUG', $yiiDebug);
 
 
 // DB Config
