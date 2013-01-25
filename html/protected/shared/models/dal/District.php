@@ -18,23 +18,45 @@ class District extends CActiveRecord {
 
     // district types. Please update $labelledDistrictTypes as well if you modify this list
     public static $district_types = array(
-        'STATEWIDE',
+        // source: http://cicero.azavea.com/docs/district_type.html
+        // legislative districts:
+        //nationals
+        'NATIONAL_EXEC',
         'NATIONAL_UPPER',
         'NATIONAL_LOWER',
+        // statewide
+        'STATE_EXEC',
         'STATE_UPPER',
         'STATE_LOWER',
+        // locals
         'LOCAL_EXEC',
-        'PLACE',
-        'COUNTY',
-        'SCHOOL',
+        'LOCAL',
+        // non legislative districts:
         'CENSUS',
+        'COUNTY',
+        'JUDICIAL',
         'POLICE',
         'SCHOOL',
+        'WATERSHED'
     );
     private static $labelledDistrictTypes = array(
-        'STATEWIDE' => 'Statewide',
-        'PLACE' => 'Place',
+        'NATIONAL_EXEC' => 'National Executive',
+        'NATIONAL_UPPER' => 'National Upper',
+        'NATIONAL_LOWER' => 'National Upper',
+        // statewide
+        'STATE_EXEC' => 'Statewide Executive',
+        'STATE_UPPER' => 'Statewide Upper',
+        'STATE_LOWER' => 'Statewide Lower',
+        // locals
+        'LOCAL_EXEC' => 'Local Executive',
+        'LOCAL' => 'Local',
+        // non legislative districts:
+        'CENSUS' => 'Census',
         'COUNTY' => 'County',
+        'SCHOOL' => 'School',
+        'JUDICIAL' => 'Judicial',
+        'POLICE' => 'Police',
+        'WATERSHED' => 'Watershed'
     );
 
     /**
@@ -120,8 +142,6 @@ class District extends CActiveRecord {
                         // 'defaultOrder' => 'state_id ASC')
                 ));
     }
-
- 
 
     /**
      * Executed before a District model is saved or updated
