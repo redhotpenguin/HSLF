@@ -14,7 +14,7 @@ class TenantCommand extends EConsoleCommand {
 
         $uaLink = $this->promptString('Urban Airship Link');
 
-        $uaApiKey = $this->promptString('Urban Airship Application key:');
+        $uaApiKey = $this->promptString('Urban Airship Application key');
 
         $uaApiSecret = $this->promptString('Urban Airship Application secret(master)');
 
