@@ -32,7 +32,7 @@ class ItemController extends Controller {
                 'roles' => array('readBallotItem'),
             ),
             array('allow',
-                'actions' => array('create'),
+                'actions' => array('create','ajax', 'upload'),
                 'roles' => array('createBallotItem'),
             ),
             array('allow',
