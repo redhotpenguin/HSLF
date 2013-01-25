@@ -10,8 +10,6 @@ class TenantCommand extends EConsoleCommand {
 
         $email = $this->promptString('Email');
 
-        $siteUrl = $this->promptString('Site URL');
-
         $webAppUrl = $this->promptString('Web App URL');
 
         $uaLink = $this->promptString('Urban Airship Link');
@@ -37,7 +35,6 @@ class TenantCommand extends EConsoleCommand {
 
         $tenant->name = $name;
         $tenant->display_name = $displayName;
-        $tenant->site_url = $siteUrl;
         $tenant->web_app_url = $webAppUrl;
         $tenant->creation_date = date('Y-m-d h:i:s');
         $tenant->email = $email;
