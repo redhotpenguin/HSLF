@@ -9,40 +9,43 @@ class MobileUserAPITest extends CDbTestCase {
 
     private $mobileUserAPI = "http://www.voterguide.com/api/1/MobileUsers";
     // private $mobileUserAPI = "http://23.24.252.203/api/1/MobileUsers";
-
-   //private $mobileUserAPI = "http://mobileadvocacy-winningmark.dotcloud.com/api/1/MobileUsers";
+    //  private $mobileUserAPI = "http://mobileadvocacy-winningmark.dotcloud.com/api/1/MobileUsers";
+    // private $mobileUserAPI = "http://productionmap1-winningmark.dotcloud.com/api/2/MobileUsers";
     private $tenant1 = array(
+        // our oregon
         'username' => "52356", // api key
         'password' => "PqiW_IDKL3mFi_OirCqOe-u"// api secret
+            // afscme
+            // 'username' => "70104", // api key
+            // 'password' => "42f5d8adb22b03fc74e52ab24d7eb64b"// api secret
     );
 
+    public function testCreateUser() {
+        $response = "failure";
 
-      public function testCreateUser() {
-      $response = "failure";
+        $userData = array(
+            "name" => "jonas",
+            "device_type" => "android",
+        );
 
-      $userData = array(
-      "name" => "jonas",
-      "device_type" => "android",
-      );
+        $jsonUserData = json_encode($userData);
 
-      $jsonUserData = json_encode($userData);
+        $data = array(
+            "user" => $jsonUserData
+        );
 
-      $data = array(
-      "user" => $jsonUserData
-      );
-
-      $requestResult = $this->post($this->tenant1, $data, $this->mobileUserAPI, $httpCode);
-
-
-      $response = $requestResult->results;
-
-      $this->log($response);
-
-      $this->assertEquals($httpCode, 200);
+        $requestResult = $this->post($this->tenant1, $data, $this->mobileUserAPI, $httpCode);
 
 
-      $this->assertNotEmpty($response);
-      }
+        $response = $requestResult->results;
+
+        $this->log($response);
+
+        $this->assertEquals($httpCode, 200);
+
+
+        $this->assertNotEmpty($response);
+    }
 
     public function testUpdateUser() {
 
@@ -119,7 +122,6 @@ class MobileUserAPITest extends CDbTestCase {
 
         $this->assertEquals("user not found", $response->error);
     }
-
 
     public function testUpdateUserExistingFields() {
 
