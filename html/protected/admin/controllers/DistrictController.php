@@ -157,12 +157,15 @@ class DistrictController extends Controller {
      * Dynamic Dropdown for state/district
      */
     public function actionDynamicDistrict() {
+        if (!isset($_POST['model']))
+            return;
+
 
         $model = $_GET['model'];
         $params = array(
             'order' => 'number ASC',
         );
-        
+
 
         $data = District::model()->findAllByAttributes(array('state_id' => $_POST[$model]['state_id']), $params);
 
@@ -175,6 +178,9 @@ class DistrictController extends Controller {
 
     // print a list of district tag <select>
     public function actionDynamicDistrictNumber() {
+
+        if (!isset($_POST['state_id']) || !isset($_POST['district_type']))
+            return;
 
         $state_id = $_POST['state_id'];
         $district_type = $_POST['district_type'];
@@ -204,7 +210,7 @@ class DistrictController extends Controller {
         $csv = new ESCVExport(District::model()->findAll());
 
         $content = $csv->toCSV();
-        
+
         Yii::app()->getRequest()->sendFile('districts.csv', $content, "text/csv", false);
     }
 

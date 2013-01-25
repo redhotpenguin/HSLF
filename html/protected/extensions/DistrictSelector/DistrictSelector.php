@@ -30,13 +30,12 @@ class DistrictSelector extends CInputWidget {
             $this->StateSelector($this->district->state_id);
             $this->DistrictTypeSelector($this->district->type);
             $this->DistrictNumberSelector($this->district->state_id, ($this->district->type), $this->district->id);
-            
         } else { // new model
             $this->StateSelector();
             $this->DistrictTypeSelector();
             $this->DistrictNumberSelector();
         }
-        
+
         echo '</div>';
     }
 
@@ -47,7 +46,7 @@ class DistrictSelector extends CInputWidget {
     private function StateSelector($selected = null) {
         echo '<div class="span4"> <b>State:</b><br/>';
 
-        $state_list = CHtml::listData($this->state_model->findAll(array('order'=>'name ASC')), 'id', 'name');
+        $state_list = CHtml::listData($this->state_model->findAll(array('order' => 'name ASC')), 'id', 'name');
         $options = array(
             'tabindex' => '0',
             'empty' => '(not set)',
@@ -83,8 +82,11 @@ class DistrictSelector extends CInputWidget {
     }
 
     private function DistrictNumberSelector($state_id = 1, $district_type = '', $selected = null) {
-        if($district_type == ''){
-            $district_type = District::$district_types[0];
+        if ($district_type == '') {
+            // get the first value of the $district_types associative array
+            reset(District::$district_types);
+            $fk = key(District::$district_types);
+            $district_type = District::$district_types[$fk];
         }
         echo '<div class="span4"> <b>District:</b><span class="required">*</span><br/>';
         $district_number_list = District::model()->getTagDistrictsByStateAndType($state_id, $district_type);

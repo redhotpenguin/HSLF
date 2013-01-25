@@ -16,30 +16,8 @@
  */
 class District extends CActiveRecord {
 
-    // district types. Please update $labelledDistrictTypes as well if you modify this list
+
     public static $district_types = array(
-        // source: http://cicero.azavea.com/docs/district_type.html
-        // legislative districts:
-        //nationals
-        'NATIONAL_EXEC',
-        'NATIONAL_UPPER',
-        'NATIONAL_LOWER',
-        // statewide
-        'STATE_EXEC',
-        'STATE_UPPER',
-        'STATE_LOWER',
-        // locals
-        'LOCAL_EXEC',
-        'LOCAL',
-        // non legislative districts:
-        'CENSUS',
-        'COUNTY',
-        'JUDICIAL',
-        'POLICE',
-        'SCHOOL',
-        'WATERSHED'
-    );
-    private static $labelledDistrictTypes = array(
         'NATIONAL_EXEC' => 'National Executive',
         'NATIONAL_UPPER' => 'National Upper',
         'NATIONAL_LOWER' => 'National Upper',
@@ -181,7 +159,7 @@ class District extends CActiveRecord {
      * @return array array of type options
      */
     public function getTypeOptions() {
-        return self::$labelledDistrictTypes;
+        return self::$district_types;
     }
 
     /**
@@ -190,7 +168,7 @@ class District extends CActiveRecord {
      * @return true or false
      */
     public static function isValidDistrictType($district_type) {
-        return in_array($district_type, self::$district_types);
+        return key_exists($district_type, self::$district_types);
     }
 
     /*
