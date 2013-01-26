@@ -11,7 +11,7 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $dbpass = $env['DOTCLOUD_DB_SQL_PASSWORD'];
     $dbport = $env['DOTCLOUD_DB_SQL_PORT'];
 
-    $mongodbhost = $env['DOTCLOUD_DATA_MONGODB_URL']; // connection string
+    $mongodbhost = $env['DOTCLOUD_DATA_MONGODB_URL'].'/?replicaSet=productionmap.data'; // connection string
         
     $mongodbname = "mobile_advocacy_platform";
     $mongodbuser = "map_user"; // mongo user is set using the mongo shell in dotcloud
