@@ -110,7 +110,9 @@ class MobileUserController extends Controller {
     public function actionGetCount() {
         $attributes = $this->parseSearchAttributes($_GET); // @todo: filter $_GET
 
-        $count = MobileUser::model()->find($attributes)->count();
+        $mobileUserModel = MobileUser::model();
+        $mobileUserModel->setReadPreference(MongoClient::RP_SECONDARY_PREFERRED);
+        $count = $mobileUserModel->find($attributes)->count();
         echo $count;
         die;
     }
@@ -169,12 +171,15 @@ class MobileUserController extends Controller {
 
         $fp = fopen('php://temp', 'w');
 
+        $mobileUserModel = MobileUser::model();
+        $mobileUserModel->setReadPreference(MongoClient::RP_SECONDARY_PREFERRED);
 
-        $headers = MobileUser::model()->getAttributes();
+        $headers = $mobileUserModel->getAttributes();
 
         fputcsv($fp, $headers);
 
-        $mobileUserCursor = MobileUser::model()->find($searchAttributes);
+        $mobileUserCursor = $mobileUserModel->find($searchAttributes);
+
         foreach ($mobileUserCursor as $mobileUser) {
             $row = array();
             foreach ($headers as $head => $friendlyHeadName) {
@@ -213,7 +218,7 @@ class MobileUserController extends Controller {
         $searchAttributes = array(
             "tags", "device_type", "push_only", "districts"
         );
-        
+
         // strip out key/values that are not in $searchAttributes
         // remove keys with empty values
         foreach ($data as $k => $v) {
