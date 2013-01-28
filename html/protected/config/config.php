@@ -5,24 +5,27 @@ $dotcloud_conf = "/home/dotcloud/environment.json";
 if (file_exists($dotcloud_conf)) {     // prod server conf
     $env = json_decode(file_get_contents($dotcloud_conf), true);
     $dbname = 'mobile_advocacy_platform';
-    
+
     $dbhost = $env['DOTCLOUD_DB_SQL_HOST'];
     $dbuser = $env['DOTCLOUD_DB_SQL_LOGIN'];
     $dbpass = $env['DOTCLOUD_DB_SQL_PASSWORD'];
     $dbport = $env['DOTCLOUD_DB_SQL_PORT'];
-    
 
-    if( (int) $env['DOTCLOUD_DATA_INSTANCES'] > 1)
-        $mongodbhost = $env['DOTCLOUD_DATA_MONGODB_URL'].'/?replicaSet=productionmap.data'; 
-    else
+
+    if ($env['DOTCLOUD_PROJECT'] === 'productionmap') {     // production specific config
+        $mongodbhost = $env['DOTCLOUD_DATA_MONGODB_URL'] . '/?replicaSet=productionmap.data';
+        $siteurl = 'http://www.winningmarkmobile.com';
+    } else { // sandbox specific config
         $mongodbhost = $env['DOTCLOUD_DATA_MONGODB_URL'];
-        
+        $siteurl = $env['DOTCLOUD_WWW_HTTP_URL'];
+    }
+
     $mongodbname = "mobile_advocacy_platform";
     $mongodbuser = "map_user"; // mongo user is set using the mongo shell in dotcloud
     $mongdbpass = "jeMEwRArEKwBg7Q"; // same as above
     $mongodbacklevel = 1;
 
-    $siteurl = $env['DOTCLOUD_WWW_HTTP_URL'];
+
     $uploaddir = '/../content/img'; // physical path
     $uploadpath = '/content/img'; // wwww path
     $shareurl = 'http://vote.ouroregon.org';
@@ -35,6 +38,7 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $rabbitMQPassword = $env['DOTCLOUD_QUEUE_AMQP_PASSWORD'];
 
     set_include_path(get_include_path() . PATH_SEPARATOR . '/home/dotcloud/php-env/share/php');
+    
 } else {    //dev server conf
     $dbhost = '127.0.0.1';
     $dbname = 'mobile_advocacy_platform';
@@ -48,8 +52,8 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $mongdbpass = "admin";
     $mongodbacklevel = 1;
 
-    $siteurl =  ( isset($_SERVER['SERVER_NAME'])? 'http://'.$_SERVER['SERVER_NAME']:'http://www.voterguide.com' ) ; // necessary since SERVER_NAME is not set during unit tests
-    
+    $siteurl = ( isset($_SERVER['SERVER_NAME']) ? 'http://' . $_SERVER['SERVER_NAME'] : 'http://www.voterguide.com' ); // necessary since SERVER_NAME is not set during unit tests
+
     $uploaddir = '/../content/img'; // physical path
     $uploadpath = '/content/img'; // wwww path
     $shareurl = 'http://vote.ouroregon.org';
@@ -61,9 +65,8 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $rabbitMQLogin = 'guest';
     $rabbitMQPassword = 'guest';
 
-    defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
+    defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL', 3);
     define('YII_DEBUG', TRUE);
-
 }
 
 
