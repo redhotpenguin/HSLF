@@ -28,7 +28,7 @@ class MobileUser extends ActiveMongoDocument {
             'tags' => 'Tags',
             'name' => 'Name',
             'email' => 'Email',
-            'home_address' => 'Home address',
+            'home_address' => 'Home Address',
             'phone_number' => 'Phone Number',
             'registration_date' => 'Registration Date',
             'last_connection_date' => 'Last Connection date',
