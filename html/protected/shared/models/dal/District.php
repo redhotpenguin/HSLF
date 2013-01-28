@@ -20,7 +20,7 @@ class District extends CActiveRecord {
     public static $district_types = array(
         'NATIONAL_EXEC' => 'National Executive',
         'NATIONAL_UPPER' => 'National Upper',
-        'NATIONAL_LOWER' => 'National Upper',
+        'NATIONAL_LOWER' => 'National Lower',
         // statewide
         'STATE_EXEC' => 'Statewide Executive',
         'STATE_UPPER' => 'Statewide Upper',

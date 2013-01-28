@@ -2,7 +2,7 @@
 
 $dotcloud_conf = "/home/dotcloud/environment.json";
 
-if (file_exists($dotcloud_conf)) {     // prod server conf
+if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $env = json_decode(file_get_contents($dotcloud_conf), true);
     $dbname = 'mobile_advocacy_platform';
 
@@ -29,7 +29,6 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $uploaddir = '/../content/img'; // physical path
     $uploadpath = '/content/img'; // wwww path
     $shareurl = 'http://vote.ouroregon.org';
-
 
     $rabbitMQHost = $env['DOTCLOUD_QUEUE_HTTP_HOST'];
     $rabbitMQPort = $env['DOTCLOUD_QUEUE_AMQP_PORT'];
