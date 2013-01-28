@@ -10,8 +10,12 @@ if (file_exists($dotcloud_conf)) {     // prod server conf
     $dbuser = $env['DOTCLOUD_DB_SQL_LOGIN'];
     $dbpass = $env['DOTCLOUD_DB_SQL_PASSWORD'];
     $dbport = $env['DOTCLOUD_DB_SQL_PORT'];
+    
 
-    $mongodbhost = $env['DOTCLOUD_DATA_MONGODB_URL'].'/?replicaSet=productionmap.data'; // connection string
+    if( (int) $env['DOTCLOUD_DATA_INSTANCES'] > 1)
+        $mongodbhost = $env['DOTCLOUD_DATA_MONGODB_URL'].'/?replicaSet=productionmap.data'; 
+    else
+        $mongodbhost = $env['DOTCLOUD_DATA_MONGODB_URL'];
         
     $mongodbname = "mobile_advocacy_platform";
     $mongodbuser = "map_user"; // mongo user is set using the mongo shell in dotcloud
