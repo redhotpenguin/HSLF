@@ -20,17 +20,18 @@ class MobileUser extends ActiveMongoDocument {
 
     public function getAttributes($names = NULL) {
         return array(
-        'tenant_id' => 'Tenant ID',
-        'device_type' => 'Device Type',
-        'ua_identifier' => 'Urban Airship Identifier',
-        'districts' => 'Districts',
-        'action_taken' => 'Action Taken',
-        'tags' => 'Tags',
-        'name' => 'Name',
-        'email' => 'Email',
-        'phone_number' => 'Phone Number',
-        'registration_date' => 'Registration Date',
-        'last_connection_date' => 'Last Connection date',
+            'tenant_id' => 'Tenant ID',
+            'device_type' => 'Device Type',
+            'ua_identifier' => 'Urban Airship Identifier',
+            'districts' => 'Districts',
+            'action_taken' => 'Action Taken',
+            'tags' => 'Tags',
+            'name' => 'Name',
+            'email' => 'Email',
+            'home_address' => 'Home address',
+            'phone_number' => 'Phone Number',
+            'registration_date' => 'Registration Date',
+            'last_connection_date' => 'Last Connection date',
         );
     }
 
