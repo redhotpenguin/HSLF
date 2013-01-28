@@ -37,14 +37,14 @@
     </head>
 
     <body>
+        <div id="menu-top" class="clearfix">
+            <?php
+            if (Yii::app()->user->id):
+                $tenant = Tenant::model()->findByPk(Yii::app()->user->tenant_id);
+                ?>
 
-        <?php
-        if (Yii::app()->user->id):
-            $tenant = Tenant::model()->findByPk(Yii::app()->user->tenant_id);
-            ?>
 
 
-            <div id="menu-top" class="clearfix">
                 <?php
                 $publishingItems = array(
                     'class' => 'bootstrap.widgets.BootMenu',
@@ -129,27 +129,30 @@
                 }
 
                 array_push($items, $loginItems);
+                $brand = $tenant->display_name;
 
-                $this->widget('bootstrap.widgets.BootNavbar', array(
-                    'brand' => $tenant->display_name,
-                    'brandUrl' => '/admin/',
-                    'id' => 'main_menu',
-                    'items' => $items,
+            else:
+                $items = array();
+                $brand = 'Winning Mark Mobile';
+            endif;
+
+            $this->widget('bootstrap.widgets.BootNavbar', array(
+                'brand' => $brand,
+                'brandUrl' => '/admin/',
+                'id' => 'main_menu',
+                'items' => $items,
+            ));
+            ?>
+        </div>
+
+        <div id="container" class="container">
+
+            <div id="wrap">
+                <?php
+                $this->widget('bootstrap.widgets.BootBreadcrumbs', array(
+                    'links' => $this->breadcrumbs,
+                    'homeLink' => CHtml::link('Dashboard', array('./'))
                 ));
-                ?>
-            </div>
-
-            <div id="container" class="container">
-
-                <div id="wrap">
-                    <?php
-                    $this->widget('bootstrap.widgets.BootBreadcrumbs', array(
-                        'links' => $this->breadcrumbs,
-                        'homeLink' => CHtml::link('Dashboard', array('./'))
-                    ));
-
-
-                endif;
                 ?><!-- breadcrumbs -->
 
 

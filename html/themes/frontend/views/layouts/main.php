@@ -37,13 +37,24 @@
 
     <body>
 
- 
+
         <div id="menu-top" class="clearfix">
             <?php
             $this->widget('bootstrap.widgets.BootNavbar', array(
                 'brand' => Yii::app()->name,
                 'brandUrl' => '/',
-                'id' => 'main_menu'
+                'id' => 'main_menu',
+                'items' => array(
+                    array(
+                        'class' => 'bootstrap.widgets.BootMenu',
+                        'htmlOptions' => array('class' => 'pull-right'),
+                        'items' => array(
+                            '---',
+                            array(
+                                'label' => 'Admin',
+                                'url' => '/admin',
+                            ),
+                    ))),
             ));
             ?>
         </div>
