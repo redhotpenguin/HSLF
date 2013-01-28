@@ -62,6 +62,8 @@ abstract class ActiveMongoDocument extends CModel {
 
     /**
      * Return an instance of this class
+     * @param string $className active record class name.
+     * @return ActiveMongoDocument the static model class
      */
     public static function model($className = __CLASS__) {
         if (self::$model == null)
@@ -339,6 +341,17 @@ abstract class ActiveMongoDocument extends CModel {
      */
     public function onAfterFind($event) {
         $this->raiseEvent('onAfterFind', $event);
+    }
+
+    /**
+     * Set the read preference (at the collection level)
+     * When using MongoClient::RP_PRIMARY (default), tags must not be used (see bug - PHP-668)
+     * @param string $readPreferenceread Preference - (must be a valid PECL Mongo constant)
+     * @param array  $tags An array of zero or more tag sets, where each tag set is itself an array of criteria used to match tags on replica set members.
+     * @return boolean true on success - false otherwise
+     */
+    public function setReadPreference($readPreference = MongoClient::RP_PRIMARY, array $tags = array()) {
+        return $this->collection->setReadPreference($readPreference, $tags);
     }
 
 }
