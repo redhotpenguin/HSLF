@@ -8,16 +8,14 @@
  * @property string $username
  * @property string $password
  * @property string $email
- * $property integer $tenant_id
  */
-class User extends CBaseActiveRecord {
+class User extends CActiveRecord {
 
     const ADMIN_ROLE = 'admin';
     const PUBLISHER_ROLE = 'publisher';
 
     public $repeat_password;
     public $initial_password;
-    
     public $role;
 
     /**
@@ -47,7 +45,7 @@ class User extends CBaseActiveRecord {
             array('email', 'email'),
             array('username, email', 'length', 'max' => 128),
             array('password', 'length', 'max' => 40),
-            array('tenant_id, role', 'safe'),
+            array('role', 'safe'),
             array('id, username, email', 'safe', 'on' => 'search'),
         );
     }
@@ -56,7 +54,10 @@ class User extends CBaseActiveRecord {
      * @return array relational rules.
      */
     public function relations() {
-        return array();
+        return array(
+            'tenants' => array(self::MANY_MANY, 'Tenant',
+                'tenant_user(user_id,tenant_id)')
+        );
     }
 
     /**
@@ -113,8 +114,6 @@ class User extends CBaseActiveRecord {
             $this->password = $password;
         }
 
-        //    $this->tenant_id  = Yii::app()->user->tenant_id;
-
         return parent::beforeSave();
     }
 
@@ -144,8 +143,7 @@ class User extends CBaseActiveRecord {
 
     public function behaviors() {
         return array(
-            'UserRbacBehavior' => array( 'class' => 'UserRbacBehavior'),
-            'MultiTenant' => array( 'class' => 'MultiTenantBehavior')
+            'UserRbacBehavior' => array('class' => 'UserRbacBehavior'),
         );
     }
 

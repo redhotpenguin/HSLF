@@ -18,8 +18,7 @@ return array(
     'runtimePath' => $backend . '/runtime',
     'name' => 'Admin Dashboard - Winning Mark Mobile ',
     // preloading 'log' component
-    'preload' => array(
-// 'log',
+    'preload' => array('log',
         'bootstrap'
     ), // preload the bootstrap component),
 // autoloading model and component classes
@@ -36,6 +35,22 @@ return array(
     'modules' => array(),
     // application components
     'components' => array(
+        'log' => array(
+            'class' => 'CLogRouter',
+            'routes' => array(
+                array(
+                    'class' => 'CWebLogRoute',
+                    'levels' => 'trace,info,error,warning',
+                    'filter' => array(
+                        'class' => 'CLogFilter',
+                        'prefixSession' => true,
+                        'prefixUser' => false,
+                        'logUser' => false,
+                        'logVars' => array(),
+                    ),
+                ),
+        ))
+        ,
         'user' => array(
 // enable cookie-based authentication
             'allowAutoLogin' => true,

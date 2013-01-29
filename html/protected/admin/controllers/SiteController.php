@@ -11,13 +11,13 @@ class SiteController extends Controller {
         
         //user is already authenticated
         if (Yii::app()->user->id) {
-            $data = array(
-                'total_item_number' => Item::model()->count(),
-                'total_user_number' => MobileUser::model()->count(),
-                'tenant' => Tenant::model()->findByAttributes(array("id" => Yii::app()->user->tenant_id))
+            $this->layout = 'home';
+            $options = array(
+                'tenants' => $tenants = User::model()->findByPk( Yii::app()->user->id )->tenants
             );
-
-            $this->render('index', $data);
+            $this->render('home', $options);
+          
+           // $this->render('index');
         } else {
             $model = new LoginForm;
 
