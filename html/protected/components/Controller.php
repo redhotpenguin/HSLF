@@ -7,7 +7,7 @@
 class Controller extends CController {
     
     public function __construct($id){
-        logIt($_GET);
+       // logIt($_GET);
         parent::__construct($id);
         if(isset($_GET['tenant_name'])){
              Yii::app()->user->setCurrentUserTenant(($_GET['tenant_name']));

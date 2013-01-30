@@ -138,7 +138,7 @@
 
             $this->widget('bootstrap.widgets.BootNavbar', array(
                 'brand' => $brand,
-                'brandUrl' => '/admin/',
+                'brandUrl' => '/admin/'.$tenant->name,
                 'id' => 'main_menu',
                 'items' => $items,
             ));

@@ -8,10 +8,10 @@ class SiteController extends Controller {
      */
     public function actionIndex() {
         $data = null;
+        $this->layout = 'home';
 
         //user is already authenticated
         if (Yii::app()->user->id) {
-            $this->layout = 'home';
 
             $options = array(
                 'tenants' => $tenants = User::model()->findByPk(Yii::app()->user->id)->tenants
@@ -38,6 +38,7 @@ class SiteController extends Controller {
                 }
             }
             // display the login form
+
             $this->render('login', array('model' => $model));
         }
     }
@@ -99,7 +100,7 @@ class SiteController extends Controller {
      */
     public function actionLogout() {
         Yii::app()->user->logout();
-        $this->redirect(Yii::app()->homeUrl . 'admin/');
+        $this->redirect(Yii::app()->homeUrl . 'admin');
     }
 
     public function accessRules() {

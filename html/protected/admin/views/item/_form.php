@@ -1,9 +1,11 @@
 <?php
-if ($model->isNewRecord) {
+ echo $siteUrl = getSetting('site_url');
+ $tenant = Yii::app()->user->getCurrentTenant();
 
-    $ns = "var ns  = {site_url: '" . getSetting('site_url') . "',share_url: '" . getTenantSetting('web_app_url') . "' };";
+if ($model->isNewRecord) {
+    $ns = "var ns  = {site_url: '" . $siteUrl . "',share_url: '" . $tenant->web_app_url . "' };";
 } else {
-    $ns = "var ns  = {site_url: '" . getSetting('site_url') . "',share_url: '" . getTenantSetting('web_app_url') . "', item_id: " . $model->id . " };";
+    $ns = "var ns  = {site_url: '" . $siteUrl . "',share_url: '" . $tenant->web_app_url . "', item_id: " . $model->id . " };";
 }
 
 Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::POS_HEAD);
@@ -120,7 +122,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
         </div>
     </div>
 
- 
+
 
     <hr/>
 

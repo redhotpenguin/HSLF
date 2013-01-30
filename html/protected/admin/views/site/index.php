@@ -12,7 +12,7 @@ else:
 
 
     foreach ($tenants as $tenant) {
-        print_r($tenant->display_name);
+       echo CHtml::link($tenant->display_name, "admin/".$tenant->name);
         echo '<hr/>';
     }
 

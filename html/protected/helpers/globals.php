@@ -23,32 +23,6 @@ function setSetting($setting_name, $setting_value) {
 }
 
 /**
- * Retrieve tenant setting by option name and tenant id
- */
-function getTenantSetting($settingName, $tenantId = null ) {
-    
-    if($setting = getSetting($settingName)){
-        return $setting;
-    }
-
-    if($tenantId == null){ // get connected user's tenant id
-        $tenantId = Yii::app()->user->getCurrentTenantId();
-        if(!$tenantId){
-            return false;
-        }
-    }
-    
-    $tenant = Tenant::model()->findByPk($tenantId);
-    if($tenant && $tenant->hasAttribute($settingName)){
-        setSetting($settingName, $tenant->$settingName);
-        return $tenant->$settingName;
-    }
-    return false;
-}
-
-
-
-/**
  * Encapsulate Yii::app()->request->getPost()
  * @param  string $name POST field name
  * @return string return the POST field value
