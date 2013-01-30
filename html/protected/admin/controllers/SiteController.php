@@ -12,6 +12,7 @@ class SiteController extends Controller {
         //user is already authenticated
         if (Yii::app()->user->id) {
             $this->layout = 'home';
+
             $options = array(
                 'tenants' => $tenants = User::model()->findByPk(Yii::app()->user->id)->tenants
             );
@@ -42,11 +43,12 @@ class SiteController extends Controller {
     }
 
     public function actionHome() {
+        $tenant = Yii::app()->user->getCurrentTenant();
 
         $data = array(
             'total_item_number' => Item::model()->count(),
             'total_user_number' => MobileUser::model()->count(),
-            'tenant' => Tenant::model()->findByAttributes(array("id" => Yii::app()->user->getCurrentTenantId()))
+            'tenant' => $tenant
         );
         $this->render('home', $data);
     }

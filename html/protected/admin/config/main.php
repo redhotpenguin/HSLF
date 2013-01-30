@@ -18,9 +18,7 @@ return array(
     'runtimePath' => $backend . '/runtime',
     'name' => 'Admin Dashboard - Winning Mark Mobile ',
     // preloading 'log' component
-    'preload' => array('log',
-        'bootstrap'
-    ), // preload the bootstrap component),
+    'preload' => array('bootstrap'), // preload the bootstrap component),
 // autoloading model and component classes
     'import' => array(
         'ext.directmongosuite.components.*',
@@ -35,22 +33,23 @@ return array(
     'modules' => array(),
     // application components
     'components' => array(
-        'log' => array(
-            'class' => 'CLogRouter',
-            'routes' => array(
-                array(
-                    'class' => 'CWebLogRoute',
-                    'levels' => 'trace,info,error,warning',
-                    'filter' => array(
-                        'class' => 'CLogFilter',
-                        'prefixSession' => true,
-                        'prefixUser' => false,
-                        'logUser' => false,
-                        'logVars' => array(),
-                    ),
-                ),
-        ))
-        ,
+        /*
+          'log' => array(
+          'class' => 'CLogRouter',
+          'routes' => array(
+          array(
+          'class' => 'CWebLogRoute',
+          'levels' => 'trace,info,error,warning',
+          'filter' => array(
+          'class' => 'CLogFilter',
+          'prefixSession' => true,
+          'prefixUser' => false,
+          'logUser' => false,
+          'logVars' => array(),
+          ),
+          ),
+          ))
+          , */
         'user' => array(
 // enable cookie-based authentication
             'allowAutoLogin' => true,
@@ -62,23 +61,6 @@ return array(
             'class' => 'ext.bootstrap.components.Bootstrap', // assuming you extracted bootstrap under extensions
             'responsiveCss' => true,
         ),
-        'urlManager' => array(
-            'urlFormat' => 'path',
-            'showScriptName' => false,
-            // mapping
-            'rules' => array(
-                'admin' => 'site/index',
-                'admin/<tenant_name>' => 'site/home',
-                
-               'admin/<tenant_name>/<_controller>' => '<_controller>',
-                'admin/<tenant_name>/<_controller>/<_action>' => '<_controller>/<_action>',
-
-                
-                //'admin' => 'site/index',
-               // 'admin/<_controller>' => '<_controller>',
-                //'admin/<_controller>/<_action>' => '<_controller>/<_action>',
-            ),
-        ),
         'db' => array(
             'connectionString' => "pgsql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME,
             'emulatePrepare' => true,
@@ -86,6 +68,21 @@ return array(
             'password' => DB_PASS,
             'charset' => 'UTF-8',
             'schemaCachingDuration' => '60',
+        ),
+        'urlManager' => array(
+            'urlFormat' => 'path',
+            'showScriptName' => false,
+            // mapping
+            'rules' => array(
+                array(
+                    'class' => 'application.components.TenantUrlRule',
+                //        'connectionID' => 'db'
+                ),
+                'admin' => 'site/index',
+                'admin/<tenant_name>' => 'site/home',
+            //   'admin/<tenant_name>/<_controller>' => '<_controller>',
+            // 'admin/<tenant_name>/<_controller>/<_action>' => '<_controller>/<_action>',
+            ),
         ),
         'authManager' => array(
             'class' => 'CDbAuthManager',

@@ -33,7 +33,7 @@ class WebUser extends CWebUser {
 
         $tenant = Tenant::model()->findByAttributes(array('name' => $tenantName));
         if ($tenant == null)
-            die;
+            return;
 
 
         $user = User::model()->findByPk(Yii::app()->user->id);
@@ -42,14 +42,14 @@ class WebUser extends CWebUser {
             return;
 
         if ($user->belongsToTenant($tenant->id)) {
-            echo 123;
+            Yii::app()->params['current_tenant'] = $tenant;
         }
         else
-            die;
+            return;
     }
 
-    public function getCurrentTenantId() {
-        return Yii::app()->params['current_tenant_id'];
+    public function getCurrentTenant() {
+        return Yii::app()->params['current_tenant'];
     }
 
     /**

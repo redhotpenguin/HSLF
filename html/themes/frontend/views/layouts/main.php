@@ -51,7 +51,7 @@
                         'items' => array(
                             '---',
                             array(
-                                'label' => 'Admin',
+                                'label' => 'Login',
                                 'url' => '/admin',
                             ),
                     ))),
