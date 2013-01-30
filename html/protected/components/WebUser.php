@@ -29,7 +29,7 @@ class WebUser extends CWebUser {
      * @param string $tenant name
      * @todo: error check
      */
-    public function setUserCurrentTenant($tenantName) {
+    public function setCurrentUserTenant($tenantName) {
 
         $tenant = Tenant::model()->findByAttributes(array('name' => $tenantName));
 

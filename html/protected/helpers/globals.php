@@ -32,7 +32,7 @@ function getTenantSetting($settingName, $tenantId = null ) {
     }
 
     if($tenantId == null){ // get connected user's tenant id
-        $tenantId = Yii::app()->user->tenant_id;
+        $tenantId = Yii::app()->user->getCurrentTenantId();
         if(!$tenantId){
             return false;
         }
