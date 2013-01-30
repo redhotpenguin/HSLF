@@ -68,10 +68,17 @@ class DistrictSelector extends CInputWidget {
 
         $district_type_list = $this->district->getTypeOptions();
 
+        //  $url = Yii::app()->params['site_url'] . '/admin/district/dynamicdistrictnumber?model=' . $this->options['model_name'], //url to call.  
+
+        $tenant = Yii::app()->user->getCurrentTenant();
+
+        $url = $url = getSetting('site_url') . '/admin/' . $tenant->name . '/district/dynamicdistrictnumber?model=' . $this->options['model_name'];
+
+
         $options = array(
             'ajax' => array(
                 'type' => 'POST', //request type
-                'url' => Yii::app()->params['site_url'] . '/admin/district/dynamicdistrictnumber?model=' . $this->options['model_name'], //url to call.  
+                'url' => $url,
                 'update' => '#' . $this->field_id, //selector to update      
                 ));
 

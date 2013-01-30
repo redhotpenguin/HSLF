@@ -16,7 +16,6 @@ class TenantUrlRule extends CBaseUrlRule {
     public function createUrl($manager, $route, $params, $ampersand) {
         if ($this->currentTenant) {
             $tenantName = $this->currentTenant->name;
-
             $route = 'admin/' . $tenantName . '/' . $route;
             //  if (isset($params['id']))
             //   $route.= '?id=' . $params['id'];
@@ -28,7 +27,11 @@ class TenantUrlRule extends CBaseUrlRule {
                 }
             }
 
+
+            
             return $route;
+            
+            
         }
     }
 

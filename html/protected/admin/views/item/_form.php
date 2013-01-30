@@ -310,11 +310,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
 
     <?php
     if (!$model->isNewRecord) {
-
-        
-
-        
-      echo  $url = CHtml::normalizeUrl(array(
+        $url = CHtml::normalizeUrl(array(
                     'item/update',
                     'id' => $model->id,
                     'enctype' => 'multipart/form-data',
@@ -322,7 +318,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
         
 
         // CHtml::submitButton('Create');
-        echo CHtml::ajaxSubmitButton('Save', $this->createUrl($url), array(
+        echo CHtml::ajaxSubmitButton('Save', $url, array(
             'type' => 'POST',
             'update' => '#targetdiv',
             'beforeSend' => 'js:function(){
