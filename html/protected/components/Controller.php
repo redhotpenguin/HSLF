@@ -5,14 +5,13 @@
  * All controller classes for this application should extend from this base class.
  */
 class Controller extends CController {
-    
-    public function __construct($id){
-       // logIt($_GET);
-        parent::__construct($id);
-        if(isset($_GET['tenant_name'])){
-             Yii::app()->user->setCurrentUserTenant(($_GET['tenant_name']));
-        }
 
+    public function __construct($id) {
+        //    logIt($_GET);
+        parent::__construct($id);
+        if (isset($_GET['tenant_name']) && $_GET['tenant_name'] != 'logout') {
+            Yii::app()->user->setCurrentUserTenant(($_GET['tenant_name']));
+        }
     }
 
     /**
@@ -32,7 +31,5 @@ class Controller extends CController {
      * for more details on how to specify this property.
      */
     public $breadcrumbs = array();
-    
-
 
 }

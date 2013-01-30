@@ -47,7 +47,7 @@
                     '---',
                     array(
                         'label' => 'Logout (' . Yii::app()->user->name . ')',
-                        'url' => array('site/logout'),
+                        'url' => array('/admin/logout'),
                         'visible' => !Yii::app()->user->isGuest,
                 )),
             );

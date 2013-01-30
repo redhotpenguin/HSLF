@@ -76,7 +76,6 @@ return array(
             'rules' => array(
                 'admin' => 'site/index',
                 'admin/<tenant_name>' => 'site/home',
-                
                 'admin/<tenant_name>/<_controller>' => '<_controller>',
                 
                 'admin/<tenant_name>/<_controller>/<_action>' => '<_controller>/<_action>',

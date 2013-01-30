@@ -38,7 +38,6 @@ class SiteController extends Controller {
                 }
             }
             // display the login form
-
             $this->render('login', array('model' => $model));
         }
     }
@@ -99,8 +98,11 @@ class SiteController extends Controller {
      * Logs out the current user and redirect to homepage.
      */
     public function actionLogout() {
+        error_log("DUDE");
         Yii::app()->user->logout();
-        $this->redirect(Yii::app()->homeUrl . 'admin');
+        exit;
+
+        //  $this->redirect(Yii::app()->homeUrl . 'admin');
     }
 
     public function accessRules() {
