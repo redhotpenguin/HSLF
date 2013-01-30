@@ -98,11 +98,8 @@ class SiteController extends Controller {
      * Logs out the current user and redirect to homepage.
      */
     public function actionLogout() {
-        error_log("DUDE");
         Yii::app()->user->logout();
-        exit;
-
-        //  $this->redirect(Yii::app()->homeUrl . 'admin');
+        $this->redirect('/admin');
     }
 
     public function accessRules() {

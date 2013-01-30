@@ -44,11 +44,12 @@
                 'class' => 'bootstrap.widgets.BootMenu',
                 'htmlOptions' => array('class' => 'pull-right'),
                 'items' => array(
-                    '---',
-                    array(
-                        'label' => 'Logout (' . Yii::app()->user->name . ')',
-                        'url' => array('/admin/logout'),
-                        'visible' => !Yii::app()->user->isGuest,
+                    array('label' => 'Account (' . Yii::app()->user->name . ')', 'url' => '#', 'items' => array(
+                            array(
+                                'label' => 'Logout',
+                                'url' => array('/admin/logout'),
+                                'visible' => !Yii::app()->user->isGuest,
+                        ))
                 )),
             );
 
@@ -70,12 +71,12 @@
         <div id="container" class="container">
 
             <div id="wrap">
-<?php
-$this->widget('bootstrap.widgets.BootBreadcrumbs', array(
-    'links' => $this->breadcrumbs,
-    'homeLink' => CHtml::link('Dashboard', array('./'))
-));
-?><!-- breadcrumbs -->
+                <?php
+                $this->widget('bootstrap.widgets.BootBreadcrumbs', array(
+                    'links' => $this->breadcrumbs,
+                    'homeLink' => CHtml::link('Dashboard', array('./'))
+                ));
+                ?><!-- breadcrumbs -->
 
 
 
@@ -84,21 +85,21 @@ $this->widget('bootstrap.widgets.BootBreadcrumbs', array(
 
                         <div style="float:left;" class="span10">
 
-<?php echo $content; ?>
+                            <?php echo $content; ?>
 
                         </div>
 
                         <div style="float:left;" class="span2">
                             <div id="sidebar">
 
-<?php
-$this->widget('bootstrap.widgets.BootMenu', array(
-    'type' => 'tabs', // '', 'tabs', 'pills' (or 'list')
-    'stacked' => true, // whether this is a stacked menu
-    'items' => $this->menu,
-    'htmlOptions' => array('class' => 'nav nav-pills nav-stacked'),
-));
-?>
+                                <?php
+                                $this->widget('bootstrap.widgets.BootMenu', array(
+                                    'type' => 'tabs', // '', 'tabs', 'pills' (or 'list')
+                                    'stacked' => true, // whether this is a stacked menu
+                                    'items' => $this->menu,
+                                    'htmlOptions' => array('class' => 'nav nav-pills nav-stacked'),
+                                ));
+                                ?>
 
                             </div>
                         </div>

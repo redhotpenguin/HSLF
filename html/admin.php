@@ -16,4 +16,5 @@ $yii =Yii::createWebApplication($config);
 
 //$yii->cache->flush();
 
+
 $yii->run();
