@@ -44,11 +44,12 @@
                 'class' => 'bootstrap.widgets.BootMenu',
                 'htmlOptions' => array('class' => 'pull-right'),
                 'items' => array(
-                    array('label' => 'Account (' . Yii::app()->user->name . ')', 'url' => '#', 'items' => array(
+                    array('label' => 'Account (' . Yii::app()->user->name . ')', 'url' => '#',
+                        'visible' => !Yii::app()->user->isGuest,
+                        'items' => array(
                             array(
                                 'label' => 'Logout',
-                                'url' => array('/admin/logout'),
-                                'visible' => !Yii::app()->user->isGuest,
+                                'url' => '/admin/logout',
                         ))
                 )),
             );
@@ -56,8 +57,6 @@
 
             $items = array();
             array_push($items, $loginItems);
-
-
 
             $this->widget('bootstrap.widgets.BootNavbar', array(
                 'brand' => "Winning Mark Mobile",
@@ -77,8 +76,6 @@
                     'homeLink' => CHtml::link('Dashboard', array('./'))
                 ));
                 ?><!-- breadcrumbs -->
-
-
 
                 <div id="main"  class="container clear-top" >
                     <div class="row">

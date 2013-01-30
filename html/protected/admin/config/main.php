@@ -74,6 +74,7 @@ return array(
             'showScriptName' => false,
             // mapping
             'rules' => array(
+                'admin/logout' => 'site/logout',
                 'admin' => 'site/index',
                 'admin/<tenant_name>' => 'site/home',
                 'admin/<tenant_name>/<_controller>' => '<_controller>',

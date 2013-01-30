@@ -40,7 +40,7 @@
         <div id="menu-top" class="clearfix">
             <?php
             if (Yii::app()->user->id):
-                $tenant = Yii::app()->user->getCurrentTenant() ;
+                $tenant = Yii::app()->user->getCurrentTenant();
                 ?>
 
 
@@ -109,11 +109,16 @@
                     'htmlOptions' => array('class' => 'pull-right'),
                     'items' => array(
                         '---',
-                        array(
-                            'label' => 'Logout (' . Yii::app()->user->name . ')',
-                            'url' => array('site/logout'),
-                            'visible' => !Yii::app()->user->isGuest,
-                    )),
+                        array('label' => 'Account (' . Yii::app()->user->name . ')', 'url' => '#', 'items' => array(
+                                array(
+                                    'label' => 'My Projects',
+                                    'url' => '/admin/',
+                                ),
+                                array(
+                                    'label' => 'Logout',
+                                    'url' => '/admin/logout',
+                                )
+                        ))),
                 );
 
                 // build menu options based on user privilege level
@@ -138,7 +143,7 @@
 
             $this->widget('bootstrap.widgets.BootNavbar', array(
                 'brand' => $brand,
-                'brandUrl' => '/admin/'.$tenant->name,
+                'brandUrl' => '/admin/' . $tenant->name,
                 'id' => 'main_menu',
                 'items' => $items,
             ));
