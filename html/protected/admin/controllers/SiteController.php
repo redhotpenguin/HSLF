@@ -46,9 +46,8 @@ class SiteController extends Controller {
         $data = array(
             'total_item_number' => Item::model()->count(),
             'total_user_number' => MobileUser::model()->count(),
-            'tenant' => Tenant::model()->findByAttributes(array("id" => Yii::app()->user->tenant_id))
+            'tenant' => Tenant::model()->findByAttributes(array("id" => Yii::app()->user->getCurrentTenantId()))
         );
-
         $this->render('home', $data);
     }
 

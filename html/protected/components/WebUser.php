@@ -23,17 +23,22 @@ class WebUser extends CWebUser {
         parent::login($identity, $duration);
     }
 
-    public function setSessionTenantByTenantName($tenantName) {
-        
-        $tenant = Tenant::model()->findByAttributes( array('name' => $tenantName)  );
-        
-        error_log($tenant->id);
-        
+    /**
+     * set the user current tenant
+     * Does not use $_SESSION
+     * @param string $tenant name
+     * @todo: error check
+     */
+    public function setUserCurrentTenant($tenantName) {
+
+        $tenant = Tenant::model()->findByAttributes(array('name' => $tenantName));
 
 
-    
-          $this->setState('tenant_id', 1);
-    
+        Yii::app()->getParams()->current_tenant_id = $tenant->id;
+    }
+
+    public function getCurrentTenantId() {
+        return Yii::app()->params['current_tenant_id'];
     }
 
     /**
@@ -51,7 +56,7 @@ class WebUser extends CWebUser {
         }
 
         $access = Yii::app()->getAuthManager()->checkAccess($operation, Yii::app()->user->id, $params);
-        if ($allowCaching) {            
+        if ($allowCaching) {
             $this->_access[$operation] = $access;
         }
 

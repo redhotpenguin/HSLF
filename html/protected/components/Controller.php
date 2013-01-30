@@ -8,10 +8,8 @@ class Controller extends CController {
     
     public function __construct($id){
         parent::__construct($id);
-    
-        // this should be in a route. here as a proof of concept
         if(isset($_GET['tenant_name'])){
-             Yii::app()->user->setSessionTenantByTenantName(($_GET['tenant_name']));
+             Yii::app()->user->setUserCurrentTenant(($_GET['tenant_name']));
         }
 
     }

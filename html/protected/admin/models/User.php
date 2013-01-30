@@ -9,7 +9,7 @@
  * @property string $password
  * @property string $email
  */
-class User extends CActiveRecord {
+class User extends CBaseActiveRecord {
 
     const ADMIN_ROLE = 'admin';
     const PUBLISHER_ROLE = 'publisher';

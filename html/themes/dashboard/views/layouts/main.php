@@ -40,7 +40,7 @@
         <div id="menu-top" class="clearfix">
             <?php
             if (Yii::app()->user->id):
-                $tenant = Tenant::model()->findByPk(Yii::app()->user->tenant_id);
+                $tenant = Tenant::model()->findByPk(Yii::app()->user->getCurrentTenantId() );
                 ?>
 
 
