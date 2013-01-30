@@ -56,7 +56,8 @@ class User extends CBaseActiveRecord {
     public function relations() {
         return array(
             'tenants' => array(self::MANY_MANY, 'Tenant',
-                'tenant_user(user_id,tenant_id)')
+                'tenant_user(user_id,tenant_id)'),
+            
         );
     }
 
@@ -143,7 +144,7 @@ class User extends CBaseActiveRecord {
 
     public function behaviors() {
         return array(
-            'UserRbacBehavior' => array('class' => 'UserRbacBehavior'),
+            'UserBehavior' => array('class' => 'UserBehavior'),
         );
     }
 

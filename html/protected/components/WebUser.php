@@ -32,9 +32,20 @@ class WebUser extends CWebUser {
     public function setCurrentUserTenant($tenantName) {
 
         $tenant = Tenant::model()->findByAttributes(array('name' => $tenantName));
+        if ($tenant == null)
+            die;
 
 
-        Yii::app()->getParams()->current_tenant_id = $tenant->id;
+        $user = User::model()->findByPk(Yii::app()->user->id);
+
+        if ($user == null)
+            return;
+
+        if ($user->belongsToTenant($tenant->id)) {
+            echo 123;
+        }
+        else
+            die;
     }
 
     public function getCurrentTenantId() {

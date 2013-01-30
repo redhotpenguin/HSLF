@@ -1,6 +1,6 @@
 <?php
 
-class UserRbacBehavior extends CActiveRecordBehavior {
+class UserBehavior extends CActiveRecordBehavior {
 
     /**
      * add or update the user role in table authassignement
@@ -53,6 +53,24 @@ class UserRbacBehavior extends CActiveRecordBehavior {
         }
 
         return $role;
+    }
+
+    /**
+     * Verify that a user belong to a  tenant
+     * @param integer $tenantId tenant id
+     * @return boolean
+     */
+    public function belongsToTenant($tenantId) {
+        $user = User::model()->with('tenants')->find(
+                array(
+                    'condition' => "user_id = :user_id AND tenant_id =:tenant_id",
+                    'params' => array(
+                        ':user_id' => $this->owner->id,
+                        ':tenant_id' => $tenantId
+                    )
+                ));
+        
+        return ($user != null);
     }
 
 }
