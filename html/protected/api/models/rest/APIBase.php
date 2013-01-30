@@ -11,9 +11,6 @@ abstract class APIBase implements IAPI {
     }
 
     public function getList($tenantId, $arguments = array()) {
-        $this->model->sessionTenantId = $tenantId;
-
-
         $relations = array();
         $attributes = array();
         $options = array('order' => $this->tableAlias . '.id desc');
@@ -55,7 +52,6 @@ abstract class APIBase implements IAPI {
     }
 
     public function getSingle($tenantId, $pkID, $arguments = array()) {
-        $this->model->sessionTenantId = $tenantId;
         $relations = array();
 
      

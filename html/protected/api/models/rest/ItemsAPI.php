@@ -15,7 +15,6 @@ class ItemsAPI implements IAPI {
      * @return array wrapped items
      */
     public function getList($tenantId, $arguments = array()) {
-        $this->item->sessionTenantId = $tenantId;
         $includes = array();
 
         $itemCriteria = new ItemCriteria($this->item);
@@ -63,7 +62,7 @@ class ItemsAPI implements IAPI {
      * @param string $address address
      */
     private function retrieveDistrictIdsByAddress($address) {
-        $geoCodingClientProvider = new GeoCodingClientProvider($this->item->sessionTenantId);
+        $geoCodingClientProvider = new GeoCodingClientProvider( Yii::app()->params['current_tenant_id'] );
 
         $geoCodingClient = $geoCodingClientProvider->getGeoCodingClient('cicero');
 
@@ -78,7 +77,7 @@ class ItemsAPI implements IAPI {
      * @param $long longitude
      */
     private function retrieveDistrictIdsByLatLong($lat, $long) {
-        $geoCodingClientProvider = new GeoCodingClientProvider($this->item->sessionTenantId);
+        $geoCodingClientProvider = new GeoCodingClientProvider( Yii::app()->params['current_tenant_id']  );
 
         $geoCodingClient = $geoCodingClientProvider->getGeoCodingClient('cicero');
 
@@ -93,7 +92,6 @@ class ItemsAPI implements IAPI {
      * @todo Refactor this function to use ItemCriteria?
      */
     public function getSingle($tenantId, $id, $arguments = array()) {
-        $this->item->sessionTenantId = $tenantId;
         // todo: find better way to do this
         $this->item = $this->item->with(array('district', 'recommendation', 'itemNews', 'party'))->findByPk($id);
 

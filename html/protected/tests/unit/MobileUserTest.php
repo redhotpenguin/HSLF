@@ -25,22 +25,26 @@ class MobileUserTest extends CDbTestCase {
     public function testFindByAttributes() {
         $email = "jonas.palmero@gmail.com";
         $mobileUser = $this->getMobileUser();
-        $mobileUser->sessionTenantId = 17;
+        Yii::app()->params['current_tenant_id'] = 17;
         $mobileUser->email = $email;
         $this->assertTrue($mobileUser->save());
 
         $mobileUser2 = $this->getMobileUser();
-        $mobileUser2->sessionTenantId = 18;
+        Yii::app()->params['current_tenant_id'] = 18;
         $result = $mobileUser2->findByAttributes(array("email" => $email));
 
         $this->assertNull($result);
-        $this->assertNotEmpty($mobileUser->findByAttributes(array("email" => $email)));
+
+
+        Yii::app()->params['current_tenant_id'] = 17;
+        $t = $mobileUser->findByAttributes(array("email" => $email));
+        $this->assertNotEmpty($t);
     }
 
     public function testSave() {
         $mUser = $this->getMobileUser();
         $mUser->name = "testSave";
-        $mUser->sessionTenantId = 13;
+        Yii::app()->params['current_tenant_id'] = 13;
         $saveResult = $mUser->save();
         if ($saveResult == false) {
             $this->log("testSaveError:");
@@ -53,13 +57,13 @@ class MobileUserTest extends CDbTestCase {
 
         // add a new mobile user
         $mobileUser = $this->getMobileUser();
-        $mobileUser->sessionTenantId = 2;
+        Yii::app()->params['current_tenant_id'] = 2;
         $mobileUser->name = "jonas palmero";
         $this->assertTrue($mobileUser->save());
 
         //
         $mobileUser2 = $this->getMobileUser();
-        $mobileUser2->sessionTenantId = 2;
+        Yii::app()->params['current_tenant_id'] = 2;
 
         error_log("updated $mobileUser->_id");
 
@@ -81,7 +85,7 @@ class MobileUserTest extends CDbTestCase {
     public function testDelete() {
 
         $mobileUser = $this->getMobileUser();
-        $mobileUser->sessionTenantId = 14;
+        Yii::app()->params['current_tenant_id'] = 14;
 
         $this->assertTrue($mobileUser->save());
 
@@ -92,7 +96,7 @@ class MobileUserTest extends CDbTestCase {
         $this->assertTrue($deleteResult);
 
         $t = $this->getMobileUser();
-        $t->sessionTenantId = 14;
+        Yii::app()->params['current_tenant_id'] = 14;
         $deletedUser = $t->findByPk($oid);
 
         $this->assertNull($deletedUser);
@@ -102,8 +106,7 @@ class MobileUserTest extends CDbTestCase {
         $result = false;
 
         $mUser = $this->getMobileUser();
-
-        $mUser->sessionTenantId = 3;
+        Yii::app()->params['current_tenant_id'] = 3;
         $mUser->tags = array("tag1", "tag2");
         $this->assertTrue($mUser->save());
         $oid = $mUser->_id;
@@ -140,17 +143,17 @@ class MobileUserTest extends CDbTestCase {
         $tenantId = 15;
 
         $mobileUser = $this->getMobileUser();
-        $mobileUser->sessionTenantId = $tenantId;
+        Yii::app()->params['current_tenant_id'] = $tenantId;
         $mobileUser->interests = "salad";
         $this->assertTrue($mobileUser->save());
 
         $mobileUser = $this->getMobileUser();
-        $mobileUser->sessionTenantId = $tenantId;
+        Yii::app()->params['current_tenant_id'] = $tenantId;
         $mobileUser->interests = "salad";
         $this->assertTrue($mobileUser->save());
 
         $test = $this->getMobileUser();
-        $test->sessionTenantId = 15;
+        Yii::app()->params['current_tenant_id'] = 15;
 
         $mobileUsers = $test->findAllByAttributes(array("interests" => "salad"));
 
@@ -159,7 +162,7 @@ class MobileUserTest extends CDbTestCase {
 
 
         $test = $this->getMobileUser();
-        $test->sessionTenantId = 1;
+        Yii::app()->params['current_tenant_id'] = 1;
         $mobileUsers = $test->findAllByAttributes(array("interests" => "salad", "tenant_id" => 15));
 
 
@@ -170,7 +173,7 @@ class MobileUserTest extends CDbTestCase {
 
         $mUser = $this->getMobileUser();
 
-        $mUser->sessionTenantId = 1;
+        Yii::app()->params['current_tenant_id'] = 1;
         $mUser->device_type = null;
         $result = $mUser->save();
 
@@ -179,7 +182,7 @@ class MobileUserTest extends CDbTestCase {
 
         $mUser = $this->getMobileUser();
 
-        $mUser->sessionTenantId = 1;
+        Yii::app()->params['current_tenant_id'] = 1;
         $mUser->device_type = "android";
 
         $result = $mUser->save();
@@ -191,7 +194,7 @@ class MobileUserTest extends CDbTestCase {
 
 
         $mUser = $this->getMobileUser();
-        $mUser->sessionTenantId = 1;
+        Yii::app()->params['current_tenant_id'] = 1;
         $mUser->events = array("event1");
         $result = $mUser->save();
 
@@ -200,7 +203,7 @@ class MobileUserTest extends CDbTestCase {
 
 
         $mUser = new MobileUser();
-        $mUser->sessionTenantId = 1;
+        Yii::app()->params['current_tenant_id'] = 1;
 
         $conditions = array(
             "tenant_id" => 1,
@@ -257,7 +260,7 @@ class MobileUserTest extends CDbTestCase {
         $this->assertEmpty($mobileUser->getError('ua_identifier'));
         $this->assertTrue($validationResult);
     }
-    
+
     public function testInvalidTokenValidationFormat() {
         $mobileUser = $this->getMobileUser();
         $mobileUser->device_type = 'ios';

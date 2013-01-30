@@ -11,8 +11,6 @@
  * @author jonas
  */
 abstract class CBaseActiveRecord extends CActiveRecord {
-
-    public $sessionTenantId;
     public $parentName = null;
     public $parentRelationship;
 

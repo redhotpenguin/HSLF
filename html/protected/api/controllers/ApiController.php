@@ -59,6 +59,8 @@ class ApiController extends Controller {
      * @return array
      */
     private function resolveAction($modelName, $tenantId, $actionName, $id = null, $data = array()) {
+        Yii::app()->params['current_tenant_id'] = $tenantId;
+
         if (( $requestedModel = $this->getRequestedModel($modelName, $tenantId) ) && $requestedModel['model'] != null) {
             $model = $requestedModel['model'];
         } else {
