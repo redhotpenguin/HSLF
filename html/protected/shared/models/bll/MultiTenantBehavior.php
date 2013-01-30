@@ -41,10 +41,6 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
      * @return integer tenant id or null
      */
     private function getCurrentTenantId(CModel $owner) { 
-        error_log("test");
-        
-     error_log (   Yii::app()->params['current_tenant_id'] );
-        
         if (Yii::app()->params['current_tenant_id'] != null) {
             return Yii::app()->params['current_tenant_id'];
         } elseif (!Yii::app()->user->isGuest && Yii::app()->user->getCurrentTenant() != null) { // only logged in users can have a tenant_id

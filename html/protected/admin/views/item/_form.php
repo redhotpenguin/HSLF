@@ -1,7 +1,8 @@
 <?php
- echo $siteUrl = getSetting('site_url');
  $tenant = Yii::app()->user->getCurrentTenant();
-
+ 
+ $siteUrl = $siteUrl = getSetting('site_url').'/admin/'.$tenant->name;
+ 
 if ($model->isNewRecord) {
     $ns = "var ns  = {site_url: '" . $siteUrl . "',share_url: '" . $tenant->web_app_url . "' };";
 } else {
