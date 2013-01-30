@@ -26,7 +26,7 @@ class ItemNewsController extends Controller {
                 'roles' => array('readBallotItemNews'),
             ),
             array('allow',
-                'actions' => array('create'),
+                'actions' => array('add'),
                 'roles' => array('createBallotItemNews'),
             ),
             array('allow',
@@ -127,5 +127,3 @@ class ItemNewsController extends Controller {
     }
 
 }
-
-?>

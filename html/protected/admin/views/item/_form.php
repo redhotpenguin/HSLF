@@ -311,11 +311,15 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
     <?php
     if (!$model->isNewRecord) {
 
-        $url = CHtml::normalizeUrl(array(
+        
+
+        
+      echo  $url = CHtml::normalizeUrl(array(
                     'item/update',
                     'id' => $model->id,
                     'enctype' => 'multipart/form-data',
                 ));
+        
 
         // CHtml::submitButton('Create');
         echo CHtml::ajaxSubmitButton('Save', $this->createUrl($url), array(
