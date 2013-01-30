@@ -68,8 +68,11 @@ return array(
             // mapping
             'rules' => array(
                 'admin' => 'site/index',
-                'admin/<_controller>' => '<_controller>',
-                'admin/<_controller>/<_action>' => '<_controller>/<_action>',
+                'admin/<tenant_name:\w+>' => 'site/home',
+                'admin/<tenant_name:\w+>/<_controller>' => '<_controller>',
+            //      'admin' => 'site/index',
+            // 'admin/<_tenant>/<_controller>' => '<_tenant>/<_controller>',
+            // 'admin/<_tenant>/<_controller>/<_action>' => '<_tenant>/<_controller>/<_action>',
             ),
         ),
         'db' => array(

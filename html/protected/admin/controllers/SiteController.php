@@ -8,16 +8,16 @@ class SiteController extends Controller {
      */
     public function actionIndex() {
         $data = null;
-        
+
         //user is already authenticated
         if (Yii::app()->user->id) {
             $this->layout = 'home';
             $options = array(
-                'tenants' => $tenants = User::model()->findByPk( Yii::app()->user->id )->tenants
+                'tenants' => $tenants = User::model()->findByPk(Yii::app()->user->id)->tenants
             );
-            $this->render('home', $options);
-          
-           // $this->render('index');
+            $this->render('index', $options);
+
+            // $this->render('index');
         } else {
             $model = new LoginForm;
 
@@ -30,7 +30,7 @@ class SiteController extends Controller {
             // collect user input data
             if (isset($_POST['LoginForm'])) {
                 $model->attributes = $_POST['LoginForm'];
-                
+
                 // validate user input and redirect to the admin home page if valid
                 if ($model->validate() && $model->login()) {
                     $this->redirect("/admin");
@@ -39,6 +39,17 @@ class SiteController extends Controller {
             // display the login form
             $this->render('login', array('model' => $model));
         }
+    }
+
+    public function actionHome() {
+
+        $data = array(
+            'total_item_number' => Item::model()->count(),
+            'total_user_number' => MobileUser::model()->count(),
+            'tenant' => Tenant::model()->findByAttributes(array("id" => Yii::app()->user->tenant_id))
+        );
+
+        $this->render('home', $data);
     }
 
     /**
@@ -93,7 +104,7 @@ class SiteController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'publishing', 'messaging', 'administration', 'mobile', 'logout', 'project'),
+                'actions' => array('index', 'home', 'publishing', 'messaging', 'administration', 'mobile', 'logout', 'project'),
                 'users' => array('@'),
             ),
             array('allow', // 
