@@ -2,7 +2,6 @@ jQuery(document).ready(mobileUser);
 
 
 function mobileUser($){
-    
     var 
     filters = $("#filters"),
     composer = $("#composer"),
@@ -20,10 +19,9 @@ function mobileUser($){
     addDistrictBtn = $("#add_district_btn"),
     deleteDistrictSpan = $("#delete_district_original");
 
-
     
     filterInputs.live('blur', function(){
-        submitForm('/admin/mobileUser/getCount', function(count){
+        submitForm(ns.action_url + '/mobileUser/getCount', function(count){
             mobileUserCount.html(count)
         });
     });
@@ -93,8 +91,7 @@ function mobileUser($){
     
     
     send_alert_btn.click(function(){
-        
-        submitForm('/admin/mobileUser/sendAlert', function(result){
+        submitForm( ns.action_url + '/mobileUser/sendAlert', function(result){
             resultBox.show(100);
             
             
@@ -122,9 +119,7 @@ function mobileUser($){
     }
     
     function updateCount(){
-        console.log('updating count');
-        submitForm('/admin/mobileUser/getCount', function(count){
-            console.log('new count: ' + count);
+        submitForm(  ns.action_url +  '/mobileUser/getCount', function(count){
             mobileUserCount.html(count)
         });
     }
