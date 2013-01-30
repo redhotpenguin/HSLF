@@ -14,7 +14,7 @@ class OptionTest extends CDbTestCase {
         $this->option->attachBehavior('Behavior', $this->optionBehavior);
         $this->option->attachBehavior('MultiTenant', $this->tenantBehavior);
 
-        $this->option->sessionTenantId = 1;
+        Yii::app()->params['current_tenant_id']  = 1;
     }
 
     public function testUpsert() {

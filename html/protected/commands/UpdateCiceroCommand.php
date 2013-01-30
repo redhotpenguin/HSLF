@@ -76,10 +76,9 @@ EOD;
 
         try {
             $opt = new Option();
-            $opt->sessionTenantId = $tenantId;
+            Yii::app()->params['current_tenant_id'] = $tenantId;
             $opt->upsert('cicero_token', $cicero_token);
             $opt = new Option();
-            $opt->sessionTenantId = $tenantId;
             $opt->upsert('cicero_user', $cicero_user);
             $transaction->commit();
             $error = false;

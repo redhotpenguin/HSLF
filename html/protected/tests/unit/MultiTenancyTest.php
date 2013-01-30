@@ -30,7 +30,7 @@ class MultiTenanctTest extends CDbTestCase {
             $tag = new Tag();
             $tag->name = 'my_tag';
             $tag->type = 'alerts';
-            $tag->sessionTenantId = $tagTenantId;
+            Yii::app()->params['current_tenant_id'] = $tagTenantId;
             $tag->save();
         }
         $tagId = $tag->id;
@@ -52,7 +52,7 @@ class MultiTenanctTest extends CDbTestCase {
         // save a direct tenant model
         $option = $this->getOptionModel();
 
-        $option->sessionTenantId = 1;
+        Yii::app()->params['current_tenant_id']  = 1;
 
         $result = $option->save();
 
@@ -65,7 +65,7 @@ class MultiTenanctTest extends CDbTestCase {
 
         $option = $this->getOptionModel();
 
-        $option->sessionTenantId = 1;
+        Yii::app()->params['current_tenant_id'] = 1;
 
         $option = $option->findByPk($id);
 
@@ -76,7 +76,7 @@ class MultiTenanctTest extends CDbTestCase {
 
         $option = $this->getOptionModel();
 
-        $option->sessionTenantId = 2;
+        Yii::app()->params['current_tenant_id']  = 2;
 
         $option = $option->findByPk($id);
 
@@ -89,7 +89,7 @@ class MultiTenanctTest extends CDbTestCase {
     public function _testIndirectTenancy() {
 
         $alertType = $this->getAlertTypeModel(1);
-        $alertType->sessionTenantId = 1;
+        Yii::app()->params['current_tenant_id'] = 1;
 
         $result = $alertType->save();
 
@@ -100,7 +100,7 @@ class MultiTenanctTest extends CDbTestCase {
         // test that a tenant can't save a model for another tenant
         $alertType = $this->getAlertTypeModel(1);
         $alertType->display_name = $alertType->display_name . 'hacked';
-        $alertType->sessionTenantId = 2;
+       Yii::app()->params['current_tenant_id']  = 2;
 
 
         // an exception happens when there is a tenant id mismatch
@@ -124,7 +124,7 @@ class MultiTenanctTest extends CDbTestCase {
         );
         
         $alertType->attributes = $attributes;
-        $alertType->sessionTenantId = 2;
+     Yii::app()->params['current_tenant_id'] = 2;
 
         // an exception happens when there is a tenant id mismatch
         try {
