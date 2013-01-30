@@ -42,6 +42,7 @@ class WebUser extends CWebUser {
             return;
 
         if ($user->belongsToTenant($tenant->id)) {
+            error_log("setting tenant");
             Yii::app()->params['current_tenant'] = $tenant;
         }
         else
@@ -49,6 +50,7 @@ class WebUser extends CWebUser {
     }
 
     public function getCurrentTenant() {
+     //   print_r(Yii::app()->params);
         return Yii::app()->params['current_tenant'];
     }
 

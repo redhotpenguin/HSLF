@@ -74,14 +74,13 @@ return array(
             'showScriptName' => false,
             // mapping
             'rules' => array(
-                array(
-                    'class' => 'application.components.TenantUrlRule',
-                //        'connectionID' => 'db'
-                ),
                 'admin' => 'site/index',
                 'admin/<tenant_name>' => 'site/home',
-            //   'admin/<tenant_name>/<_controller>' => '<_controller>',
-            // 'admin/<tenant_name>/<_controller>/<_action>' => '<_controller>/<_action>',
+                'admin/<tenant_name>/<_controller>' => '<_controller>',
+                'admin/<tenant_name>/<_controller>/<_action>' => '<_controller>/<_action>',
+                array(
+                    'class' => 'application.components.TenantUrlRule',
+                ),
             ),
         ),
         'authManager' => array(
