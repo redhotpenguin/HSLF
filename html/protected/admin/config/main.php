@@ -60,11 +60,17 @@ return array(
                 // hard coded routes that conflict with tenancy
                 'admin/logout' => 'site/logout',
                 'admin/settings' => 'user/settings',
-                'admin/clients/<_controller>/<_action>' => '<_controller>/<_action>',
-                
-                
+                'admin/tenant/<_action>' => 'tenant/<_action>',
+                'admin/state/<_action>' => 'state/<_action>',
+                'admin/district/<_action>' => 'district/<_action>',
+                'admin/office/<_action>' => 'office/<_action>',
+                'admin/party/<_action>' => 'party/<_action>',
+                'admin/recommendation/<_action>' => 'recommendation/<_action>',
+                'admin/user/<_action>' => 'user/<_action>',
+                'admin/import/<_action>' => 'import/<_action>',
                 'admin' => 'site/index',
                 'admin/<tenant_name>' => 'site/home',
+                // dynamic rules
                 'admin/<tenant_name>/<_controller>' => '<_controller>',
                 'admin/<tenant_name>/<_controller>/<_action>' => '<_controller>/<_action>',
                 array(
