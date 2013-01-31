@@ -48,6 +48,10 @@
                         'visible' => !Yii::app()->user->isGuest,
                         'items' => array(
                             array(
+                                'label' => 'My Projects',
+                                'url' => '/admin/',
+                            ),
+                            array(
                                 'label' => 'Account Settings',
                                 'url' => '/admin/settings',
                             ),

@@ -167,6 +167,7 @@ class UserController extends Controller {
         $model = User::model()->findByPk(Yii::app()->user->id);
         $model->scenario = "update";
         $currentPassword = $model->password;
+        $currentRole = $model->getRole();
 
 
         if (isset($_POST['User'])) {
@@ -174,7 +175,10 @@ class UserController extends Controller {
             // some user attributes can't be updated using mass assignment/
             // See User model rules
             $model->attributes = $_POST['User'];
-  
+
+            // except for role
+            $model->role = $currentRole;
+
             // if a new password has been given
             if ($model->password)
                 $model->initial_password = $model->password;
@@ -182,7 +186,7 @@ class UserController extends Controller {
                 $model->initial_password = $currentPassword;
 
             if ($model->save())
-                $this->redirect(array('settings', 'updated' => true ));
+                $this->redirect(array('settings', 'updated' => true));
         }
 
 

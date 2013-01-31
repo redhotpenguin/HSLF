@@ -47,7 +47,7 @@ class User extends CBaseActiveRecord {
             array('email', 'length', 'max' => 128, 'on' => 'update'),
             array('password', 'length', 'max' => 40),
             array('id, username, email', 'safe', 'on' => 'search'),
-            array('email, password', 'safe', 'on' => 'update'),
+            array('email, password, role', 'safe', 'on' => 'update'),
         );
     }
 

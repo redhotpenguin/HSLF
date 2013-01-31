@@ -19,7 +19,6 @@ class UserBehavior extends CActiveRecordBehavior {
         }
 
         if (!empty($this->owner->role)) {
-            error_log("test");
             Yii::app()->authManager->assign($this->owner->role, $this->owner->id);
         }
     }
