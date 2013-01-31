@@ -7,17 +7,17 @@
  */
 class MobileUserAPITest extends CDbTestCase {
 
-    private $mobileUserAPI = "http://www.voterguide.com/api/1/MobileUsers";
+    private $mobileUserAPI = "http://www.voterguide.com/api/2/MobileUsers";
     // private $mobileUserAPI = "http://23.24.252.203/api/1/MobileUsers";
     //  private $mobileUserAPI = "http://mobileadvocacy-winningmark.dotcloud.com/api/1/MobileUsers";
     // private $mobileUserAPI = "http://productionmap1-winningmark.dotcloud.com/api/2/MobileUsers";
     private $tenant1 = array(
         // our oregon
-        'username' => "52356", // api key
-        'password' => "PqiW_IDKL3mFi_OirCqOe-u"// api secret
+      //  'username' => "52356", // api key
+       // 'password' => "PqiW_IDKL3mFi_OirCqOe-u"// api secret
             // afscme
-            // 'username' => "70104", // api key
-            // 'password' => "42f5d8adb22b03fc74e52ab24d7eb64b"// api secret
+           'username' => "47931", // api key
+           'password' => "3bc9f4ac200719ade62cf70b5dba1e9b"// api secret
     );
 
     public function testCreateUser() {
