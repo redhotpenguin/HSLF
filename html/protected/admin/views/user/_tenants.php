@@ -21,14 +21,14 @@
 </table>
 <div class="row-fluid">
     <?php
-    echo CHtml::label('Add to tenant account', 'add_to_project');
-    echo CHtml::textField('add_to_project', '', array('placeholder' => 'Ex: ouroregon'));
+    echo CHtml::label('Add to tenant account', 'add_to_tenant');
+    echo CHtml::textField('add_to_tenant', '', array('placeholder' => 'Ex: ouroregon'));
     ?>
 </div>
 <br/>
 <div class="row-fluid">
     <?php
-    echo CHtml::label('Remove from tenant account', 'remove_from_project');
-    echo CHtml::textField('remove_from_project', '', array('placeholder' => 'Ex: ouroregon'));
+    echo CHtml::label('Remove from tenant account', 'remove_from_tenant');
+    echo CHtml::textField('remove_from_tenant', '', array('placeholder' => 'Ex: ouroregon'));
     ?>
 </div>

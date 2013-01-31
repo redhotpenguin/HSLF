@@ -118,8 +118,8 @@ class UserController extends Controller {
                 $updatedResult = true;
 
             // @todo: refactor this
-            if (isset($_POST['add_to_project']) && !empty($_POST['add_to_project'])) {
-                $tenantName = $_POST['add_to_project'];
+            if (isset($_POST['add_to_tenant']) && !empty($_POST['add_to_tenant'])) {
+                $tenantName = $_POST['add_to_tenant'];
 
 
                 $tenant = Tenant::model()->findByAttributes(array("name" => $tenantName));
@@ -135,8 +135,8 @@ class UserController extends Controller {
             }
 
             // @todo: refactor this
-            if (isset($_POST['remove_from_project']) && !empty($_POST['remove_from_project'])) {
-                $tenantName = $_POST['remove_from_project'];
+            if (isset($_POST['remove_from_tenant']) && !empty($_POST['remove_from_tenant'])) {
+                $tenantName = $_POST['remove_from_tenant'];
 
 
                 $tenant = Tenant::model()->findByAttributes(array("name" => $tenantName));
