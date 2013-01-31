@@ -39,14 +39,15 @@ class User extends CBaseActiveRecord {
      */
     public function rules() {
         return array(
-            array('username,email', 'required', 'on' => 'update'),
+            array('email', 'required', 'on' => 'update'),
             array('password, username, email, repeat_password', 'required', 'on' => 'insert'),
             array('repeat_password', 'compare', 'compareAttribute' => 'password', 'on' => 'insert, update'),
             array('email', 'email'),
-            array('username, email', 'length', 'max' => 128),
+            array('username, email', 'length', 'max' => 128, 'on' => 'insert'),
+            array('email', 'length', 'max' => 128, 'on' => 'update'),
             array('password', 'length', 'max' => 40),
-            array('role', 'safe'),
             array('id, username, email', 'safe', 'on' => 'search'),
+            array('email, password', 'safe', 'on' => 'update'),
         );
     }
 

@@ -52,43 +52,6 @@ class UserController extends Controller {
         );
     }
 
-    public function actionSettings() {
-        $this->layout = "home";
-        $model = User::model()->findByPk(Yii::app()->user->id);
-        $currentPassword = $model->password;
-        $currentRole = $model->getRole();
-        $currentUserName = $model->username;
-        $currentEmail = $model->email;
-
-
-        if (isset($_POST['User'])) {
-
-            $model->attributes = $_POST['User'];
-
-            // make sure roles and username don't get 'accidentally'  overridden
-            $model->role = $currentRole;
-            $model->username = $currentUserName;
-            $model->email = $currentEmail;
-
-
-            // if a new password has been given
-            if ($model->password)
-                $model->initial_password = $model->password;
-            else
-                $model->initial_password = $currentPassword;
-
-            error_log("pass is :" . $currentPassword);
-            
-          //  $this->redirect(array('settings'));
-
-            if ($model->save())
-                $this->redirect(array('settings'));
-        }
-
-
-        $this->render('my_account', array('model' => $model));
-    }
-
     /**
      * Displays a particular model.
      * @param integer $id the ID of the model to be displayed
@@ -194,6 +157,36 @@ class UserController extends Controller {
         $this->render('index', array(
             'dataProvider' => $dataProvider,
         ));
+    }
+
+    /**
+     * Update a logged in user credentials
+     */
+    public function actionSettings() {
+        $this->layout = "home";
+        $model = User::model()->findByPk(Yii::app()->user->id);
+        $model->scenario = "update";
+        $currentPassword = $model->password;
+
+
+        if (isset($_POST['User'])) {
+
+            // some user attributes can't be updated using mass assignment/
+            // See User model rules
+            $model->attributes = $_POST['User'];
+  
+            // if a new password has been given
+            if ($model->password)
+                $model->initial_password = $model->password;
+            else
+                $model->initial_password = $currentPassword;
+
+            if ($model->save())
+                $this->redirect(array('settings', 'updated' => true ));
+        }
+
+
+        $this->render('my_account', array('model' => $model));
     }
 
     /**

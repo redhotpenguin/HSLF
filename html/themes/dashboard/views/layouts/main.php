@@ -115,6 +115,10 @@
                                     'url' => '/admin/',
                                 ),
                                 array(
+                                    'label' => 'Account Settings',
+                                    'url' => '/admin/settings',
+                                ),
+                                array(
                                     'label' => 'Log Out',
                                     'url' => '/admin/logout',
                                 )

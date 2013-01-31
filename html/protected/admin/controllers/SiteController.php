@@ -11,8 +11,10 @@ class SiteController extends Controller {
         $this->layout = 'home';
 
         //user is already authenticated
-        if (Yii::app()->user->id) {
+        //@bug: Yii::app()->user->id is sometimes a string. Ex: 'jonas'
+        if (Yii::app()->user->id && is_numeric(Yii::app()->user->id) ) {
 
+            
             $options = array(
                 'tenants' => $tenants = User::model()->findByPk(Yii::app()->user->id)->tenants
             );
