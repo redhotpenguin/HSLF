@@ -116,6 +116,8 @@ class UserController extends Controller {
 
             if ($model->save())
                 $updatedResult = true;
+
+            // @todo: refactor this
             if (isset($_POST['add_to_project']) && !empty($_POST['add_to_project'])) {
                 $tenantName = $_POST['add_to_project'];
 
@@ -124,6 +126,23 @@ class UserController extends Controller {
                 if ($tenant) {
                     if (!$model->addToTenant($tenant->id)) {
                         Yii::app()->user->setFlash('error', "Error adding the user to this project");
+                        $updatedResult = false;
+                    }
+                } else {
+                    Yii::app()->user->setFlash('error', "This tenant account does not exist");
+                    $updatedResult = false;
+                }
+            }
+
+            // @todo: refactor this
+            if (isset($_POST['remove_from_project']) && !empty($_POST['remove_from_project'])) {
+                $tenantName = $_POST['remove_from_project'];
+
+
+                $tenant = Tenant::model()->findByAttributes(array("name" => $tenantName));
+                if ($tenant) {
+                    if (!$model->removeFromTenant($tenant->id)) {
+                        Yii::app()->user->setFlash('error', "Error removing the user to this project");
                         $updatedResult = false;
                     }
                 } else {

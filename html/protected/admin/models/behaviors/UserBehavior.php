@@ -77,7 +77,34 @@ class UserBehavior extends CActiveRecordBehavior {
         } catch (Exception $e) {
             $result = false;
         }
-        
+
+        return $result;
+    }
+
+    /**
+     * Add a user to a tenant
+     * @param integer $tenant tenant id
+     * @return boolean
+     */
+    public function removeFromTenant($tenantId) {
+
+        $sql = "DELETE FROM tenant_user WHERE (tenant_id = :tenant_id AND user_id =  :user_id)";
+
+        $connection = Yii::app()->db;
+
+        $command = $connection->createCommand($sql);
+
+        $userId = $this->owner->id;
+
+        $command->bindParam(":tenant_id", $tenantId, PDO::PARAM_INT);
+        $command->bindParam(":user_id", $userId, PDO::PARAM_INT);
+        try {
+            $command->execute();
+            $result = true;
+        } catch (Exception $e) {
+            $result = false;
+        }
+
         return $result;
     }
 
