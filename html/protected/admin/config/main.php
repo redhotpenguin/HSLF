@@ -65,6 +65,11 @@ return array(
             'charset' => 'UTF-8',
             'schemaCachingDuration' => '60',
         ),
+        'session' => array(
+            'class' => 'CDbHttpSession',
+            'connectionID' => 'db',
+            'sessionTableName' => 'user_session',
+        ),
         'authManager' => array(
             'class' => 'CDbAuthManager',
             'connectionID' => 'db',
