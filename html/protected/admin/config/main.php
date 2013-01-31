@@ -33,23 +33,6 @@ return array(
     'modules' => array(),
     // application components
     'components' => array(
-        /*
-          'log' => array(
-          'class' => 'CLogRouter',
-          'routes' => array(
-          array(
-          'class' => 'CWebLogRoute',
-          'levels' => 'trace,info,error,warning',
-          'filter' => array(
-          'class' => 'CLogFilter',
-          'prefixSession' => true,
-          'prefixUser' => false,
-          'logUser' => false,
-          'logVars' => array(),
-          ),
-          ),
-          ))
-          , */
         'user' => array(
 // enable cookie-based authentication
             'allowAutoLogin' => true,

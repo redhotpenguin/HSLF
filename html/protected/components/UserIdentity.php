@@ -23,6 +23,7 @@ class UserIdentity extends CUserIdentity {
             $this->errorCode = self::ERROR_PASSWORD_INVALID;
         } else { // Okay!
             $this->errorCode = self::ERROR_NONE;
+            $this->setState('authenticated', true);
         }
 
         return !$this->errorCode;

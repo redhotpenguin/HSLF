@@ -11,10 +11,6 @@ else:
     <div class="hero-unit">
         <h1>My dashboard</h1>
         
-
-
-
-
         <br/>
             <?php
             foreach ($tenants as $tenant) {

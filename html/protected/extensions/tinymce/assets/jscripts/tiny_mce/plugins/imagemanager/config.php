@@ -5,8 +5,8 @@ require_once(MCMANAGER_ABSPATH . "ImageManager/ImageManagerPlugin.php");
 @session_start();
 $connected = false;
 foreach ($_SESSION as $t) {
-    if (is_array($t)) {
-        if ($t['tenant_id'] != null)
+    if (is_array($t) && isset($t['authenticated'])) {
+        if ($t['authenticated'] == true)
             $connected = true;
     }
 }
