@@ -41,7 +41,7 @@ class User extends CBaseActiveRecord {
         return array(
             array('username,email', 'required', 'on' => 'update'),
             array('password, username, email, repeat_password', 'required', 'on' => 'insert'),
-            array('repeat_password', 'compare', 'compareAttribute' => 'password', 'on' => 'insert'),
+            array('repeat_password', 'compare', 'compareAttribute' => 'password', 'on' => 'insert, update'),
             array('email', 'email'),
             array('username, email', 'length', 'max' => 128),
             array('password', 'length', 'max' => 40),
@@ -57,7 +57,6 @@ class User extends CBaseActiveRecord {
         return array(
             'tenants' => array(self::MANY_MANY, 'Tenant',
                 'tenant_user(user_id,tenant_id)'),
-            
         );
     }
 

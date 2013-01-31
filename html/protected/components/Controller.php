@@ -7,9 +7,8 @@
 class Controller extends CController {
 
     public function __construct($id) {
-           logIt($_GET);
         parent::__construct($id);
-        if (isset($_GET['tenant_name']) && $_GET['tenant_name'] != 'logout') {
+        if (isset($_GET['tenant_name'])) {
            $r =  Yii::app()->user->setCurrentUserTenant(($_GET['tenant_name']));
            if(!$r){
                  $this->redirect('/admin');

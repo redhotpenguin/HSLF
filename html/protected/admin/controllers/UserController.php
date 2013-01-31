@@ -27,7 +27,7 @@ class UserController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'admin', 'view', 'settings'),
+                'actions' => array('index', 'admin', 'view'),
                 'roles' => array('readUser'),
             ),
             array('allow',
@@ -42,16 +42,51 @@ class UserController extends Controller {
                 'actions' => array('delete'),
                 'roles' => array('deleteUser'),
             ),
+            array('allow', // allow every authenticated users to update their login info
+                'actions' => array('settings'),
+                'users' => array('@'),
+            ),
             array('deny', // deny all users
                 'users' => array('*'),
             ),
         );
     }
-    
-    public function actionSettings(){
+
+    public function actionSettings() {
         $this->layout = "home";
-        $user = User::model()->findByPk( Yii::app()->user->id ) ;
-        $this->render('my_account', array('user'=>$user));
+        $model = User::model()->findByPk(Yii::app()->user->id);
+        $currentPassword = $model->password;
+        $currentRole = $model->getRole();
+        $currentUserName = $model->username;
+        $currentEmail = $model->email;
+
+
+        if (isset($_POST['User'])) {
+
+            $model->attributes = $_POST['User'];
+
+            // make sure roles and username don't get 'accidentally'  overridden
+            $model->role = $currentRole;
+            $model->username = $currentUserName;
+            $model->email = $currentEmail;
+
+
+            // if a new password has been given
+            if ($model->password)
+                $model->initial_password = $model->password;
+            else
+                $model->initial_password = $currentPassword;
+
+            error_log("pass is :" . $currentPassword);
+            
+          //  $this->redirect(array('settings'));
+
+            if ($model->save())
+                $this->redirect(array('settings'));
+        }
+
+
+        $this->render('my_account', array('model' => $model));
     }
 
     /**
