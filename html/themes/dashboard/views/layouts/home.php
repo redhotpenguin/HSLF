@@ -48,7 +48,11 @@
                         'visible' => !Yii::app()->user->isGuest,
                         'items' => array(
                             array(
-                                'label' => 'Logout',
+                                'label' => 'Account Settings',
+                                'url' => '/admin/settings',
+                            ),
+                            array(
+                                'label' => 'Log Out',
                                 'url' => '/admin/logout',
                         ))
                 )),

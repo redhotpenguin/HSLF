@@ -27,7 +27,7 @@ class UserController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'admin', 'view'),
+                'actions' => array('index', 'admin', 'view', 'settings'),
                 'roles' => array('readUser'),
             ),
             array('allow',
@@ -46,6 +46,12 @@ class UserController extends Controller {
                 'users' => array('*'),
             ),
         );
+    }
+    
+    public function actionSettings(){
+        $this->layout = "home";
+        $user = User::model()->findByPk( Yii::app()->user->id ) ;
+        $this->render('my_account', array('user'=>$user));
     }
 
     /**

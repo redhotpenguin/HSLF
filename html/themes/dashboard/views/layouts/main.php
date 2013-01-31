@@ -115,7 +115,7 @@
                                     'url' => '/admin/',
                                 ),
                                 array(
-                                    'label' => 'Logout',
+                                    'label' => 'Log Out',
                                     'url' => '/admin/logout',
                                 )
                         ))),

@@ -74,11 +74,13 @@ return array(
             'showScriptName' => false,
             // mapping
             'rules' => array(
+                // hard coded routes that conflict with tenancy
                 'admin/logout' => 'site/logout',
+                'admin/settings' => 'user/settings',
+                
                 'admin' => 'site/index',
                 'admin/<tenant_name>' => 'site/home',
                 'admin/<tenant_name>/<_controller>' => '<_controller>',
-                
                 'admin/<tenant_name>/<_controller>/<_action>' => '<_controller>/<_action>',
                 array(
                     'class' => 'application.components.TenantUrlRule',
