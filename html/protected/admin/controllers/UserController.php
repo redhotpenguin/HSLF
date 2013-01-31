@@ -95,14 +95,12 @@ class UserController extends Controller {
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
 
-
-        $model->getRole();
-
         // hold the current password ( before it might gets updated)
         $current_password = $model->password;
 
 
         if (isset($_POST['User'])) {
+
             $model->attributes = $_POST['User'];
 
             // if a new password has been given
@@ -112,12 +110,35 @@ class UserController extends Controller {
             else
                 $model->initial_password = $current_password;
 
+
+
+
+
             if ($model->save())
-                $this->redirect(
-                        array('update',
-                            'id' => $model->id,
-                            'updated' => true
-                ));
+                $updatedResult = true;
+            if (isset($_POST['add_to_project']) && !empty($_POST['add_to_project'])) {
+                $tenantName = $_POST['add_to_project'];
+
+
+                $tenant = Tenant::model()->findByAttributes(array("name" => $tenantName));
+                if ($tenant) {
+                    if (!$model->addToTenant($tenant->id)) {
+                        Yii::app()->user->setFlash('error', "Error adding the user to this project");
+                        $updatedResult = false;
+                    }
+                } else {
+                    Yii::app()->user->setFlash('error', "This tenant account does not exist");
+                    $updatedResult = false;
+                }
+            }
+
+
+
+            $this->redirect(
+                    array('update',
+                        'id' => $model->id,
+                        'updated' => $updatedResult
+            ));
         }
 
         $this->render('update', array(

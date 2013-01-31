@@ -55,6 +55,33 @@ class UserBehavior extends CActiveRecordBehavior {
     }
 
     /**
+     * Add a user to a tenant
+     * @param integer $tenant tenant id
+     * @return boolean
+     */
+    public function addToTenant($tenantId) {
+
+        $sql = "INSERT INTO tenant_user (tenant_id, user_id) VALUES(:tenant_id, :user_id)";
+
+        $connection = Yii::app()->db;
+
+        $command = $connection->createCommand($sql);
+
+        $userId = $this->owner->id;
+
+        $command->bindParam(":tenant_id", $tenantId, PDO::PARAM_INT);
+        $command->bindParam(":user_id", $userId, PDO::PARAM_INT);
+        try {
+            $command->execute();
+            $result = true;
+        } catch (Exception $e) {
+            $result = false;
+        }
+        
+        return $result;
+    }
+
+    /**
      * Verify that a user belong to a  tenant
      * @param integer $tenantId tenant id
      * @return boolean
@@ -68,7 +95,7 @@ class UserBehavior extends CActiveRecordBehavior {
                         ':tenant_id' => $tenantId
                     )
                 ));
-        
+
         return ($user != null);
     }
 
