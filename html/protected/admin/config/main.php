@@ -61,6 +61,9 @@ return array(
                 'admin/logout' => 'site/logout',
                 'admin/settings' => 'user/settings',
                 
+                'admin/clients' => 'tenant/index',
+                'admin/clients/<_action>' => 'tenant/<_action>',
+                
                 'admin' => 'site/index',
                 'admin/<tenant_name>' => 'site/home',
                 'admin/<tenant_name>/<_controller>' => '<_controller>',

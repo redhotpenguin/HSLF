@@ -39,70 +39,90 @@
     <body>
         <div id="menu-top" class="clearfix">
             <?php
+            $items = array();
+            // if user is logged in
             if (Yii::app()->user->id):
                 $tenant = Yii::app()->user->getCurrentTenant();
-                ?>
 
 
+                // if user has a tenant selected
+                if ($tenant) {
+                    $publishingItems = array(
+                        'class' => 'bootstrap.widgets.BootMenu',
+                        'items' => array(
+                            '---',
+                            array('label' => 'Publishing', 'url' => '#', 'items' => array(
+                                    array('label' => 'Ballot Items', 'url' => array('/item/admin')),
+                                    array('label' => 'Organizations', 'url' => array('/organization/admin/')),
+                                    array('label' => 'Scorecard Items', 'url' => array('/scorecardItem/admin')),
+                                    '',
+                                    array('label' => 'Votes', 'url' => array('/vote/admin')),
+                                    '',
+                                    array('label' => 'Image Upload', 'url' => array('/upload')),
+                                    '',
+                                    array('label' => 'Share Payloads', 'url' => array('/sharePayload/admin')),
+                                    '',
+                                    array('itemOptions' => array('id' => 'external_item'), 'label' => 'Urban Airship', 'linkOptions' => array('target' => '_blank'), 'url' => $tenant->ua_dashboard_link),
+                            )),
+                        ),
+                    );
 
-                <?php
-                $publishingItems = array(
-                    'class' => 'bootstrap.widgets.BootMenu',
-                    'items' => array(
-                        '---',
-                        array('label' => 'Publishing', 'url' => '#', 'items' => array(
-                                array('label' => 'Ballot Items', 'url' => array('/item/admin')),
-                                array('label' => 'Organizations', 'url' => array('/organization/admin/')),
-                                array('label' => 'Scorecard Items', 'url' => array('/scorecardItem/admin')),
-                                '',
-                                array('label' => 'Votes', 'url' => array('/vote/admin')),
-                                '',
-                                array('label' => 'Image Upload', 'url' => array('/upload')),
-                                '',
-                                array('label' => 'Share Payloads', 'url' => array('/sharePayload/admin')),
-                                '',
-                                array('itemOptions' => array('id' => 'external_item'), 'label' => 'Urban Airship', 'linkOptions' => array('target' => '_blank'), 'url' => $tenant->ua_dashboard_link),
+                    $applicationItems = array(
+                        'class' => 'bootstrap.widgets.BootMenu',
+                        'items' => array(
+                            '---',
+                            array(
+                                'label' => 'Application Manager',
+                                'url' => '#',
+                                'items' => array(
+                                    array('label' => 'Alert types', 'url' => array('/alertType'), 'visible'),
+                                    array('label' => 'Options', 'url' => array('/option'), 'visible'),
+                                    array('label' => 'Tags', 'url' => array('/tag')),
+                                    array('label' => 'Mobile Users', 'url' => array('/mobileUser')),
+                                ),
                         )),
-                    ),
-                );
+                    );
 
-                $applicationItems = array(
-                    'class' => 'bootstrap.widgets.BootMenu',
-                    'items' => array(
-                        '---',
-                        array(
-                            'label' => 'Application Manager',
-                            'url' => '#',
-                            'items' => array(
-                                array('label' => 'Alert types', 'url' => array('/alertType'), 'visible'),
-                                array('label' => 'Options', 'url' => array('/option'), 'visible'),
-                                array('label' => 'Tags', 'url' => array('/tag')),
-                                array('label' => 'Mobile Users', 'url' => array('/mobileUser')),
-                            ),
-                    )),
-                );
+                    $adminItems = array(
+                        'class' => 'bootstrap.widgets.BootMenu',
+                        'items' => array(
+                            '---',
+                            array(
+                                'label' => 'Admin (shared data)',
+                                'url' => '#',
+                                'items' => array(
+                                    array('label' => 'States', 'url' => array('/state/admin')),
+                                    array('label' => 'Districts', 'url' => array('/district/admin')),
+                                    '',
+                                    array('label' => 'Offices', 'url' => array('/office/admin')),
+                                    array('label' => 'Parties', 'url' => array('/party/admin')),
+                                    array('label' => 'Recommendations', 'url' => array('/recommendation/admin')),
+                                    '',
+                                    array('label' => 'Users', 'url' => array('/user')),
+                                    '',
+                                    array('label' => 'Import', 'url' => array('/import')),
+                                ),
+                        )),
+                    );
 
-                $adminItems = array(
-                    'class' => 'bootstrap.widgets.BootMenu',
-                    'items' => array(
-                        '---',
-                        array(
-                            'label' => 'Admin (shared data)',
-                            'url' => '#',
-                            'items' => array(
-                                array('label' => 'States', 'url' => array('/state/admin')),
-                                array('label' => 'Districts', 'url' => array('/district/admin')),
-                                '',
-                                array('label' => 'Offices', 'url' => array('/office/admin')),
-                                array('label' => 'Parties', 'url' => array('/party/admin')),
-                                array('label' => 'Recommendations', 'url' => array('/recommendation/admin')),
-                                '',
-                                array('label' => 'Users', 'url' => array('/user')),
-                                '',
-                                array('label' => 'Import', 'url' => array('/import')),
-                            ),
-                    )),
-                );
+
+
+                    if (Yii::app()->authManager->checkAccess('publisher', Yii::app()->user->id)) {
+                        array_push($items, $publishingItems);
+                        array_push($items, $applicationItems);
+                    }
+
+                    if (Yii::app()->authManager->checkAccess('admin', Yii::app()->user->id)) {
+                        array_push($items, $adminItems);
+                    }
+
+                    $brand = $tenant->display_name;
+                    $brandUrl = '/admin/' . $tenant->name;
+                } else {
+                    // user connected but no tenant selected
+                    $brandUrl = '/admin/';
+                    $brand = 'Winning Mark Mobile';
+                }
 
                 $loginItems = array(
                     'class' => 'bootstrap.widgets.BootMenu',
@@ -125,29 +145,19 @@
                         ))),
                 );
 
-                // build menu options based on user privilege level
-                $items = array();
-
-                if (Yii::app()->authManager->checkAccess('publisher', Yii::app()->user->id)) {
-                    array_push($items, $publishingItems);
-                    array_push($items, $applicationItems);
-                }
-
-                if (Yii::app()->authManager->checkAccess('admin', Yii::app()->user->id)) {
-                    array_push($items, $adminItems);
-                }
 
                 array_push($items, $loginItems);
-                $brand = $tenant->display_name;
 
-            else:
-                $items = array();
+            else: // else user is not logged in
+                $brandUrl = '/admin/';
                 $brand = 'Winning Mark Mobile';
             endif;
 
+
+
             $this->widget('bootstrap.widgets.BootNavbar', array(
                 'brand' => $brand,
-                'brandUrl' => '/admin/' . $tenant->name,
+                'brandUrl' => $brandUrl,
                 'id' => 'main_menu',
                 'items' => $items,
             ));

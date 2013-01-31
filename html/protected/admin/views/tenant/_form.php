@@ -1,0 +1,96 @@
+<?php
+/* @var $this TenantController */
+/* @var $model Tenant */
+/* @var $form CActiveForm */
+?>
+
+<div class="form">
+
+<?php $form=$this->beginWidget('CActiveForm', array(
+	'id'=>'tenant-form',
+	'enableAjaxValidation'=>false,
+)); ?>
+
+	<p class="note">Fields with <span class="required">*</span> are required.</p>
+
+	<?php echo $form->errorSummary($model); ?>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'name'); ?>
+		<?php echo $form->textField($model,'name',array('size'=>32,'maxlength'=>32)); ?>
+		<?php echo $form->error($model,'name'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'display_name'); ?>
+		<?php echo $form->textField($model,'display_name',array('size'=>60,'maxlength'=>256)); ?>
+		<?php echo $form->error($model,'display_name'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'creation_date'); ?>
+		<?php echo $form->textField($model,'creation_date'); ?>
+		<?php echo $form->error($model,'creation_date'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'web_app_url'); ?>
+		<?php echo $form->textArea($model,'web_app_url',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->error($model,'web_app_url'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'email'); ?>
+		<?php echo $form->textArea($model,'email',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->error($model,'email'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'api_key'); ?>
+		<?php echo $form->textArea($model,'api_key',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->error($model,'api_key'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'api_secret'); ?>
+		<?php echo $form->textArea($model,'api_secret',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->error($model,'api_secret'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'ua_dashboard_link'); ?>
+		<?php echo $form->textArea($model,'ua_dashboard_link',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->error($model,'ua_dashboard_link'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'cicero_user'); ?>
+		<?php echo $form->textArea($model,'cicero_user',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->error($model,'cicero_user'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'cicero_password'); ?>
+		<?php echo $form->textArea($model,'cicero_password',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->error($model,'cicero_password'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'ua_api_key'); ?>
+		<?php echo $form->textArea($model,'ua_api_key',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->error($model,'ua_api_key'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'ua_api_secret'); ?>
+		<?php echo $form->textArea($model,'ua_api_secret',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->error($model,'ua_api_secret'); ?>
+	</div>
+
+	<div class="row buttons">
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	</div>
+
+<?php $this->endWidget(); ?>
+
+</div><!-- form -->

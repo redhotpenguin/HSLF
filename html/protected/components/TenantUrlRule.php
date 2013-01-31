@@ -27,11 +27,7 @@ class TenantUrlRule extends CBaseUrlRule {
                 }
             }
 
-
-            
             return $route;
-            
-            
         }
     }
 

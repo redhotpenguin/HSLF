@@ -8,19 +8,16 @@ class SiteController extends Controller {
      */
     public function actionIndex() {
         $data = null;
-        $this->layout = 'home';
 
         //user is already authenticated
         //@bug: Yii::app()->user->id is sometimes a string. Ex: 'jonas'
-        if (Yii::app()->user->id && is_numeric(Yii::app()->user->id) ) {
+        if (Yii::app()->user->id && is_numeric(Yii::app()->user->id)) {
 
-            
+
             $options = array(
                 'tenants' => $tenants = User::model()->findByPk(Yii::app()->user->id)->tenants
             );
             $this->render('index', $options);
-
-            // $this->render('index');
         } else {
             $model = new LoginForm;
 
