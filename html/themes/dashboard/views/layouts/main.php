@@ -87,7 +87,7 @@
                     'items' => array(
                         '---',
                         array(
-                            'label' => 'Admin',
+                            'label' => 'Admin (shared data)',
                             'url' => '#',
                             'items' => array(
                                 array('label' => 'States', 'url' => array('/state/admin')),
