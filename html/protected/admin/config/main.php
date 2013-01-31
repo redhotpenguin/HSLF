@@ -66,9 +66,12 @@ return array(
             'schemaCachingDuration' => '60',
         ),
         'session' => array(
-            'class' => 'CDbHttpSession',
+            'class' => 'system.web.CDbHttpSession',
+            'autoCreateSessionTable' => false,
             'connectionID' => 'db',
             'sessionTableName' => 'user_session',
+            'sessionName' => 'session',
+            'useTransparentSessionID' => true,
         ),
         'authManager' => array(
             'class' => 'CDbAuthManager',

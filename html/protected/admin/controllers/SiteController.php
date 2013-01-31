@@ -8,7 +8,7 @@ class SiteController extends Controller {
      */
     public function actionIndex() {
         $data = null;
-        
+
         //user is already authenticated
         if (Yii::app()->user->id) {
             $data = array(
@@ -30,7 +30,7 @@ class SiteController extends Controller {
             // collect user input data
             if (isset($_POST['LoginForm'])) {
                 $model->attributes = $_POST['LoginForm'];
-                
+
                 // validate user input and redirect to the admin home page if valid
                 if ($model->validate() && $model->login()) {
                     $this->redirect("/admin");
