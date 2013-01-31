@@ -60,9 +60,8 @@ return array(
                 // hard coded routes that conflict with tenancy
                 'admin/logout' => 'site/logout',
                 'admin/settings' => 'user/settings',
+                'admin/clients/<_controller>/<_action>' => '<_controller>/<_action>',
                 
-                'admin/clients' => 'tenant/index',
-                'admin/clients/<_action>' => 'tenant/<_action>',
                 
                 'admin' => 'site/index',
                 'admin/<tenant_name>' => 'site/home',

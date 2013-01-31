@@ -203,7 +203,6 @@ class UserController extends Controller {
      * Update a logged in user credentials
      */
     public function actionSettings() {
-        $this->layout = "home";
         $model = User::model()->findByPk(Yii::app()->user->id);
         $model->scenario = "update";
         $currentPassword = $model->password;

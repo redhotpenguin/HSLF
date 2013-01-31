@@ -83,38 +83,11 @@
                         )),
                     );
 
-                    $adminItems = array(
-                        'class' => 'bootstrap.widgets.BootMenu',
-                        'items' => array(
-                            '---',
-                            array(
-                                'label' => 'Admin (shared data)',
-                                'url' => '#',
-                                'items' => array(
-                                    array('label' => 'States', 'url' => array('/state/admin')),
-                                    array('label' => 'Districts', 'url' => array('/district/admin')),
-                                    '',
-                                    array('label' => 'Offices', 'url' => array('/office/admin')),
-                                    array('label' => 'Parties', 'url' => array('/party/admin')),
-                                    array('label' => 'Recommendations', 'url' => array('/recommendation/admin')),
-                                    '',
-                                    array('label' => 'Users', 'url' => array('/user')),
-                                    '',
-                                    array('label' => 'Import', 'url' => array('/import')),
-                                ),
-                        )),
-                    );
-
-
-
                     if (Yii::app()->authManager->checkAccess('publisher', Yii::app()->user->id)) {
                         array_push($items, $publishingItems);
                         array_push($items, $applicationItems);
                     }
 
-                    if (Yii::app()->authManager->checkAccess('admin', Yii::app()->user->id)) {
-                        array_push($items, $adminItems);
-                    }
 
                     $brand = $tenant->display_name;
                     $brandUrl = '/admin/' . $tenant->name;
@@ -122,6 +95,35 @@
                     // user connected but no tenant selected
                     $brandUrl = '/admin/';
                     $brand = 'Winning Mark Mobile';
+
+
+                    if (Yii::app()->authManager->checkAccess('admin', Yii::app()->user->id)) {
+
+                        $adminItems = array(
+                            'class' => 'bootstrap.widgets.BootMenu',
+                            'items' => array(
+                                '---',
+                                array(
+                                    'label' => 'Admin (shared data)',
+                                    'url' => '#',
+                                    'items' => array(
+                                        array('label' => 'Tenants', 'url' => array('/tenant/admin')),
+                                        '',
+                                        array('label' => 'States', 'url' => array('/state/admin')),
+                                        array('label' => 'Districts', 'url' => array('/district/admin')),
+                                        '',
+                                        array('label' => 'Offices', 'url' => array('/office/admin')),
+                                        array('label' => 'Parties', 'url' => array('/party/admin')),
+                                        array('label' => 'Recommendations', 'url' => array('/recommendation/admin')),
+                                        '',
+                                        array('label' => 'Users', 'url' => array('/user/index')),
+                                        '',
+                                        array('label' => 'Import', 'url' => array('/import/index')),
+                                    ),
+                            )),
+                        );
+                        array_push($items, $adminItems);
+                    }
                 }
 
                 $loginItems = array(
