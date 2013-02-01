@@ -1,10 +1,11 @@
 <?php
+
 // frontend config
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'name' => "Winning Mark Mobile",
     // preloading 'log' component
-    'preload' => array('log', 'bootstrap'),
+    'preload' => array('bootstrap'),
     // autoloading model and component classes
     'import' => array(
         'application.models.*',
@@ -12,7 +13,6 @@ return array(
         'application.shared.models.bll.*', // business  logic classes
         'application.components.*',
     ),
-    
     'modules' => array(
         'gii' => array(
             'class' => 'system.gii.GiiModule',
@@ -47,27 +47,8 @@ return array(
             'charset' => 'UTF-8',
             'schemaCachingDuration' => '3600',
         ),
-        'cache' => array(
-            'class' => 'system.caching.CApcCache',
-        ),
         'errorHandler' => array(
             'errorAction' => 'site/error',
-        ),
-        'log' => array(
-            'class' => 'CLogRouter',
-            'routes' => array(
-                array(
-                    'class' => 'CFileLogRoute',
-                    'levels' => 'error, warning',
-                ),
-            // uncomment the following to show log messages on web pages
-            /*
-              array(
-              'class' => 'CWebLogRoute',
-              ),
-             * 
-             */
-            ),
         ),
     ),
     // application-level parameters that can be accessed
@@ -75,7 +56,7 @@ return array(
     'params' => array(
         'dateFormat' => 'Y-m-d H:i:s',
         'site_url' => SITE_URL,
-        'mongodb_ack_level'=> MONGODB_ACK_LEVEL
+        'mongodb_ack_level' => MONGODB_ACK_LEVEL
     ),
     'theme' => FRONTEND_THEME,
 );

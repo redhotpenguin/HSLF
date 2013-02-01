@@ -96,10 +96,12 @@ return array(
             'predisPath' => 'ext.Redis.Predis',
             'servers' => array(
                 array(
-                    'host' => '127.0.0.1',
-                    'port' => 6379,
+                    'host' => REDIS_HOST,
+                    'port' => REDIS_PORT,
+                    'password' => REDIS_PASSWORD,
+                    'database' => REDIS_DATABASE
                 ),
-            ),),
+        )),
         'errorHandler' => array(
             'errorAction' => 'site/error',
         ),

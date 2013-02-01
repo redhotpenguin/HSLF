@@ -36,8 +36,14 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $rabbitMQLogin = $env['DOTCLOUD_QUEUE_AMQP_LOGIN'];
     $rabbitMQPassword = $env['DOTCLOUD_QUEUE_AMQP_PASSWORD'];
 
+    $redisHost = $env['DOTCLOUD_REDIS_REDIS_HOST'];
+    $redisPort = $env['DOTCLOUD_REDIS_REDIS_PORT'];
+    $redisLogin = $env['DOTCLOUD_DATA_REDIS_LOGIN'];
+    $redisPassword = $env['DOTCLOUD_DATA_REDIS_PASSWORD'];
+    $redisDatabase = '1'; // redis does not use name for db's
+
+
     set_include_path(get_include_path() . PATH_SEPARATOR . '/home/dotcloud/php-env/share/php');
-    
 } else {    //dev server conf
     $dbhost = '127.0.0.1';
     $dbname = 'map_3';
@@ -64,10 +70,23 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $rabbitMQLogin = 'guest';
     $rabbitMQPassword = 'guest';
 
+    $redisHost = '127.0.0.1';
+    $redisPort = 6379;
+    $redisLogin = 'guest';
+    $redisPassword ='foobared';
+    $redisDatabase = '1';
+    
+
     defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL', 3);
     define('YII_DEBUG', TRUE);
 }
 
+// Redis Config
+DEFINE('REDIS_HOST', $redisHost);
+DEFINE('REDIS_PORT', $redisPort);
+DEFINE('REDIS_LOGIN', $redisLogin);
+DEFINE('REDIS_PASSWORD', $redisPassword);
+DEFINE('REDIS_DATABASE', $redisDatabase);
 
 
 // DB Config

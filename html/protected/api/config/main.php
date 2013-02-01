@@ -57,8 +57,15 @@ return array(
             'schemaCachingDuration' => '3600',
         ),
         'cache' => array(
-            'class' => 'system.caching.CApcCache',
-        ),
+            // 'class' => 'system.caching.CApcCache',
+            'class' => 'ext.Redis.CRedisCache',
+            'predisPath' => 'ext.Redis.Predis',
+            'servers' => array(
+                array(
+                    'host' => REDIS_HOST,
+                    'port' => REDIS_PORT,
+                ),
+        )),
         'errorHandler' => array(
             // use 'api/error' action to display errors
             'errorAction' => 'api/index',
@@ -82,6 +89,6 @@ return array(
     // using Yii::app()->params['paramName']
     'params' => array(
         'dateFormat' => 'Y-m-d H:i:s',
-        'mongodb_ack_level'=> MONGODB_ACK_LEVEL
+        'mongodb_ack_level' => MONGODB_ACK_LEVEL
     ),
 );
