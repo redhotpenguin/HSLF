@@ -6,33 +6,33 @@ class UpdateCiceroCommand extends CConsoleCommand {
         return <<<EOD
 
 DESCRIPTION:
-Update the Cicero token for a tenant
+Update the Cicero token for every tenants
 
 USAGE:
-updatecicero <tenantID>
-
-EX:
-updatecicero 12   
+updatecicero
+ 
 
 EOD;
     }
 
     public function run($args) {
-        if(!isset($args) ||  empty($args)){
-            echo "A tenant id must be indicated";
-            return;
-        }
-        
-        $tenantId = $args[0];
 
-        if (!isset($tenantId)) {
-            exit("A tenant ID must be specified.");
-        }
+        Tenant::model()->findAll();
 
-        $tenant = Tenant::model()->findByPK($args[0]);
+
+
+        foreach (Tenant::model()->findAll() as $tenant)
+            $this->updateToken($tenant->id);
+    }
+
+    //$tenantId = $args[0];
+
+
+    private function updateToken($tenantId) {
+        $tenant = Tenant::model()->findByPK($tenantId);
 
         if (!$tenant) {
-            exit("No tenant found");
+            return("No tenant found");
         }
 
 
@@ -41,34 +41,24 @@ EOD;
         $username = $tenant->cicero_user;
         $password = $tenant->cicero_password;
 
-        function get_response($url, $postfields = '') {
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, True);
-            if ($postfields !== ''):
-                curl_setopt($ch, CURLOPT_POST, True);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $postfields);
-            endif;
-            $json = curl_exec($ch);
-            curl_close($ch);
-            return json_decode($json);
-        }
 
 // Obtain a token:
-        $response = get_response('http://cicero.azavea.com/v3.1/token/new.json', "username=$username&password=$password");
+        $response = $this->get_response('http://cicero.azavea.com/v3.1/token/new.json', "username=$username&password=$password");
 
 // Check to see if the token was obtained okay:
         if ($response->success != True):
-            exit('Could not obtain token.');
+            printf('Could not obtain token.');
+            return false;
         endif;
 
 // The token and user obtained are used for other API calls:
         $cicero_token = $response->token;
         $cicero_user = $response->user;
 
-        if (empty($cicero_token) || empty($cicero_user))
-            exit('Could not obtain token.');
-
+        if (empty($cicero_token) || empty($cicero_user)) {
+            printf('Could not obtain token.');
+            return false;
+        }
 
         $connection = Yii::app()->db;
 
@@ -97,10 +87,25 @@ EOD;
         }
 
         if ($error) {
-            exit('could not generate or save the cicero token');
+            printf('could not generate or save the cicero token\n');
+            return false;
         } else {
-            exit('cicero token generated for: ' . $username . ' => ' . $cicero_token);
+            printf('cicero token generated for: ' . $username . ' => ' . $cicero_token);
+            return false;
         }
+    }
+
+    private function get_response($url, $postfields = '') {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, True);
+        if ($postfields !== ''):
+            curl_setopt($ch, CURLOPT_POST, True);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $postfields);
+        endif;
+        $json = curl_exec($ch);
+        curl_close($ch);
+        return json_decode($json);
     }
 
 }
