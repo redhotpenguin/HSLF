@@ -154,7 +154,7 @@ function mobileUser($){
      
         var serializedForm = mobileUserForm.serialize();
      
-        window.location = "/admin/mobileUser/export?"+serializedForm;
+        window.location = ns.action_url + '/mobileUser/export?'+serializedForm;
 
 
     /*submitForm('/admin/mobileUser/export', function(result){
