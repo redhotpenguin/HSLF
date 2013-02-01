@@ -42,6 +42,10 @@ class UserController extends Controller {
                 'actions' => array('delete'),
                 'roles' => array('deleteUser'),
             ),
+            array('allow', // allow every authenticated users to update their login info
+                'actions' => array('settings'),
+                'users' => array('@'),
+            ),
             array('deny', // deny all users
                 'users' => array('*'),
             ),
@@ -91,14 +95,12 @@ class UserController extends Controller {
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
 
-
-        $model->getRole();
-
         // hold the current password ( before it might gets updated)
         $current_password = $model->password;
 
 
         if (isset($_POST['User'])) {
+
             $model->attributes = $_POST['User'];
 
             // if a new password has been given
@@ -108,12 +110,54 @@ class UserController extends Controller {
             else
                 $model->initial_password = $current_password;
 
+
+
+
+
             if ($model->save())
-                $this->redirect(
-                        array('update',
-                            'id' => $model->id,
-                            'updated' => true
-                ));
+                $updatedResult = true;
+
+            // @todo: refactor this
+            if (isset($_POST['add_to_tenant']) && !empty($_POST['add_to_tenant'])) {
+                $tenantName = $_POST['add_to_tenant'];
+
+
+                $tenant = Tenant::model()->findByAttributes(array("name" => $tenantName));
+                if ($tenant) {
+                    if (!$model->addToTenant($tenant->id)) {
+                        Yii::app()->user->setFlash('error', "Error adding the user to this project");
+                        $updatedResult = false;
+                    }
+                } else {
+                    Yii::app()->user->setFlash('error', "This tenant account does not exist");
+                    $updatedResult = false;
+                }
+            }
+
+            // @todo: refactor this
+            if (isset($_POST['remove_from_tenant']) && !empty($_POST['remove_from_tenant'])) {
+                $tenantName = $_POST['remove_from_tenant'];
+
+
+                $tenant = Tenant::model()->findByAttributes(array("name" => $tenantName));
+                if ($tenant) {
+                    if (!$model->removeFromTenant($tenant->id)) {
+                        Yii::app()->user->setFlash('error', "Error removing the user to this project");
+                        $updatedResult = false;
+                    }
+                } else {
+                    Yii::app()->user->setFlash('error', "This tenant account does not exist");
+                    $updatedResult = false;
+                }
+            }
+
+
+
+            $this->redirect(
+                    array('update',
+                        'id' => $model->id,
+                        'updated' => $updatedResult
+            ));
         }
 
         $this->render('update', array(
@@ -153,6 +197,39 @@ class UserController extends Controller {
         $this->render('index', array(
             'dataProvider' => $dataProvider,
         ));
+    }
+
+    /**
+     * Update a logged in user credentials
+     */
+    public function actionSettings() {
+        $model = User::model()->findByPk(Yii::app()->user->id);
+        $model->scenario = "update";
+        $currentPassword = $model->password;
+        $currentRole = $model->getRole();
+
+
+        if (isset($_POST['User'])) {
+
+            // some user attributes can't be updated using mass assignment/
+            // See User model rules
+            $model->attributes = $_POST['User'];
+
+            // except for role
+            $model->role = $currentRole;
+
+            // if a new password has been given
+            if ($model->password)
+                $model->initial_password = $model->password;
+            else
+                $model->initial_password = $currentPassword;
+
+            if ($model->save())
+                $this->redirect(array('settings', 'updated' => true));
+        }
+
+
+        $this->render('my_account', array('model' => $model));
     }
 
     /**

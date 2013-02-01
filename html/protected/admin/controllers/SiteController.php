@@ -10,14 +10,14 @@ class SiteController extends Controller {
         $data = null;
 
         //user is already authenticated
-        if (Yii::app()->user->id) {
-            $data = array(
-                'total_item_number' => Item::model()->count(),
-                'total_user_number' => MobileUser::model()->count(),
-                'tenant' => Tenant::model()->findByAttributes(array("id" => Yii::app()->user->tenant_id))
-            );
+        //@bug: Yii::app()->user->id is sometimes a string. Ex: 'jonas'
+        if (Yii::app()->user->id && is_numeric(Yii::app()->user->id)) {
 
-            $this->render('index', $data);
+
+            $options = array(
+                'tenants' => $tenants = User::model()->findByPk(Yii::app()->user->id)->tenants
+            );
+            $this->render('index', $options);
         } else {
             $model = new LoginForm;
 
@@ -39,6 +39,17 @@ class SiteController extends Controller {
             // display the login form
             $this->render('login', array('model' => $model));
         }
+    }
+
+    public function actionHome() {
+        $tenant = Yii::app()->user->getCurrentTenant();
+
+        $data = array(
+            'total_item_number' => Item::model()->count(),
+            'total_user_number' => MobileUser::model()->count(),
+            'tenant' => $tenant
+        );
+        $this->render('home', $data);
     }
 
     /**
@@ -87,13 +98,13 @@ class SiteController extends Controller {
      */
     public function actionLogout() {
         Yii::app()->user->logout();
-        $this->redirect(Yii::app()->homeUrl . 'admin/');
+        $this->redirect('/admin');
     }
 
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'publishing', 'messaging', 'administration', 'mobile', 'logout', 'project'),
+                'actions' => array('index', 'home', 'publishing', 'messaging', 'administration', 'mobile', 'logout', 'project'),
                 'users' => array('@'),
             ),
             array('allow', // 

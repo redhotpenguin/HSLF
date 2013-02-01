@@ -36,8 +36,11 @@
                         'tag/update',
                         'id' => $model->id,
                     ));
+            
 
-            echo CHtml::ajaxSubmitButton('Save', $this->createUrl($url), array(
+
+
+            echo CHtml::ajaxSubmitButton('Save', $url, array(
                 'type' => 'POST',
                 'update' => '#targetdiv',
                 'beforeSend' => 'js:function(){

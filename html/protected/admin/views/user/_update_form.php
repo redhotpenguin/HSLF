@@ -23,6 +23,12 @@
         <?php echo $form->error($model, 'password'); ?>
     </div>
 
+    <div class="">
+        <?php echo $form->labelEx($model, 'repeat_password'); ?>
+        <?php echo $form->passwordField($model, 'repeat_password', array('size' => 60, 'maxlength' => 40)); ?>
+        <?php echo $form->error($model, 'repeat_password'); ?>
+    </div>
+
     <div class="row">
         <?php echo $form->labelEx($model, 'email'); ?>
         <?php echo $form->textField($model, 'email', array('size' => 60, 'maxlength' => 128)); ?>
@@ -37,10 +43,26 @@
         ?>
     </div>
 
+    <hr/>
+
+    <?php
+    $this->renderPartial('_tenants', array('model' => $model));
+    ?>
+    <hr/>
     <div class="row buttons">
-        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Update'); ?>
     </div>
 
+
+
     <?php $this->endWidget(); ?>
+
+    <div class="text-error">
+        <?php
+        foreach (Yii::app()->user->getFlashes() as $key => $message) {
+            echo '<b>' . $message . "</b>";
+        }
+        ?>
+    </div>
 
 </div><!-- form -->

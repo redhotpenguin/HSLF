@@ -35,17 +35,16 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
     }
 
     /**
-     * try to find the current tenant id
-     * either using session_tenant_id
-     * or using Yii's store (yii::app)
+     * retrieve the current tenant id set in Yii's registry 
+     * Yii::app()->params['current_tenant'] or Yii::app()->params['current_tenant_id']
      * @param CModel model
      * @return integer tenant id or null
      */
-    private function getCurrentTenantId(CModel $owner) {
-        if ($owner->sessionTenantId != null) {
-            return $this->owner->sessionTenantId;
-        } elseif (!Yii::app()->user->isGuest && Yii::app()->user->tenant_id != null) { // only logged in users can have a tenant_id
-            return Yii::app()->user->tenant_id;
+    private function getCurrentTenantId(CModel $owner) { 
+        if (Yii::app()->params['current_tenant_id'] != null) {
+            return Yii::app()->params['current_tenant_id'];
+        } elseif (!Yii::app()->user->isGuest && Yii::app()->user->getCurrentTenant() != null) { // only logged in users can have a tenant_id
+            return Yii::app()->user->getCurrentTenant()->id;
         } else {
             return null;
         }

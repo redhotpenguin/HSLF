@@ -23,21 +23,36 @@ class WebUser extends CWebUser {
         parent::login($identity, $duration);
     }
 
-    public function setTenant($tennantAccountId) {
-        $userId = Yii::app()->user->id;
+    /**
+     * set the user current tenant
+     * Does not use $_SESSION
+     * @param string $tenant name
+     * @todo: error check
+     */
+    public function setCurrentUserTenant($tenantName) {
 
-        $tenantUser = TenantUser::model()->findByAttributes(
-                array("user_id" => $userId,
-                    "tenant_id" => $tennantAccountId
-                )
-        );
+        $tenant = Tenant::model()->findByAttributes(array('name' => $tenantName));
+        if ($tenant == null)
+            return false;
 
-        // current user belongs to tenant
-        if ($tenantUser) {
-            $this->setState('tenant_id', $tennantAccountId);
-        } else {
-            error_log("current user #$userId does not belong to tenant #$tennantAccountId");
+
+        $user = User::model()->findByPk(Yii::app()->user->id);
+
+        if ($user == null)
+            return false;
+
+        if ($user->belongsToTenant($tenant->id)) {
+       //     error_log("setting tenant");
+            Yii::app()->params['current_tenant'] = $tenant;
+            return true;
         }
+        else
+            return false;
+    }
+
+    public function getCurrentTenant() {
+     //   print_r(Yii::app()->params);
+        return Yii::app()->params['current_tenant'];
     }
 
     /**
@@ -55,7 +70,7 @@ class WebUser extends CWebUser {
         }
 
         $access = Yii::app()->getAuthManager()->checkAccess($operation, Yii::app()->user->id, $params);
-        if ($allowCaching) {            
+        if ($allowCaching) {
             $this->_access[$operation] = $access;
         }
 

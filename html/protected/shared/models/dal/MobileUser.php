@@ -3,8 +3,6 @@
 // Class for mobile_user document
 class MobileUser extends ActiveMongoDocument {
 
-    public $sessionTenantId;
-
     public function __construct($scenario = 'insert') {
         parent::__construct($scenario);
 

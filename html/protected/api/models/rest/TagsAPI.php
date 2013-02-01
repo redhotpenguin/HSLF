@@ -7,5 +7,3 @@ class TagsAPI extends APIBase implements IAPI {
     }
 
 }
-
-?>

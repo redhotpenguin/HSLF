@@ -6,5 +6,3 @@ class OrganizationsAPI extends APIBase {
         parent::__construct(new Organization);
     }
 }
-
-?>

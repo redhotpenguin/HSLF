@@ -1,62 +1,27 @@
-<?php $this->pageTitle = Yii::app()->name; ?>
+<?php
+if (empty($tenants)):
+    echo '<h1>No Projects</h1>';
 
-<div>
 
-    <?php
-    if (Yii::app()->user->id):
-        ?>
-        <div class="hero-unit">
-            <h1>Dashboard</h1>
-            <p>Welcome to the administration dashboard.</p>
-            <p> <b><?php echo $total_item_number; ?></b> <a href="/admin/item/admin/">Ballot Items</a></p>
-            <p> <b><?php echo $total_user_number; ?></b> <a href="/admin/mobileUser/">Mobile Users</a></p>
 
-        </div>
+else:
+    ?>
 
-        <div class="row">
-            <div class="span3">
-                <h2>Ballot Items</h2>
-                <p>Add, edit, delete, search ballot items. </p>
-                <p><a class="btn" href="/admin/item/admin/">More »</a></p>
-            </div>
-            <div class="span3">
-                <h2>Image Uploader</h2>
-                <p>Upload images. </p>
-                <p><a class="btn" href="/admin/upload/">More »</a></p>
-            </div>
-            <div class="span3">
-                <h2>Push Notifications</h2>
-                <p>Send Rich Push Notifications to mobile users.</p>
-                <p><a class="btn" href="<?php echo $tenant->ua_dashboard_link; ?>">More »</a></p>
-            </div>
-        </div>
+
+    <div class="hero-unit">
+        <h1>My dashboard</h1>
+        
         <br/>
-        <div class="row">
-            <div class="span3">
-                <h2>Organizations</h2>
-                <p>Manage organizations.</p>
-                <p><a class="btn" href="/admin/organization/admin/">More »</a></p>
-            </div>
-
-            <div class="span3">
-                <h2>Options</h2>
-                <p>Remotely update your mobile application.</p>
-                <p><a class="btn" href="/admin/option/">More »</a></p>
-            </div>
-
-            <div class="span3">
-                <h2>Mobile Users</h2>
-                <p>Mobile user list</p>
-                <p><a class="btn" href="/admin/mobileUser/">More »</a></p>
-            </div>
-        </div>
-
-    </div>
+            <?php
+            foreach ($tenants as $tenant) {
+                echo '<h2>';
+                echo CHtml::link($tenant->display_name, "/admin/" . $tenant->name, array('class' => ''));
+                echo '</h2>';
+            }
+            ?>
 
     <?php
+    endif;
+    ?>
 
-
-
-
-
-endif; //end test is user logged in
+</div>

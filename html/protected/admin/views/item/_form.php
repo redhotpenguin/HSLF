@@ -1,9 +1,12 @@
 <?php
+ $tenant = Yii::app()->user->getCurrentTenant();
+ 
+ $siteUrl = $siteUrl = getSetting('site_url').'/admin/'.$tenant->name;
+ 
 if ($model->isNewRecord) {
-
-    $ns = "var ns  = {site_url: '" . getSetting('site_url') . "',share_url: '" . getTenantSetting('web_app_url') . "' };";
+    $ns = "var ns  = {site_url: '" . $siteUrl . "',share_url: '" . $tenant->web_app_url . "' };";
 } else {
-    $ns = "var ns  = {site_url: '" . getSetting('site_url') . "',share_url: '" . getTenantSetting('web_app_url') . "', item_id: " . $model->id . " };";
+    $ns = "var ns  = {site_url: '" . $siteUrl . "',share_url: '" . $tenant->web_app_url . "', item_id: " . $model->id . " };";
 }
 
 Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::POS_HEAD);
@@ -120,7 +123,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
         </div>
     </div>
 
- 
+
 
     <hr/>
 
@@ -307,15 +310,15 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
 
     <?php
     if (!$model->isNewRecord) {
-
         $url = CHtml::normalizeUrl(array(
                     'item/update',
                     'id' => $model->id,
                     'enctype' => 'multipart/form-data',
                 ));
+        
 
         // CHtml::submitButton('Create');
-        echo CHtml::ajaxSubmitButton('Save', $this->createUrl($url), array(
+        echo CHtml::ajaxSubmitButton('Save', $url, array(
             'type' => 'POST',
             'update' => '#targetdiv',
             'beforeSend' => 'js:function(){

@@ -8,7 +8,6 @@
  * @property string $username
  * @property string $password
  * @property string $email
- * $property integer $tenant_id
  */
 class User extends CBaseActiveRecord {
 
@@ -17,7 +16,6 @@ class User extends CBaseActiveRecord {
 
     public $repeat_password;
     public $initial_password;
-    
     public $role;
 
     /**
@@ -41,14 +39,15 @@ class User extends CBaseActiveRecord {
      */
     public function rules() {
         return array(
-            array('username,email', 'required', 'on' => 'update'),
+            array('email', 'required', 'on' => 'update'),
             array('password, username, email, repeat_password', 'required', 'on' => 'insert'),
-            array('repeat_password', 'compare', 'compareAttribute' => 'password', 'on' => 'insert'),
+            array('repeat_password', 'compare', 'compareAttribute' => 'password', 'on' => 'insert, update'),
             array('email', 'email'),
-            array('username, email', 'length', 'max' => 128),
+            array('username, email', 'length', 'max' => 128, 'on' => 'insert'),
+            array('email', 'length', 'max' => 128, 'on' => 'update'),
             array('password', 'length', 'max' => 40),
-            array('tenant_id, role', 'safe'),
             array('id, username, email', 'safe', 'on' => 'search'),
+            array('email, password, role', 'safe', 'on' => 'update'),
         );
     }
 
@@ -56,7 +55,10 @@ class User extends CBaseActiveRecord {
      * @return array relational rules.
      */
     public function relations() {
-        return array();
+        return array(
+            'tenants' => array(self::MANY_MANY, 'Tenant',
+                'tenant_user(user_id,tenant_id)'),
+        );
     }
 
     /**
@@ -113,8 +115,6 @@ class User extends CBaseActiveRecord {
             $this->password = $password;
         }
 
-        //    $this->tenant_id  = Yii::app()->user->tenant_id;
-
         return parent::beforeSave();
     }
 
@@ -144,8 +144,7 @@ class User extends CBaseActiveRecord {
 
     public function behaviors() {
         return array(
-            'UserRbacBehavior' => array( 'class' => 'UserRbacBehavior'),
-            'MultiTenant' => array( 'class' => 'MultiTenantBehavior')
+            'UserBehavior' => array('class' => 'UserBehavior'),
         );
     }
 

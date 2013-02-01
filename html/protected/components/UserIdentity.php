@@ -17,14 +17,13 @@ class UserIdentity extends CUserIdentity {
     public function authenticate() {
         $this->user = User::model()->findByAttributes(array('username' => $this->username));
 
-        
         if ($this->user === null) { // No user found!
             $this->errorCode = self::ERROR_USERNAME_INVALID;
         } else if ($this->user->password !== get_hash($this->password)) { // Invalid password!
             $this->errorCode = self::ERROR_PASSWORD_INVALID;
         } else { // Okay!
             $this->errorCode = self::ERROR_NONE;
-            $this->setState('tenant_id', $this->user->tenant_id);
+            $this->setState('authenticated', true);
         }
 
         return !$this->errorCode;

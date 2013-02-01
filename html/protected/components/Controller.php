@@ -5,16 +5,15 @@
  * All controller classes for this application should extend from this base class.
  */
 class Controller extends CController {
-    
-    public function __construct($id){
-        parent::__construct($id);
-        
-        // this should be in a route. here as a proof of concept
-        if(isset($_GET['tenantID'])){
-             $tenantId = $_GET['tenantID'];  
-             Yii::app()->user->setTenant($tenantId);
-        }
 
+    public function __construct($id) {
+        parent::__construct($id);
+        if (isset($_GET['tenant_name'])) {
+           $r =  Yii::app()->user->setCurrentUserTenant(($_GET['tenant_name']));
+           if(!$r){
+                 $this->redirect('/admin');
+           }
+        }
     }
 
     /**
@@ -34,7 +33,5 @@ class Controller extends CController {
      * for more details on how to specify this property.
      */
     public $breadcrumbs = array();
-    
-
 
 }

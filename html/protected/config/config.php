@@ -40,7 +40,7 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     
 } else {    //dev server conf
     $dbhost = '127.0.0.1';
-    $dbname = 'mobile_advocacy_platform';
+    $dbname = 'map_3';
     $dbuser = 'postgres';
     $dbpass = 'pengu1n';
     $dbport = '5432';

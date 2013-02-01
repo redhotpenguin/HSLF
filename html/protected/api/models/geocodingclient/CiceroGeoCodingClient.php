@@ -156,10 +156,9 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
             $transaction = $connection->beginTransaction();
             try {
                 $opt = new Option();
-                $opt->sessionTenantId = $this->tenantId;
+                Yii::app()->params['current_tenant_id'] = $this->tenantId;
                 $opt->upsert('cicero_token', $this->token);
                 $opt = new Option();
-                $opt->sessionTenantId = $this->tenantId;
                 $opt->upsert('cicero_user', $this->userId);
                 $transaction->commit();
 

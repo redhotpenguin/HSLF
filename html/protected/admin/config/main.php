@@ -18,10 +18,7 @@ return array(
     'runtimePath' => $backend . '/runtime',
     'name' => 'Admin Dashboard - Winning Mark Mobile ',
     // preloading 'log' component
-    'preload' => array(
-// 'log',
-        'bootstrap'
-    ), // preload the bootstrap component),
+    'preload' => array('bootstrap'), // preload the bootstrap component),
 // autoloading model and component classes
     'import' => array(
         'ext.directmongosuite.components.*',
@@ -47,16 +44,6 @@ return array(
             'class' => 'ext.bootstrap.components.Bootstrap', // assuming you extracted bootstrap under extensions
             'responsiveCss' => true,
         ),
-        'urlManager' => array(
-            'urlFormat' => 'path',
-            'showScriptName' => false,
-            // mapping
-            'rules' => array(
-                'admin' => 'site/index',
-                'admin/<_controller>' => '<_controller>',
-                'admin/<_controller>/<_action>' => '<_controller>/<_action>',
-            ),
-        ),
         'db' => array(
             'connectionString' => "pgsql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME,
             'emulatePrepare' => true,
@@ -65,13 +52,44 @@ return array(
             'charset' => 'UTF-8',
             'schemaCachingDuration' => '60',
         ),
+        /*
+          'session' => array(
+          'class' => 'system.web.CDbHttpSession',
+          'autoCreateSessionTable' => false,
+          'connectionID' => 'db',
+          'sessionTableName' => 'user_session',
+          'sessionName' => 'session',
+          'useTransparentSessionID' => true,
+          ), */
         'session' => array(
-            'class' => 'system.web.CDbHttpSession',
-            'autoCreateSessionTable' => false,
-            'connectionID' => 'db',
-            'sessionTableName' => 'user_session',
-            'sessionName' => 'session',
-            'useTransparentSessionID' => true,
+            'class' => 'CHttpSession',
+            'sessionName' => 'map', // cookie name
+        ),
+        'urlManager' => array(
+            'urlFormat' => 'path',
+            'showScriptName' => false,
+            // mapping
+            'rules' => array(
+                // hard coded routes that conflict with tenancy
+                'admin/logout' => 'site/logout',
+                'admin/settings' => 'user/settings',
+                'admin/tenant/<_action>' => 'tenant/<_action>',
+                'admin/state/<_action>' => 'state/<_action>',
+                'admin/district/<_action>' => 'district/<_action>',
+                'admin/office/<_action>' => 'office/<_action>',
+                'admin/party/<_action>' => 'party/<_action>',
+                'admin/recommendation/<_action>' => 'recommendation/<_action>',
+                'admin/user/<_action>' => 'user/<_action>',
+                'admin/import/<_action>' => 'import/<_action>',
+                'admin' => 'site/index',
+                'admin/<tenant_name>' => 'site/home',
+                // dynamic rules
+                'admin/<tenant_name>/<_controller>' => '<_controller>',
+                'admin/<tenant_name>/<_controller>/<_action>' => '<_controller>/<_action>',
+                array(
+                    'class' => 'application.components.TenantUrlRule',
+                ),
+            ),
         ),
         'authManager' => array(
             'class' => 'CDbAuthManager',

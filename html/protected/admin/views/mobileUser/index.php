@@ -1,6 +1,16 @@
 <?php
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/themes/dashboard/js/form/mobile_user.js');
 
+ $tenant = Yii::app()->user->getCurrentTenant();
+ 
+ $action_url = getSetting('site_url').'/admin/'.$tenant->name;
+ 
+
+$ns = "var ns  = {action_url: '" . $action_url . "'};";
+
+
+Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::POS_HEAD);
+
 
 $this->breadcrumbs = array(
     'Mobile users',

@@ -4,7 +4,7 @@ class UserCommand extends EConsoleCommand {
 
     public function run($args) {
 
-  
+
         $this->println("Add a new admin user");
 
         $tenantId = $this->promptString('Tenant ID');
@@ -29,8 +29,7 @@ class UserCommand extends EConsoleCommand {
         $user->username = $userName;
         $user->password = $password;
         $user->repeat_password = $password;
-        $user->tenant_id = $tenantId;
-        $user->sessionTenantId = $tenantId;
+        Yii::app()->params['current_tenant_id'] = $tenantId;
 
         $user->email = $email;
         $user->role = "admin";

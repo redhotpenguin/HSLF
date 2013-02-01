@@ -64,6 +64,8 @@ class Tenant extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
+            'users' => array(self::MANY_MANY, 'User',
+                'tenant_user(tenant_id, user_id)')
         );
     }
 
@@ -76,6 +78,15 @@ class Tenant extends CActiveRecord {
             'name' => 'Name',
             'display_name' => 'Display Name',
             'creation_date' => 'Creation Date',
+            'web_app_url' => 'Web Application URL',
+            'email' => 'Email',
+            'api_key' => 'API key',
+            'api_secret' => 'API Secret',
+            'ua_dashboard_link' => 'Urban Airship Dashboard Link',
+            'cicero_user' => 'Cicero Username',
+            'cicero_password' => 'Cicero Password',
+            'ua_api_key' => 'Urban Airship Key',
+            'ua_api_secret' => 'Urban Airship Master Secret',
         );
     }
 
