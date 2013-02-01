@@ -64,6 +64,8 @@ return array(
                 array(
                     'host' => REDIS_HOST,
                     'port' => REDIS_PORT,
+                    'password' => REDIS_PASSWORD,
+                    'database' => REDIS_DATABASE
                 ),
         )),
         'errorHandler' => array(
