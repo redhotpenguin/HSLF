@@ -36,10 +36,10 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $rabbitMQLogin = $env['DOTCLOUD_QUEUE_AMQP_LOGIN'];
     $rabbitMQPassword = $env['DOTCLOUD_QUEUE_AMQP_PASSWORD'];
 
-    $redisHost = $env['DOTCLOUD_REDIS_REDIS_HOST'];
-    $redisPort = $env['DOTCLOUD_REDIS_REDIS_PORT'];
-    $redisLogin = $env['DOTCLOUD_DATA_REDIS_LOGIN'];
-    $redisPassword = $env['DOTCLOUD_DATA_REDIS_PASSWORD'];
+    $redisHost = $env['DOTCLOUD_CACHE_REDIS_HOST'];
+    $redisPort = $env['DOTCLOUD_CACHE_REDIS_PORT'];
+    $redisLogin = $env['DOTCLOUD_CACHE_REDIS_LOGIN'];
+    $redisPassword = $env['DOTCLOUD_CACHE_REDIS_PASSWORD'];
     $redisDatabase = '1'; // redis does not use name for db's
 
 
