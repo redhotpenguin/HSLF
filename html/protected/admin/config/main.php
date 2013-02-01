@@ -45,20 +45,18 @@ return array(
             'charset' => 'UTF-8',
             'schemaCachingDuration' => '60',
         ),
-
-
         'user' => array(
             // enable cookie-based authentication
             'allowAutoLogin' => true,
             'class' => 'WebUser',
         ),
-       'session' => array(
+        'session' => array(
             'class' => 'CDbHttpSession',
             'autoCreateSessionTable' => false,
             'autoCreateSessionTable' => false,
             'connectionID' => 'db',
             'sessionTableName' => 'user_session',
-            'sessionName' => 'winningmarkmobile', // cookie name
+            // 'sessionName' => 'winningmarkmobile', // cookie name
             'cookieMode' => 'only', // only use cookies 
             'useTransparentSessionID' => false, // disable cookie less sessions,
         ),
@@ -88,13 +86,20 @@ return array(
                 ),
             ),
         ),
-        'authManager' => array( // rbac config
+        'authManager' => array(// rbac config
             'class' => 'CDbAuthManager',
             'connectionID' => 'db',
         ),
         'cache' => array(
-            'class' => 'system.caching.CApcCache',
-        ),
+            // 'class' => 'system.caching.CApcCache',
+            'class' => 'ext.Redis.CRedisCache',
+            'predisPath' => 'ext.Redis.Predis',
+            'servers' => array(
+                array(
+                    'host' => '127.0.0.1',
+                    'port' => 6379,
+                ),
+            ),),
         'errorHandler' => array(
             'errorAction' => 'site/error',
         ),

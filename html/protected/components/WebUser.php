@@ -20,9 +20,9 @@ class WebUser extends CWebUser {
     }
 
     public function login($identity, $duration = 0) {
+        parent::login($identity, $duration);
         $this->_userModel = $identity->getUser();
         $this->setState('__userInfo', $this->_userModel);
-        parent::login($identity, $duration);
     }
 
     /**
