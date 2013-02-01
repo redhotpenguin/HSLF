@@ -52,7 +52,6 @@ class CRedisCache extends CCache {
         if ($this->_cache !== null)
             return $this->_cache;
         else {
-            error_log( Yii::getPathOfAlias($this->predisPath) . ".php" );
             require_once Yii::getPathOfAlias($this->predisPath) . ".php";
             Yii::log('Opening Redis connection', CLogger::LEVEL_TRACE);
             return $this->_cache = new Predis_Client($this->servers);
