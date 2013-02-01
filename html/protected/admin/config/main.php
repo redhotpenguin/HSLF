@@ -102,9 +102,20 @@ return array(
                     'database' => REDIS_DATABASE
                 ),
         )),
+        's3' => array(
+            'class' => 'ext.s3.ES3',
+            'aKey' => 'ADD YOUR AKEY HERE',
+            'sKey' => 'ADD YOUR SKEY HERE',
+        ),
         'errorHandler' => array(
             'errorAction' => 'site/error',
         ),
+      /*  'assetManager' => array(
+            'class' => 'S3AssetManager',
+            'host' => 'Your-bucket.s3.amazonaws.com', // changing this you can point to your CloudFront hostname
+            'bucket' => 'Your-bucket',
+            'path' => 'assets', //or any other folder you want
+        ),*/
         'edms' => array(
             'class' => 'EDMSConnection',
             'server' => MONGODB_HOST,

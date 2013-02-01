@@ -9,7 +9,11 @@
             <h1>Dashboard</h1>
             <p>Welcome to the administration dashboard.</p>
             
-          
+            <?php
+            
+            echo 'test'.S3::_ACL_AUTHENTICATED_READ;
+            
+            ?>
               
             
             <p> <b><?php echo $total_item_number; ?></b>  <?php  echo CHtml::link("Ballot Items", array("item/Admin")); ?> </p>
