@@ -33,15 +33,8 @@ return array(
     'modules' => array(),
     // application components
     'components' => array(
-        'user' => array(
-// enable cookie-based authentication
-            'allowAutoLogin' => true,
-            'class' => 'WebUser',
-        ),
-        // uncomment the following to enable URLs in path-format
-
         'bootstrap' => array(
-            'class' => 'ext.bootstrap.components.Bootstrap', // assuming you extracted bootstrap under extensions
+            'class' => 'ext.bootstrap.components.Bootstrap',
             'responsiveCss' => true,
         ),
         'db' => array(
@@ -52,18 +45,22 @@ return array(
             'charset' => 'UTF-8',
             'schemaCachingDuration' => '60',
         ),
-        /*
-          'session' => array(
-          'class' => 'system.web.CDbHttpSession',
-          'autoCreateSessionTable' => false,
-          'connectionID' => 'db',
-          'sessionTableName' => 'user_session',
-          'sessionName' => 'session',
-          'useTransparentSessionID' => true,
-          ), */
-        'session' => array(
-            'class' => 'CHttpSession',
-            'sessionName' => 'map', // cookie name
+
+
+        'user' => array(
+            // enable cookie-based authentication
+            'allowAutoLogin' => true,
+            'class' => 'WebUser',
+        ),
+       'session' => array(
+            'class' => 'CDbHttpSession',
+            'autoCreateSessionTable' => false,
+            'autoCreateSessionTable' => false,
+            'connectionID' => 'db',
+            'sessionTableName' => 'user_session',
+            'sessionName' => 'winningmarkmobile', // cookie name
+            'cookieMode' => 'only', // only use cookies 
+            'useTransparentSessionID' => false, // disable cookie less sessions,
         ),
         'urlManager' => array(
             'urlFormat' => 'path',
@@ -91,7 +88,7 @@ return array(
                 ),
             ),
         ),
-        'authManager' => array(
+        'authManager' => array( // rbac config
             'class' => 'CDbAuthManager',
             'connectionID' => 'db',
         ),

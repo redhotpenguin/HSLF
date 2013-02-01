@@ -24,12 +24,13 @@ class UserIdentity extends CUserIdentity {
         } else { // Okay!
             $this->errorCode = self::ERROR_NONE;
             $this->setState('authenticated', true);
+            $this->setState('userId', $this->user->id);
         }
 
         return !$this->errorCode;
     }
-
-    public function getUser() {
+    
+    public function getUser(){
         return $this->user;
     }
 

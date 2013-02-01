@@ -9,7 +9,7 @@ class Controller extends CController {
     public function __construct($id) {
         parent::__construct($id);
         if (isset($_GET['tenant_name'])) {
-           $r =  Yii::app()->user->setCurrentUserTenant(($_GET['tenant_name']));
+           $r =  Yii::app()->user->setCurrentUserTenant($_GET['tenant_name']);
            if(!$r){
                  $this->redirect('/admin');
            }

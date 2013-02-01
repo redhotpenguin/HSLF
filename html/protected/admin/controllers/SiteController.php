@@ -9,13 +9,18 @@ class SiteController extends Controller {
     public function actionIndex() {
         $data = null;
 
+        error_log('DUDE 1: ' . Yii::app()->user->id);
+
+
         //user is already authenticated
         //@bug: Yii::app()->user->id is sometimes a string. Ex: 'jonas'
-        if (Yii::app()->user->id && is_numeric(Yii::app()->user->id)) {
+        if (Yii::app()->user->id) {
+
+            $user = Yii::app()->user->getModel();
 
 
             $options = array(
-                'tenants' => $tenants = User::model()->findByPk(Yii::app()->user->id)->tenants
+                'tenants' => $tenants = $user->tenants
             );
             $this->render('index', $options);
         } else {
@@ -33,6 +38,7 @@ class SiteController extends Controller {
 
                 // validate user input and redirect to the admin home page if valid
                 if ($model->validate() && $model->login()) {
+                    error_log('DUDE: ' . Yii::app()->user->email);
                     $this->redirect("/admin");
                 }
             }

@@ -142,6 +142,15 @@ class User extends CBaseActiveRecord {
         return $save_result;
     }
 
+    public function getUser($userIdOrName) {
+        if (is_string($userIdOrName)) {
+            $user = User::model()->findByAttributes(array('username' => $userIdOrName ) );
+        }else
+            $user = User::model()->findByPk($userIdOrName);
+
+        return $user;
+    }
+
     public function behaviors() {
         return array(
             'UserBehavior' => array('class' => 'UserBehavior'),

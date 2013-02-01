@@ -3,6 +3,7 @@
 class WebUser extends CWebUser {
 
     private $_access = array();
+    private $_userModel; // User active record
 
     public function __get($name) {
 
@@ -19,7 +20,8 @@ class WebUser extends CWebUser {
     }
 
     public function login($identity, $duration = 0) {
-        $this->setState('__userInfo', $identity->getUser());
+        $this->_userModel = $identity->getUser();
+        $this->setState('__userInfo', $this->_userModel);
         parent::login($identity, $duration);
     }
 
@@ -35,14 +37,14 @@ class WebUser extends CWebUser {
         if ($tenant == null)
             return false;
 
+        $user = User::model()->getUser(Yii::app()->user->id);
 
-        $user = User::model()->findByPk(Yii::app()->user->id);
 
         if ($user == null)
             return false;
 
         if ($user->belongsToTenant($tenant->id)) {
-       //     error_log("setting tenant");
+            //     error_log("setting tenant");
             Yii::app()->params['current_tenant'] = $tenant;
             return true;
         }
@@ -51,8 +53,19 @@ class WebUser extends CWebUser {
     }
 
     public function getCurrentTenant() {
-     //   print_r(Yii::app()->params);
+        //   print_r(Yii::app()->params);
         return Yii::app()->params['current_tenant'];
+    }
+
+    public function getId() {
+        return $this->getState('userId');
+    }
+
+    public function getModel() {
+        if (empty($this->_userModel))
+            $this->_userModel = User::model()->getUser($this->getId());
+
+        return $this->_userModel;
     }
 
     /**
