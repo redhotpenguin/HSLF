@@ -7,6 +7,7 @@
  * @property integer $id
  * @property string $name
  * @property string $type
+ * @property string $display_name
  */
 class Tag extends CBaseActiveRecord {
 
@@ -27,7 +28,7 @@ class Tag extends CBaseActiveRecord {
     }
 
     public function getTagTypes() {
-        return array('alerts' => 'Alerts');
+        return array('alert' => 'Alert', 'organization' => 'Organization');
     }
 
     /**
@@ -42,8 +43,8 @@ class Tag extends CBaseActiveRecord {
         // will receive user inputs.
         return array(
             array('name, type', 'length', 'max' => 255),
-            array('name, type', 'required'),
-            array('id, name, type, tenant_id', 'safe', 'on' => 'search'),
+            array('name, type, display_name', 'required'),
+            array('id, name, type, tenant_id, display_name', 'safe', 'on' => 'search'),
             array('name', 'filter', 'filter' => array($this, 'remove_spaces')),
         );
     }
@@ -66,6 +67,7 @@ class Tag extends CBaseActiveRecord {
             'id' => 'ID',
             'name' => 'Name',
             'type' => 'Type',
+            'display_name' => 'Display Name'
         );
     }
 
@@ -82,6 +84,8 @@ class Tag extends CBaseActiveRecord {
         $criteria->compare('id', $this->id);
         $criteria->compare('name', $this->name, true);
         $criteria->compare('type', $this->type, true);
+        $criteria->compare('display_name', $this->display_name, true);
+
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,

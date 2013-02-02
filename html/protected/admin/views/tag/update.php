@@ -12,6 +12,6 @@ $this->menu = array(
 );
 ?>
 
-<h1>Update Tag '<?php echo $model->name; ?>'</h1>
+<h1><?php echo $model->display_name; ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model' => $model)); ?>

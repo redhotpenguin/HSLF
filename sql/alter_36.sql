@@ -9,3 +9,5 @@ CREATE TABLE tag_organization(
     organization_id INTEGER REFERENCES organization(id),
     PRIMARY KEY (tag_id, organization_id)
 );
+
+UPDATE tag SET type = 'alert' where type = 'alerts';
