@@ -91,7 +91,6 @@ return array(
             'connectionID' => 'db',
         ),
         'cache' => array(
-            // 'class' => 'system.caching.CApcCache',
             'class' => 'ext.Redis.CRedisCache',
             'predisPath' => 'ext.Redis.Predis',
             'servers' => array(
@@ -104,18 +103,18 @@ return array(
         )),
         's3' => array(
             'class' => 'ext.s3.ES3',
-            'aKey' => 'ADD YOUR AKEY HERE',
-            'sKey' => 'ADD YOUR SKEY HERE',
+            'aKey' => S3_AKEY,
+            'sKey' => S3_SKEY,
         ),
         'errorHandler' => array(
             'errorAction' => 'site/error',
         ),
-      /*  'assetManager' => array(
+        'assetManager' => array(
             'class' => 'S3AssetManager',
-            'host' => 'Your-bucket.s3.amazonaws.com', // changing this you can point to your CloudFront hostname
-            'bucket' => 'Your-bucket',
+            'host' => S3_HOST, // changing this you can point to your CloudFront hostname
+            'bucket' => S3_BUCKET,
             'path' => 'assets', //or any other folder you want
-        ),*/
+        ),
         'edms' => array(
             'class' => 'EDMSConnection',
             'server' => MONGODB_HOST,

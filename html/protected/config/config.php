@@ -14,10 +14,20 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
 
     if ($env['DOTCLOUD_PROJECT'] === 'productionmap') {     // production specific config
         $mongodbhost = $env['DOTCLOUD_DATA_MONGODB_URL'] . '/?replicaSet=productionmap.data';
+        // S3 stuff
+        $s3Host = 'mobileadvocacy_prod.s3.amazonaws.com';
+        $s3AKey = 'AKIAIDNK7VPB47DB2F2Q';
+        $seSKey = '2F7TBdQsokQVpIZAgNUx/PgKyE01wz3AXLmGFYvh';
+        $s3Bucket = 'mobileadvocacy_prod';
         $siteurl = 'http://www.winningmarkmobile.com';
     } else { // sandbox specific config
         $mongodbhost = $env['DOTCLOUD_DATA_MONGODB_URL'];
         $siteurl = $env['DOTCLOUD_WWW_HTTP_URL'];
+        // S3 stuff
+        $s3Host = 'mobileadvocacy.s3.amazonaws.com';
+        $s3AKey = 'AKIAIDNK7VPB47DB2F2Q';
+        $seSKey = '2F7TBdQsokQVpIZAgNUx/PgKyE01wz3AXLmGFYvh';
+        $s3Bucket = 'mobileadvocacy';
     }
 
     $mongodbname = "mobile_advocacy_platform";
@@ -73,9 +83,14 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $redisHost = '127.0.0.1';
     $redisPort = 6379;
     $redisLogin = 'guest';
-    $redisPassword ='foobared';
+    $redisPassword = 'foobared';
     $redisDatabase = '1';
-    
+
+    // S3 stuff
+    $s3Host = 'mobileadvocacy.s3.amazonaws.com';
+    $s3AKey = 'AKIAIDNK7VPB47DB2F2Q';
+    $seSKey = '2F7TBdQsokQVpIZAgNUx/PgKyE01wz3AXLmGFYvh';
+    $s3Bucket = 'mobileadvocacy';
 
     defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL', 3);
     define('YII_DEBUG', TRUE);
@@ -118,6 +133,11 @@ DEFINE('FRONTEND_THEME', 'frontend');
 DEFINE('UPLOAD_DIR', $uploaddir);
 DEFINE('UPLOAD_PATH', $uploadpath);
 DEFINE('SITE_URL', $siteurl);
+
+DEFINE('S3_HOST', $s3Host);
+DEFINE('S3_AKEY', $s3AKey);
+DEFINE('S3_SKEY', $seSKey);
+DEFINE('S3_BUCKET', $s3Bucket);
 
 
 
