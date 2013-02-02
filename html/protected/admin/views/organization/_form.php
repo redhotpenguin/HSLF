@@ -95,6 +95,18 @@
         echo $form->error($model, 'address');
         ?>
     </div>
+    
+        <div class="row-fluid">
+        <?php
+        $this->widget('ext.TagSelector.TagSelector', array(
+          //  'model' => $model,
+        //    'attribute' => 'district_id',
+            'options' => array(
+                'model_name' => 'Item',
+            ),
+        ));
+        ?>
+    </div>
 
 
     <div class="row buttons">
