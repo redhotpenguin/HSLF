@@ -61,6 +61,8 @@ class Organization extends CBaseActiveRecord {
         return array(
             'items' => array(self::MANY_MANY, 'Item',
                 'organization_item(organization_id, item_id)'),
+            'tags' => array(self::MANY_MANY, 'Tag',
+                'tag_organization(organization_id, tag_id)'),
         );
     }
 

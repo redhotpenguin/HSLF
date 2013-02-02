@@ -56,6 +56,8 @@ class Tag extends CBaseActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
+            'organizations' => array(self::MANY_MANY, 'Organization',
+                'tag_organization(tag_id, organization_id)'),
         );
     }
 
