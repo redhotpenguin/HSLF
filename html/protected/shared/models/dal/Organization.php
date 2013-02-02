@@ -110,7 +110,13 @@ class Organization extends CBaseActiveRecord {
     public function behaviors() {
         return array(
             'MultiTenant' => array(
-                'class' => 'MultiTenantBehavior')
+                'class' => 'MultiTenantBehavior'),
+            'TagRelation' => array(
+                'class' => 'TagRelationBehavior',
+                'joinTableName' => 'tag_organization',
+                'tagRelationName' => 'organizations', // relation to this class, defined in Tags.
+                'foreignKeyName' => 'organization_id'
+            )
         );
     }
 

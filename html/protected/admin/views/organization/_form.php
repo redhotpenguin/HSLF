@@ -98,13 +98,18 @@
     
         <div class="row-fluid">
         <?php
-        $this->widget('ext.TagSelector.TagSelector', array(
+       /* $this->widget('ext.TagSelector.TagSelector', array(
           //  'model' => $model,
         //    'attribute' => 'district_id',
             'options' => array(
                 'model_name' => 'Item',
             ),
-        ));
+        ));*/
+        
+       echo 'yo '. $model->linkTag(2);
+        
+       // print_r( $model->getTags() );
+        
         ?>
     </div>
 
