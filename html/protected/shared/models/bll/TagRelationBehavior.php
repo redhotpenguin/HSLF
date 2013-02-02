@@ -12,13 +12,13 @@ class TagrelationBehavior extends CActiveRecordBehavior {
      * @return boolean true on success or if tag is already linked, false on failure
      */
 
-    public function linkTag($tagId) {
-        
+    public function addTagAssociation($tagId) {
+
         // check that tag actually exists and also check tenancy (through MultiTenantBehavior)
         $tag = Tag::model()->findByPk($tagId);
-        if(!$tag)
+        if (!$tag)
             return false;
-      
+
         $connection = Yii::app()->db;
         $command = $connection->createCommand();
 
@@ -28,13 +28,45 @@ class TagrelationBehavior extends CActiveRecordBehavior {
         );
 
         try {
-            $result = $cmdResult = $command->insert($this->joinTableName, $data);
+            $command->insert($this->joinTableName, $data);
+            $result = true;
         } catch (CDbException $e) {
             if ($e->getCode() == 23505) // duplication
                 $result = true;
 
             else
                 $result = false;
+        }
+
+        return $result;
+    }
+
+    /**
+     * remove a tag from the owner
+     * @param integer tag id 
+     * @return boolean true on success or false on failure
+     */
+    public function removeTagAssociation($tagId) {
+        // check that tag actually exists and also check tenancy (through MultiTenantBehavior)
+        $tag = Tag::model()->findByPk($tagId);
+        if (!$tag)
+            return false;
+
+        $connection = Yii::app()->db;
+        $command = $connection->createCommand();
+
+        $condition = "tag_id =:tag_id AND {$this->foreignKeyName} =:{$this->foreignKeyName}";
+
+        $params = array(
+            ":{$this->foreignKeyName}" => $this->owner->id,
+            ":tag_id" => $tagId
+        );
+
+        try {
+            $command->delete($this->joinTableName, $condition, $params);
+            $result = true;
+        } catch (CDbException $e) {
+            $result = false;
         }
 
         return $result;
@@ -48,7 +80,7 @@ class TagrelationBehavior extends CActiveRecordBehavior {
 
         $tags = Tag::model()->with($this->tagRelationName)->find(
                 array(
-                    'condition' => "{$this->foreignKeyName} = :{$this->foreignKeyName}",
+                    'condition' => '{$this->foreignKeyName} = :{$this->foreignKeyName}',
                     'params' => array(":{$this->foreignKeyName}" => $this->owner->id)
                 ));
 
