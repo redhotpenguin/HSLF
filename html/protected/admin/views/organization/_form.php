@@ -98,24 +98,20 @@
 
     <div class="row-fluid">
         <?php
-        /* $this->widget('ext.TagSelector.TagSelector', array(
-          //  'model' => $model,
-          //    'attribute' => 'district_id',
-          'options' => array(
-          'model_name' => 'Item',
-          ),
-          )); */
-
-          echo 'add '. $model->removeAllTagsAssociation();
-
+        $this->widget('ext.TagSelector.TagSelector', array(
+             'model' => $model,
+            'options' => array(
+                'model_name' => 'Organization',
+            ),
+        ));
         ?>
     </div>
 
 
     <div class="row buttons">
-<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
     </div>
 
-        <?php $this->endWidget(); ?>
+    <?php $this->endWidget(); ?>
 
 </div><!-- form -->
