@@ -80,12 +80,36 @@ class TagrelationBehavior extends CActiveRecordBehavior {
 
         $tags = Tag::model()->with($this->tagRelationName)->find(
                 array(
-                    'condition' => '{$this->foreignKeyName} = :{$this->foreignKeyName}',
+                    'condition' => "tag_id =:tag_id AND {$this->foreignKeyName} =:{$this->foreignKeyName}",
                     'params' => array(":{$this->foreignKeyName}" => $this->owner->id)
                 ));
 
 
         return $tags;
+    }
+
+    /**
+     * Return wheter the owner has a tag associated to it or not
+     * @param integer $tagId
+     * @return boolean
+     */
+    public function hasTag($tagId) {
+        $connection = Yii::app()->db;
+        $command = $connection->createCommand();
+
+
+        $result = $command->select('*')
+                ->from($this->joinTableName)
+                ->where("tag_id =:tag_id AND {$this->foreignKeyName} =:{$this->foreignKeyName}", array(":{$this->foreignKeyName}" => $this->owner->id,
+                    ":tag_id" => $tagId))
+                ->queryRow();
+
+        print_r($result);
+
+        if (isset($result['tag_id']) && isset($result[$this->foreignKeyName]))
+            return true;
+
+        return false;
     }
 
 }
