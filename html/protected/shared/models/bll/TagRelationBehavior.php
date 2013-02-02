@@ -11,7 +11,6 @@ class TagrelationBehavior extends CActiveRecordBehavior {
      * @param integer tag id 
      * @return boolean true on success or if tag is already linked, false on failure
      */
-
     public function addTagAssociation($tagId) {
 
         // check that tag actually exists and also check tenancy (through MultiTenantBehavior)
@@ -42,7 +41,7 @@ class TagrelationBehavior extends CActiveRecordBehavior {
     }
 
     /**
-     * remove a tag from the owner
+     * remove a tag associated to the owner
      * @param integer tag id 
      * @return boolean true on success or false on failure
      */
@@ -60,6 +59,31 @@ class TagrelationBehavior extends CActiveRecordBehavior {
         $params = array(
             ":{$this->foreignKeyName}" => $this->owner->id,
             ":tag_id" => $tagId
+        );
+
+        try {
+            $command->delete($this->joinTableName, $condition, $params);
+            $result = true;
+        } catch (CDbException $e) {
+            $result = false;
+        }
+
+        return $result;
+    }
+    
+     /**
+     * remove all tags associated to the the owner
+     * @return boolean true on success or false on failure
+     */
+    public function removeAllTagsAssociation() {
+
+        $connection = Yii::app()->db;
+        $command = $connection->createCommand();
+
+        $condition = "{$this->foreignKeyName} =:{$this->foreignKeyName}";
+
+        $params = array(
+            ":{$this->foreignKeyName}" => $this->owner->id,
         );
 
         try {
@@ -89,7 +113,7 @@ class TagrelationBehavior extends CActiveRecordBehavior {
     }
 
     /**
-     * Return wheter the owner has a tag associated to it or not
+     * Return whether the owner has a tag associated to it or not
      * @param integer $tagId
      * @return boolean
      */
@@ -97,14 +121,11 @@ class TagrelationBehavior extends CActiveRecordBehavior {
         $connection = Yii::app()->db;
         $command = $connection->createCommand();
 
-
         $result = $command->select('*')
                 ->from($this->joinTableName)
                 ->where("tag_id =:tag_id AND {$this->foreignKeyName} =:{$this->foreignKeyName}", array(":{$this->foreignKeyName}" => $this->owner->id,
                     ":tag_id" => $tagId))
                 ->queryRow();
-
-        print_r($result);
 
         if (isset($result['tag_id']) && isset($result[$this->foreignKeyName]))
             return true;

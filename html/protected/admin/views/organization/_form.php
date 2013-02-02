@@ -95,29 +95,27 @@
         echo $form->error($model, 'address');
         ?>
     </div>
-    
-        <div class="row-fluid">
+
+    <div class="row-fluid">
         <?php
-       /* $this->widget('ext.TagSelector.TagSelector', array(
+        /* $this->widget('ext.TagSelector.TagSelector', array(
           //  'model' => $model,
-        //    'attribute' => 'district_id',
-            'options' => array(
-                'model_name' => 'Item',
-            ),
-        ));*/
-        
-       echo 'yo '. $model->linkTag(2);
-        
-       // print_r( $model->getTags() );
-        
+          //    'attribute' => 'district_id',
+          'options' => array(
+          'model_name' => 'Item',
+          ),
+          )); */
+
+          echo 'add '. $model->removeAllTagsAssociation();
+
         ?>
     </div>
 
 
     <div class="row buttons">
-        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
     </div>
 
-    <?php $this->endWidget(); ?>
+        <?php $this->endWidget(); ?>
 
 </div><!-- form -->
