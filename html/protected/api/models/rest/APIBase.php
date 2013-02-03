@@ -41,11 +41,9 @@ abstract class APIBase implements IAPI {
             $attributes = array($arguments['attribute'] => $arguments['attributeValue']);
         }
 
-
         try {
             $result = $this->model->with($relations)->findAllByAttributes($attributes, $options);
         } catch (CDbException $cdbE) {
-            //echo $cdbE->getMessage();
             $result = "no_results";
         }
         return $result;
@@ -53,8 +51,6 @@ abstract class APIBase implements IAPI {
 
     public function getSingle($tenantId, $pkID, $arguments = array()) {
         $relations = array();
-
-
 
         if (isset($arguments['relations'])) {
             if ($arguments['relations'] == 'all') {
@@ -70,7 +66,6 @@ abstract class APIBase implements IAPI {
         try {
             $result = $this->model->with($relations)->findByPk($pkID);
         } catch (CDbException $cdbE) {
-            //echo $cdbE->getMessage();
             $result = "no_results";
         }
 
