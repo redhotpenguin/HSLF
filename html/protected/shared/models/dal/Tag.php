@@ -104,5 +104,14 @@ class Tag extends BaseActiveRecord {
                 'class' => 'MultiTenantBehavior')
         );
     }
+    
+    /**
+     * return a string representation of the object
+     * Used by array_diff
+     * @return string
+     */
+    public function __toString() {
+        return 'Tag_'.$this->id;
+    }
 
 }

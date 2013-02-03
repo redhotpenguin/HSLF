@@ -95,28 +95,25 @@
         echo $form->error($model, 'address');
         ?>
     </div>
-    
+
     <h3/>
-    
+
     <h4>Tags:</h4>
 
     <div class="row-fluid">
         <?php
-                
         $this->widget('ext.TagSelector.TagSelector', array(
-             'model' => $model,
-            'options' => array(
-                'model_name' => 'Organization',
-            ),
+        'model' => $model,
+        'tag_type' => 'organization'
         ));
         ?>
     </div>
 
 
     <div class="row buttons">
-        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
     </div>
 
-    <?php $this->endWidget(); ?>
+<?php $this->endWidget(); ?>
 
 </div><!-- form -->
