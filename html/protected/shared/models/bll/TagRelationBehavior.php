@@ -11,6 +11,7 @@ class TagrelationBehavior extends CActiveRecordBehavior {
      * @param integer tag id 
      * @return boolean true on success or if tag is already linked, false on failure
      */
+
     public function addTagAssociation($tagId) {
 
         // check that tag actually exists and also check tenancy (through MultiTenantBehavior)
@@ -70,8 +71,8 @@ class TagrelationBehavior extends CActiveRecordBehavior {
 
         return $result;
     }
-    
-     /**
+
+    /**
      * remove all tags associated to the the owner
      * @return boolean true on success or false on failure
      */
@@ -102,12 +103,11 @@ class TagrelationBehavior extends CActiveRecordBehavior {
      */
     public function getTags() {
 
-        $tags = Tag::model()->with($this->tagRelationName)->find(
+        $tags = Tag::model()->with($this->tagRelationName)->findAll(
                 array(
-                    'condition' => "tag_id =:tag_id AND {$this->foreignKeyName} =:{$this->foreignKeyName}",
+                    'condition' => "{$this->foreignKeyName} =:{$this->foreignKeyName}",
                     'params' => array(":{$this->foreignKeyName}" => $this->owner->id)
                 ));
-
 
         return $tags;
     }

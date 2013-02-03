@@ -5,12 +5,21 @@ class TagSelector extends CInputWidget {
     public $options = array();
 
     public function init() {
+        // check that the model has the correct behavior
+        $behaviors = $this->model->behaviors();
+        if(!isset($behaviors['TagRelation']))
+            throw new CException('Model "'.get_class($this->model).'" does not have a behavior called TagRelation');
+        
+        
         $this->publishAssets();
     }
 
     public function run() {
-
-        echo 'tag selector';
+        $data = array(
+            'tags' => $this->model->getTags()
+        );
+        
+        $this->render('tag_selector', $data);
     }
 
     public static function publishAssets() {
