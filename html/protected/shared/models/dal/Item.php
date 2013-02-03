@@ -116,7 +116,7 @@ class Item extends BaseActiveRecord {
             'published' => 'Published',
             'party_id' => 'Party',
             'slug' => 'Slug',
-            'image_url' => 'Image',
+            'image_url' => 'Image URL',
             'first_name' => 'First Name',
             'last_name' => 'Last Name',
         );
