@@ -51,16 +51,14 @@
                         'class' => 'bootstrap.widgets.BootMenu',
                         'items' => array(
                             '---',
-                            array('label' => 'Publishing', 'url' => '#', 'items' => array(
+                            array('label' => 'Content', 'url' => '#', 'items' => array(
                                     array('label' => 'Ballot Items', 'url' => array('/item/admin')),
                                     array('label' => 'Organizations', 'url' => array('/organization/admin/')),
-                                    array('label' => 'Scorecard Items', 'url' => array('/scorecardItem/admin')),
                                     '',
+                                    array('label' => 'Scorecard Items', 'url' => array('/scorecardItem/admin')),
                                     array('label' => 'Votes', 'url' => array('/vote/admin')),
                                     '',
-                                    array('label' => 'Share Payloads', 'url' => array('/sharePayload/admin')),
-                                    '',
-                                    array('itemOptions' => array('id' => 'external_item'), 'label' => 'Urban Airship', 'linkOptions' => array('target' => '_blank'), 'url' => $tenant->ua_dashboard_link),
+                                    array('label' => 'Tags', 'url' => array('/tag')),
                             )),
                         ),
                     );
@@ -70,13 +68,16 @@
                         'items' => array(
                             '---',
                             array(
-                                'label' => 'Application Manager',
+                                'label' => 'Mobile Application',
                                 'url' => '#',
                                 'items' => array(
-                                    array('label' => 'Alert types', 'url' => array('/alertType'), 'visible'),
-                                    array('label' => 'Options', 'url' => array('/option'), 'visible'),
-                                    array('label' => 'Tags', 'url' => array('/tag')),
                                     array('label' => 'Mobile Users', 'url' => array('/mobileUser')),
+                                    '',
+                                    array('label' => 'Options', 'url' => array('/option')),
+                                    '',
+                                    array('label' => 'Alert types', 'url' => array('/alertType'), 'visible'),
+                                    array('label' => 'Share Payloads', 'url' => array('/sharePayload/admin')),
+                                    array('itemOptions' => array('id' => 'external_item'), 'label' => 'Urban Airship', 'linkOptions' => array('target' => '_blank'), 'url' => $tenant->ua_dashboard_link),
                                 ),
                         )),
                     );
