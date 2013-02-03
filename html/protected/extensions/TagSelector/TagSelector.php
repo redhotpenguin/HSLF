@@ -28,9 +28,6 @@ class TagSelector extends CInputWidget {
 
         foreach ($unAssociatedTags as $tag)
             $checkBoxList[$tag->id] = array('name' => $tag->display_name, 'checked' => false);
-
-        // sort array and maintain indexes
-        //asort($checkBoxList, SORT_NUMERIC);
         
         $checkBoxList = $this->array_sort($checkBoxList, 'name', SORT_ASC );
 
