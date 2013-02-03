@@ -21,12 +21,12 @@
             <div class="span3">
                 <h2>Ballot Items</h2>
                 <p>Manage ballot items. </p>
-                <p><?php  echo CHtml::link('More', array('item/Admin'), array('class'=>'btn')); ?></a></p>
+                <p><?php  echo CHtml::link('More »', array('item/Admin'), array('class'=>'btn')); ?></a></p>
             </div>
             <div class="span3">
                 <h2>Share Payloads</h2>
                 <p>Manage share payloads. </p>
-                <p><?php  echo CHtml::link('More', array('sharePayload/index'), array('class'=>'btn')); ?></p>
+                <p><?php  echo CHtml::link('More »', array('sharePayload/index'), array('class'=>'btn')); ?></p>
             </div>
             <div class="span3">
                 <h2>Push Notifications</h2>
@@ -39,19 +39,19 @@
             <div class="span3">
                 <h2>Organizations</h2>
                 <p>Manage organizations.</p>
-                <p><?php  echo CHtml::link('More', array('organization/admin'), array('class'=>'btn')); ?></p>
+                <p><?php  echo CHtml::link('More »', array('organization/admin'), array('class'=>'btn')); ?></p>
             </div>
 
             <div class="span3">
                 <h2>Options</h2>
                 <p>Manage application's options.</p>
-                <p><?php  echo CHtml::link('More', array('option/index'), array('class'=>'btn')); ?></p>
+                <p><?php  echo CHtml::link('More »', array('option/index'), array('class'=>'btn')); ?></p>
             </div>
 
             <div class="span3">
                 <h2>Mobile Users</h2>
                 <p>Mobile users information.</p>
-                <p><?php  echo CHtml::link('More', array('mobileUser/index'), array('class'=>'btn')); ?></p>
+                <p><?php  echo CHtml::link('More »', array('mobileUser/index'), array('class'=>'btn')); ?></p>
             </div>
         </div>
 
