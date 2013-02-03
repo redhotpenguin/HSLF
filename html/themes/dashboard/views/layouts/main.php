@@ -58,8 +58,6 @@
                                     '',
                                     array('label' => 'Votes', 'url' => array('/vote/admin')),
                                     '',
-                                    array('label' => 'Image Upload', 'url' => array('/upload')),
-                                    '',
                                     array('label' => 'Share Payloads', 'url' => array('/sharePayload/admin')),
                                     '',
                                     array('itemOptions' => array('id' => 'external_item'), 'label' => 'Urban Airship', 'linkOptions' => array('target' => '_blank'), 'url' => $tenant->ua_dashboard_link),
