@@ -4,7 +4,7 @@
         ?>
         <tr>
             <td> <?php echo $tag->display_name; ?> </td>
-            <td> <?php echo CHtml::checkBox('tags[]', true); ?> </td>
+            <td> <?php echo CHtml::checkBox($modelName.'[tags][]', true, array('value'=>$tag->id)); ?> </td>
         </tr>
 
         <?php
@@ -13,7 +13,7 @@
         ?>
         <tr>
             <td> <?php echo $tag->display_name; ?> </td>
-            <td> <?php echo CHtml::checkBox('tags[]', false); ?> </td>
+            <td> <?php echo CHtml::checkBox($modelName.'[tags][]', false, array('value'=>$tag->id)); ?> </td>
         </tr>
         <?php
     endforeach;

@@ -133,4 +133,10 @@ class TagrelationBehavior extends CActiveRecordBehavior {
         return false;
     }
 
+    public function massUpdateTags(array $tagIds) {
+        $this->removeAllTagsAssociation();
+        foreach ($tagIds as $tagId)
+            $this->addTagAssociation($tagId);
+    }
+
 }

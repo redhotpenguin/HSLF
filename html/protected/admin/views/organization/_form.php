@@ -96,24 +96,24 @@
         ?>
     </div>
 
-    <h3/>
+    <hr/>
 
     <h4>Tags:</h4>
 
     <div class="row-fluid">
         <?php
         $this->widget('ext.TagSelector.TagSelector', array(
-        'model' => $model,
-        'tag_type' => 'organization'
+            'model' => $model,
+            'tag_type' => 'organization'
         ));
         ?>
     </div>
 
-
+    <hr/>
     <div class="row buttons">
-<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
     </div>
 
-<?php $this->endWidget(); ?>
+    <?php $this->endWidget(); ?>
 
 </div><!-- form -->
