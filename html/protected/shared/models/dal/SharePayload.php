@@ -15,7 +15,7 @@
  * The followings are the available model relations:
  * @property Tenant $tenant
  */
-class SharePayload extends CBaseActiveRecord {
+class SharePayload extends BaseActiveRecord {
 
     /**
      * Returns the static model of the specified AR class.

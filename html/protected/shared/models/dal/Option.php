@@ -8,7 +8,7 @@
  * @property string $name
  * @property string $value
  */
-class Option extends CBaseActiveRecord {
+class Option extends BaseActiveRecord {
 
     /**
      * Returns the static model of the specified AR class.

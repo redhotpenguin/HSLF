@@ -16,7 +16,7 @@
  * @tenant_id integer tenant id
  * @address string address
  */
-class Organization extends CBaseActiveRecord {
+class Organization extends BaseActiveRecord {
 
     /**
      * Returns the static model of the specified AR class.

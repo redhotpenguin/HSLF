@@ -30,7 +30,7 @@
 
 
  */
-class Item extends CBaseActiveRecord {
+class Item extends BaseActiveRecord {
 
     public $state_id; // not part of the model, here for cgridview (admin search)
     public $district_type; // not part of the model, here for cgridview (admin search)

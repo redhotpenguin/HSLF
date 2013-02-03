@@ -9,7 +9,7 @@
  * @property string $type
  * @property string $display_name
  */
-class Tag extends CBaseActiveRecord {
+class Tag extends BaseActiveRecord {
 
     /**
      * Returns the static model of the specified AR class.
