@@ -1,5 +1,8 @@
 <?php
 
+Yii::setPathOfAlias('bootstrap', dirname(__FILE__) . '/../../extensions/bootstrap');
+
+
 /* BACKEND CONFIG FILE */
 
 $backend = dirname(dirname(__FILE__));
@@ -34,8 +37,7 @@ return array(
     // application components
     'components' => array(
         'bootstrap' => array(
-            'class' => 'ext.bootstrap.components.Bootstrap',
-            'responsiveCss' => true,
+            'class' => 'bootstrap.components.Bootstrap',
         ),
         'db' => array(
             'connectionString' => "pgsql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME,
@@ -107,12 +109,12 @@ return array(
             'sKey' => S3_SKEY,
         ),
         /*
-        'assetManager' => array(
-            'class' => 'S3AssetManager',
-            'host' => S3_HOST,
-            'bucket' => S3_BUCKET,
-            'path' => 'assets', //or any other folder you want
-        ),*/
+          'assetManager' => array(
+          'class' => 'S3AssetManager',
+          'host' => S3_HOST,
+          'bucket' => S3_BUCKET,
+          'path' => 'assets', //or any other folder you want
+          ), */
         'errorHandler' => array(
             'errorAction' => 'site/error',
         ),

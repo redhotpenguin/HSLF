@@ -1,5 +1,8 @@
 <?php
 
+Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
+
+
 // frontend config
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
@@ -28,8 +31,8 @@ return array(
             'allowAutoLogin' => true,
         ),
         'bootstrap' => array(
-            'class' => 'ext.bootstrap.components.Bootstrap', // assuming you extracted bootstrap under extensions
-            'responsiveCss' => true,
+            'class'=>'bootstrap.components.Bootstrap',
+    //        'responsiveCss' => true,
         ),
         // uncomment the following to enable URLs in path-format
 
@@ -62,13 +65,13 @@ return array(
             'aKey' => S3_AKEY,
             'sKey' => S3_SKEY,
         ),
-        
+        /*
         'assetManager' => array(
             'class' => 'S3AssetManager',
             'host' => S3_HOST,
             'bucket' => S3_BUCKET,
             'path' => 'assets', //or any other folder you want
-        ),
+        ),*/
         'errorHandler' => array(
             'errorAction' => 'site/error',
         ),
