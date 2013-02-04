@@ -4,8 +4,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Create PushMessage','url'=>array('create')),
-	array('label'=>'Manage PushMessage','url'=>array('admin')),
+	array('label'=>'Create a push message ','url'=>array('create')),
+	array('label'=>'Manage push messages','url'=>array('admin')),
 );
 ?>
 

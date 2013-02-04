@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 
  * Usage: php html/protected/yiic.php shell /var/www/html/mobile_platform/html/protected/config/console.php
@@ -13,6 +14,8 @@ class RbacCommand extends CConsoleCommand {
         return <<<EOD
 USAGE
   rbac
+  rbac deploy
+  rbac addPushMessageRights    
 DESCRIPTION
   This command generates an initial RBAC authorization hierarchy.
 EOD;
@@ -24,8 +27,24 @@ EOD;
      */
     public function run($args) {
 
-
         $this->initializeAuthManager();
+
+        if (!isset($args[0])) {
+            printf("invalid usage \n");
+            return;
+        }
+
+        $action = $args[0];
+
+        switch ($action) {
+            case 'deploy': $this->deploy();
+            case 'addPushMessageRights': $this->addPushMessageRights();
+        }
+    }
+
+    private function deploy() {
+
+
 
         $this->resetAll();
 
@@ -77,7 +96,16 @@ EOD;
         $this->assignRoleToRole('publisher', 'admin');
 
         $this->authManager->assign('admin', 1);
-        $this->authManager->assign('publisher', 14);
+        
+        $this->addPushMessageRights();
+    }
+
+    private function addPushMessageRights() {
+        $this->addCrudOperation('PushMessage');
+
+        $this->addCrudTask('PushMessage');
+
+        $this->assignTaskToRole('PushMessages', 'publisher');
     }
 
     private function initializeAuthManager() {

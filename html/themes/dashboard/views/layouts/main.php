@@ -74,6 +74,7 @@
                                     '',
                                     array('label' => 'Alert types', 'url' => array('/alertType'), 'visible'),
                                     array('label' => 'Share Payloads', 'url' => array('/sharePayload/admin')),
+                                    array('label' => 'Push Messages', 'url' => array('/pushMessage/admin')),
                                     array('itemOptions' => array('id' => 'external_item'), 'label' => 'Urban Airship', 'linkOptions' => array('target' => '_blank'), 'url' => $tenant->ua_dashboard_link),
                                 ),
                         )),

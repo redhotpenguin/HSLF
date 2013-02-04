@@ -5,11 +5,10 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List PushMessage','url'=>array('index')),
-	array('label'=>'Manage PushMessage','url'=>array('admin')),
+	array('label'=>'Manage push messages','url'=>array('admin')),
 );
 ?>
 
-<h1>Create PushMessage</h1>
+<h1>Create a push message </h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

@@ -1,26 +1,36 @@
-<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
-	'id'=>'push-message-form',
-	'enableAjaxValidation'=>false,
-)); ?>
+<?php
+$form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+    'id' => 'push-message-form',
+    'enableAjaxValidation' => false,
+        ));
+?>
+<div class="form-actions">
 
-	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
+    <p class="help-block">Fields with <span class="required">*</span> are required.</p>
 
-	<?php echo $form->errorSummary($model); ?>
+    <?php echo $form->errorSummary($model); ?>
 
-	<?php echo $form->textFieldRow($model,'tenant_id',array('class'=>'span5')); ?>
+    <div>  
 
-	<?php echo $form->textFieldRow($model,'share_payload_id',array('class'=>'span5')); ?>
+        <?php echo $form->textAreaRow($model, 'alert', array('class' => 'span5', 'cols' => '150', 'rows' => '2')); ?>
+    </div>
 
-	<?php echo $form->textFieldRow($model,'creation_date',array('class'=>'span5')); ?>
+    <div>
+        <?php echo $form->textFieldRow($model, 'share_payload_id', array('class' => 'span1')); ?>
+    </div>
 
-	<?php echo $form->textFieldRow($model,'alert',array('class'=>'span5','maxlength'=>140)); ?>
+    <div>
+        <?php echo $form->textFieldRow($model, 'creation_date', array('class' => 'span2')); ?>
+    </div>
 
-	<div class="form-actions">
-		<?php $this->widget('bootstrap.widgets.TbButton', array(
-			'buttonType'=>'submit',
-			'type'=>'primary',
-			'label'=>$model->isNewRecord ? 'Create' : 'Save',
-		)); ?>
-	</div>
+
+    <?php
+    $this->widget('bootstrap.widgets.TbButton', array(
+        'buttonType' => 'submit',
+        'type' => 'primary',
+        'label' => $model->isNewRecord ? 'Create' : 'Save',
+    ));
+    ?>
+</div>
 
 <?php $this->endWidget(); ?>
