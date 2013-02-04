@@ -19,8 +19,8 @@
         <?php
         Yii::app()->bootstrap->register();
         $cs = Yii::app()->clientScript;
-        $cs->registerScriptFile('/js/superfish.js', CClientScript::POS_HEAD);
-        $cs->registerScriptFile('/js/jquery.hoverIntent.minified.js', CClientScript::POS_HEAD);
+        $cs->registerScriptFile('/static/global/js/superfish.js', CClientScript::POS_HEAD);
+        $cs->registerScriptFile('/static/global/js/jquery.hoverIntent.minified.js', CClientScript::POS_HEAD);
         ?>
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 
