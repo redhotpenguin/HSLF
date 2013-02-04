@@ -59,13 +59,15 @@ class S3AssetManager extends CAssetManager
         {
             if (is_file($src))
             {
+                $contentType = CFileHelper::getMimeTypeByExtension($dstFile); 
+
                 $dir = $this->hash($hashByName ? basename($src) : dirname($src).filemtime($src));
                 $fileName = basename($src);
                 $dstDir = $this->getBasePath().'/'.$dir;
                 $dstFile = $dstDir.'/'.$fileName;
                 if ($this->getCache()->get($this->getCacheKey($path)) === false)
                 {
-                    if ($this->getS3()->putObjectFile($src, $this->bucket, $dstFile, $acl = S3::ACL_PUBLIC_READ))
+                    if ($this->getS3()->putObjectFile($src, $this->bucket, $dstFile, $acl = S3::ACL_PUBLIC_READ, array(), $contentType))
                     {
                         $this->getCache()->set($this->getCacheKey($path), true, 0, new CFileCacheDependency($src));
                     }
@@ -92,9 +94,13 @@ class S3AssetManager extends CAssetManager
 
                     foreach ($files as $f)
                     {
+                        
                         $dstFile = $this->getBasePath().'/'.$dir.'/'.str_replace($src.DIRECTORY_SEPARATOR, "", $f);
 
-                        if (!$this->getS3()->putObjectFile($f, $this->bucket, $dstFile, $acl = S3::ACL_PUBLIC_READ))
+                        $contentType = CFileHelper::getMimeTypeByExtension($dstFile);
+
+                        
+                        if (!$this->getS3()->putObjectFile($f, $this->bucket, $dstFile, $acl = S3::ACL_PUBLIC_READ, array(), $contentType))
                         {
                             throw new CException('Could not send assets do S3');
                         }
