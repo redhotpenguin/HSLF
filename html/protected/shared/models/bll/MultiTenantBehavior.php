@@ -125,10 +125,6 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
 
         foreach ($relations as $relation => $value) {
 
-            error_log("model: " . get_class($this->owner));
-            error_log("relation: " . $relation);
-
-
             if (isset($owner->$relation->id)) {
 
                 // relation does not have a tenant  id column. Ex: state, district, true join table
