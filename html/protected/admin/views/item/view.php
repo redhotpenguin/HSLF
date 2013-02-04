@@ -21,7 +21,7 @@ $district_number = $model->district->number;
 
 
 $district = $state_name . ' ' . $district_type . ' - ' . $district_number;
-$this->widget('bootstrap.widgets.BootDetailView', array(
+$this->widget('bootstrap.widgets.TbDetailView', array(
     'data' => $model,
     'attributes' => array(
         'id',

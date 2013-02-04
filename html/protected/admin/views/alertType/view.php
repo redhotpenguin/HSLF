@@ -15,7 +15,7 @@ $this->menu = array(
 <h1>View: <?php echo $model->display_name; ?></h1>
 
 <?php
-$this->widget('bootstrap.widgets.BootDetailView', array(
+$this->widget('bootstrap.widgets.TbDetailView', array(
     'data' => $model,
     'attributes' => array(
         'id',

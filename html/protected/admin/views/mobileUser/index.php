@@ -1,10 +1,11 @@
 <?php
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/static/mobileuser/mobile_user.js');
 
- $tenant = Yii::app()->user->getCurrentTenant();
- 
- $action_url = getSetting('site_url').'/admin/'.$tenant->name;
- 
+
+$tenant = Yii::app()->user->getCurrentTenant();
+
+$action_url = getSetting('site_url') . '/admin/' . $tenant->name;
+
 
 $ns = "var ns  = {action_url: '" . $action_url . "'};";
 
@@ -51,7 +52,10 @@ $this->menu = array(
 
         <div class="row">
             <?php
-            echo CHtml::button("Add a tag", array('id' => 'add_tag_btn'));
+            $this->widget('bootstrap.widgets.TbButton', array(
+                'label' => 'Add a tag',
+                'htmlOptions' => array('id' => 'add_tag_btn')
+            ));
             ?>
         </div>
 
@@ -70,7 +74,10 @@ $this->menu = array(
 
         <div class="row">
             <?php
-            echo CHtml::button("Add a district", array('id' => 'add_district_btn'));
+            $this->widget('bootstrap.widgets.TbButton', array(
+                'label' => 'Add a district',
+                'htmlOptions' => array('id' => 'add_district_btn')
+            ));
             ?>
         </div>
 
@@ -101,11 +108,19 @@ $this->menu = array(
 
         <div style="margin-top:20px" class="row">
             <?php
-            echo CHtml::button("Compose an alert", array('id' => 'compose_alert_btn', 'class' => 'btn-large btn-primary'));
-            ?>
+            $this->widget('bootstrap.widgets.TbButton', array(
+                'label' => 'Compose an alert',
+                'type' => 'primary',
+                'size' => 'large',
+                'htmlOptions' => array('id' => 'compose_alert_btn')
+            ));
 
-            <?php
-            echo CHtml::button("Export current selection", array('id' => 'export_btn', 'style' => 'float:right;', 'class' => 'btn-large btn-info'));
+            $this->widget('bootstrap.widgets.TbButton', array(
+                'label' => 'Export current selection',
+                'type' => 'info',
+                'size' => 'large',
+                'htmlOptions' => array('id' => 'export_btn', 'style' => 'float:right;')
+            ));
             ?>
         </div>
 
@@ -139,7 +154,10 @@ $this->menu = array(
 
         <div class="row">
             <?php
-            echo CHtml::button("Add an option", array('id' => 'add_option_btn'));
+            $this->widget('bootstrap.widgets.TbButton', array(
+                'label' => 'Add an option',
+                'htmlOptions' => array('id' => 'add_option_btn')
+            ));
             ?>
         </div>
 
@@ -148,11 +166,20 @@ $this->menu = array(
         <div class="row-fluid">
 
             <?php
-            echo CHtml::button("Go!", array('id' => 'send_alert_btn', 'class' => 'btn-large btn-primary'));
-            ?>
+            $this->widget('bootstrap.widgets.TbButton', array(
+                'label' => 'Go!',
+                'type' => 'info',
+                'size' => 'large',
+                'htmlOptions' => array('id' => 'send_alert_btn')
+            ));
 
-            <?php
-            echo CHtml::button("Cancel", array('id' => 'cancel_alert_btn', 'class' => 'btn-large btn-warning'));
+            $this->widget('bootstrap.widgets.TbButton', array(
+                'label' => 'Cancel',
+                'type' => 'warning',
+                'size' => 'large',
+                'htmlOptions' => array('id' => 'cancel_alert_btn', 'style' => 'float:right;')
+            ));
+
             ?>
         </div>
     </div>

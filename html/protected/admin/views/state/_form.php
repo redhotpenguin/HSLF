@@ -10,24 +10,24 @@
 
     <p class="note">Fields with <span class="required">*</span> are required.</p>
 
-        <?php echo $form->errorSummary($model); ?>
+    <?php echo $form->errorSummary($model); ?>
 
     <div class="">
         <?php echo $form->labelEx($model, 'abbr'); ?>
-<?php echo $form->textField($model, 'abbr', array('size' => 3, 'maxlength' => 3)); ?>
-<?php echo $form->error($model, 'abbr'); ?>
+        <?php echo $form->textField($model, 'abbr', array('size' => 3, 'maxlength' => 3)); ?>
+        <?php echo $form->error($model, 'abbr'); ?>
     </div>
 
     <div class="">
         <?php echo $form->labelEx($model, 'name'); ?>
-<?php echo $form->textField($model, 'name', array('size' => 60, 'maxlength' => 128)); ?>
-<?php echo $form->error($model, 'name'); ?>
+        <?php echo $form->textField($model, 'name', array('size' => 60, 'maxlength' => 128)); ?>
+        <?php echo $form->error($model, 'name'); ?>
     </div>
 
     <div class="buttons">
-    <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+        <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'Save')); ?>
     </div>
 
-<?php $this->endWidget(); ?>
+    <?php $this->endWidget(); ?>
 
 </div><!-- form -->

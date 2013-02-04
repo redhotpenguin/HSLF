@@ -24,7 +24,7 @@
     </div>
 
     <div class="row buttons">
-    <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+                <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type'=>'primary' ,'label' => 'Save')); ?>
     </div>
 
 <?php $this->endWidget(); ?>

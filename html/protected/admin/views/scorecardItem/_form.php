@@ -9,18 +9,18 @@
 
     <p class="note">Fields with <span class="required">*</span> are required.</p>
 
-        <?php echo $form->errorSummary($model); ?>
+    <?php echo $form->errorSummary($model); ?>
 
     <div class="row">
         <?php echo $form->labelEx($model, 'name'); ?>
-<?php echo $form->textField($model, 'name', array('size' => 60, 'class' => 'span7' , 'maxlength' => 4096)); ?>
-<?php echo $form->error($model, 'name'); ?>
+        <?php echo $form->textField($model, 'name', array('size' => 60, 'class' => 'span7', 'maxlength' => 4096)); ?>
+        <?php echo $form->error($model, 'name'); ?>
     </div>
 
     <div class="row">
         <?php echo $form->labelEx($model, 'description'); ?>
-<?php echo $form->textArea($model, 'description', array('rows' => 6, 'class' => 'span7' , 'cols' => 10)); ?>
-<?php echo $form->error($model, 'description'); ?>
+        <?php echo $form->textArea($model, 'description', array('rows' => 6, 'class' => 'span7', 'cols' => 10)); ?>
+        <?php echo $form->error($model, 'description'); ?>
     </div>
 
     <div class="row">
@@ -34,7 +34,8 @@
     </div>
 
     <div class="row buttons">
-        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+        <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'Save')); ?>
+
     </div>
 
     <?php $this->endWidget(); ?>

@@ -14,7 +14,7 @@ $this->menu=array(
 
 <h1>View Recommendation #<?php echo $model->id; ?></h1>
 
-<?php $this->widget('bootstrap.widgets.BootDetailView', array(
+<?php $this->widget('bootstrap.widgets.TbDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',

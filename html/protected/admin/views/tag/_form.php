@@ -84,7 +84,7 @@
              }',
             ));
         }else
-            echo CHtml::submitButton('Create');
+            $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'Save'));
         ?> 
 
 
@@ -93,6 +93,6 @@
     <div class="hidden update_box" id="targetdiv">
     </div>
 
-    <?php $this->endWidget(); ?>
+<?php $this->endWidget(); ?>
 
 </div><!-- form -->
