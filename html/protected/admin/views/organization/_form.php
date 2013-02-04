@@ -104,7 +104,7 @@
         <?php
         $this->widget('ext.TagSelector.TagSelector', array(
             'model' => $model,
-            'tag_type' => 'organization'
+            'tag_types' => array('organization')
         ));
         ?>
     </div>

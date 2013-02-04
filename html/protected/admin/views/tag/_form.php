@@ -44,19 +44,43 @@
                     ));
 
 
-
-
-            echo CHtml::ajaxSubmitButton('Save', $url, array(
-                'type' => 'POST',
-                'update' => '#targetdiv',
-                'beforeSend' => 'js:function(){
+            $this->widget('bootstrap.widgets.TbButton', array(
+                'buttonType' => 'ajaxButton',
+                'type' => 'primary',
+                'label' => 'Save',
+                'url' => $url,
+                'ajaxOptions' => array(
+                    'type' => 'POST',
+                    'update' => '#targetdiv',
+                    'beforeSend' => 'js:function(){
                     target =$("#targetdiv");
                     target.fadeIn();
                     target.removeClass("hidden");
                     target.addClass("btn-info");
                     target.html("saving...");
                  }',
-                'error' => 'js:function(object){
+                    'success' => 'js:function(response) {
+               target =$("#targetdiv");
+                target.removeClass("btn-info");
+                 target.fadeIn();
+                 target.removeClass("hidden");
+                 
+                  if ( response == "success" ){
+                         target.addClass("btn-success");
+                         target.html( "Tag successfully saved" );
+                    }
+                    else{
+                    target.addClass("btn-danger");
+                      target.html( "Could not save tag." );
+                  }
+                target.fadeOut(5000, function(){
+                 target.removeClass("btn-danger");
+                 target.removeClass("btn-success");
+                });
+              
+                
+             }',
+                    'error' => 'js:function(object){
               
                 target =$("#targetdiv");
                 target.removeClass("btn-info");
@@ -66,23 +90,8 @@
          
                    target.html( "Could not save tag:<br/>" + object.responseText );
              
-                //target.fadeOut(5000, function(){
-                // target.removeClass("btn-danger");
-              //  });
             }',
-                'success' => 'js:function(response) {
-                  if ( response != "success" )
-                      return false;
-
-                  target =$("#targetdiv");
-            
-                 target.removeClass("btn-info");
-                target.fadeIn();
-                target.removeClass("hidden");
-                target.html( "tag saved" );
-                target.fadeOut(5000);
-             }',
-            ));
+                    )));
         }else
             $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'Save'));
         ?> 

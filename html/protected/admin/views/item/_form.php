@@ -318,8 +318,6 @@ $cs->registerScriptFile($baseUrl . '/static/ballotitem/item.js');
                     'enctype' => 'multipart/form-data',
                 ));
 
-
-        // CHtml::submitButton('Create');
         $this->widget('bootstrap.widgets.TbButton', array(
             'buttonType' => 'ajaxButton',
             'type' => 'primary',
@@ -344,7 +342,7 @@ $cs->registerScriptFile($baseUrl . '/static/ballotitem/item.js');
                   if ( response == "success" ){
                          sessionStorage.setItem("ItemContent", "");
                          target.addClass("btn-success");
-                         target.html( "Ballot item saved" );
+                         target.html( "Ballot item successfully saved" );
                     }
                     else{
                     target.addClass("btn-danger");

@@ -3,7 +3,7 @@
 class TagSelector extends CInputWidget {
 
     public $options = array();
-    public $tag_type;
+    public $tag_types = array();
 
     public function init() {
         // check that the model has the correct behavior
@@ -14,7 +14,7 @@ class TagSelector extends CInputWidget {
 
     public function run() {
 
-        $allTags = Tag::model()->findAllByAttributes(array("type" => $this->tag_type));
+        $allTags = Tag::model()->findAllByAttributes(array("type" => $this->tag_types));
 
         $associatedTags = $this->model->getTags();
 
