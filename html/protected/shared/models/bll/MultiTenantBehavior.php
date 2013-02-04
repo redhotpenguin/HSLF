@@ -124,7 +124,7 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
         $relations = $owner->relations();
 
         foreach ($relations as $relation => $value) {
-
+                        
             if (isset($owner->$relation->id)) {
 
                 // relation does not have a tenant  id column. Ex: state, district, true join table

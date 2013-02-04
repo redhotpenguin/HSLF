@@ -54,7 +54,7 @@ class PushMessage extends BaseActiveRecord {
      */
     public function relations() {
         return array(
-            'tags' => array(self::MANY_MANY, 'Tag', 'tag_push_messages(push_message, tag_id)'),
+            'tags' => array(self::MANY_MANY, 'Tag', 'tag_push_message(push_message, tag_id)'),            
             'share_payload' => array(self::BELONGS_TO, 'SharePayload', 'share_payload_id'),
         );
     }
@@ -98,7 +98,13 @@ class PushMessage extends BaseActiveRecord {
     public function behaviors() {
         return array(
             'MultiTenant' => array(
-                'class' => 'MultiTenantBehavior')
+                'class' => 'MultiTenantBehavior'),
+            'TagRelation' => array(
+                'class' => 'TagRelationBehavior',
+                'joinTableName' => 'tag_push_message',
+                'tagRelationName' => 'push_messages', // relation to this class, defined in Tags.
+                'foreignKeyName' => 'push_message_id'
+            )
         );
     }
 

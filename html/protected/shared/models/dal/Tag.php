@@ -28,7 +28,7 @@ class Tag extends BaseActiveRecord {
     }
 
     public function getTagTypes() {
-        return array('alert' => 'Alert', 'organization' => 'Organization');
+        return array('alert' => 'Alert', 'organization' => 'Organization', 'district' => 'District');
     }
 
     /**
@@ -58,6 +58,8 @@ class Tag extends BaseActiveRecord {
         return array(
             'organizations' => array(self::MANY_MANY, 'Organization',
                 'tag_organization(tag_id, organization_id)'),
+            'push_messages' => array(self::MANY_MANY, 'PushMessage',
+                'tag_push_message(tag_id, push_message_id)'),
         );
     }
 
@@ -104,14 +106,14 @@ class Tag extends BaseActiveRecord {
                 'class' => 'MultiTenantBehavior')
         );
     }
-    
+
     /**
      * return a string representation of the object
      * Used by array_diff
      * @return string
      */
     public function __toString() {
-        return 'Tag_'.$this->id;
+        return 'Tag_' . $this->id;
     }
 
 }

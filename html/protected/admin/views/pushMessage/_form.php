@@ -23,6 +23,17 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
         <?php echo $form->textFieldRow($model, 'creation_date', array('class' => 'span2')); ?>
     </div>
 
+    <h4>Tags:</h4>
+
+    <div class="row-fluid">
+        <?php
+        $this->widget('ext.TagSelector.TagSelector', array(
+            'model' => $model,
+            'tag_types' => array('alert', 'district')
+        ));
+        ?>
+    </div>
+
 
     <?php
     $this->widget('bootstrap.widgets.TbButton', array(

@@ -108,7 +108,7 @@ class TagrelationBehavior extends CActiveRecordBehavior {
                     'condition' => "{$this->foreignKeyName} =:{$this->foreignKeyName}",
                     'params' => array(":{$this->foreignKeyName}" => $this->owner->id)
                 ));
-
+                    
         return $tags;
     }
 
