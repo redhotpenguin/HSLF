@@ -45,7 +45,7 @@ class PushMessage extends BaseActiveRecord {
             array('alert', 'length', 'max' => 140),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, tenant_id,  share_payload_id, creation_date, alert', 'safe', 'on' => 'search'),
+            array('id, tenant_id, share_payload_id, creation_date, alert', 'safe', 'on' => 'search'),
         );
     }
 
@@ -53,8 +53,10 @@ class PushMessage extends BaseActiveRecord {
      * @return array relational rules.
      */
     public function relations() {
+        // NOTE: you may need to adjust the relation name and the related
+        // class name for the relations automatically generated below.
         return array(
-            'tags' => array(self::MANY_MANY, 'Tag', 'tag_push_message(push_message, tag_id)'),            
+            'tags' => array(self::MANY_MANY, 'Tag', 'tag_push_message(push_message_id, tag_id)'),
             'share_payload' => array(self::BELONGS_TO, 'SharePayload', 'share_payload_id'),
         );
     }
@@ -66,7 +68,7 @@ class PushMessage extends BaseActiveRecord {
         return array(
             'id' => 'ID',
             'tenant_id' => 'Tenant',
-            'share_payload_id' => 'Share Payload ID',
+            'share_payload_id' => 'Share Payload',
             'creation_date' => 'Creation Date',
             'alert' => 'Alert',
         );
@@ -83,6 +85,7 @@ class PushMessage extends BaseActiveRecord {
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id);
+        $criteria->compare('tenant_id', $this->tenant_id);
         $criteria->compare('share_payload_id', $this->share_payload_id);
         $criteria->compare('creation_date', $this->creation_date, true);
         $criteria->compare('alert', $this->alert, true);
@@ -92,9 +95,6 @@ class PushMessage extends BaseActiveRecord {
                 ));
     }
 
-    /**
-     * Attached behaviors
-     */
     public function behaviors() {
         return array(
             'MultiTenant' => array(

@@ -67,8 +67,12 @@ class PushMessageController extends Controller {
 
         if (isset($_POST['PushMessage'])) {
             $model->attributes = $_POST['PushMessage'];
-            if ($model->save())
+            if ($model->save()) {
+                if (isset($_POST['PushMessage']['tags']))
+                    $model->massUpdateTags($_POST['PushMessage']['tags']);
+
                 $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
+            }
         }
 
         $this->render('create', array(
@@ -89,8 +93,15 @@ class PushMessageController extends Controller {
 
         if (isset($_POST['PushMessage'])) {
             $model->attributes = $_POST['PushMessage'];
-            if ($model->save())
+            if ($model->save()) {
+                if (isset($_POST['PushMessage']['tags']))
+                    $model->massUpdateTags($_POST['PushMessage']['tags']);
+                else
+                    $model->removeAllTagsAssociation();
+
+
                 $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
+            }
         }
 
         $this->render('update', array(

@@ -40,7 +40,7 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
      * @param CModel model
      * @return integer tenant id or null
      */
-    private function getCurrentTenantId(CModel $owner) { 
+    private function getCurrentTenantId(CModel $owner) {
         if (Yii::app()->params['current_tenant_id'] != null) {
             return Yii::app()->params['current_tenant_id'];
         } elseif (!Yii::app()->user->isGuest && Yii::app()->user->getCurrentTenant() != null) { // only logged in users can have a tenant_id
@@ -124,7 +124,11 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
         $relations = $owner->relations();
 
         foreach ($relations as $relation => $value) {
-                        
+
+            error_log("model: " . get_class($this->owner));
+            error_log("relation: " . $relation);
+
+
             if (isset($owner->$relation->id)) {
 
                 // relation does not have a tenant  id column. Ex: state, district, true join table

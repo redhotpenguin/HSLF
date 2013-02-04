@@ -23,10 +23,13 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
         <?php echo $form->textFieldRow($model, 'creation_date', array('class' => 'span2')); ?>
     </div>
 
+    <hr/>
+    
     <h4>Tags:</h4>
 
     <div class="row-fluid">
         <?php
+       
         $this->widget('ext.TagSelector.TagSelector', array(
             'model' => $model,
             'tag_types' => array('alert', 'district')
@@ -35,13 +38,13 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     </div>
 
 
-    <?php
-    $this->widget('bootstrap.widgets.TbButton', array(
-        'buttonType' => 'submit',
-        'type' => 'primary',
-        'label' => $model->isNewRecord ? 'Create' : 'Save',
-    ));
-    ?>
+<?php
+$this->widget('bootstrap.widgets.TbButton', array(
+    'buttonType' => 'submit',
+    'type' => 'primary',
+    'label' => $model->isNewRecord ? 'Create' : 'Save',
+));
+?>
 </div>
 
-<?php $this->endWidget(); ?>
+    <?php $this->endWidget(); ?>

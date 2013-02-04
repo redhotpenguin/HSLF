@@ -21,7 +21,10 @@ $this->widget('bootstrap.widgets.TbDetailView', array(
         'id',
         'share_payload_id',
         'creation_date',
-        'alert',
+        array(
+            'name' => 'alert',
+            'value' => substr($model->alert, 0, 30)."..."
+        ),
     ),
 ));
 ?>

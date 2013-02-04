@@ -10,5 +10,5 @@ CREATE table push_message(
 CREATE TABLE tag_push_message(
     tag_id INTEGER REFERENCES tag(id),
     push_message_id INTEGER REFERENCES push_message(id),
-    PRIMARY KEY (tag_id, push_message)
+    PRIMARY KEY (tag_id, push_message_id)
 );
