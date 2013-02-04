@@ -19,29 +19,22 @@ class TinyMce extends CInputWidget {
     }
 
     protected static function publishAssets() {
-        $assets = dirname(__FILE__) . '/assets';
-        $baseUrl = Yii::app()->assetManager->publish($assets);
-        if (is_dir($assets)) {
-            Yii::app()->clientScript->registerCoreScript('jquery');
-            
-            /*
-             * bypass Yii's assets system
-             * because tincemce has way too many files to load
-             * which causes issues when using s3
-             */
-            $cs = Yii::app()->getClientScript();
-            $baseUrl = Yii::app()->baseUrl;
-            $cs->registerScriptFile($baseUrl . '/static/tinymce/jscripts/tiny_mce/jquery.tinymce.js');
 
-        } else {
-            throw new Exception('Error: Couldn\'t find assets to publish.');
-        }
+        Yii::app()->clientScript->registerCoreScript('jquery');
+
+        /*
+         * bypass Yii's assets system
+         * because tincemce has way too many files to load
+         * which causes issues when using s3
+         */
+        $cs = Yii::app()->getClientScript();
+        $baseUrl = Yii::app()->baseUrl;
+        $cs->registerScriptFile($baseUrl . '/static/tinymce/jscripts/tiny_mce/jquery.tinymce.js');
     }
 
     public function run() {
-        $assets = dirname(__FILE__) . '/assets';
 
-        $baseUrl = Yii::app()->assetManager->publish($assets);
+        $baseUrl = Yii::app()->baseUrl;
 
         list($name, $id) = $this->resolveNameID();
 
@@ -53,7 +46,7 @@ class TinyMce extends CInputWidget {
             $().ready(function() {
                 $('#<?php echo $id ?>').tinymce({
                     // Location of TinyMCE script
-                    script_url : '<?php echo $baseUrl . '/jscripts/tiny_mce/'; ?>tiny_mce.js',
+                    script_url : '<?php echo $baseUrl . '/static/tinymce/jscripts/tiny_mce/'; ?>tiny_mce.js',
                     elements:'<?php echo $id; ?>',
                     mode:'textareas',
                     theme : "ribbon",
@@ -76,20 +69,20 @@ class TinyMce extends CInputWidget {
                             ["fontselect","|","fontsizeselect"],
                             ["search", "|", "replace", "|", "removeformat"]]
                     },
-                                                                                                                                    
+                                                                                                                                            
 
-                                                                                                                                    
+                                                                                                                                            
                     theme_ribbon_tab2 : {   title : "Insert",
                         items : [["tabledraw"],
                             ["link", "|", "unlink", "|", "anchor"],
                             ["loremipsum", "|", "charmap", "|", "hr"]]
                     },
-                                                                                                                
+                                                                                                                        
                     theme_ribbon_tab3 : {   title : "Source",
                         source : true                                                                                       
                     },                                                                                                                                           
                     content_css : "<?php echo $baseUrl . '/css/'; ?>content.css"
-                                                                                                                                                                             		
+                                                                                                                                                                                     		
                 });
             });
         </script>
