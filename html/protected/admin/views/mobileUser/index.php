@@ -1,5 +1,5 @@
 <?php
-Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/themes/dashboard/js/form/mobile_user.js');
+Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/static/mobileuser/mobile_user.js');
 
  $tenant = Yii::app()->user->getCurrentTenant();
  
