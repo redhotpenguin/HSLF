@@ -1,6 +1,6 @@
 <?php
 
-Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
+Yii::setPathOfAlias('bootstrap', dirname(__FILE__) . '/../extensions/bootstrap');
 
 
 // frontend config
@@ -20,8 +20,10 @@ return array(
         'gii' => array(
             'class' => 'system.gii.GiiModule',
             'password' => 'giipass',
-            // If removed, Gii defaults to localhost only. Edit carefully to taste.
             'ipFilters' => array('127.0.0.1', '::1'),
+            'generatorPaths' => array(
+                'bootstrap.gii',
+            ),
         ),
     ),
     // application components
@@ -31,7 +33,7 @@ return array(
             'allowAutoLogin' => true,
         ),
         'bootstrap' => array(
-            'class'=>'bootstrap.components.Bootstrap',
+            'class' => 'bootstrap.components.Bootstrap',
         ),
         // uncomment the following to enable URLs in path-format
 
@@ -64,13 +66,12 @@ return array(
             'aKey' => S3_AKEY,
             'sKey' => S3_SKEY,
         ),
-       
-        'assetManager' => array(
-            'class' => 'S3AssetManager',
-            'host' => S3_HOST,
-            'bucket' => S3_BUCKET,
-            'path' => 'assets', //or any other folder you want
-        ),
+        /*    'assetManager' => array(
+          'class' => 'S3AssetManager',
+          'host' => S3_HOST,
+          'bucket' => S3_BUCKET,
+          'path' => 'assets', //or any other folder you want
+          ), */
         'errorHandler' => array(
             'errorAction' => 'site/error',
         ),

@@ -89,7 +89,7 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $s3Bucket = 'maplocal';
 
     defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL', 3);
-    define('YII_DEBUG', false);
+    define('YII_DEBUG', true);
 }
 
 
