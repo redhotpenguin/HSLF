@@ -12,6 +12,8 @@
         <link rel="stylesheet" type="text/css" href="/themes/dashboard/css/form.css" /> 
 
         <?php
+        Yii::app()->clientScript->registerCoreScript('jquery');
+
         Yii::app()->bootstrap->register();
         $cs = Yii::app()->clientScript;
         $cs->registerScriptFile('/js/superfish.js', CClientScript::POS_HEAD);

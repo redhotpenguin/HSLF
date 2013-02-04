@@ -23,7 +23,16 @@ class TinyMce extends CInputWidget {
         $baseUrl = Yii::app()->assetManager->publish($assets);
         if (is_dir($assets)) {
             Yii::app()->clientScript->registerCoreScript('jquery');
-            Yii::app()->clientScript->registerScriptFile($baseUrl . '/jscripts/tiny_mce/jquery.tinymce.js', CClientScript::POS_HEAD);
+            
+            /*
+             * bypass Yii's assets system
+             * because tincemce has way too many files to load
+             * which causes issues when using s3
+             */
+            $cs = Yii::app()->getClientScript();
+            $baseUrl = Yii::app()->baseUrl;
+            $cs->registerScriptFile($baseUrl . '/themes/static/tinymce/jscripts/tiny_mce/jquery.tinymce.js');
+
         } else {
             throw new Exception('Error: Couldn\'t find assets to publish.');
         }
@@ -67,20 +76,20 @@ class TinyMce extends CInputWidget {
                             ["fontselect","|","fontsizeselect"],
                             ["search", "|", "replace", "|", "removeformat"]]
                     },
-                                                                                                                            
+                                                                                                                                    
 
-                                                                                                                            
+                                                                                                                                    
                     theme_ribbon_tab2 : {   title : "Insert",
                         items : [["tabledraw"],
                             ["link", "|", "unlink", "|", "anchor"],
                             ["loremipsum", "|", "charmap", "|", "hr"]]
                     },
-                                                                                                        
+                                                                                                                
                     theme_ribbon_tab3 : {   title : "Source",
                         source : true                                                                                       
                     },                                                                                                                                           
                     content_css : "<?php echo $baseUrl . '/css/'; ?>content.css"
-                                                                                                                                                                     		
+                                                                                                                                                                             		
                 });
             });
         </script>

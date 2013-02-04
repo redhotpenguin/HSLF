@@ -49,7 +49,6 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $s3AKey = 'AKIAIDNK7VPB47DB2F2Q';
     $s3SKey = '2F7TBdQsokQVpIZAgNUx/PgKyE01wz3AXLmGFYvh';
 
-
     set_include_path(get_include_path() . PATH_SEPARATOR . '/home/dotcloud/php-env/share/php');
 } else {    //dev server conf
     $dbhost = '127.0.0.1';
@@ -90,7 +89,7 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $s3Bucket = 'maplocal';
 
     defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL', 3);
-    define('YII_DEBUG', TRUE);
+    define('YII_DEBUG', false);
 }
 
 

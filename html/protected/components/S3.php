@@ -1225,7 +1225,7 @@ final class S3Request {
 			curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
 		}
 		curl_setopt($curl, CURLOPT_URL, $url);
-
+               
 		// Headers
 		$headers = array(); $amz = array();
 		foreach ($this->amzHeaders as $header => $value)
