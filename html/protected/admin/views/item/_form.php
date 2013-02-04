@@ -12,7 +12,7 @@ if ($model->isNewRecord) {
 Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::POS_HEAD);
 $baseUrl = Yii::app()->baseUrl;
 $cs = Yii::app()->getClientScript();
-$cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
+$cs->registerScriptFile($baseUrl . '/static/ballotitem/item.js');
 ?>
 
 <div class="form">
