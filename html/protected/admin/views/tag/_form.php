@@ -19,6 +19,12 @@
     </div>
 
     <div class="row">
+        <?php echo $form->labelEx($model, 'display_name'); ?>
+        <?php echo $form->textField($model, 'display_name', array('size' => 60)); ?>
+        <?php echo $form->error($model, 'display_name'); ?>
+    </div>
+
+    <div class="row">
         <?php
         echo $form->labelEx($model, 'type');
         echo $form->dropDownList($model, 'type', $model->getTagTypes());
@@ -36,7 +42,7 @@
                         'tag/update',
                         'id' => $model->id,
                     ));
-            
+
 
 
 

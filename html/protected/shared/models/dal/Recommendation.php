@@ -9,7 +9,7 @@
  * @property string $type
  *
  */
-class Recommendation extends CBaseActiveRecord {
+class Recommendation extends BaseActiveRecord {
 
     /**
      * Returns the static model of the specified AR class.

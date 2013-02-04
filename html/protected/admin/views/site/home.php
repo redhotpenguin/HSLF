@@ -19,17 +19,17 @@
         <div class="row">
             <div class="span3">
                 <h2>Ballot Items</h2>
-                <p>Add, edit, delete, search ballot items. </p>
-                <p><?php  echo CHtml::link('More', array('item/Admin'), array('class'=>'btn')); ?></a></p>
+                <p>Manage ballot items. </p>
+                <p><?php  echo CHtml::link('More »', array('item/Admin'), array('class'=>'btn')); ?></a></p>
             </div>
             <div class="span3">
-                <h2>Image Uploader</h2>
-                <p>Upload images. </p>
-                <p><?php  echo CHtml::link('More', array('upload/index'), array('class'=>'btn')); ?></p>
+                <h2>Share Payloads</h2>
+                <p>Manage share payloads. </p>
+                <p><?php  echo CHtml::link('More »', array('sharePayload/index'), array('class'=>'btn')); ?></p>
             </div>
             <div class="span3">
                 <h2>Push Notifications</h2>
-                <p>Send Rich Push Notifications to mobile users.</p>
+                <p>Send push notifications.</p>
                 <p><a class="btn" href="<?php echo $tenant->ua_dashboard_link; ?>">More »</a></p>
             </div>
         </div>
@@ -38,19 +38,19 @@
             <div class="span3">
                 <h2>Organizations</h2>
                 <p>Manage organizations.</p>
-                <p><?php  echo CHtml::link('More', array('organization/admin'), array('class'=>'btn')); ?></p>
+                <p><?php  echo CHtml::link('More »', array('organization/admin'), array('class'=>'btn')); ?></p>
             </div>
 
             <div class="span3">
                 <h2>Options</h2>
-                <p>Remotely update your mobile application.</p>
-                <p><?php  echo CHtml::link('More', array('option/index'), array('class'=>'btn')); ?></p>
+                <p>Manage application's options.</p>
+                <p><?php  echo CHtml::link('More »', array('option/index'), array('class'=>'btn')); ?></p>
             </div>
 
             <div class="span3">
                 <h2>Mobile Users</h2>
-                <p>Mobile user list</p>
-                <p><?php  echo CHtml::link('More', array('mobileUser/index'), array('class'=>'btn')); ?></p>
+                <p>Mobile users information.</p>
+                <p><?php  echo CHtml::link('More »', array('mobileUser/index'), array('class'=>'btn')); ?></p>
             </div>
         </div>
 

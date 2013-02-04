@@ -16,7 +16,7 @@
  * @tenant_id integer tenant id
  * @address string address
  */
-class Organization extends CBaseActiveRecord {
+class Organization extends BaseActiveRecord {
 
     /**
      * Returns the static model of the specified AR class.
@@ -61,6 +61,8 @@ class Organization extends CBaseActiveRecord {
         return array(
             'items' => array(self::MANY_MANY, 'Item',
                 'organization_item(organization_id, item_id)'),
+            'tags' => array(self::MANY_MANY, 'Tag',
+                'tag_organization(organization_id, tag_id)'),
         );
     }
 
@@ -108,7 +110,13 @@ class Organization extends CBaseActiveRecord {
     public function behaviors() {
         return array(
             'MultiTenant' => array(
-                'class' => 'MultiTenantBehavior')
+                'class' => 'MultiTenantBehavior'),
+            'TagRelation' => array(
+                'class' => 'TagRelationBehavior',
+                'joinTableName' => 'tag_organization',
+                'tagRelationName' => 'organizations', // relation to this class, defined in Tags.
+                'foreignKeyName' => 'organization_id'
+            )
         );
     }
 

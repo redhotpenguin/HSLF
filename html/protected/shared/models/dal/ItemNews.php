@@ -15,7 +15,7 @@
  * The followings are the available model relations:
  * @property Item $item
  */
-class ItemNews extends CBaseActiveRecord {
+class ItemNews extends BaseActiveRecord {
 
     public function __construct($scenario = 'insert', $table = "") {
         $this->parentName = "Item";

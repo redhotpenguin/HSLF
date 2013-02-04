@@ -10,7 +10,7 @@
  *
  * @author jonas
  */
-abstract class CBaseActiveRecord extends CActiveRecord {
+abstract class BaseActiveRecord extends CActiveRecord {
     public $parentName = null;
     public $parentRelationship;
 

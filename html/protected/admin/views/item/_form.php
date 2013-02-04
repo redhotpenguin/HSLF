@@ -1,8 +1,8 @@
 <?php
- $tenant = Yii::app()->user->getCurrentTenant();
- 
- $siteUrl = $siteUrl = getSetting('site_url').'/admin/'.$tenant->name;
- 
+$tenant = Yii::app()->user->getCurrentTenant();
+
+$siteUrl = $siteUrl = getSetting('site_url') . '/admin/' . $tenant->name;
+
 if ($model->isNewRecord) {
     $ns = "var ns  = {site_url: '" . $siteUrl . "',share_url: '" . $tenant->web_app_url . "' };";
 } else {
@@ -171,18 +171,20 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
         <div class="span6">
             <?php
             echo $form->labelEx($model, 'image_url');
+            echo $form->textField($model, 'image_url', array('class' => 'span12', 'placeholder' => 'http://www.mysite.com/image.jpg'));
 
-
-            $this->widget('ext.AjaxFileUploader.AjaxFileUploader', array(
-                'model' => $model,
-                'attribute' => 'image_url',
-                'options' => array(
-                    'model_name' => 'Item',
-                    'upload_handler' => CHtml::normalizeUrl(array('item/upload')),
-                    'modal_view' => CHtml::normalizeUrl(array('item/upload')),
-                    'class' => 'span12'
-                ),
-            ))->start();
+            /*
+             *  // @todo: reimplement this with s3
+              $this->widget('ext.AjaxFileUploader.AjaxFileUploader', array(
+              'model' => $model,
+              'attribute' => 'image_url',
+              'options' => array(
+              'model_name' => 'Item',
+              'upload_handler' => CHtml::normalizeUrl(array('item/upload')),
+              'modal_view' => CHtml::normalizeUrl(array('item/upload')),
+              'class' => 'span12'
+              ),
+              ))->start(); */
 
             echo $form->error($model, 'image_url');
             ?>
@@ -315,7 +317,7 @@ $cs->registerScriptFile($baseUrl . '/themes/dashboard/js/form/item.js');
                     'id' => $model->id,
                     'enctype' => 'multipart/form-data',
                 ));
-        
+
 
         // CHtml::submitButton('Create');
         echo CHtml::ajaxSubmitButton('Save', $url, array(

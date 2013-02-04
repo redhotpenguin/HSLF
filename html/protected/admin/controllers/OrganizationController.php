@@ -68,8 +68,11 @@ class OrganizationController extends Controller {
 
         if (isset($_POST['Organization'])) {
             $model->attributes = $_POST['Organization'];
-            if ($model->save())
+            if ($model->save()) {
+                if (isset($_POST['Organization']['tags']))
+                    $model->massUpdateTags($_POST['Organization']['tags']);
                 $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
+            }
         }
 
         $this->render('create', array(
@@ -85,13 +88,15 @@ class OrganizationController extends Controller {
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
 
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
         if (isset($_POST['Organization'])) {
             $model->attributes = $_POST['Organization'];
-            if ($model->save())
+            if ($model->save()) {
+                if (isset($_POST['Organization']['tags']))
+                    $model->massUpdateTags($_POST['Organization']['tags']);
+                else
+                    $model->removeAllTagsAssociation();
                 $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
+            }
         }
 
         $this->render('update', array(

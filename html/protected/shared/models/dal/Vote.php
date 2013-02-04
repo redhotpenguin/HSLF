@@ -11,7 +11,7 @@
  * The followings are the available model relations:
  * @property Scorecard[] $scorecards
  */
-class Vote extends CBaseActiveRecord {
+class Vote extends BaseActiveRecord {
 
     /**
      * Returns the static model of the specified AR class.

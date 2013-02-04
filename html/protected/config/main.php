@@ -47,6 +47,28 @@ return array(
             'charset' => 'UTF-8',
             'schemaCachingDuration' => '3600',
         ),
+        'cache' => array(
+            'class' => 'ext.Redis.CRedisCache',
+            'predisPath' => 'ext.Redis.Predis',
+            'servers' => array(
+                array(
+                    'host' => REDIS_HOST,
+                    'port' => REDIS_PORT,
+                    'password' => REDIS_PASSWORD,
+                    'database' => REDIS_DATABASE
+                ),
+        )),
+        's3' => array('class' => 'ext.S3.ES3',
+            'aKey' => S3_AKEY,
+            'sKey' => S3_SKEY,
+        ),
+        
+        'assetManager' => array(
+            'class' => 'S3AssetManager',
+            'host' => S3_HOST,
+            'bucket' => S3_BUCKET,
+            'path' => 'assets', //or any other folder you want
+        ),
         'errorHandler' => array(
             'errorAction' => 'site/error',
         ),

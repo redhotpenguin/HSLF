@@ -14,20 +14,14 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
 
     if ($env['DOTCLOUD_PROJECT'] === 'productionmap') {     // production specific config
         $mongodbhost = $env['DOTCLOUD_DATA_MONGODB_URL'] . '/?replicaSet=productionmap.data';
-        // S3 stuff
-        $s3Host = 'mobileadvocacy_prod.s3.amazonaws.com';
-        $s3AKey = 'AKIAIDNK7VPB47DB2F2Q';
-        $seSKey = '2F7TBdQsokQVpIZAgNUx/PgKyE01wz3AXLmGFYvh';
-        $s3Bucket = 'mobileadvocacy_prod';
         $siteurl = 'http://www.winningmarkmobile.com';
+        $s3Host = 'wmmobile.s3.amazonaws.com';
+        $s3Bucket = 'wmmobile';
     } else { // sandbox specific config
         $mongodbhost = $env['DOTCLOUD_DATA_MONGODB_URL'];
         $siteurl = $env['DOTCLOUD_WWW_HTTP_URL'];
-        // S3 stuff
-        $s3Host = 'mobileadvocacy.s3.amazonaws.com';
-        $s3AKey = 'AKIAIDNK7VPB47DB2F2Q';
-        $seSKey = '2F7TBdQsokQVpIZAgNUx/PgKyE01wz3AXLmGFYvh';
-        $s3Bucket = 'mobileadvocacy';
+        $s3Host = 'mobileadvocacydev.s3.amazonaws.com';
+        $s3Bucket = 'mobileadvocacydev';
     }
 
     $mongodbname = "mobile_advocacy_platform";
@@ -51,6 +45,9 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $redisLogin = $env['DOTCLOUD_CACHE_REDIS_LOGIN'];
     $redisPassword = $env['DOTCLOUD_CACHE_REDIS_PASSWORD'];
     $redisDatabase = '1'; // redis does not use name for db's
+
+    $s3AKey = 'AKIAIDNK7VPB47DB2F2Q';
+    $s3SKey = '2F7TBdQsokQVpIZAgNUx/PgKyE01wz3AXLmGFYvh';
 
 
     set_include_path(get_include_path() . PATH_SEPARATOR . '/home/dotcloud/php-env/share/php');
@@ -86,15 +83,24 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $redisPassword = 'foobared';
     $redisDatabase = '1';
 
-    // S3 stuff
-    $s3Host = 'mobileadvocacy.s3.amazonaws.com';
+
     $s3AKey = 'AKIAIDNK7VPB47DB2F2Q';
-    $seSKey = '2F7TBdQsokQVpIZAgNUx/PgKyE01wz3AXLmGFYvh';
-    $s3Bucket = 'mobileadvocacy';
+    $s3SKey = '2F7TBdQsokQVpIZAgNUx/PgKyE01wz3AXLmGFYvh';
+    $s3Host = 'mobileadvocacydev.s3.amazonaws.com';
+    $s3Bucket = 'mobileadvocacydev';
 
     defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL', 3);
     define('YII_DEBUG', TRUE);
 }
+
+
+
+// S3 Config
+DEFINE('S3_AKEY', $s3AKey);
+DEFINE('S3_SKEY', $s3SKey);
+DEFINE('S3_HOST', $s3Host);
+DEFINE('S3_BUCKET', $s3Bucket);
+
 
 // Redis Config
 DEFINE('REDIS_HOST', $redisHost);
@@ -133,11 +139,6 @@ DEFINE('FRONTEND_THEME', 'frontend');
 DEFINE('UPLOAD_DIR', $uploaddir);
 DEFINE('UPLOAD_PATH', $uploadpath);
 DEFINE('SITE_URL', $siteurl);
-
-DEFINE('S3_HOST', $s3Host);
-DEFINE('S3_AKEY', $s3AKey);
-DEFINE('S3_SKEY', $seSKey);
-DEFINE('S3_BUCKET', $s3Bucket);
 
 
 

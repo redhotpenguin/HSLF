@@ -49,7 +49,7 @@ class TinyMce extends CInputWidget {
                     mode:'textareas',
                     theme : "ribbon",
                     inlinepopups_skin : 'ribbon_popup',                                                                                                   
-                    plugins : "tableextras,embed,image_tools,advimagescale, tabfocus,imagemanager,autolink,lists,pagebreak,style,layer,table,save,advhr,advimage,advlink,iespell,inlinepopups,media,searchreplace,print,contextmenu,paste,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,advlist",                                                                                           
+                    plugins : "tableextras",                                                                                           
                     theme_advanced_statusbar_location  : "none",
                     theme_advanced_font_sizes: "10px,12px,13px,14px,16px,18px,20px, 22px",
                     theme_advanced_toolbar_align : "left",                                             
@@ -72,8 +72,6 @@ class TinyMce extends CInputWidget {
                                                                                                                             
                     theme_ribbon_tab2 : {   title : "Insert",
                         items : [["tabledraw"],
-                            ["image", "bestandsbeheer_file", "bestandsbeheer_video", "bestandsbeheer_mp3"],
-                            ["embed"],
                             ["link", "|", "unlink", "|", "anchor"],
                             ["loremipsum", "|", "charmap", "|", "hr"]]
                     },

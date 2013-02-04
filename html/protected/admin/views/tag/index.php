@@ -17,6 +17,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
     'columns' => array(
         'id',
         'name',
+        'display_name',
         'type',
       
         array(// display a column with "view", "update" and "delete" buttons

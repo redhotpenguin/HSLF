@@ -22,8 +22,7 @@
         $cs->registerScriptFile('/js/jquery.hoverIntent.minified.js', CClientScript::POS_HEAD);
         ?>
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
-        <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
-
+ 
         <script type="text/javascript"> 
             jQuery(document).ready(function($){
                 $('ul#main_menu').superfish({
@@ -36,8 +35,6 @@
     </head>
 
     <body>
-
-
         <div id="menu-top" class="clearfix">
             <?php
             $this->widget('bootstrap.widgets.BootNavbar', array(

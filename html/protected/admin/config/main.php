@@ -102,18 +102,19 @@ return array(
                 ),
         )),
         's3' => array(
-            'class' => 'ext.s3.ES3',
+            'class' => 'ext.S3.ES3',
             'aKey' => S3_AKEY,
             'sKey' => S3_SKEY,
         ),
-        'errorHandler' => array(
-            'errorAction' => 'site/error',
-        ),
-        'assetManager' => array(
+        
+     /*   'assetManager' => array(
             'class' => 'S3AssetManager',
-            'host' => S3_HOST, // changing this you can point to your CloudFront hostname
+            'host' => S3_HOST,
             'bucket' => S3_BUCKET,
             'path' => 'assets', //or any other folder you want
+        ),*/
+        'errorHandler' => array(
+            'errorAction' => 'site/error',
         ),
         'edms' => array(
             'class' => 'EDMSConnection',
