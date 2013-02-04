@@ -15,8 +15,8 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     if ($env['DOTCLOUD_PROJECT'] === 'productionmap') {     // production specific config
         $mongodbhost = $env['DOTCLOUD_DATA_MONGODB_URL'] . '/?replicaSet=productionmap.data';
         $siteurl = 'http://www.winningmarkmobile.com';
-        $s3Host = 'wmmap.s3.amazonaws.com';
-        $s3Bucket = 'wmmap';
+        $s3Host = 'wmmobile.s3.amazonaws.com';
+        $s3Bucket = 'wmmobile';
     } else { // sandbox specific config
         $mongodbhost = $env['DOTCLOUD_DATA_MONGODB_URL'];
         $siteurl = $env['DOTCLOUD_WWW_HTTP_URL'];
