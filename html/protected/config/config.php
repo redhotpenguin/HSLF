@@ -86,8 +86,8 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
 
     $s3AKey = 'AKIAIDNK7VPB47DB2F2Q';
     $s3SKey = '2F7TBdQsokQVpIZAgNUx/PgKyE01wz3AXLmGFYvh';
-    $s3Host = 'mobileadvocacydev.s3.amazonaws.com';
-    $s3Bucket = 'mobileadvocacydev';
+    $s3Host = 'maplocal.s3.amazonaws.com';
+    $s3Bucket = 'maplocal';
 
     defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL', 3);
     define('YII_DEBUG', TRUE);
@@ -139,9 +139,3 @@ DEFINE('FRONTEND_THEME', 'frontend');
 DEFINE('UPLOAD_DIR', $uploaddir);
 DEFINE('UPLOAD_PATH', $uploadpath);
 DEFINE('SITE_URL', $siteurl);
-
-
-
-// Image File Manager conf:
-// please also update root path in protected/extensions/tinymce/assets/jscripts/tiny_mce/plugins/imagemanager/config.php
-// 

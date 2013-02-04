@@ -32,7 +32,6 @@ return array(
         ),
         'bootstrap' => array(
             'class'=>'bootstrap.components.Bootstrap',
-    //        'responsiveCss' => true,
         ),
         // uncomment the following to enable URLs in path-format
 
