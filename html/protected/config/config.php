@@ -81,6 +81,18 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     define('YII_DEBUG', TRUE);
 }
 
+$s3AKey = 'AKIAIDNK7VPB47DB2F2Q';
+$s3SKey = '2F7TBdQsokQVpIZAgNUx/PgKyE01wz3AXLmGFYvh';
+$s3Host = 'Your-bucket.s3.amazonaws.com';
+$s3Bucket ='mobileadvocacy';
+
+// S3 Config
+DEFINE('S3_AKEY', $s3AKey);
+DEFINE('S3_SKEY', $s3SKey);
+DEFINE('S3_HOST', $s3Host);
+DEFINE('S3_BUCKET', $s3Bucket);
+
+
 // Redis Config
 DEFINE('REDIS_HOST', $redisHost);
 DEFINE('REDIS_PORT', $redisPort);

@@ -91,7 +91,6 @@ return array(
             'connectionID' => 'db',
         ),
         'cache' => array(
-            // 'class' => 'system.caching.CApcCache',
             'class' => 'ext.Redis.CRedisCache',
             'predisPath' => 'ext.Redis.Predis',
             'servers' => array(
@@ -102,6 +101,17 @@ return array(
                     'database' => REDIS_DATABASE
                 ),
         )),
+        's3' => array(
+            'class' => 'ext.S3.ES3',
+            'aKey' => S3_AKEY,
+            'sKey' => S3_SKEY,
+        ),
+        'assetManager' => array(
+            'class' => 'S3AssetManager',
+            'host' => S3_HOST,
+            'bucket' => S3_BUCKET,
+            'path' => 'assets', //or any other folder you want
+        ),
         'errorHandler' => array(
             'errorAction' => 'site/error',
         ),
