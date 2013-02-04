@@ -117,5 +117,3 @@ class S3AssetManager extends CAssetManager
     }
 
 }
-
-?>

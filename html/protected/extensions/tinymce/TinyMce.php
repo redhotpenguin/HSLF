@@ -25,7 +25,7 @@ class TinyMce extends CInputWidget {
             Yii::app()->clientScript->registerCoreScript('jquery');
             Yii::app()->clientScript->registerScriptFile($baseUrl . '/jscripts/tiny_mce/jquery.tinymce.js', CClientScript::POS_HEAD);
         } else {
-            throw new Exception('EClEditor - Error: Couldn\'t find assets to publish.');
+            throw new Exception('Error: Couldn\'t find assets to publish.');
         }
     }
 
