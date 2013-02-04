@@ -86,8 +86,8 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
 
     $s3AKey = 'AKIAIDNK7VPB47DB2F2Q';
     $s3SKey = '2F7TBdQsokQVpIZAgNUx/PgKyE01wz3AXLmGFYvh';
-    $s3Host = 'mobileadvocacydev.s3.amazonaws.com';
-    $s3Bucket = 'mobileadvocacydev';
+    $s3Host = 'maplocal.s3.amazonaws.com';
+    $s3Bucket = 'maplocal';
 
     defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL', 3);
     define('YII_DEBUG', TRUE);
