@@ -20,7 +20,7 @@ $this->menu = array(
 
 $dataProvider->pagination->pageSize=50;
 
-$this->widget('bootstrap.widgets.BootGridView', array(
+$this->widget('bootstrap.widgets.TbGridView', array(
     'dataProvider' => $dataProvider,
     'columns' => array(
         'name',
@@ -30,7 +30,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
         ),
         
         array(// display a column with "view", "update" and "delete" buttons
-            'class' => 'bootstrap.widgets.BootButtonColumn',
+            'class' => 'bootstrap.widgets.TbButtonColumn',
             'template' => $template,
         ),
     ),

@@ -32,7 +32,7 @@ echo '<b>' . CHtml::link('Search', '#', array('class' => 'search-button')) . '</
 </div><!-- search-form -->
 
 <?php
-$this->widget('bootstrap.widgets.BootGridView', array(
+$this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'MobileUser-grid',
     'dataProvider' => $model->search(),
     'columns' => array(

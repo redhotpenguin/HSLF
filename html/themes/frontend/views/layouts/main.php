@@ -43,6 +43,7 @@
                 'brand' => Yii::app()->name,
                 'brandUrl' => '/',
                 'id' => 'main_menu',
+                'type' => 'inverse',
                 'items' => array(
                     array(
                         'class' => 'bootstrap.widgets.TbMenu',

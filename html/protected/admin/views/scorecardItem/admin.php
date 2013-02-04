@@ -43,7 +43,7 @@ $('.search-form form').submit(function(){
 $office_list = array('' => 'All') + CHtml::listData(Office::model()->findAll(), 'name', 'name');
 
 
-$this->widget('bootstrap.widgets.BootGridView', array(
+$this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'scorecard-item-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
@@ -58,7 +58,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
             'filter' => CHtml::dropDownList('ScorecardItem[office_type]', $model->office_type, $office_list),
         ),
         array(
-            'class' => 'bootstrap.widgets.BootButtonColumn',
+            'class' => 'bootstrap.widgets.TbButtonColumn',
         ),
     ),
 ));

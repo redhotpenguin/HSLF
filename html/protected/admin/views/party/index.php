@@ -13,7 +13,7 @@ $this->menu = array(
 
 
 <?php
-$this->widget('bootstrap.widgets.BootGridView', array(
+$this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'party-grid',
     'dataProvider' => $dataProvider,
     'columns' => array(
@@ -22,7 +22,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
         'abbr',
         'initial',
         array(
-            'class' => 'bootstrap.widgets.BootButtonColumn',
+            'class' => 'bootstrap.widgets.TbButtonColumn',
         ),
     ),
 ));

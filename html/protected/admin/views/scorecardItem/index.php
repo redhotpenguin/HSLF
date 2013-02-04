@@ -14,7 +14,7 @@ $this->menu=array(
 
 <?php
 
-$this->widget('bootstrap.widgets.BootGridView', array(
+$this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'scorecard-item-grid',
     'dataProvider' => $dataProvider,
     'columns' => array(
@@ -26,7 +26,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
               'value' => '$data->office->name',
         ),
         array(
-            'class' => 'bootstrap.widgets.BootButtonColumn',
+            'class' => 'bootstrap.widgets.TbButtonColumn',
         ),
     ),
 ));

@@ -42,7 +42,7 @@ $('.search-form form').submit(function(){
 $state_list = CHtml::listData(State::model()->findAll(), 'id', 'name');
 $district_list = array('' => 'All') + District::model()->getTypeOptions();
 
-$this->widget('bootstrap.widgets.BootGridView', array(
+$this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'district-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
@@ -64,7 +64,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
         'display_name',
         'locality',
         array(
-            'class' => 'bootstrap.widgets.BootButtonColumn',
+            'class' => 'bootstrap.widgets.TbButtonColumn',
             'deleteConfirmation' => "js:'Deleting this District will also delete every items associated to it, continue?'",
         ),
     ),

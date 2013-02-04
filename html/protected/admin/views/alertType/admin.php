@@ -38,7 +38,7 @@ $('.search-form form').submit(function(){
 </div><!-- search-form -->
 
 <?php
-$this->widget('bootstrap.widgets.BootGridView', array(
+$this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'alert-type-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
@@ -52,7 +52,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
         ),
         'category',
         array(
-            'class' => 'bootstrap.widgets.BootButtonColumn',
+            'class' => 'bootstrap.widgets.TbButtonColumn',
         ),
     ),
 ));

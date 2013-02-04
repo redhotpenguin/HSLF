@@ -40,7 +40,7 @@ $('.search-form form').submit(function(){
 </div><!-- search-form -->
 
 <?php
-$this->widget('bootstrap.widgets.BootGridView', array(
+$this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'vote-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
@@ -49,7 +49,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
         'name',
         'icon',
         array(
-            'class' => 'bootstrap.widgets.BootButtonColumn',
+            'class' => 'bootstrap.widgets.TbButtonColumn',
         ),
     ),
 ));

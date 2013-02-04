@@ -16,7 +16,7 @@ $state_list = array('' => 'All') + CHtml::listData(State::model()->findAll(), 'i
 $district_list = array('' => 'All') + District::model()->getTypeOptions();
 $item_type_list = array(''=>'All')+Item::model()->getItemTypeOptions();
 
-$this->widget('bootstrap.widgets.BootGridView', array(
+$this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'item-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
@@ -53,7 +53,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
             'value' => '$data->district->display_name'
         ),
         array(
-            'class' => 'bootstrap.widgets.BootButtonColumn',
+            'class' => 'bootstrap.widgets.TbButtonColumn',
         ),
     ),
 ));

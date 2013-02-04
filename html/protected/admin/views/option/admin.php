@@ -44,7 +44,7 @@ $('.search-form form').submit(function(){
 $template = '{view}{update}{delete}';
 
 
-$this->widget('bootstrap.widgets.BootGridView', array(
+$this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'option-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
@@ -55,7 +55,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
             'value' => 'substr($data->value,0,100);'
         ),
         array(
-            'class' => 'bootstrap.widgets.BootButtonColumn',
+            'class' => 'bootstrap.widgets.TbButtonColumn',
             'template' => $template,
         ),
     ),

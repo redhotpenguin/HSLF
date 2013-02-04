@@ -15,7 +15,7 @@ $this->menu = array(
 
 <?php
 
-$this->widget('bootstrap.widgets.BootGridView', array(
+$this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'office-grid',
     'dataProvider' => $dataProvider,
     
@@ -23,7 +23,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
         'id',
         'name',
        array(
-            'class' => 'bootstrap.widgets.BootButtonColumn',
+            'class' => 'bootstrap.widgets.TbButtonColumn',
         ),
     ),
 ));

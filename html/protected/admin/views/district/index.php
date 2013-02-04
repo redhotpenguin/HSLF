@@ -17,7 +17,7 @@ $this->menu = array(
 <?php
 $dataProvider->pagination->pageSize = 60;
 
-$this->widget('bootstrap.widgets.BootGridView', array(
+$this->widget('bootstrap.widgets.TbGridView', array(
     'dataProvider' => $dataProvider,
     'columns' => array(
         array(
@@ -29,7 +29,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
         'display_name',
         'locality',
         array(// display a column with "view", "update" and "delete" buttons
-            'class' => 'bootstrap.widgets.BootButtonColumn',
+            'class' => 'bootstrap.widgets.TbButtonColumn',
             'deleteConfirmation' => "js:'Deleting this District will also delete every items associated to it, continue?'",
         ),
     ),

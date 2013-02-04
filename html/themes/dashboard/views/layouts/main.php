@@ -152,6 +152,7 @@
 
 
             $this->widget('bootstrap.widgets.TbNavbar', array(
+                'type' => 'inverse',
                 'brand' => $brand,
                 'brandUrl' => $brandUrl,
                 'id' => 'main_menu',

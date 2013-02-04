@@ -15,7 +15,7 @@ $this->menu = array(
 <h1>Share Payloads</h1>
 
 <?php
-$this->widget('bootstrap.widgets.BootGridView', array(
+$this->widget('bootstrap.widgets.TbGridView', array(
     'dataProvider' => $dataProvider,
     'dataProvider' => $dataProvider,
     'template' => "{pager}\n{items}\n{pager}", // pagination on top and on bottom
@@ -25,7 +25,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
         'title',
         'email',
         array(
-            'class' => 'bootstrap.widgets.BootButtonColumn',
+            'class' => 'bootstrap.widgets.TbButtonColumn',
         ),
     ),
 ));

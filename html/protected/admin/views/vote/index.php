@@ -14,7 +14,7 @@ $this->menu = array(
 
 
 <?php
-$this->widget('bootstrap.widgets.BootGridView', array(
+$this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'vote-grid',
     'dataProvider' => $dataProvider,
     'columns' => array(
@@ -22,7 +22,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
         'name',
         'icon',
         array(
-            'class' => 'bootstrap.widgets.BootButtonColumn',
+            'class' => 'bootstrap.widgets.TbButtonColumn',
         ),
     ),
 ));

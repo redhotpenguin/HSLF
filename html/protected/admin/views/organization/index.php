@@ -13,7 +13,7 @@ $this->menu = array(
 <h1>Organizations</h1>
 
 <?php
-$this->widget('bootstrap.widgets.BootGridView', array(
+$this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'vote-grid',
     'dataProvider' => $dataProvider,
     'columns' => array(
@@ -25,7 +25,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
             'value'=>' Chtml::link( $data->website, $data->website, array("target"=>"_blank")) '
         ),
         array(
-            'class' => 'bootstrap.widgets.BootButtonColumn',
+            'class' => 'bootstrap.widgets.TbButtonColumn',
         ),
     ),
 ));

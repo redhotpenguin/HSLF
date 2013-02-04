@@ -41,7 +41,7 @@ $('.search-form form').submit(function(){
 </div><!-- search-form -->
 
 <?php
-$this->widget('bootstrap.widgets.BootGridView', array(
+$this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'office-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
@@ -49,7 +49,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
         'id',
         'name',
        array(// display a column with "view", "update" and "delete" buttons
-            'class' => 'bootstrap.widgets.BootButtonColumn',
+            'class' => 'bootstrap.widgets.TbButtonColumn',
         ),
     ),
 ));
