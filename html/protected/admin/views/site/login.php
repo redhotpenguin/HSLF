@@ -10,7 +10,7 @@ $this->breadcrumbs = array(
 
     <div class="form">
         <?php
-        $form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
+        $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
             'id' => 'login-form',
             // 'id'=>'verticalForm',
             'htmlOptions' => array('class' => 'well'),
@@ -39,7 +39,7 @@ $this->breadcrumbs = array(
 
 
 
-        <?php $this->widget('bootstrap.widgets.BootButton', array('buttonType' => 'submit', 'label' => 'Login')); ?>
+        <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'label' => 'Login')); ?>
     </div>
 
     <?php $this->endWidget(); ?>

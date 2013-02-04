@@ -13,14 +13,14 @@ $this->menu = array(
 <h1>Recommendations</h1>
 
 <?php
-$this->widget('bootstrap.widgets.BootGridView', array(
+$this->widget('bootstrap.widgets.TbGridView', array(
     'dataProvider' => $dataProvider,
     'columns' => array(
         'id',
         'type',
         'value',
         array(
-            'class' => 'bootstrap.widgets.BootButtonColumn',
+            'class' => 'bootstrap.widgets.TbButtonColumn',
         ),
     ),
 ));

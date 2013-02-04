@@ -12,7 +12,7 @@ $this->menu=array(
 <h1>Tags</h1>
 
 <?php
-$this->widget('bootstrap.widgets.BootGridView', array(
+$this->widget('bootstrap.widgets.TbGridView', array(
     'dataProvider' => $dataProvider,
     'columns' => array(
         'id',
@@ -21,7 +21,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
         'type',
       
         array(// display a column with "view", "update" and "delete" buttons
-            'class' => 'bootstrap.widgets.BootButtonColumn',
+            'class' => 'bootstrap.widgets.TbButtonColumn',
         ),
     ),
 ));

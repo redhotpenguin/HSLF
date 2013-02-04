@@ -15,7 +15,7 @@ $this->menu = array(
 
 <?php
 $dataProvider->pagination->pageSize = 50;
-$this->widget('bootstrap.widgets.BootGridView', array(
+$this->widget('bootstrap.widgets.TbGridView', array(
     'dataProvider' => $dataProvider,
     'template' => "{pager}\n{items}\n{pager}", // pagination on top and on bottom
 
@@ -32,7 +32,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
             'value' => '$data->next_election_date',
         ),
         array(// display a column with "view", "update" and "delete" buttons
-            'class' => 'bootstrap.widgets.BootButtonColumn',
+            'class' => 'bootstrap.widgets.TbButtonColumn',
         ),
     ),
 ));

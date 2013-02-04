@@ -16,7 +16,7 @@ $this->menu = array(
 
 
 <?php
-$this->widget('bootstrap.widgets.BootGridView', array(
+$this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'tenant-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
@@ -26,7 +26,7 @@ $this->widget('bootstrap.widgets.BootGridView', array(
         'display_name',
         'email',
         array(
-            'class' => 'bootstrap.widgets.BootButtonColumn',
+            'class' => 'bootstrap.widgets.TbButtonColumn',
             'template' => "{update}{view}"
         ),
     ),

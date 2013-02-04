@@ -17,13 +17,13 @@ $this->menu=array(
 $template = '{view}{update}{delete}';
 
 
-$this->widget('bootstrap.widgets.BootGridView', array(
+$this->widget('bootstrap.widgets.TbGridView', array(
     'dataProvider'=>$dataProvider,
     'columns'=>array(        
         'username',  
         'email',
         array(            // display a column with "view", "update" and "delete" buttons
-            'class'=>'bootstrap.widgets.BootButtonColumn',
+            'class'=>'bootstrap.widgets.TbButtonColumn',
              'template'=> $template,
         ),
     ),

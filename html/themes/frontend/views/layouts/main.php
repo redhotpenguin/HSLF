@@ -17,12 +17,13 @@
         <link rel="stylesheet" type="text/css" href="/themes/dashboard/css/form.css" /> 
 
         <?php
+        Yii::app()->bootstrap->register();
         $cs = Yii::app()->clientScript;
         $cs->registerScriptFile('/js/superfish.js', CClientScript::POS_HEAD);
         $cs->registerScriptFile('/js/jquery.hoverIntent.minified.js', CClientScript::POS_HEAD);
         ?>
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
- 
+
         <script type="text/javascript"> 
             jQuery(document).ready(function($){
                 $('ul#main_menu').superfish({
@@ -36,14 +37,16 @@
 
     <body>
         <div id="menu-top" class="clearfix">
+
             <?php
-            $this->widget('bootstrap.widgets.BootNavbar', array(
+            $this->widget('bootstrap.widgets.TbNavbar', array(
                 'brand' => Yii::app()->name,
                 'brandUrl' => '/',
                 'id' => 'main_menu',
+                'type' => 'inverse',
                 'items' => array(
                     array(
-                        'class' => 'bootstrap.widgets.BootMenu',
+                        'class' => 'bootstrap.widgets.TbMenu',
                         'htmlOptions' => array('class' => 'pull-right'),
                         'items' => array(
                             '---',
@@ -74,7 +77,7 @@
                         <div id="sidebar">
 
                             <?php
-                            $this->widget('bootstrap.widgets.BootMenu', array(
+                            $this->widget('bootstrap.widgets.TbMenu', array(
                                 'type' => 'tabs', // '', 'tabs', 'pills' (or 'list')
                                 'stacked' => true, // whether this is a stacked menu
                                 'items' => $this->menu,

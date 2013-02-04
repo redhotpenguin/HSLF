@@ -14,9 +14,9 @@ else:
         <br/>
             <?php
             foreach ($tenants as $tenant) {
-                echo '<h2>';
+                echo '<h3>';
                 echo CHtml::link($tenant->display_name, "/admin/" . $tenant->name, array('class' => ''));
-                echo '</h2>';
+                echo '</h3>';
             }
             ?>
 

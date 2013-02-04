@@ -12,12 +12,14 @@
         <link rel="stylesheet" type="text/css" href="/themes/dashboard/css/form.css" /> 
 
         <?php
+        Yii::app()->clientScript->registerCoreScript('jquery');
+
+        Yii::app()->bootstrap->register();
         $cs = Yii::app()->clientScript;
         $cs->registerScriptFile('/js/superfish.js', CClientScript::POS_HEAD);
         $cs->registerScriptFile('/js/jquery.hoverIntent.minified.js', CClientScript::POS_HEAD);
         ?>
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
-        <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
 
 
         <script type="text/javascript"> 
@@ -43,7 +45,7 @@
                 // if user has a tenant selected
                 if ($tenant) {
                     $publishingItems = array(
-                        'class' => 'bootstrap.widgets.BootMenu',
+                        'class' => 'bootstrap.widgets.TbMenu',
                         'items' => array(
                             '---',
                             array('label' => 'Content', 'url' => '#', 'items' => array(
@@ -59,7 +61,7 @@
                     );
 
                     $applicationItems = array(
-                        'class' => 'bootstrap.widgets.BootMenu',
+                        'class' => 'bootstrap.widgets.TbMenu',
                         'items' => array(
                             '---',
                             array(
@@ -94,7 +96,7 @@
                     if (Yii::app()->authManager->checkAccess('admin', Yii::app()->user->id)) {
 
                         $adminItems = array(
-                            'class' => 'bootstrap.widgets.BootMenu',
+                            'class' => 'bootstrap.widgets.TbMenu',
                             'items' => array(
                                 '---',
                                 array(
@@ -121,7 +123,7 @@
                 }
 
                 $loginItems = array(
-                    'class' => 'bootstrap.widgets.BootMenu',
+                    'class' => 'bootstrap.widgets.TbMenu',
                     'htmlOptions' => array('class' => 'pull-right'),
                     'items' => array(
                         '---',
@@ -151,7 +153,8 @@
 
 
 
-            $this->widget('bootstrap.widgets.BootNavbar', array(
+            $this->widget('bootstrap.widgets.TbNavbar', array(
+                'type' => 'inverse',
                 'brand' => $brand,
                 'brandUrl' => $brandUrl,
                 'id' => 'main_menu',
@@ -164,7 +167,7 @@
 
             <div id="wrap">
                 <?php
-                $this->widget('bootstrap.widgets.BootBreadcrumbs', array(
+                $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
                     'links' => $this->breadcrumbs,
                     'homeLink' => CHtml::link('Dashboard', array('./'))
                 ));
@@ -185,7 +188,7 @@
                             <div id="sidebar">
 
                                 <?php
-                                $this->widget('bootstrap.widgets.BootMenu', array(
+                                $this->widget('bootstrap.widgets.TbMenu', array(
                                     'type' => 'tabs', // '', 'tabs', 'pills' (or 'list')
                                     'stacked' => true, // whether this is a stacked menu
                                     'items' => $this->menu,
