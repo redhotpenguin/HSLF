@@ -20,8 +20,8 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     } else { // sandbox specific config
         $mongodbhost = $env['DOTCLOUD_DATA_MONGODB_URL'];
         $siteurl = $env['DOTCLOUD_WWW_HTTP_URL'];
-        $s3Host = 'mobileadvocacy_dev.s3.amazonaws.com';
-        $s3Bucket = 'mobileadvocacy_dev';
+        $s3Host = 'mobileadvocacydev.s3.amazonaws.com';
+        $s3Bucket = 'mobileadvocacydev';
     }
 
     $mongodbname = "mobile_advocacy_platform";
