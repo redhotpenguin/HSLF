@@ -1,4 +1,4 @@
--- last alter file merged: alter_26.sql
+-- last alter file merged: alter_37.sql
 
 -- tables creation --
 
@@ -7,7 +7,6 @@ create table tenant(
 	name varchar(32) NOT NULl,
 	display_name varchar(256) NOT NULL,
 	creation_date timestamp without time zone NOT NULL,
-	site_url TEXT NOT NULL,
 	web_app_url character varying(2048) NOT NULL,
 	email TEXT NOT NULL,
 	api_key TEXT NOT NULL,
@@ -44,8 +43,9 @@ CREATE TABLE alert_type (
 CREATE TABLE tag (
     id SERIAL PRIMARY KEY,
     tenant_id integer NOT NULL,
-    name character varying(255),
-    type character varying(255)
+    name character varying(255) NOT NULL,
+    type character varying(255) NOT NULL,
+    display_name TEXT NOT NULL
 );
 
 CREATE TABLE organization_item (
@@ -65,7 +65,8 @@ CREATE TABLE organization (
     display_name text,
     slug VARCHAR(512) NOT NULL,
     facebook_url character varying(2048),
-    twitter_handle character varying(2048)
+    twitter_handle character varying(2048),
+    address TEXT NOT NULL
 );
 
 CREATE TABLE item_news (
@@ -152,9 +153,83 @@ CREATE TABLE "user" (
     tenant_id integer NOT NULL,
     username character varying(128) NOT NULL,
     password character(40) NOT NULL,
-    email character varying(128) NOT NULL,
-    role character varying(128) NOT NULL
+    email character varying(128) NOT NULL
 );
+
+CREATE TABLE share_payload(
+	id SERIAL PRIMARY KEY,
+        tenant_id INTEGER NOT NULL,
+        url  VARCHAR(2048) NOT NULL,
+        title VARCHAR(512) NOT NULL,
+        description TEXT NOT NULL,
+        tweet VARCHAR(140) NOT NULL,
+        email VARCHAR(320)
+);
+
+create table "AuthItem"
+(
+   "name"                 varchar(64) not null,
+   "type"                 integer not null,
+   "description"          text,
+   "bizrule"              text,
+   "data"                 text,
+   primary key ("name")
+);
+
+create table "AuthItemChild"
+(
+   "parent"               varchar(64) not null,
+   "child"                varchar(64) not null,
+   primary key ("parent","child"),
+   foreign key ("parent") references "AuthItem" ("name") on delete cascade on update cascade,
+   foreign key ("child") references "AuthItem" ("name") on delete cascade on update cascade
+);
+
+create table "AuthAssignment"
+(
+   "itemname"             varchar(64) not null,
+   "userid"               varchar(64) not null,
+   "bizrule"              text,
+   "data"                 text,
+   primary key ("itemname","userid"),
+   foreign key ("itemname") references "AuthItem" ("name") on delete cascade on update cascade
+);
+
+
+CREATE TABLE tenant_user(
+    tenant_id INTEGER REFERENCES tenant(id),
+    user_id INTEGER REFERENCES "user"(id),
+    PRIMARY KEY (tenant_id, user_id)
+);
+
+CREATE TABLE user_session
+(
+    id CHAR(32) PRIMARY KEY,
+    expire INTEGER,
+    data TEXT
+)
+
+CREATE TABLE tag_organization(
+    tag_id INTEGER REFERENCES tag(id),
+    organization_id INTEGER REFERENCES organization(id),
+    PRIMARY KEY (tag_id, organization_id)
+);
+
+CREATE table push_message(
+    id SERIAL PRIMARY KEY,
+    tenant_id INTEGER REFERENCES tenant(id) NOT NULL,
+    share_payload_id INTEGER REFERENCES share_payload(id),
+    creation_date timestamp without time zone NOT NULL,
+    alert character varying(140)
+
+);
+
+CREATE TABLE tag_push_message(
+    tag_id INTEGER REFERENCES tag(id),
+    push_message_id INTEGER REFERENCES push_message(id),
+    PRIMARY KEY (tag_id, push_message_id)
+);
+
 
 -- unique constraints creation --
 ALTER TABLE tenant ADD CONSTRAINT unique_name UNIQUE (name);
@@ -207,3 +282,5 @@ ALTER TABLE tag	 ADD FOREIGN KEY (tenant_id) REFERENCES tenant (id) ON UPDATE CA
 ALTER TABLE vote  ADD FOREIGN KEY (tenant_id) REFERENCES tenant (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE "user"  ADD FOREIGN KEY (tenant_id) REFERENCES tenant (id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+ALTER TABLE share_payload ADD FOREIGN KEY (tenant_id) REFERENCES tenant (id) ON UPDATE CASCADE ON DELETE CASCADE;
