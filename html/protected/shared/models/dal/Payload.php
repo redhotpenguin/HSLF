@@ -34,9 +34,9 @@ class Payload extends BaseActiveRecord {
     public function tableName() {
         return 'payload';
     }
-    
-    public function getTypeOptions(){
-        return array('post'=>'Post', 'share'=>'Share', 'other'=>'Other');
+
+    public function getTypeOptions() {
+        return array('post' => 'Post', 'share' => 'Share', 'other' => 'Other');
     }
 
     /**
@@ -55,6 +55,7 @@ class Payload extends BaseActiveRecord {
             array('type', 'length', 'max' => 16),
             array('url', 'url'),
             array('email', 'email'),
+            array('id, url, title, description, tweet, email', 'safe', 'on' => 'update,insert'),
             array('id, tenant_id, url, title, description, tweet, email', 'safe', 'on' => 'search'),
         );
     }
