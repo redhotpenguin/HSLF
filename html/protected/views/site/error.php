@@ -1,12 +1,21 @@
 <?php
-$this->pageTitle=Yii::app()->name . ' - Error';
-$this->breadcrumbs=array(
-	'Error',
+$this->pageTitle = Yii::app()->name . ' - Error';
+$this->breadcrumbs = array(
+    'Error',
 );
 ?>
+<h2>OMG</h2>
+<h3>Something's gone horribly wrong</h3>
 
-<p>Error <?php echo $code; ?></p>
 
-<div class="error">
-<?php echo CHtml::encode($message); ?>
-</div>
+<h6>Please send this to the guy in charge:</h6>
+<pre>
+<?php
+
+if (isset($code)) {
+    echo $code.':';
+    echo $message;
+
+}
+?>
+</pre>
