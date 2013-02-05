@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This is the model class for table "share_payload".
+ * This is the model class for table "payload".
  *
- * The followings are the available columns in table 'share_payload':
+ * The followings are the available columns in table 'payload':
  * @property integer $id
  * @property integer $tenant_id
  * @property string $url
@@ -11,16 +11,18 @@
  * @property string $description
  * @property string $tweet
  * @property string $email
+ * @property string $type
+ * @property integer $postNumber
  *
  * The followings are the available model relations:
  * @property Tenant $tenant
  */
-class SharePayload extends BaseActiveRecord {
+class Payload extends BaseActiveRecord {
 
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
-     * @return SharePayload the static model class
+     * @return Payload the static model class
      */
     public static function model($className = __CLASS__) {
         return parent::model($className);
@@ -30,7 +32,11 @@ class SharePayload extends BaseActiveRecord {
      * @return string the associated database table name
      */
     public function tableName() {
-        return 'share_payload';
+        return 'payload';
+    }
+    
+    public function getTypeOptions(){
+        return array('alert'=>'Alert', 'share'=>'Share', 'other'=>'Other');
     }
 
     /**
@@ -40,12 +46,13 @@ class SharePayload extends BaseActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('url, title, description, tweet', 'required'),
-            array('tenant_id', 'numerical', 'integerOnly' => true),
+            array('title, type', 'required'),
+            array('tenant_id, post_number', 'numerical', 'integerOnly' => true),
             array('url', 'length', 'max' => 2048),
             array('title', 'length', 'max' => 512),
             array('tweet', 'length', 'max' => 140),
             array('email', 'length', 'max' => 320),
+            array('type', 'length', 'max' => 16),
             array('url', 'url'),
             array('email', 'email'),
             array('id, tenant_id, url, title, description, tweet, email', 'safe', 'on' => 'search'),

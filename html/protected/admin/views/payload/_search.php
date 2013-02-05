@@ -1,6 +1,6 @@
 <?php
 /* @var $this SharePayloadController */
-/* @var $model SharePayload */
+/* @var $model Payload */
 /* @var $form CActiveForm */
 ?>
 

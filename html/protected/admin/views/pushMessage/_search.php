@@ -7,7 +7,7 @@
 
 	<?php echo $form->textFieldRow($model,'tenant_id',array('class'=>'span5')); ?>
 
-	<?php echo $form->textFieldRow($model,'share_payload_id',array('class'=>'span5')); ?>
+	<?php echo $form->textFieldRow($model,'payload_id',array('class'=>'span5')); ?>
 
 	<?php echo $form->textFieldRow($model,'creation_date',array('class'=>'span5')); ?>
 

@@ -1,17 +1,17 @@
 <?php
 /* @var $this SharePayloadController */
-/* @var $model SharePayload */
+/* @var $model Payload */
 
 $this->breadcrumbs=array(
-	'Share Payloads'=>array('index'),
+	'Payloads'=>array('index'),
 	'Create',
 );
 
 $this->menu=array(
-	array('label'=>'Manage share payloads', 'url'=>array('admin')),
+	array('label'=>'Manage payloads', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create a Share Payload:</h1>
+<h1>Create a Payload:</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

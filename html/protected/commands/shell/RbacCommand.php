@@ -57,7 +57,7 @@ EOD;
             'Organization',
             'ScorecardItem',
             'Vote',
-            'SharePayload',
+            'Payload',
             'AlertType',
             'Option',
             'Tag',

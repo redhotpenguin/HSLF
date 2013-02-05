@@ -6,14 +6,14 @@
  * The followings are the available columns in table 'push_message':
  * @property integer $id
  * @property integer $tenant_id
- * @property integer $share_payload_id
+ * @property integer $payload_id
  * @property string $creation_date
  * @property string $alert
  *
  * The followings are the available model relations:
  * @property Tag[] $tags
  * @property Tenant $tenant
- * @property SharePayload $sharePayload
+ * @property Payload $Payload
  */
 class PushMessage extends BaseActiveRecord {
 
@@ -40,12 +40,12 @@ class PushMessage extends BaseActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('creation_date, share_payload_id', 'required'),
-            array('tenant_id, share_payload_id', 'numerical', 'integerOnly' => true),
+            array('creation_date, payload_id', 'required'),
+            array('tenant_id, payload_id', 'numerical', 'integerOnly' => true),
             array('alert', 'length', 'max' => 140),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, tenant_id, share_payload_id, creation_date, alert', 'safe', 'on' => 'search'),
+            array('id, tenant_id, payload_id, creation_date, alert', 'safe', 'on' => 'search'),
         );
     }
 
@@ -57,7 +57,7 @@ class PushMessage extends BaseActiveRecord {
         // class name for the relations automatically generated below.
         return array(
             'tags' => array(self::MANY_MANY, 'Tag', 'tag_push_message(push_message_id, tag_id)'),
-            'share_payload' => array(self::BELONGS_TO, 'SharePayload', 'share_payload_id'),
+            'payload' => array(self::BELONGS_TO, 'Payload', 'payload_id'),
         );
     }
 
@@ -68,7 +68,7 @@ class PushMessage extends BaseActiveRecord {
         return array(
             'id' => 'ID',
             'tenant_id' => 'Tenant',
-            'share_payload_id' => 'Share Payload',
+            'payload_id' => 'Payload',
             'creation_date' => 'Creation Date',
             'alert' => 'Alert',
         );
@@ -86,7 +86,7 @@ class PushMessage extends BaseActiveRecord {
 
         $criteria->compare('id', $this->id);
         $criteria->compare('tenant_id', $this->tenant_id);
-        $criteria->compare('share_payload_id', $this->share_payload_id);
+        $criteria->compare('payload_id', $this->payload_id);
         $criteria->compare('creation_date', $this->creation_date, true);
         $criteria->compare('alert', $this->alert, true);
 

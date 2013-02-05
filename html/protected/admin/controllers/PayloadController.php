@@ -1,6 +1,6 @@
 <?php
 
-class SharePayloadController extends Controller {
+class PayloadController extends Controller {
 
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -26,19 +26,19 @@ class SharePayloadController extends Controller {
         return array(
             array('allow',
                 'actions' => array('index', 'admin', 'view'),
-                'roles' => array('readSharePayload'),
+                'roles' => array('readPayload'),
             ),
             array('allow',
                 'actions' => array('create'),
-                'roles' => array('createSharePayload'),
+                'roles' => array('createPayload'),
             ),
             array('allow',
                 'actions' => array('update'),
-                'roles' => array('updateSharePayload'),
+                'roles' => array('updatePayload'),
             ),
             array('allow',
                 'actions' => array('delete'),
-                'roles' => array('deleteSharePayload'),
+                'roles' => array('deletePayload'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -61,13 +61,13 @@ class SharePayloadController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new SharePayload;
+        $model = new Payload;
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['SharePayload'])) {
-            $model->attributes = $_POST['SharePayload'];
+        if (isset($_POST['Payload'])) {
+            $model->attributes = $_POST['Payload'];
             if ($model->save())
                 $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
         }
@@ -88,8 +88,8 @@ class SharePayloadController extends Controller {
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['SharePayload'])) {
-            $model->attributes = $_POST['SharePayload'];
+        if (isset($_POST['Payload'])) {
+            $model->attributes = $_POST['Payload'];
             if ($model->save())
                 $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
         }
@@ -116,7 +116,7 @@ class SharePayloadController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('SharePayload');
+        $dataProvider = new CActiveDataProvider('Payload');
         $this->render('index', array(
             'dataProvider' => $dataProvider,
         ));
@@ -126,10 +126,10 @@ class SharePayloadController extends Controller {
      * Manages all models.
      */
     public function actionAdmin() {
-        $model = new SharePayload('search');
+        $model = new Payload('search');
         $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['SharePayload']))
-            $model->attributes = $_GET['SharePayload'];
+        if (isset($_GET['Payload']))
+            $model->attributes = $_GET['Payload'];
 
         $this->render('admin', array(
             'model' => $model,
@@ -140,11 +140,11 @@ class SharePayloadController extends Controller {
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer $id the ID of the model to be loaded
-     * @return SharePayload the loaded model
+     * @return Payload the loaded model
      * @throws CHttpException
      */
     public function loadModel($id) {
-        $model = SharePayload::model()->findByPk($id);
+        $model = Payload::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
@@ -152,7 +152,7 @@ class SharePayloadController extends Controller {
 
     /**
      * Performs the AJAX validation.
-     * @param SharePayload $model the model to be validated
+     * @param Payload $model the model to be validated
      */
     protected function performAjaxValidation($model) {
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'share-payload-form') {

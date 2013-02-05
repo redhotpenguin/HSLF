@@ -8,8 +8,8 @@
 	<?php echo CHtml::encode($data->tenant_id); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('share_payload_id')); ?>:</b>
-	<?php echo CHtml::encode($data->share_payload_id); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('payload_id')); ?>:</b>
+	<?php echo CHtml::encode($data->payload_id); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('creation_date')); ?>:</b>

@@ -23,9 +23,9 @@
                 <p><?php  echo CHtml::link('More »', array('item/Admin'), array('class'=>'btn')); ?></a></p>
             </div>
             <div class="span3">
-                <h3>Share Payloads</h3>
+                <h3>Payloads</h3>
                 <p>Manage share payloads. </p>
-                <p><?php  echo CHtml::link('More »', array('sharePayload/index'), array('class'=>'btn')); ?></p>
+                <p><?php  echo CHtml::link('More »', array('Payload/index'), array('class'=>'btn')); ?></p>
             </div>
             <div class="span3">
                 <h3>Push Notifications</h3>

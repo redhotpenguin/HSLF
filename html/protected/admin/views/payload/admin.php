@@ -1,14 +1,14 @@
 <?php
 /* @var $this SharePayloadController */
-/* @var $model SharePayload */
+/* @var $model Payload */
 
 $this->breadcrumbs = array(
-    'Share Payloads' => array('index'),
+    'Payloads' => array('index'),
     'Manage',
 );
 
 $this->menu = array(
-    array('label' => 'Create a share payload', 'url' => array('create')),
+    array('label' => 'Create a  payload', 'url' => array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -17,7 +17,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#share-payload-grid').yiiGridView('update', {
+	$('#payload-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -25,7 +25,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Share Payloads</h1>
+<h1>Manage Payloads</h1>
 
 <p>
     You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -43,7 +43,7 @@ $('.search-form form').submit(function(){
 
 <?php
 $this->widget('bootstrap.widgets.TbGridView', array(
-    'id' => 'share-payload-grid',
+    'id' => '-payload-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
     'columns' => array(

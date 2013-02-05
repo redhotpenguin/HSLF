@@ -19,7 +19,7 @@ $this->widget('bootstrap.widgets.TbDetailView', array(
     'data' => $model,
     'attributes' => array(
         'id',
-        'share_payload_id',
+        'payload_id',
         'creation_date',
         array(
             'name' => 'alert',

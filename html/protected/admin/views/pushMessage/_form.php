@@ -16,7 +16,7 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     </div>
 
     <div>
-        <?php echo $form->textFieldRow($model, 'share_payload_id', array('class' => 'span1')); ?>
+        <?php echo $form->textFieldRow($model, 'payload_id', array('class' => 'span1')); ?>
     </div>
 
     <div>

@@ -1,6 +1,6 @@
 <?php
 /* @var $this SharePayloadController */
-/* @var $data SharePayload */
+/* @var $data Payload */
 ?>
 
 <div class="view">
