@@ -28,7 +28,7 @@ class Tag extends BaseActiveRecord {
     }
 
     public function getTagTypes() {
-        return array('alert' => 'Alert', 'organization' => 'Organization', 'district' => 'District');
+        return array('alert' => 'Alert', 'organization' => 'Organization');
     }
 
     /**
