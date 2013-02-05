@@ -1,2 +1,2 @@
 #MAILTO="mobile@winningmark.com"
-30 05 * * * php /home/dotcloud/code/app/mobile_platform/console.php updatecicero
+*/30 * * * * php /home/dotcloud/code/app/mobile_platform/console.php updatecicero
