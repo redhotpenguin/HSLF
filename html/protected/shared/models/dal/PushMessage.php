@@ -40,7 +40,7 @@ class PushMessage extends BaseActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('creation_date', 'required'),
+            array('creation_date, share_payload_id', 'required'),
             array('tenant_id, share_payload_id', 'numerical', 'integerOnly' => true),
             array('alert', 'length', 'max' => 140),
             // The following rule is used by search().
