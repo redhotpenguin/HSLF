@@ -1,0 +1,1 @@
+ALTER TABLE push_message ALTER share_payload_id SET NOT NULL;
