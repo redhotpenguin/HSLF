@@ -103,11 +103,11 @@ return array(
                     'database' => REDIS_DATABASE
                 ),
         )),
-        's3' => array(
+     /*   's3' => array(
             'class' => 'ext.S3.ES3',
             'aKey' => S3_AKEY,
             'sKey' => S3_SKEY,
-        ),
+        ),*/
         'assetManager' => array(
             'class' => 'S3AssetManager',
             'host' => S3_HOST,

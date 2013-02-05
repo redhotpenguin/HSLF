@@ -150,7 +150,6 @@ CREATE TABLE option (
 
 CREATE TABLE "user" (
     id SERIAL PRIMARY KEY,
-    tenant_id integer NOT NULL,
     username character varying(128) NOT NULL,
     password character(40) NOT NULL,
     email character varying(128) NOT NULL
@@ -207,7 +206,7 @@ CREATE TABLE user_session
     id CHAR(32) PRIMARY KEY,
     expire INTEGER,
     data TEXT
-)
+);
 
 CREATE TABLE tag_organization(
     tag_id INTEGER REFERENCES tag(id),
