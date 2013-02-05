@@ -143,10 +143,11 @@ class User extends BaseActiveRecord {
     }
 
     public function getUser($userIdOrName) {
-        if (is_string($userIdOrName)) {
-            $user = User::model()->findByAttributes(array('username' => $userIdOrName ) );
-        }else
+        if (is_numeric($userIdOrName))
             $user = User::model()->findByPk($userIdOrName);
+        else
+            $user = User::model()->findByAttributes(array('username' => $userIdOrName));
+
 
         return $user;
     }
