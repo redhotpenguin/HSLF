@@ -16,7 +16,16 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     </div>
 
     <div>
-        <?php echo $form->textFieldRow($model, 'payload_id', array('class' => 'span1')); ?>
+        <?php echo $form->labelEx($model, 'payload_id'); ?>
+        <?php
+        $payloadList = CHtml::listData(Payload::model()->findAll(), 'id', 'title');
+        $options = array(
+            'tabindex' => '0',
+            'empty' => '(not set)',
+        );
+        echo $form->dropDownList($model, 'payload_id', $payloadList);
+        ?>
+        <?php echo $form->error($model, 'payload_id'); ?>
     </div>
 
     <div>
@@ -24,12 +33,11 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     </div>
 
     <hr/>
-    
+
     <h4>Tags:</h4>
 
     <div class="row-fluid">
         <?php
-       
         $this->widget('ext.TagSelector.TagSelector', array(
             'model' => $model,
             'tag_types' => array('alert', 'district')
@@ -38,13 +46,13 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     </div>
 
 
-<?php
-$this->widget('bootstrap.widgets.TbButton', array(
-    'buttonType' => 'submit',
-    'type' => 'primary',
-    'label' => $model->isNewRecord ? 'Create' : 'Save',
-));
-?>
+    <?php
+    $this->widget('bootstrap.widgets.TbButton', array(
+        'buttonType' => 'submit',
+        'type' => 'primary',
+        'label' => $model->isNewRecord ? 'Create' : 'Save',
+    ));
+    ?>
 </div>
 
-    <?php $this->endWidget(); ?>
+<?php $this->endWidget(); ?>

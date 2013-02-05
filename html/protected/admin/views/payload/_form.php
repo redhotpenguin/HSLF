@@ -32,6 +32,12 @@
     </div>
 
     <div class="row-fluid">
+        <?php echo $form->labelEx($model, 'post_number'); ?>
+        <?php echo $form->textField($model, 'post_number', array('placeholder' => 'Ex: wordpress post id', 'size' => 60, 'class' => 'span11')); ?>
+        <?php echo $form->error($model, 'post_number'); ?>
+    </div>
+
+    <div class="row-fluid">
         <?php echo $form->labelEx($model, 'url'); ?>
         <?php echo $form->textField($model, 'url', array('placeholder' => 'Target URL', 'size' => 60, 'maxlength' => 2048, 'class' => 'span11')); ?>
         <?php echo $form->error($model, 'url'); ?>
