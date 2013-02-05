@@ -14,10 +14,14 @@ class SiteController extends Controller {
         if (Yii::app()->user->id) {
 
             $user = Yii::app()->user->getModel();
-
-
+            
+            if($user->tenants)
+                $tenants = $user->tenants;
+            else
+                $tenants = array();
+            
             $options = array(
-                'tenants' => $tenants = $user->tenants
+                'tenants' => $tenants
             );
             $this->render('index', $options);
         } else {
