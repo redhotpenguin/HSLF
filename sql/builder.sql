@@ -1,4 +1,4 @@
--- last alter file merged: alter_37.sql
+-- last alter file merged: alter_38.sql
 
 -- tables creation --
 
@@ -155,13 +155,15 @@ CREATE TABLE "user" (
     email character varying(128) NOT NULL
 );
 
-CREATE TABLE share_payload(
+CREATE TABLE payload(
 	id SERIAL PRIMARY KEY,
         tenant_id INTEGER NOT NULL,
-        url  VARCHAR(2048) NOT NULL,
+        "type" VARCHAR(16) NOT NULL,
+        post_number INTEGER,
+        url  VARCHAR(2048),
         title VARCHAR(512) NOT NULL,
-        description TEXT NOT NULL,
-        tweet VARCHAR(140) NOT NULL,
+        description TEXT,
+        tweet VARCHAR(140),
         email VARCHAR(320)
 );
 
@@ -217,7 +219,7 @@ CREATE TABLE tag_organization(
 CREATE table push_message(
     id SERIAL PRIMARY KEY,
     tenant_id INTEGER REFERENCES tenant(id) NOT NULL,
-    share_payload_id INTEGER REFERENCES share_payload(id),
+    payload_id INTEGER REFERENCES payload(id) NOT NULL,
     creation_date timestamp without time zone NOT NULL,
     alert character varying(140)
 
@@ -280,6 +282,4 @@ ALTER TABLE tag	 ADD FOREIGN KEY (tenant_id) REFERENCES tenant (id) ON UPDATE CA
 
 ALTER TABLE vote  ADD FOREIGN KEY (tenant_id) REFERENCES tenant (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
-ALTER TABLE "user"  ADD FOREIGN KEY (tenant_id) REFERENCES tenant (id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-ALTER TABLE share_payload ADD FOREIGN KEY (tenant_id) REFERENCES tenant (id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE payload ADD FOREIGN KEY (tenant_id) REFERENCES tenant (id) ON UPDATE CASCADE ON DELETE CASCADE;
