@@ -17,11 +17,13 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
         $siteurl = 'http://www.winningmarkmobile.com';
         $s3Host = 'wmmobile.s3.amazonaws.com';
         $s3Bucket = 'wmmobile';
+        $apiCacheDuration = 100;
     } else { // sandbox specific config
         $mongodbhost = $env['DOTCLOUD_DATA_MONGODB_URL'];
         $siteurl = $env['DOTCLOUD_WWW_HTTP_URL'];
         $s3Host = 'mobileadvocacydev.s3.amazonaws.com';
         $s3Bucket = 'mobileadvocacydev';
+        $apiCacheDuration = 10;
     }
 
     $mongodbname = "mobile_advocacy_platform";
@@ -87,9 +89,11 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $s3SKey = '2F7TBdQsokQVpIZAgNUx/PgKyE01wz3AXLmGFYvh';
     $s3Host = 'maplocal.s3.amazonaws.com';
     $s3Bucket = 'maplocal';
+    
+    $apiCacheDuration = 10;
 
-    //defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL', 3);
-  //  define('YII_DEBUG', true);
+    defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL', 3);
+    define('YII_DEBUG', true);
 }
 
 
@@ -135,4 +139,4 @@ DEFINE('FRONTEND_THEME', 'frontend');
 DEFINE('UPLOAD_DIR', $uploaddir);
 DEFINE('UPLOAD_PATH', $uploadpath);
 DEFINE('SITE_URL', $siteurl);
-DEFINE('API_CACHE_DURATION', 100); // the number of seconds in which the cached value will expire
+DEFINE('API_CACHE_DURATION', $apiCacheDuration); // the number of seconds in which the cached value will expire
