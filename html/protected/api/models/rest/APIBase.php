@@ -65,6 +65,15 @@ abstract class APIBase implements IAPI {
     }
 
     public function getSingle($tenantId, $pkID, $arguments = array()) {
+
+        // build a unique cache key
+        $cacheKey = md5(serialize($arguments) . $tenantId . '_' . $pkID);
+
+        // serve from cache if possible
+        if (($r = Yii::app()->cache->get($cacheKey)) == true) {
+            return $r;
+        }
+
         $relations = array();
 
         if (isset($arguments['relations'])) {
@@ -82,6 +91,10 @@ abstract class APIBase implements IAPI {
             $result = $this->model->with($relations)->findByPk($pkID);
         } catch (CDbException $cdbE) {
             $result = "no_results";
+        }
+
+        if (!empty($result)) {
+            Yii::app()->cache->set($cacheKey, $result, Yii::app()->params->cache_duration);
         }
 
         return $result;
