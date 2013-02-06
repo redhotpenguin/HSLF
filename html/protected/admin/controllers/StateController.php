@@ -28,7 +28,7 @@ class StateController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'admin', 'view'),
+                'actions' => array('index', 'admin', 'view', 'exportCSV'),
                 'roles' => array('readState'),
             ),
             array('allow',
@@ -188,24 +188,7 @@ class StateController extends Controller {
         Yii::import('ext.csv.ESCVExport');
         $csv = new ESCVExport(State::model()->findAll());
         $content = $csv->toCSV();
-        Yii::app()->getRequest()->sendFile('states.csv
-
-        
-
-        
-
-        
-
-     
-               
-
-        
-
-        
-
-        
-
-        ', $content, "text/csv", false);
+        Yii::app()->getRequest()->sendFile('states.csv', $content, "text/csv", false);
     }
 
 }

@@ -28,11 +28,11 @@ class ItemController extends Controller {
 
         return array(
             array('allow',
-                'actions' => array('index', 'admin', 'view', 'exportCSV'),
+                'actions' => array('index', 'admin', 'view', 'exportCSV', 'exportNewsCSV', 'exportOrganizationCSV',),
                 'roles' => array('readBallotItem'),
             ),
             array('allow',
-                'actions' => array('create','ajax', 'upload'),
+                'actions' => array('create', 'ajax', 'upload'),
                 'roles' => array('createBallotItem'),
             ),
             array('allow',
@@ -291,6 +291,32 @@ class ItemController extends Controller {
 
         $content = $csv->toCSV();
         Yii::app()->getRequest()->sendFile('items.csv', $content, "text/csv", false);
+    }
+
+    /**
+     * Ballot item news to csv
+     */
+    public function actionExportNewsCSV() {
+        Yii::import('ext.csv.ESCVExport');
+
+        $csv = new ESCVExport(ItemNews::model()->findAll());
+
+
+        $content = $csv->toCSV();
+        Yii::app()->getRequest()->sendFile('item_news.csv', $content, "text/csv", false);
+    }
+
+    /**
+     * Ballot item news to csv
+     */
+    public function actionExportOrganizationCSV() {
+        Yii::import('ext.csv.ESCVExport');
+
+        $csv = new ESCVExport(ItemOrganization::model()->findAll());
+
+
+        $content = $csv->toCSV();
+        Yii::app()->getRequest()->sendFile('item_organization.csv', $content, "text/csv", false);
     }
 
     /**

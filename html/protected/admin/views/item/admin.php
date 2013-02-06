@@ -6,7 +6,9 @@ $this->breadcrumbs = array(
 
 $this->menu = array(
     array('label' => 'Create a ballot item', 'url' => array('create')),
-    array('label' => 'Export to CSV', 'url' => array('exportCSV')));
+    array('label' => 'Export to CSV', 'url' => array('exportCSV')),
+    array('label' => 'Export news to CSV', 'url' => array('exportNewsCSV')),
+    array('label' => 'Export orgs.  to CSV', 'url' => array('exportOrganizationCSV')));
 ?>
 
 <h1>Manage Ballot Items</h1>
@@ -14,7 +16,7 @@ $this->menu = array(
 <?php
 $state_list = array('' => 'All') + CHtml::listData(State::model()->findAll(), 'id', 'name');
 $district_list = array('' => 'All') + District::model()->getTypeOptions();
-$item_type_list = array(''=>'All')+Item::model()->getItemTypeOptions();
+$item_type_list = array('' => 'All') + Item::model()->getItemTypeOptions();
 
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'item-grid',
@@ -33,20 +35,17 @@ $this->widget('bootstrap.widgets.TbGridView', array(
             'header' => 'Item',
             'name' => 'item',
         ),
-
         array('name' => 'state_id',
             'header' => 'State',
             'value' => '$data->district->state->name',
             'filter' => CHtml::dropDownList('Item[state_id]', $model->state_id, $state_list),
         ),
-       
         array(
             'header' => 'District Type',
             'name' => 'district_type',
             'value' => '$data->district->type',
             'filter' => CHtml::dropDownList('Item[district_type]', $model->district_type, $district_list),
         ),
-        
         array(
             'header' => 'District',
             'name' => 'district_display_name',

@@ -27,7 +27,7 @@ class RecommendationController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'admin', 'view'),
+                'actions' => array('index', 'admin', 'view', 'exportCSV'),
                 'roles' => array('readRecommendation'),
             ),
             array('allow',
