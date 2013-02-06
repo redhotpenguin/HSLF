@@ -19,16 +19,11 @@ class ItemsAPI implements IAPI {
         $cacheKey = md5(serialize($arguments) . $tenantId);
 
         // serve from cache?
-      //  if (($r = Yii::app()->cache->get($cacheKey)) == true) {
-         //   error_log('from cache');
-        //    return $r;
-      //  }
-        error_log('from db');
+        if (($r = Yii::app()->cache->get($cacheKey)) == true) {
+            return $r;
+        }
 
         $relations = array();
-
-
-        $includes = array();
 
         $itemCriteria = new ItemCriteria($this->item);
 
@@ -64,13 +59,11 @@ class ItemsAPI implements IAPI {
 
         $items = $itemCriteria->search();
 
-
         if ($items) {
-            $result = $this->itemsWrapper($items, $includes);
+            $result = $this->itemsWrapper($items, $relations);
             Yii::app()->cache->set($cacheKey, $result, Yii::app()->params->cache_duration);
             return $result;
         }
-
         else
             return false;
     }
@@ -110,24 +103,13 @@ class ItemsAPI implements IAPI {
      * @todo Refactor this function to use ItemCriteria?
      */
     public function getSingle($tenantId, $id, $arguments = array()) {
-        // build a unique cache key
-        $cacheKey = md5(serialize($arguments) . $tenantId . '_' . $id);
-
-        // serve from cache if possible
-        if (($r = Yii::app()->cache->get($cacheKey)) == true) {
-            return $r;
-        }
-
         // todo: find better way to do this
         $this->item = $this->item->with(array('district', 'recommendation', 'itemNews', 'party'))->findByPk($id);
 
-        if ($this->item != false) {
+        if ($this->item != false)
             $result = $this->itemWrapper($this->item, $this->allIncludes);
-            Yii::app()->cache->set($cacheKey, $result, Yii::app()->params->cache_duration);
-        }
         else
             $result = false;
-
 
         return $result;
     }
