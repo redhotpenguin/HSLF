@@ -29,11 +29,11 @@ class PayloadController extends Controller {
                 'roles' => array('readPayload'),
             ),
             array('allow',
-                'actions' => array('create'),
+                'actions' => array('create', 'findPayload'),
                 'roles' => array('createPayload'),
             ),
             array('allow',
-                'actions' => array('update'),
+                'actions' => array('update', 'findPayload'),
                 'roles' => array('updatePayload'),
             ),
             array('allow',
@@ -134,6 +134,25 @@ class PayloadController extends Controller {
         $this->render('admin', array(
             'model' => $model,
         ));
+    }
+
+    public function actionFindPayload($term) {
+        $res = array();
+
+        $tenantId = Yii::app()->user->getCurrentTenant()->id;
+
+        if ($term) {
+            // test table is for the sake of this example
+            $sql = 'SELECT id, title FROM payload where title LIKE :title AND tenant_id =:tenant_id';
+            $cmd = Yii::app()->db->createCommand($sql);
+            $cmd->bindValue(":title", "%" . strtolower($term) . "%", PDO::PARAM_STR);
+            $cmd->bindValue(":tenant_id", $tenantId, PDO::PARAM_INT);
+            $res = $cmd->queryAll();
+        }
+
+
+        echo CJSON::encode($res);
+        Yii::app()->end();
     }
 
     /**
