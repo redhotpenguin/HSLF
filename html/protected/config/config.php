@@ -88,25 +88,9 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $s3Host = 'maplocal.s3.amazonaws.com';
     $s3Bucket = 'maplocal';
 
-    defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL', 3);
-    define('YII_DEBUG', true);
+    //defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL', 3);
+  //  define('YII_DEBUG', true);
 }
-
-
-
-// S3 Config
-DEFINE('S3_AKEY', $s3AKey);
-DEFINE('S3_SKEY', $s3SKey);
-DEFINE('S3_HOST', $s3Host);
-DEFINE('S3_BUCKET', $s3Bucket);
-
-
-// Redis Config
-DEFINE('REDIS_HOST', $redisHost);
-DEFINE('REDIS_PORT', $redisPort);
-DEFINE('REDIS_LOGIN', $redisLogin);
-DEFINE('REDIS_PASSWORD', $redisPassword);
-DEFINE('REDIS_DATABASE', $redisDatabase);
 
 
 // DB Config
@@ -116,6 +100,7 @@ DEFINE('DB_USER', $dbuser);
 DEFINE('DB_PASS', $dbpass);
 DEFINE('DB_PORT', $dbport);
 
+
 // MongoDB Config
 DEFINE('MONGODB_HOST', $mongodbhost);
 DEFINE('MONGODB_NAME', $mongodbname);
@@ -123,6 +108,12 @@ DEFINE('MONGODB_USER', $mongodbuser);
 DEFINE('MONGODB_PASS', $mongdbpass);
 DEFINE('MONGODB_ACK_LEVEL', $mongodbacklevel);
 
+// Redis Config
+DEFINE('REDIS_HOST', $redisHost);
+DEFINE('REDIS_PORT', $redisPort);
+DEFINE('REDIS_LOGIN', $redisLogin);
+DEFINE('REDIS_PASSWORD', $redisPassword);
+DEFINE('REDIS_DATABASE', $redisDatabase);
 
 // RabitMQ Config
 DEFINE("RABBITMQ_HOST", $rabbitMQHost);
@@ -131,10 +122,17 @@ DEFINE("RABBITMQ_VHOST", $rabbitMQVhost);
 DEFINE("RABBITMQ_LOGIN", $rabbitMQLogin);
 DEFINE("RABBITMQ_PASSWORD", $rabbitMQPassword);
 
-// Theme config
+
+// S3 Config
+DEFINE('S3_AKEY', $s3AKey);
+DEFINE('S3_SKEY', $s3SKey);
+DEFINE('S3_HOST', $s3Host);
+DEFINE('S3_BUCKET', $s3Bucket);
+
+// Project config
 DEFINE('ADMIN_THEME', 'dashboard');
 DEFINE('FRONTEND_THEME', 'frontend');
-
 DEFINE('UPLOAD_DIR', $uploaddir);
 DEFINE('UPLOAD_PATH', $uploadpath);
 DEFINE('SITE_URL', $siteurl);
+DEFINE('API_CACHE_EXPIRE', 200); // the number of seconds in which the cached value will expire. 0 means never expire.
