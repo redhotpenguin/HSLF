@@ -135,4 +135,4 @@ DEFINE('FRONTEND_THEME', 'frontend');
 DEFINE('UPLOAD_DIR', $uploaddir);
 DEFINE('UPLOAD_PATH', $uploadpath);
 DEFINE('SITE_URL', $siteurl);
-DEFINE('API_CACHE_EXPIRE', 200); // the number of seconds in which the cached value will expire. 0 means never expire.
+DEFINE('API_CACHE_DURATION', 200); // the number of seconds in which the cached value will expire. 0 means never expire.
