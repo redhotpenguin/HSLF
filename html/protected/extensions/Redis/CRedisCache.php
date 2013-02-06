@@ -42,7 +42,11 @@ class CRedisCache extends CCache {
      */
     public function init() {
         parent::init();
-        $this->getRedis();
+        try {
+            $this->getRedis();
+        } catch (Predis_CommunicationException $e) {
+            
+        }
     }
 
     /**
@@ -65,7 +69,11 @@ class CRedisCache extends CCache {
      * @return string the value stored in cache, false if the value is not in the cache or expired.
      */
     protected function getValue($key) {
-        return $this->_cache->get($key);
+        try {
+            return $this->_cache->get($key);
+        } catch (Predis_CommunicationException $e) {
+            return false;
+        }
     }
 
     /**
@@ -75,7 +83,11 @@ class CRedisCache extends CCache {
      * @since 1.0.8
      */
     protected function getValues($keys) {
-        return $this->_cache->mget($keys);
+        try {
+            return $this->_cache->mget($keys);
+        } catch (Predis_CommunicationException $e) {
+            return false;
+        }
     }
 
     /**
@@ -88,10 +100,14 @@ class CRedisCache extends CCache {
      * @return boolean true if the value is successfully stored into cache, false otherwise
      */
     protected function setValue($key, $value, $expire) {
-        if ($expire > 0)
-            return $this->_cache->setex($key, $expire, $value);
-        else
-            return $this->_cache->set($key, $value);
+        try {
+            if ($expire > 0)
+                return $this->_cache->setex($key, $expire, $value);
+            else
+                return $this->_cache->set($key, $value);
+        } catch (Predis_CommunicationException $e) {
+            return false;
+        }
     }
 
     /**
@@ -104,12 +120,16 @@ class CRedisCache extends CCache {
      * @return boolean true if the value is successfully stored into cache, false otherwise
      */
     protected function addValue($key, $value, $expire) {
-        if ($expire > 0) {
-            if ($this->_cache->setnx($key, $time, $value))
-                return $this->_cache->expire($key, $time);
+        try {
+            if ($expire > 0) {
+                if ($this->_cache->setnx($key, $time, $value))
+                    return $this->_cache->expire($key, $time);
+                return false;
+            }else
+                return $this->_cache->setnx($key, $value);
+        } catch (Predis_CommunicationException $e) {
             return false;
-        }else
-            return $this->_cache->setnx($key, $value);
+        }
     }
 
     /**
@@ -119,7 +139,11 @@ class CRedisCache extends CCache {
      * @return boolean if no error happens during deletion
      */
     protected function deleteValue($key) {
-        return $this->_cache->del($key);
+        try {
+            return $this->_cache->del($key);
+        } catch (Predis_CommunicationException $e) {
+            return false;
+        }
     }
 
     /**
@@ -129,7 +153,11 @@ class CRedisCache extends CCache {
      * @since 1.1.5
      */
     protected function flushValues() {
-        return $this->_cache->flush();
+        try {
+            return $this->_cache->flush();
+        } catch (Predis_CommunicationException $e) {
+            return false;
+        }
     }
 
     /**
@@ -146,7 +174,11 @@ class CRedisCache extends CCache {
      * @return boolean
      */
     public function offsetExists($id) {
-        return $this->_cache->exists($id);
+        try {
+            return $this->_cache->exists($id);
+        } catch (Predis_CommunicationException $e) {
+            return false;
+        }
     }
 
 }
