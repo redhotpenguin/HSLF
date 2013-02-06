@@ -15,7 +15,20 @@ class ItemsAPI implements IAPI {
      * @return array wrapped items
      */
     public function getList($tenantId, $arguments = array()) {
+        // build a unique cache key
+        $cacheKey = md5(serialize($arguments) . $tenantId);
+
+        // serve from cache?
+      //  if (($r = Yii::app()->cache->get($cacheKey)) == true) {
+         //   error_log('from cache');
+        //    return $r;
+      //  }
+        error_log('from db');
+
         $relations = array();
+
+
+        $includes = array();
 
         $itemCriteria = new ItemCriteria($this->item);
 
@@ -51,8 +64,13 @@ class ItemsAPI implements IAPI {
 
         $items = $itemCriteria->search();
 
-        if ($items)
-            return $this->itemsWrapper($items, $relations);
+
+        if ($items) {
+            $result = $this->itemsWrapper($items, $includes);
+            Yii::app()->cache->set($cacheKey, $result, Yii::app()->params->cache_duration);
+            return $result;
+        }
+
         else
             return false;
     }
@@ -62,7 +80,7 @@ class ItemsAPI implements IAPI {
      * @param string $address address
      */
     private function retrieveDistrictIdsByAddress($address) {
-        $geoCodingClientProvider = new GeoCodingClientProvider( Yii::app()->params['current_tenant_id'] );
+        $geoCodingClientProvider = new GeoCodingClientProvider(Yii::app()->params['current_tenant_id']);
 
         $geoCodingClient = $geoCodingClientProvider->getGeoCodingClient('cicero');
 
@@ -77,7 +95,7 @@ class ItemsAPI implements IAPI {
      * @param $long longitude
      */
     private function retrieveDistrictIdsByLatLong($lat, $long) {
-        $geoCodingClientProvider = new GeoCodingClientProvider( Yii::app()->params['current_tenant_id']  );
+        $geoCodingClientProvider = new GeoCodingClientProvider(Yii::app()->params['current_tenant_id']);
 
         $geoCodingClient = $geoCodingClientProvider->getGeoCodingClient('cicero');
 
@@ -92,13 +110,24 @@ class ItemsAPI implements IAPI {
      * @todo Refactor this function to use ItemCriteria?
      */
     public function getSingle($tenantId, $id, $arguments = array()) {
+        // build a unique cache key
+        $cacheKey = md5(serialize($arguments) . $tenantId . '_' . $id);
+
+        // serve from cache if possible
+        if (($r = Yii::app()->cache->get($cacheKey)) == true) {
+            return $r;
+        }
+
         // todo: find better way to do this
         $this->item = $this->item->with(array('district', 'recommendation', 'itemNews', 'party'))->findByPk($id);
 
-        if ($this->item != false)
+        if ($this->item != false) {
             $result = $this->itemWrapper($this->item, $this->allIncludes);
+            Yii::app()->cache->set($cacheKey, $result, Yii::app()->params->cache_duration);
+        }
         else
             $result = false;
+
 
         return $result;
     }

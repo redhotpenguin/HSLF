@@ -10,6 +10,11 @@ class PushMessagesAPI extends APIBase {
      * override get list 
      */
     public function getList($tenantId, $arguments = array()) {
+        $cacheKey = md5(serialize($arguments) . $tenantId);
+
+        if (($r = Yii::app()->cache->get($cacheKey)) == true) {
+            return $r;
+        }
 
         $criteria = new PushMessageCriteria($this->model);
 
@@ -31,7 +36,11 @@ class PushMessagesAPI extends APIBase {
             $criteria->setLimit($arguments['limit']);
         }
 
-        return $criteria->search();
+        $result = $criteria->search();
+        if (!empty($result))
+            Yii::app()->cache->set($cacheKey, $result, Yii::app()->params->cache_duration);
+
+        return $result;
     }
 
 }

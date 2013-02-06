@@ -91,6 +91,7 @@ return array(
     // using Yii::app()->params['paramName']
     'params' => array(
         'dateFormat' => 'Y-m-d H:i:s',
-        'mongodb_ack_level' => MONGODB_ACK_LEVEL
+        'mongodb_ack_level' => MONGODB_ACK_LEVEL,
+        'cache_duration' => API_CACHE_DURATION
     ),
 );
