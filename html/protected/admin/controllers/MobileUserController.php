@@ -152,8 +152,8 @@ class MobileUserController extends Controller {
             }
         }
 
-        $tenant = Tenant::model()->findByAttributes(array("id" => Yii::app()->user->tenant_id));
-
+        $tenant = Yii::app()->user->getCurrentTenant();
+        
         try {
             $jobProducer = new UAJobProducer($tenant);
             $jobResult = $jobProducer->pushUrbanAirshipMessage($alert, $searchAttributes, $extra);

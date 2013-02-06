@@ -35,13 +35,7 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $uploaddir = '/../content/img'; // physical path
     $uploadpath = '/content/img'; // wwww path
     $shareurl = 'http://vote.ouroregon.org';
-
-    $rabbitMQHost = $env['DOTCLOUD_QUEUE_HTTP_HOST'];
-    $rabbitMQPort = $env['DOTCLOUD_QUEUE_AMQP_PORT'];
-    $rabbitMQVhost = $env['DOTCLOUD_QUEUE_HTTP_VHOSTS_LIST']; // might not be that
-    $rabbitMQLogin = $env['DOTCLOUD_QUEUE_AMQP_LOGIN'];
-    $rabbitMQPassword = $env['DOTCLOUD_QUEUE_AMQP_PASSWORD'];
-
+   
     $redisHost = $env['DOTCLOUD_CACHE_REDIS_HOST'];
     $redisPort = $env['DOTCLOUD_CACHE_REDIS_PORT'];
     $redisLogin = $env['DOTCLOUD_CACHE_REDIS_LOGIN'];
@@ -70,13 +64,6 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $uploaddir = '/../content/img'; // physical path
     $uploadpath = '/content/img'; // wwww path
     $shareurl = 'http://vote.ouroregon.org';
-
-
-    $rabbitMQHost = "localhost";
-    $rabbitMQPort = 5672;
-    $rabbitMQVhost = '/';
-    $rabbitMQLogin = 'guest';
-    $rabbitMQPassword = 'guest';
 
     $redisHost = '127.0.0.1';
     $redisPort = 6379;
@@ -118,14 +105,6 @@ DEFINE('REDIS_PORT', $redisPort);
 DEFINE('REDIS_LOGIN', $redisLogin);
 DEFINE('REDIS_PASSWORD', $redisPassword);
 DEFINE('REDIS_DATABASE', $redisDatabase);
-
-// RabitMQ Config
-DEFINE("RABBITMQ_HOST", $rabbitMQHost);
-DEFINE("RABBITMQ_PORT", $rabbitMQPort);
-DEFINE("RABBITMQ_VHOST", $rabbitMQVhost);
-DEFINE("RABBITMQ_LOGIN", $rabbitMQLogin);
-DEFINE("RABBITMQ_PASSWORD", $rabbitMQPassword);
-
 
 // S3 Config
 DEFINE('S3_AKEY', $s3AKey);

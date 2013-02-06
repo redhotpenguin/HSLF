@@ -137,11 +137,6 @@ return array(
         'upload_dir' => UPLOAD_DIR,
         'html_directory' => $html_directory,
         'mongodb_ack_level' => MONGODB_ACK_LEVEL,
-        'rabbitMQHost' => RABBITMQ_HOST,
-        'rabbitMQPort' => RABBITMQ_PORT,
-        'rabbitMQVhost' => RABBITMQ_VHOST,
-        'rabbitMQLogin' => RABBITMQ_LOGIN,
-        'rabbitMQPassword' => RABBITMQ_PASSWORD,
     ),
     'behaviors' => array(
         'edms' => array(
