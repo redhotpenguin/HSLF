@@ -177,6 +177,7 @@ class ItemCriteria extends CDbCriteria {
         // echo '<pre>';
         //  print_r($this->toArray());
         //   die;
+        
 
         $activeDataProvider = new CActiveDataProvider($this->item, array(
                     'criteria' => $this,
@@ -188,7 +189,7 @@ class ItemCriteria extends CDbCriteria {
         try {
             $items = $activeDataProvider->getData();
         } catch (CDbException $cdbE) {
-            echo $cdbE->getMessage(); // debug
+           // echo $cdbE->getMessage(); // debug
             $items = false;
         }
 
