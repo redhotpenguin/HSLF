@@ -15,6 +15,14 @@ class ItemsAPI implements IAPI {
      * @return array wrapped items
      */
     public function getList($tenantId, $arguments = array()) {
+        // build a unique cache key
+        $cacheKey = md5(serialize($arguments) . $tenantId);
+
+        // serve from cache?
+        if (($r = Yii::app()->cache->get($cacheKey)) == true) {
+            return $r;
+        }
+
         $includes = array();
 
         $itemCriteria = new ItemCriteria($this->item);
@@ -51,8 +59,11 @@ class ItemsAPI implements IAPI {
 
         $items = $itemCriteria->search();
 
-        if ($items)
-            return $this->itemsWrapper($items, $includes);
+        if ($items) {
+            $result = $this->itemsWrapper($items, $includes);
+            Yii::app()->cache->set($cacheKey, $result, Yii::app()->params->cache_duration);
+            return $result;
+        }
         else
             return false;
     }
@@ -62,7 +73,7 @@ class ItemsAPI implements IAPI {
      * @param string $address address
      */
     private function retrieveDistrictIdsByAddress($address) {
-        $geoCodingClientProvider = new GeoCodingClientProvider( Yii::app()->params['current_tenant_id'] );
+        $geoCodingClientProvider = new GeoCodingClientProvider(Yii::app()->params['current_tenant_id']);
 
         $geoCodingClient = $geoCodingClientProvider->getGeoCodingClient('cicero');
 
@@ -77,7 +88,7 @@ class ItemsAPI implements IAPI {
      * @param $long longitude
      */
     private function retrieveDistrictIdsByLatLong($lat, $long) {
-        $geoCodingClientProvider = new GeoCodingClientProvider( Yii::app()->params['current_tenant_id']  );
+        $geoCodingClientProvider = new GeoCodingClientProvider(Yii::app()->params['current_tenant_id']);
 
         $geoCodingClient = $geoCodingClientProvider->getGeoCodingClient('cicero');
 
