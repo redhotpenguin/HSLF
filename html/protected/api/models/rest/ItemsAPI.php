@@ -15,7 +15,7 @@ class ItemsAPI implements IAPI {
      * @return array wrapped items
      */
     public function getList($tenantId, $arguments = array()) {
-        $includes = array();
+        $relations = array();
 
         $itemCriteria = new ItemCriteria($this->item);
 
@@ -38,21 +38,21 @@ class ItemsAPI implements IAPI {
 
         $this->criteriaBuilder($itemCriteria, $arguments);
 
-        if (isset($arguments['includes'])) {
+        if (isset($arguments['relations'])) {
 
-            if ($arguments['includes'] == 'all') {
-                $includes = $this->allIncludes;
+            if ($arguments['relations'] == 'all') {
+                $relations = $this->allIncludes;
                 $itemCriteria->addAllRelations();
             } else {
-                $includes = explode(',', $arguments['includes']);
-                $includes = $this->includeParser($itemCriteria, $includes);
+                $relations = explode(',', $arguments['relations']);
+                $relations = $this->relationParser($itemCriteria, $relations);
             }
         }
 
         $items = $itemCriteria->search();
 
         if ($items)
-            return $this->itemsWrapper($items, $includes);
+            return $this->itemsWrapper($items, $relations);
         else
             return false;
     }
@@ -138,39 +138,39 @@ class ItemsAPI implements IAPI {
         }
     }
 
-    private function includeParser(ItemCriteria &$itemCriteria, $includeList) {
-        $includes = array();
+    private function relationParser(ItemCriteria &$itemCriteria, $relationList) {
+        $relations = array();
 
-        $includeList = array_map('trim', $includeList); // remove accidental white spaces
+        $relationList = array_map('trim', $relationList); // remove accidental white spaces
         // switch keys and indexes, so we can use the index as a lookup
-        $includeList = array_flip($includeList);
+        $relationList = array_flip($relationList);
 
-        if (array_key_exists('districts', $includeList)) {
-            array_push($includes, 'districts');
+        if (array_key_exists('districts', $relationList)) {
+            array_push($relations, 'districts');
             $itemCriteria->addDistrictRelation();
         }
 
-        if (array_key_exists('organizations', $includeList)) {
-            array_push($includes, 'organizations');
+        if (array_key_exists('organizations', $relationList)) {
+            array_push($relations, 'organizations');
             $itemCriteria->addOrganizationRelation();
         }
 
-        if (array_key_exists('recommendations', $includeList)) {
-            array_push($includes, 'recommendations');
+        if (array_key_exists('recommendations', $relationList)) {
+            array_push($relations, 'recommendations');
             $itemCriteria->addRecommendationRelation();
         }
 
-        if (array_key_exists('news', $includeList)) {
-            array_push($includes, 'news');
+        if (array_key_exists('news', $relationList)) {
+            array_push($relations, 'news');
             $itemCriteria->addNewsRelation();
         }
 
-        if (array_key_exists('parties', $includeList)) {
-            array_push($includes, 'parties');
+        if (array_key_exists('parties', $relationList)) {
+            array_push($relations, 'parties');
             $itemCriteria->addPartyRelation();
         }
 
-        return $includes;
+        return $relations;
     }
 
     /**
@@ -178,7 +178,7 @@ class ItemsAPI implements IAPI {
      * @param Item $item  item
      * @return array wrapped item
      */
-    private function itemWrapper(Item $item, $includes = array()) {
+    private function itemWrapper(Item $item, $relations = array()) {
         $organizations = array();
         $i = 0;
 
@@ -200,7 +200,7 @@ class ItemsAPI implements IAPI {
             'last_name' => $item->last_name,
         );
 
-        if (in_array('organizations', $includes)) {
+        if (in_array('organizations', $relations)) {
             $i = 0;
             $organizations = array();
 
@@ -225,19 +225,19 @@ class ItemsAPI implements IAPI {
             $wrapped_item['organizations'] = $organizations;
         }
 
-        if (in_array('districts', $includes)) {
+        if (in_array('districts', $relations)) {
             $wrapped_item['districts'] = array($item->district);
         }
 
-        if (in_array('news', $includes)) {
+        if (in_array('news', $relations)) {
             $wrapped_item['news'] = $item->itemNews;
         }
 
-        if (in_array('recommendations', $includes)) {
+        if (in_array('recommendations', $relations)) {
             $wrapped_item['recommendation'] = $item->recommendation;
         }
 
-        if (in_array('parties', $includes)) {
+        if (in_array('parties', $relations)) {
             $wrapped_item['party'] = $item->party;
         }
 
@@ -249,10 +249,10 @@ class ItemsAPI implements IAPI {
      * @param $items array of Item Objects
      * @return array array of wrapped items
      */
-    private function itemsWrapper(array $items, $includes = array()) {
+    private function itemsWrapper(array $items, $relations = array()) {
         $wrapped_items = array();
         foreach ($items as $item)
-            array_push($wrapped_items, $this->itemWrapper($item, $includes));
+            array_push($wrapped_items, $this->itemWrapper($item, $relations));
 
         return $wrapped_items;
     }

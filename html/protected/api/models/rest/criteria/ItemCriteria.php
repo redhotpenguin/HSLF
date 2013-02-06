@@ -121,7 +121,7 @@ class ItemCriteria extends CDbCriteria {
      * @param string $published - yes or no
      */
     public function setPublishedStatus($published) {
-        $this->addCondition("published=:published", 'AND');
+        $this->addCondition($this->tableAlias . ".published=:published", 'AND');
         $this->params[":published"] = $published;
     }
 
@@ -174,10 +174,9 @@ class ItemCriteria extends CDbCriteria {
      * @return return  items
      */
     public function search() {
-        // echo '<pre>';
-        //  print_r($this->toArray());
-        //   die;
-        
+        //  echo '<pre>';
+        //   print_r($this->toArray());
+        //                 die;
 
         $activeDataProvider = new CActiveDataProvider($this->item, array(
                     'criteria' => $this,
@@ -189,9 +188,11 @@ class ItemCriteria extends CDbCriteria {
         try {
             $items = $activeDataProvider->getData();
         } catch (CDbException $cdbE) {
-           // echo $cdbE->getMessage(); // debug
+            //echo $cdbE->getMessage(); // debug
             $items = false;
         }
+
+
 
         return $items;
     }
@@ -202,7 +203,6 @@ class ItemCriteria extends CDbCriteria {
     public function addDistrictRelation() {
         $this->addRelation('district');
     }
-
 
     /**
      * Set the relation for news
@@ -228,20 +228,6 @@ class ItemCriteria extends CDbCriteria {
      */
     public function addRecommendationRelation() {
         $this->addRelation('recommendation');
-    }
-
-    /**
-     * Set the relation for election results
-     */
-    public function addElectionResultRelation() {
-        $this->addRelation('electionResult');
-    }
-
-    /**
-     * Set the relation for offices
-     */
-    public function addOfficeRelation() {
-        $this->addRelation('office');
     }
 
     /**
@@ -273,9 +259,7 @@ class ItemCriteria extends CDbCriteria {
         $this->addDistrictRelation();
         $this->addOrganizationRelation();
         $this->addRecommendationRelation();
-        $this->addElectionResultRelation();
         $this->addNewsRelation();
-        $this->addOfficeRelation();
         $this->addPartyRelation();
     }
 
