@@ -16,7 +16,7 @@ class ItemsAPI implements IAPI {
      */
     public function getList($tenantId, $arguments = array()) {
         // build a unique cache key
-        $cacheKey = md5(get_class($this->model) . serialize($arguments) . $tenantId);
+        $cacheKey = md5(get_class($this->item) . serialize($arguments) . $tenantId);
 
         // serve from cache?
         if (($r = Yii::app()->cache->get($cacheKey)) == true) {
@@ -61,7 +61,7 @@ class ItemsAPI implements IAPI {
      */
     public function getSingle($tenantId, $id, $arguments = array()) {
         // build a unique cache key
-        $cacheKey = md5(get_class($this->model) . serialize($arguments) . $tenantId . '_' . $id);
+        $cacheKey = md5(get_class($this->item) . serialize($arguments) . $tenantId . '_' . $id);
 
         // serve from cache if possible
         if (($r = Yii::app()->cache->get($cacheKey)) == true) {
