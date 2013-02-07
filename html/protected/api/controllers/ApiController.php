@@ -197,7 +197,7 @@ class ApiController extends Controller {
         $http_key = $_SERVER['PHP_AUTH_USER'];
         $http_pass = $_SERVER['PHP_AUTH_PW'];
 
-        $cacheKey = 'tenant_' . $tenantId;
+        $cacheKey = APIBase::cacheKeyBuilder('tenant', $tenantId);
 
         if (($r = Yii::app()->cache->get($cacheKey)) == true) {
             $tenant = $r;

@@ -18,7 +18,7 @@ class ItemsAPI implements IAPI {
      */
     public function getList($tenantId, $arguments = array()) {
         // build a unique cache key
-        $cacheKey = APIBase::cacheKeyBuilder($this->item, $tenantId, $arguments);
+        $cacheKey = APIBase::cacheKeyBuilder('item', $tenantId, $arguments);
 
 
         // serve from cache?
@@ -63,7 +63,7 @@ class ItemsAPI implements IAPI {
      * @todo Refactor this function to use ItemCriteria?
      */
     public function getSingle($tenantId, $id, $arguments = array()) {
-        $cacheKey = APIBase::cacheKeyBuilder($this->item, $tenantId, $arguments, $id);
+        $cacheKey = APIBase::cacheKeyBuilder('item', $tenantId, $arguments, $id);
 
         // serve from cache if possible
         if (($r = Yii::app()->cache->get($cacheKey)) == true) {

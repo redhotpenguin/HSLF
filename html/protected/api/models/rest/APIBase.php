@@ -6,21 +6,6 @@ abstract class APIBase implements IAPI {
     protected $model;
     protected $tableAlias;
 
-    public static function cacheKeyBuilder(CActiveRecord $model, $tenantId, $arguments, $id = null) {
-        $className = get_class($model);
-        $serializedArguments = serialize($arguments);
-
-
-
-        $string = $tenantId . '_' . $className . '_' . $serializedArguments;
-
-        if ($id != null) {
-            $string.= '_' . $id;
-        }
-
-        return $string;
-    }
-
     public function __construct(CActiveRecord $model) {
         $this->cacheDuration = Yii::app()->params->normal_cache_duration;
         $this->model = $model;
@@ -29,13 +14,13 @@ abstract class APIBase implements IAPI {
 
     public function getList($tenantId, $arguments = array()) {
 
-        $cacheKey = APIBase::cacheKeyBuilder($this->model, $tenantId, $arguments);
+        $cacheKey = APIBase::cacheKeyBuilder(get_class($this->model), $tenantId, $arguments);
 
         // serve from cache?
         if (($r = Yii::app()->cache->get($cacheKey)) == true) {
             return $r;
         }
-
+        
         // cache hasn't been found, build it
         $relations = array();
         $attributes = array();
@@ -81,7 +66,7 @@ abstract class APIBase implements IAPI {
     }
 
     public function getSingle($tenantId, $id, $arguments = array()) {
-        $cacheKey = APIBase::cacheKeyBuilder($this->model, $tenantId, $arguments, $id);
+        $cacheKey = APIBase::cacheKeyBuilder(get_class($this->model), $tenantId, $arguments, $id);
 
         // serve from cache if possible
         if (($r = Yii::app()->cache->get($cacheKey)) == true) {
@@ -125,6 +110,26 @@ abstract class APIBase implements IAPI {
 
     public function requiresAuthentification() {
         return false;
+    }
+
+    /**
+     * Helper
+     * build a unique key based on the model requested and arguments
+     * @param string $prefix prefix - should be a unique name describing the resource requested
+     * @param integer $tenantId - tenant id
+     * @param array $arguments - API request arguments
+     * @param integer $id - primary key (optional)
+     * 
+     */
+    public static function cacheKeyBuilder($prefix, $tenantId, $arguments = array(), $id = null) {
+
+        $string = $prefix . '_' . $tenantId . '_' . serialize($arguments);
+
+        if ($id != null) {
+            $string.= '_' . $id;
+        }
+
+        return $string;
     }
 
 }
