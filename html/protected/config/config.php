@@ -24,10 +24,6 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
         $s3Bucket = 'mobileadvocacydev';
     }
 
-    $apiShortCacheDuration = 10;
-    $apiNormalCacheDuration = 100;
-    $apiLongCacheDuration = 3600;
-
     $mongodbname = "mobile_advocacy_platform";
     $mongodbuser = "map_user"; // mongo user is set using the mongo shell in dotcloud
     $mongdbpass = "jeMEwRArEKwBg7Q"; // same as above
@@ -46,6 +42,11 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
 
     $s3AKey = 'AKIAIDNK7VPB47DB2F2Q';
     $s3SKey = '2F7TBdQsokQVpIZAgNUx/PgKyE01wz3AXLmGFYvh';
+
+
+    $apiShortCacheDuration = 10;
+    $apiNormalCacheDuration = 100;
+    $apiLongCacheDuration = 3600;
 
     set_include_path(get_include_path() . PATH_SEPARATOR . '/home/dotcloud/php-env/share/php');
 } else {    //dev server conf
@@ -126,4 +127,4 @@ DEFINE('SITE_URL', $siteurl);
 // API Cache duration values
 DEFINE('API_SHORT_CACHE_DURATION', $apiShortCacheDuration);
 DEFINE('API_NORMAL_CACHE_DURATION', $apiNormalCacheDuration);
-DEFINE('API_LONG_CACHE_DURATION', $apiLongCacheDuration); 
+DEFINE('API_LONG_CACHE_DURATION', $apiLongCacheDuration);
