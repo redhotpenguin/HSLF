@@ -55,6 +55,7 @@ class ImportController extends Controller {
             "State" => "States",
             "Tag" => "Tags",
             "Vote" => "Votes",
+            "Option" => "Options"
         );
 
         //

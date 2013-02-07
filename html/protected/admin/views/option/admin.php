@@ -7,6 +7,7 @@ $this->breadcrumbs = array(
 $this->menu = array(
     array('label' => 'Add an option', 'url' => array('create')),
     array('label' => 'File Editor', 'url' => array('editor')),
+    array('label' => 'Export to CSV', 'url' => array('exportCSV'))
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -40,7 +41,6 @@ $('.search-form form').submit(function(){
 </div><!-- search-form -->
 
 <?php
-
 $template = '{view}{update}{delete}';
 
 
