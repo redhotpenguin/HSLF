@@ -30,7 +30,7 @@ class GeoProviderTest extends CDbTestCase {
         $this->assertNotEmpty($districtIds);
     }
 
-    public function testGetDistrictIdsLatLong() {
+    public function _testGetDistrictIdsLatLong() {
         $this->log("testGetDistrictIdsByLatLong");
         $districtIds = array();
 
