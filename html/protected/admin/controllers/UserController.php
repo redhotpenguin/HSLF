@@ -110,10 +110,6 @@ class UserController extends Controller {
             else
                 $model->initial_password = $current_password;
 
-
-
-
-
             if ($model->save())
                 $updatedResult = true;
 
