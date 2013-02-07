@@ -5,6 +5,21 @@ abstract class APIBase implements IAPI {
     public $cacheDuration;
     protected $model;
     protected $tableAlias;
+/*
+    public static function cacheKeyBuilder(CActiveRecord $model, $tenantId, $arguments, $id = null) {
+        $className = get_class($model);
+        $serializedArguments = serialize($arguments);
+
+
+
+        $string = $tenantId . '_' . $className . '_' . $serializedArguments;
+
+        if ($id != null) {
+            $string.= '_' . $id;
+        }
+
+        return $string;
+    }*/
 
     public function __construct(CActiveRecord $model) {
         $this->cacheDuration = Yii::app()->params->normal_cache_duration;
@@ -13,9 +28,10 @@ abstract class APIBase implements IAPI {
     }
 
     public function getList($tenantId, $arguments = array()) {
-   
+
         // build a unique cache key
-        $cacheKey = md5(get_class($this->model).serialize($arguments) . $tenantId);
+         $cacheKey = md5(get_class($this->model) . serialize($arguments) . $tenantId);
+
         // serve from cache?
         if (($r = Yii::app()->cache->get($cacheKey)) == true) {
             return $r;
@@ -65,10 +81,10 @@ abstract class APIBase implements IAPI {
         return $result;
     }
 
-    public function getSingle($tenantId, $id, $arguments = array()) {      
+    public function getSingle($tenantId, $id, $arguments = array()) {
         // build a unique cache key
-        $cacheKey = md5(get_class($this->model).serialize($arguments) . $tenantId . '_' . $id);
-       
+        $cacheKey = md5(get_class($this->model) . serialize($arguments) . $tenantId . '_' . $id);
+
         // serve from cache if possible
         if (($r = Yii::app()->cache->get($cacheKey)) == true) {
             return $r;
@@ -92,8 +108,8 @@ abstract class APIBase implements IAPI {
         } catch (CDbException $cdbE) {
             $result = "no_results";
         }
-       
-        
+
+
         if (!empty($result)) {
             Yii::app()->cache->set($cacheKey, $result, $this->cacheDuration);
         }

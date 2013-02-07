@@ -6,5 +6,3 @@ class ItemNewsAPI extends APIBase{
         parent::__construct( new ItemNews );
     }
 }
-
-?>
