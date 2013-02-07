@@ -144,7 +144,7 @@ class PayloadController extends Controller {
         if ($term) {
 
             // ILIKE only works with postgresql
-            if (substr(Yii::app()->db->connectionString, 0, 5) == 'pgsql')
+            if (substr(strtolower(Yii::app()->db->connectionString), 0, 5) === 'pgsql')
                 $sql = 'SELECT id, title FROM payload where title ILIKE :title AND tenant_id =:tenant_id';
             else
                 $sql = 'SELECT id, title FROM payload where title LIKE :title AND tenant_id =:tenant_id';
