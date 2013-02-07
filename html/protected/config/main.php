@@ -17,6 +17,7 @@ return array(
         'application.components.*',
     ),
     'modules' => array(
+        /*
         'gii' => array(
             'class' => 'system.gii.GiiModule',
             'password' => 'giipass',
@@ -24,7 +25,7 @@ return array(
             'generatorPaths' => array(
                 'bootstrap.gii',
             ),
-        ),
+        ),*/
     ),
     // application components
     'components' => array(
