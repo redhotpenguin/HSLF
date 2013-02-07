@@ -142,10 +142,15 @@ class PayloadController extends Controller {
         $tenantId = Yii::app()->user->getCurrentTenant()->id;
 
         if ($term) {
-            // test table is for the sake of this example
-            $sql = 'SELECT id, title FROM payload where title LIKE :title AND tenant_id =:tenant_id';
+
+            // ILIKE only works with postgresql
+            if (substr(Yii::app()->db->connectionString, 0, 5) == 'pgsql')
+                $sql = 'SELECT id, title FROM payload where title ILIKE :title AND tenant_id =:tenant_id';
+            else
+                $sql = 'SELECT id, title FROM payload where title LIKE :title AND tenant_id =:tenant_id';
+
             $cmd = Yii::app()->db->createCommand($sql);
-            $cmd->bindValue(":title", "%" . strtolower($term) . "%", PDO::PARAM_STR);
+            $cmd->bindValue(":title", "%" . $term . "%", PDO::PARAM_STR);
             $cmd->bindValue(":tenant_id", $tenantId, PDO::PARAM_INT);
             $res = $cmd->queryAll();
         }
