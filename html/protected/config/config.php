@@ -77,10 +77,10 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $s3Host = 'maplocal.s3.amazonaws.com';
     $s3Bucket = 'maplocal';
     
-    $apiCacheDuration = 10;
+    $apiCacheDuration = 100;
 
-   // defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL', 3);
-   // define('YII_DEBUG', true);
+    defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL', 3);
+    define('YII_DEBUG', true);
 }
 
 

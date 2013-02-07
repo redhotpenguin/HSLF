@@ -3,6 +3,7 @@
 class PushMessagesAPI extends APIBase {
 
     public function __construct() {
+        $this->cacheDuration = 10;
         parent::__construct(new PushMessage);
     }
 
@@ -10,7 +11,7 @@ class PushMessagesAPI extends APIBase {
      * override get list 
      */
     public function getList($tenantId, $arguments = array()) {
-        $cacheKey = md5(serialize($arguments) . $tenantId);
+        $cacheKey = md5(get_class($this->model) . serialize($arguments) . $tenantId);
 
         if (($r = Yii::app()->cache->get($cacheKey)) == true) {
             return $r;
@@ -38,7 +39,7 @@ class PushMessagesAPI extends APIBase {
 
         $result = $criteria->search();
         if (!empty($result))
-            Yii::app()->cache->set($cacheKey, $result, Yii::app()->params->cache_duration);
+            Yii::app()->cache->set($cacheKey, $result, $this->cacheDuration);
 
         return $result;
     }
