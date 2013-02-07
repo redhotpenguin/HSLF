@@ -3,7 +3,7 @@
 
 
 create table tenant(
-	id int(11) PRIMARY KEY,
+	id int(11) PRIMARY KEY AUTO_INCREMENT,
 	name varchar(32) NOT NULl,
 	display_name varchar(256) NOT NULL,
 	creation_date DATETIME NOT NULL,
@@ -20,14 +20,14 @@ create table tenant(
 
 
 CREATE TABLE state (
-    id int(11) PRIMARY KEY,
+    id int(11) PRIMARY KEY AUTO_INCREMENT,
     abbr VARCHAR(3) NOT NULL,
     name VARCHAR(128)
 );
 
 
 CREATE TABLE district (
-    id int(11) PRIMARY KEY,
+    id int(11) PRIMARY KEY AUTO_INCREMENT,
     state_id INTEGER NOT NULL,
     number VARCHAR(512),
     type VARCHAR(128) NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE district (
 
 
 CREATE TABLE tag (
-    id int(11) PRIMARY KEY,
+    id int(11) PRIMARY KEY AUTO_INCREMENT,
     tenant_id integer NOT NULL,
     name VARCHAR(255) NOT NULL,
     type VARCHAR(255) NOT NULL,
@@ -48,7 +48,7 @@ CREATE TABLE tag (
 
 
 CREATE TABLE alert_type (
-    id int(11) PRIMARY KEY,
+    id int(11) PRIMARY KEY AUTO_INCREMENT,
     display_name VARCHAR(1024),
     tag_id integer NOT NULL,
     category VARCHAR(512),
@@ -57,7 +57,7 @@ CREATE TABLE alert_type (
 
 
 CREATE TABLE organization (
-    id int(11) PRIMARY KEY,
+    id int(11) PRIMARY KEY AUTO_INCREMENT,
     tenant_id integer NOT NULL,
     name VARCHAR(512) NOT NULL,
     description text,
@@ -73,7 +73,7 @@ CREATE TABLE organization (
 
 
 CREATE TABLE item (
-    id int(11) PRIMARY KEY,
+    id int(11) PRIMARY KEY AUTO_INCREMENT,
     district_id integer NOT NULL,
     tenant_id integer NOT NULL,
     item text NOT NULL,
@@ -99,7 +99,7 @@ CREATE TABLE item (
 
 
 CREATE TABLE organization_item (
-    id int(11) PRIMARY KEY,
+    id int(11) PRIMARY KEY AUTO_INCREMENT,
     organization_id integer NOT NULL,
     item_id integer NOT NULL,
     position VARCHAR(32),
@@ -109,7 +109,7 @@ CREATE TABLE organization_item (
 
 
 CREATE TABLE item_news (
-    id int(11) PRIMARY KEY,
+    id int(11) PRIMARY KEY AUTO_INCREMENT,
     item_id integer NOT NULL,
     title text NOT NULL,
     content text,
@@ -121,14 +121,14 @@ CREATE TABLE item_news (
 
 
 CREATE TABLE recommendation (
-    id int(11) PRIMARY KEY,
+    id int(11) PRIMARY KEY AUTO_INCREMENT,
     value VARCHAR(64) NOT NULL,
     type VARCHAR(64) NOT NULL
 );
 
 
 CREATE TABLE party (
-    id int(11) PRIMARY KEY,
+    id int(11) PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(2048),
     abbr VARCHAR(128),
     initial VARCHAR(16)
@@ -136,7 +136,7 @@ CREATE TABLE party (
 
 
 CREATE TABLE vote (
-    id int(11) PRIMARY KEY,
+    id int(11) PRIMARY KEY AUTO_INCREMENT,
     tenant_id integer NOT NULL,
     name VARCHAR(64),
     icon text,
@@ -145,13 +145,13 @@ CREATE TABLE vote (
 
 
 CREATE TABLE office (
-    id int(11) PRIMARY KEY,
+    id int(11) PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(256)
 );
 
 
 CREATE TABLE scorecard_item (
-    id int(11) PRIMARY KEY,
+    id int(11) PRIMARY KEY AUTO_INCREMENT,
     tenant_id integer NOT NULL,
     name VARCHAR(4096) NOT NULL,
     office_id integer NOT NULL,
@@ -161,7 +161,7 @@ CREATE TABLE scorecard_item (
 
 
 CREATE TABLE scorecard (
-    id int(11) PRIMARY KEY,
+    id int(11) PRIMARY KEY AUTO_INCREMENT,
     scorecard_item_id integer NOT NULL,
     vote_id integer NOT NULL,
     foreign key (scorecard_item_id) references scorecard_item (id) on delete cascade on update cascade,
@@ -170,7 +170,7 @@ CREATE TABLE scorecard (
 
 
 CREATE TABLE `option` (
-    id int(11) PRIMARY KEY,
+    id int(11) PRIMARY KEY AUTO_INCREMENT,
     tenant_id integer NOT NULL,
     name VARCHAR(256) NOT NULL,
     value text NOT NULL,
@@ -179,7 +179,7 @@ CREATE TABLE `option` (
 
 
 CREATE TABLE `user` (
-    id int(11) PRIMARY KEY,
+    id int(11) PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(128) NOT NULL,
     password character(40) NOT NULL,
     email VARCHAR(128) NOT NULL
@@ -187,7 +187,7 @@ CREATE TABLE `user` (
 
 
 CREATE TABLE payload(
-	id int(11) PRIMARY KEY,
+	id int(11) PRIMARY KEY AUTO_INCREMENT,
         tenant_id INTEGER NOT NULL,
         type VARCHAR(16) NOT NULL,
         post_number INTEGER,
@@ -236,7 +236,7 @@ create table `AuthAssignment`
 CREATE TABLE tenant_user(
     tenant_id INTEGER REFERENCES tenant(id),
     user_id INTEGER REFERENCES `user`(id),
-    PRIMARY KEY (tenant_id, user_id),
+    PRIMARY KEY  (tenant_id, user_id),
     foreign key (tenant_id) references tenant (id) on delete cascade on update cascade,
     foreign key (user_id) references user (id) on delete cascade on update cascade
 );
@@ -253,14 +253,14 @@ CREATE TABLE user_session
 CREATE TABLE tag_organization(
     tag_id INTEGER REFERENCES tag(id),
     organization_id INTEGER REFERENCES organization(id),
-    PRIMARY KEY (tag_id, organization_id),
+    PRIMARY KEY  (tag_id, organization_id),
     foreign key (tag_id) references tag (id) on delete cascade on update cascade,
     foreign key (organization_id) references organization (id) on delete cascade on update cascade
 );
 
 
 CREATE table push_message(
-    id int(11) PRIMARY KEY,
+    id int(11) PRIMARY KEY AUTO_INCREMENT,
     tenant_id  INTEGER NOT NULL,
     payload_id INTEGER NOT NULL,
     creation_date DATETIME NOT NULL,
