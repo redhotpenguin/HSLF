@@ -48,7 +48,7 @@ class S3AssetManager extends CAssetManager {
         else if (($src = realpath($path)) !== false) {
             if (is_file($src)) {
 
-                $dir = $this->hash($hashByName ? basename($src) : dirname($src) . filemtime($src));
+                $dir = $this->hash($hashByName ? basename($src) : dirname($src));
                 $fileName = basename($src);
                 $dstDir = $this->getBasePath() . '/' . $dir;
                 $dstFile = $dstDir . '/' . $fileName;
@@ -65,7 +65,7 @@ class S3AssetManager extends CAssetManager {
 
                 return $this->_published[$path] = $this->getBaseUrl() . "/$dir/$fileName";
             } else if (is_dir($src)) {
-                $dir = $this->hash($hashByName ? basename($src) : $src . filemtime($src));
+                $dir = $this->hash($hashByName ? basename($src) : $src);
                 $dstDir = $this->getBasePath() . DIRECTORY_SEPARATOR . $dir;
 
                 if ($this->getCache()->get($this->getCacheKey($path)) === false) {
