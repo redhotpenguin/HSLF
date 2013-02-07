@@ -52,11 +52,16 @@ class ItemCriteria extends CDbCriteria {
      */
     public function setState($stateAbbr) {
         // @todo: optimize this
-        $state_id = State::model()->findByAttributes(array("abbr" => $stateAbbr))->id;
+        $state = State::model()->findByAttributes(array("abbr" => $stateAbbr));
+        if (!$state)
+            return false;
+
 
         $this->addCondition('district.state_id=:state_id', 'AND');
         $this->addRelation('district');
-        $this->params[':state_id'] = $state_id;
+        $this->params[':state_id'] = $state->id;
+
+        return true;
     }
 
     /**
@@ -174,9 +179,9 @@ class ItemCriteria extends CDbCriteria {
      * @return return  items
      */
     public function search() {
-        //  echo '<pre>';
-        //   print_r($this->toArray());
-        //                 die;
+     //   echo '<pre>';
+      //  print_r($this->toArray());
+       // die;
 
         $activeDataProvider = new CActiveDataProvider($this->item, array(
                     'criteria' => $this,
@@ -188,7 +193,7 @@ class ItemCriteria extends CDbCriteria {
         try {
             $items = $activeDataProvider->getData();
         } catch (CDbException $cdbE) {
-            //echo $cdbE->getMessage(); // debug
+            //   echo $cdbE->getMessage(); // debug
             $items = false;
         }
 

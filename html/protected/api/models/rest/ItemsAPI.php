@@ -27,24 +27,10 @@ class ItemsAPI implements IAPI {
 
         $itemCriteria = new ItemCriteria($this->item);
 
-        if (isset($arguments['address'])) {
-            $districtIds = $this->retrieveDistrictIdsByAddress($arguments['address']);
-            if (empty($districtIds)) {
-                return false;
-            }
-            $itemCriteria->setDistrictIds($districtIds);
+        // wrong parameter passed
+        if (( $message = $this->criteriaBuilder($itemCriteria, $arguments) ) !== true) {
+            return $message;
         }
-
-        if (isset($arguments['lat']) && isset($arguments['long'])) {
-            $districtIds = $this->retrieveDistrictIdsByLatLong($arguments['lat'], $arguments['long']);
-            if (empty($districtIds)) {
-                return false;
-            }
-            $itemCriteria->setDistrictIds($districtIds);
-        }
-
-
-        $this->criteriaBuilder($itemCriteria, $arguments);
 
         if (isset($arguments['relations'])) {
 
@@ -66,35 +52,6 @@ class ItemsAPI implements IAPI {
         }
         else
             return false;
-    }
-
-    /**
-     * Retrieve district ids using an address using a geocoding service
-     * @param string $address address
-     */
-    private function retrieveDistrictIdsByAddress($address) {
-        $geoCodingClientProvider = new GeoCodingClientProvider(Yii::app()->params['current_tenant_id']);
-
-        $geoCodingClient = $geoCodingClientProvider->getGeoCodingClient('cicero');
-
-        $districts = $geoCodingClient->getDistrictIdsByAddress($address);
-
-        return ($districts) ? $districts : array();
-    }
-
-    /**
-     * Retrieve district ids given a lat/long using a geocoding service
-     * @param $lat latitude
-     * @param $long longitude
-     */
-    private function retrieveDistrictIdsByLatLong($lat, $long) {
-        $geoCodingClientProvider = new GeoCodingClientProvider(Yii::app()->params['current_tenant_id']);
-
-        $geoCodingClient = $geoCodingClientProvider->getGeoCodingClient('cicero');
-
-        $districts = $geoCodingClient->getDistrictIdsByLatLong($lat, $long);
-
-        return ($districts) ? $districts : array();
     }
 
     /**
@@ -135,7 +92,9 @@ class ItemsAPI implements IAPI {
 
         if (isset($arguments['state'])) {
 
-            $itemCriteria->setState($arguments['state']);
+            if (!$itemCriteria->setState($arguments['state'])) {
+                return 'invalid state';
+            }
 
             if (isset($arguments['districts'])) {
                 $itemCriteria->setDistricts(explode(',', $arguments['districts']));
@@ -158,6 +117,9 @@ class ItemsAPI implements IAPI {
         if (isset($arguments['field']) && isset($arguments['fieldValue'])) {
             $itemCriteria->addAttributeCondition($arguments['field'], $arguments['fieldValue'], 'AND');
         }
+        
+
+        return true;
     }
 
     private function relationParser(ItemCriteria &$itemCriteria, $relationList) {
