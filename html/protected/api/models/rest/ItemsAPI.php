@@ -4,9 +4,10 @@ class ItemsAPI implements IAPI {
 
     private $allIncludes = array('districts', 'organizations', 'recommendations', 'news', 'parties');
     private $item;
-
+    private $cacheDuration;
     public function __construct() {
         $this->item = new Item();
+        $this->cacheDuration = Yii::app()->params->normal_cache_duration;
     }
 
     /**
@@ -47,7 +48,7 @@ class ItemsAPI implements IAPI {
 
         if ($items) {
             $result = $this->itemsWrapper($items, $relations);
-            Yii::app()->cache->set($cacheKey, $result, Yii::app()->params->cache_duration);
+            Yii::app()->cache->set($cacheKey, $result, $this->cacheDuration);
             return $result;
         }
         else
@@ -73,7 +74,7 @@ class ItemsAPI implements IAPI {
 
         if ($this->item != false) {
             $result = $this->itemWrapper($this->item, $this->allIncludes);
-            Yii::app()->cache->set($cacheKey, $result, Yii::app()->params->cache_duration);
+            Yii::app()->cache->set($cacheKey, $result, $this->cacheDuration);
         }
         else
             $result = false;

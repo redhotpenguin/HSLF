@@ -203,7 +203,7 @@ class ApiController extends Controller {
             $tenant = $r;
         } else {
             $tenant = Tenant::model()->findByPk($tenantId);
-            Yii::app()->cache->set($cacheKey, $tenant, Yii::app()->params->cache_duration);
+            Yii::app()->cache->set($cacheKey, $tenant, Yii::app()->params->long_cache_duration);
         }
 
 

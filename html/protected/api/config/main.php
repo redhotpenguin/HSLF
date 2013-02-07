@@ -93,6 +93,8 @@ return array(
     'params' => array(
         'dateFormat' => 'Y-m-d H:i:s',
         'mongodb_ack_level' => MONGODB_ACK_LEVEL,
-        'cache_duration' => API_CACHE_DURATION
+        'short_cache_duration' => API_SHORT_CACHE_DURATION,
+        'normal_cache_duration' => API_NORMAL_CACHE_DURATION,
+        'long_cache_duration' => API_LONG_CACHE_DURATION
     ),
 );
