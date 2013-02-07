@@ -5,7 +5,7 @@ abstract class APIBase implements IAPI {
     public $cacheDuration;
     protected $model;
     protected $tableAlias;
-/*
+
     public static function cacheKeyBuilder(CActiveRecord $model, $tenantId, $arguments, $id = null) {
         $className = get_class($model);
         $serializedArguments = serialize($arguments);
@@ -19,7 +19,7 @@ abstract class APIBase implements IAPI {
         }
 
         return $string;
-    }*/
+    }
 
     public function __construct(CActiveRecord $model) {
         $this->cacheDuration = Yii::app()->params->normal_cache_duration;
@@ -29,8 +29,7 @@ abstract class APIBase implements IAPI {
 
     public function getList($tenantId, $arguments = array()) {
 
-        // build a unique cache key
-         $cacheKey = md5(get_class($this->model) . serialize($arguments) . $tenantId);
+        $cacheKey = APIBase::cacheKeyBuilder($this->model, $tenantId, $arguments);
 
         // serve from cache?
         if (($r = Yii::app()->cache->get($cacheKey)) == true) {
@@ -82,8 +81,7 @@ abstract class APIBase implements IAPI {
     }
 
     public function getSingle($tenantId, $id, $arguments = array()) {
-        // build a unique cache key
-        $cacheKey = md5(get_class($this->model) . serialize($arguments) . $tenantId . '_' . $id);
+        $cacheKey = APIBase::cacheKeyBuilder($this->model, $tenantId, $arguments, $id);
 
         // serve from cache if possible
         if (($r = Yii::app()->cache->get($cacheKey)) == true) {
