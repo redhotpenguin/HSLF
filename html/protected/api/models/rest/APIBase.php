@@ -90,7 +90,7 @@ abstract class APIBase implements IAPI {
         }
 
         try {
-            $result = $this->model->with($relations)->findByPk($pkID);
+            $result = $this->model->with($relations)->findByPk($id);
         } catch (CDbException $cdbE) {
             $result = "no_results";
         }
