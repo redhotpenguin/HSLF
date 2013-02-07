@@ -5,6 +5,7 @@ class ItemsAPI implements IAPI {
     private $allIncludes = array('districts', 'organizations', 'recommendations', 'news', 'parties');
     private $item;
     private $cacheDuration;
+
     public function __construct() {
         $this->item = new Item();
         $this->cacheDuration = Yii::app()->params->normal_cache_duration;
@@ -17,7 +18,8 @@ class ItemsAPI implements IAPI {
      */
     public function getList($tenantId, $arguments = array()) {
         // build a unique cache key
-        $cacheKey = md5(get_class($this->item) . serialize($arguments) . $tenantId);
+        $cacheKey = APIBase::cacheKeyBuilder($this->item, $tenantId, $arguments);
+
 
         // serve from cache?
         if (($r = Yii::app()->cache->get($cacheKey)) == true) {
@@ -61,8 +63,7 @@ class ItemsAPI implements IAPI {
      * @todo Refactor this function to use ItemCriteria?
      */
     public function getSingle($tenantId, $id, $arguments = array()) {
-        // build a unique cache key
-        $cacheKey = md5(get_class($this->item) . serialize($arguments) . $tenantId . '_' . $id);
+        $cacheKey = APIBase::cacheKeyBuilder($this->item, $tenantId, $arguments, $id);
 
         // serve from cache if possible
         if (($r = Yii::app()->cache->get($cacheKey)) == true) {

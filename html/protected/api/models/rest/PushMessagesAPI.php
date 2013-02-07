@@ -12,7 +12,7 @@ class PushMessagesAPI extends APIBase {
      */
     public function getList($tenantId, $arguments = array()) {
 
-        $cacheKey = md5(get_class($this->model) . serialize($arguments) . $tenantId);
+        $cacheKey = APIBase::cacheKeyBuilder($this->model, $tenantId, $arguments);
 
         if (($r = Yii::app()->cache->get($cacheKey)) == true) {
             return $r;
@@ -44,7 +44,5 @@ class PushMessagesAPI extends APIBase {
 
         return $result;
     }
-    
-    
 
 }
