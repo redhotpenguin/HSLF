@@ -6,7 +6,6 @@ $this->breadcrumbs = array(
 
 $this->menu = array(
     array('label' => 'Add an option', 'url' => array('create')),
-    array('label' => 'File Editor', 'url' => array('editor')),
     array('label' => 'Export to CSV', 'url' => array('exportCSV'))
 );
 

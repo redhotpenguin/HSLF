@@ -165,20 +165,6 @@ class OptionController extends Controller {
         }
     }
 
-    /**
-     * Displays the editor index page
-     */
-    public function actionEditor() {
-
-        $html_directory = getSetting('html_directory');
-
-        $this->render('file_editor', array(
-            'edit_files' => array(
-                $html_directory . '/themes/frontend/css/client_app.css',
-            )
-                )
-        );
-    }
 
     /**
      * Performs the CSV Export
