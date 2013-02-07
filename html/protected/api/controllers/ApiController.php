@@ -9,6 +9,10 @@ class ApiController extends Controller {
         $this->sendResponse(404);
     }
 
+    public function actionError() {
+        $this->sendResponse(500);
+    }
+
     /**
      * @return array action filters
      */

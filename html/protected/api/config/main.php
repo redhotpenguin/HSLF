@@ -55,6 +55,7 @@ return array(
             'password' => DB_PASS,
             'charset' => 'UTF-8',
             'schemaCachingDuration' => '3600',
+            'autoConnect' => false // give a chance to use the redis cache if the db is down
         ),
         'cache' => array(
             // 'class' => 'system.caching.CApcCache',
@@ -70,7 +71,7 @@ return array(
         )),
         'errorHandler' => array(
             // use 'api/error' action to display errors
-            'errorAction' => 'api/index',
+            'errorAction' => 'api/error',
         ),
         'edms' => array(
             'class' => 'EDMSConnection',
