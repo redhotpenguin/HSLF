@@ -3,7 +3,7 @@
 <div>
 
     <?php
-    if (Yii::app()->user->id):
+    if (Yii::app()->user->id):            
         ?>
         <div class="hero-unit">
             <h1>Dashboard</h1>

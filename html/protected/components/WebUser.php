@@ -60,6 +60,14 @@ class WebUser extends CWebUser {
     public function getId() {
         return $this->getState('userId');
     }
+    
+    /**
+     * return the composite primary key from tenant_user
+     * @return
+     */
+    public function getUserTenantId(){
+        return $this->getCurrentTenant()->id.','.$this->getState('userId');
+    }
 
     public function getModel() {
         if (empty($this->_userModel))
@@ -82,7 +90,7 @@ class WebUser extends CWebUser {
             return $this->_access[$operation];
         }
 
-        $access = Yii::app()->getAuthManager()->checkAccess($operation, Yii::app()->user->id, $params);
+        $access = Yii::app()->getAuthManager()->checkAccess($operation, $this->getUserTenantId(), $params);
         if ($allowCaching) {
             $this->_access[$operation] = $access;
         }
