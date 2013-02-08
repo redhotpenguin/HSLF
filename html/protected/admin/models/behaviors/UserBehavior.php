@@ -9,17 +9,29 @@ class UserBehavior extends CActiveRecordBehavior {
     public function afterSave($event) {
         parent::afterSave($event);
 
-        $assignments = Yii::app()->authManager->getAuthAssignments($this->owner->id);
 
-        // remove all assignements, if any
-        if ($assignments != null) {
-            foreach ($assignments as $assignment) {
-                Yii::app()->authManager->revoke($assignment->itemName, $this->owner->id);
-            }
+        foreach ($this->owner->tenants as $tenant) {
+            $tenantUserId = $tenant->id . ',' . $this->owner->id;
+
+            Yii::app()->authManager->revokeAll($tenantUserId);
         }
 
-        if (!empty($this->owner->role)) {
-            Yii::app()->authManager->assign($this->owner->role, $this->owner->id);
+        if (!empty($this->owner->rolesByTenant)) {
+
+            logIt($this->owner->rolesByTenant);
+
+
+            foreach ($this->owner->rolesByTenant as $tenantId => $role) {
+                if ($role == null || empty($role))
+                    continue;
+
+                $tenantUserId = $tenantId . ',' . $this->owner->id;
+                try {
+                    Yii::app()->authManager->assign($role, $tenantUserId);
+                } catch (Exception $e) {
+                    error_log($e->getMessage());
+                }
+            }
         }
     }
 
@@ -42,10 +54,32 @@ class UserBehavior extends CActiveRecordBehavior {
         $this->owner->role = $this->getRole();
     }
 
+    /**
+     * deprecated
+     */
     public function getRole() {
         if (( $item = Yii::app()->authManager->getAuthAssignment('admin', $this->owner->id))) {
             $role = $item->itemName;
         } elseif (( $item = Yii::app()->authManager->getAuthAssignment('publisher', $this->owner->id))) {
+            $role = $item->itemName;
+        } else {
+            $role = null;
+        }
+
+        return $role;
+    }
+
+    /**
+     * get a user role for a specific tenant
+     * @param  integer $tenantId - tenant id
+     * @return CAuthAssignment object
+     */
+    public function getRoleByTenant($tenantId) {
+        $tenantUserId = $tenantId . ',' . $this->owner->id;
+
+        if (( $item = Yii::app()->authManager->getAuthAssignment('admin', $tenantUserId))) {
+            $role = $item->itemName;
+        } elseif (( $item = Yii::app()->authManager->getAuthAssignment('publisher', $tenantUserId))) {
             $role = $item->itemName;
         } else {
             $role = null;

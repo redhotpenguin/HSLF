@@ -47,6 +47,7 @@
     <hr/>
 
     <?php
+    
     $this->renderPartial('_tenants', array('model' => $model));
     ?>
     <hr/>

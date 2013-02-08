@@ -89,7 +89,7 @@ return array(
             ),
         ),
         'authManager' => array(// rbac config
-            'class' => 'CDbAuthManager',
+            'class' => 'MyCDbAuthManager',
             'connectionID' => 'db',
         ),
         'cache' => array(

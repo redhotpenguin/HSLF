@@ -16,7 +16,8 @@ class User extends BaseActiveRecord {
 
     public $repeat_password;
     public $initial_password;
-    public $role;
+    public $role; // @todo: remove this
+    public $rolesByTenant;
 
     /**
      * Returns the static model of the specified AR class.
@@ -43,11 +44,11 @@ class User extends BaseActiveRecord {
             array('password, username, email, repeat_password', 'required', 'on' => 'insert'),
             array('repeat_password', 'compare', 'compareAttribute' => 'password', 'on' => 'insert, update'),
             array('email', 'email'),
-            array('username, email, role', 'length', 'max' => 128, 'on' => 'insert'),
+            array('username, email', 'length', 'max' => 128, 'on' => 'insert'),
             array('email', 'length', 'max' => 128, 'on' => 'update'),
             array('password', 'length', 'max' => 40),
             array('id, username, email', 'safe', 'on' => 'search'),
-            array('email, password, role', 'safe', 'on' => 'update'),
+            array('email, password, rolesByTenant', 'safe', 'on' => 'update'),
         );
     }
 

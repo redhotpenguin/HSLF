@@ -98,11 +98,11 @@ class UserController extends Controller {
         // hold the current password ( before it might gets updated)
         $current_password = $model->password;
 
-
         if (isset($_POST['User'])) {
+            
 
             $model->attributes = $_POST['User'];
-
+             
             // if a new password has been given
             if ($model->password)
                 $model->initial_password = $model->password;
@@ -113,7 +113,7 @@ class UserController extends Controller {
             if ($model->save())
                 $updatedResult = true;
 
-            // @todo: refactor this
+            // @todo: refactor this.. crap
             if (isset($_POST['add_to_tenant']) && !empty($_POST['add_to_tenant'])) {
                 $tenantName = $_POST['add_to_tenant'];
 
