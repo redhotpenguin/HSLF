@@ -21,5 +21,5 @@ if (getParam('updated') == '1' || getParam('created') == '1') {
 
 
 $model->password = '';
-echo $this->renderPartial('_update_form', array('model' => $model));
+echo $this->renderPartial('_form', array('model' => $model));
 ?>
