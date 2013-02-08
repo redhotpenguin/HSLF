@@ -18,6 +18,7 @@ class MobileUser extends ActiveMongoDocument {
 
     public function getAttributes($names = NULL) {
         return array(
+            'id' => 'Identifier',
             'tenant_id' => 'Tenant ID',
             'device_type' => 'Device Type',
             'ua_identifier' => 'Urban Airship Identifier',
