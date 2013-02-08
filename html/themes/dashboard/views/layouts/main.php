@@ -12,24 +12,9 @@
         <link rel="stylesheet" type="text/css" href="/themes/dashboard/css/form.css" /> 
 
         <?php
-        Yii::app()->clientScript->registerCoreScript('jquery');
-
         Yii::app()->bootstrap->register();
-        $cs = Yii::app()->clientScript;
-        $cs->registerScriptFile('/static/global/js/superfish.js', CClientScript::POS_HEAD);
-        $cs->registerScriptFile('/static/global/js/jquery.hoverIntent.minified.js', CClientScript::POS_HEAD);
         ?>
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
-
-
-        <script type="text/javascript"> 
-            jQuery(document).ready(function($){
-                $('ul#main_menu').superfish({
-                    autoArrows: false
-                });
- 
-            });
-        </script>
 
     </head>
 

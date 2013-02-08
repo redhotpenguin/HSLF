@@ -18,20 +18,8 @@
 
         <?php
         Yii::app()->bootstrap->register();
-        $cs = Yii::app()->clientScript;
-        $cs->registerScriptFile('/static/global/js/superfish.js', CClientScript::POS_HEAD);
-        $cs->registerScriptFile('/static/global/js/jquery.hoverIntent.minified.js', CClientScript::POS_HEAD);
         ?>
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
-
-        <script type="text/javascript"> 
-            jQuery(document).ready(function($){
-                $('ul#main_menu').superfish({
-                    autoArrows: false
-                });
- 
-            });
-        </script>
 
     </head>
 
