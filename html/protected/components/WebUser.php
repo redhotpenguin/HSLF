@@ -60,13 +60,16 @@ class WebUser extends CWebUser {
     public function getId() {
         return $this->getState('userId');
     }
-    
+
     /**
      * return the composite primary key from tenant_user
      * @return
      */
-    public function getUserTenantId(){
-        return $this->getCurrentTenant()->id.','.$this->getState('userId');
+    public function getUserTenantId() {
+        if (($tenant = $this->getCurrentTenant()) != null)
+            return $tenant->id . ',' . $this->getState('userId');
+        else
+            return  '0,' . $this->getState('userId'); // 0 means no tenant. Ex: (super)admin dashboard or home page
     }
 
     public function getModel() {
