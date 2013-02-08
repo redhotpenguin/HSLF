@@ -7,10 +7,10 @@
  */
 class MobileUserAPITest extends CDbTestCase {
 
-      private $mobileUserAPI = "http://www.voterguide.com/api/1/MobileUsers";
+    private $mobileUserAPI = "http://www.voterguide.com/api/1/MobileUsers";
     // private $mobileUserAPI = "http://23.24.252.203/api/1/MobileUsers";
     //  private $mobileUserAPI = "http://mobileadvocacy-winningmark.dotcloud.com/api/1/MobileUsers";
-   // private $mobileUserAPI = "http://www.winningmarkmobile.com/api/1/MobileUsers";
+    // private $mobileUserAPI = "http://www.winningmarkmobile.com/api/1/MobileUsers";
     private $tenant1 = array(
         // our oregon
         'username' => "52356", // api key
@@ -20,35 +20,8 @@ class MobileUserAPITest extends CDbTestCase {
             // 'password' => "3bc9f4ac200719ade62cf70b5dba1e9b"// api secret
     );
 
-    public function testCreateUser() {
-        $response = "failure";
 
-        $userData = array(
-            "name" => "jonas",
-            "device_type" => "android",
-        );
-
-        $jsonUserData = json_encode($userData);
-
-        $data = array(
-            "user" => $jsonUserData
-        );
-
-        $requestResult = $this->post($this->tenant1, $data, $this->mobileUserAPI, $httpCode);
-
-
-        $response = $requestResult->results;
-
-        $this->log($response);
-
-        $this->assertEquals($httpCode, 200);
-
-
-        $this->assertNotEmpty($response);
-    }
-
-    public function testUpdateUser() {
-
+     public function testUpdateUserWithValidValidToken() { // ios token
         $response = "failure";
 
         $userData = array(
@@ -77,6 +50,10 @@ class MobileUserAPITest extends CDbTestCase {
             'push' => array(
                 'tags' => 'a new updated tag',
                 'interest' => 'ping pong'
+            ),
+            'set' => array(
+                'device_type' => 'ios',
+                'ua_identifier' => '7635fd64d8d7771a50714a87cb97622b38f4657e44dffe18549bd59f073f3083'
             )
         );
 
@@ -98,140 +75,278 @@ class MobileUserAPITest extends CDbTestCase {
         $this->assertEquals(200, $code);
     }
 
-    public function testUpdateNotExistingUser() {
 
-        $userData = array(
-            "name" => "troll",
-            "device_type" => "android",
-        );
+    
+      public function testCreateUserWithInvalidToken() {
+      $response = "failure";
 
-        $jsonUserData = json_encode($userData);
+      $userData = array(
+      "name" => "jonas",
+      "device_type" => "android",
+      'ua_identifier' => 'yousuck'
+      );
 
-        $data = array(
-            "user" => $jsonUserData
-        );
+      $jsonUserData = json_encode($userData);
 
-        $requestResult = json_decode($this->put($this->tenant1, $data, $this->mobileUserAPI . '/youwontfindme', $code));
-        //      $this->log($requestResult);
+      $data = array(
+      "user" => $jsonUserData
+      );
 
-
-
-        $response = $requestResult->results;
-
-        $this->assertEquals(404, $code);
-
-        $this->assertEquals("user not found", $response->error);
-    }
-
-    public function testUpdateUserExistingFields() {
-
-        $response = "failure";
-
-        $userData = array(
-            "name" => "robert",
-            "device_type" => "android",
-            "age" => 41
-        );
-
-        $jsonUserData = json_encode($userData);
-
-        $data = array(
-            "user" => $jsonUserData
-        );
-
-        $result = $this->post($this->tenant1, $data, $this->mobileUserAPI, $code);
-        $userId = $result->results->id;
+      $requestResult = $this->post($this->tenant1, $data, $this->mobileUserAPI, $httpCode);
 
 
+      $response = $requestResult->results;
 
-        $this->assertEquals(200, $code);
+      $this->log($response);
 
-        $code = null;
-
-        $newUserData = array(
-            'set' => array(
-                'name' => 'Robert Doisneau'
-            )
-        );
-
-        $newJsonData = json_encode($newUserData);
-
-        $newData = array(
-            "user" => $newJsonData
-        );
-
-        $requestResult = json_decode($this->put($this->tenant1, $newData, $this->mobileUserAPI . '/' . $userId, $code));
+      $this->assertEquals($httpCode, 409);
 
 
+      $this->assertNotEmpty($response);
+      }
 
-        $this->assertEquals(200, $code);
-    }
+      public function testCreateUserWithValidToken() { // ios token
+      $response = "failure";
 
-    public function testUpdateUserAddCollections() {
+      $userData = array(
+      "name" => "jonas",
+      "device_type" => "ios",
+      'ua_identifier' => '7635fd64d8d7771a50714a87cb97622b38f4657e44dffe18549bd59f073f3083'
+      );
 
+      $jsonUserData = json_encode($userData);
 
-        $userData = array(
-            "name" => "Thomas",
-            "device_type" => 'ios',
-            "tags" => array("default tag")
-        );
+      $data = array(
+      "user" => $jsonUserData
+      );
 
-        $jsonUserData = json_encode($userData);
-
-        $data = array(
-            "user" => $jsonUserData
-        );
-
-        $requestResult = $this->post($this->tenant1, $data, $this->mobileUserAPI, $code);
-
-        $userId = $requestResult->results->id;
+      $requestResult = $this->post($this->tenant1, $data, $this->mobileUserAPI, $httpCode);
 
 
-        $this->assertEquals(200, $code);
+      $response = $requestResult->results;
 
-        $code = null;
+      $this->log($response);
 
-        $newUserData = array(
-            'push' => array(
-                'tags' => 'a new updated tag'
-            )
-        );
-
-        $newJsonData = json_encode($newUserData);
-
-        $newData = array(
-            "user" => $newJsonData
-        );
-
-        $requestResult = json_decode($this->put($this->tenant1, $newData, $this->mobileUserAPI . '/' . $userId, $code));
+      $this->assertEquals($httpCode, 200);
 
 
-        $response = $requestResult->results;
+      $this->assertNotEmpty($response);
+      }
 
-        $this->assertEquals(200, $code);
-    }
 
-    public function testCreateUserMissingRequiredParameter() {
+      public function testCreateUser() {
+      $response = "failure";
 
-        // device_type is missing
-        $userData = array(
-            "name" => "jonas invalid",
-        );
+      $userData = array(
+      "name" => "jonas",
+      "device_type" => "android",
+      );
 
-        $jsonUserData = json_encode($userData);
+      $jsonUserData = json_encode($userData);
 
-        $data = array(
-            "user" => $jsonUserData
-        );
+      $data = array(
+      "user" => $jsonUserData
+      );
 
-        $requestResult = $this->post($this->tenant1, $data, $this->mobileUserAPI, $code);
+      $requestResult = $this->post($this->tenant1, $data, $this->mobileUserAPI, $httpCode);
 
-        $response = $requestResult->results;
 
-        $this->assertNotEquals("success", $response);
+      $response = $requestResult->results;
 
-        $this->assertEquals(409, $code);
-    }
+      $this->log($response);
+
+      $this->assertEquals($httpCode, 200);
+
+
+      $this->assertNotEmpty($response);
+      }
+
+      public function testUpdateUser() {
+
+      $response = "failure";
+
+      $userData = array(
+      "name" => "jonas",
+      "device_type" => "ios",
+      );
+
+      $jsonUserData = json_encode($userData);
+
+      $data = array(
+      "user" => $jsonUserData
+      );
+
+      $requestResult = $this->post($this->tenant1, $data, $this->mobileUserAPI, $code);
+
+      $newUserId = $requestResult->results->id;
+
+      $this->assertEquals(200, $code);
+
+      $this->assertNotEmpty($newUserId);
+
+      sleep(1);
+
+
+      $newUserData = array(
+      'push' => array(
+      'tags' => 'a new updated tag',
+      'interest' => 'ping pong'
+      )
+      );
+
+      $newJsonData = json_encode($newUserData);
+
+      $newData = array(
+      "user" => $newJsonData
+      );
+
+
+      $code = null;
+
+      $requestResult = json_decode($this->put($this->tenant1, $newData, $this->mobileUserAPI . '/' . $newUserId, $code));
+
+      //       $this->log($newData);
+
+      $response = $requestResult->results;
+
+      $this->assertEquals(200, $code);
+      }
+
+      public function testUpdateNotExistingUser() {
+
+      $userData = array(
+      "name" => "troll",
+      "device_type" => "android",
+      );
+
+      $jsonUserData = json_encode($userData);
+
+      $data = array(
+      "user" => $jsonUserData
+      );
+
+      $requestResult = json_decode($this->put($this->tenant1, $data, $this->mobileUserAPI . '/youwontfindme', $code));
+      //      $this->log($requestResult);
+
+
+
+      $response = $requestResult->results;
+
+      $this->assertEquals(404, $code);
+
+      $this->assertEquals("user not found", $response->error);
+      }
+
+      public function testUpdateUserExistingFields() {
+
+      $response = "failure";
+
+      $userData = array(
+      "name" => "robert",
+      "device_type" => "android",
+      "age" => 41
+      );
+
+      $jsonUserData = json_encode($userData);
+
+      $data = array(
+      "user" => $jsonUserData
+      );
+
+      $result = $this->post($this->tenant1, $data, $this->mobileUserAPI, $code);
+      $userId = $result->results->id;
+
+
+
+      $this->assertEquals(200, $code);
+
+      $code = null;
+
+      $newUserData = array(
+      'set' => array(
+      'name' => 'Robert Doisneau'
+      )
+      );
+
+      $newJsonData = json_encode($newUserData);
+
+      $newData = array(
+      "user" => $newJsonData
+      );
+
+      $requestResult = json_decode($this->put($this->tenant1, $newData, $this->mobileUserAPI . '/' . $userId, $code));
+
+
+
+      $this->assertEquals(200, $code);
+      }
+
+      public function testUpdateUserAddCollections() {
+
+
+      $userData = array(
+      "name" => "Thomas",
+      "device_type" => 'ios',
+      "tags" => array("default tag")
+      );
+
+      $jsonUserData = json_encode($userData);
+
+      $data = array(
+      "user" => $jsonUserData
+      );
+
+      $requestResult = $this->post($this->tenant1, $data, $this->mobileUserAPI, $code);
+
+      $userId = $requestResult->results->id;
+
+
+      $this->assertEquals(200, $code);
+
+      $code = null;
+
+      $newUserData = array(
+      'push' => array(
+      'tags' => 'a new updated tag'
+      )
+      );
+
+      $newJsonData = json_encode($newUserData);
+
+      $newData = array(
+      "user" => $newJsonData
+      );
+
+      $requestResult = json_decode($this->put($this->tenant1, $newData, $this->mobileUserAPI . '/' . $userId, $code));
+
+
+      $response = $requestResult->results;
+
+      $this->assertEquals(200, $code);
+      }
+
+      public function testCreateUserMissingRequiredParameter() {
+
+      // device_type is missing
+      $userData = array(
+      "name" => "jonas invalid",
+      );
+
+      $jsonUserData = json_encode($userData);
+
+      $data = array(
+      "user" => $jsonUserData
+      );
+
+      $requestResult = $this->post($this->tenant1, $data, $this->mobileUserAPI, $code);
+
+      $response = $requestResult->results;
+
+      $this->assertNotEquals("success", $response);
+
+      $this->assertEquals(409, $code);
+      }
+     
 
     private function post($credentials, $data, $endPoint, &$httpResponseCode) {
 
@@ -265,6 +380,8 @@ class MobileUserAPITest extends CDbTestCase {
         $content = curl_exec($session);
         $response = curl_getinfo($session);
         $httpResponseCode = curl_getinfo($session, CURLINFO_HTTP_CODE);
+
+
 
         curl_close($session);
 
