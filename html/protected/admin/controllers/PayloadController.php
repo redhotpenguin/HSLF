@@ -25,7 +25,7 @@ class PayloadController extends Controller {
      */ public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'admin', 'view'),
+                'actions' => array('index'),
                 'roles' => array('readPayload'),
             ),
             array('allow',
@@ -72,7 +72,7 @@ class PayloadController extends Controller {
                 $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
         }
 
-        $this->render('create', array(
+        $this->render('editor', array(
             'model' => $model,
         ));
     }
@@ -94,44 +94,34 @@ class PayloadController extends Controller {
                 $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
         }
 
-        $this->render('update', array(
+        $this->render('editor', array(
             'model' => $model,
         ));
     }
 
     /**
      * Deletes a particular model.
-     * If deletion is successful, the browser will be redirected to the 'admin' page.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id the ID of the model to be deleted
      */
     public function actionDelete($id) {
         $this->loadModel($id)->delete();
 
-        // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+        // if AJAX request (triggered by deletion via index grid view), we should not redirect the browser
         if (!isset($_GET['ajax']))
-            $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+            $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
     }
 
     /**
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('Payload');
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
-    }
-
-    /**
-     * Manages all models.
-     */
-    public function actionAdmin() {
         $model = new Payload('search');
         $model->unsetAttributes();  // clear any default values
         if (isset($_GET['Payload']))
             $model->attributes = $_GET['Payload'];
 
-        $this->render('admin', array(
+        $this->render('index', array(
             'model' => $model,
         ));
     }
