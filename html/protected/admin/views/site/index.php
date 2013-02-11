@@ -1,9 +1,6 @@
 <?php
 if (empty($tenants)):
     echo '<h1>No Projects</h1>';
-
-
-
 else:
     ?>
 
