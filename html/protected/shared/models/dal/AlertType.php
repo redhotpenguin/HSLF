@@ -19,6 +19,7 @@ class AlertType extends BaseActiveRecord {
     public function __construct($scenario = 'insert', $table = "") {
         $this->parentName = "Tag";
         $this->parentRelationship = "tag";
+        $this->parentRelationshipAttribute = "tag_id";
 
         parent::__construct($scenario);
     }
