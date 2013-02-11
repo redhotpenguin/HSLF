@@ -24,57 +24,58 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
 
 <div class="form">
 
-<?php
-$form = $this->beginWidget('CActiveForm', array(
-    'id' => 'organization-form',
-    'enableAjaxValidation' => false,
-        ));
+    <?php
+    $form = $this->beginWidget('CActiveForm', array(
+        'id' => 'organization-form',
+        'enableAjaxValidation' => false,
+            ));
 
-$orgTab = $this->renderPartial('tabs/_tab_organization', array(
-    'model' => $model,
-    'form' => $form,
-        ), true);
+    $orgTab = $this->renderPartial('tabs/_tab_organization', array(
+        'model' => $model,
+        'form' => $form,
+            ), true);
 
-$detailTab = $this->renderPartial('tabs/_tab_detail', array(
-    'model' => $model,
-    'form' => $form,
-        ), true);
+    $detailTab = $this->renderPartial('tabs/_tab_detail', array(
+        'model' => $model,
+        'form' => $form,
+            ), true);
 
-$tagsTab = $this->renderPartial('tabs/_tab_tags', array(
-    'model' => $model,
-    'form' => $form,
-        ), true);
+    $tagsTab = $this->renderPartial('tabs/_tab_tags', array(
+        'model' => $model,
+        'form' => $form,
+            ), true);
 
-$this->widget('bootstrap.widgets.TbTabs', array(
-    'type' => 'tabs', // 'tabs' or 'pills'
-    'placement' => 'left',
-    'tabs' => array(
-        array('label' => 'Organization', 'content' => $orgTab, 'active' => true),
-        array('label' => 'Details', 'content' => $detailTab),
-        array('label' => 'Tags', 'content' => $tagsTab),
-    ),
-));
-?>
-
-
-<?php echo $form->errorSummary($model); ?>
+    $this->widget('bootstrap.widgets.TbTabs', array(
+        'type' => 'tabs', // 'tabs' or 'pills'
+        'placement' => 'left',
+        'tabs' => array(
+            array('label' => 'Organization', 'content' => $orgTab, 'active' => true),
+            array('label' => 'Details', 'content' => $detailTab),
+            array('label' => 'Tags', 'content' => $tagsTab),
+        ),
+    ));
+    ?>
 
 
+    <?php echo $form->errorSummary($model); ?>
+
+
+    <div class="clearfix"></div>
 
     <hr/>
 
 
     <div class="row buttons">
-<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'Save'));
-?>
+        <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'Save'));
+        ?>
     </div>
 
-<?php
-$this->endWidget();
+    <?php
+    $this->endWidget();
 
-if (getParam('updated') == '1' || getParam('created') == '1') {
-    echo '<div class="update_box btn-success">Organization Saved</div>';
-}
-?>
+    if (getParam('updated') == '1' || getParam('created') == '1') {
+        echo '<div class="update_box btn-success">Organization Saved</div>';
+    }
+    ?>
 
 </div><!-- form -->
