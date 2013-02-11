@@ -210,10 +210,3 @@ input{
     display: block;
     text-align: center;
 }
-
-div#organizations{
-    height:250px;
-    overflow: scroll;
-    overflow-x:hidden;
-    
-}

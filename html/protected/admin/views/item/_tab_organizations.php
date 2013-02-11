@@ -1,4 +1,3 @@
-<h4>Organization info:</h4>
 <div id="organizations" class="resize-vertical">
     <table class="table table-bordered table-striped">
         <thead>
