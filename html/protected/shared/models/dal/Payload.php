@@ -91,12 +91,15 @@ class Payload extends BaseActiveRecord {
      * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
      */
     public function search() {
-        // Warning: Please modify the following code to remove attributes that
-        // should not be searched.
+
 
         $criteria = new CDbCriteriaInsensitive();
 
-        $criteria->compare('id', $this->id);
+        if (is_numeric($this->id))
+            $criteria->compare('id', $this->id);
+
+
+
         $criteria->compare('url', $this->url, true);
         $criteria->compare('title', $this->title, true);
         $criteria->compare('description', $this->description, true);
