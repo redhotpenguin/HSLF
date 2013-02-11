@@ -27,7 +27,7 @@ class AlertTypeController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'admin', 'view', 'exportCSV'),
+                'actions' => array('index', 'exportCSV'),
                 'roles' => array('readAlertType'),
             ),
             array('allow',
@@ -71,10 +71,10 @@ class AlertTypeController extends Controller {
         if (isset($_POST['AlertType'])) {
             $model->attributes = $_POST['AlertType'];
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id));
         }
 
-        $this->render('create', array(
+        $this->render('editor', array(
             'model' => $model,
         ));
     }
@@ -93,17 +93,17 @@ class AlertTypeController extends Controller {
         if (isset($_POST['AlertType'])) {
             $model->attributes = $_POST['AlertType'];
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id));
         }
 
-        $this->render('update', array(
+        $this->render('editor', array(
             'model' => $model,
         ));
     }
 
     /**
      * Deletes a particular model.
-     * If deletion is successful, the browser will be redirected to the 'admin' page.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id the ID of the model to be deleted
      */
     public function actionDelete($id) {
@@ -111,9 +111,9 @@ class AlertTypeController extends Controller {
             // we only allow deletion via POST request
             $this->loadModel($id)->delete();
 
-            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+            // if AJAX request (triggered by deletion via index grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
-                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
         }
         else
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
@@ -123,16 +123,6 @@ class AlertTypeController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('AlertType');
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
-    }
-
-    /**
-     * Manages all models.
-     */
-    public function actionAdmin() {
         $model = new AlertType('search');
         $model->unsetAttributes();  // clear any default values
 
@@ -141,7 +131,7 @@ class AlertTypeController extends Controller {
             $model->attributes = $_GET['AlertType'];
         }
 
-        $this->render('admin', array(
+        $this->render('index', array(
             'model' => $model,
         ));
     }
