@@ -19,7 +19,7 @@
     <div class="span6">
         <?php
         echo $form->labelEx($model, 'party_id');
-        echo $form->dropDownList($model, 'party_id', CHtml::listData(Party::model()->findAll(), 'id', 'name'), array('class' => 'span11'));
+        echo $form->dropDownList($model, 'party_id', CHtml::listData(Party::model()->findAll(array('order'=>'id ASC')), 'id', 'name'), array('class' => 'span11'));
         echo $form->error($model, 'party_id');
         ?>
     </div>

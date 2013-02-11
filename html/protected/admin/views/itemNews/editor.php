@@ -1,4 +1,30 @@
 <?php
+$navBarItems = array();
+
+if (!$model->isNewRecord)
+    $navBarItems = array(
+        '',
+        array('label' => 'Delete', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this item news update?')),
+        '',
+    );
+
+
+
+$this->widget('bootstrap.widgets.TbNavbar', array(
+    'brand' => 'News Update - ' . substr($model->item->item, 0, 25) . '...',
+    'brandUrl' => array('item/update', 'id' => $model->item->id),
+    'htmlOptions' => array('class' => 'subnav'),
+    'collapse' => true, // requires bootstrap-responsive.css
+    'items' => array(
+        array(
+            'class' => 'bootstrap.widgets.TbMenu',
+            'items' => $navBarItems
+        ),
+    ),
+));
+?>
+
+<?php
 echo $updated = (isset($updated) ? $updated : "");
 ?>
 <div class="form">
@@ -63,9 +89,6 @@ echo $updated = (isset($updated) ? $updated : "");
             'options' => array(
                 'showAnim' => 'fold',
                 'dateFormat' => 'yy-mm-dd ' . date('h:i:s'),
-                'buttonImageOnly' => 'true',
-                'buttonImage' => '/themes/dashboard/img/calendar.png',
-                'showOn' => 'button',
             ),
             'htmlOptions' => array(
                 'style' => 'height:20px;float:left;'
