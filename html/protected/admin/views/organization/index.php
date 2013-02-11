@@ -22,20 +22,6 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
 ));
 
 
-
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$.fn.yiiGridView.update('organization-grid', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
-
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'vote-grid',
     'dataProvider' => $model->search(),

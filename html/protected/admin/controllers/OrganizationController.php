@@ -25,7 +25,7 @@ class OrganizationController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'view', 'exportCSV'),
+                'actions' => array('index', 'exportCSV'),
                 'roles' => array('readOrganization'),
             ),
             array('allow',

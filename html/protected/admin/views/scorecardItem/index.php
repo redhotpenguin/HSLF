@@ -1,29 +1,42 @@
 <?php
-$this->breadcrumbs=array(
-	'Scorecard Items',
+$navBarItems = array(
+    '',
+    array('label' => 'Create', 'url' => array('create')),
+    '',
+    array('label' => 'Export', 'url' => array('exportCSV')),
+    '',
 );
 
-$this->menu=array(
-	array('label'=>'Add a scorecard item', 'url'=>array('create')),
-	array('label'=>'Manage scorecard items', 'url'=>array('admin')),
-        array('label' => 'Export to CSV file', 'url' => array('exportCSV')),
-);
-?>
+$this->widget('bootstrap.widgets.TbNavbar', array(
+    'brand' => 'Scorecard Items',
+    'brandUrl' => array('scorecardItem/index'),
+    'htmlOptions' => array('class' => 'subnav'),
+    'collapse' => true, // requires bootstrap-responsive.css
+    'items' => array(
+        array(
+            'class' => 'bootstrap.widgets.TbMenu',
+            'items' => $navBarItems
+        ),
+    ),
+));
 
-<h1>Scorecard Items</h1>
 
-<?php
+$office_list = array('' => 'All') + CHtml::listData(Office::model()->findAll(), 'name', 'name');
+
 
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'scorecard-item-grid',
-    'dataProvider' => $dataProvider,
+    'dataProvider' => $model->search(),
+    'filter' => $model,
     'columns' => array(
         'id',
         'name',
         'description',
         array(
-            'header'=>'Office',
-              'value' => '$data->office->name',
+            'header' => 'Office',
+            'name' => 'office_type',
+            'value' => '$data->office->name',
+            'filter' => CHtml::dropDownList('ScorecardItem[office_type]', $model->office_type, $office_list),
         ),
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
@@ -31,4 +44,3 @@ $this->widget('bootstrap.widgets.TbGridView', array(
     ),
 ));
 ?>
-
