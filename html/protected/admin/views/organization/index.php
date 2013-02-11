@@ -1,7 +1,7 @@
 <?php
 
-
 $navBarItems = array(
+    '',
     array('label' => 'Create an organization', 'url' => array('create')),
     '',
     array('label' => 'Export organizations', 'url' => array('exportCSV')),

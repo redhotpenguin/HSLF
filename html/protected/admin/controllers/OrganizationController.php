@@ -71,7 +71,7 @@ class OrganizationController extends Controller {
             if ($model->save()) {
                 if (isset($_POST['Organization']['tags']))
                     $model->massUpdateTags($_POST['Organization']['tags']);
-                $this->redirect(array('editor', 'id' => $model->id, 'updated' => true));
+                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
             }
         }
 
@@ -95,7 +95,7 @@ class OrganizationController extends Controller {
                     $model->massUpdateTags($_POST['Organization']['tags']);
                 else
                     $model->removeAllTagsAssociation();
-                $this->redirect(array('editor', 'id' => $model->id, 'updated' => true));
+                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
             }
         }
 

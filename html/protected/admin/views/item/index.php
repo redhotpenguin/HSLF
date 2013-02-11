@@ -1,6 +1,7 @@
 <?php
 
 $navBarItems = array(
+    '',
     array('label' => 'Create a ballot item', 'url' => array('create')),
     '',
     array('label' => 'Export ballot items', 'url' => array('exportCSV')),

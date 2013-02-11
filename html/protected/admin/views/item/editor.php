@@ -37,7 +37,7 @@ $cs = Yii::app()->getClientScript();
 $cs->registerScriptFile($baseUrl . '/static/ballotitem/item.js');
 ?>
 
-<div class="">
+<div class="form">
 
     <?php
     $recommendation_list = CHtml::listData(Recommendation::model()->findAll(), 'id', 'value');

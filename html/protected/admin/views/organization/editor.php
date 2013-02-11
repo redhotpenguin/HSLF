@@ -20,47 +20,42 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
         ),
     ),
 ));
-
-if (getParam('updated') == '1' || getParam('created') == '1') {
-    echo '<div class="update_box btn-success">Organization Saved</div>';
-}
 ?>
 
-<div class="">
+<div class="form">
 
-    <?php
-    $form = $this->beginWidget('CActiveForm', array(
-        'id' => 'organization-form',
-        'enableAjaxValidation' => false,
-            ));
+<?php
+$form = $this->beginWidget('CActiveForm', array(
+    'id' => 'organization-form',
+    'enableAjaxValidation' => false,
+        ));
 
-    $orgTab = $this->renderPartial('tabs/_tab_organization', array(
-        'model' => $model,
-        'form' => $form,
-            ), true);
+$orgTab = $this->renderPartial('tabs/_tab_organization', array(
+    'model' => $model,
+    'form' => $form,
+        ), true);
 
-    $detailTab = $this->renderPartial('tabs/_tab_detail', array(
-        'model' => $model,
-        'form' => $form,
-            ), true);
+$detailTab = $this->renderPartial('tabs/_tab_detail', array(
+    'model' => $model,
+    'form' => $form,
+        ), true);
 
-    $tagsTab = $this->renderPartial('tabs/_tab_tags', array(
-        'model' => $model,
-        'form' => $form,
-            ), true);
+$tagsTab = $this->renderPartial('tabs/_tab_tags', array(
+    'model' => $model,
+    'form' => $form,
+        ), true);
 
-    $this->widget('bootstrap.widgets.TbTabs', array(
-        'type' => 'tabs', // 'tabs' or 'pills'
-        'placement' => 'left',
-        'tabs' => array(
-            array('label' => 'Organization', 'content' => $orgTab, 'active' => true),
-            array('label' => 'Details', 'content' => $detailTab),
-            array('label' => 'Tags', 'content' => $tagsTab),
-        ),
-    ));
-    ?>
+$this->widget('bootstrap.widgets.TbTabs', array(
+    'type' => 'tabs', // 'tabs' or 'pills'
+    'placement' => 'left',
+    'tabs' => array(
+        array('label' => 'Organization', 'content' => $orgTab, 'active' => true),
+        array('label' => 'Details', 'content' => $detailTab),
+        array('label' => 'Tags', 'content' => $tagsTab),
+    ),
+));
+?>
 
-    <p class="note">Fields with <span class="required">*</span> are required.</p>
 
 <?php echo $form->errorSummary($model); ?>
 
@@ -74,6 +69,12 @@ if (getParam('updated') == '1' || getParam('created') == '1') {
 ?>
     </div>
 
-<?php $this->endWidget(); ?>
+<?php
+$this->endWidget();
+
+if (getParam('updated') == '1' || getParam('created') == '1') {
+    echo '<div class="update_box btn-success">Organization Saved</div>';
+}
+?>
 
 </div><!-- form -->
