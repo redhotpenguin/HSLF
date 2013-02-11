@@ -9,17 +9,7 @@ class TagController extends Controller {
     public $layout = '//layouts/column2';
     public $category = array('Application Manager' => array('/site/mobile/')); // used by the breadcrumb
 
-    /**
-     * Displays a particular model.
-     * @param integer $id the ID of the model to be displayed
-     */
-
-    public function actionView($id) {
-        $this->render('view', array(
-            'model' => $this->loadModel($id),
-        ));
-    }
-
+    
     /**
      * @return array action filters
      */
