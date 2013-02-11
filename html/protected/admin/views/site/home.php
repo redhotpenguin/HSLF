@@ -7,7 +7,7 @@
         ?>
         <div class="hero-unit">
             <h1>Dashboard</h1>
-            <p>Welcome to the indexistration dashboard.</p>
+            <p>Welcome to the administration dashboard.</p>
             
  
             
