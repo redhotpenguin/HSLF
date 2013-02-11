@@ -1,35 +1,41 @@
 <?php
-$this->breadcrumbs = array(
-    'Options',
+
+$navBarItems = array(
+    '',
+    array('label' => 'Create', 'url' => array('create')),
+    '',
+    array('label' => 'Export', 'url' => array('exportCSV')),
+    '',
 );
 
-$this->menu = array(
-    array('label' => 'Add an option', 'url' => array('create')),
-    array('label' => 'Manage options', 'url' => array('admin')),
-    array('label' => 'Export to CSV', 'url' => array('exportCSV'))
-);
-?>
+$this->widget('bootstrap.widgets.TbNavbar', array(
+    'brand' => 'Options',
+    'brandUrl' => array('options/index'),
+    'htmlOptions' => array('class' => 'subnav'),
+    'collapse' => true, // requires bootstrap-responsive.css
+    'items' => array(
+        array(
+            'class' => 'bootstrap.widgets.TbMenu',
+            'items' => $navBarItems
+        ),
+    ),
+));
 
-<h1>Options</h1>
 
-<?php
-$template = '{view}{update}{delete}';
-
-
-
-$dataProvider->pagination->pageSize = 50;
 
 $this->widget('bootstrap.widgets.TbGridView', array(
-    'dataProvider' => $dataProvider,
+    'id' => 'option-grid',
+    'dataProvider' => $model->search(),
+    'filter' => $model,
     'columns' => array(
         'name',
         array(
             'name' => 'value',
             'value' => 'substr($data->value,0,100);'
         ),
-        array(// display a column with "view", "update" and "delete" buttons
+        array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
-            'template' => $template,
+            'template' => '{update}{delete}',
         ),
     ),
 ));
