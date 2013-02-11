@@ -198,8 +198,8 @@ create table "AuthAssignment"
 
 
 CREATE TABLE tenant_user(
-    tenant_id INTEGER REFERENCES tenant(id),
-    user_id INTEGER REFERENCES "user"(id),
+    tenant_id INTEGER REFERENCES tenant(id) on delete cascade on update cascade,
+    user_id INTEGER REFERENCES "user"(id) on delete cascade on update cascade,
     PRIMARY KEY (tenant_id, user_id)
 );
 
@@ -211,8 +211,8 @@ CREATE TABLE user_session
 );
 
 CREATE TABLE tag_organization(
-    tag_id INTEGER REFERENCES tag(id),
-    organization_id INTEGER REFERENCES organization(id),
+    tag_id INTEGER REFERENCES tag(id) on delete cascade on update cascade,
+    organization_id INTEGER REFERENCES organization(id) on delete cascade on update cascade,
     PRIMARY KEY (tag_id, organization_id)
 );
 
@@ -268,7 +268,6 @@ ALTER TABLE scorecard ADD CONSTRAINT scorecard_scorecard_item_id_fkey FOREIGN KE
 ALTER TABLE scorecard ADD CONSTRAINT scorecard_vote_id_fkey FOREIGN KEY (vote_id) REFERENCES vote(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE scorecard_item ADD CONSTRAINT scorecard_item_office_id_fkey FOREIGN KEY (office_id) REFERENCES office(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
 
 ALTER TABLE scorecard_item	ADD FOREIGN KEY (tenant_id) REFERENCES tenant (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
