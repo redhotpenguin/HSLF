@@ -18,42 +18,42 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
         ),
     ),
 ));
-
 ?>
 
+<div class="form">
 
-<?php
-$form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
-    'id' => 'push-message-form',
-    'enableAjaxValidation' => false,
-        ));
+    <?php
+    $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+        'id' => 'push-message-form',
+        'enableAjaxValidation' => false,
+            ));
 
 
 
 
-$pushMessageTab = $this->renderPartial('tabs/_tab_push_message', array(
-    'model' => $model,
-    'form' => $form,
-        ), true);
+    $pushMessageTab = $this->renderPartial('tabs/_tab_push_message', array(
+        'model' => $model,
+        'form' => $form,
+            ), true);
 
-$tagsTab = $this->renderPartial('tabs/_tab_tags', array(
-    'model' => $model,
-    'form' => $form,
-        ), true);
+    $tagsTab = $this->renderPartial('tabs/_tab_tags', array(
+        'model' => $model,
+        'form' => $form,
+            ), true);
 
-$this->widget('bootstrap.widgets.TbTabs', array(
-    'type' => 'tabs', // 'tabs' or 'pills'
-    'placement' => 'left',
-    'tabs' => array(
-        array('label' => 'Push Message', 'content' => $pushMessageTab, 'active' => true),
-        array('label' => 'Tags', 'content' => $tagsTab),
-    ),
-));
-?>
+    $this->widget('bootstrap.widgets.TbTabs', array(
+        'type' => 'tabs', // 'tabs' or 'pills'
+        'placement' => 'left',
+        'tabs' => array(
+            array('label' => 'Push Message', 'content' => $pushMessageTab, 'active' => true),
+            array('label' => 'Tags', 'content' => $tagsTab),
+        ),
+    ));
+    ?>
 
 
     <?php echo $form->errorSummary($model); ?>
-    
+
 
     <div class="clearfix"></div>
     <hr/>
@@ -64,6 +64,8 @@ $this->widget('bootstrap.widgets.TbTabs', array(
         'label' => $model->isNewRecord ? 'Create' : 'Save',
     ));
     ?>
-</div>
 
-<?php $this->endWidget(); ?>
+
+    <?php $this->endWidget(); ?>
+
+</div>
