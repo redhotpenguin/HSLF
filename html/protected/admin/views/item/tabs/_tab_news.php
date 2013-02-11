@@ -19,7 +19,7 @@
 
                         <?php
                         $edit_item_news_url = CHtml::normalizeUrl(array('itemNews/update', 'id' => $itemNew->id));
-                        echo CHtml::link('Edit', $edit_item_news_url, array('target' => '_blank'));
+                        echo CHtml::link('Edit', $edit_item_news_url);
                         ?>
 
                     </span>
