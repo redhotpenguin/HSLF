@@ -13,13 +13,24 @@ $ns = "var ns  = {action_url: '" . $action_url . "'};";
 Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::POS_HEAD);
 
 
-$this->breadcrumbs = array(
-    'Mobile users',
+
+$navBarItems = array(
+    '',
+    array('label' => 'Browse', 'url' => array('browse')),
+    '',
 );
 
-$this->menu = array(
-    array('label' => 'Browse', 'url' => array('browse')),
-);
+$this->widget('bootstrap.widgets.TbNavbar', array(
+    'brand' => 'Mobile Users',
+    'brandUrl' => array('mobileUser/index'),
+    'htmlOptions' => array('class' => 'subnav'),
+    'collapse' => true, // requires bootstrap-responsive.css
+    'items' => array(
+        array(
+            'class' => 'bootstrap.widgets.TbMenu',
+            'items' => $navBarItems
+        ),
+    )));
 ?>
 
 <div class="hero-unit">
