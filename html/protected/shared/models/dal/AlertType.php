@@ -84,9 +84,7 @@ class AlertType extends BaseActiveRecord {
      * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
      */
     public function search() {
-        // Warning: Please modify the following code to remove attributes that
-        // should not be searched.
-        //error_log(print_r($_REQUEST, true));
+    
         $criteria = new CDbCriteria;
 
         if ($this->tag_name != '') {
@@ -96,7 +94,7 @@ class AlertType extends BaseActiveRecord {
         }
 
         $criteria->compare('id', $this->id);
-        $criteria->compare('display_name', $this->display_name, true);
+        $criteria->compare('t.display_name', $this->display_name, true);
         $criteria->compare('category', $this->category, true);
         $criteria->compare('tag_id', $this->tag_id);
 

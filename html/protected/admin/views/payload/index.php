@@ -24,13 +24,11 @@ $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => '-payload-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
+    'nullDisplay' => '<em>NOT SET</em>',
     'columns' => array(
         'id',
         'title',
         'url',
-        /*
-          'email',
-         */
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
             'template' => '{update}{delete}'
