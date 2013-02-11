@@ -2,15 +2,15 @@
 
 $navBarItems = array(
     '',
-    array('label' => 'Create an organization', 'url' => array('create')),
+    array('label' => 'Create', 'url' => array('create')),
     '',
-    array('label' => 'Export organizations', 'url' => array('exportCSV')),
+    array('label' => 'Export', 'url' => array('exportCSV')),
     '',
 );
 
 $this->widget('bootstrap.widgets.TbNavbar', array(
-    'brand' => '',
-    'brandUrl' => '#',
+    'brand' => 'Organizations',
+    'brandUrl' => array('organization/index'),
     'htmlOptions' => array('class' => 'subnav'),
     'collapse' => true, // requires bootstrap-responsive.css
     'items' => array(

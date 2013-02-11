@@ -2,19 +2,26 @@
 
 $navBarItems = array(
     '',
-    array('label' => 'Create a ballot item', 'url' => array('create')),
+    array('label' => 'Create', 'url' => array('create')),
     '',
-    array('label' => 'Export ballot items', 'url' => array('exportCSV')),
-    '',
-    array('label' => 'Export news', 'url' => array('exportNewsCSV')),
-    '',
-    array('label' => 'Export organizations ', 'url' => array('exportOrganizationCSV')),
-    '',
+    array(
+        'label' => 'Export',
+        'class' => 'bootstrap.widgets.TbMenu',
+        'htmlOptions' => array('class' => 'pull-right'),
+        'items' => array(
+            array('label' => 'Export ballot items', 'url' => array('exportCSV')),
+            '',
+            array('label' => 'Export news', 'url' => array('exportNewsCSV')),
+            '',
+            array('label' => 'Export organizations ', 'url' => array('exportOrganizationCSV')),
+        ),
+        '',
+    ),
 );
 
 $this->widget('bootstrap.widgets.TbNavbar', array(
-    'brand' => '',
-    'brandUrl' => '#',
+    'brand' => 'Ballot Items',
+    'brandUrl' => array('item/index'),
     'htmlOptions' => array('class' => 'subnav'),
     'collapse' => true, // requires bootstrap-responsive.css
     'items' => array(
@@ -65,7 +72,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         ),
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
-            'template'=>'{update}{delete}'
+            'template' => '{update}{delete}'
         ),
     ),
 ));

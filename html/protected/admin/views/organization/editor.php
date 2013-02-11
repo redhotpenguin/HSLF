@@ -9,8 +9,8 @@ if (!$model->isNewRecord) {
 }
 
 $this->widget('bootstrap.widgets.TbNavbar', array(
-    'brand' => '',
-    'brandUrl' => '#',
+    'brand' => 'Organizations',
+    'brandUrl' => array('organization/index'),
     'htmlOptions' => array('class' => 'subnav'),
     'collapse' => true, // requires bootstrap-responsive.css
     'items' => array(
