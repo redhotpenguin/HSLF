@@ -1,18 +1,5 @@
 
 
-div.form
-{
-    border: 1px dotted #CCC;
-    padding: 25px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    box-shadow: 4px 2px 10px rgba(0, 0, 0, 0.41);
-    -moz-box-shadow: 4px 2px 10px rgba(0, 0, 0, 0.41);
-    -webkit-box-shadow: 4px 2px 10px rgba(0, 0, 0, 0.41);
-    background-color:#fff;
-
-}
 
 div.form input,
 div.form textarea,

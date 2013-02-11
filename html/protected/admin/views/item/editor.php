@@ -1,4 +1,3 @@
-<br/><br/><br/>
 <?php
 $navBarItems = array(
     array('label' => 'Manage', 'url' => array('index')),
