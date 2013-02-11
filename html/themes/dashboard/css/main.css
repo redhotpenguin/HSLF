@@ -94,3 +94,7 @@ h4{
     resize:vertical;
     overflow:auto;
 }
+
+.subnav.navbar-fixed-top {
+    top: 40px;
+}

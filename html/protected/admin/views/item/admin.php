@@ -11,8 +11,6 @@ $this->menu = array(
     array('label' => 'Export orgs.  to CSV', 'url' => array('exportOrganizationCSV')));
 ?>
 
-<h1>Manage Ballot Items</h1>
-
 <?php
 $state_list = array('' => 'All') + CHtml::listData(State::model()->findAll(), 'id', 'name');
 $district_list = array('' => 'All') + District::model()->getTypeOptions();

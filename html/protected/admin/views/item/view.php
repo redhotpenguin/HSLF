@@ -12,8 +12,6 @@ $this->menu = array(
 );
 ?>
 
-<h1><?php echo $model->item; ?></h1>
-
 <?php
 $state_name = $model->district->state->name;
 $district_type = $model->district->type;

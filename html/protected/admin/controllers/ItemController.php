@@ -106,7 +106,7 @@ class ItemController extends Controller {
         $model->date_published = date('Y-m-d h:i:s');
 
 
-        $this->render('create', array(
+        $this->render('editor', array(
             'model' => $model,
             'organization_list' => Organization::model()->findAll(array('order' => 'name')),
         ));
@@ -174,7 +174,7 @@ class ItemController extends Controller {
 
 
 
-        $this->render('update', array(
+        $this->render('editor', array(
             'model' => $model,
             'organization_list' => Organization::model()->findAll(array('order' => 'name')),
         ));

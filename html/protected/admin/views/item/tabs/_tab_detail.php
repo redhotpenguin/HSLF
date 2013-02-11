@@ -19,7 +19,7 @@
     <div class="span6">
         <?php
         echo $form->labelEx($model, 'party_id');
-        echo $form->dropDownList($model, 'party_id', CHtml::listData(Party::model()->findAll(), 'id', 'name'), array('class' => 'span12'));
+        echo $form->dropDownList($model, 'party_id', CHtml::listData(Party::model()->findAll(), 'id', 'name'), array('class' => 'span11'));
         echo $form->error($model, 'party_id');
         ?>
     </div>
@@ -37,7 +37,7 @@
             ),
             'htmlOptions' => array(
                 'style' => 'height:20px;',
-                'class' => 'span12'
+                'class' => 'span11'
             ),
         ));
         ?>
@@ -50,7 +50,7 @@
     <div class="span6">
         <?php
         echo $form->labelEx($model, 'recommendation_id');
-        echo $form->dropDownList($model, 'recommendation_id', $recommendation_list, array('class' => 'span12'));
+        echo $form->dropDownList($model, 'recommendation_id', $recommendation_list, array('class' => 'span11'));
         echo $form->error($model, 'recommendation_id');
         ?>
     </div>
@@ -58,7 +58,7 @@
     <div class="span6">
         <?php
         echo $form->labelEx($model, 'image_url');
-        echo $form->textField($model, 'image_url', array('class' => 'span12', 'placeholder' => 'http://www.mysite.com/image.jpg'));
+        echo $form->textField($model, 'image_url', array('class' => 'span11', 'placeholder' => 'http://www.mysite.com/image.jpg'));
         echo $form->error($model, 'image_url');
         ?>
     </div>
@@ -69,7 +69,7 @@
     <div class="span6">
         <?php
         echo $form->labelEx($model, 'facebook_url');
-        echo $form->textField($model, 'facebook_url', array('class' => 'span12', 'maxlength' => 2048, 'placeholder' => 'Facebook URL'));
+        echo $form->textField($model, 'facebook_url', array('class' => 'span11', 'maxlength' => 2048, 'placeholder' => 'Facebook URL'));
         ?>
         <?php
         echo $form->error($model, 'facebook_url');
@@ -79,7 +79,7 @@
     <div class="span6">
         <?php
         echo $form->labelEx($model, 'twitter_handle');
-        echo $form->textField($model, 'twitter_handle', array('class' => 'span12', 'maxlength' => 16, 'placeholder' => 'Twitter handle'));
+        echo $form->textField($model, 'twitter_handle', array('class' => 'span11', 'maxlength' => 16, 'placeholder' => 'Twitter handle'));
         ?>
         <?php
         echo $form->error($model, 'twitter_handle');
@@ -91,7 +91,7 @@
     <div class="span6">
         <?php
         echo $form->labelEx($model, 'slug');
-        echo $form->textField($model, 'slug', array('class' => 'span12', 'maxlength' => 1000, 'placeholder' => 'Web app. slug'));
+        echo $form->textField($model, 'slug', array('class' => 'span11', 'maxlength' => 1000, 'placeholder' => 'Web app. slug'));
         ?>
 
         <?php
@@ -105,7 +105,7 @@
     <div class="span6">
         <?php
         echo $form->labelEx($model, 'website');
-        echo $form->textField($model, 'website', array('class' => 'span12', 'maxlength' => 2048, 'placeholder' => 'Candidate or measure\'s website'));
+        echo $form->textField($model, 'website', array('class' => 'span11', 'maxlength' => 2048, 'placeholder' => 'Candidate or measure\'s website'));
         ?>
 
         <?php

@@ -11,8 +11,6 @@ $this->menu = array(
 );
 ?>
 
-<h1>Ballot Items</h1>
-
 <?php
 $dataProvider->pagination->pageSize = 50;
 $this->widget('bootstrap.widgets.TbGridView', array(

@@ -15,7 +15,7 @@ $cs = Yii::app()->getClientScript();
 $cs->registerScriptFile($baseUrl . '/static/ballotitem/item.js');
 ?>
 
-<div class="form">
+<div class="">
 
     <?php
     $recommendation_list = CHtml::listData(Recommendation::model()->findAll(), 'id', 'value');
@@ -65,7 +65,7 @@ $cs->registerScriptFile($baseUrl . '/static/ballotitem/item.js');
 
     $this->widget('bootstrap.widgets.TbTabs', array(
         'type' => 'tabs', // 'tabs' or 'pills'
-        'placement' => 'above',
+        'placement' => 'left',
         'tabs' => array(
             array('label' => 'Ballot Item', 'content' => $itemTab, 'active' => true),
             array('label' => 'Details', 'content' => $detailTab),
@@ -74,6 +74,8 @@ $cs->registerScriptFile($baseUrl . '/static/ballotitem/item.js');
         ),
     ));
     ?>
+    
+    <div class="clearfix"></div>
 
     <hr/>
     

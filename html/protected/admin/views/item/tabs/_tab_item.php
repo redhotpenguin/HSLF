@@ -40,14 +40,14 @@
         <div class="span6">
             <?php
             echo $form->labelEx($model, 'first_name');
-            echo $form->textField($model, 'first_name', array('class' => 'span12', 'maxlength' => 1024, 'placeholder' => ''));
+            echo $form->textField($model, 'first_name', array('class' => 'span11', 'maxlength' => 1024, 'placeholder' => ''));
             echo $form->error($model, 'first_name');
             ?>
         </div>
         <div class="span6">
             <?php
             echo $form->labelEx($model, 'last_name');
-            echo $form->textField($model, 'last_name', array('class' => 'span12', 'maxlength' => 1024, 'placeholder' => ''));
+            echo $form->textField($model, 'last_name', array('class' => 'span11', 'maxlength' => 1024, 'placeholder' => ''));
             echo $form->error($model, 'last_name');
             ?>
         </div>
