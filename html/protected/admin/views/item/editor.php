@@ -1,12 +1,12 @@
 <br/><br/><br/>
 <?php
 $navBarItems = array(
-    array('label' => 'Manage ballot items', 'url' => array('index')),
+    array('label' => 'Manage', 'url' => array('index')),
 );
 
 if (!$model->isNewRecord) {
-    array_push($navBarItems, '', array('label' => 'Delete this ballot item', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this item?')), '', array('label' => 'Create another ballot item', 'url' => array('create'),
-    ));
+    array_push($navBarItems, '', array('label' => 'Create', 'url' => array('create'),
+            ), '', array('label' => 'Delete', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this ballot item?')), '');
 }
 
 $this->widget('bootstrap.widgets.TbNavbar', array(
@@ -97,12 +97,13 @@ $cs->registerScriptFile($baseUrl . '/static/ballotitem/item.js');
         ),
     ));
     ?>
-    
+
     <div class="clearfix"></div>
 
     <hr/>
-    
-    <?php echo $form->errorSummary($model); 
+
+    <?php
+    echo $form->errorSummary($model);
 
     if (!$model->isNewRecord) {
         $url = CHtml::normalizeUrl(array(
@@ -160,10 +161,8 @@ $cs->registerScriptFile($baseUrl . '/static/ballotitem/item.js');
              
             }',
                 )));
-
-
     }else
-        $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'label' => 'Save', 'type'=>'primary'));
+        $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'label' => 'Save', 'type' => 'primary'));
     ?>
 
 
