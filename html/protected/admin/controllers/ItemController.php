@@ -97,6 +97,7 @@ class ItemController extends Controller {
 
 
         $this->render('editor', array(
+            'active_tab' => 'item',
             'model' => $model,
             'organization_list' => Organization::model()->findAll(array('order' => 'name')),
         ));

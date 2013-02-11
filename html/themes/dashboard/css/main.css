@@ -61,11 +61,12 @@ h4{
 
 .candidate_issue_item,
 .news_item{
-    padding: 5px;
-    margin-bottom: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
     position: relative;
     background-color: #EFEFEF;
     border: 1px solid #DDD;
+    border-radius:2px;
 }
 
 #id_candidate_issue {

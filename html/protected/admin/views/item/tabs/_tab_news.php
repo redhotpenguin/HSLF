@@ -1,43 +1,49 @@
+<?php
+if ($model->id):
+    $new_item_news_url = CHtml::normalizeUrl(array('itemNews/add', 'item_id' => $model->id));
+    ?>
+
     <?php
-    if ($model->id):
-        $new_item_news_url = CHtml::normalizeUrl(array('itemNews/add', 'item_id' => $model->id));
+    if ($model->itemNews):
 
-        echo CHtml::link('Add a news update', $new_item_news_url, array('target' => '_blank'));
-        ?>
-        <br/>
-        <br/>
+        foreach ($model->itemNews as $itemNew) {
+            ?>
 
-        <?php
-        if ($model->itemNews):
+            <div class="news_item">
+                <span class="floatright">
 
-            foreach ($model->itemNews as $itemNew) {
+
+                    <?php
+                    $edit_item_news_url = CHtml::normalizeUrl(array('itemNews/update', 'id' => $itemNew->id));
+                    echo CHtml::link('Edit', $edit_item_news_url, array('class'=>'btn'));
+                    ?>
+
+                </span>
+
+                <b> <?php echo $itemNew->title; ?></b><br/><br/>
+                <?php
+                echo  "<em>$itemNew->date_published </em>";
                 ?>
+                <br/>
+                <p><?php echo $itemNew->getExcerpt() ?></p>
 
-                <div class="news_item">
-                    <span class="btn floatright">
-
-
-                        <?php
-                        $edit_item_news_url = CHtml::normalizeUrl(array('itemNews/update', 'id' => $itemNew->id));
-                        echo CHtml::link('Edit', $edit_item_news_url);
-                        ?>
-
-                    </span>
-
-                    <b> <?php echo $itemNew->title; ?>:</b>
-                    <br/>
-                    <p><?php echo $itemNew->getExcerpt() ?></p>
-
-                    <?php ?> 
-                </div>
+            <?php ?> 
+            </div>
                 <?php
             }
 
         else:
             echo 'No news updates';
         endif;
+        ?>
+    <br/>
+    <br/>
 
-    else:
-        echo 'You must save an item before you can add a news.';
-    endif; // end test $model->itemNews
-    ?>
+    <?php
+    echo CHtml::link('Add a news update', $new_item_news_url, array('class' => 'btn btn-info'));
+
+
+else:
+    echo 'You must save an item before you can add a news.';
+endif; // end test $model->itemNews
+?>
