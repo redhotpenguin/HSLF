@@ -1,4 +1,5 @@
 <?php
+
 $navBarItems = array(
     '',
     array('label' => 'Create', 'url' => array('create')),
@@ -40,6 +41,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         ),
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
+            'template' => '{view}{delete}',
         ),
     ),
 ));

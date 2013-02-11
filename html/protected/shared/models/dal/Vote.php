@@ -36,6 +36,7 @@ class Vote extends BaseActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
+            array('name', 'required'),
             array('name', 'length', 'max' => 64),
             array('icon, tenant_id', 'safe'),
             array('icon', 'url'),
@@ -61,7 +62,7 @@ class Vote extends BaseActiveRecord {
         return array(
             'id' => 'ID',
             'name' => 'Name',
-            'icon' => 'Icon',
+            'icon' => 'Icon URL',
         );
     }
 

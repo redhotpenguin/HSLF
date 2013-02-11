@@ -1,29 +1,38 @@
 <?php
-$this->breadcrumbs = array(
-    'Votes',
+
+$navBarItems = array(
+    '',
+    array('label' => 'Create', 'url' => array('create')),
+    '',
+    array('label' => 'Export', 'url' => array('exportCSV')),
+    '',
 );
 
-$this->menu = array(
-    array('label' => 'Add another vote option', 'url' => array('create')),
-    array('label' => 'Manage vote options', 'url' => array('admin')),
-    array('label' => 'Export to CSV', 'url' => array('exportCSV')),
-);
-?>
+$this->widget('bootstrap.widgets.TbNavbar', array(
+    'brand' => 'Votes',
+    'brandUrl' => array('vote/index'),
+    'htmlOptions' => array('class' => 'subnav'),
+    'collapse' => true, // requires bootstrap-responsive.css
+    'items' => array(
+        array(
+            'class' => 'bootstrap.widgets.TbMenu',
+            'items' => $navBarItems
+        ),
+    ),
+));
 
-<h1>Votes</h1>
 
-
-<?php
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'vote-grid',
-    'dataProvider' => $dataProvider,
+    'dataProvider' => $model->search(),
+    'filter' => $model,
     'columns' => array(
         'id',
         'name',
         'icon',
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
+            'template' => '{view}{delete}',
         ),
     ),
 ));
-?>
