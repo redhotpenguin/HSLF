@@ -73,7 +73,7 @@ class Item extends BaseActiveRecord {
             array('published', 'length', 'max' => 16),
             array('date_published', 'date', 'format' => 'yyyy-M-d H:m:s'),
             array('next_election_date', 'date', 'format' => 'yyyy-M-d'),
-            array('next_election_date, detail, slug, image_url, tenant_id', 'safe'),
+            array('next_election_date, detail, slug, image_url', 'safe'),
             array('slug', 'unique_url'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
