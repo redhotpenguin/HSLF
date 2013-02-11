@@ -107,7 +107,7 @@ class ItemController extends Controller {
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id the ID of the model to be updated
      */
-    public function actionUpdate($id) {
+    public function actionUpdate($id, $activeTab = 'item') {
         // import FileUpload helper class
         Yii::import('admin.models.helpers.FileUpload');
 
@@ -162,9 +162,8 @@ class ItemController extends Controller {
             return;
         }
 
-
-
         $this->render('editor', array(
+            'active_tab' => $activeTab,
             'model' => $model,
             'organization_list' => Organization::model()->findAll(array('order' => 'name')),
         ));
