@@ -161,52 +161,9 @@ $cs->registerScriptFile($baseUrl . '/static/ballotitem/item.js');
             }',
                 )));
 
-        CHtml::ajaxSubmitButton('Save', $url, array(
-            'type' => 'POST',
-            'update' => '#targetdiv',
-            'beforeSend' => 'js:function(){
-                    target =$("#targetdiv");
-                    target.fadeIn();
-                    target.removeClass("hidden");
-                    target.addClass("btn-info");
-                    target.html("saving...");
-                 }',
-            'success' => 'js:function(response) {
-               target =$("#targetdiv");
-                target.removeClass("btn-info");
-                 target.fadeIn();
-                 target.removeClass("hidden");
-                 
-                  if ( response == "success" ){
-                         sessionStorage.setItem("ItemContent", "");
-                         target.addClass("btn-success");
-                         target.html( "Ballot item saved" );
-                    }
-                    else{
-                    target.addClass("btn-danger");
-                      target.html( "Could not save ballot item." );
-                  }
-                target.fadeOut(5000, function(){
-                 target.removeClass("btn-danger");
-                 target.removeClass("btn-success");
-                });
-              
-                
-             }',
-            'error' => 'js:function(object){
-              
-                target =$("#targetdiv");
-                target.removeClass("btn-info");
-                 target.fadeIn();
-                 target.removeClass("hidden");
-                   target.addClass("btn-danger");
-         
-                   target.html( "Could not save item:<br/>" + object.responseText );
-             
-            }',
-        ));
+
     }else
-        $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'label' => 'Save'));
+        $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'label' => 'Save', 'type'=>'primary'));
     ?>
 
 

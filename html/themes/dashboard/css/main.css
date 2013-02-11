@@ -97,4 +97,5 @@ h4{
 
 .subnav.navbar-fixed-top {
     top: 40px;
+    z-index: 10;
 }
