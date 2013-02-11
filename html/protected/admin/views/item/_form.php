@@ -57,12 +57,7 @@ $cs->registerScriptFile($baseUrl . '/static/ballotitem/item.js');
         'recommendation_list' => $recommendation_list,
             ), true);
 
-    $moreTab = $this->renderPartial('_tab_more', array(
-        'model' => $model,
-        'form' => $form,
-            ), true);
-
-    $newsTab = $this->renderPartial('_tab_item', array(
+    $newsTab = $this->renderPartial('_tab_news', array(
         'model' => $model,
         'form' => $form,
             ), true);
@@ -75,7 +70,6 @@ $cs->registerScriptFile($baseUrl . '/static/ballotitem/item.js');
             array('label' => 'Ballot Item', 'content' => $itemTab, 'active' => true),
             array('label' => 'Details', 'content' => $detailTab),
             array('label' => 'Organizations', 'content' => $orgTab),
-            array('label' => 'More', 'content' => $moreTab),
             array('label' => 'News Updates', 'content' => $newsTab),
         ),
     ));
@@ -187,7 +181,7 @@ $cs->registerScriptFile($baseUrl . '/static/ballotitem/item.js');
             }',
         ));
     }else
-        $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'label' => 'Create'));
+        $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'label' => 'Save'));
     ?>
 
 

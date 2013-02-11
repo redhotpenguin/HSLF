@@ -74,4 +74,37 @@
     </div>
 </div>
 
-<div class="clearfix"></div>
+
+<hr/>
+<div>
+    <div class="row-fluid">
+        <div class="span6">
+            <?php echo $form->labelEx($model, 'date_published'); ?>
+            <?php
+            $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+                'name' => 'Item[date_published]',
+                'value' => $model->date_published,
+                // additional javascript options for the date picker plugin
+                'options' => array(
+                    'showAnim' => 'fold',
+                    'dateFormat' => 'yy-mm-dd ' . date('h:i:s'),
+                ),
+                'htmlOptions' => array(
+                    'style' => 'height:20px;',
+                    'class' => 'span12'
+                ),
+            ));
+            ?>
+            <?php echo $form->error($model, 'date_published'); ?>
+        </div>
+
+
+        <div class="span6">
+            <?php echo $form->labelEx($model, 'published'); ?>
+            <?php echo $form->dropDownList($model, 'published', array('yes' => 'Yes', 'no' => 'No')); ?>
+            <?php echo $form->error($model, 'published'); ?>
+        </div>
+
+    </div>
+</div>
+

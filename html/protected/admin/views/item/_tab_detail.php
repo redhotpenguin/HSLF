@@ -64,3 +64,52 @@
     </div>
 
 </div>
+<hr/>
+<div class="row-fluid">
+    <div class="span6">
+        <?php
+        echo $form->labelEx($model, 'facebook_url');
+        echo $form->textField($model, 'facebook_url', array('class' => 'span12', 'maxlength' => 2048, 'placeholder' => 'Facebook URL'));
+        ?>
+        <?php
+        echo $form->error($model, 'facebook_url');
+        ?>
+    </div>
+
+    <div class="span6">
+        <?php
+        echo $form->labelEx($model, 'twitter_handle');
+        echo $form->textField($model, 'twitter_handle', array('class' => 'span12', 'maxlength' => 16, 'placeholder' => 'Twitter handle'));
+        ?>
+        <?php
+        echo $form->error($model, 'twitter_handle');
+        ?>
+    </div>
+</div>
+<hr/>
+<div class="row-fluid">
+    <div class="span6">
+        <?php
+        echo $form->labelEx($model, 'slug');
+        echo $form->textField($model, 'slug', array('class' => 'span12', 'maxlength' => 1000, 'placeholder' => 'Web app. slug'));
+        ?>
+
+        <?php
+        echo $form->error($model, 'slug');
+        ?>
+        <br/>
+        <span id="dynamic_site_url"></span>
+
+    </div>
+
+    <div class="span6">
+        <?php
+        echo $form->labelEx($model, 'website');
+        echo $form->textField($model, 'website', array('class' => 'span12', 'maxlength' => 2048, 'placeholder' => 'Candidate or measure\'s website'));
+        ?>
+
+        <?php
+        echo $form->error($model, 'website');
+        ?>
+    </div>
+</div>
