@@ -82,6 +82,9 @@
         </div><!-- page -->
 
         </div><!-- container-->
+        <footer class="footer" id="footer"> 
+            Copyright &copy; <?php echo date('Y'); ?> by Winning Mark - All Rights Reserved
 
+        </footer><!-- footer -->
     </body>
 </html>
