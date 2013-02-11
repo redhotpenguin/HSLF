@@ -40,24 +40,24 @@ $cs->registerScriptFile($baseUrl . '/static/ballotitem/item.js');
                 ));
     }
 
-    $itemTab = $this->renderPartial('_tab_item', array(
+    $itemTab = $this->renderPartial('tabs/_tab_item', array(
         'model' => $model,
         'form' => $form,
             ), true);
 
-    $orgTab = $this->renderPartial('_tab_organizations', array(
+    $orgTab = $this->renderPartial('tabs/_tab_organizations', array(
         'model' => $model,
         'organization_list' => $organization_list // defined in controller
             ), true);
 
 
-    $detailTab = $this->renderPartial('_tab_detail', array(
+    $detailTab = $this->renderPartial('tabs/_tab_detail', array(
         'model' => $model,
         'form' => $form,
         'recommendation_list' => $recommendation_list,
             ), true);
 
-    $newsTab = $this->renderPartial('_tab_news', array(
+    $newsTab = $this->renderPartial('tabs/_tab_news', array(
         'model' => $model,
         'form' => $form,
             ), true);
