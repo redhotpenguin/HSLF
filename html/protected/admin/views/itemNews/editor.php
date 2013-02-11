@@ -12,7 +12,7 @@ if (!$model->isNewRecord)
 
 $this->widget('bootstrap.widgets.TbNavbar', array(
     'brand' => 'News Update - ' . substr($model->item->item, 0, 25) . '...',
-    'brandUrl' => array('item/update', 'id' => $model->item->id),
+    'brandUrl' => array('item/update', 'id' => $model->item->id, 'activeTab' => 'news'),
     'htmlOptions' => array('class' => 'subnav'),
     'collapse' => true, // requires bootstrap-responsive.css
     'items' => array(

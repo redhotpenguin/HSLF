@@ -82,8 +82,6 @@ $cs->registerScriptFile($baseUrl . '/static/ballotitem/item.js');
         'form' => $form,
             ), true);
 
-    echo $active_tab;
-
     $this->widget('bootstrap.widgets.TbTabs', array(
         'type' => 'tabs', // 'tabs' or 'pills'
         'placement' => 'left',
@@ -91,7 +89,7 @@ $cs->registerScriptFile($baseUrl . '/static/ballotitem/item.js');
             array('label' => 'Ballot Item', 'content' => $itemTab, 'active' => ( $active_tab == 'item' ? true : false )),
             array('label' => 'Details', 'content' => $detailTab, 'active' => ( $active_tab == 'details' ? true : false )),
             array('label' => 'Organizations', 'content' => $orgTab, 'active' => ( $active_tab == 'organizations' ? true : false )),
-            array('label' => 'News Updates', 'content' => $newsTab), 'active' => ( $active_tab == 'updates' ? true : false ),
+            array('label' => 'News Updates', 'content' => $newsTab, 'active' => ( $active_tab == 'news' ? true : false ) ),
         ),
     ));
     ?>
