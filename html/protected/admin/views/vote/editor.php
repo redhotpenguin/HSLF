@@ -7,8 +7,8 @@ if (!$model->isNewRecord) {
 }
 
 $this->widget('bootstrap.widgets.TbNavbar', array(
-    'brand' => 'Scorecard Items',
-    'brandUrl' => array('scorecardItem/index'),
+    'brand' => 'Votes',
+    'brandUrl' => array('vote/index'),
     'htmlOptions' => array('class' => 'subnav'),
     'collapse' => true, // requires bootstrap-responsive.css
     'items' => array(
