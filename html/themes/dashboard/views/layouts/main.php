@@ -34,7 +34,7 @@
                         'items' => array(
                             '---',
                             array('label' => 'Content', 'url' => '#', 'items' => array(
-                                    array('label' => 'Ballot Items', 'url' => array('/item/admin')),
+                                    array('label' => 'Ballot Items', 'url' => array('/item/index')),
                                     array('label' => 'Organizations', 'url' => array('/organization/admin/')),
                                     '',
                                     array('label' => 'Scorecard Items', 'url' => array('/scorecardItem/admin')),
