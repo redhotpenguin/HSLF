@@ -25,7 +25,7 @@ class PushMessageController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'admin', 'view'),
+                'actions' => array('index'),
                 'roles' => array('readPushMessage'),
             ),
             array('allow',
@@ -75,7 +75,7 @@ class PushMessageController extends Controller {
             }
         }
 
-        $this->render('create', array(
+        $this->render('editor', array(
             'model' => $model,
         ));
     }
@@ -104,14 +104,14 @@ class PushMessageController extends Controller {
             }
         }
 
-        $this->render('update', array(
+        $this->render('editor', array(
             'model' => $model,
         ));
     }
 
     /**
      * Deletes a particular model.
-     * If deletion is successful, the browser will be redirected to the 'admin' page.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id the ID of the model to be deleted
      */
     public function actionDelete($id) {
@@ -119,9 +119,9 @@ class PushMessageController extends Controller {
             // we only allow deletion via POST request
             $this->loadModel($id)->delete();
 
-            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+            // if AJAX request (triggered by deletion via index grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
-                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
         }
         else
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
@@ -131,22 +131,12 @@ class PushMessageController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('PushMessage');
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
-    }
-
-    /**
-     * Manages all models.
-     */
-    public function actionAdmin() {
         $model = new PushMessage('search');
         $model->unsetAttributes();  // clear any default values
         if (isset($_GET['PushMessage']))
             $model->attributes = $_GET['PushMessage'];
 
-        $this->render('admin', array(
+        $this->render('index', array(
             'model' => $model,
         ));
     }
