@@ -63,8 +63,8 @@ class OrganizationController extends Controller {
     public function actionCreate() {
         $model = new Organization;
 
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
+// Uncomment the following line if AJAX validation is needed
+// $this->performAjaxValidation($model);
 
         if (isset($_POST['Organization'])) {
             $model->attributes = $_POST['Organization'];
@@ -89,13 +89,26 @@ class OrganizationController extends Controller {
         $model = $this->loadModel($id);
 
         if (isset($_POST['Organization'])) {
+
             $model->attributes = $_POST['Organization'];
+
+            if (Yii::app()->request->isAjaxRequest) { // if ajax request, perform ajax validation.
+                $this->performAjaxValidation($model);
+            }
+
             if ($model->save()) {
                 if (isset($_POST['Organization']['tags']))
                     $model->massUpdateTags($_POST['Organization']['tags']);
                 else
                     $model->removeAllTagsAssociation();
-                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
+
+                if (Yii::app()->request->isAjaxRequest) { // AJAX Post Request
+                    echo 'success';
+                    Yii::app()->end();
+                }
+
+                else
+                    $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
             }
         }
 
@@ -111,10 +124,10 @@ class OrganizationController extends Controller {
      */
     public function actionDelete($id) {
         if (Yii::app()->request->isPostRequest) {
-            // we only allow deletion via POST request
+// we only allow deletion via POST request
             $this->loadModel($id)->delete();
 
-            // if AJAX request (triggered by deletion via index grid view), we should not redirect the browser
+// if AJAX request (triggered by deletion via index grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
                 $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
         }

@@ -1,7 +1,5 @@
 <?php
-$navBarItems = array(
-    array('label' => 'Manage', 'url' => array('index')),
-);
+$navBarItems = array();
 
 if (!$model->isNewRecord) {
     array_push($navBarItems, '', array('label' => 'Create', 'url' => array('create'),

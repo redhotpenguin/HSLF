@@ -1,7 +1,5 @@
 <?php
-$navBarItems = array(
-    array('label' => 'Manage', 'url' => array('index')),
-);
+$navBarItems = array();
 
 if (!$model->isNewRecord) {
     array_push($navBarItems, '', array('label' => 'Create', 'url' => array('create'),
@@ -66,16 +64,73 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
 
 
     <div class="row buttons">
-        <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'Save'));
+        <?php
+        //$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'Save'));
+
+
+        if (!$model->isNewRecord) {
+            $url = CHtml::normalizeUrl(array(
+                        'organization/update',
+                        'id' => $model->id,
+                        'enctype' => 'multipart/form-data',
+                    ));
+
+            $this->widget('bootstrap.widgets.TbButton', array(
+                'buttonType' => 'ajaxButton',
+                'type' => 'primary',
+                'label' => 'Save',
+                'url' => $url,
+                'ajaxOptions' => array(
+                    'type' => 'POST',
+                    'update' => '#targetdiv',
+                    'beforeSend' => 'js:function(){
+                    target =$("#targetdiv");
+                    target.fadeIn();
+                    target.removeClass("hidden");
+                    target.addClass("btn-info");
+                    target.html("saving...");
+                 }',
+                    'success' => 'js:function(response) {
+               target =$("#targetdiv");
+                target.removeClass("btn-info");
+                 target.fadeIn();
+                 target.removeClass("hidden");
+                 
+                  if ( response == "success" ){
+                         target.addClass("btn-success");
+                         target.html( "Organization successfully saved" );
+                    }
+                    else{
+                    target.addClass("btn-danger");
+                      target.html( "Could not save organization." );
+                  }
+                target.fadeOut(5000, function(){
+                 target.removeClass("btn-danger");
+                 target.removeClass("btn-success");
+                });
+              
+                
+             }',
+                    'error' => 'js:function(object){
+              
+                target =$("#targetdiv");
+                target.removeClass("btn-info");
+                 target.fadeIn();
+                 target.removeClass("hidden");
+                   target.addClass("btn-danger");
+         
+                   target.html( "Could not save item:<br/>" + object.responseText );
+             
+            }',
+                    )));
+        }else
+            $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'label' => 'Save', 'type' => 'primary'));
         ?>
     </div>
+    <div class="hidden update_box" id="targetdiv"></div>
 
     <?php
     $this->endWidget();
-
-    if (getParam('updated') == '1' || getParam('created') == '1') {
-        echo '<div class="update_box btn-success">Organization Saved</div>';
-    }
     ?>
 
 </div><!-- form -->
