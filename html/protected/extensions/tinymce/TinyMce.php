@@ -81,7 +81,7 @@ class TinyMce extends CInputWidget {
                     theme_ribbon_tab3 : {   title : "Source",
                         source : true                                                                                       
                     },                                                                                                                                           
-                    content_css : "<?php echo $baseUrl . '/css/'; ?>content.css"
+                    content_css : "<?php echo $baseUrl . '/static/tinymce/css/'; ?>content.css"
                                                                                                                                                                                      		
                 });
             });

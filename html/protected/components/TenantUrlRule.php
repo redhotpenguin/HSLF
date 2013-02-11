@@ -10,20 +10,21 @@ class TenantUrlRule extends CBaseUrlRule {
         $this->currentTenant = Yii::app()->user->getCurrentTenant();
     }
 
-    /**
-      @todo: optimize this function
-     */
     public function createUrl($manager, $route, $params, $ampersand) {
         if ($this->currentTenant) {
             $tenantName = $this->currentTenant->name;
             $route = 'admin/' . $tenantName . '/' . $route;
-            //  if (isset($params['id']))
-            //   $route.= '?id=' . $params['id'];
             // rebuild query string, there should be a better way to do this
             if (!empty($params)) {
                 $route.='?';
+                $i = 0;
+                $paramsCount = count($params) - 1;
                 foreach ($params as $k => $v) {
-                    $route.="{$k}={$v}&";
+                    $route.="{$k}={$v}";
+
+                    if ($i < $paramsCount)
+                        $route.=$ampersand;
+                    $i++;
                 }
             }
 

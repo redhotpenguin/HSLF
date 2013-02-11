@@ -1,36 +1,40 @@
 <?php
-$this->breadcrumbs=array(
-	'Alert Types',
+
+$navBarItems = array(
+    '',
+    array('label' => 'Create', 'url' => array('create')),
+    '',
 );
 
-$this->menu=array(
-	array('label'=>'Add an alert type', 'url'=>array('create')),
-	array('label'=>'Manage alert types', 'url'=>array('admin')),
-);
-?>
-
-<h1>Alert Types</h1>
-
-<?php 
-
-$this->widget('bootstrap.widgets.TbGridView', array(
-    'dataProvider' => $dataProvider,
-    'columns' => array(
-        'id',
-        'display_name',
+$this->widget('bootstrap.widgets.TbNavbar', array(
+    'brand' => 'Alert Types',
+    'brandUrl' => array('alertType/index'),
+    'htmlOptions' => array('class' => 'subnav'),
+    'collapse' => true, // requires bootstrap-responsive.css
+    'items' => array(
         array(
-            'name' => 'Tag',
-            'value' => '$data->tag->name',
-        ),
-        'category',
-
-        array(// display a column with "view", "update" and "delete" buttons
-            'class' => 'bootstrap.widgets.TbButtonColumn',
+            'class' => 'bootstrap.widgets.TbMenu',
+            'items' => $navBarItems
         ),
     ),
 ));
 
 
-
-
-?>
+$this->widget('bootstrap.widgets.TbGridView', array(
+    'id' => 'alert-type-grid',
+    'dataProvider' => $model->search(),
+    'filter' => $model,
+    'columns' => array(
+        'display_name',
+        array(
+            'header' => 'Tag',
+            'name' => 'tag',
+            'value' => '$data->tag->name',
+        ),
+        'category',
+        array(
+            'class' => 'bootstrap.widgets.TbButtonColumn',
+            'template' => '{update}{delete}'
+        ),
+    ),
+));

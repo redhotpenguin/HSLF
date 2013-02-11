@@ -1,15 +1,12 @@
 <?php
 if (empty($tenants)):
     echo '<h1>No Projects</h1>';
-
-
-
 else:
     ?>
 
 
     <div class="hero-unit">
-        <h1>My dashboard</h1>
+        <h1>Dashboard</h1>
         
         <br/>
             <?php

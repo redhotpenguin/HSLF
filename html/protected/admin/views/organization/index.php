@@ -1,32 +1,42 @@
 <?php
-$this->breadcrumbs = array(
-    'Organizations',
+
+$navBarItems = array(
+    '',
+    array('label' => 'Create', 'url' => array('create')),
+    '',
+    array('label' => 'Export', 'url' => array('exportCSV')),
+    '',
 );
 
-$this->menu = array(
-    array('label' => 'Add an organization', 'url' => array('create')),
-    array('label' => 'Manage organizations', 'url' => array('admin')),
-    array('label' => 'Export to CSV file', 'url' => array('exportCSV')),
-);
-?>
-
-<h1>Organizations</h1>
-
-<?php
-$this->widget('bootstrap.widgets.TbGridView', array(
-    'id' => 'vote-grid',
-    'dataProvider' => $dataProvider,
-    'columns' => array(
-        'id',
-        'name',
+$this->widget('bootstrap.widgets.TbNavbar', array(
+    'brand' => 'Organizations',
+    'brandUrl' => array('organization/index'),
+    'htmlOptions' => array('class' => 'subnav'),
+    'collapse' => true, // requires bootstrap-responsive.css
+    'items' => array(
         array(
-            'name' => 'website',
-            'type'=>'raw',
-            'value'=>' Chtml::link( $data->website, $data->website, array("target"=>"_blank")) '
-        ),
-        array(
-            'class' => 'bootstrap.widgets.TbButtonColumn',
+            'class' => 'bootstrap.widgets.TbMenu',
+            'items' => $navBarItems
         ),
     ),
 ));
-?>
+
+
+$this->widget('bootstrap.widgets.TbGridView', array(
+    'id' => 'vote-grid',
+    'dataProvider' => $model->search(),
+    'filter' => $model,
+    'columns' => array(
+        'name',
+        'display_name',
+        array(
+            'name' => 'website',
+            'type' => 'raw',
+            'value' => ' Chtml::link( $data->website, $data->website, array("target"=>"_blank")) '
+        ),
+        array(
+            'class' => 'bootstrap.widgets.TbButtonColumn',
+            'template' => '{update}{delete}',
+        ),
+    ),
+));

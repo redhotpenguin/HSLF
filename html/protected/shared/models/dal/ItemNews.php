@@ -20,6 +20,8 @@ class ItemNews extends BaseActiveRecord {
     public function __construct($scenario = 'insert', $table = "") {
         $this->parentName = "Item";
         $this->parentRelationship = "item";
+        $this->parentRelationshipAttribute = "item_id";
+
 
         parent::__construct($scenario);
     }

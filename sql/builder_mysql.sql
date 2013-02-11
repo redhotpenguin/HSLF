@@ -1,4 +1,4 @@
--- last alter file merged: alter_38.sql
+-- last alter file merged: alter_39.sql
 -- mysql format
 
 

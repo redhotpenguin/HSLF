@@ -69,7 +69,7 @@ class ItemNewsController extends Controller {
             }
         }
 
-        $this->render('add', array(
+        $this->render('editor', array(
             'model' => $model,
         ));
     }
@@ -92,7 +92,7 @@ class ItemNewsController extends Controller {
                 $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
         }
 
-        $this->render('update', array(
+        $this->render('editor', array(
             'model' => $model
         ));
     }

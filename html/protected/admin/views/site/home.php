@@ -11,7 +11,7 @@
             
  
             
-            <b><?php echo $total_item_number; ?></b>   <?php  echo CHtml::link("Ballot Items", array("item/Admin")); ?> </p>
+            <b><?php echo $total_item_number; ?></b>   <?php  echo CHtml::link("Ballot Items", array("item/index")); ?> </p>
             <p> <b><?php echo $total_user_number; ?></b>  <?php  echo CHtml::link("Mobile Users", array("mobileUser/Index")); ?> </p>
 
         </div>
@@ -20,7 +20,7 @@
             <div class="span3">
                 <h3>Ballot Items</h3>
                 <p>Manage ballot items. </p>
-                <p><?php  echo CHtml::link('More »', array('item/Admin'), array('class'=>'btn')); ?></a></p>
+                <p><?php  echo CHtml::link('More »', array('item/index'), array('class'=>'btn')); ?></a></p>
             </div>
             <div class="span3">
                 <h3>Payloads</h3>
@@ -38,7 +38,7 @@
             <div class="span3">
                 <h3>Organizations</h3>
                 <p>Manage organizations.</p>
-                <p><?php  echo CHtml::link('More »', array('organization/admin'), array('class'=>'btn')); ?></p>
+                <p><?php  echo CHtml::link('More »', array('organization/index'), array('class'=>'btn')); ?></p>
             </div>
 
             <div class="span3">

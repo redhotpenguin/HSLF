@@ -9,14 +9,15 @@ class ItemBehavior extends CActiveRecordBehavior {
 
     public function beforeSave($event) {
 
-        if (!empty($this->owner->url)) {
+        if (!empty($this->owner->slug)) {
 
             $items = Item::model()->findAllByAttributes(
-                    array('url' => $this->owner->url), 'id!=:the_id', array(':the_id' => $this->owner->id)
+                    array('slug' => $this->owner->slug), 'id!=:the_id', array(':the_id' => $this->owner->id)
             );
 
             if ($items) {
-                throw new CHttpException(400, Yii::t('error', 'URL already taken'));
+                $this->owner->addError('url', 'Slug already used');
+                throw new CHttpException(400, Yii::t('error', 'Slug already used'));
             }
         }
     }
@@ -27,7 +28,7 @@ class ItemBehavior extends CActiveRecordBehavior {
      * @return string filtered url
      */
     public function filterSlug($url) {
-        
+
         // replace white spaces by an hypehen
         $url = str_replace(" ", "-", $url);
 

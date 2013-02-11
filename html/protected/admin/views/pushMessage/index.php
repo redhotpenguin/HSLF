@@ -1,21 +1,28 @@
 <?php
-$this->breadcrumbs = array(
-    'Push Messages',
+
+$navBarItems = array(
+    '',
+    array('label' => 'Create', 'url' => array('create')),
+    '',
 );
 
-$this->menu = array(
-    array('label' => 'Create a push message ', 'url' => array('create')),
-    array('label' => 'Manage push messages', 'url' => array('admin')),
-);
-?>
+$this->widget('bootstrap.widgets.TbNavbar', array(
+    'brand' => 'Push Messages',
+    'brandUrl' => array('pushMessage/index'),
+    'htmlOptions' => array('class' => 'subnav'),
+    'collapse' => true, // requires bootstrap-responsive.css
+    'items' => array(
+        array(
+            'class' => 'bootstrap.widgets.TbMenu',
+            'items' => $navBarItems
+        ),
+        )));
 
-<h1>Push Messages</h1>
-<?php
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'push-message-grid',
-    'dataProvider' => $dataProvider,
+    'dataProvider' => $model->search(),
+    'filter' => $model,
     'columns' => array(
-        'id',
         array(
             'name' => 'alert',
             'value' => 'substr($data->alert, 0, 30)."...";'
@@ -23,6 +30,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         'creation_date',
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
+            'template' => '{update}{delete}'
         ),
     ),
 ));

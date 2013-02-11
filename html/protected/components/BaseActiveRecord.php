@@ -12,8 +12,8 @@
  */
 abstract class BaseActiveRecord extends CActiveRecord {
     public $parentName = null;
-    public $parentRelationship;
-
+    public $parentRelationship = null;
+    public $parentRelationshipAttribute = null;
     
 
     /* override CActiveRecord.count() to trigger beforeFind */

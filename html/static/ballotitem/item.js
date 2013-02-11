@@ -53,7 +53,7 @@ jQuery.fn.printURL = function(filtered_url) {
     var o = $(this[0]);
         
     if(filtered_url == 'invalid_url'){
-        o.html("<span class='errorMessage'>This URL is already being used.</span>");
+        o.html("<span class='errorMessage'>Slug already used.</span>");
     }else{
         site_url_input.val(filtered_url);
         full_url = url+filtered_url;

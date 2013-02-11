@@ -25,7 +25,7 @@ class OrganizationController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'admin', 'view', 'exportCSV'),
+                'actions' => array('index', 'exportCSV'),
                 'roles' => array('readOrganization'),
             ),
             array('allow',
@@ -46,15 +46,6 @@ class OrganizationController extends Controller {
         );
     }
 
-    /**
-     * Displays a particular model.
-     * @param integer $id the ID of the model to be displayed
-     */
-    public function actionView($id) {
-        $this->render('view', array(
-            'model' => $this->loadModel($id),
-        ));
-    }
 
     /**
      * Creates a new model.
@@ -63,8 +54,8 @@ class OrganizationController extends Controller {
     public function actionCreate() {
         $model = new Organization;
 
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
+// Uncomment the following line if AJAX validation is needed
+// $this->performAjaxValidation($model);
 
         if (isset($_POST['Organization'])) {
             $model->attributes = $_POST['Organization'];
@@ -75,7 +66,7 @@ class OrganizationController extends Controller {
             }
         }
 
-        $this->render('create', array(
+        $this->render('editor', array(
             'model' => $model,
         ));
     }
@@ -89,34 +80,47 @@ class OrganizationController extends Controller {
         $model = $this->loadModel($id);
 
         if (isset($_POST['Organization'])) {
+
             $model->attributes = $_POST['Organization'];
+
+            if (Yii::app()->request->isAjaxRequest) { // if ajax request, perform ajax validation.
+                $this->performAjaxValidation($model);
+            }
+
             if ($model->save()) {
                 if (isset($_POST['Organization']['tags']))
                     $model->massUpdateTags($_POST['Organization']['tags']);
                 else
                     $model->removeAllTagsAssociation();
-                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
+
+                if (Yii::app()->request->isAjaxRequest) { // AJAX Post Request
+                    echo 'success';
+                    Yii::app()->end();
+                }
+
+                else
+                    $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
             }
         }
 
-        $this->render('update', array(
+        $this->render('editor', array(
             'model' => $model,
         ));
     }
 
     /**
      * Deletes a particular model.
-     * If deletion is successful, the browser will be redirected to the 'admin' page.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id the ID of the model to be deleted
      */
     public function actionDelete($id) {
         if (Yii::app()->request->isPostRequest) {
-            // we only allow deletion via POST request
+// we only allow deletion via POST request
             $this->loadModel($id)->delete();
 
-            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+// if AJAX request (triggered by deletion via index grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
-                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
         }
         else
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
@@ -126,22 +130,12 @@ class OrganizationController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('Organization');
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
-    }
-
-    /**
-     * Manages all models.
-     */
-    public function actionAdmin() {
         $model = new Organization('search');
         $model->unsetAttributes();  // clear any default values
         if (isset($_GET['Organization']))
             $model->attributes = $_GET['Organization'];
 
-        $this->render('admin', array(
+        $this->render('index', array(
             'model' => $model,
         ));
     }

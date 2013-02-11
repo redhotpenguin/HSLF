@@ -12,24 +12,9 @@
         <link rel="stylesheet" type="text/css" href="/themes/dashboard/css/form.css" /> 
 
         <?php
-        Yii::app()->clientScript->registerCoreScript('jquery');
-
         Yii::app()->bootstrap->register();
-        $cs = Yii::app()->clientScript;
-        $cs->registerScriptFile('/static/global/js/superfish.js', CClientScript::POS_HEAD);
-        $cs->registerScriptFile('/static/global/js/jquery.hoverIntent.minified.js', CClientScript::POS_HEAD);
         ?>
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
-
-
-        <script type="text/javascript"> 
-            jQuery(document).ready(function($){
-                $('ul#main_menu').superfish({
-                    autoArrows: false
-                });
- 
-            });
-        </script>
 
     </head>
 
@@ -48,11 +33,11 @@
                         'items' => array(
                             '---',
                             array('label' => 'Content', 'url' => '#', 'items' => array(
-                                    array('label' => 'Ballot Items', 'url' => array('/item/admin')),
-                                    array('label' => 'Organizations', 'url' => array('/organization/admin/')),
+                                    array('label' => 'Ballot Items', 'url' => array('/item/index')),
+                                    array('label' => 'Organizations', 'url' => array('/organization/index/')),
                                     '',
-                                    array('label' => 'Scorecard Items', 'url' => array('/scorecardItem/admin')),
-                                    array('label' => 'Votes', 'url' => array('/vote/admin')),
+                                    array('label' => 'Scorecard Items', 'url' => array('/scorecardItem/index')),
+                                    array('label' => 'Votes', 'url' => array('/vote/index')),
                                     '',
                                     array('label' => 'Tags', 'url' => array('/tag')),
                             )),
@@ -70,8 +55,8 @@
                                     array('label' => 'Mobile Users', 'url' => array('/mobileUser')),
                                     '',
                                     array('label' => 'Alert types', 'url' => array('/alertType'), 'visible'),
-                                    array('label' => 'Payloads', 'url' => array('/Payload/admin')),
-                                    array('label' => 'Push Messages', 'url' => array('/pushMessage/admin')),
+                                    array('label' => 'Payloads', 'url' => array('/Payload/index')),
+                                    array('label' => 'Push Messages', 'url' => array('/pushMessage/index')),
                                     array('itemOptions' => array('id' => 'external_item'), 'label' => 'Urban Airship', 'linkOptions' => array('target' => '_blank'), 'url' => $tenant->ua_dashboard_link),
                                     '',
                                     array('label' => 'Options', 'url' => array('/option')),

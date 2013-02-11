@@ -1,30 +1,35 @@
 <?php
-$this->breadcrumbs=array(
-	'Tags',
+
+$navBarItems = array(
+    '',
+    array('label' => 'Create', 'url' => array('create')),
+    '',
 );
 
-$this->menu=array(
-	array('label'=>'Create a tag', 'url'=>array('create')),
-	array('label'=>'Manage tags', 'url'=>array('admin')),
-);
-?>
-
-<h1>Tags</h1>
-
-<?php
-$this->widget('bootstrap.widgets.TbGridView', array(
-    'dataProvider' => $dataProvider,
-    'columns' => array(
-        'id',
-        'name',
-        'display_name',
-        'type',
-      
-        array(// display a column with "view", "update" and "delete" buttons
-            'class' => 'bootstrap.widgets.TbButtonColumn',
+$this->widget('bootstrap.widgets.TbNavbar', array(
+    'brand' => 'Tags',
+    'brandUrl' => array('tag/index'),
+    'htmlOptions' => array('class' => 'subnav'),
+    'collapse' => true, // requires bootstrap-responsive.css
+    'items' => array(
+        array(
+            'class' => 'bootstrap.widgets.TbMenu',
+            'items' => $navBarItems
         ),
     ),
 ));
 
-
-?>
+$this->widget('bootstrap.widgets.TbGridView', array(
+    'id' => 'tag-grid',
+    'dataProvider' => $model->search(),
+    'filter' => $model,
+    'columns' => array(
+        'name',
+        'display_name',
+        'type',
+        array(
+            'class' => 'bootstrap.widgets.TbButtonColumn',
+            'template'=>'{update}{delete}'
+        ),
+    ),
+));

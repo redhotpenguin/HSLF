@@ -30,7 +30,7 @@ h4{
 
 #wrap
 {
-    margin-top:50px;
+    margin-top:75px;
 
 }
 
@@ -61,11 +61,12 @@ h4{
 
 .candidate_issue_item,
 .news_item{
-    padding: 5px;
-    margin-bottom: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
     position: relative;
     background-color: #EFEFEF;
     border: 1px solid #DDD;
+    border-radius:2px;
 }
 
 #id_candidate_issue {
@@ -93,4 +94,9 @@ h4{
 .resize-vertical{
     resize:vertical;
     overflow:auto;
+}
+
+.subnav.navbar-fixed-top {
+    top: 40px;
+    z-index: 10;
 }

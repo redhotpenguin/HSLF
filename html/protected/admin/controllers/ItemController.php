@@ -28,7 +28,7 @@ class ItemController extends Controller {
 
         return array(
             array('allow',
-                'actions' => array('index', 'admin', 'view', 'exportCSV', 'exportNewsCSV', 'exportOrganizationCSV',),
+                'actions' => array('index', 'exportCSV', 'exportNewsCSV', 'exportOrganizationCSV',),
                 'roles' => array('readBallotItem'),
             ),
             array('allow',
@@ -50,18 +50,8 @@ class ItemController extends Controller {
     }
 
     /**
-     * Displays a particular model.
-     * @param integer $id the ID of the model to be displayed
-     */
-    public function actionView($id) {
-        $this->render('view', array(
-            'model' => $this->loadModel($id),
-        ));
-    }
-
-    /**
      * Creates a new model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
+     * If creation is successful, the browser will be redirected to the 'edit' page.
      */
     public function actionCreate() {
         // import FileUpload helper class
@@ -106,7 +96,8 @@ class ItemController extends Controller {
         $model->date_published = date('Y-m-d h:i:s');
 
 
-        $this->render('create', array(
+        $this->render('editor', array(
+            'active_tab' => 'item',
             'model' => $model,
             'organization_list' => Organization::model()->findAll(array('order' => 'name')),
         ));
@@ -117,7 +108,7 @@ class ItemController extends Controller {
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id the ID of the model to be updated
      */
-    public function actionUpdate($id) {
+    public function actionUpdate($id, $activeTab = 'item') {
         // import FileUpload helper class
         Yii::import('admin.models.helpers.FileUpload');
 
@@ -172,9 +163,8 @@ class ItemController extends Controller {
             return;
         }
 
-
-
-        $this->render('update', array(
+        $this->render('editor', array(
+            'active_tab' => $activeTab,
             'model' => $model,
             'organization_list' => Organization::model()->findAll(array('order' => 'name')),
         ));
@@ -217,7 +207,7 @@ class ItemController extends Controller {
 
     /**
      * Deletes a particular model.
-     * If deletion is successful, the browser will be redirected to the 'admin' page.
+     * If deletion is successful, the browser will be redirected to the index page.
      * @param integer $id the ID of the model to be deleted
      */
     public function actionDelete($id) {
@@ -225,9 +215,9 @@ class ItemController extends Controller {
             // we only allow deletion via POST request
             $this->loadModel($id)->delete();
 
-            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+            // if AJAX request (triggered by deletion via index grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
-                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
         }
         else
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
@@ -237,22 +227,12 @@ class ItemController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('Item');
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
-    }
-
-    /**
-     * Manages all models.
-     */
-    public function actionAdmin() {
         $model = new Item('search');
         $model->unsetAttributes();  // clear any default values
         if (isset($_GET['Item']))
             $model->attributes = $_GET['Item'];
 
-        $this->render('admin', array(
+        $this->render('index', array(
             'model' => $model,
         ));
     }
@@ -320,7 +300,7 @@ class ItemController extends Controller {
     }
 
     /**
-     * Handle ajax requests for /admin/item/ajax
+     * Handle ajax requests for /admin/<client>/item/ajax
      */
     public function actionAjax() {
         switch (getParam('a')) {

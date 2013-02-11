@@ -6,7 +6,7 @@
  */
 class MultiTenantBehavior extends CActiveRecordBehavior {
 
-    const ILLEGAL_ACTION = 'Illegal action: action will be reported';
+    const ILLEGAL_ACTION = 'Illegal action. Please do not try this again.';
 
     /**
      * beforeFind - event handler
@@ -17,7 +17,7 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
         if ($this->owner instanceof ActiveMongoDocument) {
             $this->handleActiveMongoDocument($this->owner, 'find');
         } else {
-            $this->handleActiveRecord($this->owner, 'find');
+            $this->handleActiveRecord($this->owner, 'find', $event);
         }
     }
 
@@ -75,7 +75,6 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
      * @param CEvent event
      */
     private function handleActiveRecordBeforeFind(CActiveRecord $owner, $userTenantId, $event) {
-
         $c = $owner->getDbCriteria();
         $condition = $c->condition;
         $relations = $c->with;
@@ -116,12 +115,29 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
      * @param CEvent event
      */
     private function handleActiveRecordBeforeSave(CActiveRecord $owner, $userTenantId, $event) {
+
+
         if ($owner->hasAttribute('tenant_id')) {
             //tie this model to the actual tenant by setting the tenantid attribute
             $owner->tenant_id = $userTenantId;
         }
 
         $relations = $owner->relations();
+
+        if (isset($owner->parentRelationship) && !isset($owner->{$owner->parentRelationship})) {
+            $ownerClassName = get_class($this->owner);
+            throw new Exception(self::ILLEGAL_ACTION);
+        }
+
+        // check parent object (crude)
+        if (($className = $owner->parentName) != "") {
+            
+            $record = new $className();
+
+            if ($record->findByPk($owner->{$owner->parentRelationshipAttribute}) == null) {
+                throw new Exception(self::ILLEGAL_ACTION);
+            }
+        }
 
         foreach ($relations as $relation => $value) {
 
@@ -135,8 +151,6 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
                 $relationTenantId = $owner->$relation->tenant_id;
 
                 if ($userTenantId != $relationTenantId) {
-                    $ownerClassName = get_class($this->owner);
-                    error_log("Model {$ownerClassName} and relation {$relation} tenant id ($userTenantId != $relationTenantId)does not match");
                     throw new Exception(self::ILLEGAL_ACTION);
                 }
             }

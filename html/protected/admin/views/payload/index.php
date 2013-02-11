@@ -1,31 +1,37 @@
 <?php
-/* @var $this PayloadController */
-/* @var $dataProvider CActiveDataProvider */
 
-$this->breadcrumbs = array(
-    'Payloads',
+$navBarItems = array(
+    '',
+    array('label' => 'Create', 'url' => array('create')),
+    '',
 );
 
-$this->menu = array(
-    array('label' => 'Create a payload', 'url' => array('create')),
-    array('label' => 'Manage payloads', 'url' => array('admin')),
-);
-?>
+$this->widget('bootstrap.widgets.TbNavbar', array(
+    'brand' => 'Payloads',
+    'brandUrl' => array('payload/index'),
+    'htmlOptions' => array('class' => 'subnav'),
+    'collapse' => true, // requires bootstrap-responsive.css
+    'items' => array(
+        array(
+            'class' => 'bootstrap.widgets.TbMenu',
+            'items' => $navBarItems
+        ),
+    ),
+));
 
-<h1>Payloads</h1>
 
-<?php
 $this->widget('bootstrap.widgets.TbGridView', array(
-    'dataProvider' => $dataProvider,
-    'dataProvider' => $dataProvider,
-    'template' => "{pager}\n{items}\n{pager}", // pagination on top and on bottom
-
+    'id' => '-payload-grid',
+    'dataProvider' => $model->search(),
+    'filter' => $model,
+    'nullDisplay' => '<em>NOT SET</em>',
     'columns' => array(
         'id',
         'title',
-        'email',
+        'url',
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
+            'template' => '{update}{delete}'
         ),
     ),
 ));

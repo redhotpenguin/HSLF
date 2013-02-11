@@ -15,22 +15,21 @@ class MultiTenanctTest extends CDbTestCase {
         return $option;
     }
 
-    private function getAlertTypeModel($tagTenantId) {
-
+    private function getAlertTypeModel($tenantId) {
 
         $alertType = new AlertType();
 
         $tag = new Tag();
         $tag->attachBehavior('MultiTenant', $this->tenantBehavior);
 
-        $tag = $tag->findByAttributes(array('tenant_id' => $tagTenantId, 'name' => 'my_tag'));
+        $tag = $tag->findByAttributes(array('tenant_id' => $tenantId, 'name' => 'my_tag'));
 
 
         if ($tag == null) {
             $tag = new Tag();
             $tag->name = 'my_tag';
             $tag->type = 'alerts';
-            Yii::app()->params['current_tenant_id'] = $tagTenantId;
+            Yii::app()->params['current_tenant_id'] = $tenantId;
             $tag->save();
         }
         $tagId = $tag->id;
@@ -42,17 +41,13 @@ class MultiTenanctTest extends CDbTestCase {
         $alertType->category = "unitary_test";
         return $alertType;
     }
-    
 
-    /**
-     * direct tenancy = model with a tenant_id attribute
-     */
-    public function _testDirectTenancy() {
+    public function testDirectTenancy() {
 
         // save a direct tenant model
         $option = $this->getOptionModel();
 
-        Yii::app()->params['current_tenant_id']  = 1;
+        Yii::app()->params['current_tenant_id'] = 1;
 
         $result = $option->save();
 
@@ -76,31 +71,41 @@ class MultiTenanctTest extends CDbTestCase {
 
         $option = $this->getOptionModel();
 
-        Yii::app()->params['current_tenant_id']  = 2;
+        Yii::app()->params['current_tenant_id'] = 2;
 
-        $option = $option->findByPk($id);
+        try {
+
+            $option = $option->findByPk($id);
+        } catch (Exception $e) {
+            error_log("yo dog");
+            error_log($e->getMessage());
+        }
 
         $this->assertNull($option);
     }
 
-    /**
-     * indirect tenancy = model with no tenant_id attribute. Ex: alert_type
-     */
-    public function _testIndirectTenancy() {
+    public function testIndirectTenancy() {
+        Yii::app()->params['current_tenant_id'] = 1;
 
         $alertType = $this->getAlertTypeModel(1);
-        Yii::app()->params['current_tenant_id'] = 1;
 
         $result = $alertType->save();
 
         $this->assertTrue($result);
     }
 
-    public function _testIndirectTenancy2() {
+    public function testIndirectTenancy2() {
+
+
         // test that a tenant can't save a model for another tenant
         $alertType = $this->getAlertTypeModel(1);
+
+
+
+        Yii::app()->params['current_tenant_id'] = 2;
+
+
         $alertType->display_name = $alertType->display_name . 'hacked';
-       Yii::app()->params['current_tenant_id']  = 2;
 
 
         // an exception happens when there is a tenant id mismatch
@@ -112,23 +117,47 @@ class MultiTenanctTest extends CDbTestCase {
 
         $this->assertNull($result);
     }
-    
 
     public function testIndirectTenancy3() {
         $alertType = new AlertType();
-        
+
         $attributes = array(
             'display_name' => 'hack',
-            'category' =>'foo',
+            'category' => 'foo',
             'tag_id' => 10
         );
-        
+
         $alertType->attributes = $attributes;
-     Yii::app()->params['current_tenant_id'] = 2;
+        Yii::app()->params['current_tenant_id'] = 2;
 
         // an exception happens when there is a tenant id mismatch
         try {
             $result = $alertType->save();
+        } catch (Exception $e) {
+            $result = null;
+            error_log($e->getMessage());
+        }
+
+        $this->assertNull($result);
+    }
+
+    public function testIndirectTenancyUpdate() {
+// scenario: tenant A has a Tag
+// another tenant B tries to use this tag by altering the ID during an UPDATE
+// simulate other tenant session
+        Yii::app()->params['current_tenant_id'] = 2;
+
+        $alertType2 = $this->getAlertTypeModel(2);
+
+        $alertType2->save();
+
+        $alertType2->tag_id = 9; // 9 = tag id from tenant A
+        $alertType2->display_name = $alertType2->display_name . ' hacked';
+
+
+        // simulate attack
+        try {
+            $result = $alertType2->save();
         } catch (Exception $e) {
             $result = null;
             error_log($e->getMessage());
