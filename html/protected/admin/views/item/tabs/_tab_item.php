@@ -60,14 +60,14 @@
         <div class="span6">
             <?php
             echo $form->labelEx($model, 'measure_number');
-            echo $form->textField($model, 'measure_number', array('class' => 'span12', 'maxlength' => 24, 'placeholder' => 'Measure Number'));
+            echo $form->textField($model, 'measure_number', array('class' => 'span11', 'maxlength' => 24, 'placeholder' => 'Measure Number'));
             echo $form->error($model, 'measure_number');
             ?>
         </div>
         <div class="span6">
             <?php
             echo $form->labelEx($model, 'friendly_name');
-            echo $form->textField($model, 'friendly_name', array('class' => 'span12', 'maxlength' => 1024, 'placeholder' => 'Friendly Name'));
+            echo $form->textField($model, 'friendly_name', array('class' => 'span11', 'maxlength' => 1024, 'placeholder' => 'Friendly Name'));
             echo $form->error($model, 'friendly_name');
             ?>
         </div>
@@ -91,7 +91,7 @@
                 ),
                 'htmlOptions' => array(
                     'style' => 'height:20px;',
-                    'class' => 'span12'
+                    'class' => 'span11'
                 ),
             ));
             ?>
