@@ -1,26 +1,37 @@
 <?php
-$this->breadcrumbs = array(
-    'Recommendations',
+
+$navBarItems = array(
+    '',
+    array('label' => 'Create', 'url' => array('create')),
+    '',
+    array('label' => 'Export', 'url' => array('exportCSV')),
+    '',
 );
 
-$this->menu = array(
-    array('label' => 'Add a recommendation', 'url' => array('create')),
-    array('label' => 'Manage recommendations', 'url' => array('admin')),
-    array('label' => 'Export to CSV', 'url' => array('exportCSV')),
-);
-?>
+$this->widget('bootstrap.widgets.TbNavbar', array(
+    'brand' => 'Recommendations',
+    'brandUrl' => array('recommendation/index'),
+    'htmlOptions' => array('class' => 'subnav'),
+    'collapse' => true, // requires bootstrap-responsive.css
+    'items' => array(
+        array(
+            'class' => 'bootstrap.widgets.TbMenu',
+            'items' => $navBarItems
+        ),
+    ),
+));
 
-<h1>Recommendations</h1>
-
-<?php
 $this->widget('bootstrap.widgets.TbGridView', array(
-    'dataProvider' => $dataProvider,
+    'id' => 'recommendation-grid',
+    'dataProvider' => $model->search(),
+    'filter' => $model,
     'columns' => array(
         'id',
-        'type',
         'value',
+        'type',
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
+            'template' => '{update}{delete}',
         ),
     ),
 ));

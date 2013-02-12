@@ -42,7 +42,7 @@ class User extends BaseActiveRecord {
         return array(
             array('email', 'required', 'on' => 'update'),
             array('password, username, email, repeat_password', 'required', 'on' => 'insert'),
-            array('repeat_password', 'compare', 'compareAttribute' => 'password', 'on' => 'insert, update'),
+            array('repeat_password', 'compare', 'compareAttribute' => 'password', 'on' => 'insert, update', 'message'=>'Passwords mismatch'),
             array('email', 'email'),
             array('username, email', 'length', 'max' => 128, 'on' => 'insert'),
             array('email', 'length', 'max' => 128, 'on' => 'update'),

@@ -1,21 +1,30 @@
 <?php
-$this->breadcrumbs = array(
-    'Parties',
+
+$navBarItems = array(
+    '',
+    array('label' => 'Create', 'url' => array('create')),
+    '',
+    array('label' => 'Export', 'url' => array('exportCSV')),
+    '',
 );
 
-$this->menu = array(
-    array('label' => 'Add a party', 'url' => array('create')),
-    array('label' => 'Export to CSV', 'url' => array('exportCSV')),
-);
-?>
+$this->widget('bootstrap.widgets.TbNavbar', array(
+    'brand' => 'Parties',
+    'brandUrl' => array('party/index'),
+    'htmlOptions' => array('class' => 'subnav'),
+    'collapse' => true, // requires bootstrap-responsive.css
+    'items' => array(
+        array(
+            'class' => 'bootstrap.widgets.TbMenu',
+            'items' => $navBarItems
+        ),
+    ),
+));
 
-<h1>Parties</h1>
-
-
-<?php
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'party-grid',
-    'dataProvider' => $dataProvider,
+    'dataProvider' => $model->search(),
+    'filter' => $model,
     'columns' => array(
         'id',
         'name',
@@ -23,8 +32,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         'initial',
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
+            'template' => '{update}{delete}',
         ),
     ),
 ));
-?>
-

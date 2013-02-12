@@ -197,3 +197,135 @@ input{
     display: block;
     text-align: center;
 }
+
+/*login form*/
+
+
+
+.login-box {
+    width: 400px;
+    margin: 100px auto;
+    background: #fff;
+    color: #666;
+    overflow: hidden;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-box-shadow: 0px 0px 0px 5px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0px 0px 0px 5px rgba(0,0,0,0.15);
+    box-shadow: 0px 0px 0px 5px rgba(0,0,0,0.15);
+}
+
+.login-box .icons {
+    text-align: right;
+    margin: 20px 15px;
+
+}
+
+.login-box .icons i {
+    text-align: right;
+    opacity: .2;
+    filter: alpha(opacity=20);
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+    margin: 0px 5px;
+}
+
+
+
+.login-box h2 {
+    color: #646464;
+    margin-left: 30px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: normal;
+}
+
+.login-box h3 {
+    color: #646464;
+    margin-left: 30px;
+    font-family: monaco;
+    font-weight: normal;
+}
+
+.login-box p {
+    margin: 10px 30px;
+    font-weight: normal;
+}
+
+.login-box .input-prepend {
+    background: #fff;
+    width: 100%;
+    text-align: center;
+    padding: 15px 0px;
+    border-left: 3px solid #fff;
+}
+
+.login-box .prepend{
+    padding: 15px 0px 0 20px;
+}
+
+.login-box .input-prepend-focus {
+    background: #fcfcfc;
+    width: 100%;
+    text-align: center;
+    padding: 15px 0px;
+    border-left: 3px solid #646464;
+}
+
+.login-box .add-on {
+    border: 1px solid #eee !important;
+    background: #fff;
+    margin-left: -10px;
+}
+
+.login-box .add-on i{
+    opacity: .1;
+    filter: alpha(opacity=10);
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"] {
+    border: 1px solid #eee !important;
+    color: #666;
+    border-left: none !important;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.login-box .remember {
+    margin-top: 20px;
+    margin-left: 20px;
+    float: left;
+}
+
+.login-box .button-login {
+    margin-top: 20px;
+    margin-right: 20px;
+    float: right;
+}
+
+.halflings-icon {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    line-height: 14px;
+    vertical-align: text-top;
+    background-image: url('/static/global/img/glyphicons_halflings.svg');
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    vertical-align: top;
+}
+
+.halflings-icon.user {
+    background-position: -168px 0;
+}
+
+.halflings-icon.email {
+    background-position: -70px 0;
+}
+
+
+.halflings-icon.lock {
+    background-position: -287px -24px;
+}

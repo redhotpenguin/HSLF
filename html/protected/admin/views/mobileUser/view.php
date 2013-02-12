@@ -1,17 +1,31 @@
 <?php
-$this->breadcrumbs = array(
-    'Mobile Users' => array('index'),
-    $model->_id,
+$navBarItems = array(
+    '',
+    array('label' => 'Browse', 'url' => array('browse')),
+    '',
 );
+
+$this->widget('bootstrap.widgets.TbNavbar', array(
+    'brand' => 'Mobile Users',
+    'brandUrl' => array('mobileUser/index'),
+    'htmlOptions' => array('class' => 'subnav'),
+    'collapse' => true, // requires bootstrap-responsive.css
+    'items' => array(
+        array(
+            'class' => 'bootstrap.widgets.TbMenu',
+            'items' => $navBarItems
+        ),
+    ),
+));
 ?>
 
 
 <table>
 
     <tbody class="table">
-        <?php
-        foreach ($model->fields as $field => $value) {
-            ?>
+<?php
+foreach ($model->fields as $field => $value) {
+    ?>
             <tr>
                 <td><?php echo $field; ?></td>
                 <td><?php
@@ -30,14 +44,14 @@ $this->breadcrumbs = array(
         } else {
             echo $value;
         }
-            ?></td>
+    ?></td>
 
 
             </tr>
 
-            <?php
-        }
-        ?>
+    <?php
+}
+?>
     </tbody>
 
 </table>

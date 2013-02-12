@@ -8,7 +8,7 @@
         'htmlOptions' => array(
             'rows' => 20,
             'cols' => 185,
-            'class' => 'span9',
+            'class' => 'span12',
         ),
     ));
 

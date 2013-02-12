@@ -15,11 +15,11 @@ class SiteController extends Controller {
 
             $user = Yii::app()->user->getModel();
 
-            if($user->tenants)
+            if ($user->tenants)
                 $tenants = $user->tenants;
             else
                 $tenants = array();
-            
+
             $options = array(
                 'tenants' => $tenants
             );
@@ -91,12 +91,14 @@ class SiteController extends Controller {
      * This is the action to handle external exceptions.
      */
     public function actionError() {
-        if ($error = Yii::app()->errorHandler->error) {
-            if (Yii::app()->request->isAjaxRequest)
-                echo $error['message'];
-            else
-                $this->render('error', $error);
+        $error = Yii::app()->errorHandler->error;
+        if (Yii::app()->request->isAjaxRequest) {
+            if($error['type'] == 'CDbException' && $error['errorCode'] == 23502){
+                echo 'This resource is used by something else and can not be deleted.';
+            }
         }
+        else
+            $this->render('error', array('error'=>$error));
     }
 
     /**

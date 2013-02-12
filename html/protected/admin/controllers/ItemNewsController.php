@@ -2,7 +2,7 @@
 
 class ItemNewsController extends Controller {
 
-    public $layout = '//layouts/column2';
+
 
     /**
      * @return array action filters

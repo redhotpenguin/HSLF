@@ -3,13 +3,6 @@
 class UserController extends Controller {
 
     /**
-     * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
-     * using two-column layout. See 'protected/views/layouts/column2.php'.
-     */
-    public $layout = '//layouts/column2';
-    public $category = array('Administration' => array('/site/administration/')); // used by the breadcrumb
-
-    /**
      * @return array action filters
      */
 
@@ -27,7 +20,7 @@ class UserController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'admin', 'view'),
+                'actions' => array('index',),
                 'roles' => array('readUser'),
             ),
             array('allow',
@@ -53,16 +46,6 @@ class UserController extends Controller {
     }
 
     /**
-     * Displays a particular model.
-     * @param integer $id the ID of the model to be displayed
-     */
-    public function actionView($id) {
-        $this->render('view', array(
-            'model' => $this->loadModel($id),
-        ));
-    }
-
-    /**
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
@@ -78,11 +61,29 @@ class UserController extends Controller {
             //  $model->password = sha1($_POST['User']['password']);
 
             if ($model->save()) {
+
+                // @todo: refactor this
+                if (isset($_POST['add_to_tenant']) && !empty($_POST['add_to_tenant'])) {
+                    $tenantName = $_POST['add_to_tenant'];
+
+
+                    $tenant = Tenant::model()->findByAttributes(array("name" => $tenantName));
+                    if ($tenant) {
+                        if (!$model->addToTenant($tenant->id)) {
+                            Yii::app()->user->setFlash('error', "Error adding the user to this project");
+                            $updatedResult = false;
+                        }
+                    } else {
+                        Yii::app()->user->setFlash('error', "This tenant account does not exist");
+                        $updatedResult = false;
+                    }
+                }
+
                 $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
             }
         }
 
-        $this->render('create', array(
+        $this->render('editor', array(
             'model' => $model,
         ));
     }
@@ -156,14 +157,14 @@ class UserController extends Controller {
             ));
         }
 
-        $this->render('update', array(
+        $this->render('editor', array(
             'model' => $model,
         ));
     }
 
     /**
      * Deletes a particular model.
-     * If deletion is successful, the browser will be redirected to the 'admin' page.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id the ID of the model to be deleted
      */
     public function actionDelete($id) {
@@ -177,9 +178,9 @@ class UserController extends Controller {
 
             $user->delete();
 
-            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+            // if AJAX request (triggered by deletion via index grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
-                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
         }
         else
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
@@ -189,9 +190,14 @@ class UserController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('User');
+        $model = new User('search');
+        $model->unsetAttributes();  // clear any default values
+        if (isset($_GET['User']))
+            $model->attributes = $_GET['User'];
+
         $this->render('index', array(
-            'dataProvider' => $dataProvider,
+            'model' => $model,
+            'role' => 'publisher'
         ));
     }
 
@@ -226,21 +232,6 @@ class UserController extends Controller {
 
 
         $this->render('my_account', array('model' => $model));
-    }
-
-    /**
-     * Manages all models.
-     */
-    public function actionAdmin() {
-        $model = new User('search');
-        $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['User']))
-            $model->attributes = $_GET['User'];
-
-        $this->render('admin', array(
-            'model' => $model,
-            'role' => 'publisher'
-        ));
     }
 
     /**

@@ -79,15 +79,28 @@ class PushMessage extends BaseActiveRecord {
      * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
      */
     public function search() {
-        // Warning: Please modify the following code to remove attributes that
-        // should not be searched.
 
         $criteria = new CDbCriteria;
+
+        if ($this->creation_date) {
+            // trim white spaces
+            $this->creation_date = trim($this->creation_date);
+            // handle users habit to uses / as a separator
+            $this->creation_date = str_replace('/', '-', $this->creation_date);
+
+            // check that the format is yyyy-mm-dd. also checks that the values are correct
+            if (preg_match('/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/', $this->creation_date)) {
+                $criteria->compare('creation_date', '> ' . $this->creation_date . ' 00:00:00', false);
+            } // if user has just entered a year, ex: 2012
+            elseif (preg_match('/^[0-9]{4}$/', $this->creation_date)) {
+                $criteria->compare('creation_date', '> ' . $this->creation_date . ' 01-01 00:00:00', false);
+                $criteria->compare('creation_date', '< ' . $this->creation_date . ' 12-31 23:59:59', false, 'AND');
+            }
+        }
 
         $criteria->compare('id', $this->id);
         $criteria->compare('tenant_id', $this->tenant_id);
         $criteria->compare('payload_id', $this->payload_id);
-        $criteria->compare('creation_date', $this->creation_date, true);
         $criteria->compare('alert', $this->alert, true);
 
         return new CActiveDataProvider($this, array(

@@ -8,7 +8,7 @@
  * @property string $name
  * @property string $abbr
  * @property string $initial
-  */
+ */
 class Party extends CActiveRecord {
 
     /**
@@ -34,6 +34,7 @@ class Party extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
+            array('name, abbr', 'required'),
             array('name', 'length', 'max' => 2048),
             array('abbr', 'length', 'max' => 128),
             array('initial', 'length', 'max' => 16),
@@ -58,7 +59,7 @@ class Party extends CActiveRecord {
         return array(
             'id' => 'ID',
             'name' => 'Name',
-            'abbr' => 'Abbr',
+            'abbr' => 'Abbreviation',
             'initial' => 'Initial',
         );
     }
@@ -82,7 +83,5 @@ class Party extends CActiveRecord {
                     'criteria' => $criteria,
                 ));
     }
-
-
 
 }

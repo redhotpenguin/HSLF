@@ -88,14 +88,14 @@
                                     'label' => 'Admin (shared data)',
                                     'url' => '#',
                                     'items' => array(
-                                        array('label' => 'Tenants', 'url' => array('/tenant/admin')),
+                                        array('label' => 'Tenants', 'url' => array('/tenant/index')),
                                         '',
-                                        array('label' => 'States', 'url' => array('/state/admin')),
-                                        array('label' => 'Districts', 'url' => array('/district/admin')),
+                                        array('label' => 'States', 'url' => array('/state/index')),
+                                        array('label' => 'Districts', 'url' => array('/district/index')),
                                         '',
-                                        array('label' => 'Offices', 'url' => array('/office/admin')),
-                                        array('label' => 'Parties', 'url' => array('/party/admin')),
-                                        array('label' => 'Recommendations', 'url' => array('/recommendation/admin')),
+                                        array('label' => 'Offices', 'url' => array('/office/index')),
+                                        array('label' => 'Parties', 'url' => array('/party/index')),
+                                        array('label' => 'Recommendations', 'url' => array('/recommendation/index')),
                                         '',
                                         array('label' => 'Users', 'url' => array('/user/index')),
                                         '',
@@ -161,29 +161,13 @@
 
 
                 <div id="main"  class="container clear-top" >
-                    <div class="row">
+                    <div class="row-fluid">
 
-                        <div style="float:left;" class="span10">
+                        <div class="span12">
 
                             <?php echo $content; ?>
 
                         </div>
-
-                        <div style="float:left;" class="span2">
-                            <div id="sidebar">
-
-                                <?php
-                                $this->widget('bootstrap.widgets.TbMenu', array(
-                                    'type' => 'tabs', // '', 'tabs', 'pills' (or 'list')
-                                    'stacked' => true, // whether this is a stacked menu
-                                    'items' => $this->menu,
-                                    'htmlOptions' => array('class' => 'nav nav-pills nav-stacked'),
-                                ));
-                                ?>
-
-                            </div>
-                        </div>
-
                     </div>
 
                 </div>

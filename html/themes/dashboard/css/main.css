@@ -5,7 +5,10 @@ html,body
 }
 
 body{
-    background-color:#EFEFEF!important;
+
+
+
+    background: #fbfbfa url('/static/global/img/white-noise.png') top right repeat !important;
 }
 
 h1{
@@ -19,11 +22,14 @@ h4{
     margin-bottom:10px;
 }
 .container{
-    min-height: 90%; 
+    min-height: 91%; 
 
 }
 
 #container{
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+
     background-color: white;
     padding:20px;
 }
@@ -36,47 +42,39 @@ h4{
 
 #main{
     overflow:auto;
-
 }
 
 
 .footer 
 {
     position: relative;
-
-    height: 50px;
+    height: 25px;
     clear:both;
-    padding:20px;
-    color:#fff;
-    border-top:1px solid #eee;
-    font-weight:bold;
-    background-color:#537678;
+    padding:10px;
+    color:#8E8E8C;
     text-align:center;
+    font-size: 14px;
+
+    background: #111 url('/static/global/img/white-noise.png') top right repeat !important;
+
+    border-top: 1px solid #ccc;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
 } 
 
 
 
-#sidebar{
-}
 
-.candidate_issue_item,
 .news_item{
     padding: 10px;
     margin-bottom: 10px;
     position: relative;
-    background-color: #EFEFEF;
-    border: 1px solid #DDD;
+    border: 1px solid #ddd;
     border-radius:2px;
 }
 
-#id_candidate_issue {
-    border: 1px solid #CCC;
-    padding: 5px;
-    margin-bottom: 15px;
-    display: block;
-    text-align: center;
-    font-weight: bold;
-}
 
 .floatright{
     float:right;

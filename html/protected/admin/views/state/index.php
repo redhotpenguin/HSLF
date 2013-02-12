@@ -1,35 +1,39 @@
 <?php
-$this->breadcrumbs=array(
-	'States',
+
+$navBarItems = array(
+    '',
+    array('label' => 'Create', 'url' => array('create')),
+    '',
+    array('label' => 'Export', 'url' => array('exportCSV')),
+    '',
 );
 
-$this->menu=array(
-	array('label'=>'Add a  state', 'url'=>array('create')),
-	array('label'=>'Manage states', 'url'=>array('admin')),
-        array('label' => 'Export to CSV', 'url' => array('exportCSV')),
-
-);
-?>
-
-<h1>States</h1>
-<?php 
-
-$dataProvider->pagination->pageSize = 60;
-
-$this->widget('bootstrap.widgets.TbGridView', array(
-    'dataProvider'=>$dataProvider,
-    'type'=>'striped bordered condensed',
-    'columns'=>array(
-        'id',          
-        'name',  
-        'abbr',
-        array(            // display a column with "view", "update" and "delete" buttons
-            'class'=>'bootstrap.widgets.TbButtonColumn',
+$this->widget('bootstrap.widgets.TbNavbar', array(
+    'brand' => 'States',
+    'brandUrl' => array('state/index'),
+    'htmlOptions' => array('class' => 'subnav'),
+    'collapse' => true, // requires bootstrap-responsive.css
+    'items' => array(
+        array(
+            'class' => 'bootstrap.widgets.TbMenu',
+            'items' => $navBarItems
         ),
     ),
 ));
 
-
-
-
+$this->widget('bootstrap.widgets.TbGridView', array(
+    'id' => 'state-grid',
+    'dataProvider' => $model->search(),
+    'filter' => $model,
+    'columns' => array(
+        'id',
+        'abbr',
+        'name',
+        array(
+            'class' => 'bootstrap.widgets.TbButtonColumn',
+            'deleteConfirmation' => "js:'Deleting this State will also delete every districts and  items associated to it, continue?'",
+            'template' => '{update}{delete}'
+        ),
+    ),
+));
 ?>

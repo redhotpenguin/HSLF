@@ -118,14 +118,17 @@ class Tag extends BaseActiveRecord {
 
     public function beforeSave() {
         parent::beforeSave();
+
         if (!empty($this->name)) {
 
             $tags = Tag::model()->findAllByAttributes(
-                    array('name' => $this->name)
+                    array('name' => $this->owner->name), 'id!=:id', array(':id' => $this->owner->id)
             );
 
             if ($tags) {
                 $this->addError('name', 'Name already used');
+            } else {
+                return true;
             }
         }
     }

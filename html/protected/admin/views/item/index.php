@@ -41,7 +41,6 @@ $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'item-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
-    'template' => "{pager}{summary}\n{items}\n{pager}", // pagination on top and on bottom
     'columns' => array(
         array(
             'header' => 'Type',
