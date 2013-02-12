@@ -5,26 +5,24 @@ $this->breadcrumbs = array(
 );
 ?>
 <h2>OMG</h2>
+
+
 <?php
-if (isset($code) && $code == 404) {
-    echo '<h3>Page not found</h3>';
+if (isset($error['code']) && $error['code'] == 404) {
+    $message = 'Page not found';
+} elseif ($error['errorCode'] && $error['errorCode'] == 23502) {
+    $message = 'This resource is already used by something else and can not be deleted';
 } else {
-    echo "<h3>Something's gone horribly wrong</h3>";
-    ?>
-
-
-
-    <h6>Please report this error to the person in charge:</h6>
-   
-        <?php
-        if (isset($code)) {
-            echo '<pre>'.$code . ':';
-            echo $message.'</pre>';
-        }
-        ?>
- 
-    <?php
+    $message = 'Internal Error';
 }
 ?>
 
 
+<h3>Something's gone horribly wrong:</h3>
+
+
+<?php
+echo '<pre>' . $message . '</pre>';
+
+if (Yii::app()->request->urlReferrer)
+    echo '<br/>'.CHtml::link('Go back', Yii::app()->request->urlReferrer, array('class'=>'btn'));
