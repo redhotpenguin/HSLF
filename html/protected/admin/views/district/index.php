@@ -24,6 +24,7 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
 
 
 <?php
+
 $state_list = CHtml::listData(State::model()->findAll(), 'id', 'name');
 $district_list = array('' => 'All') + District::model()->getTypeOptions();
 
@@ -49,6 +50,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         'display_name',
         'locality',
         array(
+            'template' => '{update}{delete}',
             'class' => 'bootstrap.widgets.TbButtonColumn',
             'deleteConfirmation' => "js:'Deleting this District will also delete every items associated to it, continue?'",
         ),
