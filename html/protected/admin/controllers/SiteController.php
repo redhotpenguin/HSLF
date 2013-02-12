@@ -94,7 +94,7 @@ class SiteController extends Controller {
         $error = Yii::app()->errorHandler->error;
         if (Yii::app()->request->isAjaxRequest) {
             if($error['type'] == 'CDbException' && $error['errorCode'] == 23502){
-                echo 'This resource is already used by something else and can not be deleted.';
+                echo 'This resource is used by something else and can not be deleted.';
             }
         }
         else
