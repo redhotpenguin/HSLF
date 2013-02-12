@@ -28,7 +28,7 @@ class StateController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'admin', 'view', 'exportCSV'),
+                'actions' => array('index', 'exportCSV'),
                 'roles' => array('readState'),
             ),
             array('allow',
@@ -73,14 +73,14 @@ class StateController extends Controller {
             $model->attributes = $_POST['State'];
             try {
                 if ($model->save()) {
-                    $this->redirect(array('view', 'id' => $model->id));
+                    $this->redirect(array('update', 'id' => $model->id));
                 }
             } catch (Exception $e) {
                 error_log("State controller:" . $e->getMessage());
             }
         }
 
-        $this->render('create', array(
+        $this->render('editor', array(
             'model' => $model,
         ));
     }
@@ -101,7 +101,7 @@ class StateController extends Controller {
             $model->attributes = $_POST['State'];
             try {
                 if ($model->save())
-                    $this->redirect(array('view',
+                    $this->redirect(array('update',
                         'id' => $model->id));
             } catch (Exception $e) {
                 error_log("State controller:" . $e->getMessage());
@@ -109,14 +109,14 @@ class StateController extends Controller {
             $this->redirect(array('view', 'id' => $model->abbr));
         }
 
-        $this->render('update', array(
+        $this->render('editor', array(
             'model' => $model,
         ));
     }
 
     /**
      * Deletes a particular model.
-     * If deletion is successful, the browser will be redirected to the 'admin' page.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id the ID of the model to be deleted
      */
     public function actionDelete($id) {
@@ -124,10 +124,10 @@ class StateController extends Controller {
             // we only allow deletion via POST request
             $this->loadModel($id)->delete();
 
-            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+            // if AJAX request (triggered by deletion via index grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
                 $this->redirect(isset($_POST['returnUrl'
-                        ]) ? $_POST['returnUrl'] : array('admin'));
+                        ]) ? $_POST['returnUrl'] : array('index'));
         }
         else
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
@@ -137,22 +137,12 @@ class StateController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('State');
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
-    }
-
-    /**
-     * Manages all models.
-     */
-    public function actionAdmin() {
         $model = new State('search');
         $model->unsetAttributes();  // clear any default values
         if (isset($_GET['State']))
             $model->attributes = $_GET['State'];
 
-        $this->render('admin', array(
+        $this->render('index', array(
             'model' => $model,
         ));
     }
