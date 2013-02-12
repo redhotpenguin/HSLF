@@ -1,7 +1,7 @@
 <?php
 
 class TagController extends Controller {
-  
+
     /**
      * @return array action filters
      */
@@ -79,8 +79,9 @@ class TagController extends Controller {
                 $model->attributes = $_POST['Tag'];
                 if ($model->save())
                     echo 'success';
-                else
+                else {
                     echo 'failure';
+                }
             }
             return;
         }

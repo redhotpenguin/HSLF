@@ -13,9 +13,10 @@ if (isset($error['code']) && $error['code'] == 404) {
 } elseif ($error['errorCode'] && $error['errorCode'] == 23502) {
     $message = 'This resource is already used by something else and can not be deleted';
 } else {
-    $message = 'Internal Error';
+    $message = $error['message'];
 }
 ?>
+
 
 
 <h3>Something's gone horribly wrong:</h3>
@@ -25,4 +26,4 @@ if (isset($error['code']) && $error['code'] == 404) {
 echo '<pre>' . $message . '</pre>';
 
 if (Yii::app()->request->urlReferrer)
-    echo '<br/>'.CHtml::link('Go back', Yii::app()->request->urlReferrer, array('class'=>'btn'));
+    echo '<br/>' . CHtml::link('Go back', Yii::app()->request->urlReferrer, array('class' => 'btn'));
