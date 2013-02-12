@@ -25,7 +25,7 @@ class DistrictController extends Controller {
             ),
             array(// restrict State to admins only
                 'allow',
-                'actions' => array('create', 'delete', 'update', 'admin', 'index', 'view'),
+                'actions' => array('create', 'delete', 'update', 'index'),
                 'roles' => array('manageDistricts'),
             ),
             array('deny', // deny all users
@@ -57,10 +57,10 @@ class DistrictController extends Controller {
         if (isset($_POST['District'])) {
             $model->attributes = $_POST['District'];
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id));
         }
 
-        $this->render('create', array(
+        $this->render('editor', array(
             'model' => $model,
         ));
     }
@@ -79,17 +79,17 @@ class DistrictController extends Controller {
         if (isset($_POST['District'])) {
             $model->attributes = $_POST['District'];
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id));
         }
 
-        $this->render('update', array(
+        $this->render('editor', array(
             'model' => $model,
         ));
     }
 
     /**
      * Deletes a particular model.
-     * If deletion is successful, the browser will be redirected to the 'admin' page.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id the ID of the model to be deleted
      */
     public function actionDelete($id) {
@@ -97,9 +97,9 @@ class DistrictController extends Controller {
             // we only allow deletion via POST request
             $this->loadModel($id)->delete();
 
-            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+            // if AJAX request (triggered by deletion via index grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
-                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
         }
         else
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
@@ -109,23 +109,12 @@ class DistrictController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('District', array(
-                    'sort' => array('defaultOrder' => 'state_id ASC')));
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
-    }
-
-    /**
-     * Manages all models.
-     */
-    public function actionAdmin() {
         $model = new District('search');
         $model->unsetAttributes();  // clear any default values
         if (isset($_GET['District']))
             $model->attributes = $_GET['District'];
 
-        $this->render('admin', array(
+        $this->render('index', array(
             'model' => $model,
         ));
     }
