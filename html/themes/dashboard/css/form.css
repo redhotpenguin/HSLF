@@ -286,7 +286,7 @@ input{
 .login-box input[type="text"],
 .login-box input[type="password"] {
     border: 1px solid #eee !important;
-    color: #aaa;
+    color: #666;
     border-left: none !important;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
