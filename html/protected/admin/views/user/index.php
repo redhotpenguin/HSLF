@@ -1,31 +1,35 @@
 <?php
-$this->breadcrumbs=array(
-	'Users',
+$navBarItems = array(
+    '',
+    array('label' => 'Create', 'url' => array('create')),
+    '',
 );
 
-$this->menu=array(
-	array('label'=>'Add a user', 'url'=>array('create')),
-	array('label'=>'Manage users', 'url'=>array('admin')),
-);
-?>
-
-<h1>Users</h1>
-
-<?php 
-
-
-$template = '{view}{update}{delete}';
-
-
-$this->widget('bootstrap.widgets.TbGridView', array(
-    'dataProvider'=>$dataProvider,
-    'columns'=>array(        
-        'username',  
-        'email',
-        array(            // display a column with "view", "update" and "delete" buttons
-            'class'=>'bootstrap.widgets.TbButtonColumn',
-             'template'=> $template,
+$this->widget('bootstrap.widgets.TbNavbar', array(
+    'brand' => 'Users',
+    'brandUrl' => array('user/index'),
+    'htmlOptions' => array('class' => 'subnav'),
+    'collapse' => true, // requires bootstrap-responsive.css
+    'items' => array(
+        array(
+            'class' => 'bootstrap.widgets.TbMenu',
+            'items' => $navBarItems
         ),
     ),
 ));
-?>
+
+
+$this->widget('bootstrap.widgets.TbGridView', array(
+    'id' => 'user-grid',
+    'dataProvider' => $model->search(),
+    'filter' => $model,
+    'columns' => array(
+        'id',
+        'username',
+        'email',
+        array(
+            'class' => 'bootstrap.widgets.TbButtonColumn',
+            'template' => '{update}{delete}'
+        ),
+    ),
+));
