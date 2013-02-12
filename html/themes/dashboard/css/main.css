@@ -43,15 +43,23 @@ h4{
 .footer 
 {
     position: relative;
-
-    height: 50px;
+    height: 15px;
     clear:both;
     padding:20px;
-    color:#fff;
+    color:#333;
     border-top:1px solid #eee;
     font-weight:bold;
-    background-color:#537678;
     text-align:center;
+    background-color: #FAFAFA;
+    background-image: -moz-linear-gradient(top, white, #F2F2F2);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#F2F2F2));
+    background-image: -webkit-linear-gradient(top, white, #F2F2F2);
+    background-image: -o-linear-gradient(top, white, #F2F2F2);
+    background-image: linear-gradient(to bottom, white, #F2F2F2);
+    background-repeat: repeat-x;
+    border: 1px solid #eee;
+
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff222222', endColorstr='#ff111111', GradientType=0);
 } 
 
 
