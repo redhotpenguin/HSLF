@@ -162,9 +162,9 @@
 
 
                 <div id="main"  class="container clear-top" >
-                    <div class="row">
+                    <div class="row-fluid">
 
-                        <div style="float:left;" class="span12">
+                        <div class="span12">
 
                             <?php echo $content; ?>
 

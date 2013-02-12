@@ -44,20 +44,26 @@ $this->pageTitle = Yii::app()->name . ' - Login';
 
 
             <div class="remember checkbox">
-                <?php echo $form->checkBox($model, 'rememberMe'); ?>
-                <label class="">Remember me</label>
+                <?php
+                echo $form->checkBox($model, 'rememberMe');
 
-                <?php echo $form->error($model, 'rememberMe'); ?>
+                echo $form->labelEx($model, 'rememberMe');
+                echo $form->error($model, 'rememberMe');
+                ?>
+
             </div>
 
 
 
             <div class="clearfix"></div>
-            <?php
-            echo $form->error($model, 'username');
+            
+            <div class="prepend">
+                <?php
+                echo $form->error($model, 'username');
 
-            echo $form->error($model, 'password');
-            ?>
+                echo $form->error($model, 'password');
+                ?>
+            </div>
 
             <div class="button-login">	
                 <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'Login'));
