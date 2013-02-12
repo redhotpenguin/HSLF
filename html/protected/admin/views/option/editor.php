@@ -33,10 +33,10 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
 
     <?php echo $form->errorSummary($model); ?>
 
-    <div class="">
+    <div class="row-fluid">
         <?php
         echo $form->labelEx($model, 'name');
-        $nameOptions = array('size' => 60, 'class' => 'span7');
+        $nameOptions = array('size' => 60, 'class' => 'span12');
         if (!$model->isNewRecord)
             $nameOptions['readonly'] = 'readonly';
 
@@ -45,9 +45,9 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
         ?>
     </div>
 
-    <div class="">
+    <div class="row-fluid">
         <?php echo $form->labelEx($model, 'value'); ?>
-        <?php echo $form->textArea($model, 'value', array('rows' => 6, 'class' => 'span7', 'cols' => 10)); ?>
+        <?php echo $form->textArea($model, 'value', array('rows' => 6, 'class' => 'span12')); ?>
         <?php echo $form->error($model, 'value'); ?>
     </div>
 
