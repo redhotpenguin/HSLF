@@ -19,7 +19,7 @@ h4{
     margin-bottom:10px;
 }
 .container{
-    min-height: 90%; 
+    min-height: 91%; 
 
 }
 
@@ -43,12 +43,11 @@ h4{
 .footer 
 {
     position: relative;
-    height: 15px;
+    height: 25px;
     clear:both;
-    padding:20px;
+    padding:10px;
     color:#333;
-    border-top:1px solid #eee;
-    font-weight:bold;
+    color:#666;
     text-align:center;
     background-color: #FAFAFA;
     background-image: -moz-linear-gradient(top, white, #F2F2F2);
@@ -57,9 +56,12 @@ h4{
     background-image: -o-linear-gradient(top, white, #F2F2F2);
     background-image: linear-gradient(to bottom, white, #F2F2F2);
     background-repeat: repeat-x;
-    border: 1px solid #eee;
-
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff222222', endColorstr='#ff111111', GradientType=0);
+    border: 1px solid #D4D4D4;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+    font-style:italic;
 } 
 
 
