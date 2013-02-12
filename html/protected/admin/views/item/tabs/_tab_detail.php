@@ -4,8 +4,8 @@
         'model' => $model,
         'attribute' => 'detail',
         'htmlOptions' => array(
-            'rows' => 20,
-            'class' => 'span9',
+            'rows' => 30,
+            'class' => 'span11',
         ),
     ));
 
