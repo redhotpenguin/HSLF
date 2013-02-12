@@ -164,27 +164,11 @@
                 <div id="main"  class="container clear-top" >
                     <div class="row">
 
-                        <div style="float:left;" class="span10">
+                        <div style="float:left;" class="span12">
 
                             <?php echo $content; ?>
 
                         </div>
-
-                        <div style="float:left;" class="span2">
-                            <div id="sidebar">
-
-                                <?php
-                                $this->widget('bootstrap.widgets.TbMenu', array(
-                                    'type' => 'tabs', // '', 'tabs', 'pills' (or 'list')
-                                    'stacked' => true, // whether this is a stacked menu
-                                    'items' => $this->menu,
-                                    'htmlOptions' => array('class' => 'nav nav-pills nav-stacked'),
-                                ));
-                                ?>
-
-                            </div>
-                        </div>
-
                     </div>
 
                 </div>
