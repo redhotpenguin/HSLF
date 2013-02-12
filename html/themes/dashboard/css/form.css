@@ -321,6 +321,11 @@ input{
     background-position: -168px 0;
 }
 
+.halflings-icon.email {
+    background-position: -70px 0;
+}
+
+
 .halflings-icon.lock {
     background-position: -287px -24px;
 }
