@@ -1,6 +1,24 @@
 <?php
 /* @var $this TenantController */
 /* @var $model Tenant */
+
+$this->widget('bootstrap.widgets.TbNavbar', array(
+    'brand' => 'Tenants',
+    'brandUrl' => array('tenant/index'),
+    'htmlOptions' => array('class' => 'subnav'),
+    'collapse' => true, // requires bootstrap-responsive.css
+    'items' => array(
+        array(
+            'class' => 'bootstrap.widgets.TbMenu',
+            'items' => array(),
+        ),
+    ),
+));
+?>
+
+<?php
+/* @var $this TenantController */
+/* @var $model Tenant */
 /* @var $form CActiveForm */
 ?>
 
@@ -12,8 +30,6 @@
         'enableAjaxValidation' => false,
             ));
     ?>
-
-    <p class="note">Fields with <span class="required">*</span> are required.</p>
 
     <?php echo $form->errorSummary($model); ?>
 
@@ -103,7 +119,7 @@
     </div>
 
     <div class="row-fluid buttons">
-                <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type'=>'primary' ,'label' => 'Save')); ?>
+        <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'Save')); ?>
     </div>
 
     <?php $this->endWidget(); ?>

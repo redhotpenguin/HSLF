@@ -1,30 +1,41 @@
 <?php
+
 /* @var $this TenantController */
-/* @var $dataProvider CActiveDataProvider */
+/* @var $model Tenant */
 
-$this->breadcrumbs = array(
-    'Tenants',
+$navBarItems = array(
+    '',
+    array('label' => 'Create', 'url' => array('create')),
+    '',
 );
 
-$this->menu = array(
-    array('label' => 'Add a tenant', 'url' => array('create')),
-    array('label' => 'Manage tenants', 'url' => array('admin')),
-);
-?>
+$this->widget('bootstrap.widgets.TbNavbar', array(
+    'brand' => 'Tenants',
+    'brandUrl' => array('tenant/index'),
+    'htmlOptions' => array('class' => 'subnav'),
+    'collapse' => true, // requires bootstrap-responsive.css
+    'items' => array(
+        array(
+            'class' => 'bootstrap.widgets.TbMenu',
+            'items' => $navBarItems
+        ),
+    ),
+));
 
-<h1>Tenants</h1>
 
-<?php
 $this->widget('bootstrap.widgets.TbGridView', array(
-    'dataProvider' => $dataProvider,
+    'id' => 'tenant-grid',
+    'dataProvider' => $model->search(),
+    'filter' => $model,
     'columns' => array(
         'id',
         'name',
         'display_name',
         'email',
-        array(// display a column with "view", "update" and "delete" buttons
+        array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
             'template' => "{update}{view}"
         ),
     ),
 ));
+

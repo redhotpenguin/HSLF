@@ -25,7 +25,7 @@ class TenantController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view', 'create', 'update', 'admin'),
+                'actions' => array('index', 'view', 'create', 'update'),
                 'roles' => array('admin'),
             ),
             array('deny', // deny all users
@@ -65,7 +65,7 @@ class TenantController extends Controller {
         }
 
 
-        $this->render('create', array(
+        $this->render('editor', array(
             'model' => $model,
         ));
     }
@@ -87,7 +87,7 @@ class TenantController extends Controller {
                 $this->redirect(array('update', 'id' => $model->id));
         }
 
-        $this->render('update', array(
+        $this->render('editor', array(
             'model' => $model,
         ));
     }
@@ -96,26 +96,17 @@ class TenantController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('Tenant');
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
-    }
-
-    /**
-     * Manages all models.
-     */
-    public function actionAdmin() {
         $model = new Tenant('search');
         $model->unsetAttributes();  // clear any default values
         if (isset($_GET['Tenant']))
             $model->attributes = $_GET['Tenant'];
 
-        $this->render('admin', array(
+        $this->render('index', array(
             'model' => $model,
         ));
     }
 
+   
     /**
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
