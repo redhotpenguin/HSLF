@@ -11,7 +11,6 @@ class RecommendationController extends Controller {
     /**
      * @return array action filters
      */
-
     public function filters() {
         return array(
             'accessControl', // perform access control for CRUD operations
@@ -26,7 +25,7 @@ class RecommendationController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'admin', 'view', 'exportCSV'),
+                'actions' => array('index', 'exportCSV'),
                 'roles' => array('readRecommendation'),
             ),
             array('allow',
@@ -70,10 +69,10 @@ class RecommendationController extends Controller {
         if (isset($_POST['Recommendation'])) {
             $model->attributes = $_POST['Recommendation'];
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id));
         }
 
-        $this->render('create', array(
+        $this->render('editor', array(
             'model' => $model,
         ));
     }
@@ -92,17 +91,17 @@ class RecommendationController extends Controller {
         if (isset($_POST['Recommendation'])) {
             $model->attributes = $_POST['Recommendation'];
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id));
         }
 
-        $this->render('update', array(
+        $this->render('editor', array(
             'model' => $model,
         ));
     }
 
     /**
      * Deletes a particular model.
-     * If deletion is successful, the browser will be redirected to the 'admin' page.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id the ID of the model to be deleted
      */
     public function actionDelete($id) {
@@ -110,9 +109,9 @@ class RecommendationController extends Controller {
             // we only allow deletion via POST request
             $this->loadModel($id)->delete();
 
-            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+            // if AJAX request (triggered by deletion via index grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
-                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
         }
         else
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
@@ -122,22 +121,12 @@ class RecommendationController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('Recommendation');
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
-    }
-
-    /**
-     * Manages all models.
-     */
-    public function actionAdmin() {
         $model = new Recommendation('search');
         $model->unsetAttributes();  // clear any default values
         if (isset($_GET['Recommendation']))
             $model->attributes = $_GET['Recommendation'];
 
-        $this->render('admin', array(
+        $this->render('index', array(
             'model' => $model,
         ));
     }

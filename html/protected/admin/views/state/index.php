@@ -20,11 +20,6 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
         ),
     ),
 ));
-?>
-
-
-
-<?php
 
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'state-grid',
