@@ -3,7 +3,7 @@ $navBarItems = array();
 
 if (!$model->isNewRecord) {
     array_push($navBarItems, '', array('label' => 'Create', 'url' => array('create'),
-            ), '', array('label' => 'Delete', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this state? This will removed districts and ballot items linked to it.')), '');
+            ), '', array('label' => 'Delete', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this district? This will remove ballot items linked to it.')), '');
 }
 
 $this->widget('bootstrap.widgets.TbNavbar', array(
