@@ -55,7 +55,7 @@ class OfficeController extends Controller {
 
     /**
      * Updates a particular model.
-     * If update is successful, the browser will be redirected to the 'view' page.
+     * If update is successful, the browser will be redirected to the 'update' page.
      * @param integer $id the ID of the model to be updated
      */
     public function actionUpdate($id) {
@@ -67,7 +67,7 @@ class OfficeController extends Controller {
         if (isset($_POST['Office'])) {
             $model->attributes = $_POST['Office'];
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id));
         }
 
         $this->render('editor', array(
