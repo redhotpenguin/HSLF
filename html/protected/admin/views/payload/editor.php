@@ -29,12 +29,6 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
     $cs = Yii::app()->getClientScript();
     $cs->registerScriptFile($baseUrl . '/static/payload/payload.js');
 
-    if (getParam('updated') == '1') {
-        echo '<div class="update_box btn-success">Payload #' . $model->id . ' successfully updated</div>';
-    } elseif (getParam('created') == '1') {
-        echo '<div class="update_box btn-success">Payload #' . $model->id . ' successfully saved</div>';
-    }
-
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'payload-form',
         'enableAjaxValidation' => false,
@@ -99,6 +93,14 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
         <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'Save')); ?>
     </div>
 
-    <?php $this->endWidget(); ?>
+    <?php
+    $this->endWidget();
+
+    if (getParam('updated') == '1') {
+        echo '<div class="update_box btn-success">Payload #' . $model->id . ' successfully updated</div>';
+    } elseif (getParam('created') == '1') {
+        echo '<div class="update_box btn-success">Payload #' . $model->id . ' successfully saved</div>';
+    }
+    ?>
 
 </div><!-- form -->

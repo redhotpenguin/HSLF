@@ -57,7 +57,7 @@ class ScorecardItemController extends Controller {
         if (isset($_POST['ScorecardItem'])) {
             $model->attributes = $_POST['ScorecardItem'];
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id, 'created'=>true));
         }
 
         $this->render('editor', array(
@@ -79,7 +79,7 @@ class ScorecardItemController extends Controller {
         if (isset($_POST['ScorecardItem'])) {
             $model->attributes = $_POST['ScorecardItem'];
             if ($model->save()) {
-                $this->redirect(array('update', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id, 'updated'=>true));
             } else {
                 echo 'could not save';
                 exit;

@@ -22,11 +22,6 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
 <div class="form">
 
     <?php
-    if (getParam('updated') == '1') {
-        echo '<div class="update_box btn-success">Alert Type successfully updated</div>';
-    } elseif (getParam('created') == '1') {
-        echo '<div class="update_box btn-success">Alert Type successfully saved</div>';
-    }
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'alert-type-form',
         'enableAjaxValidation' => false,
@@ -62,6 +57,14 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
         <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'Save')); ?>
     </div>
 
-    <?php $this->endWidget(); ?>
+    <?php
+    $this->endWidget();
+
+    if (getParam('updated') == '1') {
+        echo '<div class="update_box btn-success">Alert Type successfully updated</div>';
+    } elseif (getParam('created') == '1') {
+        echo '<div class="update_box btn-success">Alert Type successfully saved</div>';
+    }
+    ?>
 
 </div><!-- form -->

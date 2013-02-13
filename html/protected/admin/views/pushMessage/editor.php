@@ -23,12 +23,6 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
 <div class="form">
 
     <?php
-    if (getParam('updated') == '1') {
-        echo '<div class="update_box btn-success">Push Message successfully updated</div>';
-    } elseif (getParam('created') == '1') {
-        echo '<div class="update_box btn-success">Push Message successfully saved</div>';
-    }
-
     $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
         'id' => 'push-message-form',
         'enableAjaxValidation' => false,
@@ -72,6 +66,14 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
     ?>
 
 
-    <?php $this->endWidget(); ?>
+    <?php
+    $this->endWidget();
+
+    if (getParam('updated') == '1') {
+        echo '<div class="update_box btn-success">Push Message successfully updated</div>';
+    } elseif (getParam('created') == '1') {
+        echo '<div class="update_box btn-success">Push Message successfully saved</div>';
+    }
+    ?>
 
 </div>

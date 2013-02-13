@@ -59,6 +59,14 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
 
     </div>
 
-    <?php $this->endWidget(); ?>
+    <?php
+    $this->endWidget();
+
+    if (getParam('updated') == '1') {
+        echo '<div class="update_box btn-success">Scorecard Item successfully updated</div>';
+    } elseif (getParam('created') == '1') {
+        echo '<div class="update_box btn-success">Scorecard Item successfully saved</div>';
+    }
+    ?>
 
 </div><!-- form -->

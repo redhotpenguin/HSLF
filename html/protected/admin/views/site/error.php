@@ -8,13 +8,16 @@ $this->breadcrumbs = array(
 
 
 <?php
-if (isset($error['code']) && $error['code'] == 404) {
+if (isset($error['code']) && $error['code'] == 404)
     $message = 'Page not found';
-} elseif (isset($error['errorCode']) && $error['errorCode'] == 23502) {
+elseif (isset($error['errorCode']) && $error['errorCode'] == 23502)
     $message = 'This resource is used by something else and can not be deleted';
-} else {
+
+elseif (isset($error['errorCode']) && $error['errorCode'] == 23505)
+    $message = 'Another resource already has the same name.';
+
+else
     $message = $error['message'];
-}
 ?>
 
 
