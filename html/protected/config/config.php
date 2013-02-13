@@ -47,8 +47,6 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $apiShortCacheDuration = 10;
     $apiNormalCacheDuration = 100;
     $apiLongCacheDuration = 3600;
-
-    $debug = true;
     
     set_include_path(get_include_path() . PATH_SEPARATOR . '/home/dotcloud/php-env/share/php');
 } else {    //dev server conf
@@ -86,11 +84,8 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $apiNormalCacheDuration = 100;
     $apiLongCacheDuration = 3600;
 
-    $debug = false;
+    // define('YII_DEBUG', true);
 }
-
-// REMOVE THIS WHEN LIVE
-define('YII_DEBUG', $debug);
 
 
 
