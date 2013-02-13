@@ -88,7 +88,7 @@ class MobileUser extends ActiveMongoDocument {
         return new EDMSDataProvider($cursor,
                         array(
                             'pagination' => array(
-                                'pageSize' => 50,
+                                'pageSize' => 25,
                             )
                         )
         );

@@ -79,7 +79,7 @@ class State extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
                         'pagination'=>array(
-                            'pageSize'=>60,
+                            'pageSize'=>25,
                         ),
                     
 		));

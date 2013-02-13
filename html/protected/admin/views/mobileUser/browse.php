@@ -40,6 +40,14 @@ echo '<b>' . CHtml::link('Search', '#', array('class' => 'search-button')) . '</
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'MobileUser-grid',
     'dataProvider' => $model->search(),
+    'pager' => array(
+        'cssFile' => true,
+        'header' => false,
+        'firstPageLabel' => 'First',
+        'prevPageLabel' => 'Previous',
+        'nextPageLabel' => 'Next',
+        'lastPageLabel' => 'Last',
+    ),
     'columns' => array(
         array(
             'name' => '_id',
@@ -47,7 +55,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         ),
         array(
             'name' => 'device_type',
-            'header' => 'Device Type'
+            'header' => 'Device Type',
         ),
         array
             (
