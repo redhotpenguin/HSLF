@@ -1,34 +1,42 @@
-<div class="wide form">
+<div class="form">
 
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'action'=>Yii::app()->createUrl($this->route),
-	'method'=>'get',
-)); ?>
+    <?php
+    $form = $this->beginWidget('CActiveForm', array(
+        'action' => Yii::app()->createUrl($this->route),
+        'method' => 'get',
+            ));
+    ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'_id'); ?>
-		<?php echo $form->textField($model,'_id'); ?>
-	</div>
+    <div class="row-fluid">
+        <div class="span4">
+            <?php
+            echo CHtml::label('ID', 'MobileUser__id');
 
-	<div class="row">
-		<?php echo $form->label($model,'device_type'); ?>
-		<?php echo $form->textField($model,'device_type',array('size'=>60,'maxlength'=>256)); ?>
-	</div>
-    
-    <div class="row">
-		<?php echo $form->label($model,'districts'); ?>
-		<?php echo $form->textField($model,'districts',array('size'=>60,'maxlength'=>256)); ?>
-	</div>
-    
-       <div class="row">
-		<?php echo $form->label($model,'tags'); ?>
-		<?php echo $form->textField($model,'tags',array('size'=>60,'maxlength'=>256)); ?>
-	</div>
+            echo $form->textField($model, '_id', array('class' => 'span11'));
+            ?>
+        </div>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Search'); ?>
-	</div>
+        <div class="span4">
+            <?php
+            echo $form->label($model, 'device_type');
+            echo $form->dropDownList($model, 'device_type', array('' => 'Any', 'ios' => 'iOs', 'android' => 'Android'), array('class' => 'span11'));
+            ?>
+        </div>
 
-<?php $this->endWidget(); ?>
+
+        <div class="span4">
+            <?php
+            echo CHtml::label('Tag', 'MobileUser_tags');
+            echo $form->textField($model, 'tags', array('size' => 60, 'maxlength' => 256, 'class' => 'span11'));
+            ?>
+        </div>
+
+    </div>
+    <div class="row-fluid buttons">
+        <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'search   ')); ?>
+
+    </div>
+
+    <?php $this->endWidget(); ?>
 
 </div><!-- search-form -->
