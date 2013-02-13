@@ -29,6 +29,11 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
     $cs = Yii::app()->getClientScript();
     $cs->registerScriptFile($baseUrl . '/static/payload/payload.js');
 
+    if (getParam('updated') == '1') {
+        echo '<div class="update_box btn-success">Payload #' . $model->id . ' successfully updated</div>';
+    } elseif (getParam('created') == '1') {
+        echo '<div class="update_box btn-success">Payload #' . $model->id . ' successfully saved</div>';
+    }
 
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'payload-form',

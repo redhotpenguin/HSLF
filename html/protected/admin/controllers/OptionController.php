@@ -2,11 +2,9 @@
 
 class OptionController extends Controller {
 
-
     /**
      * @return array action filters
      */
-
     public function filters() {
         return array(
             'accessControl', // perform access control for CRUD operations
@@ -54,7 +52,7 @@ class OptionController extends Controller {
         if (isset($_POST['Option'])) {
             $model->attributes = $_POST['Option'];
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id, 'created' => true));
         }
 
         $this->render('editor', array(
@@ -76,7 +74,7 @@ class OptionController extends Controller {
         if (isset($_POST['Option'])) {
             $model->attributes = $_POST['Option'];
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
         }
 
         $this->render('editor', array(
