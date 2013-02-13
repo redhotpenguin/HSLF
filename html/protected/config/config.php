@@ -128,3 +128,5 @@ DEFINE('SITE_URL', $siteurl);
 DEFINE('API_SHORT_CACHE_DURATION', $apiShortCacheDuration);
 DEFINE('API_NORMAL_CACHE_DURATION', $apiNormalCacheDuration);
 DEFINE('API_LONG_CACHE_DURATION', $apiLongCacheDuration);
+
+date_default_timezone_set('America/Los_Angeles');
