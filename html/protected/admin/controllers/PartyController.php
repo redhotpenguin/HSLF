@@ -53,7 +53,7 @@ class PartyController extends Controller {
         if (isset($_POST['Party'])) {
             $model->attributes = $_POST['Party'];
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id, 'created'=>true));
         }
 
         $this->render('editor', array(
@@ -75,7 +75,7 @@ class PartyController extends Controller {
         if (isset($_POST['Party'])) {
             $model->attributes = $_POST['Party'];
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id, 'updated'=>true));
         }
 
         $this->render('editor', array(

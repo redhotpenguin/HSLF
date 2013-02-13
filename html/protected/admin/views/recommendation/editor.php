@@ -22,32 +22,44 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
 
 <div class="form">
 
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'recommendation-form',
-	'enableAjaxValidation'=>false,
-            'htmlOptions' => array('class' => 'form-vertical'),
-)); ?>
+    <?php
+    $form = $this->beginWidget('CActiveForm', array(
+        'id' => 'recommendation-form',
+        'enableAjaxValidation' => false,
+        'htmlOptions' => array('class' => 'form-vertical'),
+            ));
+    ?>
 
-	
 
-	<?php echo $form->errorSummary($model); ?>
 
-	<div class="">
-		<?php echo $form->labelEx($model,'value'); ?>
-		<?php echo $form->textField($model,'value',array('size'=>60,'maxlength'=>64)); ?>
-		<?php echo $form->error($model,'value'); ?>
-	</div>
+        <?php echo $form->errorSummary($model); ?>
 
-	<div class="">
-		<?php echo $form->labelEx($model,'type');
-                 echo $form->dropDownList($model, 'type', $model->getTypeOptions());
-		 echo $form->error($model,'type'); ?>
-	</div>
+    <div class="">
+        <?php echo $form->labelEx($model, 'value'); ?>
+<?php echo $form->textField($model, 'value', array('size' => 60, 'maxlength' => 64)); ?>
+<?php echo $form->error($model, 'value'); ?>
+    </div>
 
-	<div class="buttons">
-        <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'Save')); ?>
-	</div>
+    <div class="">
+        <?php
+        echo $form->labelEx($model, 'type');
+        echo $form->dropDownList($model, 'type', $model->getTypeOptions());
+        echo $form->error($model, 'type');
+        ?>
+    </div>
 
-<?php $this->endWidget(); ?>
+    <div class="buttons">
+    <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'Save')); ?>
+    </div>
+
+    <?php
+    $this->endWidget();
+
+    if (getParam('updated') == '1') {
+        echo '<div class="update_box btn-success">Recommendation successfully updated</div>';
+    } elseif (getParam('created') == '1') {
+        echo '<div class="update_box btn-success">Recommendation successfully saved</div>';
+    }
+    ?>
 
 </div><!-- form -->

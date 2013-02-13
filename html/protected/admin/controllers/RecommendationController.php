@@ -2,8 +2,6 @@
 
 class RecommendationController extends Controller {
 
-
-
     /**
      * @return array action filters
      */
@@ -55,7 +53,7 @@ class RecommendationController extends Controller {
         if (isset($_POST['Recommendation'])) {
             $model->attributes = $_POST['Recommendation'];
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id, 'created' => true));
         }
 
         $this->render('editor', array(
@@ -77,7 +75,7 @@ class RecommendationController extends Controller {
         if (isset($_POST['Recommendation'])) {
             $model->attributes = $_POST['Recommendation'];
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
         }
 
         $this->render('editor', array(

@@ -54,7 +54,7 @@ class TagController extends Controller {
         if (isset($_POST['Tag'])) {
             $model->attributes = $_POST['Tag'];
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id, 'created' => true));
         }
 
         $this->render('editor', array(
