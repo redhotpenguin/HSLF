@@ -27,7 +27,7 @@
                 $tenant = Yii::app()->user->getCurrentTenant();
 
 
-                $userTenant = Yii::app()->user->getUserTenantId();
+                $userTenant = Yii::app()->user->getTenantUserId();
 
 
                 // if user has a tenant selected
@@ -77,7 +77,7 @@
                     $brand = 'Winning Mark Mobile';
 
 
-                    if (Yii::app()->authManager->checkAccess('admin', Yii::app()->user->getUserTenantId())) {
+                    if (Yii::app()->authManager->checkAccess('admin', Yii::app()->user->getTenantUserId())) {
 
                         $adminItems = array(
                             'class' => 'bootstrap.widgets.TbMenu',

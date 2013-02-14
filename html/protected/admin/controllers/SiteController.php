@@ -50,21 +50,24 @@ class SiteController extends Controller {
     public function actionHome() {
         $tenant = Yii::app()->user->getCurrentTenant();
 
-        if (Yii::app()->authManager->checkAccess('manageBallotItems', Yii::app()->user->getUserTenantId()))
+        $tenantUserId = Yii::app()->user->getTenantUserId();
+
+        if (Yii::app()->authManager->checkAccess('manageBallotItems', $tenantUserId))
             $itemCount = Item::model()->count();
         else
             $itemCount = null;
 
-        if (Yii::app()->authManager->checkAccess('manageMobileUsers', Yii::app()->user->getUserTenantId()))
+        if (Yii::app()->authManager->checkAccess('manageMobileUsers', $tenantUserId))
             $mobileUserCount = MobileUser::model()->count();
         else
             $mobileUserCount = null;
 
 
         $data = array(
-            'total_item_number' => $itemCount,
-            'total_user_number' => $mobileUserCount,
-            'tenant' => $tenant
+            'itemCount' => $itemCount,
+            'mobileUserCount' => $mobileUserCount,
+            'tenant' => $tenant,
+            'tenantUserId' => $tenantUserId
         );
         $this->render('home', $data);
     }
