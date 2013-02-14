@@ -5,7 +5,6 @@ class UserController extends Controller {
     /**
      * @return array action filters
      */
-
     public function filters() {
         return array(
             'accessControl', // perform access control for CRUD operations
@@ -19,6 +18,10 @@ class UserController extends Controller {
      */
     public function accessRules() {
         return array(
+            array('allow',
+                'actions' => array('permission',),
+                'roles' => array('admin'),
+            ),
             array('allow',
                 'actions' => array('index',),
                 'roles' => array('readUser'),
@@ -100,10 +103,10 @@ class UserController extends Controller {
         $current_password = $model->password;
 
         if (isset($_POST['User'])) {
-            
+
 
             $model->attributes = $_POST['User'];
-             
+
             // if a new password has been given
             if ($model->password)
                 $model->initial_password = $model->password;
@@ -232,6 +235,10 @@ class UserController extends Controller {
 
 
         $this->render('my_account', array('model' => $model));
+    }
+
+    public function actionPermission($tenantId,$userId) {
+        $this->renderPartial('modal/permissions');
     }
 
     /**

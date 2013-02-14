@@ -32,11 +32,3 @@
     echo $form->error($model, 'email');
     ?>
 </div>
-
-<div class="row">
-    <?php
-    echo $form->labelEx($model, 'role');
-    echo $form->dropDownList($model, 'role', $model->getRoleOptions() + array("" => "No role assigned"));
-    echo $form->error($model, 'role');
-    ?>
-</div>
