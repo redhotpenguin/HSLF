@@ -48,12 +48,6 @@ class MobileUsersAPI implements IAPI {
      */
     public function create($tenantId, $arguments = array()) {
 
-        if (YII_DEBUG) {
-            logIt("create:");
-            logIt($arguments);
-        }
-
-
         if (!isset($arguments['user']))
             return $this->buildErrorResponse(RestFailure::HTTP_BAD_REQUEST_CODE, self::ERROR_INCORRECT_USAGE_MSG);
 
@@ -109,10 +103,6 @@ class MobileUsersAPI implements IAPI {
      * @return mixed success or failure (array)
      */
     public function update($tenantId, $id, $arguments = array()) {
-        if (YII_DEBUG) {
-            logIt("update:");
-            logIt($arguments);
-        }
 
         if (!isset($arguments['user']))
             return $this->buildErrorResponse(RestFailure::HTTP_BAD_REQUEST_CODE, self::ERROR_INCORRECT_USAGE_MSG);

@@ -2,11 +2,9 @@
 
 class AlertTypeController extends Controller {
 
-  
     /**
      * @return array action filters
      */
-
     public function filters() {
         return array(
             'accessControl', // perform access control for CRUD operations
@@ -42,7 +40,6 @@ class AlertTypeController extends Controller {
         );
     }
 
-
     /**
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -56,7 +53,7 @@ class AlertTypeController extends Controller {
         if (isset($_POST['AlertType'])) {
             $model->attributes = $_POST['AlertType'];
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id, 'created' => true));
         }
 
         $this->render('editor', array(
@@ -78,7 +75,7 @@ class AlertTypeController extends Controller {
         if (isset($_POST['AlertType'])) {
             $model->attributes = $_POST['AlertType'];
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
         }
 
         $this->render('editor', array(

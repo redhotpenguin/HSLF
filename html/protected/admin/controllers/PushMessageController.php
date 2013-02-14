@@ -56,7 +56,7 @@ class PushMessageController extends Controller {
                 if (isset($_POST['PushMessage']['tags']))
                     $model->massUpdateTags($_POST['PushMessage']['tags']);
 
-                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
+                $this->redirect(array('update', 'id' => $model->id, 'created' => true));
             }
         }
 

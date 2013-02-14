@@ -1,4 +1,4 @@
--- last alter file merged: alter_38.sql
+-- last alter file merged: alter_42.sql
 
 -- tables creation --
 
@@ -21,7 +21,7 @@ create table tenant(
 CREATE TABLE state (
     id SERIAL PRIMARY KEY,
     abbr character varying(3) NOT NULL,
-    name character varying(128)
+    name character varying(128) NOT NULL
 );
 
 CREATE TABLE district (
@@ -35,7 +35,7 @@ CREATE TABLE district (
 
 CREATE TABLE alert_type (
     id SERIAL PRIMARY KEY,
-    display_name character varying(1024),
+    display_name character varying(1024) NOT NULL,
     tag_id integer NOT NULL,
     category VARCHAR(512)
 );
@@ -110,7 +110,7 @@ CREATE TABLE recommendation (
 
 CREATE TABLE party (
     id SERIAL PRIMARY KEY,
-    name character varying(2048),
+    name character varying(2048) NOT NULL,
     abbr character varying(128),
     initial character varying(16)
 );
@@ -131,13 +131,13 @@ CREATE TABLE scorecard_item (
 
 CREATE TABLE office (
     id SERIAL PRIMARY KEY,
-    name character varying(256)
+    name character varying(256) NOT NULL
 );
 
 CREATE TABLE vote (
     id SERIAL PRIMARY KEY,
     tenant_id integer NOT NULL,
-    name character varying(64),
+    name character varying(64) NOT NULL,
     icon text
 );
 
@@ -218,16 +218,16 @@ CREATE TABLE tag_organization(
 
 CREATE table push_message(
     id SERIAL PRIMARY KEY,
-    tenant_id INTEGER REFERENCES tenant(id) NOT NULL,
-    payload_id INTEGER REFERENCES payload(id) NOT NULL,
+    tenant_id INTEGER REFERENCES tenant(id)  on delete cascade on update cascade,
+    payload_id INTEGER REFERENCES payload(id) on delete cascade on update cascade,
     creation_date timestamp without time zone NOT NULL,
     alert character varying(140)
 
 );
 
 CREATE TABLE tag_push_message(
-    tag_id INTEGER REFERENCES tag(id),
-    push_message_id INTEGER REFERENCES push_message(id),
+    tag_id INTEGER REFERENCES tag(id) on delete cascade on update cascade ,
+    push_message_id INTEGER REFERENCES push_message(id) on delete cascade on update cascade,
     PRIMARY KEY (tag_id, push_message_id)
 );
 
@@ -235,17 +235,14 @@ CREATE TABLE tag_push_message(
 -- unique constraints creation --
 ALTER TABLE tenant ADD CONSTRAINT unique_name UNIQUE (name);
 
-ALTER TABLE item ADD CONSTRAINT unique_url UNIQUE(slug);
-
+ALTER TABLE item ADD CONSTRAINT unique_tenant_slug UNIQUE(tenant_id,slug);
 
 ALTER TABLE district ADD CONSTRAINT district_state_id_number_locality_type_key UNIQUE (state_id, number, type, locality);
-ALTER TABLE option ADD CONSTRAINT option_name_key UNIQUE (name);
---ALTER TABLE scorecard ADD CONSTRAINT scorecard_item_id_scorecard_item_id_key UNIQUE (item_id, scorecard_item_id);
+ALTER TABLE option ADD CONSTRAINT option_name_tenant_id_key UNIQUE (name, tenant_id);
 
-ALTER TABLE state ADD CONSTRAINT state_id_key UNIQUE (id);
 ALTER TABLE state ADD CONSTRAINT state_abbr_key UNIQUE (abbr);
 
-ALTER TABLE tag ADD CONSTRAINT tag_name_type_key UNIQUE (name, type);
+ALTER TABLE tag ADD CONSTRAINT tag_name_type_tenant_id_key UNIQUE (name, type, tenant_id);
 ALTER TABLE "user" ADD CONSTRAINT user_email_key UNIQUE (email);
 ALTER TABLE "user" ADD CONSTRAINT user_username_key UNIQUE (username);
 	

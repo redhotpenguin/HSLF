@@ -30,7 +30,7 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
             ));
     ?>
 
-    
+
 
     <?php echo $form->errorSummary($model); ?>
 
@@ -50,6 +50,13 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
         <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'Save')); ?>
     </div>
 
-    <?php $this->endWidget(); ?>
+    <?php
+    $this->endWidget();
+    if (getParam('updated') == '1') {
+        echo '<div class="update_box btn-success">State successfully updated</div>';
+    } elseif (getParam('created') == '1') {
+        echo '<div class="update_box btn-success">State successfully saved</div>';
+    }
+    ?>
 
 </div><!-- form -->

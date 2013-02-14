@@ -23,9 +23,9 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
 <table>
 
     <tbody class="table">
-<?php
-foreach ($model->fields as $field => $value) {
-    ?>
+        <?php
+        foreach ($model->fields as $field => $value) {
+            ?>
             <tr>
                 <td><?php echo $field; ?></td>
                 <td><?php
@@ -37,21 +37,21 @@ foreach ($model->fields as $field => $value) {
             if ($value instanceof MongoId) {
                 echo $value->{'$id'};
             } elseif ($value instanceof MongoDate) {
-                echo $value->sec;
+                echo date('l jS \of F Y - h:i:s A (T)', $value->sec);
             } else {
                 print_r($value);
             }
         } else {
             echo $value;
         }
-    ?></td>
+            ?></td>
 
 
             </tr>
 
-    <?php
-}
-?>
+            <?php
+        }
+        ?>
     </tbody>
 
 </table>

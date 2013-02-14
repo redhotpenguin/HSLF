@@ -102,7 +102,7 @@ class Organization extends BaseActiveRecord {
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
                     'pagination' => array(
-                        'pageSize' => 50,
+                        'pageSize' => 25,
                     ),
                 ));
     }

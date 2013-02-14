@@ -27,7 +27,7 @@ foreach ($models as $model):
 
         <div class = "right_col">
             <?php
-            echo Chtml::submitButton("Import");
+            $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'Import'));
             ?>
         </div>
 

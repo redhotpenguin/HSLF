@@ -2,11 +2,9 @@
 
 class StateController extends Controller {
 
-
     /**
      * @return array action filters
      */
-
     public function filters() {
         return array(
             'accessControl', // perform access control for CRUD operations
@@ -43,8 +41,6 @@ class StateController extends Controller {
         );
     }
 
-
-
     /**
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'update' page.
@@ -59,7 +55,7 @@ class StateController extends Controller {
             $model->attributes = $_POST['State'];
             try {
                 if ($model->save()) {
-                    $this->redirect(array('update', 'id' => $model->id));
+                    $this->redirect(array('update', 'id' => $model->id, 'created' => true));
                 }
             } catch (Exception $e) {
                 error_log("State controller:" . $e->getMessage());
@@ -88,7 +84,7 @@ class StateController extends Controller {
             try {
                 if ($model->save())
                     $this->redirect(array('update',
-                        'id' => $model->id));
+                        'id' => $model->id, 'updated' => true));
             } catch (Exception $e) {
                 error_log("State controller:" . $e->getMessage());
             }

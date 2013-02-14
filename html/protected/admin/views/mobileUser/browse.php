@@ -14,10 +14,6 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
 
 <?php
 Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
 $('.search-form form').submit(function(){
 	$.fn.yiiGridView.update('MobileUser-grid', {
 		data: $(this).serialize()
@@ -25,10 +21,8 @@ $('.search-form form').submit(function(){
 	return false;
 });
 ");
-
-echo '<b>' . CHtml::link('Search', '#', array('class' => 'search-button')) . '</b>';
 ?>
-<div class="search-form" style="display:none">
+<div class="search-form">
     <?php
     $this->renderPartial('_search', array(
         'model' => $model,
@@ -40,6 +34,14 @@ echo '<b>' . CHtml::link('Search', '#', array('class' => 'search-button')) . '</
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'MobileUser-grid',
     'dataProvider' => $model->search(),
+    'pager' => array(
+        'cssFile' => false,
+        'header' => false,
+        'firstPageLabel' => 'First',
+        'prevPageLabel' => 'Previous',
+        'nextPageLabel' => 'Next',
+        'lastPageLabel' => 'Last',
+    ),
     'columns' => array(
         array(
             'name' => '_id',
@@ -47,7 +49,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         ),
         array(
             'name' => 'device_type',
-            'header' => 'Device Type'
+            'header' => 'Device Type',
         ),
         array
             (

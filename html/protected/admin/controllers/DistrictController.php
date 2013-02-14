@@ -2,8 +2,6 @@
 
 class DistrictController extends Controller {
 
-
-
     /**
      * @return array action filters
      */
@@ -30,7 +28,6 @@ class DistrictController extends Controller {
         );
     }
 
-
     /**
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'udate' page.
@@ -44,7 +41,7 @@ class DistrictController extends Controller {
         if (isset($_POST['District'])) {
             $model->attributes = $_POST['District'];
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id, 'created' => true));
         }
 
         $this->render('editor', array(
@@ -66,7 +63,7 @@ class DistrictController extends Controller {
         if (isset($_POST['District'])) {
             $model->attributes = $_POST['District'];
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
         }
 
         $this->render('editor', array(

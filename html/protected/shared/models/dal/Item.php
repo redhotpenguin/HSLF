@@ -180,7 +180,7 @@ class Item extends BaseActiveRecord {
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
                     'pagination' => array(
-                        'pageSize' => 20,
+                        'pageSize' => 25,
                     ),
                     'sort' => array(
                         'defaultOrder' => $this->getTableAlias(false, false) . '.id DESC',

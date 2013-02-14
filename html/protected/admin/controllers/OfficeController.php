@@ -2,8 +2,6 @@
 
 class OfficeController extends Controller {
 
-
-
     /**
      * @return array action filters
      */
@@ -31,7 +29,6 @@ class OfficeController extends Controller {
         );
     }
 
-
     /**
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'update' page.
@@ -45,7 +42,7 @@ class OfficeController extends Controller {
         if (isset($_POST['Office'])) {
             $model->attributes = $_POST['Office'];
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id, 'created' => true));
         }
 
         $this->render('editor', array(
@@ -67,7 +64,7 @@ class OfficeController extends Controller {
         if (isset($_POST['Office'])) {
             $model->attributes = $_POST['Office'];
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
         }
 
         $this->render('editor', array(

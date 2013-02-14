@@ -15,14 +15,16 @@ create table tenant(
         ua_api_key TEXT NOT NULL,
         ua_api_secret TEXT NOT NULL,
 	cicero_user TEXT NOT NULL,
-	cicero_password TEXT NOT NULL
+	cicero_password TEXT NOT NULL,
+        UNIQUE (name)
 );
 
 
 CREATE TABLE state (
     id int(11) PRIMARY KEY AUTO_INCREMENT,
     abbr VARCHAR(3) NOT NULL,
-    name VARCHAR(128)
+    name VARCHAR(128) NOT NULL,
+    UNIQUE (abbr)
 );
 
 
@@ -33,7 +35,8 @@ CREATE TABLE district (
     type VARCHAR(128) NOT NULL,
     display_name VARCHAR(512),
     locality VARCHAR(128),
-    foreign key (state_id) references state (id) on delete cascade on update cascade
+    foreign key (state_id) references state (id) on delete cascade on update cascade,
+    UNIQUE (state_id, number, type, locality)
 );
 
 
@@ -49,7 +52,7 @@ CREATE TABLE tag (
 
 CREATE TABLE alert_type (
     id int(11) PRIMARY KEY AUTO_INCREMENT,
-    display_name VARCHAR(1024),
+    display_name VARCHAR(1024) NOT NULL,
     tag_id integer NOT NULL,
     category VARCHAR(512),
     foreign key (tag_id) references tag (id) on delete cascade on update cascade
@@ -68,19 +71,26 @@ CREATE TABLE organization (
     facebook_url VARCHAR(2048),
     twitter_handle VARCHAR(2048),
     address TEXT NOT NULL,
-    foreign key (tenant_id) references tenant (id) on delete cascade on update cascade
+    foreign key (tenant_id) references tenant (id) on delete cascade on update cascade,
+    UNIQUE (slug,tenant_id)
 );
 
+CREATE TABLE party (
+    id int(11) PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(2048) NOT NULL,
+    abbr VARCHAR(128),
+    initial VARCHAR(16) NOT NULL
+);
 
 CREATE TABLE item (
     id int(11) PRIMARY KEY AUTO_INCREMENT,
     district_id integer NOT NULL,
     tenant_id integer NOT NULL,
-    item text NOT NULL,
+    item TEXT NOT NULL,
     item_type VARCHAR(128) NOT NULL,
     recommendation_id integer NOT NULL,
     next_election_date DATETIME,
-    detail text,
+    detail TEXT,
     date_published DATETIME NOT NULL,
     published VARCHAR(16) NOT NULL,
     image_url VARCHAR(2048),
@@ -94,7 +104,10 @@ CREATE TABLE item (
     first_name VARCHAR(1024),
     last_name VARCHAR(1024),
     foreign key (district_id) references district (id) on delete cascade on update cascade,
-    foreign key (tenant_id) references tenant (id) on delete cascade on update cascade
+    foreign key (tenant_id) references tenant (id) on delete cascade on update cascade,
+    foreign key (party_id) references party (id) on delete cascade on update cascade,
+    UNIQUE (slug,tenant_id)
+
 );
 
 
@@ -127,18 +140,13 @@ CREATE TABLE recommendation (
 );
 
 
-CREATE TABLE party (
-    id int(11) PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(2048),
-    abbr VARCHAR(128),
-    initial VARCHAR(16)
-);
+
 
 
 CREATE TABLE vote (
     id int(11) PRIMARY KEY AUTO_INCREMENT,
     tenant_id integer NOT NULL,
-    name VARCHAR(64),
+    name VARCHAR(64) NOT NULL,
     icon text,
     foreign key (tenant_id) references tenant (id) on delete cascade on update cascade
 );
@@ -146,7 +154,7 @@ CREATE TABLE vote (
 
 CREATE TABLE office (
     id int(11) PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(256)
+    name VARCHAR(256) NOT NULL
 );
 
 
@@ -174,7 +182,8 @@ CREATE TABLE `option` (
     tenant_id integer NOT NULL,
     name VARCHAR(256) NOT NULL,
     value text NOT NULL,
-    foreign key (tenant_id) references tenant (id) on delete cascade on update cascade
+    foreign key (tenant_id) references tenant (id) on delete cascade on update cascade,
+    UNIQUE (name,tenant_id)
 );
 
 
@@ -182,7 +191,9 @@ CREATE TABLE `user` (
     id int(11) PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(128) NOT NULL,
     password character(40) NOT NULL,
-    email VARCHAR(128) NOT NULL
+    email VARCHAR(128) NOT NULL,
+    UNIQUE(username),
+    UNIQUE(email)
 );
 
 

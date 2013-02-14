@@ -47,8 +47,6 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $apiShortCacheDuration = 10;
     $apiNormalCacheDuration = 100;
     $apiLongCacheDuration = 3600;
-
-    $debug = true;
     
     set_include_path(get_include_path() . PATH_SEPARATOR . '/home/dotcloud/php-env/share/php');
 } else {    //dev server conf
@@ -86,11 +84,8 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $apiNormalCacheDuration = 100;
     $apiLongCacheDuration = 3600;
 
-    $debug = false;
+    // define('YII_DEBUG', true);
 }
-
-// REMOVE THIS WHEN LIVE
-define('YII_DEBUG', $debug);
 
 
 
@@ -133,3 +128,5 @@ DEFINE('SITE_URL', $siteurl);
 DEFINE('API_SHORT_CACHE_DURATION', $apiShortCacheDuration);
 DEFINE('API_NORMAL_CACHE_DURATION', $apiNormalCacheDuration);
 DEFINE('API_LONG_CACHE_DURATION', $apiLongCacheDuration);
+
+date_default_timezone_set('America/Los_Angeles');

@@ -2,7 +2,6 @@
 
 class VoteController extends Controller {
 
-
     /**
      * @return array action filters
      */
@@ -41,7 +40,6 @@ class VoteController extends Controller {
         );
     }
 
-
     /**
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -55,7 +53,7 @@ class VoteController extends Controller {
         if (isset($_POST['Vote'])) {
             $model->attributes = $_POST['Vote'];
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id, 'created' => true));
         }
 
         $this->render('editor', array(
@@ -77,7 +75,7 @@ class VoteController extends Controller {
         if (isset($_POST['Vote'])) {
             $model->attributes = $_POST['Vote'];
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
         }
 
         $this->render('editor', array(

@@ -79,7 +79,7 @@ class UserController extends Controller {
                     }
                 }
 
-                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
+                $this->redirect(array('update', 'id' => $model->id, 'created' => true));
             }
         }
 

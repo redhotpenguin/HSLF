@@ -123,6 +123,14 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
     <div class="hidden update_box" id="targetdiv">
     </div>
 
-    <?php $this->endWidget(); ?>
+    <?php
+    $this->endWidget();
+
+    if (getParam('updated') == '1') {
+        echo '<div class="update_box btn-success">Tag successfully updated</div>';
+    } elseif (getParam('created') == '1') {
+        echo '<div class="update_box btn-success">Tag successfully saved</div>';
+    }
+    ?>
 
 </div><!-- form -->

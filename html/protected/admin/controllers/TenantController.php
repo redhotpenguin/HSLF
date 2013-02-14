@@ -2,8 +2,6 @@
 
 class TenantController extends Controller {
 
-
-
     /**
      * @return array action filters
      */
@@ -53,7 +51,7 @@ class TenantController extends Controller {
         if (isset($_POST['Tenant'])) {
             $model->attributes = $_POST['Tenant'];
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id, 'created' => true));
         }else {
             $model->creation_date = date('Y-m-d h:i:s');
             $model->api_key = rand(10000, 99999);
@@ -80,7 +78,7 @@ class TenantController extends Controller {
         if (isset($_POST['Tenant'])) {
             $model->attributes = $_POST['Tenant'];
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id));
+                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
         }
 
         $this->render('editor', array(
@@ -102,7 +100,6 @@ class TenantController extends Controller {
         ));
     }
 
-   
     /**
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.

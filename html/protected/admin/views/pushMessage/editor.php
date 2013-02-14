@@ -66,6 +66,14 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
     ?>
 
 
-    <?php $this->endWidget(); ?>
+    <?php
+    $this->endWidget();
+
+    if (getParam('updated') == '1') {
+        echo '<div class="update_box btn-success">Push Message successfully updated</div>';
+    } elseif (getParam('created') == '1') {
+        echo '<div class="update_box btn-success">Push Message successfully saved</div>';
+    }
+    ?>
 
 </div>
