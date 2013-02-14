@@ -9,8 +9,8 @@ class SiteController extends Controller {
     public function actionIndex() {
         $data = null;
 
-        //user is already authenticated
-        //@bug: Yii::app()->user->id is sometimes a string. Ex: 'jonas'
+//user is already authenticated
+//@bug: Yii::app()->user->id is sometimes a string. Ex: 'jonas'
         if (Yii::app()->user->id) {
 
             $user = Yii::app()->user->getModel();
@@ -27,22 +27,22 @@ class SiteController extends Controller {
         } else {
             $model = new LoginForm;
 
-            // if it is ajax validation request
+// if it is ajax validation request
             if (isset($_POST['ajax']) && $_POST['ajax'] === 'login-form') {
                 echo CActiveForm::validate($model);
                 Yii::app()->end();
             }
 
-            // collect user input data
+// collect user input data
             if (isset($_POST['LoginForm'])) {
                 $model->attributes = $_POST['LoginForm'];
 
-                // validate user input and redirect to the admin home page if valid
+// validate user input and redirect to the admin home page if valid
                 if ($model->validate() && $model->login()) {
                     $this->redirect("/admin");
                 }
             }
-            // display the login form
+// display the login form
             $this->render('login', array('model' => $model));
         }
     }
@@ -50,9 +50,20 @@ class SiteController extends Controller {
     public function actionHome() {
         $tenant = Yii::app()->user->getCurrentTenant();
 
+        if (Yii::app()->authManager->checkAccess('manageBallotItems', Yii::app()->user->getUserTenantId()))
+            $itemCount = Item::model()->count();
+        else
+            $itemCount = null;
+
+        if (Yii::app()->authManager->checkAccess('manageMobileUsers', Yii::app()->user->getUserTenantId()))
+            $mobileUserCount = MobileUser::model()->count();
+        else
+            $mobileUserCount = null;
+
+
         $data = array(
-            'total_item_number' => Item::model()->count(),
-            'total_user_number' => MobileUser::model()->count(),
+            'total_item_number' => $itemCount,
+            'total_user_number' => $mobileUserCount,
             'tenant' => $tenant
         );
         $this->render('home', $data);
@@ -69,20 +80,20 @@ class SiteController extends Controller {
 
             $model = new LoginForm;
 
-            // if it is ajax validation request
+// if it is ajax validation request
             if (isset($_POST['ajax']) && $_POST['ajax'] === 'login-form') {
                 echo CActiveForm::validate($model);
                 Yii::app()->end();
             }
 
-            // collect user input data
+// collect user input data
             if (isset($_POST['LoginForm'])) {
                 $model->attributes = $_POST['LoginForm'];
-                // validate user input and redirect to the previous page if valid
+// validate user input and redirect to the previous page if valid
                 if ($model->validate() && $model->login())
                     $this->redirect(Yii::app()->user->returnUrl);
             }
-            // display the login form
+// display the login form
             $this->render('login', array('model' => $model));
         }
     }
@@ -93,12 +104,12 @@ class SiteController extends Controller {
     public function actionError() {
         $error = Yii::app()->errorHandler->error;
         if (Yii::app()->request->isAjaxRequest) {
-            if($error['type'] == 'CDbException' && $error['errorCode'] == 23502){
+            if ($error['type'] == 'CDbException' && $error['errorCode'] == 23502) {
                 echo 'This resource is used by something else and can not be deleted.';
             }
         }
         else
-            $this->render('error', array('error'=>$error));
+            $this->render('error', array('error' => $error));
     }
 
     /**
