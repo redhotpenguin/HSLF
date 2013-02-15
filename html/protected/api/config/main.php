@@ -16,13 +16,12 @@ return array(
     // 'preload' => array('log'),
     // autoloading model and component classes
     'import' => array(
+        'application.api.components.*',
         'application.api.models.rest.criteria.*',
         'application.api.models.rest.*',
         'application.api.models.geocodingclient.*',
-        'admin.models.*',
         'application.shared.models.dal.*', // data access logic classes
         'application.shared.models.bll.*', // business  logic classes
-        'admin.components.*',
         'application.models.*',
         'application.shared.components.*',
         'application.shared.extensions.directmongosuite.components.*',

@@ -23,10 +23,10 @@ return array(
         'application.shared.models.dal.*', // data access logic classes
         'application.shared.models.bll.*', // business  logic classes
         'admin.components.*',
-        'application.models.*',
+        'application.shared.components.*', 'application.models.*',
         'application.components.*',
         'application.vendors.Winningmark.Queues.*',
-        'ext.directmongosuite.components.*',
+        'application.shared.extensions.directmongosuite.components.*',
     ),
     'modules' => array(
     ),
