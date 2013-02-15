@@ -245,13 +245,26 @@ class UserController extends Controller {
     public function actionPermissions($tenantId, $userId) {
         $user = $this->loadModel($userId);
 
-        $publisherTasks = Yii::app()->authManager->getTasks();
+        $publisherTasks = Yii::app()->authManager->getItemChildren('publisher');
+
         $assignedTasks = Yii::app()->authManager->getTasks("$tenantId,$userId"); // @todo: update this
+
+        $unassignedTasks = array_diff_key($publisherTasks, $assignedTasks);
+
+        foreach ($assignedTasks as $task)
+            $list[$task->name] = array('description' => $task->description, 'checked' => true);
+
+
+        foreach ($unassignedTasks as $task)
+            $list[$task->name] = array('description' => $task->description, 'checked' => false);
+
+
+        asort($list);
+
         $this->render('permissions', array(
             'user' => $user,
             'tenantId' => $tenantId,
-            'tasks' => $publisherTasks,
-            'assignedTasks' => $assignedTasks
+            'taskList' => $list,
         ));
     }
 

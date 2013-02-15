@@ -1,6 +1,23 @@
-
-
 <?php
+$navBarItems = array();
+
+
+array_push($navBarItems, '', array('label' => "$user->username ({$user->email})", 'url' => array('update', 'id' => $user->id),
+));
+
+$this->widget('bootstrap.widgets.TbNavbar', array(
+    'brand' => 'Users',
+    'brandUrl' => array('user/index'),
+    'htmlOptions' => array('class' => 'subnav'),
+    'collapse' => true, // requires bootstrap-responsive.css
+    'items' => array(
+        array(
+            'class' => 'bootstrap.widgets.TbMenu',
+            'items' => $navBarItems
+        ),
+    ),
+));
+
 echo CHtml::beginForm(array('user/updateTasks'), 'POST', array('id' => 'tasksForm'));
 
 
@@ -18,36 +35,17 @@ echo CHtml::hiddenField('userId', $user->id);
 <tbody>
     <?php
     $i = 0;
-    $taskCount = count($tasks);
-    $unassignedTasks = array_diff_key($tasks, $assignedTasks);
-
-    foreach ($assignedTasks as $task):
+    $taskCount = count($taskList);
+    
+    foreach ($taskList as $taskName => $taskValue):
 
         if ($i % 2 == 0) {
             echo '<tr>';
         }
         ?>
 
-    <td> <?php echo $task->description; ?> </td>
-    <td>  <?php echo CHtml::checkBox('tasks[]', true, array('value' => $task->name)); ?> </td>
-
-    <?php
-    if ($i % 2 == 1) {
-        echo '</tr>';
-    }
-
-    $i++;
-endforeach;
-
-foreach ($unassignedTasks as $task):
-
-    if ($i % 2 == 0) {
-        echo '<tr>';
-    }
-    ?>
-
-    <td> <?php echo $task->description; ?> </td>
-    <td>  <?php echo CHtml::checkBox('tasks[]', false, array('value' => $task->name)); ?> </td>
+    <td> <?php echo $taskValue['description']; ?> </td>
+    <td>  <?php echo CHtml::checkBox('tasks[]', $taskValue['checked'], array('value' => $taskName )); ?> </td>
 
     <?php
     if ($i % 2 == 1) {
