@@ -143,7 +143,7 @@ class VoteController extends Controller {
      * Performs the CSV Export
      */
     public function actionExportCSV() {
-        Yii::import('ext.csv.ESCVExport');
+        Yii::import('backend.extensions.csv.ESCVExport');
 
         $csv = new ESCVExport(Vote::model()->findAll());
 

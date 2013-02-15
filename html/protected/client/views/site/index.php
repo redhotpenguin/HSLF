@@ -12,7 +12,7 @@ else:
             <?php
             foreach ($tenants as $tenant) {
                 echo '<h3>';
-                echo CHtml::link($tenant->display_name, "/admin/" . $tenant->name, array('class' => ''));
+                echo CHtml::link($tenant->display_name, "/client/" . $tenant->name, array('class' => ''));
                 echo '</h3>';
             }
             ?>

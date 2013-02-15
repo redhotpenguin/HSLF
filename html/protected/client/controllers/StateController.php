@@ -157,7 +157,7 @@ class StateController extends Controller {
      * Performs the CSV Export
      */
     public function actionExportCSV() {
-        Yii::import('ext.csv.ESCVExport');
+        Yii::import('backend.extensions.csv.ESCVExport');
         $csv = new ESCVExport(State::model()->findAll());
         $content = $csv->toCSV();
         Yii::app()->getRequest()->sendFile('states.csv', $content, "text/csv", false);

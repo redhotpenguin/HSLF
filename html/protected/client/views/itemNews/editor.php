@@ -53,7 +53,7 @@ echo $updated = (isset($updated) ? $updated : "");
     <div class="row">
         <?php
         echo $form->labelEx($model, 'content');
-        $this->widget('admin.extensions.tinymce.TinyMce', array(
+        $this->widget('backend.extensions.tinymce.TinyMce', array(
             'model' => $model,
             'attribute' => 'content',
             'htmlOptions' => array(

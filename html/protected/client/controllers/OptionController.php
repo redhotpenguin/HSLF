@@ -141,7 +141,7 @@ class OptionController extends Controller {
      * Performs the CSV Export
      */
     public function actionExportCSV() {
-        Yii::import('ext.csv.ESCVExport');
+        Yii::import('backend.extensions.csv.ESCVExport');
         $csv = new ESCVExport(Option::model()->findAll());
         $content = $csv->toCSV();
         Yii::app()->getRequest()->sendFile('options.csv', $content, "text/csv", false);

@@ -37,9 +37,9 @@ class SiteController extends Controller {
             if (isset($_POST['LoginForm'])) {
                 $model->attributes = $_POST['LoginForm'];
 
-// validate user input and redirect to the admin home page if valid
+// validate user input and redirect to the client home page if valid
                 if ($model->validate() && $model->login()) {
-                    $this->redirect("/admin");
+                    $this->redirect("/client");
                 }
             }
 // display the login form
@@ -120,7 +120,7 @@ class SiteController extends Controller {
      */
     public function actionLogout() {
         Yii::app()->user->logout();
-        $this->redirect('/admin');
+        $this->redirect('/client');
     }
 
     public function accessRules() {

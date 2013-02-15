@@ -256,7 +256,7 @@ class ItemController extends Controller {
      * Performs the CSV Export
      */
     public function actionExportCSV() {
-        Yii::import('ext.csv.ESCVExport');
+        Yii::import('backend.extensions.csv.ESCVExport');
 
         $csv = new ESCVExport(Item::model()->findAll());
 
@@ -269,7 +269,7 @@ class ItemController extends Controller {
      * Ballot item news to csv
      */
     public function actionExportNewsCSV() {
-        Yii::import('ext.csv.ESCVExport');
+        Yii::import('backend.extensions.csv.ESCVExport');
 
         $csv = new ESCVExport(ItemNews::model()->findAll());
 
@@ -282,7 +282,7 @@ class ItemController extends Controller {
      * Ballot item news to csv
      */
     public function actionExportOrganizationCSV() {
-        Yii::import('ext.csv.ESCVExport');
+        Yii::import('backend.extensions.csv.ESCVExport');
 
         $csv = new ESCVExport(ItemOrganization::model()->findAll());
 

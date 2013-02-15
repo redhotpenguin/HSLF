@@ -22,7 +22,7 @@
 
 <div class="row-fluid">
     <?php
-    $this->widget('admin.extensions.DistrictSelector.DistrictSelector', array(
+    $this->widget('backend.extensions.DistrictSelector.DistrictSelector', array(
         'model' => $model,
         'attribute' => 'district_id',
         'options' => array(

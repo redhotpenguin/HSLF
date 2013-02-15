@@ -10,7 +10,7 @@
     echo $form->hiddenField($model, 'payload_id');
 
 // ext is a shortcut for application.extensions
-    $this->widget('admin.extensions.ExtendedAutoComplete.ExtendedAutoComplete', array(
+    $this->widget('backend.extensions.ExtendedAutoComplete.ExtendedAutoComplete', array(
         'name' => 'payload_field',
         'source' => $this->createUrl('payload/findPayload'),
 // attribute_value is a custom property that returns the 
