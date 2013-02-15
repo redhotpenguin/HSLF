@@ -68,20 +68,7 @@ $model->password = '';
 
     <?php
     $this->endWidget();
-
-    if (getParam('updated') == '1') {
-        echo '<div class="update_box btn-success">User successfully updated</div>';
-    } elseif (getParam('created') == '1') {
-        echo '<div class="update_box btn-success">User successfully saved</div>';
-    }
     ?>
 
-    <div class="text-error">
-<?php
-foreach (Yii::app()->user->getFlashes() as $key => $message) {
-    echo '<b>' . $message . "</b>";
-}
-?>
-    </div>
 
 </div><!-- form -->

@@ -164,7 +164,29 @@
 
                         <div class="span12">
 
-                            <?php echo $content; ?>
+                            <?php
+                            echo $content;
+
+
+                            if (Yii::app()->user->hasFlash('success')):
+                                ?>
+                                <div class="update_box btn-success">
+                                    <?php echo Yii::app()->user->getFlash('success'); ?>
+                                </div>
+                                <?php
+                            endif;
+
+                            if (Yii::app()->user->hasFlash('error')):
+                                $flashMessages = Yii::app()->user->getFlashes();
+                                if ($flashMessages) {
+                                    echo '<div class="flashes">';
+                                    foreach ($flashMessages as $key => $message) {
+                                        echo '<div class="update_box btn-danger flash-' . $key . '">' . $message . "</div>\n";
+                                    }
+                                    echo '</div>';
+                                }
+                            endif;
+                            ?>
 
                         </div>
                     </div>

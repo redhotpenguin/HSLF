@@ -65,22 +65,10 @@ class UserController extends Controller {
 
             if ($model->save()) {
 
-                // @todo: refactor this
-                if (isset($_POST['add_to_tenant']) && !empty($_POST['add_to_tenant'])) {
-                    $tenantName = $_POST['add_to_tenant'];
+                if (( isset($_POST['add_to_tenant']) && !empty($_POST['add_to_tenant'])))
+                    if (!$this->addUserToTenant($model, $_POST['add_to_tenant']))
+                        Yii::app()->user->setFlash('error', "Error while adding the user to this tenant");
 
-
-                    $tenant = Tenant::model()->findByAttributes(array("name" => $tenantName));
-                    if ($tenant) {
-                        if (!$model->addToTenant($tenant->id)) {
-                            Yii::app()->user->setFlash('error', "Error adding the user to this project");
-                            $updatedResult = false;
-                        }
-                    } else {
-                        Yii::app()->user->setFlash('error', "This tenant account does not exist");
-                        $updatedResult = false;
-                    }
-                }
 
                 $this->redirect(array('update', 'id' => $model->id, 'created' => true));
             }
@@ -117,52 +105,47 @@ class UserController extends Controller {
             if ($model->save())
                 $updatedResult = true;
 
-            // @todo: refactor this.. crap
-            if (isset($_POST['add_to_tenant']) && !empty($_POST['add_to_tenant'])) {
-                $tenantName = $_POST['add_to_tenant'];
+            if (( isset($_POST['add_to_tenant']) && !empty($_POST['add_to_tenant'])))
+                if (!$this->addUserToTenant($model, $_POST['add_to_tenant']))
+                    Yii::app()->user->setFlash('error', "Error while adding the user to this tenant");
 
 
-                $tenant = Tenant::model()->findByAttributes(array("name" => $tenantName));
-                if ($tenant) {
-                    if (!$model->addToTenant($tenant->id)) {
-                        Yii::app()->user->setFlash('error', "Error adding the user to this project");
-                        $updatedResult = false;
-                    }
-                } else {
-                    Yii::app()->user->setFlash('error', "This tenant account does not exist");
-                    $updatedResult = false;
-                }
-            }
-
-            // @todo: refactor this
-            if (isset($_POST['remove_from_tenant']) && !empty($_POST['remove_from_tenant'])) {
-                $tenantName = $_POST['remove_from_tenant'];
+            if (isset($_POST['remove_from_tenant']) && !empty($_POST['remove_from_tenant']))
+                if (!$this->removeUserFromTenant($model, $_POST['remove_from_tenant']))
+                    Yii::app()->user->setFlash('error', "Error while removing the user from this tenant");
 
 
-                $tenant = Tenant::model()->findByAttributes(array("name" => $tenantName));
-                if ($tenant) {
-                    if (!$model->removeFromTenant($tenant->id)) {
-                        Yii::app()->user->setFlash('error', "Error removing the user to this project");
-                        $updatedResult = false;
-                    }
-                } else {
-                    Yii::app()->user->setFlash('error', "This tenant account does not exist");
-                    $updatedResult = false;
-                }
-            }
-
+            Yii::app()->user->setFlash('success', "User successfully updated.");
 
 
             $this->redirect(
                     array('update',
                         'id' => $model->id,
-                        'updated' => $updatedResult
             ));
         }
 
         $this->render('editor', array(
             'model' => $model,
         ));
+    }
+
+    private function addUserToTenant($user, $tenantName) {
+        $tenant = Tenant::model()->findByAttributes(array("name" => $tenantName));
+
+        if ($tenant)
+            if ($user->addToTenant($tenant->id))
+                return true;
+
+        return false;
+    }
+
+    private function removeUserFromTenant($user, $tenantName) {
+        $tenant = Tenant::model()->findByAttributes(array("name" => $tenantName));
+        if ($tenant)
+            if ($user->removeFromTenant($tenant->id))
+                return true;
+
+        return false;
     }
 
     /**
