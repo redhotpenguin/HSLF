@@ -14,12 +14,12 @@ class DistrictController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('dynamicdistrictnumber', 'dynamicdistrict', 'exportCSV'),
-                'roles' => array('publisher'),
+                'actions' => array('dynamicdistrictnumber', 'dynamicdistrict'),
+                'users' => array('@'),
             ),
             array(// restrict State to admins only
                 'allow',
-                'actions' => array('create', 'delete', 'update', 'index'),
+                'actions' => array('create', 'delete', 'update', 'index','exportCSV'),
                 'roles' => array('manageDistricts'),
             ),
             array('deny', // deny all users

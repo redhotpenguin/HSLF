@@ -46,9 +46,8 @@ class ItemController extends Controller {
      * If creation is successful, the browser will be redirected to the 'edit' page.
      */
     public function actionCreate() {
-        // import FileUpload helper class
-        Yii::import('admin.models.helpers.FileUpload');
 
+        
         //  error_log(print_r($_REQUEST, true));
 
         $model = new Item;
