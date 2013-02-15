@@ -9,30 +9,32 @@ class UserBehavior extends CActiveRecordBehavior {
     public function afterSave($event) {
         parent::afterSave($event);
 
+        /*
+          foreach ($this->owner->tenants as $tenant) {
+          $tenantUserId = $tenant->id . ',' . $this->owner->id;
 
-        foreach ($this->owner->tenants as $tenant) {
-            $tenantUserId = $tenant->id . ',' . $this->owner->id;
+          Yii::app()->authManager->revokeAll($tenantUserId);
+          }
 
-            Yii::app()->authManager->revokeAll($tenantUserId);
-        }
+          if (!empty($this->owner->rolesByTenant)) {
 
-        if (!empty($this->owner->rolesByTenant)) {
-
-            logIt($this->owner->rolesByTenant);
+          logIt($this->owner->rolesByTenant);
 
 
-            foreach ($this->owner->rolesByTenant as $tenantId => $role) {
-                if ($role == null || empty($role))
-                    continue;
+          foreach ($this->owner->rolesByTenant as $tenantId => $role) {
+          if ($role == null || empty($role))
+          continue;
 
-                $tenantUserId = $tenantId . ',' . $this->owner->id;
-                try {
-                    Yii::app()->authManager->assign($role, $tenantUserId);
-                } catch (Exception $e) {
-                    error_log($e->getMessage());
-                }
-            }
-        }
+          $tenantUserId = $tenantId . ',' . $this->owner->id;
+          try {
+          Yii::app()->authManager->assign($role, $tenantUserId);
+          } catch (Exception $e) {
+          error_log($e->getMessage());
+          }
+          }
+          }
+         * 
+         */
     }
 
     /**

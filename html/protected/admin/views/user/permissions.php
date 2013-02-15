@@ -1,70 +1,28 @@
 
+
 <?php
-$baseUrl = Yii::app()->baseUrl;
-$cs = Yii::app()->getClientScript();
-$cs->registerCssFile($baseUrl . '/static/user/permissions.css');
-
-
-
-//some droppable object (dropzone)
-$this->beginWidget('zii.widgets.jui.CJuiDroppable', array(
-    'options' => array(
-        'drop' => 'js:function( event, ui ) {alert("Something drop on me!")}', //remember put js:
-    ),
-    'htmlOptions' => array(
-        'class' => 'span12',
-        'id' => 'currentPermissionsArea',
-    )
-));
+echo CHtml::beginForm(array('user/updateTask'), 'POST', array('id' => 'tasksForm'));
 ?>
 
-<h3>Current Permissions</h3>
-<?php
-if (count($assignedTasks) > 0):
-    ?>
-
+<table class="table table-bordered table-striped">
     <?php
-    foreach ($assignedTasks as $task) {
-
-
-        $this->beginWidget('zii.widgets.jui.CJuiDraggable', array(
-            'htmlOptions' => array(
-            ),
-        ));
+    foreach ($tasks as $task):
+        echo '<tr>';
         ?>
 
-        <div class="permission">
-            <?php echo $task->name; ?>
-        </div>
+        <td> <?php echo $task->description; ?> </td>
+        <td> <?php echo CHtml::checkBox('tasks[]', true, array('value' => $task->name)); ?> </td>
+
+
         <?php
-        $this->endWidget();
-    }
+        echo '</tr>';
+    endforeach;
     ?>
 
-    <?php
-else:
-    echo 'No permissions';
-endif;
-
-$this->endWidget();
-?>
-
-<h3>Available Permissions</h3>
-
-
+</table>
+<div class="clearfix"></div>
 <?php
-foreach ($tasks as $task) {
-    $this->beginWidget('zii.widgets.jui.CJuiDraggable', array(
-        'htmlOptions' => array(
-        ),
-    ));
-    ?>
+$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'Save'));
 
-    <div class="permission">
-        <?php echo $task->name; ?>
-    </div>
-    <?php
-    $this->endWidget();
-}
- 
- 
+echo CHtml::endForm(); // end form widget
+?>

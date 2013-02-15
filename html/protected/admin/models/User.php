@@ -17,7 +17,6 @@ class User extends BaseActiveRecord {
     public $repeat_password;
     public $initial_password;
     public $role; // @todo: remove this
-    public $rolesByTenant;
 
     /**
      * Returns the static model of the specified AR class.

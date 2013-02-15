@@ -250,8 +250,14 @@ class UserController extends Controller {
         $this->render('permissions', array('user' => $user, 'tasks' => $tasks, 'assignedTasks' => $assignedTasks));
     }
 
-    public function updateTask() {
-        logIt($_POST);
+    public function actionUpdateTask() {
+        $tasks = array();
+
+        if (isset($_POST['tasks']))
+            $tasks = $_POST['tasks'];
+
+        logIt(count($tasks));
+
     }
 
     /**
