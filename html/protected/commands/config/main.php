@@ -15,12 +15,10 @@ return array(
     'preload' => array('log'),
     // autoloading model and component classes
     'import' => array(
-        'admin.models.User',
-        'admin.models.behaviors.*',
         'application.models.*',
+        'application.shared.components.*',
         'application.shared.models.dal.*', // data access logic classes
         'application.shared.models.bll.*', // business  logic classes
-        'application.components.*',
     ),
     'modules' => array(
     ),

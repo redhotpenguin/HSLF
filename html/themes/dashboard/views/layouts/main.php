@@ -77,8 +77,8 @@
                     $brand = 'Winning Mark Mobile';
 
 
-                    if (Yii::app()->authManager->checkAccess('client', $tenantUserId)) {
-
+                    
+                    if (Yii::app()->authManager->checkAccess('admin', $tenantUserId)) {
                         $adminItems = array(
                             'class' => 'bootstrap.widgets.TbMenu',
                             'items' => array(
