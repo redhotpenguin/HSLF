@@ -21,7 +21,7 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
 
 $tenant = Yii::app()->user->getLoggedInUserTenant();
 
-$siteUrl = $siteUrl = Yii::app()->params['site_url'] . '/admin/' . $tenant->name;
+$siteUrl = $siteUrl = Yii::app()->params['site_url'] . '/client/' . $tenant->name;
 
 if ($model->isNewRecord) {
     $ns = "var ns  = {site_url: '" . $siteUrl . "',share_url: '" . $tenant->web_app_url . "' };";

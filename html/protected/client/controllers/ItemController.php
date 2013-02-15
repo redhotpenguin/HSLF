@@ -47,7 +47,6 @@ class ItemController extends Controller {
      */
     public function actionCreate() {
 
-        
         //  error_log(print_r($_REQUEST, true));
 
         $model = new Item;
@@ -100,8 +99,6 @@ class ItemController extends Controller {
      * @param integer $id the ID of the model to be updated
      */
     public function actionUpdate($id, $activeTab = 'item') {
-        // import FileUpload helper class
-        Yii::import('admin.models.helpers.FileUpload');
 
         //   logIt($_REQUEST);
 

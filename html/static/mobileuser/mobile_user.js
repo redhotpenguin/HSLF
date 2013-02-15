@@ -156,15 +156,10 @@ function mobileUser($){
      
         window.location = ns.action_url + '/mobileUser/export?'+serializedForm;
 
-
-    /*submitForm('/admin/mobileUser/export', function(result){
-            console.log(result);
-            
-            
-        }, 'GET');*/
     });
     
     function submitForm(actionUrl, _cb, method){  
+        console.log(actionUrl);
         if(method == 'undefined')
             method = 'GET';
 
