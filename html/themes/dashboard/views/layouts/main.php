@@ -70,14 +70,14 @@
 
 
                     $brand = $tenant->display_name;
-                    $brandUrl = '/admin/' . $tenant->name;
+                    $brandUrl = '/client/' . $tenant->name;
                 } else {
                     // user connected but no tenant selected
-                    $brandUrl = '/admin/';
+                    $brandUrl = '/client/';
                     $brand = 'Winning Mark Mobile';
 
 
-                    if (Yii::app()->authManager->checkAccess('admin', $tenantUserId)) {
+                    if (Yii::app()->authManager->checkAccess('client', $tenantUserId)) {
 
                         $adminItems = array(
                             'class' => 'bootstrap.widgets.TbMenu',
@@ -114,15 +114,15 @@
                         array('label' => 'Account (' . Yii::app()->user->name . ')', 'url' => '#', 'items' => array(
                                 array(
                                     'label' => 'My Projects',
-                                    'url' => '/admin/',
+                                    'url' => '/client/',
                                 ),
                                 array(
                                     'label' => 'Account Settings',
-                                    'url' => '/admin/settings',
+                                    'url' => '/client/settings',
                                 ),
                                 array(
                                     'label' => 'Log Out',
-                                    'url' => '/admin/logout',
+                                    'url' => '/client/logout',
                                 )
                         ))),
                 );
@@ -131,7 +131,7 @@
                 array_push($items, $loginItems);
 
             else: // else user is not logged in
-                $brandUrl = '/admin/';
+                $brandUrl = '/client/';
                 $brand = 'Winning Mark Mobile';
             endif;
 

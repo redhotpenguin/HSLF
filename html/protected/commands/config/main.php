@@ -2,15 +2,15 @@
 
 /* Console config FILE */
 
-$commandDirectory = dirname(dirname(__FILE__));
-$appDirectory = dirname($commandDirectory);
+$clientDirectory = dirname(dirname(__FILE__));
+$appDirectory = dirname($clientDirectory);
 
-Yii::setPathOfAlias('admin', $commandDirectory);
+Yii::setPathOfAlias('admin', $clientDirectory);
 
 return array(
     'basePath' => $appDirectory,
     'name' => 'WM Mobile - Console',
-    'runtimePath' => $commandDirectory . '/runtime',
+    'runtimePath' => $clientDirectory . '/runtime',
     // preloading 'log' component
     'preload' => array('log'),
     // autoloading model and component classes

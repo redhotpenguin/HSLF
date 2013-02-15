@@ -40,7 +40,7 @@
                             '---',
                             array(
                                 'label' => 'Login',
-                                'url' => '/admin',
+                                'url' => '/client',
                             ),
                     ))),
             ));

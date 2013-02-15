@@ -13,7 +13,7 @@ class TenantUrlRule extends CBaseUrlRule {
     public function createUrl($manager, $route, $params, $ampersand) {
         if ($this->currentTenant) {
             $tenantName = $this->currentTenant->name;
-            $route = 'admin/' . $tenantName . '/' . $route;
+            $route = 'client/' . $tenantName . '/' . $route;
             // rebuild query string, there should be a better way to do this
             if (!empty($params)) {
                 $route.='?';

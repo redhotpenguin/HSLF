@@ -4,27 +4,27 @@ Yii::setPathOfAlias('bootstrap', dirname(__FILE__) . '/../../shared/extensions/b
 
 /* BACKEND CONFIG FILE */
 
-$commandDirectory = dirname(dirname(__FILE__));
-$appDirectory = dirname($commandDirectory);
+$clientDirectory = dirname(dirname(__FILE__));
+$appDirectory = dirname($clientDirectory);
 
-Yii::setPathOfAlias('admin', $commandDirectory);
+Yii::setPathOfAlias('backend', $clientDirectory);
 
 
 return array(
     'basePath' => $appDirectory,
-    'controllerPath' => $commandDirectory . '/controllers',
-    'viewPath' => $commandDirectory . '/views/',
-    'runtimePath' => $commandDirectory . '/runtime',
+    'controllerPath' => $clientDirectory . '/controllers',
+    'viewPath' => $clientDirectory . '/views/',
+    'runtimePath' => $clientDirectory . '/runtime',
     'name' => 'Admin Dashboard - Winning Mark Mobile ',
     'preload' => array('bootstrap'), // preload the bootstrap component),
     'import' => array(
         'application.shared.extensions.directmongosuite.components.*',
-        'admin.extensions.*',
-        'admin.models.*',
-        'admin.models.behaviors.*',
+        'backend.extensions.*',
+        'backend.models.*',
+        'backend.models.behaviors.*',
         'application.shared.models.dal.*', // data access logic classes
         'application.shared.models.bll.*', // business  logic classes
-        'admin.components.*',
+        'backend.components.*',
         'application.models.*',
         'application.shared.components.*',
     ),
@@ -62,23 +62,23 @@ return array(
             // mapping
             'rules' => array(
 // hard coded routes that conflict with tenancy
-                'admin/logout' => 'site/logout',
-                'admin/settings' => 'user/settings',
-                'admin/tenant/<_action>' => 'tenant/<_action>',
-                'admin/state/<_action>' => 'state/<_action>',
-                'admin/district/<_action>' => 'district/<_action>',
-                'admin/office/<_action>' => 'office/<_action>',
-                'admin/party/<_action>' => 'party/<_action>',
-                'admin/recommendation/<_action>' => 'recommendation/<_action>',
-                'admin/user/<_action>' => 'user/<_action>',
-                'admin/import/<_action>' => 'import/<_action>',
-                'admin' => 'site/index',
-                'admin/<tenant_name>' => 'site/home',
+                'client/logout' => 'site/logout',
+                'client/settings' => 'user/settings',
+                'client/tenant/<_action>' => 'tenant/<_action>',
+                'client/state/<_action>' => 'state/<_action>',
+                'client/district/<_action>' => 'district/<_action>',
+                'client/office/<_action>' => 'office/<_action>',
+                'client/party/<_action>' => 'party/<_action>',
+                'client/recommendation/<_action>' => 'recommendation/<_action>',
+                'client/user/<_action>' => 'user/<_action>',
+                'client/import/<_action>' => 'import/<_action>',
+                'client' => 'site/index',
+                'client/<tenant_name>' => 'site/home',
                 // dynamic rules
-                'admin/<tenant_name>/<_controller>' => '<_controller>',
-                'admin/<tenant_name>/<_controller>/<_action>' => '<_controller>/<_action>',
+                'client/<tenant_name>/<_controller>' => '<_controller>',
+                'client/<tenant_name>/<_controller>/<_action>' => '<_controller>/<_action>',
                 array(
-                    'class' => 'admin.components.TenantUrlRule',
+                    'class' => 'backend.components.TenantUrlRule',
                 ),
             ),
         ),

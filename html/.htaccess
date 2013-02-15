@@ -3,7 +3,7 @@ IndexIgnore */*
 RewriteEngine on
 
 # Make the backend accessible via url: http://site/admin
-RewriteRule admin admin.php
+RewriteRule client client.php
 
 # If a directory or a file exists, use it directly.
 RewriteCond %{REQUEST_FILENAME} !-f
