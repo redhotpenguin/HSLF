@@ -13,7 +13,6 @@ return array(
     'controllerPath' => $frontendDirectory . '/controllers',
     'viewPath' => $frontendDirectory . '/views/',
     'runtimePath' => $frontendDirectory . '/runtime',
-    
     'name' => "Winning Mark Mobile",
     // preloading 'log' component
     'preload' => array('bootstrap'),
@@ -75,7 +74,7 @@ return array(
             'aKey' => S3_AKEY,
             'sKey' => S3_SKEY,
         ),
-       'assetManager' => array(
+        'assetManager' => array(
             'class' => 'application.shared.components.S3AssetManager',
             'host' => S3_HOST,
             'bucket' => S3_BUCKET,

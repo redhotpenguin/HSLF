@@ -20,7 +20,7 @@ class S3AssetManager extends CAssetManager {
 
     public function getBaseUrl() {
         if ($this->_baseUrl === null) {
-            $this->_baseUrl = 'http://' . $this->host . '/' . $this->path;
+            $this->_baseUrl = 'https://' . $this->host . '/' . $this->path;
         }
         return $this->_baseUrl;
     }
