@@ -4,7 +4,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/static/mobi
 
 $tenant = Yii::app()->user->getLoggedInUserTenant();
 
-$action_url = getSetting('site_url') . '/admin/' . $tenant->name;
+$action_url = Yii::app()->params['site_url'] . '/admin/' . $tenant->name;
 
 
 $ns = "var ns  = {action_url: '" . $action_url . "'};";

@@ -72,7 +72,7 @@ class DistrictSelector extends CInputWidget {
 
         $tenant = Yii::app()->user->getLoggedInUserTenant();
 
-        $url = $url = getSetting('site_url') . '/admin/' . $tenant->name . '/district/dynamicdistrictnumber?model=' . $this->options['model_name'];
+        $url = $url = Yii::app()->params('site_url') . '/admin/' . $tenant->name . '/district/dynamicdistrictnumber?model=' . $this->options['model_name'];
 
 
         $options = array(

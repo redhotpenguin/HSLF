@@ -1,28 +1,6 @@
 <?php
 
 /**
- * This is the shortcut to Yii::app()
- */
-function app() {
-    return Yii::app();
-}
-
-/**
- * This is the shortcut to Yii::app()->params['my_param']
- */
-function getSetting($setting_name) {
-    return Yii::app()->params[$setting_name];
-}
-
-
-/**
- * This is the shortcut to Yii::app()->params['my_param'] = "foobar"
- */
-function setSetting($setting_name, $setting_value) {
-    Yii::app()->params[$setting_name] = $setting_value;
-}
-
-/**
  * Encapsulate Yii::app()->request->getPost()
  * @param  string $name POST field name
  * @return string return the POST field value
@@ -66,7 +44,6 @@ function isParam($name) {
 function get_hash($string) {
     return hash('sha1', $string);
 }
-
 
 /**
  * Debug function

@@ -2,12 +2,9 @@
 
 class ItemController extends Controller {
 
-
-
     /**
      * @return array action filters
      */
-
     public function filters() {
         return array(
             'accessControl', // perform access control for CRUD operations
@@ -67,7 +64,7 @@ class ItemController extends Controller {
 
             if ($model->save()) {
 
-                $organization_ids = getPost('organizations');
+                $organization_ids = $_POST['organizations'];
                 // if any organizations are selected
                 if ($organization_ids) {
                     // remove organizations that are not selected ( unselected )
@@ -139,7 +136,7 @@ class ItemController extends Controller {
             }
 
 
-            $organization_ids = getPost('organizations');
+            $organization_ids = $_POST['organizations'];
             // if any organizations are selected
             if ($organization_ids) {
                 // remove organizations that are not selected ( unselected )
@@ -298,16 +295,19 @@ class ItemController extends Controller {
      * Handle ajax requests for /admin/<client>/item/ajax
      */
     public function actionAjax() {
-        switch (getParam('a')) {
+        if (isset($_GET['a']))
+            return;
+
+        switch ($_GET['a']) {
             // validate an item URL (see Item.js)
             case 'validateURL':
                 // get the current record if an ID is provided
-                if (getParam('id')) {
-                    $item = Item::model()->findByPk(getParam('id'));
-                    $validated_url = $item->validateURL(getParam('url'));
+                if (isset($_GET['id'])) {
+                    $item = Item::model()->findByPk($_GET['id']);
+                    $validated_url = $item->validateURL($_GET['url']);
                 }
                 else
-                    $validated_url = Item::model()->validateURL(getParam('url'));
+                    $validated_url = Item::model()->validateURL($_GET['url']);
 
                 if ($validated_url == false)
                     echo 'invalid_url';
