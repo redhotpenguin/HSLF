@@ -29,7 +29,6 @@ class WebUser extends CWebUser {
      * set the user current tenant
      * Does not use $_SESSION
      * @param string $tenant name
-     * @todo: error check
      */
     public function setCurrentUserTenant($tenantName) {
 
@@ -70,7 +69,7 @@ class WebUser extends CWebUser {
         if (($tenant = $this->getCurrentTenant()) != null)
             return $tenant->id . ',' . $this->getState('userId');
         else
-            return  '0,' . $this->getState('userId'); // 0 means no tenant. Ex: (super)admin dashboard or home page
+            return  '0,' . $this->getState('userId'); // @todo: update this 0 means no tenant. Ex: (super)admin dashboard or home page
     }
 
     public function getModel() {

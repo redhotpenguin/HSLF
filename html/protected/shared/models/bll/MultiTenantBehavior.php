@@ -2,7 +2,6 @@
 
 /**
  * behavior to enable multi tenancy
- * @todo: refactor this class and improve unit tests
  */
 class MultiTenantBehavior extends CActiveRecordBehavior {
 

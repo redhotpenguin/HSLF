@@ -103,7 +103,7 @@ class UserController extends Controller {
         $current_password = $model->password;
 
         if (isset($_POST['User'])) {
-
+            $updatedResult = 'false';
 
             $model->attributes = $_POST['User'];
 
