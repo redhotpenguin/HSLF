@@ -94,7 +94,7 @@ EOD;
         // assign publisher role to admin role
         $this->assignRoleToRole('publisher', 'admin');
 
-        $this->authManager->assign('admin', '0,1');
+        $this->authManager->assign('admin', '0/1');
         
     }
 
