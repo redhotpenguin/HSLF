@@ -24,7 +24,7 @@ return array(
         'application.shared.models.bll.*', // business  logic classes
         'admin.components.*',
         'application.models.*',
-        'application.components.*',
+        'application.shared.components.*',
         'ext.directmongosuite.components.*',
     ),
     'modules' => array(

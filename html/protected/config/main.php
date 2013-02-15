@@ -12,20 +12,22 @@ return array(
     // autoloading model and component classes
     'import' => array(
         'application.models.*',
+        // shared
         'application.shared.models.dal.*', // data access logic classes
         'application.shared.models.bll.*', // business  logic classes
+        'application.shared.components.*',
         'application.components.*',
     ),
     'modules' => array(
-        /*
-        'gii' => array(
-            'class' => 'system.gii.GiiModule',
-            'password' => 'giipass',
-            'ipFilters' => array('127.0.0.1', '::1'),
-            'generatorPaths' => array(
-                'bootstrap.gii',
-            ),
-        ),*/
+    /*
+      'gii' => array(
+      'class' => 'system.gii.GiiModule',
+      'password' => 'giipass',
+      'ipFilters' => array('127.0.0.1', '::1'),
+      'generatorPaths' => array(
+      'bootstrap.gii',
+      ),
+      ), */
     ),
     // application components
     'components' => array(
@@ -67,12 +69,12 @@ return array(
             'aKey' => S3_AKEY,
             'sKey' => S3_SKEY,
         ),
-          'assetManager' => array(
-          'class' => 'S3AssetManager',
-          'host' => S3_HOST,
-          'bucket' => S3_BUCKET,
-          'path' => 'assets', //or any other folder you want
-          ), 
+        'assetManager' => array(
+            'class' => 'S3AssetManager',
+            'host' => S3_HOST,
+            'bucket' => S3_BUCKET,
+            'path' => 'assets', //or any other folder you want
+        ),
         'errorHandler' => array(
             'errorAction' => 'site/error',
         ),

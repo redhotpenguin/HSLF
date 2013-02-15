@@ -31,7 +31,7 @@ return array(
         'application.shared.models.bll.*', // business  logic classes
         'admin.components.*',
         'application.models.*',
-        'application.components.*',
+        'application.shared.components.*',
     ),
     'modules' => array(),
     // application components
@@ -84,7 +84,7 @@ return array(
                 'admin/<tenant_name>/<_controller>' => '<_controller>',
                 'admin/<tenant_name>/<_controller>/<_action>' => '<_controller>/<_action>',
                 array(
-                    'class' => 'application.components.TenantUrlRule',
+                    'class' => 'admin.components.TenantUrlRule',
                 ),
             ),
         ),
@@ -103,7 +103,7 @@ return array(
                     'database' => REDIS_DATABASE
                 ),
         )),
-       's3' => array(
+        's3' => array(
             'class' => 'ext.S3.ES3',
             'aKey' => S3_AKEY,
             'sKey' => S3_SKEY,
