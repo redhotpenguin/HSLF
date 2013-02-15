@@ -245,16 +245,19 @@ class UserController extends Controller {
     public function actionPermissions($tenantId, $userId) {
         $user = $this->loadModel($userId);
 
-        $tasks = Yii::app()->authManager->getTasks();
+        $publisherTasks = Yii::app()->authManager->getTasks();
         $assignedTasks = Yii::app()->authManager->getTasks("$tenantId,$userId"); // @todo: update this
         $this->render('permissions', array(
             'user' => $user,
             'tenantId' => $tenantId,
-            'tasks' => $tasks,
+            'tasks' => $publisherTasks,
             'assignedTasks' => $assignedTasks
         ));
     }
 
+    /**
+     * handle user task updates
+     */
     public function actionUpdateTasks() {
         $tasks = array();
 
@@ -262,13 +265,21 @@ class UserController extends Controller {
             $tasks = $_POST['tasks'];
 
         if (!isset($_POST['tenantId']) || !isset($_POST['userId']) || !is_numeric($_POST['tenantId']) || !is_numeric($_POST['userId'])) {
-            throw new CHttpException(500, "Please do not repeat this request again.");
+            throw new CHttpException(500, "Please do not try this again.");
         }
 
 
         $tenantId = $_POST['tenantId'];
 
         $user = $this->loadModel($_POST['userId']);
+
+
+        // make sure that the tasks received actually belongs to the permission role and not something else (ex: admin role)
+        $publisherTasks = Yii::app()->authManager->getItemChildren('publisher');
+
+        foreach ($tasks as $task)
+            if (!isset($publisherTasks[$task]))
+                throw new CHttpException(500, 'Please do not try this again');
 
 
         if ($user->updateTasks($tenantId, $tasks))
