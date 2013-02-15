@@ -6,13 +6,13 @@ class UserBehavior extends CActiveRecordBehavior {
     
     public function getTenantUserId($tenantId, $userId){
         
-        return $tenantId.",".$userId;
+        return $tenantId."/".$userId;
         
     }
     
     public function updateTasks($tenantId, array $tasks = array()) {
-
-        $tenantUserId = $tenantId . ',' . $this->owner->id;  // @todo: update this
+        
+        $tenantUserId = $this->getTenantUserId($tenantId, $this->owner->id);
 
         Yii::app()->authManager->revokeAll($tenantUserId);
 

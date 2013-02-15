@@ -4,17 +4,17 @@ Yii::setPathOfAlias('bootstrap', dirname(__FILE__) . '/../../shared/extensions/b
 
 /* BACKEND CONFIG FILE */
 
-$backendDirectory = dirname(dirname(__FILE__));
-$appDirectory = dirname($backendDirectory);
+$commandDirectory = dirname(dirname(__FILE__));
+$appDirectory = dirname($commandDirectory);
 
-Yii::setPathOfAlias('admin', $backendDirectory);
+Yii::setPathOfAlias('admin', $commandDirectory);
 
 
 return array(
     'basePath' => $appDirectory,
-    'controllerPath' => $backendDirectory . '/controllers',
-    'viewPath' => $backendDirectory . '/views/',
-    'runtimePath' => $backendDirectory . '/runtime',
+    'controllerPath' => $commandDirectory . '/controllers',
+    'viewPath' => $commandDirectory . '/views/',
+    'runtimePath' => $commandDirectory . '/runtime',
     'name' => 'Admin Dashboard - Winning Mark Mobile ',
     'preload' => array('bootstrap'), // preload the bootstrap component),
     'import' => array(

@@ -228,7 +228,7 @@ class UserController extends Controller {
 
         $publisherTasks = Yii::app()->authManager->getItemChildren('publisher');
 
-        $assignedTasks = Yii::app()->authManager->getTasks("$tenantId,$userId"); // @todo: update this
+        $assignedTasks = Yii::app()->authManager->getTasks($user->getTenantUserId($tenantId,$userId));
 
         $unassignedTasks = array_diff_key($publisherTasks, $assignedTasks);
 

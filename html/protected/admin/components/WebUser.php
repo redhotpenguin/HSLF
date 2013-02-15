@@ -70,7 +70,7 @@ class WebUser extends CWebUser {
         if (($tenant = $this->getLoggedInUserTenant()) != null)
             return $this->getModel()->getTenantUserId($tenant->id, $this->getState('userId'));
 
-        return $this->getModel()->getTenantUserId(0, $this->getState('userId')); // @todo: update this 0 means no tenant. Ex: (super)admin dashboard or home page
+        return $this->getModel()->getTenantUserId(0, $this->getState('userId')); // 0 means no tenant. Ex: (super)admin dashboard or home page
 
     }
 
