@@ -1,6 +1,6 @@
 <?php
 
-Yii::import("application.vendors.Winningmark.Queues.*", true);
+Yii::import("admin.vendors.Winningmark.Queues.*", true);
 
 class MobileUserController extends Controller {
 
