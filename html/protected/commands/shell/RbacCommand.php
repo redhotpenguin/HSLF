@@ -15,7 +15,6 @@ class RbacCommand extends CConsoleCommand {
 USAGE
   rbac
   rbac deploy
-  rbac addPushMessageRights    
 DESCRIPTION
   This command generates an initial RBAC authorization hierarchy.
 EOD;
@@ -37,8 +36,7 @@ EOD;
         $action = $args[0];
 
         switch ($action) {
-            case 'deploy': $this->deploy();
-            case 'addPushMessageRights': $this->addPushMessageRights();
+            case 'deploy': $this->deploy(); break;
         }
     }
 
@@ -62,6 +60,7 @@ EOD;
             'Option',
             'Tag',
             'MobileUser',
+            'PushMessage'
         );
 
 
@@ -95,18 +94,11 @@ EOD;
         // assign publisher role to admin role
         $this->assignRoleToRole('publisher', 'admin');
 
-        $this->authManager->assign('admin', 1);
+        $this->authManager->assign('admin', '0,1');
         
-        $this->addPushMessageRights();
     }
 
-    private function addPushMessageRights() {
-        $this->addCrudOperation('PushMessage');
-
-        $this->addCrudTask('PushMessage');
-
-        $this->assignTaskToRole('PushMessages', 'publisher');
-    }
+  
 
     private function initializeAuthManager() {
         //ensure that an authManager is defined as this is mandatory for creating an auth heirarchy
@@ -154,7 +146,7 @@ EOD;
                 printf("$s Tasks already exists. \n", $name);
             }
             else
-                throw $e;
+               echo $e->getMessage ();
         }
     }
 

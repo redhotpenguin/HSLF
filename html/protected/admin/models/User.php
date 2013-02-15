@@ -23,6 +23,7 @@ class User extends BaseActiveRecord {
      * @param string $className active record class name.
      * @return User the static model class
      */
+
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
@@ -41,7 +42,7 @@ class User extends BaseActiveRecord {
         return array(
             array('email', 'required', 'on' => 'update'),
             array('password, username, email, repeat_password', 'required', 'on' => 'insert'),
-            array('repeat_password', 'compare', 'compareAttribute' => 'password', 'on' => 'insert, update', 'message'=>'Passwords mismatch'),
+            array('repeat_password', 'compare', 'compareAttribute' => 'password', 'on' => 'insert, update', 'message' => 'Passwords mismatch'),
             array('email', 'email'),
             array('username, email', 'length', 'max' => 128, 'on' => 'insert'),
             array('email', 'length', 'max' => 128, 'on' => 'update'),
@@ -90,7 +91,12 @@ class User extends BaseActiveRecord {
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
-                ));
+                    'pagination' => array(
+                        'pageSize' => 25,
+                    ),
+                    'sort' => array(
+                        'defaultOrder' => $this->getTableAlias(false, false) . '.id ASC',
+                        )));
     }
 
     public function beforeSave() {
