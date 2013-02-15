@@ -69,8 +69,9 @@ class UserController extends Controller {
                     if (!$this->addUserToTenant($model, $_POST['add_to_tenant']))
                         Yii::app()->user->setFlash('error', "Error while adding the user to this tenant");
 
+                Yii::app()->user->setFlash('success', "User successfully updated.");
 
-                $this->redirect(array('update', 'id' => $model->id, 'created' => true));
+                $this->redirect(array('update', 'id' => $model->id));
             }
         }
 
