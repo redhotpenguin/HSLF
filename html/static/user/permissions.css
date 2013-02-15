@@ -1,0 +1,17 @@
+#currentPermissionsArea{
+    border-radius:3px;
+    border:1px solid #ddd;
+    padding:10px;
+    height:400px;
+}
+
+.permission{
+
+    border:1px solid #eee;
+    padding:10px;
+    width:250px;
+    text-align:center;
+    font-weight:bold;
+    margin:5px;
+    background-color:#ccc;
+}

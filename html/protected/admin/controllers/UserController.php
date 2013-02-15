@@ -19,7 +19,7 @@ class UserController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('permission',),
+                'actions' => array('permission', 'updateTask'),
                 'roles' => array('admin'),
             ),
             array('allow',
@@ -237,8 +237,21 @@ class UserController extends Controller {
         $this->render('my_account', array('model' => $model));
     }
 
-    public function actionPermission($tenantId,$userId) {
-        $this->renderPartial('modal/permissions');
+    /**
+     * display permission page for a user (specific to tenant)
+     * @param integer $tenantId tenant id
+     * @param integer $userId user id
+     */
+    public function actionPermission($tenantId, $userId) {
+        $user = $this->loadModel($userId);
+
+        $tasks = Yii::app()->authManager->getTasks();
+        $assignedTasks = Yii::app()->authManager->getTasks("$tenantId,$userId"); // @todo: update this
+        $this->render('permissions', array('user' => $user, 'tasks' => $tasks, 'assignedTasks' => $assignedTasks));
+    }
+
+    public function updateTask() {
+        logIt($_POST);
     }
 
     /**

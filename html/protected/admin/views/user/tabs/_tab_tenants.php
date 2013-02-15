@@ -5,22 +5,23 @@
     <th>Name</th>
     <th>Display Name</th>
     <th>Address</th>
-    <th>Role</th>
+    <th>Permissions</th>
 </thead>
 <tbody>
     <?php
     $roleOptions = $model->getRoleOptions();
 
-
-
     foreach ($model->tenants as $tenant) {
         $role = $model->getRoleByTenant($tenant->id);
+
+        $permissionEditorLink = $this->createUrl('user/permission', array('tenantId' => $tenant->id, 'userId' => $model->id));
+
         echo '<tr>';
         echo '<td>' . $tenant->id . '</td>';
         echo '<td>' . $tenant->name . '</td>';
         echo '<td>' . $tenant->display_name . '</td>';
         echo '<td>' . $tenant->email . '</td>';
-        echo '<td>' . CHtml::dropDownList("User[rolesByTenant][{$tenant->id}]", $role, $roleOptions, array('empty' => 'No Role')) . '</td>';
+        echo '<td>' . CHtml::link("permissions", $permissionEditorLink, array("target" => '_blank')) . '</td>';
         echo '</tr>';
     }
     ?>
