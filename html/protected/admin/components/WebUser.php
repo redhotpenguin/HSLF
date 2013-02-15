@@ -65,11 +65,13 @@ class WebUser extends CWebUser {
      * return the composite primary key from tenant_user
      * @return
      */
-    public function getTenantUserId() {
+    public function getCurrentTenantUserId() {
+
         if (($tenant = $this->getCurrentTenant()) != null)
-            return $tenant->id . ',' . $this->getState('userId');
-        else
-            return  '0,' . $this->getState('userId'); // @todo: update this 0 means no tenant. Ex: (super)admin dashboard or home page
+            return $this->getModel()->getTenantUserId($tenant->id, $this->getState('userId'));
+
+        return $this->getModel()->getTenantUserId(0, $this->getState('userId')); // @todo: update this 0 means no tenant. Ex: (super)admin dashboard or home page
+
     }
 
     public function getModel() {
@@ -93,7 +95,7 @@ class WebUser extends CWebUser {
             return $this->_access[$operation];
         }
 
-        $access = Yii::app()->getAuthManager()->checkAccess($operation, $this->getTenantUserId(), $params);
+        $access = Yii::app()->getAuthManager()->checkAccess($operation, $this->getCurrentTenantUserId(), $params);
         if ($allowCaching) {
             $this->_access[$operation] = $access;
         }

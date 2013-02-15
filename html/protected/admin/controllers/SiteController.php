@@ -50,7 +50,7 @@ class SiteController extends Controller {
     public function actionHome() {
         $tenant = Yii::app()->user->getCurrentTenant();
 
-        $tenantUserId = Yii::app()->user->getTenantUserId();
+        $tenantUserId = Yii::app()->user->getCurrentTenantUserId();
 
         if (Yii::app()->authManager->checkAccess('manageBallotItems', $tenantUserId))
             $itemCount = Item::model()->count();

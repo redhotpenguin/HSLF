@@ -27,7 +27,7 @@
                 $tenant = Yii::app()->user->getCurrentTenant();
 
 
-                $userTenant = Yii::app()->user->getTenantUserId();
+                $tenantUserId = Yii::app()->user->getCurrentTenantUserId();
 
 
                 // if user has a tenant selected
@@ -37,11 +37,11 @@
                         'items' => array(
                             '---',
                             array('label' => 'Content', 'url' => '#', 'items' => array(
-                                    array('label' => 'Ballot Items', 'url' => array('/item/index'), 'visible' => Yii::app()->authManager->checkAccess('manageBallotItems', $userTenant)),
-                                    array('label' => 'Organizations', 'url' => array('/organization/index/'), 'visible' => Yii::app()->authManager->checkAccess('manageOrganizations', $userTenant)),
-                                    array('label' => 'Scorecard Items', 'url' => array('/scorecardItem/index'), 'visible' => Yii::app()->authManager->checkAccess('manageScorecardItems', $userTenant)),
-                                    array('label' => 'Votes', 'url' => array('/vote/index'), 'visible' => Yii::app()->authManager->checkAccess('manageVotes', $userTenant)),
-                                    array('label' => 'Tags', 'url' => array('/tag'), 'visible' => Yii::app()->authManager->checkAccess('manageTags', $userTenant)),
+                                    array('label' => 'Ballot Items', 'url' => array('/item/index'), 'visible' => Yii::app()->authManager->checkAccess('manageBallotItems', $tenantUserId)),
+                                    array('label' => 'Organizations', 'url' => array('/organization/index/'), 'visible' => Yii::app()->authManager->checkAccess('manageOrganizations', $tenantUserId)),
+                                    array('label' => 'Scorecard Items', 'url' => array('/scorecardItem/index'), 'visible' => Yii::app()->authManager->checkAccess('manageScorecardItems', $tenantUserId)),
+                                    array('label' => 'Votes', 'url' => array('/vote/index'), 'visible' => Yii::app()->authManager->checkAccess('manageVotes', $tenantUserId)),
+                                    array('label' => 'Tags', 'url' => array('/tag'), 'visible' => Yii::app()->authManager->checkAccess('manageTags', $tenantUserId)),
                             )),
                         ),
                     );
@@ -54,12 +54,12 @@
                                 'label' => 'Mobile Application',
                                 'url' => '#',
                                 'items' => array(
-                                    array('label' => 'Mobile Users', 'url' => array('/mobileUser'), 'visible' => Yii::app()->authManager->checkAccess('manageMobileUsers', $userTenant)),
-                                    array('label' => 'Alert types', 'url' => array('/alertType'), 'visible' => Yii::app()->authManager->checkAccess('manageAlertTypes', $userTenant)),
-                                    array('label' => 'Payloads', 'url' => array('/Payload/index'), 'visible' => Yii::app()->authManager->checkAccess('managePayloads', $userTenant)),
-                                    array('label' => 'Push Messages', 'url' => array('/pushMessage/index'), 'visible' => Yii::app()->authManager->checkAccess('managePushMessages', $userTenant)),
-                                    array('itemOptions' => array('id' => 'external_item'), 'label' => 'Urban Airship', 'linkOptions' => array('target' => '_blank'), 'url' => $tenant->ua_dashboard_link, 'visible' => Yii::app()->authManager->checkAccess('managePushMessages', $userTenant)),
-                                    array('label' => 'Options', 'url' => array('/option'), 'visible' => Yii::app()->authManager->checkAccess('manageOptions', $userTenant)),
+                                    array('label' => 'Mobile Users', 'url' => array('/mobileUser'), 'visible' => Yii::app()->authManager->checkAccess('manageMobileUsers', $tenantUserId)),
+                                    array('label' => 'Alert types', 'url' => array('/alertType'), 'visible' => Yii::app()->authManager->checkAccess('manageAlertTypes', $tenantUserId)),
+                                    array('label' => 'Payloads', 'url' => array('/Payload/index'), 'visible' => Yii::app()->authManager->checkAccess('managePayloads', $tenantUserId)),
+                                    array('label' => 'Push Messages', 'url' => array('/pushMessage/index'), 'visible' => Yii::app()->authManager->checkAccess('managePushMessages', $tenantUserId)),
+                                    array('itemOptions' => array('id' => 'external_item'), 'label' => 'Urban Airship', 'linkOptions' => array('target' => '_blank'), 'url' => $tenant->ua_dashboard_link, 'visible' => Yii::app()->authManager->checkAccess('managePushMessages', $tenantUserId)),
+                                    array('label' => 'Options', 'url' => array('/option'), 'visible' => Yii::app()->authManager->checkAccess('manageOptions', $tenantUserId)),
                                 ),
                         )),
                     );
@@ -77,7 +77,7 @@
                     $brand = 'Winning Mark Mobile';
 
 
-                    if (Yii::app()->authManager->checkAccess('admin', Yii::app()->user->getTenantUserId())) {
+                    if (Yii::app()->authManager->checkAccess('admin', $tenantUserId)) {
 
                         $adminItems = array(
                             'class' => 'bootstrap.widgets.TbMenu',
