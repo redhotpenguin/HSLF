@@ -3,12 +3,12 @@
 // Unit tests config file
 
 $api = dirname(dirname(__FILE__));
-$frontend = dirname($api);
+$appDirectory = dirname($api);
 Yii::setPathOfAlias('admin', $api);
 
 return array(
     //'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
-    'basePath' => $frontend,
+    'basePath' => $appDirectory,
     'controllerPath' => $api . '/controllers',
     'viewPath' => $api . '/views/',
     'runtimePath' => $api . '/runtime',
@@ -86,7 +86,6 @@ return array(
         'site_url' => SITE_URL,
         'upload_path' => SITE_URL . UPLOAD_PATH,
         'upload_dir' => UPLOAD_DIR,
-        'html_directory' => '',
         'mongodb_ack_level' => MONGODB_ACK_LEVEL,
     ),
 );

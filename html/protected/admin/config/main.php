@@ -2,27 +2,21 @@
 
 Yii::setPathOfAlias('bootstrap', dirname(__FILE__) . '/../../shared/extensions/bootstrap');
 
-
 /* BACKEND CONFIG FILE */
 
-$backend = dirname(dirname(__FILE__));
-$frontend = dirname($backend);
-$html_directory = dirname($_SERVER['SCRIPT_FILENAME']);
+$backendDirectory = dirname(dirname(__FILE__));
+$appDirectory = dirname($backendDirectory);
 
-
-Yii::setPathOfAlias('admin', $backend);
+Yii::setPathOfAlias('admin', $backendDirectory);
 
 
 return array(
-//'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
-    'basePath' => $frontend,
-    'controllerPath' => $backend . '/controllers',
-    'viewPath' => $backend . '/views/',
-    'runtimePath' => $backend . '/runtime',
+    'basePath' => $appDirectory,
+    'controllerPath' => $backendDirectory . '/controllers',
+    'viewPath' => $backendDirectory . '/views/',
+    'runtimePath' => $backendDirectory . '/runtime',
     'name' => 'Admin Dashboard - Winning Mark Mobile ',
-    // preloading 'log' component
     'preload' => array('bootstrap'), // preload the bootstrap component),
-// autoloading model and component classes
     'import' => array(
         'application.shared.extensions.directmongosuite.components.*',
         'admin.extensions.*',
@@ -35,7 +29,6 @@ return array(
         'application.shared.components.*',
     ),
     'modules' => array(),
-    // application components
     'components' => array(
         'bootstrap' => array(
             'class' => 'bootstrap.components.Bootstrap',
@@ -136,7 +129,6 @@ return array(
         'site_url' => SITE_URL,
         'upload_path' => SITE_URL . UPLOAD_PATH,
         'upload_dir' => UPLOAD_DIR,
-        'html_directory' => $html_directory,
         'mongodb_ack_level' => MONGODB_ACK_LEVEL,
     ),
     'behaviors' => array(

@@ -3,12 +3,12 @@
 // API CONFIG FILE
 
 $api = dirname(dirname(__FILE__));
-$frontend = dirname($api);
+$appDirectory = dirname($api);
 Yii::setPathOfAlias('admin', $api);
 
 return array(
     //'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
-    'basePath' => $frontend,
+    'basePath' => $appDirectory,
     'controllerPath' => $api . '/controllers',
     'viewPath' => $api . '/views/',
     'runtimePath' => $api . '/runtime',
