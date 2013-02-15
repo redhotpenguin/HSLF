@@ -47,7 +47,7 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $apiShortCacheDuration = 10;
     $apiNormalCacheDuration = 100;
     $apiLongCacheDuration = 3600;
-    
+
     set_include_path(get_include_path() . PATH_SEPARATOR . '/home/dotcloud/php-env/share/php');
 } else {    //dev server conf
     $dbhost = '127.0.0.1';
@@ -62,11 +62,11 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $mongdbpass = "admin";
     $mongodbacklevel = 1;
 
-    $siteurl = ( isset($_SERVER['SERVER_NAME']) ? 'http://' . $_SERVER['SERVER_NAME'] : 'http://www.voterguide.com' ); // necessary since SERVER_NAME is not set during unit tests
+    $siteurl = 'https://www.voterguide.com';
 
     $uploaddir = '/../content/img'; // physical path
     $uploadpath = '/content/img'; // wwww path
-    $shareurl = 'http://vote.ouroregon.org';
+    $shareurl = 'httpss://vote.ouroregon.org';
 
     $redisHost = '127.0.0.1';
     $redisPort = 6379;
@@ -84,7 +84,7 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $apiNormalCacheDuration = 100;
     $apiLongCacheDuration = 3600;
 
-   define('YII_DEBUG', true);
+    define('YII_DEBUG', true);
 }
 
 
