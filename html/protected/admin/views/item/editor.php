@@ -19,7 +19,7 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
     ),
 ));
 
-$tenant = Yii::app()->user->getCurrentTenant();
+$tenant = Yii::app()->user->getLoggedInUserTenant();
 
 $siteUrl = $siteUrl = getSetting('site_url') . '/admin/' . $tenant->name;
 

@@ -1,6 +1,6 @@
 <div>
     <?php
-    $this->widget('ext.tinymce.TinyMce', array(
+    $this->widget('admin.extensions.tinymce.TinyMce', array(
         'model' => $model,
         'attribute' => 'detail',
         'htmlOptions' => array(

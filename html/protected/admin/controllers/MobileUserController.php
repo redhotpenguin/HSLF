@@ -145,7 +145,7 @@ class MobileUserController extends Controller {
             }
         }
 
-        $tenant = Yii::app()->user->getCurrentTenant();
+        $tenant = Yii::app()->user->getLoggedInUserTenant();
         
         try {
             $jobProducer = new UAJobProducer($tenant);

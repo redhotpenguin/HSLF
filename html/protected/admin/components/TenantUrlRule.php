@@ -7,7 +7,7 @@ class TenantUrlRule extends CBaseUrlRule {
     private $currentTenant;
 
     public function __construct() {
-        $this->currentTenant = Yii::app()->user->getCurrentTenant();
+        $this->currentTenant = Yii::app()->user->getLoggedInUserTenant();
     }
 
     public function createUrl($manager, $route, $params, $ampersand) {

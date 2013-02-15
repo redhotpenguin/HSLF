@@ -1,6 +1,6 @@
 <?php
 
-Yii::setPathOfAlias('bootstrap', dirname(__FILE__) . '/../extensions/bootstrap');
+Yii::setPathOfAlias('bootstrap', dirname(__FILE__) . '/../shared/extensions/bootstrap');
 
 
 // frontend config
@@ -55,8 +55,8 @@ return array(
             'schemaCachingDuration' => '3600',
         ),
         'cache' => array(
-            'class' => 'ext.Redis.CRedisCache',
-            'predisPath' => 'ext.Redis.Predis',
+            'class' => 'application.shared.extensions.Redis.CRedisCache',
+            'predisPath' => 'application.shared.extensions.Redis.Predis',
             'servers' => array(
                 array(
                     'host' => REDIS_HOST,
@@ -65,7 +65,7 @@ return array(
                     'database' => REDIS_DATABASE
                 ),
         )),
-        's3' => array('class' => 'ext.S3.ES3',
+        's3' => array('class' => 'application.shared.extensions.S3.ES3',
             'aKey' => S3_AKEY,
             'sKey' => S3_SKEY,
         ),

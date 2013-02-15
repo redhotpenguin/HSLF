@@ -24,10 +24,10 @@
             $items = array();
             // if user is logged in
             if (Yii::app()->user->id):
-                $tenant = Yii::app()->user->getCurrentTenant();
+                $tenant = Yii::app()->user->getLoggedInUserTenant();
 
 
-                $tenantUserId = Yii::app()->user->getCurrentTenantUserId();
+                $tenantUserId = Yii::app()->user->getLoggedInTenantUserId();
 
 
                 // if user has a tenant selected

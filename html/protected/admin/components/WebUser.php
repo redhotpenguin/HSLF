@@ -30,7 +30,7 @@ class WebUser extends CWebUser {
      * Does not use $_SESSION
      * @param string $tenant name
      */
-    public function setCurrentUserTenant($tenantName) {
+    public function setLoggedInUserTenant($tenantName) {
 
         $tenant = Tenant::model()->findByAttributes(array('name' => $tenantName));
         if ($tenant == null)
@@ -51,7 +51,7 @@ class WebUser extends CWebUser {
             return false;
     }
 
-    public function getCurrentTenant() {
+    public function getLoggedInUserTenant() {
         //   print_r(Yii::app()->params);
         return Yii::app()->params['current_tenant'];
     }
@@ -65,9 +65,9 @@ class WebUser extends CWebUser {
      * return the composite primary key from tenant_user
      * @return
      */
-    public function getCurrentTenantUserId() {
+    public function getLoggedInTenantUserId() {
 
-        if (($tenant = $this->getCurrentTenant()) != null)
+        if (($tenant = $this->getLoggedInUserTenant()) != null)
             return $this->getModel()->getTenantUserId($tenant->id, $this->getState('userId'));
 
         return $this->getModel()->getTenantUserId(0, $this->getState('userId')); // @todo: update this 0 means no tenant. Ex: (super)admin dashboard or home page
@@ -95,7 +95,7 @@ class WebUser extends CWebUser {
             return $this->_access[$operation];
         }
 
-        $access = Yii::app()->getAuthManager()->checkAccess($operation, $this->getCurrentTenantUserId(), $params);
+        $access = Yii::app()->getAuthManager()->checkAccess($operation, $this->getLoggedInTenantUserId(), $params);
         if ($allowCaching) {
             $this->_access[$operation] = $access;
         }

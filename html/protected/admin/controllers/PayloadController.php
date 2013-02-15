@@ -116,7 +116,7 @@ class PayloadController extends Controller {
     public function actionFindPayload($term) {
         $res = array();
 
-        $tenantId = Yii::app()->user->getCurrentTenant()->id;
+        $tenantId = Yii::app()->user->getLoggedInUserTenant()->id;
 
         if ($term) {
 

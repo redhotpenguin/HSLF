@@ -1,6 +1,6 @@
 <?php
 
-Yii::setPathOfAlias('bootstrap', dirname(__FILE__) . '/../../extensions/bootstrap');
+Yii::setPathOfAlias('bootstrap', dirname(__FILE__) . '/../../shared/extensions/bootstrap');
 
 
 /* BACKEND CONFIG FILE */
@@ -24,7 +24,8 @@ return array(
     'preload' => array('bootstrap'), // preload the bootstrap component),
 // autoloading model and component classes
     'import' => array(
-        'ext.directmongosuite.components.*',
+        'application.shared.extensions.directmongosuite.components.*',
+        'admin.extensions.*',
         'admin.models.*',
         'admin.models.behaviors.*',
         'application.shared.models.dal.*', // data access logic classes
@@ -48,7 +49,7 @@ return array(
             'schemaCachingDuration' => '60',
         ),
         'user' => array(
-            // enable cookie-based authentication
+// enable cookie-based authentication
             'allowAutoLogin' => true,
             'class' => 'WebUser',
         ),
@@ -67,7 +68,7 @@ return array(
             'showScriptName' => false,
             // mapping
             'rules' => array(
-                // hard coded routes that conflict with tenancy
+// hard coded routes that conflict with tenancy
                 'admin/logout' => 'site/logout',
                 'admin/settings' => 'user/settings',
                 'admin/tenant/<_action>' => 'tenant/<_action>',
@@ -93,8 +94,8 @@ return array(
             'connectionID' => 'db',
         ),
         'cache' => array(
-            'class' => 'ext.Redis.CRedisCache',
-            'predisPath' => 'ext.Redis.Predis',
+            'class' => 'application.shared.extensions.Redis.CRedisCache',
+            'predisPath' => 'application.shared.extensions.Redis.Predis',
             'servers' => array(
                 array(
                     'host' => REDIS_HOST,
@@ -104,7 +105,7 @@ return array(
                 ),
         )),
         's3' => array(
-            'class' => 'ext.S3.ES3',
+            'class' => 'application.shared.extensions.S3.ES3',
             'aKey' => S3_AKEY,
             'sKey' => S3_SKEY,
         ),

@@ -25,7 +25,7 @@ return array(
         'admin.components.*',
         'application.models.*',
         'application.shared.components.*',
-        'ext.directmongosuite.components.*',
+        'application.shared.extensions.directmongosuite.components.*',
     ),
     'modules' => array(
     ),
@@ -59,8 +59,8 @@ return array(
         ),
         'cache' => array(
             // 'class' => 'system.caching.CApcCache',
-            'class' => 'ext.Redis.CRedisCache',
-            'predisPath' => 'ext.Redis.Predis',
+            'class' => 'application.shared.extensions.Redis.CRedisCache',
+            'predisPath' => 'application.shared.extensions.Redis.Predis',
             'servers' => array(
                 array(
                     'host' => REDIS_HOST,

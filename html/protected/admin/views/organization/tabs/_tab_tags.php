@@ -1,6 +1,6 @@
 <div class="row-fluid">
     <?php
-    $this->widget('ext.TagSelector.TagSelector', array(
+    $this->widget('admin.extensions.TagSelector.TagSelector', array(
         'model' => $model,
         'tag_types' => array('organization')
     ));

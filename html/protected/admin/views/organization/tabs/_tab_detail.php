@@ -2,7 +2,7 @@
 <div class="">
     <?php
     echo $form->labelEx($model, 'description');
-    $this->widget('ext.tinymce.TinyMce', array(
+    $this->widget('admin.extensions.tinymce.TinyMce', array(
         'model' => $model,
         'attribute' => 'description',
         'htmlOptions' => array(

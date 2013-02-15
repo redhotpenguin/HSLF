@@ -2,7 +2,7 @@
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/static/mobileuser/mobile_user.js');
 
 
-$tenant = Yii::app()->user->getCurrentTenant();
+$tenant = Yii::app()->user->getLoggedInUserTenant();
 
 $action_url = getSetting('site_url') . '/admin/' . $tenant->name;
 
