@@ -160,7 +160,7 @@ EOD;
 
     private function addCrudTask($name) {
         try {
-            $task = $this->authManager->createTask('manage' . $name . 's', 'Manage ' . $name, null); // no biz rule
+            $task = $this->authManager->createTask('manage' . $name . 's', 'Manage ' . $name.'s', null); // no biz rule
             $task->addChild('create' . $name);
             $task->addChild('read' . $name);
             $task->addChild('update' . $name);

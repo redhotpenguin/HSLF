@@ -8,9 +8,8 @@ $this->breadcrumbs = array(
 
 
 <?php
-if (isset($error['code']) && $error['code'] == 404)
-    $message = 'Page not found';
-elseif (isset($error['errorCode']) && $error['errorCode'] == 23502)
+
+if (isset($error['errorCode']) && $error['errorCode'] == 23502)
     $message = 'This resource is used by something else and can not be deleted';
 
 elseif (isset($error['errorCode']) && $error['errorCode'] == 23505)

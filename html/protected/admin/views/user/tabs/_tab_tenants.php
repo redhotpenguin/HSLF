@@ -14,7 +14,7 @@
     foreach ($model->tenants as $tenant) {
         $role = $model->getRoleByTenant($tenant->id);
 
-        $permissionEditorLink = $this->createUrl('user/permission', array('tenantId' => $tenant->id, 'userId' => $model->id));
+        $permissionEditorLink = $this->createUrl('user/permissions', array('tenantId' => $tenant->id, 'userId' => $model->id));
 
         echo '<tr>';
         echo '<td>' . $tenant->id . '</td>';

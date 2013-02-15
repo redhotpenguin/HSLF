@@ -19,7 +19,7 @@ class UserController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('permission', 'updateTask'),
+                'actions' => array('permissions', 'updateTasks'),
                 'roles' => array('admin'),
             ),
             array('allow',
@@ -242,22 +242,46 @@ class UserController extends Controller {
      * @param integer $tenantId tenant id
      * @param integer $userId user id
      */
-    public function actionPermission($tenantId, $userId) {
+    public function actionPermissions($tenantId, $userId) {
         $user = $this->loadModel($userId);
 
         $tasks = Yii::app()->authManager->getTasks();
         $assignedTasks = Yii::app()->authManager->getTasks("$tenantId,$userId"); // @todo: update this
-        $this->render('permissions', array('user' => $user, 'tasks' => $tasks, 'assignedTasks' => $assignedTasks));
+        $this->render('permissions', array(
+            'user' => $user,
+            'tenantId' => $tenantId,
+            'tasks' => $tasks,
+            'assignedTasks' => $assignedTasks
+        ));
     }
 
-    public function actionUpdateTask() {
+    public function actionUpdateTasks() {
         $tasks = array();
 
         if (isset($_POST['tasks']))
             $tasks = $_POST['tasks'];
 
-        logIt(count($tasks));
+        if (!isset($_POST['tenantId']) || !isset($_POST['userId']) || !is_numeric($_POST['tenantId']) || !is_numeric($_POST['userId'])) {
+            throw new CHttpException(500, "Please do not repeat this request again.");
+        }
 
+
+        $tenantId = $_POST['tenantId'];
+
+        $user = $this->loadModel($_POST['userId']);
+
+
+        if ($user->updateTasks($tenantId, $tasks))
+            $result = 'success';
+        else
+            $result = 'error';
+
+
+        $this->redirect(array('permissions',
+            'tenantId' => $tenantId,
+            'userId' => $user->id,
+            'result' => $result
+        ));
     }
 
     /**
@@ -268,7 +292,7 @@ class UserController extends Controller {
     public function loadModel($id) {
         $model = User::model()->findByPk($id);
         if ($model === null)
-            throw new CHttpException(404, 'The requested page does not exist.');
+            throw new CHttpException(404, 'User not found.');
 
         $model->afterLoadModel();
 

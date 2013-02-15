@@ -37,7 +37,7 @@
                         'items' => array(
                             '---',
                             array('label' => 'Content', 'url' => '#', 'items' => array(
-                                    array('label' => 'Ballot Items', 'url' => array('/item/index'), 'visible' => Yii::app()->authManager->checkAccess('manageItems', $userTenant)),
+                                    array('label' => 'Ballot Items', 'url' => array('/item/index'), 'visible' => Yii::app()->authManager->checkAccess('manageBallotItems', $userTenant)),
                                     array('label' => 'Organizations', 'url' => array('/organization/index/'), 'visible' => Yii::app()->authManager->checkAccess('manageOrganizations', $userTenant)),
                                     array('label' => 'Scorecard Items', 'url' => array('/scorecardItem/index'), 'visible' => Yii::app()->authManager->checkAccess('manageScorecardItems', $userTenant)),
                                     array('label' => 'Votes', 'url' => array('/vote/index'), 'visible' => Yii::app()->authManager->checkAccess('manageVotes', $userTenant)),

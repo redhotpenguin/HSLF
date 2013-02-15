@@ -2,39 +2,23 @@
 
 class UserBehavior extends CActiveRecordBehavior {
 
-    /**
-     * add or update the user role in table authassignement
-     * @param Cevent $event
-     */
-    public function afterSave($event) {
-        parent::afterSave($event);
+    public function updateTasks($tenantId, array $tasks = array()) {
 
-        /*
-          foreach ($this->owner->tenants as $tenant) {
-          $tenantUserId = $tenant->id . ',' . $this->owner->id;
+        $tenantUserId = $tenantId . ',' . $this->owner->id;  // @todo: update this
 
-          Yii::app()->authManager->revokeAll($tenantUserId);
-          }
-
-          if (!empty($this->owner->rolesByTenant)) {
-
-          logIt($this->owner->rolesByTenant);
+        Yii::app()->authManager->revokeAll($tenantUserId);
 
 
-          foreach ($this->owner->rolesByTenant as $tenantId => $role) {
-          if ($role == null || empty($role))
-          continue;
+        foreach ($tasks as $task):
+            try {
+                Yii::app()->authManager->assign($task, $tenantUserId);
+            } catch (Exception $e) {
+                return false;
+            }
 
-          $tenantUserId = $tenantId . ',' . $this->owner->id;
-          try {
-          Yii::app()->authManager->assign($role, $tenantUserId);
-          } catch (Exception $e) {
-          error_log($e->getMessage());
-          }
-          }
-          }
-         * 
-         */
+        endforeach;
+
+        return true;
     }
 
     /**
