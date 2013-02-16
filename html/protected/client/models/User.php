@@ -14,7 +14,6 @@ class User extends BaseActiveRecord {
     public $repeat_password;
     public $initial_password;
 
-    
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
@@ -45,6 +44,7 @@ class User extends BaseActiveRecord {
             array('password', 'length', 'max' => 40),
             array('id, username, email', 'safe', 'on' => 'search'),
             array('email, password, administrator', 'safe', 'on' => 'update'),
+            array('password', 'safe', 'on' => 'updateSettings'),
         );
     }
 

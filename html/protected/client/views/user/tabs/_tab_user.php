@@ -34,6 +34,8 @@
 </div>
 
 
+<br/>
+
 <div class ="row">
     <legend><i class="icon-warning-sign"></i> Danger Zone </legend>
     <?php
