@@ -46,7 +46,7 @@ div.form span.required
 }
 
 .errorMessage{
-    margin-top:10px;
+    margin-bottom:10px;
 }
 div.form div.error label:first-child,
 div.form label.error,
@@ -62,8 +62,8 @@ div.form input.error,
 div.form textarea.error,
 div.form select.error
 {
-    background: #FEE;
-    border-color: #C00;
+    background: #F2DEDE;
+    border-color: #EED3D7;
 }
 
 div.form div.success input,
@@ -84,16 +84,22 @@ div.form select.success
 
 div.form .errorSummary
 {
-    border: 2px solid #C00;
-    padding: 7px 7px 12px 7px;
+    color: #B94A48;
+    background-color: #F2DEDE;
+    border-color: #EED3D7;
     margin: 0 0 20px 0;
-    background: #FEE;
     font-size: 0.9em;
+    padding: 8px 35px 8px 14px;
+    margin-bottom: 20px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
 }
 
 div.form .errorMessage
 {
-    color: red;
+    color: #B94A48;
     font-size: 0.9em;
 }
 

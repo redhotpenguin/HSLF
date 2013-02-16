@@ -52,10 +52,11 @@ class PayloadController extends Controller {
 
         if (isset($_POST['Payload'])) {
             $model->attributes = $_POST['Payload'];
-            if ($model->save())
+            if ($model->save()) {
                 Yii::app()->user->setFlash('success', "Payload #{$model->id} successfully created");
 
-            $this->redirect(array('update', 'id' => $model->id,));
+                $this->redirect(array('update', 'id' => $model->id,));
+            }
         }
 
         $this->render('editor', array(
