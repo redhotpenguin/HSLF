@@ -55,7 +55,7 @@ class StateController extends Controller {
             $model->attributes = $_POST['State'];
             try {
                 if ($model->save()) {
-                    $this->redirect(array('update', 'id' => $model->id, 'created' => true));
+                    $this->redirect(array('update', 'id' => $model->id, ));
                 }
             } catch (Exception $e) {
                 error_log("State controller:" . $e->getMessage());
@@ -84,7 +84,7 @@ class StateController extends Controller {
             try {
                 if ($model->save())
                     $this->redirect(array('update',
-                        'id' => $model->id, 'updated' => true));
+                        'id' => $model->id, ));
             } catch (Exception $e) {
                 error_log("State controller:" . $e->getMessage());
             }

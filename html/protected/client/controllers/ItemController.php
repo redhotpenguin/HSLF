@@ -79,7 +79,7 @@ class ItemController extends Controller {
                 }
 
 
-                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
+                $this->redirect(array('update', 'id' => $model->id, ));
             }
         }
 
@@ -128,7 +128,7 @@ class ItemController extends Controller {
                 }
             } else {  // normal POST request
                 if ($model->save())
-                    $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
+                    $this->redirect(array('update', 'id' => $model->id, ));
             }
 
 

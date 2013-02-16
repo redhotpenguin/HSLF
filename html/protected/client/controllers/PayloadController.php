@@ -2,8 +2,6 @@
 
 class PayloadController extends Controller {
 
-
-
     /**
      * @return array action filters
      */
@@ -42,7 +40,6 @@ class PayloadController extends Controller {
         );
     }
 
-
     /**
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -56,7 +53,9 @@ class PayloadController extends Controller {
         if (isset($_POST['Payload'])) {
             $model->attributes = $_POST['Payload'];
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id, 'created' => true));
+                Yii::app()->user->setFlash('success', "Payload #{$model->id} successfully created");
+
+            $this->redirect(array('update', 'id' => $model->id,));
         }
 
         $this->render('editor', array(
@@ -77,8 +76,10 @@ class PayloadController extends Controller {
 
         if (isset($_POST['Payload'])) {
             $model->attributes = $_POST['Payload'];
-            if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
+            if ($model->save()) {
+                Yii::app()->user->setFlash('success', "Payload #{$model->id} successfully updated");
+                $this->redirect(array('update', 'id' => $model->id,));
+            }
         }
 
         $this->render('editor', array(

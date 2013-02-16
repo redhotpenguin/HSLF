@@ -51,8 +51,10 @@ class OptionController extends Controller {
 
         if (isset($_POST['Option'])) {
             $model->attributes = $_POST['Option'];
-            if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id, 'created' => true));
+            if ($model->save()) {
+                Yii::app()->user->setFlash('success', "Option message successfully created");
+                $this->redirect(array('update', 'id' => $model->id,));
+            }
         }
 
         $this->render('editor', array(
@@ -73,8 +75,11 @@ class OptionController extends Controller {
 
         if (isset($_POST['Option'])) {
             $model->attributes = $_POST['Option'];
-            if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
+            if ($model->save()) {
+                Yii::app()->user->setFlash('success', "Option message successfully updated");
+
+                $this->redirect(array('update', 'id' => $model->id,));
+            }
         }
 
         $this->render('editor', array(

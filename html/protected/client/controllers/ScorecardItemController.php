@@ -2,8 +2,6 @@
 
 class ScorecardItemController extends Controller {
 
-
-
     /**
      * @return array action filters
      */
@@ -43,7 +41,6 @@ class ScorecardItemController extends Controller {
         );
     }
 
-
     /**
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -56,8 +53,10 @@ class ScorecardItemController extends Controller {
 
         if (isset($_POST['ScorecardItem'])) {
             $model->attributes = $_POST['ScorecardItem'];
-            if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id, 'created'=>true));
+            if ($model->save()) {
+                Yii::app()->user->setFlash('success', "Scorecard Item successfully created");
+                $this->redirect(array('update', 'id' => $model->id));
+            }
         }
 
         $this->render('editor', array(
@@ -79,7 +78,9 @@ class ScorecardItemController extends Controller {
         if (isset($_POST['ScorecardItem'])) {
             $model->attributes = $_POST['ScorecardItem'];
             if ($model->save()) {
-                $this->redirect(array('update', 'id' => $model->id, 'updated'=>true));
+                Yii::app()->user->setFlash('success', "Scorecard Item successfully updated");
+
+                $this->redirect(array('update', 'id' => $model->id));
             } else {
                 echo 'could not save';
                 exit;

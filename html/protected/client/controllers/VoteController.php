@@ -52,8 +52,10 @@ class VoteController extends Controller {
 
         if (isset($_POST['Vote'])) {
             $model->attributes = $_POST['Vote'];
-            if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id, 'created' => true));
+            if ($model->save()) {
+                Yii::app()->user->setFlash('success', "Vote successfully created");
+                $this->redirect(array('update', 'id' => $model->id));
+            }
         }
 
         $this->render('editor', array(
@@ -74,8 +76,10 @@ class VoteController extends Controller {
 
         if (isset($_POST['Vote'])) {
             $model->attributes = $_POST['Vote'];
-            if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
+            if ($model->save()) {
+                Yii::app()->user->setFlash('success', "Vote successfully updated");
+                $this->redirect(array('update', 'id' => $model->id));
+            }
         }
 
         $this->render('editor', array(

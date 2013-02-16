@@ -2,8 +2,6 @@
 
 class OrganizationController extends Controller {
 
-  
-
     /**
      * @return array action filters
      */
@@ -42,7 +40,6 @@ class OrganizationController extends Controller {
         );
     }
 
-
     /**
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -58,7 +55,9 @@ class OrganizationController extends Controller {
             if ($model->save()) {
                 if (isset($_POST['Organization']['tags']))
                     $model->massUpdateTags($_POST['Organization']['tags']);
-                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
+                Yii::app()->user->setFlash('success', "Organization successfully created");
+
+                $this->redirect(array('update', 'id' => $model->id));
             }
         }
 
@@ -92,10 +91,11 @@ class OrganizationController extends Controller {
                 if (Yii::app()->request->isAjaxRequest) { // AJAX Post Request
                     echo 'success';
                     Yii::app()->end();
-                }
+                } else {
+                    Yii::app()->user->setFlash('success', "Organization successfully updated");
 
-                else
-                    $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
+                    $this->redirect(array('update', 'id' => $model->id));
+                }
             }
         }
 

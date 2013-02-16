@@ -2,7 +2,6 @@
 
 class PushMessageController extends Controller {
 
-
     /**
      * @return array action filters
      */
@@ -56,7 +55,9 @@ class PushMessageController extends Controller {
                 if (isset($_POST['PushMessage']['tags']))
                     $model->massUpdateTags($_POST['PushMessage']['tags']);
 
-                $this->redirect(array('update', 'id' => $model->id, 'created' => true));
+                Yii::app()->user->setFlash('success', "Push message successfully created");
+
+                $this->redirect(array('update', 'id' => $model->id,));
             }
         }
 
@@ -84,8 +85,9 @@ class PushMessageController extends Controller {
                 else
                     $model->removeAllTagsAssociation();
 
+                Yii::app()->user->setFlash('success', "Push message successfully updated");
 
-                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
+                $this->redirect(array('update', 'id' => $model->id,));
             }
         }
 

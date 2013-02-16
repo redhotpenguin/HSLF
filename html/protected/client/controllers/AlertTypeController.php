@@ -52,8 +52,10 @@ class AlertTypeController extends Controller {
 
         if (isset($_POST['AlertType'])) {
             $model->attributes = $_POST['AlertType'];
-            if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id, 'created' => true));
+            if ($model->save()) {
+                Yii::app()->user->setFlash('success', "Alert Type successfully created");
+                $this->redirect(array('update', 'id' => $model->id));
+            }
         }
 
         $this->render('editor', array(
@@ -74,8 +76,11 @@ class AlertTypeController extends Controller {
 
         if (isset($_POST['AlertType'])) {
             $model->attributes = $_POST['AlertType'];
-            if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
+            if ($model->save()) {
+                Yii::app()->user->setFlash('success', "Alert Type successfully updated");
+
+                $this->redirect(array('update', 'id' => $model->id));
+            }
         }
 
         $this->render('editor', array(

@@ -41,7 +41,7 @@ class DistrictController extends Controller {
         if (isset($_POST['District'])) {
             $model->attributes = $_POST['District'];
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id, 'created' => true));
+                $this->redirect(array('update', 'id' => $model->id, ));
         }
 
         $this->render('editor', array(
@@ -63,7 +63,7 @@ class DistrictController extends Controller {
         if (isset($_POST['District'])) {
             $model->attributes = $_POST['District'];
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
+                $this->redirect(array('update', 'id' => $model->id, ));
         }
 
         $this->render('editor', array(

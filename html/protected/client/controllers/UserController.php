@@ -210,7 +210,7 @@ class UserController extends Controller {
                 $model->initial_password = $currentPassword;
 
             if ($model->save())
-                $this->redirect(array('settings', 'updated' => true));
+                $this->redirect(array('settings', ));
         }
 
 
