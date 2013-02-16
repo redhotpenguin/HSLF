@@ -93,6 +93,9 @@ class UserController extends Controller {
 
             $model->attributes = $_POST['User'];
 
+
+
+
             // if a new password has been given
             if ($model->password)
                 $model->initial_password = $model->password;
@@ -228,7 +231,7 @@ class UserController extends Controller {
 
         $publisherTasks = Yii::app()->authManager->getItemChildren('publisher');
 
-        $assignedTasks = Yii::app()->authManager->getTasks($user->getTenantUserId($tenantId,$userId));
+        $assignedTasks = Yii::app()->authManager->getTasks($user->getTenantUserId($tenantId, $userId));
 
         $unassignedTasks = array_diff_key($publisherTasks, $assignedTasks);
 
@@ -298,8 +301,6 @@ class UserController extends Controller {
         $model = User::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'User not found.');
-
-        $model->afterLoadModel();
 
         return $model;
     }

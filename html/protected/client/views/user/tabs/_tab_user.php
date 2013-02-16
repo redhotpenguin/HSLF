@@ -32,3 +32,16 @@
     echo $form->error($model, 'email');
     ?>
 </div>
+
+
+<div class ="row">
+    <legend><i class="icon-warning-sign"></i> Danger Zone </legend>
+    <?php
+    echo $form->labelEx($model, 'administrator');
+    echo CHtml::checkBox('User[administrator]', $model->getAdministrator() );
+    echo $form->error($model, 'administrator');
+    
+    
+    ?>
+
+</div>

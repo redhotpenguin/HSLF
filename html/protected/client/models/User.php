@@ -11,19 +11,15 @@
  */
 class User extends BaseActiveRecord {
 
-    const ADMIN_ROLE = 'admin';
-    const PUBLISHER_ROLE = 'publisher';
-
     public $repeat_password;
     public $initial_password;
-    public $role; // @todo: remove this
 
+    
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
      * @return User the static model class
      */
-
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
@@ -44,11 +40,11 @@ class User extends BaseActiveRecord {
             array('password, username, email, repeat_password', 'required', 'on' => 'insert'),
             array('repeat_password', 'compare', 'compareAttribute' => 'password', 'on' => 'insert, update', 'message' => 'Passwords mismatch'),
             array('email', 'email'),
-            array('username, email', 'length', 'max' => 128, 'on' => 'insert'),
+            array('username, email, administrator', 'length', 'max' => 128, 'on' => 'insert'),
             array('email', 'length', 'max' => 128, 'on' => 'update'),
             array('password', 'length', 'max' => 40),
             array('id, username, email', 'safe', 'on' => 'search'),
-            array('email, password, rolesByTenant', 'safe', 'on' => 'update'),
+            array('email, password, administrator', 'safe', 'on' => 'update'),
         );
     }
 
@@ -161,17 +157,6 @@ class User extends BaseActiveRecord {
     public function behaviors() {
         return array(
             'UserBehavior' => array('class' => 'UserBehavior'),
-        );
-    }
-
-    /**
-     * Retrieves a list of possible user roles.
-     * @return array of roles
-     */
-    public function getRoleOptions() {
-        return array(
-            self::ADMIN_ROLE => 'Administrator',
-            self::PUBLISHER_ROLE => 'Publisher',
         );
     }
 

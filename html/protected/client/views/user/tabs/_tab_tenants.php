@@ -9,10 +9,8 @@
 </thead>
 <tbody>
     <?php
-    $roleOptions = $model->getRoleOptions();
 
     foreach ($model->tenants as $tenant) {
-        $role = $model->getRoleByTenant($tenant->id);
 
         $permissionEditorLink = $this->createUrl('user/permissions', array('tenantId' => $tenant->id, 'userId' => $model->id));
 
