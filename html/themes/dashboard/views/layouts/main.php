@@ -11,9 +11,16 @@
 
         <link rel="stylesheet" type="text/css" href="/themes/dashboard/css/form.css" /> 
 
+
+
         <?php
         Yii::app()->bootstrap->register();
+
+        $baseUrl = Yii::app()->baseUrl;
+        $cs = Yii::app()->getClientScript();
+        $cs->registerScriptFile($baseUrl . '/static/global/js/dashboard.js');
         ?>
+
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 
     </head>
@@ -77,7 +84,7 @@
                     $brand = 'Winning Mark Mobile';
 
 
-                    
+
                     if (Yii::app()->authManager->checkAccess('admin', $tenantUserId)) {
                         $adminItems = array(
                             'class' => 'bootstrap.widgets.TbMenu',

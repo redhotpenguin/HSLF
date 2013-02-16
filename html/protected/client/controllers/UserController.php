@@ -64,7 +64,7 @@ class UserController extends Controller {
 
                 if (( isset($_POST['add_to_tenant']) && !empty($_POST['add_to_tenant'])))
                     if (!$this->addUserToTenant($model, $_POST['add_to_tenant']))
-                        Yii::app()->user->setFlash('error', "Error while adding the user to this tenant");
+                        Yii::app()->user->setFlash('error', "Error while adding this user to this tenant");
 
                 Yii::app()->user->setFlash('success', "User successfully updated.");
 
@@ -108,12 +108,12 @@ class UserController extends Controller {
 
             if (( isset($_POST['add_to_tenant']) && !empty($_POST['add_to_tenant'])))
                 if (!$this->addUserToTenant($model, $_POST['add_to_tenant']))
-                    Yii::app()->user->setFlash('error', "Error while adding the user to this tenant");
+                    Yii::app()->user->setFlash('error', "Error while adding {$model->username} to {$_POST['add_to_tenant']}");
 
 
             if (isset($_POST['remove_from_tenant']) && !empty($_POST['remove_from_tenant']))
                 if (!$this->removeUserFromTenant($model, $_POST['remove_from_tenant']))
-                    Yii::app()->user->setFlash('error', "Error while removing the user from this tenant");
+                    Yii::app()->user->setFlash('error', "Error while removing {$model->username} from {$_POST['remove_from_tenant']}");
 
 
             Yii::app()->user->setFlash('success', "User successfully updated.");
