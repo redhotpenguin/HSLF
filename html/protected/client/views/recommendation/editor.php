@@ -6,18 +6,10 @@ if (!$model->isNewRecord) {
             ), '', array('label' => 'Delete', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this recommendation?')), '');
 }
 
-$this->widget('bootstrap.widgets.TbNavbar', array(
-    'brand' => 'Recommendations',
-    'brandUrl' => array('recommendation/index'),
-    'htmlOptions' => array('class' => 'subnav'),
-    'collapse' => true, // requires bootstrap-responsive.css
-    'items' => array(
-        array(
-            'class' => 'bootstrap.widgets.TbMenu',
-            'items' => $navBarItems
-        ),
-    ),
-));
+
+$this->secondaryNav['items'] = $navBarItems;
+$this->secondaryNav['name'] = 'Recommendations';
+$this->secondaryNav['url'] =array('recommendation/index');
 ?>
 
 <div class="form">

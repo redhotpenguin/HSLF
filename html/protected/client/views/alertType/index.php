@@ -1,24 +1,13 @@
 <?php
-
 $navBarItems = array(
     '',
     array('label' => 'Create', 'url' => array('create')),
     '',
 );
 
-$this->widget('bootstrap.widgets.TbNavbar', array(
-    'brand' => 'Alert Types',
-    'brandUrl' => array('alertType/index'),
-    'htmlOptions' => array('class' => 'subnav'),
-    'collapse' => true, // requires bootstrap-responsive.css
-    'items' => array(
-        array(
-            'class' => 'bootstrap.widgets.TbMenu',
-            'items' => $navBarItems
-        ),
-    ),
-));
-
+$this->secondaryNav['items'] = $navBarItems;
+$this->secondaryNav['name'] = 'Alert Types';
+$this->secondaryNav['url'] = array('alertType/index');
 
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'alert-type-grid',

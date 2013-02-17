@@ -8,18 +8,11 @@ $navBarItems = array(
     '',
 );
 
-$this->widget('bootstrap.widgets.TbNavbar', array(
-    'brand' => 'Districts',
-    'brandUrl' => array('district/index'),
-    'htmlOptions' => array('class' => 'subnav'),
-    'collapse' => true, // requires bootstrap-responsive.css
-    'items' => array(
-        array(
-            'class' => 'bootstrap.widgets.TbMenu',
-            'items' => $navBarItems
-        ),
-    ),
-));
+$this->secondaryNav['items'] = $navBarItems;
+$this->secondaryNav['name'] = 'Districts';
+$this->secondaryNav['url'] = array('district/index');
+
+
 ?>
 
 

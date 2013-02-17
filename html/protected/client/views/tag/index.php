@@ -6,18 +6,9 @@ $navBarItems = array(
     '',
 );
 
-$this->widget('bootstrap.widgets.TbNavbar', array(
-    'brand' => 'Tags',
-    'brandUrl' => array('tag/index'),
-    'htmlOptions' => array('class' => 'subnav'),
-    'collapse' => true, // requires bootstrap-responsive.css
-    'items' => array(
-        array(
-            'class' => 'bootstrap.widgets.TbMenu',
-            'items' => $navBarItems
-        ),
-    ),
-));
+$this->secondaryNav['items'] = $navBarItems;
+$this->secondaryNav['name'] = 'Tags';
+$this->secondaryNav['url'] =array('tag/index');
 
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'tag-grid',

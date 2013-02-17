@@ -5,18 +5,9 @@ $navBarItems = array();
 array_push($navBarItems, '', array('label' => "$user->username ({$user->email})", 'url' => array('update', 'id' => $user->id),
 ));
 
-$this->widget('bootstrap.widgets.TbNavbar', array(
-    'brand' => 'Users',
-    'brandUrl' => array('user/index'),
-    'htmlOptions' => array('class' => 'subnav'),
-    'collapse' => true, // requires bootstrap-responsive.css
-    'items' => array(
-        array(
-            'class' => 'bootstrap.widgets.TbMenu',
-            'items' => $navBarItems
-        ),
-    ),
-));
+$this->secondaryNav['items'] = $navBarItems;
+$this->secondaryNav['name'] = 'Users';
+$this->secondaryNav['url'] =array('user/index');
 
 echo CHtml::beginForm(array('user/updateTasks'), 'POST', array('id' => 'tasksForm'));
 

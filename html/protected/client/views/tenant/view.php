@@ -7,11 +7,9 @@ $this->breadcrumbs=array(
 	$model->name,
 );
 
-$this->menu=array(
-	array('label'=>'Add another tenant', 'url'=>array('create')),
-	array('label'=>'Update', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Manage', 'url'=>array('admin')),
-);
+$this->secondaryNav['items'] = $navBarItems;
+$this->secondaryNav['name'] = 'Tenants';
+$this->secondaryNav['url'] =array('tenant/index');
 ?>
 
 <h1>View Tenant #<?php echo $model->display_name; ?></h1>

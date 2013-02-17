@@ -6,18 +6,9 @@ if (!$model->isNewRecord) {
             ), '', array('label' => 'Delete', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this push message?')), '');
 }
 
-$this->widget('bootstrap.widgets.TbNavbar', array(
-    'brand' => 'Push Messages',
-    'brandUrl' => array('pushMessage/index'),
-    'htmlOptions' => array('class' => 'subnav'),
-    'collapse' => true, // requires bootstrap-responsive.css
-    'items' => array(
-        array(
-            'class' => 'bootstrap.widgets.TbMenu',
-            'items' => $navBarItems
-        ),
-    ),
-));
+$this->secondaryNav['items'] = $navBarItems;
+$this->secondaryNav['name'] = 'Push Messages';
+$this->secondaryNav['url'] =array('pushMessage/index');
 ?>
 
 <div class="form">

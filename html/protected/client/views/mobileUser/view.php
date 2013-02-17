@@ -4,19 +4,9 @@ $navBarItems = array(
     array('label' => 'Browse', 'url' => array('browse')),
     '',
 );
-
-$this->widget('bootstrap.widgets.TbNavbar', array(
-    'brand' => 'Mobile Users',
-    'brandUrl' => array('mobileUser/index'),
-    'htmlOptions' => array('class' => 'subnav'),
-    'collapse' => true, // requires bootstrap-responsive.css
-    'items' => array(
-        array(
-            'class' => 'bootstrap.widgets.TbMenu',
-            'items' => $navBarItems
-        ),
-    ),
-));
+$this->secondaryNav['items'] = $navBarItems;
+$this->secondaryNav['name'] = 'Mobile Users';
+$this->secondaryNav['url'] =array('mobileUser/index');
 ?>
 
 

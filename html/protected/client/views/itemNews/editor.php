@@ -8,20 +8,10 @@ if (!$model->isNewRecord)
         '',
     );
 
+$this->secondaryNav['items'] = $navBarItems;
+$this->secondaryNav['name'] = 'News Update - ' . substr($model->item->item, 0, 25) . '...';
+$this->secondaryNav['url'] =  array('item/update', 'id' => $model->item->id, 'activeTab' => 'news');
 
-
-$this->widget('bootstrap.widgets.TbNavbar', array(
-    'brand' => 'News Update - ' . substr($model->item->item, 0, 25) . '...',
-    'brandUrl' => array('item/update', 'id' => $model->item->id, 'activeTab' => 'news'),
-    'htmlOptions' => array('class' => 'subnav'),
-    'collapse' => true, // requires bootstrap-responsive.css
-    'items' => array(
-        array(
-            'class' => 'bootstrap.widgets.TbMenu',
-            'items' => $navBarItems
-        ),
-    ),
-));
 ?>
 
 <?php

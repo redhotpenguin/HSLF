@@ -1,15 +1,6 @@
 <?php
-$this->widget('bootstrap.widgets.TbNavbar', array(
-    'brand' => 'Mobile Users',
-    'brandUrl' => array('mobileUser/index'),
-    'htmlOptions' => array('class' => 'subnav'),
-    'collapse' => true, // requires bootstrap-responsive.css
-    'items' => array(
-        array(
-            'class' => 'bootstrap.widgets.TbMenu',
-        ),
-    ),
-));
+$this->secondaryNav['name'] = 'Mobile Users';
+$this->secondaryNav['url'] =array('mobileUser/index');
 ?>
 
 <?php

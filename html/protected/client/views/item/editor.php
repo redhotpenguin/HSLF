@@ -6,18 +6,10 @@ if (!$model->isNewRecord) {
             ), '', array('label' => 'Delete', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this ballot item?')), '');
 }
 
-$this->widget('bootstrap.widgets.TbNavbar', array(
-    'brand' => 'Ballot Items',
-    'brandUrl' => array('item/index'),
-    'htmlOptions' => array('class' => 'subnav'),
-    'collapse' => true, // requires bootstrap-responsive.css
-    'items' => array(
-        array(
-            'class' => 'bootstrap.widgets.TbMenu',
-            'items' => $navBarItems
-        ),
-    ),
-));
+$this->secondaryNav['items'] = $navBarItems;
+$this->secondaryNav['name'] = 'Ballot Items';
+$this->secondaryNav['url'] =array('item/index');
+
 
 $tenant = Yii::app()->user->getLoggedInUserTenant();
 

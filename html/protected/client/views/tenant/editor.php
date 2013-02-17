@@ -2,18 +2,8 @@
 /* @var $this TenantController */
 /* @var $model Tenant */
 
-$this->widget('bootstrap.widgets.TbNavbar', array(
-    'brand' => 'Tenants',
-    'brandUrl' => array('tenant/index'),
-    'htmlOptions' => array('class' => 'subnav'),
-    'collapse' => true, // requires bootstrap-responsive.css
-    'items' => array(
-        array(
-            'class' => 'bootstrap.widgets.TbMenu',
-            'items' => array(),
-        ),
-    ),
-));
+$this->secondaryNav['name'] = 'Tenants';
+$this->secondaryNav['url'] =array('tenant/index');
 ?>
 
 <?php
