@@ -6,15 +6,10 @@
         <meta name="robots" content="noindex" />
         <link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/favicon.ico" type="image/x-icon" />
         <!-- blueprint CSS framework -->
-        <link rel="stylesheet" type="text/css" href="/themes/dashboard/css/screen.css" media="screen, projection" />
-        <link rel="stylesheet" type="text/css" href="/themes/dashboard/css/print.css" media="print" />
-        <!--[if lt IE 8]>
-        <link rel="stylesheet" type="text/css" href="/themes/dashboard/css/ie.css" media="screen, projection" />
-        <![endif]-->
 
-        <link rel="stylesheet" type="text/css" href="/themes/dashboard/css/main.css" />
 
-        <link rel="stylesheet" type="text/css" href="/themes/dashboard/css/form.css" /> 
+        <link rel="stylesheet" type="text/css" href="/themes/frontend/css/main.css" />
+
 
         <?php
         Yii::app()->bootstrap->register();
@@ -48,7 +43,6 @@
         </div>
 
         <div id="container" class="container">
-
             <div id="main"  class="container clear-top" >
                 <div class="row">
 
@@ -58,10 +52,9 @@
 
                     </div>
 
-                </div>
+                </div> <!-- row -->
 
-            </div>
-        </div><!-- page -->
+            </div> <!-- main-->
 
         </div><!-- container-->
         <footer class="footer" id="footer"> 

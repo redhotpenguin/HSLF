@@ -1,70 +1,69 @@
-*{
-    margin:0;
-    padding:0;
-}
-html, body {height: 100%;}
-
-#wrap {min-height: 75%;}
-
-#header{
-    font-size: 1.5em;
-    height: 150px;
-    text-align: center;
-    padding-top: 50px;
-    background-color:#036;
-    color:#fff;
+/* styles for layout */
+html,body
+{
+    height:100%;
 }
 
-#header a{
-    text-decoration:none;
-    color:#fff;
+body{
+
+
+
+    background: #fbfbfa url('/static/global/img/white-noise.png') top right repeat !important;
 }
 
-#page{
-    width: 50em;
-    margin: auto;
+h1{
+    color:#DD5336!important;
+}
+h4{
+    color:#36A1DD !important;
+    margin-bottom:5px!important;
+}
+#content h1{
+    margin-bottom:10px;
+}
+.container{
+    min-height: 91%; 
+
 }
 
-#content{
-    float:left;
+#container{
+    margin-top:40px;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+    background-color: white;
+    padding:20px;
 }
 
-#sidebar {
-    min-height: 400px;
-    width: 300px;
-    float: left;
+#main{
+    overflow:auto;
 }
 
 
-
-#footer{
-    font-size: 1em;
-    text-align: center;
-    padding-top: 50px;
-    background-color:#036;
-    color:#fff;
-    height: 50px;
+.footer 
+{
+    position: relative;
+    height: 25px;
     clear:both;
-}
+    padding:10px;
+    color:#8E8E8C;
+    text-align:center;
+    font-size: 14px;
 
-.item .view .item_news_item{
-    margin-bottom: 15px;
-    border: 1px solid  #eee;
-    padding: 15px;
-}
+    background: #111 url('/static/global/img/white-noise.png') top right repeat !important;
 
-.item .view .item_news_title{
-    font-weight:bold;
+    border-top: 1px solid #ccc;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+} 
 
-}
-
-
-.item .view .item_news_content{
-
-}
-
-.item .view .item_news_date_published{
-    font-size:12px;
-    color:#333;
+.clearfix:after{
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+    font-size: 0;
 }
 

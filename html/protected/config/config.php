@@ -62,7 +62,7 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $mongdbpass = "admin";
     $mongodbacklevel = 1;
 
-    $siteurl = 'https://www.voterguide.com';
+    $siteurl = 'http://www.voterguide.com';
 
     $uploaddir = '/../content/img'; // physical path
     $uploadpath = '/content/img'; // wwww path

@@ -93,9 +93,6 @@ class UserController extends Controller {
 
             $model->attributes = $_POST['User'];
 
-
-
-
             // if a new password has been given
             if ($model->password)
                 $model->initial_password = $model->password;

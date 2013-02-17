@@ -17,6 +17,8 @@ class SiteController extends Controller {
      */
     public function actionError() {
         $error = Yii::app()->errorHandler->error;
+        
+      
 
         switch ($error['code']) {
             case 404:

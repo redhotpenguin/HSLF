@@ -154,52 +154,60 @@
             ?>
         </div>
 
+        <?php
+        if ($this->secondaryNav):
+            $this->widget('bootstrap.widgets.TbNavbar', array(
+                'brand' =>  (isset($this->secondaryNav['name'])? $this->secondaryNav['name'] : '' ),
+                'brandUrl' => (isset($this->secondaryNav['url'])? $this->secondaryNav['url'] : '#' ),
+                'htmlOptions' => array('class' => 'subnav', 'id'=>'subnav'),
+                'collapse' => true,
+                'items' => array(
+                    array(
+                        'class' => 'bootstrap.widgets.TbMenu',
+                        'items' =>  (isset($this->secondaryNav['items'])? $this->secondaryNav['items'] : array() )
+                    ),
+                ),
+            ));
+
+        endif;
+        ?>
+
+
         <div id="container" class="container">
-
-            <div id="wrap">
-                <?php
-                $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
-                    'links' => $this->breadcrumbs,
-                    'homeLink' => CHtml::link('Dashboard', array('./'))
-                ));
-                ?><!-- breadcrumbs -->
-
-
-
                 <div id="main"  class="container clear-top" >
                     <div class="row-fluid">
 
                         <div class="span12">
 
-                            <?php
-                            echo $content;
+<?php
+echo $content;
 
 
-                            if (Yii::app()->user->hasFlash('success')):
-                                ?>
+if (Yii::app()->user->hasFlash('success')):
+    ?>
                                 <div class="update_box btn-success">
-                                    <?php echo Yii::app()->user->getFlash('success'); ?>
+                                <?php echo Yii::app()->user->getFlash('success'); ?>
                                 </div>
-                                <?php
-                            endif;
+                                    <?php
+                                endif;
 
-                            if (Yii::app()->user->hasFlash('error')):
-                                $flashMessages = Yii::app()->user->getFlashes();
-                                if ($flashMessages) {
-                                    echo '<div class="flashes">';
-                                    foreach ($flashMessages as $key => $message) {
-                                        echo '<div class="update_box btn-danger flash-' . $key . '">' . $message . "</div>\n";
+                                if (Yii::app()->user->hasFlash('error')):
+                                    $flashMessages = Yii::app()->user->getFlashes();
+                                    if ($flashMessages) {
+                                        echo '<div class="flashes">';
+                                        foreach ($flashMessages as $key => $message) {
+                                            echo '<div class="update_box btn-danger flash-' . $key . '">' . $message . "</div>\n";
+                                        }
+                                        echo '</div>';
                                     }
-                                    echo '</div>';
-                                }
-                            endif;
-                            ?>
+                                endif;
+                                ?>
 
                         </div>
                     </div>
 
                 </div>
-            </div><!-- page -->
+     
 
         </div><!-- container-->
         <footer class="footer" id="footer"> 
