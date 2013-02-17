@@ -110,9 +110,19 @@ class SiteController extends Controller {
             if ($error['type'] == 'CDbException' && $error['errorCode'] == 23502) {
                 echo 'This resource is used by something else and can not be deleted.';
             }
+
+            Yii::app()->end();
         }
-        else
-            $this->render('error', array('error' => $error));
+
+        switch ($error['code']) {
+            case 404:
+                $this->render('error404', array('error' => $error));
+                break;
+
+            default:
+                $this->render('error', array('error' => $error));
+                break;
+        }
     }
 
     /**
