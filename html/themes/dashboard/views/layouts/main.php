@@ -185,6 +185,7 @@
                 'brandUrl' => $brandUrl,
                 'id' => 'main_menu',
                 'items' => $items,
+                'collapse' => true,
             ));
             ?>
         </div>
