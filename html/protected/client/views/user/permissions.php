@@ -2,7 +2,7 @@
 $navBarItems = array();
 
 
-array_push($navBarItems, '', array('label' => "$user->username ({$user->email})", 'url' => array('update', 'id' => $user->id),
+array_push($navBarItems, '', array('label' => "$user->username ({$tenant->display_name})", 'url' => array('update', 'id' => $user->id),
 ));
 
 $this->secondaryNav['items'] = $navBarItems;
@@ -12,7 +12,7 @@ $this->secondaryNav['url'] =array('user/index');
 echo CHtml::beginForm(array('user/updateTasks'), 'POST', array('id' => 'tasksForm'));
 
 
-echo CHtml::hiddenField('tenantId', $tenantId);
+echo CHtml::hiddenField('tenantId', $tenant->id);
 echo CHtml::hiddenField('userId', $user->id);
 ?>
 

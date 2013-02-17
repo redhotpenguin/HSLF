@@ -221,10 +221,12 @@ class UserController extends Controller {
      */
     public function actionPermissions($tenantId, $userId) {
         $user = $this->loadModel($userId);
+        if( ($tenant = Tenant::model()->findByPk($tenantId)) ==null)
+            throw new CHttpException(404, "Tenant not found");
 
         $publisherTasks = Yii::app()->authManager->getItemChildren('publisher');
 
-        $assignedTasks = Yii::app()->authManager->getTasks($user->getTenantUserId($tenantId, $userId));
+        $assignedTasks = Yii::app()->authManager->getTasks($user->getTenantUserId($tenant->id, $userId));
 
         $unassignedTasks = array_diff_key($publisherTasks, $assignedTasks);
 
@@ -240,7 +242,7 @@ class UserController extends Controller {
 
         $this->render('permissions', array(
             'user' => $user,
-            'tenantId' => $tenantId,
+            'tenant' => $tenant,
             'taskList' => $list,
         ));
     }
