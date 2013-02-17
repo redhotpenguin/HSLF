@@ -39,42 +39,77 @@
 
                 // if user has a tenant selected
                 if ($tenant) {
-                    $publishingItems = array(
-                        'class' => 'bootstrap.widgets.TbMenu',
-                        'items' => array(
-                            '---',
-                            array('label' => 'Content', 'url' => '#', 'items' => array(
-                                    array('label' => 'Ballot Items', 'url' => array('/item/index'), 'visible' => Yii::app()->authManager->checkAccess('manageBallotItems', $tenantUserId)),
-                                    array('label' => 'Organizations', 'url' => array('/organization/index/'), 'visible' => Yii::app()->authManager->checkAccess('manageOrganizations', $tenantUserId)),
-                                    array('label' => 'Scorecard Items', 'url' => array('/scorecardItem/index'), 'visible' => Yii::app()->authManager->checkAccess('manageScorecardItems', $tenantUserId)),
-                                    array('label' => 'Votes', 'url' => array('/vote/index'), 'visible' => Yii::app()->authManager->checkAccess('manageVotes', $tenantUserId)),
-                                    array('label' => 'Tags', 'url' => array('/tag'), 'visible' => Yii::app()->authManager->checkAccess('manageTags', $tenantUserId)),
-                            )),
-                        ),
-                    );
+                    // dynamic content menu
+                    $contentMenu = array();
+                    $contentMenuItems = array();
 
-                    $applicationItems = array(
-                        'class' => 'bootstrap.widgets.TbMenu',
-                        'items' => array(
-                            '---',
-                            array(
-                                'label' => 'Mobile Application',
-                                'url' => '#',
-                                'items' => array(
-                                    array('label' => 'Mobile Users', 'url' => array('/mobileUser'), 'visible' => Yii::app()->authManager->checkAccess('manageMobileUsers', $tenantUserId)),
-                                    array('label' => 'Alert types', 'url' => array('/alertType'), 'visible' => Yii::app()->authManager->checkAccess('manageAlertTypes', $tenantUserId)),
-                                    array('label' => 'Payloads', 'url' => array('/Payload/index'), 'visible' => Yii::app()->authManager->checkAccess('managePayloads', $tenantUserId)),
-                                    array('label' => 'Push Messages', 'url' => array('/pushMessage/index'), 'visible' => Yii::app()->authManager->checkAccess('managePushMessages', $tenantUserId)),
-                                    array('itemOptions' => array('id' => 'external_item'), 'label' => 'Urban Airship', 'linkOptions' => array('target' => '_blank'), 'url' => $tenant->ua_dashboard_link, 'visible' => Yii::app()->authManager->checkAccess('managePushMessages', $tenantUserId)),
-                                    array('label' => 'Options', 'url' => array('/option'), 'visible' => Yii::app()->authManager->checkAccess('manageOptions', $tenantUserId)),
-                                ),
-                        )),
-                    );
+                    if (Yii::app()->authManager->checkAccess('manageBallotItems', $tenantUserId))
+                        array_push($contentMenuItems, array('label' => 'Ballot Items', 'url' => array('/item/index')));
 
-                    array_push($items, $publishingItems);
-                    array_push($items, $applicationItems);
+                    if (Yii::app()->authManager->checkAccess('manageOrganizations', $tenantUserId))
+                        array_push($contentMenuItems, array('label' => 'Organizations', 'url' => array('/organization/index')));
+
+                    if (Yii::app()->authManager->checkAccess('manageScorecardItems', $tenantUserId))
+                        array_push($contentMenuItems, array('label' => 'Scorecard Items', 'url' => array('/scorecardItem/index')));
+
+                    if (Yii::app()->authManager->checkAccess('manageVotes', $tenantUserId))
+                        array_push($contentMenuItems, array('label' => 'Votes', 'url' => array('/vote/index')));
+
+                    if (Yii::app()->authManager->checkAccess('manageTags', $tenantUserId))
+                        array_push($contentMenuItems, array('label' => 'Tags', 'url' => array('/tag/index')));
 
 
+
+                    if (count($contentMenuItems) > 0) {
+                        $contentMenu = array(
+                            'class' => 'bootstrap.widgets.TbMenu',
+                            'items' => array(
+                                '---',
+                                array('label' => 'Content', 'url' => '#', 'items' => $contentMenuItems),
+                            ),
+                        );
+                    }
+
+
+                    // dynamic mobile app menu
+                    $applicationMenu = array();
+                    $applicationMenuItems = array();
+
+
+                    if (Yii::app()->authManager->checkAccess('manageMobileUsers', $tenantUserId))
+                        array_push($applicationMenuItems, array('label' => 'Mobile Users', 'url' => array('/mobileUser/index')));
+
+                    if (Yii::app()->authManager->checkAccess('manageAlertTypes', $tenantUserId))
+                        array_push($applicationMenuItems, array('label' => 'Alert types', 'url' => array('/alertType/index')));
+
+                    if (Yii::app()->authManager->checkAccess('managePayloads', $tenantUserId))
+                        array_push($applicationMenuItems, array('label' => 'Payloads', 'url' => array('/payload/index')));
+
+                    if (Yii::app()->authManager->checkAccess('managePushMessages', $tenantUserId))
+                        array_push($applicationMenuItems, array('label' => 'Push Messages', 'url' => array('/pushMessage/index')));
+
+                    if (Yii::app()->authManager->checkAccess('managePushMessages', $tenantUserId))
+                        array_push($applicationMenuItems, array('itemOptions' => array('id' => 'external_item'), 'label' => 'Urban Airship', 'linkOptions' => array('target' => '_blank'), 'url' => $tenant->ua_dashboard_link));
+
+                    if (Yii::app()->authManager->checkAccess('manageOptions', $tenantUserId))
+                        array_push($applicationMenuItems, array('label' => 'Options', 'url' => array('/option/index')));
+
+                    if (count($applicationMenuItems) > 0) {
+                        $applicationMenu = array(
+                            'class' => 'bootstrap.widgets.TbMenu',
+                            'items' => array(
+                                '---',
+                                array('label' => 
+                                    'Mobile Application', 
+                                    'url' => '#', 
+                                    'items' => $applicationMenuItems),
+                            ),
+                        );
+                    }
+
+           
+                    array_push($items, $contentMenu);
+                    array_push($items, $applicationMenu);
 
                     $brand = $tenant->display_name;
                     $brandUrl = '/client/' . $tenant->name;
@@ -86,7 +121,7 @@
 
 
                     if (Yii::app()->authManager->checkAccess('admin', $tenantUserId)) {
-                        $adminItems = array(
+                        $adminMenu = array(
                             'class' => 'bootstrap.widgets.TbMenu',
                             'items' => array(
                                 '---',
@@ -109,11 +144,11 @@
                                     ),
                             )),
                         );
-                        array_push($items, $adminItems);
+                        array_push($items, $adminMenu);
                     }
                 }
 
-                $loginItems = array(
+                $loginMenu = array(
                     'class' => 'bootstrap.widgets.TbMenu',
                     'htmlOptions' => array('class' => 'pull-right'),
                     'items' => array(
@@ -135,7 +170,7 @@
                 );
 
 
-                array_push($items, $loginItems);
+                array_push($items, $loginMenu);
 
             else: // else user is not logged in
                 $brandUrl = '/client/';
@@ -157,14 +192,14 @@
         <?php
         if ($this->secondaryNav):
             $this->widget('bootstrap.widgets.TbNavbar', array(
-                'brand' =>  (isset($this->secondaryNav['name'])? $this->secondaryNav['name'] : '' ),
-                'brandUrl' => (isset($this->secondaryNav['url'])? $this->secondaryNav['url'] : '#' ),
-                'htmlOptions' => array('class' => 'subnav', 'id'=>'subnav'),
+                'brand' => (isset($this->secondaryNav['name']) ? $this->secondaryNav['name'] : '' ),
+                'brandUrl' => (isset($this->secondaryNav['url']) ? $this->secondaryNav['url'] : '#' ),
+                'htmlOptions' => array('class' => 'subnav', 'id' => 'subnav'),
                 'collapse' => true,
                 'items' => array(
                     array(
                         'class' => 'bootstrap.widgets.TbMenu',
-                        'items' =>  (isset($this->secondaryNav['items'])? $this->secondaryNav['items'] : array() )
+                        'items' => (isset($this->secondaryNav['items']) ? $this->secondaryNav['items'] : array() )
                     ),
                 ),
             ));
@@ -174,40 +209,40 @@
 
 
         <div id="container" class="container">
-                <div id="main"  class="container clear-top" >
-                    <div class="row-fluid">
+            <div id="main"  class="container clear-top" >
+                <div class="row-fluid">
 
-                        <div class="span12">
+                    <div class="span12">
 
-<?php
-echo $content;
+                        <?php
+                        echo $content;
 
 
-if (Yii::app()->user->hasFlash('success')):
-    ?>
-                                <div class="update_box btn-success">
+                        if (Yii::app()->user->hasFlash('success')):
+                            ?>
+                            <div class="update_box btn-success">
                                 <?php echo Yii::app()->user->getFlash('success'); ?>
-                                </div>
-                                    <?php
-                                endif;
+                            </div>
+                            <?php
+                        endif;
 
-                                if (Yii::app()->user->hasFlash('error')):
-                                    $flashMessages = Yii::app()->user->getFlashes();
-                                    if ($flashMessages) {
-                                        echo '<div class="flashes">';
-                                        foreach ($flashMessages as $key => $message) {
-                                            echo '<div class="update_box btn-danger flash-' . $key . '">' . $message . "</div>\n";
-                                        }
-                                        echo '</div>';
-                                    }
-                                endif;
-                                ?>
+                        if (Yii::app()->user->hasFlash('error')):
+                            $flashMessages = Yii::app()->user->getFlashes();
+                            if ($flashMessages) {
+                                echo '<div class="flashes">';
+                                foreach ($flashMessages as $key => $message) {
+                                    echo '<div class="update_box btn-danger flash-' . $key . '">' . $message . "</div>\n";
+                                }
+                                echo '</div>';
+                            }
+                        endif;
+                        ?>
 
-                        </div>
                     </div>
-
                 </div>
-     
+
+            </div>
+
 
         </div><!-- container-->
         <footer class="footer" id="footer"> 
