@@ -73,6 +73,7 @@ return array(
                 'client/user/<_action>' => 'user/<_action>',
                 'client/import/<_action>' => 'import/<_action>',
                 'client' => 'site/index',
+                'client/error' => 'site/error',
                 'client/<tenant_name>' => 'site/home',
                 // dynamic rules
                 'client/<tenant_name>/<_controller>' => '<_controller>',
@@ -102,12 +103,12 @@ return array(
             'aKey' => S3_AKEY,
             'sKey' => S3_SKEY,
         ),
-    /*   'assetManager' => array(
-            'class' => 'S3AssetManager',
-            'host' => S3_HOST,
-            'bucket' => S3_BUCKET,
-            'path' => 'assets', //or any other folder you want
-        ),*/
+        /*   'assetManager' => array(
+          'class' => 'S3AssetManager',
+          'host' => S3_HOST,
+          'bucket' => S3_BUCKET,
+          'path' => 'assets', //or any other folder you want
+          ), */
         'errorHandler' => array(
             'errorAction' => 'site/error',
         ),

@@ -5,6 +5,7 @@ $this->pageTitle = Yii::app()->name . ' - Error';
 <h2>OMG</h2>
 
 
+
 <?php
 
 if (isset($error['errorCode']) && $error['errorCode'] == 23502)

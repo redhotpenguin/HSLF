@@ -10,7 +10,7 @@ class Controller extends CController {
         if (isset($_GET['tenant_name'])) {
            $r =  Yii::app()->user->setLoggedInUserTenant($_GET['tenant_name']);
            if(!$r){
-                 $this->redirect('/client');
+                 $this->redirect('/client/error');
            }
         }
     }

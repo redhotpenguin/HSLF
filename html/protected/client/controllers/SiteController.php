@@ -113,8 +113,9 @@ class SiteController extends Controller {
 
             Yii::app()->end();
         }
-
+    
         switch ($error['code']) {
+            case null:
             case 404:
                 $this->render('error404', array('error' => $error));
                 break;

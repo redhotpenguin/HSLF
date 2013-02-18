@@ -54,7 +54,9 @@ class TagController extends Controller {
         if (isset($_POST['Tag'])) {
             $model->attributes = $_POST['Tag'];
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id, ));
+                Yii::app()->user->setFlash('success', "Tag successfully created");
+
+            $this->redirect(array('update', 'id' => $model->id));
         }
 
         $this->render('editor', array(
