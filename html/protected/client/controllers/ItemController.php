@@ -24,11 +24,11 @@ class ItemController extends Controller {
                 'roles' => array('readBallotItem'),
             ),
             array('allow',
-                'actions' => array('create', 'ajax', 'upload'),
+                'actions' => array('create', 'ajax'),
                 'roles' => array('createBallotItem'),
             ),
             array('allow',
-                'actions' => array('update'),
+                'actions' => array('update', 'ajax'),
                 'roles' => array('updateBallotItem'),
             ),
             array('allow',
@@ -289,9 +289,11 @@ class ItemController extends Controller {
      * Handle ajax requests for /admin/<client>/item/ajax
      */
     public function actionAjax() {
-        if (isset($_GET['a']))
+        
+        if (!isset($_GET['a']))
             return;
 
+        
         switch ($_GET['a']) {
             // validate an item URL (see Item.js)
             case 'validateURL':
