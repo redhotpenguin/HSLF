@@ -62,13 +62,12 @@ class ItemController extends Controller {
 
             if ($model->save()) {
 
-                $organization_ids = $_POST['organizations'];
                 // if any organizations are selected
-                if ($organization_ids) {
+                if (isset($_POST['organizations'] )) {
                     // remove organizations that are not selected ( unselected )
                     //   $model->removeOrganizationsNotIn($organization_ids);
                     // add organizations
-                    foreach ($organization_ids as $organization_id => $position) {
+                    foreach ($_POST['organizations']  as $organization_id => $position) {
                         if ($position != 'na') {
                             $model->addOrganization($organization_id, $position);
                         } else {
@@ -132,13 +131,12 @@ class ItemController extends Controller {
             }
 
 
-            $organization_ids = $_POST['organizations'];
             // if any organizations are selected
-            if ($organization_ids) {
+            if (isset($_POST['organizations'])) {
                 // remove organizations that are not selected ( unselected )
                 //   $model->removeOrganizationsNotIn($organization_ids);
                 // add organizations
-                foreach ($organization_ids as $organization_id => $position) {
+                foreach ($_POST['organizations'] as $organization_id => $position) {
                     if ($position != 'na') {
                         $model->addOrganization($organization_id, $position);
                     } else {
