@@ -1,6 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="language" content="en" />
         <meta name="robots" content="noindex" />
@@ -99,15 +101,15 @@
                             'class' => 'bootstrap.widgets.TbMenu',
                             'items' => array(
                                 '---',
-                                array('label' => 
-                                    'Mobile Application', 
-                                    'url' => '#', 
+                                array('label' =>
+                                    'Mobile Application',
+                                    'url' => '#',
                                     'items' => $applicationMenuItems),
                             ),
                         );
                     }
 
-           
+
                     array_push($items, $contentMenu);
                     array_push($items, $applicationMenu);
 
@@ -185,7 +187,8 @@
                 'brandUrl' => $brandUrl,
                 'id' => 'main_menu',
                 'items' => $items,
-                'collapse' => false,
+                'collapse' => true,
+                'fluid'=>false
             ));
             ?>
         </div>
@@ -196,7 +199,7 @@
                 'brand' => (isset($this->secondaryNav['name']) ? $this->secondaryNav['name'] : '' ),
                 'brandUrl' => (isset($this->secondaryNav['url']) ? $this->secondaryNav['url'] : '#' ),
                 'htmlOptions' => array('class' => 'subnav', 'id' => 'subnav'),
-                'collapse' => false,
+                'collapse' => true,
                 'items' => array(
                     array(
                         'class' => 'bootstrap.widgets.TbMenu',
@@ -209,40 +212,39 @@
         ?>
 
 
-        <div id="container" class="container">
-            <div id="main"  class="container clear-top" >
-                <div class="row-fluid">
+        <div id="container" class="container clear-top">
+            <div class="row-fluid">
 
-                    <div class="span12">
+                <div class="span12">
 
-                        <?php
-                        echo $content;
+                    <?php
+                    echo $content;
 
 
-                        if (Yii::app()->user->hasFlash('success')):
-                            ?>
-                            <div class="update_box btn-success">
-                                <?php echo Yii::app()->user->getFlash('success'); ?>
-                            </div>
-                            <?php
-                        endif;
-
-                        if (Yii::app()->user->hasFlash('error')):
-                            $flashMessages = Yii::app()->user->getFlashes();
-                            if ($flashMessages) {
-                                echo '<div class="flashes">';
-                                foreach ($flashMessages as $key => $message) {
-                                    echo '<div class="update_box btn-danger flash-' . $key . '">' . $message . "</div>\n";
-                                }
-                                echo '</div>';
-                            }
-                        endif;
+                    if (Yii::app()->user->hasFlash('success')):
                         ?>
+                        <div class="update_box btn-success">
+                            <?php echo Yii::app()->user->getFlash('success'); ?>
+                        </div>
+                        <?php
+                    endif;
 
-                    </div>
+                    if (Yii::app()->user->hasFlash('error')):
+                        $flashMessages = Yii::app()->user->getFlashes();
+                        if ($flashMessages) {
+                            echo '<div class="flashes">';
+                            foreach ($flashMessages as $key => $message) {
+                                echo '<div class="update_box btn-danger flash-' . $key . '">' . $message . "</div>\n";
+                            }
+                            echo '</div>';
+                        }
+                    endif;
+                    ?>
+
                 </div>
-
             </div>
+
+
 
 
         </div><!-- container-->
