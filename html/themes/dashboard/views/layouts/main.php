@@ -126,7 +126,7 @@
                             'items' => array(
                                 '---',
                                 array(
-                                    'label' => 'Admin (shared data)',
+                                    'label' => 'Administration',
                                     'url' => '#',
                                     'items' => array(
                                         array('label' => 'Tenants', 'url' => array('/tenant/index')),
