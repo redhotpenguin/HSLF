@@ -185,7 +185,7 @@
                 'brandUrl' => $brandUrl,
                 'id' => 'main_menu',
                 'items' => $items,
-                'collapse' => true,
+                'collapse' => false,
             ));
             ?>
         </div>
@@ -196,7 +196,7 @@
                 'brand' => (isset($this->secondaryNav['name']) ? $this->secondaryNav['name'] : '' ),
                 'brandUrl' => (isset($this->secondaryNav['url']) ? $this->secondaryNav['url'] : '#' ),
                 'htmlOptions' => array('class' => 'subnav', 'id' => 'subnav'),
-                'collapse' => true,
+                'collapse' => false,
                 'items' => array(
                     array(
                         'class' => 'bootstrap.widgets.TbMenu',

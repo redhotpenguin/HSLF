@@ -63,11 +63,11 @@ class ItemController extends Controller {
             if ($model->save()) {
 
                 // if any organizations are selected
-                if (isset($_POST['organizations'] )) {
+                if (isset($_POST['organizations'])) {
                     // remove organizations that are not selected ( unselected )
                     //   $model->removeOrganizationsNotIn($organization_ids);
                     // add organizations
-                    foreach ($_POST['organizations']  as $organization_id => $position) {
+                    foreach ($_POST['organizations'] as $organization_id => $position) {
                         if ($position != 'na') {
                             $model->addOrganization($organization_id, $position);
                         } else {
@@ -78,7 +78,9 @@ class ItemController extends Controller {
                 }
 
 
-                $this->redirect(array('update', 'id' => $model->id, ));
+                Yii::app()->user->setFlash('success', "Ballot item successfully created");
+
+                $this->redirect(array('update', 'id' => $model->id,));
             }
         }
 
@@ -127,7 +129,7 @@ class ItemController extends Controller {
                 }
             } else {  // normal POST request
                 if ($model->save())
-                    $this->redirect(array('update', 'id' => $model->id, ));
+                    $this->redirect(array('update', 'id' => $model->id,));
             }
 
 
@@ -289,11 +291,11 @@ class ItemController extends Controller {
      * Handle ajax requests for /admin/<client>/item/ajax
      */
     public function actionAjax() {
-        
+
         if (!isset($_GET['a']))
             return;
 
-        
+
         switch ($_GET['a']) {
             // validate an item URL (see Item.js)
             case 'validateURL':

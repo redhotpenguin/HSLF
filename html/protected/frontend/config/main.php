@@ -2,10 +2,15 @@
 
 Yii::setPathOfAlias('bootstrap', dirname(__FILE__) . '/../../shared/extensions/bootstrap');
 
+
+
 /* Frontend CONFIG FILE */
 
 $frontendDirectory = dirname(dirname(__FILE__));
 $appDirectory = dirname($frontendDirectory);
+
+Yii::setPathOfAlias('frontend', $frontendDirectory);
+
 
 // frontend config
 return array(
@@ -18,6 +23,7 @@ return array(
     'preload' => array('bootstrap'),
     // autoloading model and component classes
     'import' => array(
+        'frontend.components.*',
         // shared
         'application.shared.components.*',
         'application.shared.models.dal.*', // data access logic classes

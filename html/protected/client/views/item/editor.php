@@ -124,7 +124,7 @@ $cs->registerScriptFile($baseUrl . '/static/ballotitem/item.js');
                   if ( response == "success" ){
                          sessionStorage.setItem("ItemContent", "");
                          target.addClass("btn-success");
-                         target.html( "Ballot item successfully saved" );
+                         target.html( "Ballot item successfully updated" );
                     }
                     else{
                     target.addClass("btn-danger");
