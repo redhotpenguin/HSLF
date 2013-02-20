@@ -103,12 +103,19 @@ return array(
             'aKey' => S3_AKEY,
             'sKey' => S3_SKEY,
         ),
-       /* 'assetManager' => array(
+        'queue' => array(
+            'class' => 'backend.vendors.Queue.Queue',
+            'redis_host'=> '127.0.0.1',
+            'redis_port' => 6379,
+            'redis_password'=> 'foobared',
+            'redis_db' => 2,
+        ),
+        'assetManager' => array(
             'class' => 'S3AssetManager',
             'host' => S3_HOST,
             'bucket' => S3_BUCKET,
             'path' => 'assets', //or any other folder you want
-        ),*/
+        ),
         'errorHandler' => array(
             'errorAction' => 'site/error',
         ),
