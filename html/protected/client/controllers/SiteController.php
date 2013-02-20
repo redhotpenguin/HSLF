@@ -1,5 +1,20 @@
 <?php
 
+
+Yii::import('backend.vendors.*');
+
+
+require_once('Queue/vendor/autoload.php');
+
+
+Resque::setBackend("127.0.0.1:6379", null);
+
+$connected = Resque::redis()->auth('foobared');
+
+Resque::redis()->select(2);
+
+    $t = Resque::enqueue('my_queue', 'My_Job');
+
 class SiteController extends Controller {
 
     /**
@@ -113,7 +128,7 @@ class SiteController extends Controller {
 
             Yii::app()->end();
         }
-    
+
         switch ($error['code']) {
             case null:
             case 404:
