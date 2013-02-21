@@ -2,12 +2,12 @@
 
     <div class="span6">
         <?php
-       echo $form->labelEx($model, 'primary_contact_id');
-      //  echo $form->textField($model, 'primary_contact_id', array('size' => 60, 'class' => 'span11', 'maxlength' => 512));
+        echo $form->labelEx($model, 'primary_contact_id');
+        //  echo $form->textField($model, 'primary_contact_id', array('size' => 60, 'class' => 'span11', 'maxlength' => 512));
         echo $form->error($model, 'primary_contact_id');
 
         echo $form->hiddenField($model, 'primary_contact_id');
-        
+
 // ext is a shortcut for application.extensions
         $this->widget('backend.extensions.ExtendedAutoComplete.ExtendedAutoComplete', array(
             'name' => 'primary_contact_field',
@@ -40,4 +40,16 @@
         ?>
     </div>
 
+</div>
+
+<div class="row-fluid">
+    <?php
+    $this->widget('backend.extensions.ContactSelector.ContactSelector', array(
+        'model' => $model,
+        'attribute' => '',
+        'options' => array(
+            'model_name' => 'Organization',
+        ),
+    ));
+    ?>
 </div>
