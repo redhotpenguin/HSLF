@@ -72,12 +72,15 @@ class OrganizationController extends Controller {
      * @param integer $id the ID of the model to be updated
      */
     public function actionUpdate($id) {
+        
+                
         $model = $this->loadModel($id);
+        
 
         if (isset($_POST['Organization'])) {
 
             $model->attributes = $_POST['Organization'];
-
+            
             if (Yii::app()->request->isAjaxRequest) { // if ajax request, perform ajax validation.
                 $this->performAjaxValidation($model);
             }
