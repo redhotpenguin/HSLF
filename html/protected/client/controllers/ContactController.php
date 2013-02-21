@@ -23,11 +23,11 @@ class ContactController extends Controller {
                 'roles' => array('readContact'),
             ),
             array('allow',
-                'actions' => array('create'),
+                'actions' => array('create', 'findContact'),
                 'roles' => array('createContact'),
             ),
             array('allow',
-                'actions' => array('update'),
+                'actions' => array('update', 'findContact'),
                 'roles' => array('updateContact'),
             ),
             array('allow',
@@ -140,6 +140,33 @@ class ContactController extends Controller {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
+    }
+
+    public function actionFindContact($term) {
+        $res = array();
+
+        $tenantId = Yii::app()->user->getLoggedInUserTenant()->id;
+
+        if ($term) {
+
+            // ILIKE only works with postgresql
+            if (substr(strtolower(Yii::app()->db->connectionString), 0, 5) === 'pgsql')
+                $like = 'ILIKE';
+            else
+                $like = 'LIKE';
+
+            $sql = 'SELECT id, first_name, last_name FROM contact where (first_name '.$like.' :name OR last_name ILIKE :name) AND tenant_id =:tenant_id';
+
+
+            $cmd = Yii::app()->db->createCommand($sql);
+            $cmd->bindValue(":name", "%" . $term . "%", PDO::PARAM_STR);
+            $cmd->bindValue(":tenant_id", $tenantId, PDO::PARAM_INT);
+            $res = $cmd->queryAll();
+        }
+
+
+        echo CJSON::encode($res);
+        Yii::app()->end();
     }
 
     /**

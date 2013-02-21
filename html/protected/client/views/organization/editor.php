@@ -1,4 +1,9 @@
 <?php
+$baseUrl = Yii::app()->baseUrl;
+$cs = Yii::app()->getClientScript();
+$cs->registerScriptFile($baseUrl . '/static/organization/organization.js');
+
+
 $navBarItems = array();
 
 if (!$model->isNewRecord) {
@@ -45,7 +50,7 @@ $this->secondaryNav['url'] = array('organization/index');
         'tabs' => array(
             array('label' => 'Organization', 'content' => $orgTab,),
             array('label' => 'Details', 'content' => $detailTab),
-            array('label' => 'Contacts', 'content' => $contactTab,  'active' => true),
+            array('label' => 'Contacts', 'content' => $contactTab, 'active' => true),
             array('label' => 'Tags', 'content' => $tagsTab),
         ),
     ));
@@ -128,12 +133,6 @@ $this->secondaryNav['url'] = array('organization/index');
 
     <?php
     $this->endWidget();
-    
-    
-    echo '<pre>';
-    print_r($model->relations());
-    echo '</pre>';
-    
     ?>
 
 </div><!-- form -->
