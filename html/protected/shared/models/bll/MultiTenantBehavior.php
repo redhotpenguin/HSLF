@@ -143,12 +143,12 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
             if (!isset($relationDetail[0]) || $relationDetail[0] != 'CBelongsToRelation')
                 continue;
 
-            // relation does not have a tenant  id column. Ex: state, district, true join table
-            if (!isset($owner->$relation->tenant_id)) {
-                continue;
-            }
 
             if (isset($owner->$relation->id)) {
+                // relation does not have a tenant  id column. Ex: state, district, true join table
+                if (!isset($owner->$relation->tenant_id)) {
+                    continue;
+                }
 
                 $relationTenantId = $owner->$relation->tenant_id;
 
