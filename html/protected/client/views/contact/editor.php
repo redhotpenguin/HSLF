@@ -8,46 +8,83 @@ if (!$model->isNewRecord) {
 $this->secondaryNav['items'] = $navBarItems;
 $this->secondaryNav['name'] = 'Contacts';
 $this->secondaryNav['url'] = array('contact/index');
-
-
-
-
-
-
-
-
-
-
-
-
-$form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
-    'id' => 'contact-form',
-    'enableAjaxValidation' => false,
-        ));
 ?>
 
+<div class="form">
 
-<?php echo $form->errorSummary($model); ?>
-
-<?php echo $form->textAreaRow($model, 'first_name', array('rows' => 6, 'cols' => 50, 'class' => 'span8')); ?>
-
-<?php echo $form->textAreaRow($model, 'last_name', array('rows' => 6, 'cols' => 50, 'class' => 'span8')); ?>
-
-<?php echo $form->textFieldRow($model, 'email', array('class' => 'span5', 'maxlength' => 128)); ?>
-
-<?php echo $form->textFieldRow($model, 'title', array('class' => 'span5', 'maxlength' => 512)); ?>
-
-<?php echo $form->textFieldRow($model, 'phone_number', array('class' => 'span5', 'maxlength' => 512)); ?>
-
-<div class="form-actions"> 
     <?php
-    $this->widget('bootstrap.widgets.TbButton', array(
-        'buttonType' => 'submit',
-        'type' => 'primary',
-        'label' => $model->isNewRecord ? 'Create' : 'Save',
-    ));
-    ?>
-</div> 
+    $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+        'id' => 'contact-form',
+        'enableAjaxValidation' => false,
+            ));
 
-<?php
-$this->endWidget();
+    echo $form->errorSummary($model);
+    ?>
+
+    <div class="row-fluid">
+
+        <div class="span6">
+            <?php
+            echo $form->labelEx($model, 'first_name');
+            echo $form->textField($model, 'first_name', array('size' => 60, 'class' => 'span11', 'maxlength' => 512));
+            echo $form->error($model, 'first_name');
+            ?>
+        </div>
+
+        <div  class="span6">
+            <?php
+            echo $form->labelEx($model, 'last_name');
+            echo $form->textField($model, 'last_name', array('size' => 60, 'class' => 'span11'));
+            echo $form->error($model, 'last_name');
+            ?>
+        </div>
+    </div>
+
+    <div class="row-fluid">
+
+        <div class="span6">
+            <?php
+            echo $form->labelEx($model, 'email');
+            echo $form->textField($model, 'email', array('size' => 60, 'class' => 'span11', 'maxlength' => 512));
+            echo $form->error($model, 'email');
+            ?>
+        </div>
+
+        <div  class="span6">
+            <?php
+            echo $form->labelEx($model, 'title');
+            echo $form->textField($model, 'title', array('size' => 60, 'class' => 'span11'));
+            echo $form->error($model, 'title');
+            ?>
+        </div>
+    </div>
+
+
+    <div class="row-fluid">
+
+        <div class="span6">
+            <?php
+            echo $form->labelEx($model, 'phone_number');
+            echo $form->textField($model, 'phone_number', array('size' => 60, 'class' => 'span11', 'maxlength' => 512));
+            echo $form->error($model, 'phone_number');
+            ?>
+        </div>
+
+
+    </div>
+
+    <div class="row button"> 
+        <?php
+        $this->widget('bootstrap.widgets.TbButton', array(
+            'buttonType' => 'submit',
+            'type' => 'primary',
+            'label' => $model->isNewRecord ? 'Create' : 'Save',
+        ));
+        ?>
+    </div> 
+
+    <?php
+    $this->endWidget();
+    ?>
+
+</div>

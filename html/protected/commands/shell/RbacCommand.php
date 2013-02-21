@@ -60,7 +60,8 @@ EOD;
             'Option',
             'Tag',
             'MobileUser',
-            'PushMessage'
+            'PushMessage',
+            'Contact'
         );
 
 
