@@ -28,5 +28,6 @@ UPDATE organization SET primary_contact_id = 1 WHERE tenant_id = 1;
 
 UPDATE organization SET primary_contact_id = 2 WHERE tenant_id = 2;
 
-ALTER TABLE organization ALTER COLUMN primary_contact_id SET NOT NULL;
+--ALTER TABLE organization ALTER COLUMN primary_contact_id SET NOT NULL;
 
+ALTER TABLE organization ADD FOREIGN KEY (primary_contact_id) REFERENCES contact (id) ON UPDATE CASCADE ON DELETE SET NULL;
