@@ -17,15 +17,9 @@ $this->widget('bootstrap.widgets.TbGridView', array(
     'dataProvider' => $model->search(),
     'filter' => $model,
     'columns' => array(
-        'id',
-        'tenant_id',
         'first_name',
         'last_name',
         'email',
-        'title',
-        /*
-          'phone_number',
-         */
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
             'template' => '{update}{delete}'

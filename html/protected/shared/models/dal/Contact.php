@@ -37,10 +37,9 @@ class Contact extends BaseActiveRecord {
      * @return array validation rules for model attributes.
      */
     public function rules() {
-        // NOTE: you should only define rules for those attributes that
-        // will receive user inputs.
+
         return array(
-            array('tenant_id, first_name', 'required'),
+            array('first_name', 'required'),
             array('tenant_id', 'numerical', 'integerOnly' => true),
             array('email', 'length', 'max' => 128),
             array('title, phone_number', 'length', 'max' => 512),
