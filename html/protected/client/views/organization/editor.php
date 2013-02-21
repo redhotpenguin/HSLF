@@ -128,6 +128,12 @@ $this->secondaryNav['url'] = array('organization/index');
 
     <?php
     $this->endWidget();
+    
+    
+    echo '<pre>';
+    print_r($model->relations());
+    echo '</pre>';
+    
     ?>
 
 </div><!-- form -->

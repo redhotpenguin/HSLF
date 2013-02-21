@@ -130,7 +130,7 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
 
         // check parent object (crude)
         if (($className = $owner->parentName) != "") {
-            
+
             $record = new $className();
 
             if ($record->findByPk($owner->{$owner->parentRelationshipAttribute}) == null) {
@@ -138,14 +138,17 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
             }
         }
 
-        foreach ($relations as $relation => $value) {
+        foreach ($relations as $relation => $relationDetail) {
+
+            if (!isset($relationDetail[0]) || $relationDetail[0] != 'CBelongsToRelation')
+                continue;
+
+            // relation does not have a tenant  id column. Ex: state, district, true join table
+            if (!isset($owner->$relation->tenant_id)) {
+                continue;
+            }
 
             if (isset($owner->$relation->id)) {
-
-                // relation does not have a tenant  id column. Ex: state, district, true join table
-                if (!isset($owner->$relation->tenant_id)) {
-                    continue;
-                }
 
                 $relationTenantId = $owner->$relation->tenant_id;
 
@@ -153,8 +156,9 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
                     throw new Exception(self::ILLEGAL_ACTION);
                 }
             }
+            else
+                throw new Exception(self::ILLEGAL_ACTION);
         }
-
 
         return parent::beforeSave($event);
     }

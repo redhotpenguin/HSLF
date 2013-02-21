@@ -63,6 +63,10 @@ class Organization extends BaseActiveRecord {
                 'organization_item(organization_id, item_id)'),
             'tags' => array(self::MANY_MANY, 'Tag',
                 'tag_organization(organization_id, tag_id)'),
+            'contacts' => array(self::MANY_MANY, 'Contact',
+                'contact_organization(organization_id, contact_id)'),
+            
+            'primary_contact' => array(self::BELONGS_TO, 'Contact', 'primary_contact_id'),
         );
     }
 
