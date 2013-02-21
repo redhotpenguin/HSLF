@@ -2,7 +2,6 @@
 
 class ImportController extends Controller {
 
-
     /**
      * @return array action filters
      */
@@ -41,16 +40,17 @@ class ImportController extends Controller {
 
         // allowed models for imports
         $allowedModelNames = array(
-            "Item" => "Items",
+            'Contact' => 'Contacts',
             "District" => "Districts",
-            "Organization" => "Organizations",
+            "Item" => "Items",
             "Office" => "Offices",
+            "Option" => "Options",
+            "Organization" => "Organizations",
             "Party" => "Parties",
             "Recommendation" => "Recommendations",
             "State" => "States",
             "Tag" => "Tags",
             "Vote" => "Votes",
-            "Option" => "Options"
         );
 
         //

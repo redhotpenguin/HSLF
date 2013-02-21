@@ -9,7 +9,10 @@ class ContactSelector extends CInputWidget {
     }
 
     public function run() {
-        $this->render('contact_selector', array('contacts' => $this->model->contacts, 'model'=>$this->model));
+        $contacts = $this->model->contacts;
+        
+        
+        $this->render('contact_selector', array('contacts' => $contacts, 'model'=>$this->model));
     }
 
 }

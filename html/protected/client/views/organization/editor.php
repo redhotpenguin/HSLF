@@ -1,9 +1,4 @@
 <?php
-$baseUrl = Yii::app()->baseUrl;
-$cs = Yii::app()->getClientScript();
-$cs->registerScriptFile($baseUrl . '/static/organization/organization.js');
-
-
 $navBarItems = array();
 
 if (!$model->isNewRecord) {

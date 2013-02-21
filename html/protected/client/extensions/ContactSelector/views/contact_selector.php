@@ -1,23 +1,44 @@
 <?php
+$className = get_class($model);
+
+$contactList = CHtml::listData(Contact::model()->findAll(array('order' => 'first_name ASC')), 'id', function($contact) {
+                    return $contact->first_name . " " . $contact->last_name;
+                });
+
+
+$jsonContactList = CJSON::encode($contactList);
+
+$dropDownName = $className.'[contacts][]';
+        
+
+$ns = "var contactSelector_ns  = {contactList: $jsonContactList, dropDownName:'$dropDownName'};";
+
+Yii::app()->clientScript->registerScript('contactSelector_ns', $ns, CClientScript::POS_HEAD);
+
+
+$baseUrl = Yii::app()->baseUrl;
+
+$cs = Yii::app()->getClientScript();
+
+$cs->registerScriptFile($baseUrl . '/static/contact/contact.js');
 
 // Helpers
-function contactDropdown($modelName, $id = 'contactDropDown', $class = 'contact', $selected = null) {
+function contactDropdown($modelName, $contactList, $id = 'contactDropDown', $class = 'contact', $selected = null) {
 
 
-    $contactList = CHtml::listData(Contact::model()->findAll(array('order' => 'first_name ASC')), 'id', function($contact) {
-                        return $contact->first_name . " " . $contact->last_name;
-                    });
+
+
     $options = array(
         'tabindex' => '1',
-        'class' => 'span6 '.$class,
+        'class' => 'span11 ' . $class,
         'name' => 'contacts[]',
-        'style'=>'float:left;'
+        'style' => 'float:left;'
     );
 
-    $html =  '<div class="row-fluid" id=' . $id . '>' . CHtml::dropDownList($modelName.'[contacts][]', $selected, $contactList, $options);
-    
+    $html = '<div class="row-fluid" id=' . $id . '>' . CHtml::dropDownList($modelName . '[contacts][]', $selected, $contactList, $options);
+
     $html.='<div class="span3 deleteBtn btn btn-warning">delete</div></div>';
-    
+
     return $html;
 }
 ?>
@@ -26,29 +47,24 @@ function contactDropdown($modelName, $id = 'contactDropDown', $class = 'contact'
 <div class="clearfix"></div>
 
 <div class="row-fluid">
-    <div class="span6" id="contacts">
+    <div class="span11" id="contacts">
         <?php
-        $className = get_class($model);
-        
-        if (empty($contacts))
-            echo contactDropdown($className);
-
-        else
+        if (!empty($contacts))
             foreach ($contacts as $contact) {
-                echo contactDropdown($className, 'contactDropDown', 'contact span6', $contact->id);
+                echo contactDropdown($className, $contactList, 'contactDropDown', 'contact span6', $contact->id);
             }
         ?>
     </div>
 </div>
 
 <div class="row-fluid">
-    <?php
-    $this->widget('bootstrap.widgets.TbButton', array(
-        'label' => 'Add a contact',
-        'type' => 'info',
-        'htmlOptions' => array(
-            'id'=>'addContactButton'
-        ),
-    ));
-    ?>
+<?php
+$this->widget('bootstrap.widgets.TbButton', array(
+    'label' => 'Add a contact',
+    'type' => 'info',
+    'htmlOptions' => array(
+        'id' => 'addContactButton'
+    ),
+));
+?>
 </div>

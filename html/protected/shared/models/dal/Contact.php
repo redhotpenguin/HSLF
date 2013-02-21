@@ -44,6 +44,7 @@ class Contact extends BaseActiveRecord {
             array('email', 'length', 'max' => 128),
             array('title, phone_number', 'length', 'max' => 512),
             array('last_name', 'safe'),
+            array('email','email'),
             array('id, first_name, last_name, email, title, phone_number', 'safe', 'on' => 'search'),
         );
     }

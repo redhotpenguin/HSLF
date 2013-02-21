@@ -65,7 +65,6 @@ class Organization extends BaseActiveRecord {
                 'tag_organization(organization_id, tag_id)'),
             'contacts' => array(self::MANY_MANY, 'Contact',
                 'contact_organization(organization_id, contact_id)'),
-            
             'primary_contact' => array(self::BELONGS_TO, 'Contact', 'primary_contact_id'),
         );
     }
@@ -83,7 +82,7 @@ class Organization extends BaseActiveRecord {
             'display_name' => 'Display Name',
             'slug' => 'Slug',
             'address' => 'Address',
-            'primary_contact_id'=> 'Primary Contact'
+            'primary_contact_id' => 'Primary Contact'
         );
     }
 
@@ -120,6 +119,12 @@ class Organization extends BaseActiveRecord {
                 'class' => 'TagRelationBehavior',
                 'joinTableName' => 'tag_organization',
                 'tagRelationName' => 'organizations', // relation to this class, defined in Tags.
+                'foreignKeyName' => 'organization_id'
+            ),
+            'ContactRelation' => array(
+                'class' => 'ContactRelationBehavior',
+                'joinTableName' => 'contact_organization',
+                'relationName' => 'organizations', // relation to this class, defined in Contact.
                 'foreignKeyName' => 'organization_id'
             )
         );

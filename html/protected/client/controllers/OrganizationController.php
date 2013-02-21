@@ -55,6 +55,10 @@ class OrganizationController extends Controller {
             if ($model->save()) {
                 if (isset($_POST['Organization']['tags']))
                     $model->massUpdateTags($_POST['Organization']['tags']);
+
+                if (isset($_POST['Organization']['contacts']))
+                    $model->massUpdateContacts($_POST['Organization']['contacts']);
+
                 Yii::app()->user->setFlash('success', "Organization successfully created");
 
                 $this->redirect(array('update', 'id' => $model->id));
@@ -72,24 +76,32 @@ class OrganizationController extends Controller {
      * @param integer $id the ID of the model to be updated
      */
     public function actionUpdate($id) {
-        
-                
+
+
         $model = $this->loadModel($id);
-        
+
 
         if (isset($_POST['Organization'])) {
 
             $model->attributes = $_POST['Organization'];
-            
+
             if (Yii::app()->request->isAjaxRequest) { // if ajax request, perform ajax validation.
                 $this->performAjaxValidation($model);
             }
 
             if ($model->save()) {
+
                 if (isset($_POST['Organization']['tags']))
                     $model->massUpdateTags($_POST['Organization']['tags']);
                 else
                     $model->removeAllTagsAssociation();
+
+                if (isset($_POST['Organization']['contacts']))
+                    $model->massUpdateContacts($_POST['Organization']['contacts']);
+                else {
+                    $model->removeAllContactsAssociation();
+                }
+
 
                 if (Yii::app()->request->isAjaxRequest) { // AJAX Post Request
                     echo 'success';
