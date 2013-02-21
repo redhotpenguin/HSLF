@@ -15,13 +15,6 @@ $ns = "var contactSelector_ns  = {contactList: $jsonContactList, dropDownName:'$
 
 Yii::app()->clientScript->registerScript('contactSelector_ns', $ns, CClientScript::POS_HEAD);
 
-
-$baseUrl = Yii::app()->baseUrl;
-
-$cs = Yii::app()->getClientScript();
-
-$cs->registerScriptFile($baseUrl . '/static/contact/contact.js');
-
 // Helpers
 function contactDropdown($modelName, $contactList, $id = 'contactDropDown', $class = 'contact', $selected = null) {
 

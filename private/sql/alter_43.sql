@@ -16,8 +16,8 @@ INSERT INTO contact (tenant_id, first_name) VALUES (2,'NA'); -- afscme
 
 
 CREATE TABLE contact_organization(
-    contact_id INTEGER REFERENCES contact(id),
-    organization_id INTEGER REFERENCES organization(id),
+    contact_id INTEGER REFERENCES contact(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    organization_id INTEGER REFERENCES organization(id) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY (contact_id, organization_id)
 );
 

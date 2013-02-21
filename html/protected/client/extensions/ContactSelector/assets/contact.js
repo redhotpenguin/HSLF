@@ -16,11 +16,8 @@ function contact($){
  
     $("#addContactButton").click(function(){
 
-
         var clonedDropDown = contactDropDown.clone();
         
-        
-
          var deleteButton = $('<div>').attr('class', 'span3 btn btn-warning').attr('id','foobar').text("delete").appendTo(clonedDropDown).click(deleteDropDown);
      
      

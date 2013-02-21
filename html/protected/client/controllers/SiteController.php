@@ -107,9 +107,13 @@ class SiteController extends Controller {
     public function actionError() {
         $error = Yii::app()->errorHandler->error;
         if (Yii::app()->request->isAjaxRequest) {
-            if ($error['type'] == 'CDbException' && $error['errorCode'] == 23502) {
+            
+            // warning: error codes are specific to postgresql
+            if ($error['type'] == 'CDbException'  && ( $error['errorCode'] == 23502  || $error['errorCode'] == 23503 )) {
                 echo 'This resource is used by something else and can not be deleted.';
             }
+            
+            
 
             Yii::app()->end();
         }
