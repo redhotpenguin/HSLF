@@ -65,3 +65,20 @@ h4{
     font-size: 0;
 }
 
+.not_found{
+       height:400px;
+    text-align:center;
+}
+
+.not_found .code{
+    color:#DD5336;
+    font-size:20em;
+    margin-top:15%;
+
+}
+
+.not_found .reason{
+    color:#666;
+    font-size:1em;
+     margin-top:10%;
+}
