@@ -34,7 +34,7 @@ class Party extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('name, abbr', 'required'),
+            array('name, abbr, initial', 'required'),
             array('name', 'length', 'max' => 2048),
             array('abbr', 'length', 'max' => 128),
             array('initial', 'length', 'max' => 16),
