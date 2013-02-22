@@ -79,12 +79,12 @@ return array(
             'aKey' => S3_AKEY,
             'sKey' => S3_SKEY,
         ),
-       /* 'assetManager' => array(
+        'assetManager' => array(
             'class' => 'application.shared.components.S3AssetManager',
             'host' => S3_HOST,
             'bucket' => S3_BUCKET,
             'path' => 'assets', //or any other folder you want
-        ),*/
+        ),
         'errorHandler' => array(
             'errorAction' => 'site/error',
         ),
