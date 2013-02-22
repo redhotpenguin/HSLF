@@ -102,22 +102,38 @@ class SiteController extends Controller {
     }
 
     /**
-     * This is the action to handle external exceptions.
+     * This is the action to handle exceptions.
      */
     public function actionError() {
         $error = Yii::app()->errorHandler->error;
-        if (Yii::app()->request->isAjaxRequest) {
-            
-            // warning: error codes are specific to postgresql
-            if ($error['type'] == 'CDbException'  && ( $error['errorCode'] == 23502  || $error['errorCode'] == 23503 )) {
-                echo 'This resource is used by something else and can not be deleted.';
+
+        $code = 500;
+        $message = $error['message'];
+
+
+        if ($error['type'] == 'CDbException') {
+            switch ($error['errorCode']) {
+                case 23502:
+                case 23503:
+                    $message = "This item is being used by something else and can not be deleted.";
+                    break;
+
+                case 23505:
+                    $message = "A field with the same value already exists.";
+                    break;
+                
+                default: $message = "Internal error";
             }
-            
-            
+        }
+
+
+        if (Yii::app()->request->isAjaxRequest) {
+
+            echo $message;
 
             Yii::app()->end();
         }
-    
+
         switch ($error['code']) {
             case null:
             case 404:
@@ -125,7 +141,7 @@ class SiteController extends Controller {
                 break;
 
             default:
-                $this->render('error', array('error' => $error));
+                $this->render('error', array('code' => $code, 'message' => $message));
                 break;
         }
     }
