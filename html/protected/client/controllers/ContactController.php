@@ -1,6 +1,6 @@
 <?php
 
-class OrganizationController extends Controller {
+class ContactController extends Controller {
 
     /**
      * @return array action filters
@@ -20,19 +20,19 @@ class OrganizationController extends Controller {
         return array(
             array('allow',
                 'actions' => array('index', 'exportCSV'),
-                'roles' => array('readOrganization'),
+                'roles' => array('readContact'),
             ),
             array('allow',
-                'actions' => array('create'),
-                'roles' => array('createOrganization'),
+                'actions' => array('create', 'findContact'),
+                'roles' => array('createContact'),
             ),
             array('allow',
-                'actions' => array('update'),
-                'roles' => array('updateOrganization'),
+                'actions' => array('update', 'findContact'),
+                'roles' => array('updateContact'),
             ),
             array('allow',
                 'actions' => array('delete'),
-                'roles' => array('deleteOrganization'),
+                'roles' => array('deleteContact'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -45,22 +45,15 @@ class OrganizationController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new Organization;
+        $model = new Contact;
 
-// Uncomment the following line if AJAX validation is needed
-// $this->performAjaxValidation($model);
+        // Uncomment the following line if AJAX validation is needed
+        // $this->performAjaxValidation($model);
 
-        if (isset($_POST['Organization'])) {
-            $model->attributes = $_POST['Organization'];
+        if (isset($_POST['Contact'])) {
+            $model->attributes = $_POST['Contact'];
             if ($model->save()) {
-                if (isset($_POST['Organization']['tags']))
-                    $model->massUpdateTags($_POST['Organization']['tags']);
-
-                if (isset($_POST['Organization']['contacts']))
-                    $model->massUpdateContacts($_POST['Organization']['contacts']);
-
-                Yii::app()->user->setFlash('success', "Organization successfully created");
-
+                Yii::app()->user->setFlash('success', "Contact successfully created");
                 $this->redirect(array('update', 'id' => $model->id));
             }
         }
@@ -76,41 +69,16 @@ class OrganizationController extends Controller {
      * @param integer $id the ID of the model to be updated
      */
     public function actionUpdate($id) {
-
-
         $model = $this->loadModel($id);
 
+        // Uncomment the following line if AJAX validation is needed
+        // $this->performAjaxValidation($model);
 
-        if (isset($_POST['Organization'])) {
-
-            $model->attributes = $_POST['Organization'];
-
-            if (Yii::app()->request->isAjaxRequest) { // if ajax request, perform ajax validation.
-                $this->performAjaxValidation($model);
-            }
-
+        if (isset($_POST['Contact'])) {
+            $model->attributes = $_POST['Contact'];
             if ($model->save()) {
-
-                if (isset($_POST['Organization']['tags']))
-                    $model->massUpdateTags($_POST['Organization']['tags']);
-                else
-                    $model->removeAllTagsAssociation();
-
-                if (isset($_POST['Organization']['contacts']))
-                    $model->massUpdateContacts($_POST['Organization']['contacts']);
-                else {
-                    $model->removeAllContactsAssociation();
-                }
-
-
-                if (Yii::app()->request->isAjaxRequest) { // AJAX Post Request
-                    echo 'success';
-                    Yii::app()->end();
-                } else {
-                    Yii::app()->user->setFlash('success', "Organization successfully updated");
-
-                    $this->redirect(array('update', 'id' => $model->id));
-                }
+                Yii::app()->user->setFlash('success', "Contact successfully updated");
+                $this->redirect(array('update', 'id' => $model->id));
             }
         }
 
@@ -126,10 +94,10 @@ class OrganizationController extends Controller {
      */
     public function actionDelete($id) {
         if (Yii::app()->request->isPostRequest) {
-// we only allow deletion via POST request
+            // we only allow deletion via POST request
             $this->loadModel($id)->delete();
 
-// if AJAX request (triggered by deletion via index grid view), we should not redirect the browser
+            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
                 $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
         }
@@ -141,10 +109,10 @@ class OrganizationController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-        $model = new Organization('search');
+        $model = new Contact('search');
         $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['Organization']))
-            $model->attributes = $_GET['Organization'];
+        if (isset($_GET['Contact']))
+            $model->attributes = $_GET['Contact'];
 
         $this->render('index', array(
             'model' => $model,
@@ -157,7 +125,7 @@ class OrganizationController extends Controller {
      * @param integer the ID of the model to be loaded
      */
     public function loadModel($id) {
-        $model = Organization::model()->findByPk($id);
+        $model = Contact::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
@@ -168,10 +136,37 @@ class OrganizationController extends Controller {
      * @param CModel the model to be validated
      */
     protected function performAjaxValidation($model) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'organization-form') {
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'contact-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
+    }
+
+    public function actionFindContact($term) {
+        $res = array();
+
+        $tenantId = Yii::app()->user->getLoggedInUserTenant()->id;
+
+        if ($term) {
+
+            // ILIKE only works with postgresql
+            if (substr(strtolower(Yii::app()->db->connectionString), 0, 5) === 'pgsql')
+                $like = 'ILIKE';
+            else
+                $like = 'LIKE';
+
+            $sql = 'SELECT id, first_name, last_name FROM contact where (first_name '.$like.' :name OR last_name ILIKE :name) AND tenant_id =:tenant_id';
+
+
+            $cmd = Yii::app()->db->createCommand($sql);
+            $cmd->bindValue(":name", "%" . $term . "%", PDO::PARAM_STR);
+            $cmd->bindValue(":tenant_id", $tenantId, PDO::PARAM_INT);
+            $res = $cmd->queryAll();
+        }
+
+
+        echo CJSON::encode($res);
+        Yii::app()->end();
     }
 
     /**
@@ -180,11 +175,11 @@ class OrganizationController extends Controller {
     public function actionExportCSV() {
         Yii::import('backend.extensions.csv.ESCVExport');
 
-        $csv = new ESCVExport(Organization::model()->findAll());
+        $csv = new ESCVExport(Contact::model()->findAll());
 
 
         $content = $csv->toCSV();
-        Yii::app()->getRequest()->sendFile('organizations.csv', $content, "text/csv", false);
+        Yii::app()->getRequest()->sendFile('contacts.csv', $content, "text/csv", false);
     }
 
 }

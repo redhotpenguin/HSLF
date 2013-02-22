@@ -132,25 +132,6 @@ class District extends CActiveRecord {
         }
     }
 
-    /**
-     *   Save a District model
-     */
-    public function save($runValidation = true, $attributes = NULL) {
-        try {
-            $save_result = parent::save();
-        } catch (CDbException $cdbe) {
-            switch ($cdbe->getCode()) {
-                case 23505:
-                    $this->addError('number', 'This district already exist');
-                    break;
-
-                default: // we can't handle the error, rethrow it!
-                    throw $cdbe;
-            }
-        }
-
-        return $save_result;
-    }
 
     /**
      * Return the different district type  options

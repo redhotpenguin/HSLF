@@ -1,4 +1,4 @@
--- last alter file merged: alter_39.sql
+-- last alter file merged: alter_43.sql
 -- mysql format
 
 
@@ -46,6 +46,7 @@ CREATE TABLE tag (
     name VARCHAR(255) NOT NULL,
     type VARCHAR(255) NOT NULL,
     display_name TEXT NOT NULL,
+    UNIQUE (name,type,tenant_id),
     foreign key (tenant_id) references tenant (id) on delete cascade on update cascade
 );
 
@@ -54,14 +55,26 @@ CREATE TABLE alert_type (
     id int(11) PRIMARY KEY AUTO_INCREMENT,
     display_name VARCHAR(1024) NOT NULL,
     tag_id integer NOT NULL,
-    category VARCHAR(512),
+    category VARCHAR(512) NOT NULL,
     foreign key (tag_id) references tag (id) on delete cascade on update cascade
+);
+
+CREATE table contact(
+    id int(11) PRIMARY KEY AUTO_INCREMENT,
+    tenant_id INTEGER REFERENCES tenant(id),
+    first_name TEXT NOT NULL,
+    last_name TEXT,
+    email VARCHAR(128),
+    title VARCHAR(512),
+    phone_number VARCHAR(512),
+    foreign key (tenant_id) references tenant (id) on delete cascade on update cascade
 );
 
 
 CREATE TABLE organization (
     id int(11) PRIMARY KEY AUTO_INCREMENT,
     tenant_id integer NOT NULL,
+    primary_contact_id integer NOT NULL,
     name VARCHAR(512) NOT NULL,
     description text,
     website VARCHAR(2048),
@@ -72,13 +85,14 @@ CREATE TABLE organization (
     twitter_handle VARCHAR(2048),
     address TEXT NOT NULL,
     foreign key (tenant_id) references tenant (id) on delete cascade on update cascade,
+    foreign key (primary_contact_id) references contact (id) on delete cascade on update restrict,
     UNIQUE (slug,tenant_id)
 );
 
 CREATE TABLE party (
     id int(11) PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(2048) NOT NULL,
-    abbr VARCHAR(128),
+    abbr VARCHAR(128) NOT NULL,
     initial VARCHAR(16) NOT NULL
 );
 
@@ -288,4 +302,13 @@ CREATE TABLE tag_push_message(
     PRIMARY KEY (tag_id, push_message_id),
     foreign key (tag_id) references tag (id) on delete cascade on update cascade,
     foreign key (push_message_id) references push_message (id) on delete cascade on update cascade
+);
+
+
+CREATE TABLE contact_organization(
+    contact_id INTEGER NOT NULL,
+    organization_id INTEGER NOT NULL,
+    PRIMARY KEY (contact_id, organization_id),
+    foreign key(contact_id) REFERENCES contact(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    foreign key(organization_id) REFERENCES organization(id) ON UPDATE CASCADE ON DELETE CASCADE
 );

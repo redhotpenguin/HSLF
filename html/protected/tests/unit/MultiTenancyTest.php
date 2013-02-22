@@ -27,10 +27,12 @@ class MultiTenanctTest extends CDbTestCase {
 
         if ($tag == null) {
             $tag = new Tag();
-            $tag->name = 'my_tag';
-            $tag->type = 'alerts';
+            $tag->attachBehavior('MultiTenant', $this->tenantBehavior);
             Yii::app()->params['current_tenant_id'] = $tenantId;
-            $tag->save();
+            $tag->name = 'my_tag';
+            $tag->display_name = "unit test tag";
+            $tag->type = 'alerts';
+            $r = $tag->save();
         }
         $tagId = $tag->id;
 

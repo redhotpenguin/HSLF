@@ -8,7 +8,7 @@ if (!$model->isNewRecord) {
 
 $this->secondaryNav['items'] = $navBarItems;
 $this->secondaryNav['name'] = 'Organizations';
-$this->secondaryNav['url'] =array('organization/index');
+$this->secondaryNav['url'] = array('organization/index');
 ?>
 
 <div class="form">
@@ -34,12 +34,18 @@ $this->secondaryNav['url'] =array('organization/index');
         'form' => $form,
             ), true);
 
+    $contactTab = $this->renderPartial('tabs/_tab_contact', array(
+        'model' => $model,
+        'form' => $form,
+            ), true);
+
     $this->widget('bootstrap.widgets.TbTabs', array(
         'type' => 'tabs', // 'tabs' or 'pills'
         'placement' => 'left',
         'tabs' => array(
             array('label' => 'Organization', 'content' => $orgTab, 'active' => true),
             array('label' => 'Details', 'content' => $detailTab),
+            array('label' => 'Contacts', 'content' => $contactTab),
             array('label' => 'Tags', 'content' => $tagsTab),
         ),
     ));

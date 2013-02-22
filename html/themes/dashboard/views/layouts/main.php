@@ -51,6 +51,9 @@
                     if (Yii::app()->authManager->checkAccess('manageOrganizations', $tenantUserId))
                         array_push($contentMenuItems, array('label' => 'Organizations', 'url' => array('/organization/index')));
 
+                    if (Yii::app()->authManager->checkAccess('manageContacts', $tenantUserId))
+                        array_push($contentMenuItems, array('label' => 'Contacts', 'url' => array('/contact/index')));
+
                     if (Yii::app()->authManager->checkAccess('manageScorecardItems', $tenantUserId))
                         array_push($contentMenuItems, array('label' => 'Scorecard Items', 'url' => array('/scorecardItem/index')));
 
@@ -59,6 +62,7 @@
 
                     if (Yii::app()->authManager->checkAccess('manageTags', $tenantUserId))
                         array_push($contentMenuItems, array('label' => 'Tags', 'url' => array('/tag/index')));
+
 
 
 
@@ -188,7 +192,7 @@
                 'id' => 'main_menu',
                 'items' => $items,
                 'collapse' => true,
-                'fluid'=>false
+                'fluid' => false
             ));
             ?>
         </div>

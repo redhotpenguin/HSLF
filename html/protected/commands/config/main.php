@@ -24,10 +24,6 @@ return array(
     ),
     // application components
     'components' => array(
-        'user' => array(
-            // enable cookie-based authentication
-            'allowAutoLogin' => true,
-        ),
         'db' => array(
             'connectionString' => "pgsql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME,
             'emulatePrepare' => true,
@@ -45,10 +41,6 @@ return array(
                 array(
                     'class' => 'CFileLogRoute',
                     'levels' => 'error, warning',
-                ),
-                // uncomment the following to show log messages on web pages
-                array(
-                    'class' => 'CWebLogRoute',
                 ),
             ),
         ),

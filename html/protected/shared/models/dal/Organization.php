@@ -46,7 +46,7 @@ class Organization extends BaseActiveRecord {
             array('website, image_url', 'length', 'max' => 2048),
             array('facebook_url', 'length', 'max' => 1024),
             array('twitter_handle', 'length', 'max' => 140),
-            array('description, display_name, tenant_id', 'safe'),
+            array('description, display_name, primary_contact_id', 'safe'),
             array('website, image_url', 'url'),
             array('id, name, description, website, image_url, display_name, slug, facebook_url, twitter_handle, address', 'safe', 'on' => 'search'),
         );
@@ -63,6 +63,9 @@ class Organization extends BaseActiveRecord {
                 'organization_item(organization_id, item_id)'),
             'tags' => array(self::MANY_MANY, 'Tag',
                 'tag_organization(organization_id, tag_id)'),
+            'contacts' => array(self::MANY_MANY, 'Contact',
+                'contact_organization(organization_id, contact_id)'),
+            'primary_contact' => array(self::BELONGS_TO, 'Contact', 'primary_contact_id'),
         );
     }
 
@@ -78,7 +81,8 @@ class Organization extends BaseActiveRecord {
             'image_url' => 'Image url',
             'display_name' => 'Display Name',
             'slug' => 'Slug',
-            'address' => 'Address'
+            'address' => 'Address',
+            'primary_contact_id' => 'Primary Contact'
         );
     }
 
@@ -115,6 +119,12 @@ class Organization extends BaseActiveRecord {
                 'class' => 'TagRelationBehavior',
                 'joinTableName' => 'tag_organization',
                 'tagRelationName' => 'organizations', // relation to this class, defined in Tags.
+                'foreignKeyName' => 'organization_id'
+            ),
+            'ContactRelation' => array(
+                'class' => 'ContactRelationBehavior',
+                'joinTableName' => 'contact_organization',
+                'relationName' => 'organizations', // relation to this class, defined in Contact.
                 'foreignKeyName' => 'organization_id'
             )
         );

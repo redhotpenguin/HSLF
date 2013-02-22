@@ -30,15 +30,15 @@ return array(
         'application.shared.models.bll.*', // business  logic classes
     ),
     'modules' => array(
-    /*
-      'gii' => array(
-      'class' => 'system.gii.GiiModule',
-      'password' => 'giipass',
-      'ipFilters' => array('127.0.0.1', '::1'),
-      'generatorPaths' => array(
-      'bootstrap.gii',
-      ),
-      ), */
+        /*
+        'gii' => array(
+            'class' => 'system.gii.GiiModule',
+            'password' => 'giipass',
+            'ipFilters' => array('127.0.0.1', '::1'),
+            'generatorPaths' => array(
+                'bootstrap.gii',
+            ),
+        ),*/
     ),
     // application components
     'components' => array(

@@ -4,7 +4,6 @@
 
 $api = dirname(dirname(__FILE__));
 $appDirectory = dirname($api);
-Yii::setPathOfAlias('admin', $api);
 
 return array(
     //'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
@@ -57,7 +56,6 @@ return array(
             'autoConnect' => false // give a chance to use the redis cache if the db is down
         ),
         'cache' => array(
-            // 'class' => 'system.caching.CApcCache',
             'class' => 'application.shared.extensions.Redis.CRedisCache',
             'predisPath' => 'application.shared.extensions.Redis.Predis',
             'servers' => array(

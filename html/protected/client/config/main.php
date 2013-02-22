@@ -130,8 +130,6 @@ return array(
         )
     ,
     ),
-    // application-level parameters that can be accessed
-// using Yii::app()->params['paramName']
     'params' => array(
         'dateFormat' => 'Y-m-d H:i:s',
         'site_url' => SITE_URL,
