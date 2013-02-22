@@ -30,6 +30,7 @@ return array(
         'application.shared.models.bll.*', // business  logic classes
     ),
     'modules' => array(
+        /*
         'gii' => array(
             'class' => 'system.gii.GiiModule',
             'password' => 'giipass',
@@ -37,7 +38,7 @@ return array(
             'generatorPaths' => array(
                 'bootstrap.gii',
             ),
-        ),
+        ),*/
     ),
     // application components
     'components' => array(
