@@ -14,8 +14,6 @@
  * @property string $type
  * @property integer $postNumber
  *
- * The followings are the available model relations:
- * @property Tenant $tenant
  */
 class Payload extends BaseActiveRecord {
 
@@ -56,7 +54,7 @@ class Payload extends BaseActiveRecord {
             array('url', 'url'),
             array('email', 'email'),
             array('id, url, title, description, tweet, email', 'safe', 'on' => 'update,insert'),
-            array('id, tenant_id, url, title, description, tweet, email', 'safe', 'on' => 'search'),
+            array('id, url, title, description, tweet, email', 'safe', 'on' => 'search'),
         );
     }
 
@@ -67,7 +65,6 @@ class Payload extends BaseActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'tenant' => array(self::BELONGS_TO, 'Tenant', 'tenant_id'),
         );
     }
 
