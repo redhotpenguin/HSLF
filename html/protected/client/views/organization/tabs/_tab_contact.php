@@ -7,11 +7,17 @@
         echo $form->error($model, 'primary_contact_id');
 
 
-        $list = CHtml::listData(Contact::model()->findAll(array('order' => 'first_name ASC')), 'id', function($contact) {
+        $contactList = CHtml::listData(Contact::model()->findAll(array('order' => 'first_name ASC')), 'id', function($contact) {
                             return $contact->first_name . " " . $contact->last_name;
                         });
-                        
-        echo $form->dropDownList($model, 'primary_contact_id', $list, array('class' => 'span11'));
+
+        // move 'N/A' to the top of the list for new models
+        if ($model->isNewRecord)
+            if (($naPosition = array_search('N/A ', $contactList)) != null)
+                $model->primary_contact_id = $naPosition;
+
+
+        echo $form->dropDownList($model, 'primary_contact_id', $contactList, array('class' => 'span11'));
         ?>
     </div>
 
