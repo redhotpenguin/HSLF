@@ -74,6 +74,7 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
      * @param CEvent event
      */
     private function handleActiveRecordBeforeFind(CActiveRecord $owner, $userTenantId, $event) {
+
         $c = $owner->getDbCriteria();
         $condition = $c->condition;
         $relations = $c->with;
@@ -99,10 +100,10 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
                 $relations = array_merge($c->with, array($owner->parentRelationship));
             }
 
-            $c->with = $relations;
-            $c->addCondition("tenant_id =  {$userTenantId}", 'AND');
-        }
 
+            $c->with = $relations;
+            $c->addCondition($this->owner->parentRelationship . ".tenant_id =  {$userTenantId}", 'AND');
+        }
 
         return parent::beforeFind($event);
     }
