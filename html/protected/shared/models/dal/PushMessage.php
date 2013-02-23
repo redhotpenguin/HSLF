@@ -5,17 +5,23 @@
  *
  * The followings are the available columns in table 'push_message':
  * @property integer $id
- * @property integer $tenant_id
  * @property integer $payload_id
  * @property string $creation_date
  * @property string $alert
  *
  * The followings are the available model relations:
  * @property Tag[] $tags
- * @property Tenant $tenant
  * @property Payload $Payload
  */
 class PushMessage extends BaseActiveRecord {
+
+    public function __construct($scenario = 'insert', $table = "") {
+        $this->parentName = "Payload";
+        $this->parentRelationship = "payload";
+        $this->parentRelationshipAttribute = "payload_id";
+
+        parent::__construct($scenario);
+    }
 
     /**
      * Returns the static model of the specified AR class.
@@ -41,11 +47,11 @@ class PushMessage extends BaseActiveRecord {
         // will receive user inputs.
         return array(
             array('creation_date, payload_id', 'required'),
-            array('tenant_id, payload_id', 'numerical', 'integerOnly' => true),
+            array('payload_id', 'numerical', 'integerOnly' => true),
             array('alert', 'length', 'max' => 140),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, tenant_id, payload_id, creation_date, alert', 'safe', 'on' => 'search'),
+            array('id, payload_id, creation_date, alert', 'safe', 'on' => 'search'),
         );
     }
 
@@ -67,7 +73,6 @@ class PushMessage extends BaseActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'tenant_id' => 'Tenant',
             'payload_id' => 'Payload',
             'creation_date' => 'Creation Date',
             'alert' => 'Alert',
@@ -99,7 +104,6 @@ class PushMessage extends BaseActiveRecord {
         }
 
         $criteria->compare('id', $this->id);
-        $criteria->compare('tenant_id', $this->tenant_id);
         $criteria->compare('payload_id', $this->payload_id);
         $criteria->compare('alert', $this->alert, true);
 

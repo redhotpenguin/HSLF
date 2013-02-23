@@ -1,1 +1,3 @@
 ALTER TABLE push_message DROP COLUMN tenant_id;
+
+ALTER TABLE push_message ADD FOREIGN KEY (payload_id) REFERENCES payload (id) ON UPDATE CASCADE ON DELETE RESTRICT;
