@@ -1,0 +1,1 @@
+ALTER TABLE push_message DROP COLUMN tenant_id;
