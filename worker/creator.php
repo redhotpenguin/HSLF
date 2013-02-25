@@ -5,6 +5,9 @@ echo '<pre>';
 
 require 'vendor/autoload.php';
 
+require_once( 'config.php');
+
+
 Resque::setBackend(REDIS_HOST . ':' . REDIS_PORT, null);
 
 Resque::redis()->auth(REDIS_PASSWORD);
