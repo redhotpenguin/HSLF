@@ -4,12 +4,7 @@ require 'vendor/autoload.php';
 require_once('lib/Resque.php');
 require_once("config.php");
 
-$jobPath = __DIR__ . '/jobs/';
-
-echo $jobPath;
-
-
-$handle = @opendir($jobPath);
+$handle = @opendir(JOB_PATH);
 
 if ($handle == false)
     die("Could not read $jobPath \n");
@@ -27,15 +22,15 @@ while (false !== ($file = readdir($handle))) {
 }
 
 
-Resque::setBackend($redisHost . ':' . $redisPort, null);
+Resque::setBackend(REDIS_HOST . ':' . REDIS_PORT, null);
 
-Resque::redis()->auth($redisPass);
+Resque::redis()->auth(REDIS_PASSWORD);
 
-Resque::redis()->select($redisDb);
+Resque::redis()->select(REDIS_DB);
 
 
 
-if ($count > 1) {
+if (WORKER_COUNT > 1) {
     for ($i = 0; $i < $count; ++$i) {
         $pid = Resque::fork();
         if ($pid == -1) {
@@ -47,7 +42,7 @@ if ($count > 1) {
             $worker = new Resque_Worker($queues);
             $worker->logLevel = $logLevel;
             fwrite(STDOUT, '*** Starting worker ' . $worker . "\n");
-            $worker->work($interval);
+            $worker->work(WORKER_INTERVAL);
             break;
         }
     }
@@ -65,5 +60,5 @@ else {
     }
 
     fwrite(STDOUT, '*** Starting worker ' . $worker . "\n");
-    $worker->work($interval);
+    $worker->work(WORKER_INTERVAL);
 }

@@ -3,11 +3,14 @@
 
 require 'vendor/autoload.php';
 
-Resque::setBackend("127.0.0.1:6379", null);
+require_once('config.php');
 
-$connected = Resque::redis()->auth('foobared');
 
-Resque::redis()->select(2);
+Resque::setBackend(REDIS_HOST . ':' . REDIS_PORT, null);
+
+Resque::redis()->auth(REDIS_PASSWORD);
+
+Resque::redis()->select(REDIS_DB);
 
 $parameters = array('Foo'=>'BAR');
 

@@ -35,6 +35,12 @@
 require_once('lib/S3.php');
 require_once('lib/sendgrid/SendGrid_loader.php');
 
+/**
+ * export and save mobile users report on S3
+ * Send an email when the job is complete
+ * 
+ * @todo: move s3 credentials to the config file
+ */
 class MobileUserExportJob {
 
     private $db;
