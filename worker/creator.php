@@ -28,17 +28,19 @@ Resque::redis()->select(2);
     'last_connection_date' => 'Last Connection date',
 );
 
+/*dotcloud queue sandbox credentials*/
 $parameters = array(
-    'tenant_id' => 2,
+    'tenant_id' => 1,
     'tenant_name'=>'Our Oregon',
     'email' => 'jonas.palmero@gmail.com',
-    'mongodb_host' => 'mongodb://localhost:27017',
+    'mongodb_host' => 'mongodb://root:a5a7j4HsY027U6wGZ8kg@mapqueue-winningmark-data-0.azva.dotcloud.net:51138',
     'mongodb_name' => 'mobile_advocacy_platform',
-    'mongodb_username' => 'admin',
-    'mongodb_password' => 'admin',
+    'mongodb_username' => 'map_user',
+    'mongodb_password' => 'jeMEwRArEKwBg7Q',
     'mongodb_time_out' => 5000,
     'mongodb_collection_name' => 'mobile_user',
     'csvHeaders' => $csvHeaders
 );
+
 
 Resque::enqueue('mobile_platform', 'MobileUserExportJob', $parameters);
