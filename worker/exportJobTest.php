@@ -19,7 +19,7 @@ $csvHeaders = array(
     'last_connection_date' => 'Last Connection date',
 );
 
-$parameters = array(
+$_parameters = array(
     'tenant_id' => 2,
     'tenant_name'=>'Our Oregon',
     'email' => 'jonas.palmero@gmail.com',
@@ -32,12 +32,12 @@ $parameters = array(
     'csvHeaders' => $csvHeaders
 );
 
-/*dotcloud sandbox credentials*/
-$parameteers = array(
+/*dotcloud queue sandbox credentials*/
+$parameters = array(
     'tenant_id' => 1,
     'tenant_name'=>'Our Oregon',
     'email' => 'jonas.palmero@gmail.com',
-    'mongodb_host' => 'mongodb://root:vYrCj0wvR0CRTZcMDY3O@mobileadvocacy-winningmark-data-0.azva.dotcloud.net:21949',
+    'mongodb_host' => 'mongodb://root:a5a7j4HsY027U6wGZ8kg@mapqueue-winningmark-data-0.azva.dotcloud.net:51138',
     'mongodb_name' => 'mobile_advocacy_platform',
     'mongodb_username' => 'map_user',
     'mongodb_password' => 'jeMEwRArEKwBg7Q',
