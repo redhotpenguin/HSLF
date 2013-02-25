@@ -13,6 +13,8 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
      * @param CEvent event
      */
     public function beforeFind($event) {
+        parent::beforeFind($event);
+
         if ($this->owner instanceof ActiveMongoDocument) {
             $this->handleActiveMongoDocument($this->owner, 'find');
         } else {
@@ -26,6 +28,8 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
      * @param CEvent event
      */
     public function beforeSave($event) {
+        parent::beforeSave($event);
+
         if ($this->owner instanceof ActiveMongoDocument) {
             $this->handleActiveMongoDocument($this->owner, 'save');
         } else { //active record 
@@ -74,6 +78,7 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
      * @param CEvent event
      */
     private function handleActiveRecordBeforeFind(CActiveRecord $owner, $userTenantId, $event) {
+
         $c = $owner->getDbCriteria();
         $condition = $c->condition;
         $relations = $c->with;
@@ -85,8 +90,8 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
         $alias = $owner->getTableAlias(false, false);
 
         if ($owner->hasAttribute('tenant_id')) {
-            $condition.= $alias . '.tenant_id = ' . $userTenantId;
-            $c->condition = $condition;
+
+            $c->addCondition("{$alias}.tenant_id =  {$userTenantId}", 'AND');
         } elseif ($owner->parentName) { // indirect relationship between model and tenant table
             if ($c->with == null) {
                 $c->with = array();
@@ -99,12 +104,11 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
                 $relations = array_merge($c->with, array($owner->parentRelationship));
             }
 
+            // todo: use parameters instead of string concatenation
+            $c->addCondition($owner->parentRelationship.'.tenant_id = '.$userTenantId, 'AND');
+            
             $c->with = $relations;
-            $c->addCondition("tenant_id =  {$userTenantId}", 'AND');
         }
-
-
-        return parent::beforeFind($event);
     }
 
     /**

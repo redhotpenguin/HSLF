@@ -102,13 +102,14 @@ class TagrelationBehavior extends CActiveRecordBehavior {
      * @param array - Array of Tags
      */
     public function getTags() {
-
-        $tags = Tag::model()->with($this->tagRelationName)->findAll(
+        
+     
+       $tags = Tag::model()->with($this->tagRelationName)->findAll(
                 array(
                     'condition' => "{$this->foreignKeyName} =:{$this->foreignKeyName}",
                     'params' => array(":{$this->foreignKeyName}" => $this->owner->id)
                 ));
-                    
+        
         return $tags;
     }
 
