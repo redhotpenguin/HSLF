@@ -5,14 +5,12 @@
  *
  * The followings are the available columns in table 'push_message':
  * @property integer $id
- * @property integer $tenant_id
  * @property integer $payload_id
  * @property string $creation_date
  * @property string $alert
  *
  * The followings are the available model relations:
  * @property Tag[] $tags
- * @property Tenant $tenant
  * @property Payload $Payload
  */
 class PushMessage extends BaseActiveRecord {
@@ -45,7 +43,7 @@ class PushMessage extends BaseActiveRecord {
             array('alert', 'length', 'max' => 140),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, tenant_id, payload_id, creation_date, alert', 'safe', 'on' => 'search'),
+            array('id, payload_id, creation_date, alert', 'safe', 'on' => 'search'),
         );
     }
 
@@ -67,7 +65,6 @@ class PushMessage extends BaseActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'tenant_id' => 'Tenant',
             'payload_id' => 'Payload',
             'creation_date' => 'Creation Date',
             'alert' => 'Alert',
@@ -99,7 +96,6 @@ class PushMessage extends BaseActiveRecord {
         }
 
         $criteria->compare('id', $this->id);
-        $criteria->compare('tenant_id', $this->tenant_id);
         $criteria->compare('payload_id', $this->payload_id);
         $criteria->compare('alert', $this->alert, true);
 
