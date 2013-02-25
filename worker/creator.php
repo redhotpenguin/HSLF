@@ -5,12 +5,11 @@ echo '<pre>';
 
 require 'vendor/autoload.php';
 
-Resque::setBackend("127.0.0.1:6379", null);
+Resque::setBackend(REDIS_HOST . ':' . REDIS_PORT, null);
 
-$connected = Resque::redis()->auth('foobared');
+Resque::redis()->auth(REDIS_PASSWORD);
 
-Resque::redis()->select(2);
-
+Resque::redis()->select(REDIS_DB);
 
  $csvHeaders = array(
     '_id' => 'Identifier',
