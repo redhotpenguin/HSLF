@@ -87,11 +87,12 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
             $condition = "$condition AND ";
         }
 
-        $alias = $owner->getTableAlias(false, false);
-
         if ($owner->hasAttribute('tenant_id')) {
+            $alias = $owner->getTableAlias(false, false);
 
-            $c->addCondition("{$alias}.tenant_id =  {$userTenantId}", 'AND');
+
+            $c->addCondition(array($alias . '.tenant_id=:tenantID'), 'AND');
+            $c->params[':tenantID'] = $userTenantId;
         } elseif ($owner->parentName) { // indirect relationship between model and tenant table
             if ($c->with == null) {
                 $c->with = array();
@@ -103,10 +104,10 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
             } else { // relation (withs) array has been set before this behavior has been executed, make sure we don't override values
                 $relations = array_merge($c->with, array($owner->parentRelationship));
             }
+            $c->addCondition(array($owner->parentRelationship . '.tenant_id=:tenantID'), 'AND');
 
-            // todo: use parameters instead of string concatenation
-            $c->addCondition($owner->parentRelationship.'.tenant_id = '.$userTenantId, 'AND');
-            
+            $c->params[':tenantID'] = $userTenantId;
+
             $c->with = $relations;
         }
     }

@@ -97,7 +97,7 @@ class PushMessageCriteria extends CDbCriteria {
         try {
             $pushMessages = $activeDataProvider->getData();
         } catch (CDbException $cdbE) {
-            //echo $cdbE->getMessage(); // debug
+           //echo $cdbE->getMessage(); // debug
             $pushMessages = false;
         }
 
