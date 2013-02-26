@@ -18,6 +18,9 @@
   'registration_date' => 'Registration Date',
   'last_connection_date' => 'Last Connection date',
   );
+ * 
+  $filterAttributes['ua_identifier'] = array('$exists' => true);
+
 
   $parameters = array(
   'tenant_id' => 1,
@@ -28,7 +31,9 @@
   'mongodb_password' => 'admin',
   'mongodb_time_out' => 5000,
   'mongodb_collection_name' => 'mobile_user',
-  'csvHeaders' => $csvHeaders
+  'csvHeaders' => $csvHeaders,
+  'filterAttributes' => $filterAttributes,
+
   );
  * Yii::app()->queue->enqueue('mobile_platform', 'MobileUserExportJob', $parameters);
  */
@@ -55,6 +60,10 @@ class MobileUserExportJob {
 
         $startTime = microtime(true);
 
+        if (!isset($this->args['tenant_id']) && !is_numeric($this->args['tenant_id'])) {
+            return "Tenant id is missing or invalid";
+        }
+
         if (!$this->mongoDBConnect($this->args['mongodb_collection_name'])) {
             return "Could not connect to mongodb server";
         }
@@ -69,6 +78,14 @@ class MobileUserExportJob {
             return false;
         }
 
+        if (isset($this->args['filterAttributes']) && is_array($this->args['filterAttributes']))
+            $filterAttributes = $this->args['filterAttributes'];
+
+        else
+            $filterAttributes = array();
+
+        $filterAttributes['tenant_id'] = $this->args['tenant_id'];
+
         $s3 = array(
             'aKey' => $this->s3AKey,
             'sKey' => $this->s3SKey,
@@ -76,7 +93,9 @@ class MobileUserExportJob {
             'directory' => $this->s3QueueDirectory
         );
 
-        $result = $this->generateExport($this->collection, md5($startTime), $this->args['tenant_id'], $this->args['csvHeaders'], $s3);
+        print_r($this->args);
+        
+        $result = $this->generateExport($this->collection, $filterAttributes, md5($startTime), $this->args['csvHeaders'], $s3);
 
 
         if ($result === false) {
@@ -127,15 +146,15 @@ class MobileUserExportJob {
     /**
      * Generate and upload an export file to S3
      * @param MongoCollection mongodb collection
+     * @param array filter attributes
      * @param string $uniqueId unique identifier to make sure exports can't have the same file name
-     * @param integer  $tenantId tenant identifier
      * @param array $csvHeaders csv headers
      * @param array $s3 s3 credentials
      * @return mixed download link or false 
      */
-    private function generateExport(MongoCollection $collection, $uniqueId, $tenantId, $csvHeaders, $s3) {
+    private function generateExport(MongoCollection $collection, array $filterAttributes, $uniqueId, $csvHeaders, $s3) {
 
-        $tmpFileName = 'tid_' . $tenantId . '_';
+        $tmpFileName = 'tid_' . $filterAttributes['tenant_id'] . '_';
         $tmpFileName .=date('Y-m-d\-h-i-s');
 
         $tmpFileName .= '_' . $uniqueId;
@@ -152,7 +171,7 @@ class MobileUserExportJob {
 
         fputcsv($fp, $csvHeaders);
 
-        $mobileUserCursor = $collection->find(array('tenant_id' => $tenantId));
+        $mobileUserCursor = $collection->find($filterAttributes);
 
         foreach ($mobileUserCursor as $mobileUser) {
             $row = array();
@@ -177,8 +196,10 @@ class MobileUserExportJob {
 
         rewind($fp);
         fclose($fp);
-
-
+        
+        
+        print_r($filterAttributes);
+        
         S3::setAuth($s3['aKey'], $s3['sKey']);
 
         $uploadResult = S3::putObjectFile($tmpFilePath, $s3['bucket'], $s3['directory'] . "/" . $tmpFileName, $acl = S3::ACL_PUBLIC_READ, array(), "text/csv");

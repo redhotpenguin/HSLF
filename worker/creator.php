@@ -29,7 +29,11 @@ Resque::redis()->select(REDIS_DB);
     'registration_date' => 'Registration Date',
     'last_connection_date' => 'Last Connection date',
 );
-
+ 
+ 
+ $filterAttributes['device_type'] = 'android';
+ 
+ 
 /*dotcloud queue sandbox credentials*/
 $parameters = array(
     'tenant_id' => 1,
@@ -41,7 +45,8 @@ $parameters = array(
     'mongodb_password' => 'jeMEwRArEKwBg7Q',
     'mongodb_time_out' => 5000,
     'mongodb_collection_name' => 'mobile_user',
-    'csvHeaders' => $csvHeaders
+    'csvHeaders' => $csvHeaders,
+    'filterAttributes' => $filterAttributes,
 );
 
 

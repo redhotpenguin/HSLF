@@ -21,7 +21,7 @@ $csvHeaders = array(
 
 $_parameters = array(
     'tenant_id' => 2,
-    'tenant_name'=>'Our Oregon',
+    'tenant_name' => 'Our Oregon',
     'email' => 'jonas.palmero@gmail.com',
     'mongodb_host' => 'mongodb://localhost:27017',
     'mongodb_name' => 'mobile_advocacy_platform',
@@ -32,10 +32,15 @@ $_parameters = array(
     'csvHeaders' => $csvHeaders
 );
 
-/*dotcloud queue sandbox credentials*/
+
+$filterAttributes['device_type'] = 'android';
+
+
+
+/* dotcloud queue sandbox credentials */
 $parameters = array(
     'tenant_id' => 1,
-    'tenant_name'=>'Our Oregon',
+    'tenant_name' => 'Our Oregon',
     'email' => 'jonas.palmero@gmail.com',
     'mongodb_host' => 'mongodb://root:a5a7j4HsY027U6wGZ8kg@mapqueue-winningmark-data-0.azva.dotcloud.net:51138',
     'mongodb_name' => 'mobile_advocacy_platform',
@@ -43,7 +48,8 @@ $parameters = array(
     'mongodb_password' => 'jeMEwRArEKwBg7Q',
     'mongodb_time_out' => 5000,
     'mongodb_collection_name' => 'mobile_user',
-    'csvHeaders' => $csvHeaders
+    'csvHeaders' => $csvHeaders,
+    'filterAttributes' => $filterAttributes,
 );
 
 
