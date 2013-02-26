@@ -64,6 +64,9 @@ class MobileUserExportJob {
             return "Tenant id is missing or invalid";
         }
 
+        printf('Starting report for tenant %d \n', $this->args['tenant_id'], $completeTime);
+
+
         if (!$this->mongoDBConnect($this->args['mongodb_collection_name'])) {
             return "Could not connect to mongodb server";
         }
@@ -93,8 +96,6 @@ class MobileUserExportJob {
             'directory' => $this->s3QueueDirectory
         );
 
-        print_r($this->args);
-        
         $result = $this->generateExport($this->collection, $filterAttributes, md5($startTime), $this->args['csvHeaders'], $s3);
 
 
@@ -117,8 +118,6 @@ class MobileUserExportJob {
         $htmlBody.='</p>';
 
         $htmlBody.='<em>The Winning Mark robot - mobile@winningmark.com</em>';
-
-        echo $htmlBody;
 
         try {
             $sendgrid = new SendGrid('jonas.palmero', 'chickadee1');
@@ -196,10 +195,7 @@ class MobileUserExportJob {
 
         rewind($fp);
         fclose($fp);
-        
-        
-        print_r($filterAttributes);
-        
+
         S3::setAuth($s3['aKey'], $s3['sKey']);
 
         $uploadResult = S3::putObjectFile($tmpFilePath, $s3['bucket'], $s3['directory'] . "/" . $tmpFileName, $acl = S3::ACL_PUBLIC_READ, array(), "text/csv");

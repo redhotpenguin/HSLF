@@ -7,7 +7,6 @@ class MobileUserController extends Controller {
     /**
      * @return array action filters
      */
-
     public function filters() {
         return array(
             'accessControl', // perform access control for CRUD operations
@@ -146,7 +145,7 @@ class MobileUserController extends Controller {
         }
 
         $tenant = Yii::app()->user->getLoggedInUserTenant();
-        
+
         try {
             $jobProducer = new UAJobProducer($tenant);
             $jobResult = $jobProducer->pushUrbanAirshipMessage($alert, $searchAttributes, $extra);
@@ -160,45 +159,81 @@ class MobileUserController extends Controller {
     }
 
     public function actionExport() { // @todo: move logic to a model
+        $mobileUserModel = MobileUser::model();
+
+        $tenant = Yii::app()->user->getLoggedInUserTenant();
+        
+        if ($tenant == null)
+            throw new CHttpException(404, 'The requested page does not exist.');
+
         $searchAttributes = $this->parseSearchAttributes($_GET);
 
-        $fp = fopen('php://temp', 'w');
-
-        $mobileUserModel = MobileUser::model();
-        $mobileUserModel->setReadPreference(MongoClient::RP_SECONDARY_PREFERRED);
 
         $headers = $mobileUserModel->getAttributes();
 
-        fputcsv($fp, $headers);
+        $parameters = array(
+            'tenant_id' => $tenant->id,
+            'tenant_name' => $tenant->display_name,
+            'email' =>  $tenant->email,
+            'mongodb_host' => 'mongodb://localhost:27017',
+            'mongodb_name' => 'mobile_advocacy_platform',
+            'mongodb_username' => 'admin',
+            'mongodb_password' => 'admin',
+            'mongodb_time_out' => 5000,
+            'mongodb_collection_name' => 'mobile_user',
+            'csvHeaders' => $headers,
+            'filterAttributes' => $searchAttributes,
+        );
+        
 
-        $mobileUserCursor = $mobileUserModel->find($searchAttributes);
+        if (Yii::app()->queue->enqueue('mobile_platform', 'MobileUserExportJob', $parameters))
+            Yii::app()->user->setFlash('success', "A user export will be sent to {$tenant->email} shortly.");
+        else
+            Yii::app()->user->setFlash('error', "Error while generating a user export.");
 
-        foreach ($mobileUserCursor as $mobileUser) {
-            $row = array();
-            foreach ($headers as $head => $friendlyHeadName) {
-                $data = null;
+        $this->redirect(array('index'));
 
-                if (isset($mobileUser[$head])) {
-                    if (is_array($mobileUser[$head])) {
-                        $data = implode(', ', $mobileUser[$head]);
-                    } elseif ($mobileUser[$head] instanceof MongoDate) {
-                        $data = date('m-d-Y h:i:s', $mobileUser[$head]->sec);
-                    } else {
-                        $data = $mobileUser[$head];
-                    }
-                }
+        /*
 
-                $row[] = $data;
-            }
-            fputcsv($fp, $row);
-        }
+          $fp = fopen('php://temp', 'w');
 
-        rewind($fp);
-        $content = stream_get_contents($fp);
+          $mobileUserModel = MobileUser::model();
+          $mobileUserModel->setReadPreference(MongoClient::RP_SECONDARY_PREFERRED);
 
-        fclose($fp);
+          $headers = $mobileUserModel->getAttributes();
 
-        Yii::app()->getRequest()->sendFile('mobileUsers.csv', $content, "text/csv", false);
+          fputcsv($fp, $headers);
+
+          $mobileUserCursor = $mobileUserModel->find($searchAttributes);
+
+          foreach ($mobileUserCursor as $mobileUser) {
+          $row = array();
+          foreach ($headers as $head => $friendlyHeadName) {
+          $data = null;
+
+          if (isset($mobileUser[$head])) {
+          if (is_array($mobileUser[$head])) {
+          $data = implode(', ', $mobileUser[$head]);
+          } elseif ($mobileUser[$head] instanceof MongoDate) {
+          $data = date('m-d-Y h:i:s', $mobileUser[$head]->sec);
+          } else {
+          $data = $mobileUser[$head];
+          }
+          }
+
+          $row[] = $data;
+          }
+          fputcsv($fp, $row);
+          }
+
+          rewind($fp);
+          $content = stream_get_contents($fp);
+
+          fclose($fp);
+
+          Yii::app()->getRequest()->sendFile('mobileUsers.csv', $content, "text/csv", false);
+         * 
+         */
     }
 
     /**
