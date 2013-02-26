@@ -21,7 +21,7 @@ $queue = 'mobile_platform';
 $interval = 1;
 $count = 1;
 $logLevel = Resque_Worker::LOG_NONE; // or LOG_VERBOSE
-//
+
 //worker specific
 define('JOB_PATH', $jobPath);
 define('WORKER_QUEUE', $queue);

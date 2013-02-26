@@ -39,6 +39,7 @@
  */
 require_once('lib/S3.php');
 require_once('lib/sendgrid/SendGrid_loader.php');
+require_once('config/MobileUserExportJobConfig.php');
 
 /**
  * export and save mobile users report on S3
@@ -51,9 +52,9 @@ class MobileUserExportJob {
     private $db;
     private $collection;
     private $mongoClient;
-    private $s3AKey = 'AKIAIDNK7VPB47DB2F2Q';
-    private $s3SKey = '2F7TBdQsokQVpIZAgNUx/PgKyE01wz3AXLmGFYvh';
-    private $s3Bucket = 'maplocal';
+    private $s3AKey = S3_AKEY;
+    private $s3SKey = S3_SKEY;
+    private $s3Bucket = S3_BUCKET;
     private $s3QueueDirectory = 'reports';
 
     public function perform() {
@@ -87,16 +88,10 @@ class MobileUserExportJob {
         else
             $filterAttributes = array();
 
-        $filterAttributes['tenant_id'] = $this->args['tenant_id'];
+        $this->args['filterAttributes']['tenant_id'] = $this->args['tenant_id'];
 
-        $s3 = array(
-            'aKey' => $this->s3AKey,
-            'sKey' => $this->s3SKey,
-            'bucket' => $this->s3Bucket,
-            'directory' => $this->s3QueueDirectory
-        );
-
-        $result = $this->generateExport($this->collection, $filterAttributes, md5($startTime), $this->args['csvHeaders'], $s3);
+ 
+        $result = $this->generateExport();
 
 
         if ($result === false) {
@@ -125,8 +120,7 @@ class MobileUserExportJob {
             $mail = new SendGrid\Mail();
             $mail->
                     addTo('jonas.palmero@gmail.com')->
-                    addBcc('jonas@winningmark.com')->
-                    setFrom('jonas@winningmark.com')->
+                    setFrom('mobile@winningmark.com')->
                     setSubject('Your user export is available')->
                     setText('Download export: ' . $result)->
                     setHtml($htmlBody);
@@ -139,29 +133,28 @@ class MobileUserExportJob {
 
         $completeTime = microtime(true) - $startTime;
 
-        printf('Finished exporting user data for tenant %d in %s seconds \n', $this->args['tenant_id'], $completeTime);
+        printf('Finished exporting user data for tenant %d in %s seconds', $this->args['tenant_id'], $completeTime);
+        $memoryUsed = memory_get_peak_usage(true);
+        $memoryUsed = $memoryUsed / 1024;
+        $memoryUsed = $memoryUsed / 1024;
+        printf("Used %s MB ", $memoryUsed);
     }
 
     /**
      * Generate and upload an export file to S3
-     * @param MongoCollection mongodb collection
-     * @param array filter attributes
-     * @param string $uniqueId unique identifier to make sure exports can't have the same file name
-     * @param array $csvHeaders csv headers
-     * @param array $s3 s3 credentials
      * @return mixed download link or false 
      */
-    private function generateExport(MongoCollection $collection, array $filterAttributes, $uniqueId, $csvHeaders, $s3) {
+    private function generateExport() {
 
-        $tmpFileName = 'tid_' . $filterAttributes['tenant_id'] . '_';
+        $tmpFileName = 'tid_' . $this->args['tenant_id'] . '_';
         $tmpFileName .=date('Y-m-d\-h-i-s');
 
-        $tmpFileName .= '_' . $uniqueId;
+        $tmpFileName .= '_' . microtime(true);
         $tmpFileName.='.csv';
 
         $tmpFilePath = sys_get_temp_dir() . '/' . $tmpFileName;
-        // @todo: try using $fp = fopen('php://temp', 'w');
-        
+
+
         $fp = fopen($tmpFilePath, 'w');
 
         if (!$fp) {
@@ -169,13 +162,13 @@ class MobileUserExportJob {
             return false;
         }
 
-        fputcsv($fp, $csvHeaders);
+        fputcsv($fp, $this->args['csvHeaders']);
 
-        $mobileUserCursor = $collection->find($filterAttributes);
+        $mobileUserCursor = $this->collection->find($this->args['filterAttributes']);
 
         foreach ($mobileUserCursor as $mobileUser) {
             $row = array();
-            foreach ($csvHeaders as $head => $friendlyHeadName) {
+            foreach ($this->args['csvHeaders'] as $head => $friendlyHeadName) {
                 $data = null;
 
                 if (isset($mobileUser[$head])) {
@@ -197,9 +190,9 @@ class MobileUserExportJob {
         rewind($fp);
         fclose($fp);
 
-        S3::setAuth($s3['aKey'], $s3['sKey']);
+        S3::setAuth($this->s3AKey, $this->s3SKey);
 
-        $uploadResult = S3::putObjectFile($tmpFilePath, $s3['bucket'], $s3['directory'] . "/" . $tmpFileName, $acl = S3::ACL_PUBLIC_READ, array(), "text/csv");
+        $uploadResult = S3::putObjectFile($tmpFilePath, $this->s3Bucket, $this->s3QueueDirectory . "/" . $tmpFileName, $acl = S3::ACL_PUBLIC_READ, array(), "text/csv");
 
         if ($uploadResult !== true) {
             error_log("Could not open upload file to S3:");
@@ -208,7 +201,7 @@ class MobileUserExportJob {
 
         unlink($tmpFilePath);
 
-        $exportDownloadLink = 'https://s3.amazonaws.com/' . $s3['bucket'] . '/' . $s3['directory'] . '/' . $tmpFileName;
+        $exportDownloadLink = 'https://s3.amazonaws.com/' . $this->s3Bucket . '/' . $this->s3QueueDirectory . '/' . $tmpFileName;
 
         return $exportDownloadLink;
     }
