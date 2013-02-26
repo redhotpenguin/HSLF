@@ -33,7 +33,7 @@ class PushMessageCriteria extends CDbCriteria {
         $i = 0;
 
         foreach ($tagNames as $tagName) {
-                   
+
             if ($i == 0)
                 $operator = 'AND';
             else
@@ -97,9 +97,11 @@ class PushMessageCriteria extends CDbCriteria {
         try {
             $pushMessages = $activeDataProvider->getData();
         } catch (CDbException $cdbE) {
-          //  echo $cdbE->getMessage(); // debug
+           //echo $cdbE->getMessage(); // debug
             $pushMessages = false;
         }
+
+
 
         return $pushMessages;
     }
@@ -115,6 +117,5 @@ class PushMessageCriteria extends CDbCriteria {
 
         $this->addRelation('tags', $with);
     }
-
 
 }

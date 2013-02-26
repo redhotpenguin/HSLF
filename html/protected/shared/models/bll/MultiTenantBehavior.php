@@ -13,6 +13,8 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
      * @param CEvent event
      */
     public function beforeFind($event) {
+        parent::beforeFind($event);
+
         if ($this->owner instanceof ActiveMongoDocument) {
             $this->handleActiveMongoDocument($this->owner, 'find');
         } else {
@@ -26,6 +28,8 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
      * @param CEvent event
      */
     public function beforeSave($event) {
+        parent::beforeSave($event);
+
         if ($this->owner instanceof ActiveMongoDocument) {
             $this->handleActiveMongoDocument($this->owner, 'save');
         } else { //active record 
@@ -74,6 +78,7 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
      * @param CEvent event
      */
     private function handleActiveRecordBeforeFind(CActiveRecord $owner, $userTenantId, $event) {
+
         $c = $owner->getDbCriteria();
         $condition = $c->condition;
         $relations = $c->with;
@@ -82,11 +87,12 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
             $condition = "$condition AND ";
         }
 
-        $alias = $owner->getTableAlias(false, false);
-
         if ($owner->hasAttribute('tenant_id')) {
-            $condition.= $alias . '.tenant_id = ' . $userTenantId;
-            $c->condition = $condition;
+            $alias = $owner->getTableAlias(false, false);
+
+
+            $c->addCondition(array($alias . '.tenant_id=:tenantID'), 'AND');
+            $c->params[':tenantID'] = $userTenantId;
         } elseif ($owner->parentName) { // indirect relationship between model and tenant table
             if ($c->with == null) {
                 $c->with = array();
@@ -98,13 +104,12 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
             } else { // relation (withs) array has been set before this behavior has been executed, make sure we don't override values
                 $relations = array_merge($c->with, array($owner->parentRelationship));
             }
+            $c->addCondition(array($owner->parentRelationship . '.tenant_id=:tenantID'), 'AND');
+            
+            $c->params[':tenantID'] = $userTenantId;
 
             $c->with = $relations;
-            $c->addCondition("tenant_id =  {$userTenantId}", 'AND');
         }
-
-
-        return parent::beforeFind($event);
     }
 
     /**

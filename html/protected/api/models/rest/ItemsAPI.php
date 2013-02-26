@@ -2,7 +2,7 @@
 
 class ItemsAPI implements IAPI {
 
-    private $allIncludes = array('districts', 'organizations', 'recommendations', 'news', 'parties');
+    private $allIncludes = array('districts', 'organizations', 'recommendations', 'news', 'party');
     private $item;
     private $cacheDuration;
 
@@ -71,7 +71,7 @@ class ItemsAPI implements IAPI {
         }
 
         // todo: find better way to do this
-        $this->item = $this->item->with(array('district', 'recommendation', 'itemNews', 'party'))->findByPk($id);
+        $this->item = $this->item->with(array('district', 'recommendation', 'party'))->findByPk($id);
 
         if ($this->item != false) {
             $result = $this->itemWrapper($this->item, $this->allIncludes);
@@ -148,11 +148,11 @@ class ItemsAPI implements IAPI {
 
         if (array_key_exists('news', $relationList)) {
             array_push($relations, 'news');
-            $itemCriteria->addNewsRelation();
+           // $itemCriteria->addNewsRelation(); // eager loading creates a bug whith indirect multitenancy
         }
 
-        if (array_key_exists('parties', $relationList)) {
-            array_push($relations, 'parties');
+        if (array_key_exists('party', $relationList)) {
+            array_push($relations, 'party');
             $itemCriteria->addPartyRelation();
         }
 
@@ -223,7 +223,7 @@ class ItemsAPI implements IAPI {
             $wrapped_item['recommendation'] = $item->recommendation;
         }
 
-        if (in_array('parties', $relations)) {
+        if (in_array('party', $relations)) {
             $wrapped_item['party'] = $item->party;
         }
 

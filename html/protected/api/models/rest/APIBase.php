@@ -20,7 +20,7 @@ abstract class APIBase implements IAPI {
         if (($r = Yii::app()->cache->get($cacheKey)) == true) {
             return $r;
         }
-        
+
         // cache hasn't been found, build it
         $relations = array();
         $attributes = array();
@@ -44,6 +44,11 @@ abstract class APIBase implements IAPI {
         // limit results
         if (isset($arguments['limit']) && is_numeric($arguments['limit'])) {
             $options['limit'] = $arguments['limit'];
+        }
+
+        // offset results
+        if (isset($arguments['offset']) && is_numeric($arguments['offset'])) {
+            $options['offset'] = $arguments['offset'];
         }
 
 

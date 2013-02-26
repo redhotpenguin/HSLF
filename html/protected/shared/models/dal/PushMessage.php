@@ -15,6 +15,15 @@
  */
 class PushMessage extends BaseActiveRecord {
 
+    public function __construct($scenario = 'insert', $table = "") {
+        $this->parentName = "Payload";
+        $this->parentRelationship = "payload";
+        $this->parentRelationshipAttribute = "payload_id";
+
+
+        parent::__construct($scenario);
+    }
+
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
@@ -39,7 +48,7 @@ class PushMessage extends BaseActiveRecord {
         // will receive user inputs.
         return array(
             array('creation_date, payload_id', 'required'),
-            array('tenant_id, payload_id', 'numerical', 'integerOnly' => true),
+            array('payload_id', 'numerical', 'integerOnly' => true),
             array('alert', 'length', 'max' => 140),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
