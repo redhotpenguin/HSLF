@@ -105,7 +105,7 @@ class MultiTenantBehavior extends CActiveRecordBehavior {
                 $relations = array_merge($c->with, array($owner->parentRelationship));
             }
             $c->addCondition(array($owner->parentRelationship . '.tenant_id=:tenantID'), 'AND');
-
+            
             $c->params[':tenantID'] = $userTenantId;
 
             $c->with = $relations;

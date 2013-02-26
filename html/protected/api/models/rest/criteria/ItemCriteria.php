@@ -193,7 +193,7 @@ class ItemCriteria extends CDbCriteria {
         try {
             $items = $activeDataProvider->getData();
         } catch (CDbException $cdbE) {
-               echo $cdbE->getMessage(); // debug
+           // echo $cdbE->getMessage(); // debug
             $items = false;
         }
 
