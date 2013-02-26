@@ -24,6 +24,7 @@
 
   $parameters = array(
   'tenant_id' => 1,
+  'tenant_name' => 'Our Oregon'
   'email' => 'jonas.palmero@gmail.com',
   'mongodb_host' => 'mongodb://localhost:27017',
   'mongodb_name' => 'mobile_advocacy_platform',
@@ -57,6 +58,8 @@ class MobileUserExportJob {
     private $s3QueueDirectory = 'reports';
     private $sendgridUsername = SENDGRID_USERNAME;
     private $sendgridPassword = SENDGRID_PASSWORD;
+    private $emailSubjectTemplate = EMAIL_SUBJECT_TEMPLATE;
+    private $emailBodyTemplate = EMAIL_BODY_TEMPLATE;
 
     public function perform() {
 
@@ -75,6 +78,12 @@ class MobileUserExportJob {
             error_log("Missing CSV header. Aborting");
             return false;
         }
+
+        if (!isset($this->args['tenant_name'])) {
+            error_log("Tenant name is missing. Aborting");
+            return false;
+        }
+
 
         if (!is_array($this->args['csvHeaders'])) {
             error_log("CSV header format error. Aborting");
@@ -109,7 +118,6 @@ class MobileUserExportJob {
         $memoryUsed = $memoryUsed / 1024;
         printf("Used %s MB ", $memoryUsed);
     }
-   
 
     /**
      * Generate and upload an export file to S3
@@ -183,20 +191,11 @@ class MobileUserExportJob {
      */
     private function sendResultEmail($exportUrl) {
 
-        $htmlBody = '<h3>Hi';
+        $subject = str_replace('{name}', $this->args['tenant_name'], $this->emailSubjectTemplate);
 
-        if (isset($this->args['tenant_name']))
-            $htmlBody.= ' ' . $this->args['tenant_name'] . ',';
-        else
-            $htmlBody.=',';
+        $body = str_replace('{name}', $this->args['tenant_name'], $this->emailBodyTemplate);
+        $body = str_replace('{downloadLink}', $exportUrl, $body);
 
-        $htmlBody.='</h3><p>';
-
-        $htmlBody .= "Your user export is ready and available at <a href='$exportUrl'>$exportUrl</a>";
-
-        $htmlBody.='</p>';
-
-        $htmlBody.='<em>The Winning Mark robot - mobile@winningmark.com</em>';
 
         try {
             $sendgrid = new SendGrid($this->sendgridUsername, $this->sendgridPassword);
@@ -205,9 +204,9 @@ class MobileUserExportJob {
             $mail->
                     addTo('jonas.palmero@gmail.com')->
                     setFrom('mobile@winningmark.com')->
-                    setSubject('[Winning Mark Mobile] Your user export is ready')->
-                    setText('Download export: ' . $exportUrl)->
-                    setHtml($htmlBody);
+                    setSubject($subject)->
+                    setText(strip_tags($body))->
+                    setHtml($body);
 
             $sendgrid->smtp->send($mail);
         } catch (Exception $e) {
