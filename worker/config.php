@@ -29,7 +29,7 @@ define('WORKER_INTERVAL', $interval);
 define('WORKER_COUNT', $count);
 define('WORKER_LOG_LEVEL', $logLevel);
 
-// redis specific
+// redis queue specific
 define('REDIS_HOST', $redisHost);
 define('REDIS_PORT', $redisPort);
 define('REDIS_PASSWORD', $redisPassword);

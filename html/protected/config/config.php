@@ -40,6 +40,14 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $redisPassword = $env['DOTCLOUD_CACHE_REDIS_PASSWORD'];
     $redisDatabase = '1'; // redis does not use name for db's
 
+    $redisQueueHost = $env['DOTCLOUD_SHM_SSH_HOST'];
+    $redisQueuePort = $env['DOTCLOUD_SHM_REDIS_PORT'];
+    $redisqQueueLogin = $env['DOTCLOUD_SHM_REDIS_LOGIN'];
+    $redisQueuePassword = $env['DOTCLOUD_SHM_REDIS_PASSWORD'];
+    $redisQueueDatabase = '2';
+
+
+
     $s3AKey = 'AKIAIDNK7VPB47DB2F2Q';
     $s3SKey = '2F7TBdQsokQVpIZAgNUx/PgKyE01wz3AXLmGFYvh';
 
@@ -74,6 +82,12 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $redisPassword = 'foobared';
     $redisDatabase = '1';
 
+    $redisQueueHost = '127.0.0.1';
+    $redisQueuePort = 6379;
+    $redisqQueueLogin = 'guest';
+    $redisQueuePassword = 'foobared';
+    $redisQueueDatabase = '2';
+
 
     $s3AKey = 'AKIAIDNK7VPB47DB2F2Q';
     $s3SKey = '2F7TBdQsokQVpIZAgNUx/PgKyE01wz3AXLmGFYvh';
@@ -84,7 +98,7 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $apiNormalCacheDuration = 100;
     $apiLongCacheDuration = 3600;
 
-  define('YII_DEBUG', true);
+    define('YII_DEBUG', true);
 }
 
 
@@ -128,5 +142,14 @@ DEFINE('SITE_URL', $siteurl);
 DEFINE('API_SHORT_CACHE_DURATION', $apiShortCacheDuration);
 DEFINE('API_NORMAL_CACHE_DURATION', $apiNormalCacheDuration);
 DEFINE('API_LONG_CACHE_DURATION', $apiLongCacheDuration);
+
+// redis queue specific
+define('REDIS_QUEUE_HOST', $redisQueueHost);
+define('REDIS_QUEUE_PORT', $redisQueuePort);
+DEFINE('REDIS_QUEUE_LOGIN', $redisqQueueLogin);
+define('REDIS_QUEUE_PASSWORD', $redisQueuePassword);
+define('REDIS_QUEUE_DB', $redisQueueDatabase);
+
+
 
 date_default_timezone_set('America/Los_Angeles');

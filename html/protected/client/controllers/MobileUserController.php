@@ -162,7 +162,7 @@ class MobileUserController extends Controller {
         $mobileUserModel = MobileUser::model();
 
         $tenant = Yii::app()->user->getLoggedInUserTenant();
-        
+
         if ($tenant == null)
             throw new CHttpException(404, 'The requested page does not exist.');
 
@@ -174,18 +174,17 @@ class MobileUserController extends Controller {
         $parameters = array(
             'tenant_id' => $tenant->id,
             'tenant_name' => $tenant->display_name,
-            'email' =>  $tenant->email,
-            'mongodb_host' => 'mongodb://localhost:27017',
-            'mongodb_name' => 'mobile_advocacy_platform',
-            'mongodb_username' => 'admin',
-            'mongodb_password' => 'admin',
+            'email' => $tenant->email,
+            'mongodb_host' => Yii::app()->params['mongodb_host'],
+            'mongodb_name' => Yii::app()->params['mongodb_name'],
+            'mongodb_username' => Yii::app()->params['mongodb_user'],
+            'mongodb_password' => Yii::app()->params['mongodb_password'],
             'mongodb_time_out' => 5000,
             'mongodb_collection_name' => 'mobile_user',
             'csvHeaders' => $headers,
             'filterAttributes' => $searchAttributes,
         );
         
-
         if (Yii::app()->queue->enqueue('mobile_platform', 'MobileUserExportJob', $parameters))
             Yii::app()->user->setFlash('success', "A user export will be sent to {$tenant->email} shortly.");
         else

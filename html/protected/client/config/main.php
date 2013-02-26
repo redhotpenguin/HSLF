@@ -105,10 +105,10 @@ return array(
         ),
         'queue' => array(
             'class' => 'backend.vendors.Queue.Queue',
-            'redis_host'=> '127.0.0.1',
-            'redis_port' => 6379,
-            'redis_password'=> 'foobared',
-            'redis_db' => 2,
+            'redis_host' => REDIS_QUEUE_HOST,
+            'redis_port' => REDIS_QUEUE_PORT,
+            'redis_password' => REDIS_QUEUE_PASSWORD,
+            'redis_db' => REDIS_QUEUE_DB,
         ),
         'assetManager' => array(
             'class' => 'S3AssetManager',
@@ -136,6 +136,10 @@ return array(
         'upload_path' => SITE_URL . UPLOAD_PATH,
         'upload_dir' => UPLOAD_DIR,
         'mongodb_ack_level' => MONGODB_ACK_LEVEL,
+        'mongodb_host' => MONGODB_HOST,
+        'mongodb_name' => MONGODB_NAME,
+        'mongodb_user' => MONGODB_USER,
+        'mongodb_password' => MONGODB_PASS,
     ),
     'behaviors' => array(
         'edms' => array(
