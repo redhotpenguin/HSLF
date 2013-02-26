@@ -45,7 +45,6 @@ require_once('config/MobileUserExportJobConfig.php');
  * export and save mobile users report on S3
  * Send an email when the job is complete
  * 
- * @todo: move s3 credentials to the config file
  */
 class MobileUserExportJob {
 
@@ -56,17 +55,17 @@ class MobileUserExportJob {
     private $s3SKey = S3_SKEY;
     private $s3Bucket = S3_BUCKET;
     private $s3QueueDirectory = 'reports';
+    private $sendgridUsername = SENDGRID_USERNAME;
+    private $sendgridPassword = SENDGRID_PASSWORD;
 
     public function perform() {
 
         $startTime = microtime(true);
 
+        // argument validations
         if (!isset($this->args['tenant_id']) && !is_numeric($this->args['tenant_id'])) {
             return "Tenant id is missing or invalid";
         }
-
-        printf('Starting report for tenant %d \n', $this->args['tenant_id']);
-
 
         if (!$this->mongoDBConnect($this->args['mongodb_collection_name'])) {
             return "Could not connect to mongodb server";
@@ -90,46 +89,17 @@ class MobileUserExportJob {
 
         $this->args['filterAttributes']['tenant_id'] = $this->args['tenant_id'];
 
- 
-        $result = $this->generateExport();
+        printf('Starting report for tenant %d \n', $this->args['tenant_id']);
 
+        $result = $this->generateExport();
 
         if ($result === false) {
             error_log("could not generate export. Aborting");
             return false;
         }
 
-        $htmlBody = '<h3>Hi';
+        $this->sendResultEmail($result);
 
-        if (isset($this->args['tenant_name']))
-            $htmlBody.= ' ' . $this->args['tenant_name'] . ',';
-        else
-            $htmlBody.=',';
-
-        $htmlBody.='</h3><p>';
-
-        $htmlBody .= "Your user export is ready and available at <a href='$result'>$result</a>";
-
-        $htmlBody.='</p>';
-
-        $htmlBody.='<em>The Winning Mark robot - mobile@winningmark.com</em>';
-
-        try {
-            $sendgrid = new SendGrid('jonas.palmero', 'chickadee1');
-
-            $mail = new SendGrid\Mail();
-            $mail->
-                    addTo('jonas.palmero@gmail.com')->
-                    setFrom('mobile@winningmark.com')->
-                    setSubject('Your user export is available')->
-                    setText('Download export: ' . $result)->
-                    setHtml($htmlBody);
-
-            $sendgrid->smtp->send($mail);
-        } catch (Exception $e) {
-            error_log("could not deliver email:" . $e->getMessage());
-            return false;
-        }
 
         $completeTime = microtime(true) - $startTime;
 
@@ -139,6 +109,7 @@ class MobileUserExportJob {
         $memoryUsed = $memoryUsed / 1024;
         printf("Used %s MB ", $memoryUsed);
     }
+   
 
     /**
      * Generate and upload an export file to S3
@@ -204,6 +175,45 @@ class MobileUserExportJob {
         $exportDownloadLink = 'https://s3.amazonaws.com/' . $this->s3Bucket . '/' . $this->s3QueueDirectory . '/' . $tmpFileName;
 
         return $exportDownloadLink;
+    }
+
+    /**
+     * Send an email with a confirmation link
+     * @param string link to the export file
+     */
+    private function sendResultEmail($exportUrl) {
+
+        $htmlBody = '<h3>Hi';
+
+        if (isset($this->args['tenant_name']))
+            $htmlBody.= ' ' . $this->args['tenant_name'] . ',';
+        else
+            $htmlBody.=',';
+
+        $htmlBody.='</h3><p>';
+
+        $htmlBody .= "Your user export is ready and available at <a href='$exportUrl'>$exportUrl</a>";
+
+        $htmlBody.='</p>';
+
+        $htmlBody.='<em>The Winning Mark robot - mobile@winningmark.com</em>';
+
+        try {
+            $sendgrid = new SendGrid($this->sendgridUsername, $this->sendgridPassword);
+
+            $mail = new SendGrid\Mail();
+            $mail->
+                    addTo('jonas.palmero@gmail.com')->
+                    setFrom('mobile@winningmark.com')->
+                    setSubject('[Winning Mark Mobile] Your user export is ready')->
+                    setText('Download export: ' . $exportUrl)->
+                    setHtml($htmlBody);
+
+            $sendgrid->smtp->send($mail);
+        } catch (Exception $e) {
+            error_log("could not deliver email:" . $e->getMessage());
+            return false;
+        }
     }
 
     /**
