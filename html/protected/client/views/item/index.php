@@ -44,11 +44,6 @@ $this->widget('bootstrap.widgets.TbGridView', array(
             'header' => 'Item',
             'name' => 'item',
         ),
-        array('name' => 'state_id',
-            'header' => 'State',
-            'value' => '$data->district->state->name',
-            'filter' => CHtml::dropDownList('Item[state_id]', $model->state_id, $state_list),
-        ),
         array(
             'header' => 'District Type',
             'name' => 'district_type',
