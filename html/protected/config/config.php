@@ -44,7 +44,7 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $redisQueuePort = $env['DOTCLOUD_SHM_REDIS_PORT'];
     $redisqQueueLogin = $env['DOTCLOUD_SHM_REDIS_LOGIN'];
     $redisQueuePassword = $env['DOTCLOUD_SHM_REDIS_PASSWORD'];
-    $redisQueueDatabase = '2';
+    $redisQueueDatabase = '1';
 
 
 

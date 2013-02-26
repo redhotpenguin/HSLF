@@ -160,7 +160,8 @@ class MobileUserExportJob {
         $tmpFileName.='.csv';
 
         $tmpFilePath = sys_get_temp_dir() . '/' . $tmpFileName;
-
+        // @todo: try using $fp = fopen('php://temp', 'w');
+        
         $fp = fopen($tmpFilePath, 'w');
 
         if (!$fp) {
