@@ -64,7 +64,7 @@ class MobileUserExportJob {
             return "Tenant id is missing or invalid";
         }
 
-        printf('Starting report for tenant %d \n', $this->args['tenant_id'], $completeTime);
+        printf('Starting report for tenant %d \n', $this->args['tenant_id']);
 
 
         if (!$this->mongoDBConnect($this->args['mongodb_collection_name'])) {
