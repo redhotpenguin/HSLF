@@ -4,6 +4,7 @@ class WebUser extends CWebUser {
 
     private $_access = array();
     private $_userModel; // User active record
+    private $permissions = array(); // logged in users permissions
 
     public function __get($name) {
 
@@ -71,7 +72,6 @@ class WebUser extends CWebUser {
             return $this->getModel()->getTenantUserId($tenant->id, $this->getState('userId'));
 
         return $this->getModel()->getTenantUserId(0, $this->getState('userId')); // 0 means no tenant. Ex: (super)admin dashboard or home page
-
     }
 
     public function getModel() {
@@ -82,7 +82,6 @@ class WebUser extends CWebUser {
     }
 
     /**
-     * Override 
      * Performs access check for this user.
      * @param string $operation the name of the operation that need access check.
      * @param array $params name-value pairs that would be passed to business rules associated
@@ -101,6 +100,28 @@ class WebUser extends CWebUser {
         }
 
         return $access;
+    }
+
+    /**
+     * Check the permission for the logged in user
+     * cache all the user permissions the first time this function is executed
+     * @param string permission name
+     */
+    public function hasPermission($permissionName) {
+                
+        if (in_array($permissionName, $this->permissions)) {
+            return true;
+        }
+   
+        $cAuthAssignments = Yii::app()->getAuthManager()->getAuthAssignments($this->getLoggedInTenantUserId());
+        
+        if(is_array($cAuthAssignments))
+        
+        foreach ($cAuthAssignments as $cAuthAssignment){
+            array_push($this->permissions, $cAuthAssignment->itemName);
+        }
+        
+        return (in_array($permissionName, $this->permissions));
     }
 
 }
