@@ -35,35 +35,29 @@
             if (Yii::app()->user->id):
                 $tenant = Yii::app()->user->getLoggedInUserTenant();
 
-
-                $tenantUserId = Yii::app()->user->getLoggedInTenantUserId();
-
-
                 // if user has a tenant selected
                 if ($tenant) {
                     // dynamic content menu
                     $contentMenu = array();
                     $contentMenuItems = array();
-
-                    if (Yii::app()->authManager->checkAccess('manageBallotItems', $tenantUserId))
+                    
+                    if (Yii::app()->user->hasPermission('manageBallotItems'))
                         array_push($contentMenuItems, array('label' => 'Ballot Items', 'url' => array('/item/index')));
 
-                    if (Yii::app()->authManager->checkAccess('manageOrganizations', $tenantUserId))
+                    if (Yii::app()->user->hasPermission('manageOrganizations'))
                         array_push($contentMenuItems, array('label' => 'Organizations', 'url' => array('/organization/index')));
 
-                    if (Yii::app()->authManager->checkAccess('manageContacts', $tenantUserId))
+                    if (Yii::app()->user->hasPermission('manageContacts'))
                         array_push($contentMenuItems, array('label' => 'Contacts', 'url' => array('/contact/index')));
 
-                    if (Yii::app()->authManager->checkAccess('manageScorecardItems', $tenantUserId))
+                    if (Yii::app()->user->hasPermission('manageScorecardItems'))
                         array_push($contentMenuItems, array('label' => 'Scorecard Items', 'url' => array('/scorecardItem/index')));
 
-                    if (Yii::app()->authManager->checkAccess('manageVotes', $tenantUserId))
+                    if (Yii::app()->user->hasPermission('manageVotes'))
                         array_push($contentMenuItems, array('label' => 'Votes', 'url' => array('/vote/index')));
 
-                    if (Yii::app()->authManager->checkAccess('manageTags', $tenantUserId))
+                    if (Yii::app()->user->hasPermission('manageTags'))
                         array_push($contentMenuItems, array('label' => 'Tags', 'url' => array('/tag/index')));
-
-
 
 
                     if (count($contentMenuItems) > 0) {
@@ -82,22 +76,22 @@
                     $applicationMenuItems = array();
 
 
-                    if (Yii::app()->authManager->checkAccess('manageMobileUsers', $tenantUserId))
+                    if (Yii::app()->user->hasPermission('manageMobileUsers'))
                         array_push($applicationMenuItems, array('label' => 'Mobile Users', 'url' => array('/mobileUser/index')));
 
-                    if (Yii::app()->authManager->checkAccess('manageAlertTypes', $tenantUserId))
+                    if (Yii::app()->user->hasPermission('manageAlertTypes'))
                         array_push($applicationMenuItems, array('label' => 'Alert types', 'url' => array('/alertType/index')));
 
-                    if (Yii::app()->authManager->checkAccess('managePayloads', $tenantUserId))
+                    if (Yii::app()->user->hasPermission('managePayloads'))
                         array_push($applicationMenuItems, array('label' => 'Payloads', 'url' => array('/payload/index')));
 
-                    if (Yii::app()->authManager->checkAccess('managePushMessages', $tenantUserId))
+                    if (Yii::app()->user->hasPermission('managePushMessages'))
                         array_push($applicationMenuItems, array('label' => 'Push Messages', 'url' => array('/pushMessage/index')));
 
-                    if (Yii::app()->authManager->checkAccess('managePushMessages', $tenantUserId))
+                    if (Yii::app()->user->hasPermission('managePushMessages'))
                         array_push($applicationMenuItems, array('itemOptions' => array('id' => 'external_item'), 'label' => 'Urban Airship', 'linkOptions' => array('target' => '_blank'), 'url' => $tenant->ua_dashboard_link));
 
-                    if (Yii::app()->authManager->checkAccess('manageOptions', $tenantUserId))
+                    if (Yii::app()->user->hasPermission('manageOptions'))
                         array_push($applicationMenuItems, array('label' => 'Options', 'url' => array('/option/index')));
 
                     if (count($applicationMenuItems) > 0) {
@@ -124,9 +118,7 @@
                     $brandUrl = '/client/';
                     $brand = 'Winning Mark Mobile';
 
-
-
-                    if (Yii::app()->authManager->checkAccess('admin', $tenantUserId)) {
+                    if (Yii::app()->user->hasPermission('admin')) {
                         $adminMenu = array(
                             'class' => 'bootstrap.widgets.TbMenu',
                             'items' => array(
