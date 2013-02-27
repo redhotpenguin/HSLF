@@ -62,32 +62,39 @@ class MobileUserExportJob {
     private $emailBodyTemplate = EMAIL_BODY_TEMPLATE;
 
     public function perform() {
-
-
         $startTime = microtime(true);
 
+        $this->log('Starting report');
+
+
         // argument validations
-        if (!isset($this->args['tenant_id']) && !is_numeric($this->args['tenant_id'])) {
-            return "Tenant id is missing or invalid";
+        if (!isset($this->args['tenant_id']) || !is_numeric($this->args['tenant_id'])) {
+            $this->logError("Tenant id is missing or invalid");
+            return false;
         }
 
         if (!$this->mongoDBConnect($this->args['mongodb_collection_name'])) {
-            return "Could not connect to mongodb server";
+            $this->logError("Could not connect to mongodb server");
+            return false;
         }
 
         if (!isset($this->args['csvHeaders'])) {
-            error_log("Missing CSV header. Aborting");
+            $this->logError("Missing CSV header. Aborting");
             return false;
         }
 
         if (!isset($this->args['tenant_name'])) {
-            error_log("Tenant name is missing. Aborting");
+            $this->logError("Tenant name is missing. Aborting");
             return false;
         }
 
+        if (!isset($this->args['email'])) {
+            $this->logError("Email address is missing. Aborting");
+            return false;
+        }
 
         if (!is_array($this->args['csvHeaders'])) {
-            error_log("CSV header format error. Aborting");
+            $this->logError("CSV header format error. Aborting");
             return false;
         }
 
@@ -99,24 +106,26 @@ class MobileUserExportJob {
 
         $this->args['filterAttributes']['tenant_id'] = $this->args['tenant_id'];
 
-        printf('Starting report for tenant %d \n', $this->args['tenant_id']);
-
         $result = $this->generateExport();
 
         if ($result === false) {
-            error_log("could not generate export. Aborting");
+            $this->logError("could not generate export. Aborting");
             return false;
         }
 
-        $this->sendResultEmail($result);
+
+        if ($this->sendResultEmail($result))
+            $this->log('Email successfully sent to ' . $this->args['email']);
+        else
+            $this->logError("Could not send email");
 
         $completeTime = microtime(true) - $startTime;
 
-        printf('Finished exporting user data for tenant %d in %s seconds', $this->args['tenant_id'], $completeTime);
+        $this->log("Finished exporting user data in $completeTime seconds");
         $memoryUsed = memory_get_peak_usage(true);
         $memoryUsed = $memoryUsed / 1024;
         $memoryUsed = $memoryUsed / 1024;
-        printf("Used %s MB ", $memoryUsed);
+        $this->log("Used $memoryUsed MB ");
     }
 
     /**
@@ -137,7 +146,7 @@ class MobileUserExportJob {
         $fp = fopen($tmpFilePath, 'w');
 
         if (!$fp) {
-            error_log("Could not open $tmpFilePath. Aborting");
+            $this->logError("Could not open $tmpFilePath. Aborting");
             return false;
         }
 
@@ -171,13 +180,15 @@ class MobileUserExportJob {
         rewind($fp);
         fclose($fp);
 
-        S3::setAuth($this->s3AKey, $this->s3SKey);
-
-        $uploadResult = S3::putObjectFile($tmpFilePath, $this->s3Bucket, $this->s3QueueDirectory . "/" . $tmpFileName, $acl = S3::ACL_PUBLIC_READ, array(), "text/csv");
-
+        try {
+            S3::setAuth($this->s3AKey, $this->s3SKey);
+            $uploadResult = S3::putObjectFile($tmpFilePath, $this->s3Bucket, $this->s3QueueDirectory . "/" . $tmpFileName, $acl = S3::ACL_PUBLIC_READ, array(), "text/csv");
+        } catch (S3Exception $e) {
+            $this->logError('could not upload file to S3: ' . $e->getMessage());
+            $uploadResult = null;
+        }
         if ($uploadResult !== true) {
-            error_log("Could not open upload file to S3:");
-            error_log(print_r($uploadResult, true));
+            $this->logError(print_r($uploadResult, true));
         }
 
         unlink($tmpFilePath);
@@ -201,13 +212,13 @@ class MobileUserExportJob {
         $body = str_replace('{downloadLink}', $exportUrl, $body);
         $body = str_replace('{requester}', $requester, $body);
 
-
         try {
             $sendgrid = new SendGrid($this->sendgridUsername, $this->sendgridPassword);
 
             $mail = new SendGrid\Mail();
             $mail->
-                    addTo('jonas.palmero@gmail.com')->
+                    //   addTo('jonas.palmero@gmail.com')->
+                    addTo($this->args['email'])->
                     setFrom('no-reply@winningmark.com')->
                     setSubject($subject)->
                     setText(strip_tags($body))->
@@ -215,9 +226,11 @@ class MobileUserExportJob {
 
             $sendgrid->smtp->send($mail);
         } catch (Exception $e) {
-            error_log("could not deliver email:" . $e->getMessage());
+            $this->logError('could not deliver email:' . $e->getMessage());
             return false;
         }
+
+        return true;
     }
 
     /**
@@ -234,7 +247,7 @@ class MobileUserExportJob {
                         'timeout' => $this->args['mongodb_time_out'],
                     )); // connect
         } catch (MongoConnectionException $e) {
-            printf("Could not connect to mongodb database: %s\n ", $e->getMessage());
+            $this->logError('Could not connect to mongodb database: ' . $e->getMessage());
             return false;
         }
 
@@ -244,11 +257,30 @@ class MobileUserExportJob {
         try {
             $this->collection = new MongoCollection($this->db, $collectionName); // @todo: exception handling
         } catch (Exception $e) {
-            printf("Could not get a collection: %s\n ", $e->getMessage());
+            $this->logError('Could not get a collection: %s' . $e->getMessage());
             return false;
         }
 
         return true;
+    }
+
+    /**
+     * log a message
+     * @param string message
+     * @param string type type of message
+     */
+    private function log($message) {
+        $name = ( isset($this->args['tenant_name']) ? $this->args['tenant_name'] : '');
+        printf('%s: ' . $message . PHP_EOL, $name);
+    }
+
+    /**
+     * log an error message
+     */
+    private function logError($message) {
+        $name = ( isset($this->args['tenant_name']) ? $this->args['tenant_name'] : '');
+
+        printf('%s[error]: ' . $message . PHP_EOL, $name);
     }
 
 }

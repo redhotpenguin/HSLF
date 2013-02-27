@@ -14,7 +14,7 @@ Resque::redis()->auth(REDIS_PASSWORD);
 
 Resque::redis()->select(REDIS_DB);
 
- $csvHeaders = array(
+$csvHeaders = array(
     '_id' => 'Identifier',
     'tenant_id' => 'Tenant ID',
     'device_type' => 'Device Type',
@@ -29,22 +29,22 @@ Resque::redis()->select(REDIS_DB);
     'registration_date' => 'Registration Date',
     'last_connection_date' => 'Last Connection date',
 );
- 
- 
- $filterAttributes['device_type'] = 'android';
- $filterAttributes = array();
- 
- 
-/*dotcloud queue sandbox credentials*/
+
+
+$filterAttributes['device_type'] = 'android';
+$filterAttributes = array();
+
+
+/* dotcloud queue sandbox credentials */
 $parameters = array(
     'tenant_id' => 2,
-    'tenant_name'=>'Our Oregon',
+    'tenant_name' => 'Our Oregon',
     'requested_by' => 'jonas',
     'email' => 'jonas.palmero@gmail.com',
-    'mongodb_host' => 'mongodb://root:a5a7j4HsY027U6wGZ8kg@mapqueue-winningmark-data-0.azva.dotcloud.net:51138',
+    'mongodb_host' => 'mongodb://localhost:27017',
     'mongodb_name' => 'mobile_advocacy_platform',
-    'mongodb_username' => 'map_user',
-    'mongodb_password' => 'jeMEwRArEKwBg7Q',
+    'mongodb_username' => 'admin',
+    'mongodb_password' => 'admin',
     'mongodb_time_out' => 5000,
     'mongodb_collection_name' => 'mobile_user',
     'csvHeaders' => $csvHeaders,
