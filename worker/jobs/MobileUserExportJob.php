@@ -66,45 +66,9 @@ class MobileUserExportJob {
 
         $this->log('Starting report');
 
-
-        // argument validations
-        if (!isset($this->args['tenant_id']) || !is_numeric($this->args['tenant_id'])) {
-            $this->logError("Tenant id is missing or invalid");
-            return false;
+        if(($r = $this->verifyArguments()) != true){
+            return $r;
         }
-
-        if (!$this->mongoDBConnect($this->args['mongodb_collection_name'])) {
-            $this->logError("Could not connect to mongodb server");
-            return false;
-        }
-
-        if (!isset($this->args['csvHeaders'])) {
-            $this->logError("Missing CSV header. Aborting");
-            return false;
-        }
-
-        if (!isset($this->args['tenant_name'])) {
-            $this->logError("Tenant name is missing. Aborting");
-            return false;
-        }
-
-        if (!isset($this->args['email'])) {
-            $this->logError("Email address is missing. Aborting");
-            return false;
-        }
-
-        if (!is_array($this->args['csvHeaders'])) {
-            $this->logError("CSV header format error. Aborting");
-            return false;
-        }
-
-        if (isset($this->args['filterAttributes']) && is_array($this->args['filterAttributes']))
-            $filterAttributes = $this->args['filterAttributes'];
-
-        else
-            $filterAttributes = array();
-
-        $this->args['filterAttributes']['tenant_id'] = $this->args['tenant_id'];
 
         $result = $this->generateExport();
 
@@ -112,7 +76,6 @@ class MobileUserExportJob {
             $this->logError("could not generate export. Aborting");
             return false;
         }
-
 
         if ($this->sendResultEmail($result))
             $this->log('Email successfully sent to ' . $this->args['email']);
@@ -247,7 +210,7 @@ class MobileUserExportJob {
                         'timeout' => $this->args['mongodb_time_out'],
                     )); // connect
         } catch (MongoConnectionException $e) {
-            $this->logError('Could not connect to mongodb database: ' . $e->getMessage());
+            $this->logError($e->getMessage());
             return false;
         }
 
@@ -281,6 +244,50 @@ class MobileUserExportJob {
         $name = ( isset($this->args['tenant_name']) ? $this->args['tenant_name'] : '');
 
         printf('%s[error]: ' . $message . PHP_EOL, $name);
+    }
+
+    private function verifyArguments() {
+
+        // argument validations
+        if (!isset($this->args['tenant_id']) || !is_numeric($this->args['tenant_id'])) {
+            $this->logError("Tenant id is missing or invalid. Aborting");
+            return false;
+        }
+
+        if (!$this->mongoDBConnect($this->args['mongodb_collection_name'])) {
+            $this->logError("Could not connect to mongodb server. Aborting");
+            return false;
+        }
+
+        if (!isset($this->args['csvHeaders'])) {
+            $this->logError("Missing CSV header. Aborting");
+            return false;
+        }
+
+        if (!isset($this->args['tenant_name'])) {
+            $this->logError("Tenant name is missing. Aborting");
+            return false;
+        }
+
+        if (!isset($this->args['email']) || !filter_var($this->args['email'], FILTER_VALIDATE_EMAIL)) {
+            $this->logError("Email address is missing or invalid. Aborting");
+            return false;
+        }
+
+        if (!is_array($this->args['csvHeaders'])) {
+            $this->logError("CSV header format error. Aborting");
+            return false;
+        }
+
+        if (isset($this->args['filterAttributes']) && is_array($this->args['filterAttributes']))
+            $filterAttributes = $this->args['filterAttributes'];
+
+        else
+            $filterAttributes = array();
+
+        $this->args['filterAttributes']['tenant_id'] = $this->args['tenant_id'];
+        
+        return true;
     }
 
 }

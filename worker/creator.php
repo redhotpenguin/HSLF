@@ -30,7 +30,6 @@ $csvHeaders = array(
     'last_connection_date' => 'Last Connection date',
 );
 
-
 $filterAttributes['device_type'] = 'android';
 $filterAttributes = array();
 
