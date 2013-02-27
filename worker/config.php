@@ -4,9 +4,9 @@ $dotcloud_conf = "/home/dotcloud/environment.json";
 
 if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $env = json_decode(file_get_contents($dotcloud_conf), true);
-    $redisHost = $env['DOTCLOUD_SHM_SSH_HOST'];
-    $redisPort = $env['DOTCLOUD_SHM_REDIS_PORT'];
-    $redisPassword = $env['DOTCLOUD_SHM_REDIS_PASSWORD'];
+    $redisHost = $env['DOTCLOUD_QUEUE_SSH_HOST'];
+    $redisPort = $env['DOTCLOUD_QUEUE_REDIS_PORT'];
+    $redisPassword = $env['DOTCLOUD_QUEUE_REDIS_PASSWORD'];
     $redisDb = 1;
 } else {
     $redisHost = '127.0.0.1';
