@@ -193,47 +193,6 @@ class MobileUserController extends Controller {
 
         $this->redirect(array('index'));
 
-        /*
-
-          $fp = fopen('php://temp', 'w');
-
-          $mobileUserModel = MobileUser::model();
-          $mobileUserModel->setReadPreference(MongoClient::RP_SECONDARY_PREFERRED);
-
-          $headers = $mobileUserModel->getAttributes();
-
-          fputcsv($fp, $headers);
-
-          $mobileUserCursor = $mobileUserModel->find($searchAttributes);
-
-          foreach ($mobileUserCursor as $mobileUser) {
-          $row = array();
-          foreach ($headers as $head => $friendlyHeadName) {
-          $data = null;
-
-          if (isset($mobileUser[$head])) {
-          if (is_array($mobileUser[$head])) {
-          $data = implode(', ', $mobileUser[$head]);
-          } elseif ($mobileUser[$head] instanceof MongoDate) {
-          $data = date('m-d-Y h:i:s', $mobileUser[$head]->sec);
-          } else {
-          $data = $mobileUser[$head];
-          }
-          }
-
-          $row[] = $data;
-          }
-          fputcsv($fp, $row);
-          }
-
-          rewind($fp);
-          $content = stream_get_contents($fp);
-
-          fclose($fp);
-
-          Yii::app()->getRequest()->sendFile('mobileUsers.csv', $content, "text/csv", false);
-         * 
-         */
     }
 
     /**

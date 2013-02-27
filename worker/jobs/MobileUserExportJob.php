@@ -143,6 +143,8 @@ class MobileUserExportJob {
 
         fputcsv($fp, $this->args['csvHeaders']);
 
+        $this->collection->setReadPreference(MongoClient::RP_SECONDARY_PREFERRED);
+
         $mobileUserCursor = $this->collection->find($this->args['filterAttributes']);
 
         foreach ($mobileUserCursor as $mobileUser) {
@@ -190,11 +192,11 @@ class MobileUserExportJob {
      * @param string link to the export file
      */
     private function sendResultEmail($exportUrl) {
-        
-        $requester = (isset($this->args['requested_by'])?$this->args['requested_by']:$this->args['tenant_name']);
-        
+
+        $requester = (isset($this->args['requested_by']) ? $this->args['requested_by'] : $this->args['tenant_name']);
+
         $subject = str_replace('{name}', $this->args['tenant_name'], $this->emailSubjectTemplate);
-        
+
         $body = str_replace('{name}', $this->args['tenant_name'], $this->emailBodyTemplate);
         $body = str_replace('{downloadLink}', $exportUrl, $body);
         $body = str_replace('{requester}', $requester, $body);
@@ -237,6 +239,7 @@ class MobileUserExportJob {
         }
 
         $this->db = $this->mongoClient->selectDB($this->args['mongodb_name']);
+
 
         try {
             $this->collection = new MongoCollection($this->db, $collectionName); // @todo: exception handling
