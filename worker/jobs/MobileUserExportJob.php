@@ -76,6 +76,8 @@ class MobileUserExportJob {
             $this->logError("could not generate export. Aborting");
             return false;
         }
+        
+        $this->log('Export link: '.$result);
 
         if ($this->sendResultEmail($result))
             $this->log('Email successfully sent to ' . $this->args['email']);
