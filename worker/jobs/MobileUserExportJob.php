@@ -86,12 +86,11 @@ class MobileUserExportJob {
 
         $completeTime = microtime(true) - $startTime;
 
-        $this->log("Finished exporting user data in $completeTime seconds");
         $memoryUsed = memory_get_peak_usage(true);
         $memoryUsed = $memoryUsed / 1024;
         $memoryUsed = $memoryUsed / 1024;
         $this->log("Used $memoryUsed MB ");
-        $this->log('User export finished');
+        $this->log("User export completed in $completeTime seconds");
     }
 
     /**
