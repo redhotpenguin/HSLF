@@ -63,6 +63,7 @@ class MobileUserExportJob {
 
     public function perform() {
 
+
         $startTime = microtime(true);
 
         // argument validations
@@ -108,7 +109,6 @@ class MobileUserExportJob {
         }
 
         $this->sendResultEmail($result);
-
 
         $completeTime = microtime(true) - $startTime;
 
@@ -190,11 +190,14 @@ class MobileUserExportJob {
      * @param string link to the export file
      */
     private function sendResultEmail($exportUrl) {
-
+        
+        $requester = (isset($this->args['requested_by'])?$this->args['requested_by']:$this->args['tenant_name']);
+        
         $subject = str_replace('{name}', $this->args['tenant_name'], $this->emailSubjectTemplate);
-
+        
         $body = str_replace('{name}', $this->args['tenant_name'], $this->emailBodyTemplate);
         $body = str_replace('{downloadLink}', $exportUrl, $body);
+        $body = str_replace('{requester}', $requester, $body);
 
 
         try {
@@ -203,7 +206,7 @@ class MobileUserExportJob {
             $mail = new SendGrid\Mail();
             $mail->
                     addTo('jonas.palmero@gmail.com')->
-                    setFrom('mobile@winningmark.com')->
+                    setFrom('no-reply@winningmark.com')->
                     setSubject($subject)->
                     setText(strip_tags($body))->
                     setHtml($body);

@@ -183,8 +183,9 @@ class MobileUserController extends Controller {
             'mongodb_collection_name' => 'mobile_user',
             'csvHeaders' => $headers,
             'filterAttributes' => $searchAttributes,
+            'requested_by' => Yii::app()->user->name,
         );
-        
+
         if (Yii::app()->queue->enqueue('mobile_platform', 'MobileUserExportJob', $parameters))
             Yii::app()->user->setFlash('success', "A user export will be sent to {$tenant->email} shortly.");
         else

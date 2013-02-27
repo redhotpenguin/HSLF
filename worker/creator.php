@@ -32,12 +32,14 @@ Resque::redis()->select(REDIS_DB);
  
  
  $filterAttributes['device_type'] = 'android';
+ $filterAttributes = array();
  
  
 /*dotcloud queue sandbox credentials*/
 $parameters = array(
-    'tenant_id' => 1,
+    'tenant_id' => 2,
     'tenant_name'=>'Our Oregon',
+    'requested_by' => 'jonas',
     'email' => 'jonas.palmero@gmail.com',
     'mongodb_host' => 'mongodb://root:a5a7j4HsY027U6wGZ8kg@mapqueue-winningmark-data-0.azva.dotcloud.net:51138',
     'mongodb_name' => 'mobile_advocacy_platform',
