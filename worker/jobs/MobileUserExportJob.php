@@ -64,9 +64,9 @@ class MobileUserExportJob {
     public function perform() {
         $startTime = microtime(true);
 
-        $this->log('Starting report');
+        $this->log('Starting user export');
 
-        if(($r = $this->verifyArguments()) != true){
+        if (($r = $this->verifyArguments()) != true) {
             return $r;
         }
 
@@ -76,8 +76,8 @@ class MobileUserExportJob {
             $this->logError("could not generate export. Aborting");
             return false;
         }
-        
-        $this->log('Export link: '.$result);
+
+        $this->log('Export link: ' . $result);
 
         if ($this->sendResultEmail($result))
             $this->log('Email successfully sent to ' . $this->args['email']);
@@ -91,6 +91,7 @@ class MobileUserExportJob {
         $memoryUsed = $memoryUsed / 1024;
         $memoryUsed = $memoryUsed / 1024;
         $this->log("Used $memoryUsed MB ");
+        $this->log('User export finished');
     }
 
     /**
@@ -190,6 +191,7 @@ class MobileUserExportJob {
                     setHtml($body);
 
             $sendgrid->smtp->send($mail);
+            
         } catch (Exception $e) {
             $this->logError('could not deliver email:' . $e->getMessage());
             return false;
@@ -209,7 +211,7 @@ class MobileUserExportJob {
                         'db' => $this->args['mongodb_name'],
                         'password' => $this->args['mongodb_password'],
                         'username' => $this->args['mongodb_username'],
-                        'timeout' => $this->args['mongodb_time_out'],
+                        'timeout' => 10000,
                     )); // connect
         } catch (MongoConnectionException $e) {
             $this->logError($e->getMessage());
@@ -288,7 +290,7 @@ class MobileUserExportJob {
             $filterAttributes = array();
 
         $this->args['filterAttributes']['tenant_id'] = $this->args['tenant_id'];
-        
+
         return true;
     }
 

@@ -179,7 +179,6 @@ class MobileUserController extends Controller {
             'mongodb_name' => Yii::app()->params['mongodb_name'],
             'mongodb_username' => Yii::app()->params['mongodb_user'],
             'mongodb_password' => Yii::app()->params['mongodb_password'],
-            'mongodb_time_out' => 5000,
             'mongodb_collection_name' => 'mobile_user',
             'csvHeaders' => $headers,
             'filterAttributes' => $searchAttributes,

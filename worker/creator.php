@@ -44,7 +44,6 @@ $parameters = array(
     'mongodb_name' => 'mobile_advocacy_platform',
     'mongodb_username' => 'admin',
     'mongodb_password' => 'admin',
-    'mongodb_time_out' => 5000,
     'mongodb_collection_name' => 'mobile_user',
     'csvHeaders' => $csvHeaders,
     'filterAttributes' => $filterAttributes,
