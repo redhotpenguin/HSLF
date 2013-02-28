@@ -25,3 +25,5 @@ ALTER TABLE scorecard_item ADD FOREIGN KEY (office_id) REFERENCES office(id) ON 
 ALTER TABLE contact DROP CONSTRAINT contact_tenant_id_fkey;
 
 ALTER TABLE contact ADD FOREIGN KEY (tenant_id) REFERENCES contact (id) ON UPDATE CASCADE ON DELETE CASCADE; 
+
+UPDATE contact SET first_name = 'N/A' WHERE first_name = 'NA';

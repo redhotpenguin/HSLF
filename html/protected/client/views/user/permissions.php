@@ -1,4 +1,8 @@
 <?php
+$baseUrl = Yii::app()->baseUrl;
+$cs = Yii::app()->getClientScript();
+$cs->registerScriptFile($baseUrl . '/static/user/user.js');
+
 $navBarItems = array();
 
 
@@ -7,7 +11,7 @@ array_push($navBarItems, '', array('label' => "$user->username ({$tenant->displa
 
 $this->secondaryNav['items'] = $navBarItems;
 $this->secondaryNav['name'] = 'Users';
-$this->secondaryNav['url'] =array('user/index');
+$this->secondaryNav['url'] = array('user/index');
 
 echo CHtml::beginForm(array('user/updateTasks'), 'POST', array('id' => 'tasksForm'));
 
@@ -27,7 +31,7 @@ echo CHtml::hiddenField('userId', $user->id);
     <?php
     $i = 0;
     $taskCount = count($taskList);
-    
+
     foreach ($taskList as $taskName => $taskValue):
 
         if ($i % 2 == 0) {
@@ -36,7 +40,7 @@ echo CHtml::hiddenField('userId', $user->id);
         ?>
 
     <td> <?php echo $taskValue['description']; ?> </td>
-    <td>  <?php echo CHtml::checkBox('tasks[]', $taskValue['checked'], array('value' => $taskName )); ?> </td>
+    <td>  <?php echo CHtml::checkBox('tasks[]', $taskValue['checked'], array('value' => $taskName)); ?> </td>
 
     <?php
     if ($i % 2 == 1) {
@@ -50,9 +54,22 @@ endforeach;
 
 </table>
 <div class="clearfix"></div>
-<?php
-$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'Save'));
 
+<div class="row-fluid">
+    <p class="btn" id="select_all">select all</a> <p class="btn" id="deselect_all">deselect all</a>
+
+</div>
+
+<br/>
+
+<div class="row-fluid">
+
+    <?php
+    $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'Save'));
+    ?>
+</div>
+
+<?php
 echo CHtml::endForm(); // end form widget
 
 if (getParam('result') == 'success') {
@@ -61,3 +78,4 @@ if (getParam('result') == 'success') {
     echo '<div class="update_box btn-danger">Error while updating user permissions</div>';
 }
 ?>
+
