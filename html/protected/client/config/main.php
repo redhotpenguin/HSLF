@@ -39,7 +39,7 @@ return array(
             'username' => DB_USER,
             'password' => DB_PASS,
             'charset' => 'UTF-8',
-            'schemaCachingDuration' => '3600',
+            'schemaCachingDuration' => 3600,
         ),
         'user' => array(
 // enable cookie-based authentication
