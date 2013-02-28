@@ -40,11 +40,11 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $redisPassword = $env['DOTCLOUD_CACHE_REDIS_PASSWORD'];
     $redisDatabase = '1'; // redis does not use name for db's
 
-    $redisQueueHost = $env['DOTCLOUD_QUEUE_SSH_HOST'];
-    $redisQueuePort = $env['DOTCLOUD_QUEUE_REDIS_PORT'];
-    $redisqQueueLogin = $env['DOTCLOUD_QUEUE_REDIS_LOGIN'];
-    $redisQueuePassword = $env['DOTCLOUD_QUEUE_REDIS_PASSWORD'];
-    $redisQueueDatabase = '1';
+    $redisQueueHost = $env['DOTCLOUD_CACHE_REDIS_HOST'];
+    $redisQueuePort = $env['DOTCLOUD_CACHE_REDIS_PORT'];
+    $redisqQueueLogin = $env['DOTCLOUD_CACHE_REDIS_LOGIN'];
+    $redisQueuePassword = $env['DOTCLOUD_CACHE_REDIS_PASSWORD'];
+    $redisQueueDatabase = '2';
 
 
 

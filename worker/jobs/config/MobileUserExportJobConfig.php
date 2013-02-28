@@ -5,7 +5,13 @@ $dotcloud_conf = "/home/dotcloud/environment.json";
 if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $s3AKey = 'AKIAIDNK7VPB47DB2F2Q';
     $s3SKey = '2F7TBdQsokQVpIZAgNUx/PgKyE01wz3AXLmGFYvh';
-    $s3Bucket = 'maplocal';
+
+
+    if ($env['DOTCLOUD_PROJECT'] === 'productionmap')
+        $s3Bucket = 'wmmobile';
+    else
+        $s3Bucket = 'mobileadvocacydev';
+    
 } else {
     $s3AKey = 'AKIAIDNK7VPB47DB2F2Q';
     $s3SKey = '2F7TBdQsokQVpIZAgNUx/PgKyE01wz3AXLmGFYvh';
