@@ -56,7 +56,7 @@ endforeach;
 <div class="clearfix"></div>
 
 <div class="row-fluid">
-    <p class="btn" id="select_all">select all</a> <p class="btn" id="deselect_all">deselect all</a>
+    <p class="btn" id="select_all">select all</p> <p class="btn" id="deselect_all">deselect all</p>
 
 </div>
 
