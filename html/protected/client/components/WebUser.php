@@ -62,7 +62,6 @@ class WebUser extends CWebUser {
     }
 
     /**
-     * Experimental
      * return the composite primary key from tenant_user
      * @return
      */
