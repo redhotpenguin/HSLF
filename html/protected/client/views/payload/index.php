@@ -4,11 +4,13 @@ $navBarItems = array(
     '',
     array('label' => 'Create', 'url' => array('create')),
     '',
+    array('label' => 'Export', 'url' => array('exportCSV')),
+    '',
 );
 
 $this->secondaryNav['items'] = $navBarItems;
 $this->secondaryNav['name'] = 'Payloads';
-$this->secondaryNav['url'] =array('payload/index');
+$this->secondaryNav['url'] = array('payload/index');
 
 
 $this->widget('bootstrap.widgets.TbGridView', array(

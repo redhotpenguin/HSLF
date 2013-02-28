@@ -1,7 +1,10 @@
 <?php
+
 $navBarItems = array(
     '',
     array('label' => 'Create', 'url' => array('create')),
+    '',
+    array('label' => 'Export', 'url' => array('exportCSV')),
     '',
 );
 

@@ -19,7 +19,7 @@ class TagController extends Controller {
      */ public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index'),
+                'actions' => array('index', 'exportCSV'),
                 'roles' => array('readTag'),
             ),
             array('allow',
@@ -147,6 +147,19 @@ class TagController extends Controller {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
+    }
+
+    /**
+     * Performs the CSV Export
+     */
+    public function actionExportCSV() {
+        Yii::import('backend.extensions.csv.ESCVExport');
+
+        $csv = new ESCVExport(Tag::model()->findAll());
+
+
+        $content = $csv->toCSV();
+        Yii::app()->getRequest()->sendFile('tags.csv', $content, "text/csv", false);
     }
 
 }

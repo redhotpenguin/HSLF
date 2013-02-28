@@ -4,11 +4,13 @@ $navBarItems = array(
     '',
     array('label' => 'Create', 'url' => array('create')),
     '',
+    array('label' => 'Export', 'url' => array('exportCSV')),
+    '',
 );
 
 $this->secondaryNav['items'] = $navBarItems;
 $this->secondaryNav['name'] = 'Push Messages';
-$this->secondaryNav['url'] =array('pushMessage/index');
+$this->secondaryNav['url'] = array('pushMessage/index');
 
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'push-message-grid',

@@ -19,7 +19,7 @@ class PushMessageController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index'),
+                'actions' => array('index', 'exportCSV'),
                 'roles' => array('readPushMessage'),
             ),
             array('allow',
@@ -149,6 +149,23 @@ class PushMessageController extends Controller {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
+    }
+
+    /**
+     * Performs the CSV Export
+     */
+    public function actionExportCSV() {
+        Yii::import('backend.extensions.csv.ESCVExport');
+
+        $csv = new ESCVExport(PushMessage::model()->findAll());
+
+        $content = $csv->toCSV();
+
+        
+        print_r($content);
+        exit;
+        
+        Yii::app()->getRequest()->sendFile('push_messages.csv', $content, "text/csv", false);
     }
 
 }

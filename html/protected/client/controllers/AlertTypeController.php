@@ -1,6 +1,7 @@
 <?php
 
 class AlertTypeController extends Controller {
+
     /**
      * @return array action filters
      */
@@ -144,6 +145,19 @@ class AlertTypeController extends Controller {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
+    }
+
+    /**
+     * Performs the CSV Export
+     */
+    public function actionExportCSV() {
+        Yii::import('backend.extensions.csv.ESCVExport');
+
+        $csv = new ESCVExport(AlertType::model()->findAll());
+
+
+        $content = $csv->toCSV();
+        Yii::app()->getRequest()->sendFile('alerts.csv', $content, "text/csv", false);
     }
 
 }

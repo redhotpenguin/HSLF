@@ -19,7 +19,7 @@ class PayloadController extends Controller {
      */ public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index'),
+                'actions' => array('index', 'exportCSV'),
                 'roles' => array('readPayload'),
             ),
             array('allow',
@@ -162,6 +162,19 @@ class PayloadController extends Controller {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
+    }
+
+    /**
+     * Performs the CSV Export
+     */
+    public function actionExportCSV() {
+        Yii::import('backend.extensions.csv.ESCVExport');
+
+        $csv = new ESCVExport(Payload::model()->findAll());
+
+
+        $content = $csv->toCSV();
+        Yii::app()->getRequest()->sendFile('payloads.csv', $content, "text/csv", false);
     }
 
 }

@@ -4,11 +4,13 @@ $navBarItems = array(
     '',
     array('label' => 'Create', 'url' => array('create')),
     '',
+    array('label' => 'Export', 'url' => array('exportCSV')),
+    '',
 );
 
 $this->secondaryNav['items'] = $navBarItems;
 $this->secondaryNav['name'] = 'Tags';
-$this->secondaryNav['url'] =array('tag/index');
+$this->secondaryNav['url'] = array('tag/index');
 
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'tag-grid',
@@ -20,7 +22,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         'type',
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
-            'template'=>'{update}{delete}'
+            'template' => '{update}{delete}'
         ),
     ),
 ));
