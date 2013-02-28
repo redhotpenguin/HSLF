@@ -46,3 +46,6 @@ Hi <b>{name}</b>, <p> Your user export is ready and avalaible at the following u
 
 define('EMAIL_SUBJECT_TEMPLATE', $emailSubjectTemplate);
 define('EMAIL_BODY_TEMPLATE', $emailBodyTemplate);
+
+
+date_default_timezone_set('America/Los_Angeles');
