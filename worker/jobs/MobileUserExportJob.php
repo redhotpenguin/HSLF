@@ -52,6 +52,7 @@ class MobileUserExportJob {
     private $db;
     private $collection;
     private $mongoClient;
+    private $s3Host = S3_HOST;
     private $s3AKey = S3_AKEY;
     private $s3SKey = S3_SKEY;
     private $s3Bucket = S3_BUCKET;
@@ -156,9 +157,8 @@ class MobileUserExportJob {
             $this->logError(print_r($uploadResult, true));
         }
 
-        unlink($tmpFilePath);
 
-        $exportDownloadLink = 'https://s3.amazonaws.com/' . $this->s3Bucket . '/' . $this->s3QueueDirectory . '/' . $tmpFileName;
+        $exportDownloadLink = 'https://' . $this->s3Host . '/' . $this->s3QueueDirectory . '/' . $tmpFileName;
 
         return $exportDownloadLink;
     }
@@ -190,7 +190,6 @@ class MobileUserExportJob {
                     setHtml($body);
 
             $sendgrid->smtp->send($mail);
-            
         } catch (Exception $e) {
             $this->logError('could not deliver email:' . $e->getMessage());
             return false;

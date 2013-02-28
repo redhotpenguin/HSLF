@@ -7,18 +7,22 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $s3SKey = '2F7TBdQsokQVpIZAgNUx/PgKyE01wz3AXLmGFYvh';
 
 
-    if ($env['DOTCLOUD_PROJECT'] === 'productionmap')
+    if ($env['DOTCLOUD_PROJECT'] === 'productionmap') {
+        $s3Host = 'wmmobile.s3.amazonaws.com';
         $s3Bucket = 'wmmobile';
-    else
+    } else {
+        $s3Host = 'mobileadvocacydev.s3.amazonaws.com';
         $s3Bucket = 'mobileadvocacydev';
-    
+    }
 } else {
+    $s3Host = 'maplocal.s3.amazonaws.com';
+    $s3Bucket = 'maplocal';
     $s3AKey = 'AKIAIDNK7VPB47DB2F2Q';
     $s3SKey = '2F7TBdQsokQVpIZAgNUx/PgKyE01wz3AXLmGFYvh';
-    $s3Bucket = 'maplocal';
 }
 
 // s3 specific
+DEFINE('S3_HOST', $s3Host);
 define('S3_AKEY', $s3AKey);
 define('S3_SKEY', $s3SKey);
 define('S3_BUCKET', $s3Bucket);
