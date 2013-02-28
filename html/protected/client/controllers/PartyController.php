@@ -53,7 +53,7 @@ class PartyController extends Controller {
         if (isset($_POST['Party'])) {
             $model->attributes = $_POST['Party'];
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id, 'created'=>true));
+                $this->redirect(array('update', 'id' => $model->id, 'created' => true));
         }
 
         $this->render('editor', array(
@@ -75,7 +75,7 @@ class PartyController extends Controller {
         if (isset($_POST['Party'])) {
             $model->attributes = $_POST['Party'];
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id, 'updated'=>true));
+                $this->redirect(array('update', 'id' => $model->id, 'updated' => true));
         }
 
         $this->render('editor', array(
@@ -146,8 +146,13 @@ class PartyController extends Controller {
 
         $csv = new ESCVExport(Party::model()->findAll());
 
-
         $content = $csv->toCSV();
+
+        if ($content == null) {
+            Yii::app()->user->setFlash('error', "Nothing to export");
+            $this->redirect(array('index'));
+        }
+
         Yii::app()->getRequest()->sendFile('parties.csv', $content, "text/csv", false);
     }
 

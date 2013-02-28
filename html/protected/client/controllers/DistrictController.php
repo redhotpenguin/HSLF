@@ -19,7 +19,7 @@ class DistrictController extends Controller {
             ),
             array(// restrict State to admins only
                 'allow',
-                'actions' => array('create', 'delete', 'update', 'index','exportCSV'),
+                'actions' => array('create', 'delete', 'update', 'index', 'exportCSV'),
                 'roles' => array('manageDistricts'),
             ),
             array('deny', // deny all users
@@ -41,7 +41,7 @@ class DistrictController extends Controller {
         if (isset($_POST['District'])) {
             $model->attributes = $_POST['District'];
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id, ));
+                $this->redirect(array('update', 'id' => $model->id,));
         }
 
         $this->render('editor', array(
@@ -63,7 +63,7 @@ class DistrictController extends Controller {
         if (isset($_POST['District'])) {
             $model->attributes = $_POST['District'];
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id, ));
+                $this->redirect(array('update', 'id' => $model->id,));
         }
 
         $this->render('editor', array(
@@ -183,6 +183,11 @@ class DistrictController extends Controller {
         $csv = new ESCVExport(District::model()->findAll());
 
         $content = $csv->toCSV();
+
+        if ($content == null) {
+            Yii::app()->user->setFlash('error', "Nothing to export");
+            $this->redirect(array('index'));
+        }
 
         Yii::app()->getRequest()->sendFile('districts.csv', $content, "text/csv", false);
     }

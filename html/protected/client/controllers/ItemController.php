@@ -256,8 +256,14 @@ class ItemController extends Controller {
 
         $csv = new ESCVExport(Item::model()->findAll());
 
-
         $content = $csv->toCSV();
+
+        if ($content == null) {
+            Yii::app()->user->setFlash('error', "Nothing to export");
+            $this->redirect(array('index'));
+        }
+
+
         Yii::app()->getRequest()->sendFile('items.csv', $content, "text/csv", false);
     }
 
@@ -269,8 +275,13 @@ class ItemController extends Controller {
 
         $csv = new ESCVExport(ItemNews::model()->findAll());
 
-
         $content = $csv->toCSV();
+
+        if ($content == null) {
+            Yii::app()->user->setFlash('error', "Nothing to export");
+            $this->redirect(array('index'));
+        }
+
         Yii::app()->getRequest()->sendFile('item_news.csv', $content, "text/csv", false);
     }
 
@@ -282,8 +293,13 @@ class ItemController extends Controller {
 
         $csv = new ESCVExport(ItemOrganization::model()->findAll());
 
-
         $content = $csv->toCSV();
+
+        if ($content == null) {
+            Yii::app()->user->setFlash('error', "Nothing to export");
+            $this->redirect(array('index'));
+        }
+
         Yii::app()->getRequest()->sendFile('item_organization.csv', $content, "text/csv", false);
     }
 

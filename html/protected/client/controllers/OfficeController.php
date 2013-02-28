@@ -42,7 +42,7 @@ class OfficeController extends Controller {
         if (isset($_POST['Office'])) {
             $model->attributes = $_POST['Office'];
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id, ));
+                $this->redirect(array('update', 'id' => $model->id,));
         }
 
         $this->render('editor', array(
@@ -64,7 +64,7 @@ class OfficeController extends Controller {
         if (isset($_POST['Office'])) {
             $model->attributes = $_POST['Office'];
             if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id, ));
+                $this->redirect(array('update', 'id' => $model->id,));
         }
 
         $this->render('editor', array(
@@ -135,8 +135,13 @@ class OfficeController extends Controller {
         Yii::import('backend.extensions.csv.ESCVExport');
         $csv = new ESCVExport(Office::model()->findAll());
 
-
         $content = $csv->toCSV();
+
+        if ($content == null) {
+            Yii::app()->user->setFlash('error', "Nothing to export");
+            $this->redirect(array('index'));
+        }
+
         Yii::app()->getRequest()->sendFile('office.csv', $content, "text/csv", false);
     }
 

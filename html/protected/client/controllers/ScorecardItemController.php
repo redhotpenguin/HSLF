@@ -157,8 +157,14 @@ class ScorecardItemController extends Controller {
 
         $csv = new ESCVExport(ScorecardItem::model()->findAll());
 
-
         $content = $csv->toCSV();
+
+        if ($content == null) {
+            Yii::app()->user->setFlash('error', "Nothing to export");
+            $this->redirect(array('index'));
+        }
+
+
         Yii::app()->getRequest()->sendFile('scorecard_item.csv', $content, "text/csv", false);
     }
 

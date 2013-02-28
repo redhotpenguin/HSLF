@@ -161,10 +161,11 @@ class PushMessageController extends Controller {
 
         $content = $csv->toCSV();
 
-        
-        print_r($content);
-        exit;
-        
+        if ($content == null) {
+            Yii::app()->user->setFlash('error', "Nothing to export");
+            $this->redirect(array('index'));
+        }
+
         Yii::app()->getRequest()->sendFile('push_messages.csv', $content, "text/csv", false);
     }
 

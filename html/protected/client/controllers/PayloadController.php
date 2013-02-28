@@ -172,8 +172,13 @@ class PayloadController extends Controller {
 
         $csv = new ESCVExport(Payload::model()->findAll());
 
-
         $content = $csv->toCSV();
+
+        if ($content == null) {
+            Yii::app()->user->setFlash('error', "Nothing to export");
+            $this->redirect(array('index'));
+        }
+
         Yii::app()->getRequest()->sendFile('payloads.csv', $content, "text/csv", false);
     }
 

@@ -155,7 +155,7 @@ class ContactController extends Controller {
             else
                 $like = 'LIKE';
 
-            $sql = 'SELECT id, first_name, last_name FROM contact where (first_name '.$like.' :name OR last_name ILIKE :name) AND tenant_id =:tenant_id';
+            $sql = 'SELECT id, first_name, last_name FROM contact where (first_name ' . $like . ' :name OR last_name ILIKE :name) AND tenant_id =:tenant_id';
 
 
             $cmd = Yii::app()->db->createCommand($sql);
@@ -177,8 +177,13 @@ class ContactController extends Controller {
 
         $csv = new ESCVExport(Contact::model()->findAll());
 
-
         $content = $csv->toCSV();
+
+        if ($content == null) {
+            Yii::app()->user->setFlash('error', "Nothing to export");
+            $this->redirect(array('index'));
+        }
+
         Yii::app()->getRequest()->sendFile('contacts.csv', $content, "text/csv", false);
     }
 

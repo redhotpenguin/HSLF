@@ -148,7 +148,15 @@ class OptionController extends Controller {
     public function actionExportCSV() {
         Yii::import('backend.extensions.csv.ESCVExport');
         $csv = new ESCVExport(Option::model()->findAll());
+
+
         $content = $csv->toCSV();
+
+        if ($content == null) {
+            Yii::app()->user->setFlash('error', "Nothing to export");
+            $this->redirect(array('index'));
+        }
+
         Yii::app()->getRequest()->sendFile('options.csv', $content, "text/csv", false);
     }
 

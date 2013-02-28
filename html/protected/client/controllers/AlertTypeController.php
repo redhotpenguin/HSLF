@@ -155,8 +155,13 @@ class AlertTypeController extends Controller {
 
         $csv = new ESCVExport(AlertType::model()->findAll());
 
-
         $content = $csv->toCSV();
+
+        if ($content == null) {
+            Yii::app()->user->setFlash('error', "Nothing to export");
+            $this->redirect(array('index'));
+        }
+
         Yii::app()->getRequest()->sendFile('alerts.csv', $content, "text/csv", false);
     }
 

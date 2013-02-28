@@ -157,8 +157,13 @@ class TagController extends Controller {
 
         $csv = new ESCVExport(Tag::model()->findAll());
 
-
         $content = $csv->toCSV();
+
+        if ($content == null) {
+            Yii::app()->user->setFlash('error', "Nothing to export");
+            $this->redirect(array('index'));
+        }
+
         Yii::app()->getRequest()->sendFile('tags.csv', $content, "text/csv", false);
     }
 

@@ -55,7 +55,7 @@ class StateController extends Controller {
             $model->attributes = $_POST['State'];
             try {
                 if ($model->save()) {
-                    $this->redirect(array('update', 'id' => $model->id, ));
+                    $this->redirect(array('update', 'id' => $model->id,));
                 }
             } catch (Exception $e) {
                 error_log("State controller:" . $e->getMessage());
@@ -84,7 +84,7 @@ class StateController extends Controller {
             try {
                 if ($model->save())
                     $this->redirect(array('update',
-                        'id' => $model->id, ));
+                        'id' => $model->id,));
             } catch (Exception $e) {
                 error_log("State controller:" . $e->getMessage());
             }
@@ -158,8 +158,16 @@ class StateController extends Controller {
      */
     public function actionExportCSV() {
         Yii::import('backend.extensions.csv.ESCVExport');
+
         $csv = new ESCVExport(State::model()->findAll());
+
         $content = $csv->toCSV();
+
+        if ($content == null) {
+            Yii::app()->user->setFlash('error', "Nothing to export");
+            $this->redirect(array('index'));
+        }
+
         Yii::app()->getRequest()->sendFile('states.csv', $content, "text/csv", false);
     }
 
