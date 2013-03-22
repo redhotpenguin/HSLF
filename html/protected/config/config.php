@@ -10,7 +10,7 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $dbuser = $env['DB_USER'];
     $dbpass = $env['DB_PASS'];
     $dbport = $env['DB_PORT'];
-
+    $maintenance = $env['MAINTENANCE'];
 
     if ($env['DOTCLOUD_PROJECT'] === 'productionmap') {     // production specific config
         $mongodbhost = $env['DOTCLOUD_DATA_MONGODB_URL'] . '/?replicaSet=productionmap.data';
@@ -97,7 +97,7 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $apiShortCacheDuration = 10;
     $apiNormalCacheDuration = 100;
     $apiLongCacheDuration = 3600;
-
+    $maintenance = 'off';
     define('YII_DEBUG', true);
 }
 
@@ -137,6 +137,8 @@ DEFINE('FRONTEND_THEME', 'frontend');
 DEFINE('UPLOAD_DIR', $uploaddir);
 DEFINE('UPLOAD_PATH', $uploadpath);
 DEFINE('SITE_URL', $siteurl);
+DEFINE('MAINTENANCE', $maintenance);
+
 
 // API Cache duration values
 DEFINE('API_SHORT_CACHE_DURATION', $apiShortCacheDuration);

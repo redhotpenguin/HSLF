@@ -9,8 +9,8 @@ $appDirectory = dirname($clientDirectory);
 
 Yii::setPathOfAlias('backend', $clientDirectory);
 
-
 return array(
+    'catchAllRequest' => (MAINTENANCE === 'on' ? array('site/maintenance') : null),
     'basePath' => $appDirectory,
     'controllerPath' => $clientDirectory . '/controllers',
     'viewPath' => $clientDirectory . '/views/',
