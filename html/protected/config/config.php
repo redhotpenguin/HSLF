@@ -5,11 +5,11 @@ $dotcloud_conf = "/home/dotcloud/environment.json";
 if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $env = json_decode(file_get_contents($dotcloud_conf), true);
 
-    $dbhost = 'ec2-23-21-161-153.compute-1.amazonaws.com';
-    $dbname = 'd3icdm6opovq73';
-    $dbuser = 'epvcnwunkcismg';
-    $dbpass = 'TaqyZyhLHQUU8y_baP7nJTLgUr';
-    $dbport = '5432';
+    $dbhost =  $env['DB_HOST'];
+    $dbname =  $env['DB_NAME'];
+    $dbuser =  $env['DB_USER'];
+    $dbpass =  $env['DB_PASS'];
+    $dbport =  $env['DB_PORT'];
 
 
     if ($env['DOTCLOUD_PROJECT'] === 'productionmap') {     // production specific config
