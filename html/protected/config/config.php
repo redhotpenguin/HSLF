@@ -5,11 +5,11 @@ $dotcloud_conf = "/home/dotcloud/environment.json";
 if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $env = json_decode(file_get_contents($dotcloud_conf), true);
 
-    $dbhost =  $env['DB_HOST'];
-    $dbname =  $env['DB_NAME'];
-    $dbuser =  $env['DB_USER'];
-    $dbpass =  $env['DB_PASS'];
-    $dbport =  $env['DB_PORT'];
+    $dbhost = $env['DB_HOST'];
+    $dbname = $env['DB_NAME'];
+    $dbuser = $env['DB_USER'];
+    $dbpass = $env['DB_PASS'];
+    $dbport = $env['DB_PORT'];
 
 
     if ($env['DOTCLOUD_PROJECT'] === 'productionmap') {     // production specific config
