@@ -40,7 +40,7 @@
                     // dynamic content menu
                     $contentMenu = array();
                     $contentMenuItems = array();
-                    
+
                     if (Yii::app()->user->hasPermission('manageBallotItems'))
                         array_push($contentMenuItems, array('label' => 'Ballot Items', 'url' => array('/item/index')));
 
@@ -59,6 +59,8 @@
                     if (Yii::app()->user->hasPermission('manageTags'))
                         array_push($contentMenuItems, array('label' => 'Tags', 'url' => array('/tag/index')));
 
+                    if (Yii::app()->user->hasPermission('manageOptions'))
+                        array_push($contentMenuItems, array('label' => 'Options', 'url' => array('/option/index')));
 
                     if (count($contentMenuItems) > 0) {
                         $contentMenu = array(
@@ -90,9 +92,6 @@
 
                     if (Yii::app()->user->hasPermission('managePushMessages'))
                         array_push($applicationMenuItems, array('itemOptions' => array('id' => 'external_item'), 'label' => 'Urban Airship', 'linkOptions' => array('target' => '_blank'), 'url' => $tenant->ua_dashboard_link));
-
-                    if (Yii::app()->user->hasPermission('manageOptions'))
-                        array_push($applicationMenuItems, array('label' => 'Options', 'url' => array('/option/index')));
 
                     if (count($applicationMenuItems) > 0) {
                         $applicationMenu = array(
