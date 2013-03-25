@@ -20,7 +20,7 @@ class ScorecardItemController extends Controller {
 
         return array(
             array('allow',
-                'actions' => array('index', 'exportCSV'),
+                'actions' => array('index'),
                 'roles' => array('readScorecardItem'),
             ),
             array('allow',
@@ -34,6 +34,11 @@ class ScorecardItemController extends Controller {
             array('allow',
                 'actions' => array('delete'),
                 'roles' => array('deleteScorecardItem'),
+            ),
+            array(
+                'allow',
+                'actions' => array('exportCSV'),
+                'roles' => array('admin')
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -123,6 +128,7 @@ class ScorecardItemController extends Controller {
 
         $this->render('index', array(
             'model' => $model,
+            'isAdmin' => Yii::app()->user->hasPermission('admin'),
         ));
     }
 
