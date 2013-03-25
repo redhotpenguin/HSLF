@@ -9,7 +9,7 @@ class ItemCriteria extends CDbCriteria {
     /**
      * ItemCriteria - extends CDbCriteria
      */
-    public function __construct(Item $item) {
+    public function __construct(BallotItem $item) {
         $this->item = $item;
         $this->tableAlias = $this->item->getTableAlias(false, false);
 

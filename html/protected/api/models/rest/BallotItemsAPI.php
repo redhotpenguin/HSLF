@@ -1,13 +1,13 @@
 <?php
 
-class ItemsAPI implements IAPI {
+class BallotItemsAPI implements IAPI {
 
     private $allIncludes = array('districts', 'organizations', 'recommendations', 'news', 'party');
     private $item;
     private $cacheDuration;
 
     public function __construct() {
-        $this->item = new Item();
+        $this->item = new BallotItem();
         $this->cacheDuration = Yii::app()->params->normal_cache_duration;
     }
 
@@ -69,12 +69,15 @@ class ItemsAPI implements IAPI {
         if (($r = Yii::app()->cache->get($cacheKey)) == true) {
             return $r;
         }
+        
+
 
         // todo: find better way to do this
-        $this->item = $this->item->with(array('district', 'recommendation', 'party'))->findByPk($id);
+        $item = $this->item->with(array('district', 'recommendation', 'party'))->findByPk($id);
+       
 
         if ($this->item != false) {
-            $result = $this->itemWrapper($this->item, $this->allIncludes);
+            $result = $this->itemWrapper($item, $this->allIncludes);
             Yii::app()->cache->set($cacheKey, $result, $this->cacheDuration);
         }
         else
@@ -164,7 +167,7 @@ class ItemsAPI implements IAPI {
      * @param Item $item  item
      * @return array wrapped item
      */
-    private function itemWrapper(Item $item, $relations = array()) {
+    private function itemWrapper(BallotItem $item, $relations = array()) {
         $organizations = array();
         $i = 0;
 

@@ -51,7 +51,7 @@ class SiteController extends Controller {
     public function actionHome() {
         
         if (Yii::app()->user->hasPermission('manageBallotItems'))
-            $itemCount = Item::model()->count();
+            $itemCount = BallotItem::model()->count();
         else
             $itemCount = null;
 

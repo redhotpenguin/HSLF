@@ -18,7 +18,7 @@
 class ItemNews extends BaseActiveRecord {
 
     public function __construct($scenario = 'insert', $table = "") {
-        $this->parentName = "Item";
+        $this->parentName = "BallotItem";
         $this->parentRelationship = "item";
         $this->parentRelationshipAttribute = "item_id";
 
@@ -71,7 +71,7 @@ class ItemNews extends BaseActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'item' => array(self::BELONGS_TO, 'Item', 'item_id'),
+            'item' => array(self::BELONGS_TO, 'BallotItem', 'item_id'),
         );
     }
 

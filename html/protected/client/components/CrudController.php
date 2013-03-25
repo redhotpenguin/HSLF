@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Abstract Controller
+ * Generic Controller
  * Perform basic Create Read Update Delete operations for a given model
  */
 abstract class CrudController extends Controller {
@@ -16,6 +16,9 @@ abstract class CrudController extends Controller {
     protected function setFriendlyModelName($name) {
         $this->friendlyModelName = $name;
     }
+
+    abstract protected function afterSave(CActiveRecord $model, $postData = array());
+    
 
     /**
      * @return array action filters
@@ -76,6 +79,7 @@ abstract class CrudController extends Controller {
         if (isset($_POST[$this->modelName])) {
             $model->attributes = $_POST[$this->modelName];
             if ($model->save()) {
+                $this->afterSave($model, $_POST);
                 Yii::app()->user->setFlash('success', "{$this->friendlyModelName}  successfully created");
                 $this->redirect(array('update', 'id' => $model->id));
             }
@@ -100,6 +104,14 @@ abstract class CrudController extends Controller {
         if (isset($_POST[$this->modelName])) {
             $model->attributes = $_POST[$this->modelName];
             if ($model->save()) {
+
+                $this->afterSave($model, $_POST);
+
+                if (Yii::app()->request->isAjaxRequest) { // AJAX Post Request
+                    echo 'success';
+                    Yii::app()->end();
+                }
+
                 Yii::app()->user->setFlash('success', "{$this->friendlyModelName}  successfully updated");
 
                 $this->redirect(array('update', 'id' => $model->id));
