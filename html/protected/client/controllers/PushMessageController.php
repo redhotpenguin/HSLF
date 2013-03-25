@@ -19,7 +19,7 @@ class PushMessageController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'exportCSV'),
+                'actions' => array('index'),
                 'roles' => array('readPushMessage'),
             ),
             array('allow',
@@ -33,6 +33,11 @@ class PushMessageController extends Controller {
             array('allow',
                 'actions' => array('delete'),
                 'roles' => array('deletePushMessage'),
+            ),
+            array(
+                'allow',
+                'actions' => array('exportCSV'),
+                'roles' => array('admin')
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -125,6 +130,7 @@ class PushMessageController extends Controller {
 
         $this->render('index', array(
             'model' => $model,
+            'isAdmin' => Yii::app()->user->hasPermission('admin'),
         ));
     }
 
