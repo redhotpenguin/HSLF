@@ -19,7 +19,7 @@ class AlertTypeController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'exportCSV'),
+                'actions' => array('index'),
                 'roles' => array('readAlertType'),
             ),
             array('allow',
@@ -33,6 +33,11 @@ class AlertTypeController extends Controller {
             array('allow',
                 'actions' => array('delete'),
                 'roles' => array('deleteAlertType'),
+            ),
+            array(
+                'allow',
+                'actions' => array('exportCSV'),
+                'roles' => array('admin')
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -121,6 +126,7 @@ class AlertTypeController extends Controller {
 
         $this->render('index', array(
             'model' => $model,
+            'isAdmin' => Yii::app()->user->hasPermission('admin'),
         ));
     }
 
