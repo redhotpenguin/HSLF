@@ -2,7 +2,7 @@
 
 /**
  * Generic Controller
- * Perform basic Create Read Update Delete operations for a given model
+ * Perform basic Create Read Update Delete operations on a given model
  */
 abstract class CrudController extends Controller {
 
@@ -11,23 +11,43 @@ abstract class CrudController extends Controller {
     private $modelName;
     private $friendlyModelName;
 
+    /**
+     * Set the model linked to the controller
+     * @param $model CActiveRecord model
+     */
     protected function setModel(CActiveRecord $model) {
         $this->model = $model;
         $this->modelName = get_class($model);
     }
 
+    /**
+     * return the model linked to the controller
+     * @return CActiveRecord model
+     */
     protected function getModel() {
         return $this->model;
     }
 
+    /**
+     * Set a friendly name for the linked model
+     * @param string $name friendly name
+     */
     protected function setFriendlyModelName($name) {
         $this->friendlyModelName = $name;
     }
 
+    /**
+     * Add extra rules that are not covered by the default CRUD rules
+     * @param array $rules
+     */
     protected function setExtraRules(array $rules) {
         $this->extraRules = $rules;
     }
 
+    /**
+     * Return the extra rules that are not covered by the default CRUD rules
+     * @return array array of rules
+     */
     protected function getExtraRules() {
         return $this->extraRules;
     }
