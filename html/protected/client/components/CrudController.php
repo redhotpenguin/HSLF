@@ -68,12 +68,14 @@ abstract class CrudController extends Controller {
                 'actions' => array('exportCSV'),
                 'roles' => array('admin')
             ),
-            array('deny', // deny all users
-                'users' => array('*'),
-                ));
+        );
 
         array_push($rules, $this->getExtraRules());
 
+        
+        array_push($rules, array('deny', // deny all users
+            'users' => array('*'),
+        ));
 
         return $rules;
     }

@@ -8,7 +8,7 @@ if (!$model->isNewRecord) {
 
 $this->secondaryNav['items'] = $navBarItems;
 $this->secondaryNav['name'] = 'Ballot Items';
-$this->secondaryNav['url'] =array('item/index');
+$this->secondaryNav['url'] =array('ballotItem/index');
 
 
 $tenant = Yii::app()->user->getLoggedInUserTenant();
