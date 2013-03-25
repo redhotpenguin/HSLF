@@ -20,53 +20,65 @@ echo CHtml::hiddenField('tenantId', $tenant->id);
 echo CHtml::hiddenField('userId', $user->id);
 ?>
 
-<table class="table table-bordered table-striped">
-    <thead>
-    <th>Permission</th>
-    <th>Active</th>
-    <th>Permission</th>
-    <th>Active</th>
-</thead>
-<tbody>
-    <?php
-    $i = 0;
-    $taskCount = count($taskList);
+<div class="form">
 
-    foreach ($taskList as $taskName => $taskValue):
+    <table class="table table-bordered table-striped">
+        <thead>
+        <th>Permission</th>
+        <th>Active</th>
+        <th>Permission</th>
+        <th>Active</th>
+        </thead>
+        <tbody>
+            <?php
+            $i = 0;
+            $taskCount = count($taskList);
 
-        if ($i % 2 == 0) {
-            echo '<tr>';
-        }
+            foreach ($taskList as $taskName => $taskValue):
+
+                if ($i % 2 == 0) {
+                    echo '<tr>';
+                }
+                ?>
+
+            <td> <?php echo $taskValue['description']; ?> </td>
+            <td>  <?php echo CHtml::checkBox('tasks[]', $taskValue['checked'], array('value' => $taskName)); ?> </td>
+
+            <?php
+            if ($i % 2 == 1) {
+                echo '</tr>';
+            }
+
+            $i++;
+        endforeach;
         ?>
+        </tbody>
 
-    <td> <?php echo $taskValue['description']; ?> </td>
-    <td>  <?php echo CHtml::checkBox('tasks[]', $taskValue['checked'], array('value' => $taskName)); ?> </td>
+    </table>
+    <div class="clearfix"></div>
 
-    <?php
-    if ($i % 2 == 1) {
-        echo '</tr>';
-    }
+    <div class="row-fluid">
+        <p class="btn" id="select_all">select all</p> <p class="btn" id="deselect_all">deselect all</p>
 
-    $i++;
-endforeach;
-?>
-</tbody>
+    </div>
 
-</table>
-<div class="clearfix"></div>
+    <br/>
+    <div class="row-fluid">
+        <div class="span6">
+            <?php
+            echo CHtml::label('Project administrator:', 'projectAdministrator');
+            echo CHtml::checkBox('projectAdministrator', $projectAdministrator);
+            ?>
+        </div>
+    </div>
 
-<div class="row-fluid">
-    <p class="btn" id="select_all">select all</p> <p class="btn" id="deselect_all">deselect all</p>
+    <br/>
 
-</div>
-
-<br/>
-
-<div class="row-fluid">
-
-    <?php
-    $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'Save'));
-    ?>
+    <div class="row-fluid">
+        <?php
+        $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'Save'));
+        ?>
+    </div>
 </div>
 
 <?php

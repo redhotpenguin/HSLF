@@ -207,7 +207,7 @@ class UserController extends Controller {
                 $model->initial_password = $currentPassword;
 
             if ($model->save())
-                $this->redirect(array('settings', ));
+                $this->redirect(array('settings',));
         }
 
 
@@ -221,12 +221,14 @@ class UserController extends Controller {
      */
     public function actionPermissions($tenantId, $userId) {
         $user = $this->loadModel($userId);
-        if( ($tenant = Tenant::model()->findByPk($tenantId)) ==null)
+        if (($tenant = Tenant::model()->findByPk($tenantId)) == null)
             throw new CHttpException(404, "Tenant not found");
 
         $publisherTasks = Yii::app()->authManager->getItemChildren('publisher');
 
-        $assignedTasks = Yii::app()->authManager->getTasks($user->getTenantUserId($tenant->id, $userId));
+        $tenantUserId = $user->getTenantUserId($tenant->id, $userId);
+
+        $assignedTasks = Yii::app()->authManager->getTasks($tenantUserId);
 
         $unassignedTasks = array_diff_key($publisherTasks, $assignedTasks);
 
@@ -240,10 +242,14 @@ class UserController extends Controller {
 
         asort($list);
 
+        $projectAdministrator = Yii::app()->authManager->checkAccess('admin', $tenantUserId);
+
+
         $this->render('permissions', array(
             'user' => $user,
             'tenant' => $tenant,
             'taskList' => $list,
+            'projectAdministrator' => $projectAdministrator,
         ));
     }
 
@@ -253,13 +259,13 @@ class UserController extends Controller {
     public function actionUpdateTasks() {
         $tasks = array();
 
+
         if (isset($_POST['tasks']))
             $tasks = $_POST['tasks'];
 
         if (!isset($_POST['tenantId']) || !isset($_POST['userId']) || !is_numeric($_POST['tenantId']) || !is_numeric($_POST['userId'])) {
             throw new CHttpException(500, "Please do not try this again.");
         }
-
 
         $tenantId = $_POST['tenantId'];
 
@@ -273,11 +279,24 @@ class UserController extends Controller {
             if (!isset($publisherTasks[$task]))
                 throw new CHttpException(500, 'Please do not try this again');
 
+        $tenantUserId = $user->getTenantUserId($_POST['tenantId'], $_POST['userId']);
 
         if ($user->updateTasks($tenantId, $tasks))
             $result = 'success';
         else
             $result = 'error';
+
+        // allow users to be an admin of a specific project
+        // needs to happen after 'updateTasks' because 'updateTasks' revoke all permissions then add the new ones back
+        if (isset($_POST['projectAdministrator']) && $_POST['projectAdministrator'] == '1') {
+            
+            if (Yii::app()->authManager->assign('admin', $tenantUserId) != null)
+                $result = 'success';
+            else
+                $result = 'error';
+        } else {
+            Yii::app()->authManager->revoke('admin', $tenantUserId);
+        }
 
 
         $this->redirect(array('permissions',
