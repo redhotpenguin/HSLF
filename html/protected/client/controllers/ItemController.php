@@ -20,7 +20,7 @@ class ItemController extends Controller {
 
         return array(
             array('allow',
-                'actions' => array('index', 'exportCSV', 'exportNewsCSV', 'exportOrganizationCSV',),
+                'actions' => array('index',),
                 'roles' => array('readBallotItem'),
             ),
             array('allow',
@@ -34,6 +34,11 @@ class ItemController extends Controller {
             array('allow',
                 'actions' => array('delete'),
                 'roles' => array('deleteBallotItem'),
+            ),
+            array(
+                'allow',
+                'actions' => array('exportCSV', 'exportNewsCSV', 'exportOrganizationCSV'),
+                'roles' => array('admin')
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -222,6 +227,7 @@ class ItemController extends Controller {
 
         $this->render('index', array(
             'model' => $model,
+            'isAdmin' => Yii::app()->user->hasPermission('admin')
         ));
     }
 

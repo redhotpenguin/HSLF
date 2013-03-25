@@ -4,7 +4,11 @@ $navBarItems = array(
     '',
     array('label' => 'Create', 'url' => array('create')),
     '',
-    array(
+);
+
+
+if ($isAdmin) {
+    array_push($navBarItems, array(
         'label' => 'Export',
         'class' => 'bootstrap.widgets.TbMenu',
         'htmlOptions' => array('class' => 'pull-right'),
@@ -16,12 +20,12 @@ $navBarItems = array(
             array('label' => 'Export organizations ', 'url' => array('exportOrganizationCSV')),
         ),
         '',
-    ),
-);
+    ));
+}
 
 $this->secondaryNav['items'] = $navBarItems;
 $this->secondaryNav['name'] = 'Ballot Items';
-$this->secondaryNav['url'] =array('item/index');
+$this->secondaryNav['url'] = array('item/index');
 
 
 $state_list = array('' => 'All') + CHtml::listData(State::model()->findAll(), 'id', 'name');
