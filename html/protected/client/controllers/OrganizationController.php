@@ -19,7 +19,7 @@ class OrganizationController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'exportCSV'),
+                'actions' => array('index',),
                 'roles' => array('readOrganization'),
             ),
             array('allow',
@@ -33,6 +33,11 @@ class OrganizationController extends Controller {
             array('allow',
                 'actions' => array('delete'),
                 'roles' => array('deleteOrganization'),
+            ),
+            array(
+                'allow',
+                'actions' => array('exportCSV'),
+                'roles' => array('admin')
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -148,6 +153,7 @@ class OrganizationController extends Controller {
 
         $this->render('index', array(
             'model' => $model,
+            'isAdmin' => Yii::app()->user->hasPermission('admin'),
         ));
     }
 

@@ -4,13 +4,18 @@ $navBarItems = array(
     '',
     array('label' => 'Create', 'url' => array('create')),
     '',
-    array('label' => 'Export', 'url' => array('exportCSV')),
-    '',
 );
+
+if ($isAdmin) {
+    array_push($navBarItems, 
+        array('label' => 'Export', 'url' => array('exportCSV')),
+        ''
+    );
+}
 
 $this->secondaryNav['items'] = $navBarItems;
 $this->secondaryNav['name'] = 'Organizations';
-$this->secondaryNav['url'] =array('organization/index');
+$this->secondaryNav['url'] = array('organization/index');
 
 
 $this->widget('bootstrap.widgets.TbGridView', array(
