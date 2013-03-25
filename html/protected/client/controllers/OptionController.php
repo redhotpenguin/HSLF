@@ -18,7 +18,7 @@ class OptionController extends Controller {
      */ public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'exportCSV'),
+                'actions' => array('index',),
                 'roles' => array('readOption'),
             ),
             array('allow',
@@ -32,6 +32,11 @@ class OptionController extends Controller {
             array('allow',
                 'actions' => array('delete'),
                 'roles' => array('deleteOption'),
+            ),
+            array(
+                'allow',
+                'actions' => array('exportCSV'),
+                'roles' => array('admin')
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -116,6 +121,7 @@ class OptionController extends Controller {
 
         $this->render('index', array(
             'model' => $model,
+            'isAdmin' => Yii::app()->user->hasPermission('admin'),
         ));
     }
 
