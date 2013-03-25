@@ -86,6 +86,9 @@ abstract class CrudController extends Controller {
     public function actionCreate() {
 
         $model = new $this->modelName();
+        
+        if($model->hasAttribute('creation_date'))
+            $model->creation_date = date('Y-m-d h:i:s');
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);

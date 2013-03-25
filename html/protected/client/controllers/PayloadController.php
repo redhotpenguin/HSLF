@@ -6,6 +6,15 @@ class PayloadController extends CrudController {
         parent::__construct('payload');
         $this->setModelName('Payload');
         $this->setFriendlyModelName('Payload');
+
+        $rules = array(
+            array('allow',
+                'actions' => array('findPayload'),
+                'roles' => array('readPayload'),
+            )
+        );
+
+        $this->setExtraRules($rules);
     }
 
     public function actionFindPayload($term) {
@@ -33,7 +42,10 @@ class PayloadController extends CrudController {
     }
 
     protected function afterSave(CActiveRecord $model, $postData = array()) {
-        
+    }
+
+    protected function renderData() {
+        return array();
     }
 
 }

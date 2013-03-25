@@ -20,4 +20,8 @@ class OrganizationController extends CrudController {
             $model->removeAllContactsAssociation();
     }
 
+    protected function renderData() {
+        return array();
+    }
+
 }
