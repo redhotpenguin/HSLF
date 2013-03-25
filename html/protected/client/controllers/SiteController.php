@@ -149,11 +149,15 @@ class SiteController extends Controller {
         Yii::app()->user->logout();
         $this->redirect('/client');
     }
+    
+    public function actionMaintenance(){
+        $this->render('maintenance');
+    }
 
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'home', 'publishing', 'messaging', 'administration', 'mobile', 'logout', 'project'),
+                'actions' => array('index', 'home', 'administration', 'mobile', 'logout', 'project', 'maintenance'),
                 'users' => array('@'),
             ),
             array('allow', // 

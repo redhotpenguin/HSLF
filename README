@@ -1,1 +1,10 @@
-Nothing to see here.
+Setting environment variables:
+
+dotcloud env set \
+    'DB_HOST=ec2-23-21-161-153.compute-1.amazonaws.com' \
+    'DB_NAME=d3icdm6opovq73' \
+    'DB_USER=epvcnwunkcismg' \
+    'DB_PASS=TaqyZyhLHQUU8y_baP7nJTLgUr' \
+    'DB_PORT=5432' 
+
+dotcloud env set MAINTENANCE=on/off

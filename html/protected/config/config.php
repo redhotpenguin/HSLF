@@ -4,13 +4,13 @@ $dotcloud_conf = "/home/dotcloud/environment.json";
 
 if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $env = json_decode(file_get_contents($dotcloud_conf), true);
-    $dbname = 'mobile_advocacy_platform';
 
-    $dbhost = $env['DOTCLOUD_DB_SQL_HOST'];
-    $dbuser = $env['DOTCLOUD_DB_SQL_LOGIN'];
-    $dbpass = $env['DOTCLOUD_DB_SQL_PASSWORD'];
-    $dbport = $env['DOTCLOUD_DB_SQL_PORT'];
-
+    $dbhost = $env['DB_HOST'];
+    $dbname = $env['DB_NAME'];
+    $dbuser = $env['DB_USER'];
+    $dbpass = $env['DB_PASS'];
+    $dbport = $env['DB_PORT'];
+    $maintenance = $env['MAINTENANCE'];
 
     if ($env['DOTCLOUD_PROJECT'] === 'productionmap') {     // production specific config
         $mongodbhost = $env['DOTCLOUD_DATA_MONGODB_URL'] . '/?replicaSet=productionmap.data';
@@ -58,10 +58,10 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
 
     set_include_path(get_include_path() . PATH_SEPARATOR . '/home/dotcloud/php-env/share/php');
 } else {    //dev server conf
-    $dbhost = '127.0.0.1';
-    $dbname = 'mobile_advocacy_platform';
-    $dbuser = 'postgres';
-    $dbpass = 'pengu1n';
+    $dbhost = 'ec2-23-21-161-153.compute-1.amazonaws.com';
+    $dbname = 'd3icdm6opovq73';
+    $dbuser = 'epvcnwunkcismg';
+    $dbpass = 'TaqyZyhLHQUU8y_baP7nJTLgUr';
     $dbport = '5432';
 
     $mongodbhost = "mongodb://localhost:27017";
@@ -97,8 +97,8 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $apiShortCacheDuration = 10;
     $apiNormalCacheDuration = 100;
     $apiLongCacheDuration = 3600;
-
-   // define('YII_DEBUG', true);
+    $maintenance = 'off';
+    define('YII_DEBUG', true);
 }
 
 
@@ -137,6 +137,8 @@ DEFINE('FRONTEND_THEME', 'frontend');
 DEFINE('UPLOAD_DIR', $uploaddir);
 DEFINE('UPLOAD_PATH', $uploadpath);
 DEFINE('SITE_URL', $siteurl);
+DEFINE('MAINTENANCE', $maintenance);
+
 
 // API Cache duration values
 DEFINE('API_SHORT_CACHE_DURATION', $apiShortCacheDuration);
