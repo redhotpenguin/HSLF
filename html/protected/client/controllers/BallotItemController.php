@@ -4,7 +4,9 @@ class BallotItemController extends CrudController {
 
     public function __construct() {
         parent::__construct('ballotItem');
-        $this->setModelName('BallotItem');
+        $ballotItem = new BallotItem();
+        $ballotItem->date_published = date('Y-m-d h:i:s');
+        $this->setModel($ballotItem);
         $this->setFriendlyModelName('Ballot Item');
 
 

@@ -4,7 +4,7 @@ class TenantController extends CrudController {
 
     public function __construct() {
         parent::__construct('tenant');
-        $this->setModelName('Tenant');
+        $this->setModel(new Tenant);
         $this->setFriendlyModelName('Tenant');
     }
 

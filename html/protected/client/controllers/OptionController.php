@@ -4,7 +4,7 @@ class OptionController extends CrudController {
 
     public function __construct() {
         parent::__construct('option');
-        $this->setModelName('Option');
+        $this->setModel(new Option );
         $this->setFriendlyModelName('Option');
     }
 

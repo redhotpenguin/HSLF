@@ -4,7 +4,7 @@ class PayloadController extends CrudController {
 
     public function __construct() {
         parent::__construct('payload');
-        $this->setModelName('Payload');
+        $this->setModel(new Payload);
         $this->setFriendlyModelName('Payload');
 
         $rules = array(

@@ -4,7 +4,7 @@ class OfficeController extends CrudController {
 
     public function __construct() {
         parent::__construct('office');
-        $this->setModelName('Office');
+        $this->setModel(new Office);
         $this->setFriendlyModelName('Office');
     }
 

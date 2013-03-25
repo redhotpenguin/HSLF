@@ -4,7 +4,7 @@ class OrganizationController extends CrudController {
 
     public function __construct() {
         parent::__construct('organization');
-        $this->setModelName('Organization');
+        $this->setModel(new Organization);
         $this->setFriendlyModelName('Organization');
     }
 

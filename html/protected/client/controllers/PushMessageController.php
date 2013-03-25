@@ -4,7 +4,12 @@ class PushMessageController extends CrudController {
 
     public function __construct() {
         parent::__construct('pushMessage');
-        $this->setModelName('PushMessage');
+
+        $pushMessage = new PushMessage;
+
+        $pushMessage->creation_date = date('Y-m-d h:i:s');
+
+        $this->setModel($pushMessage);
         $this->setFriendlyModelName('Push Message');
     }
 

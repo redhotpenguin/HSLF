@@ -7,11 +7,18 @@
 abstract class CrudController extends Controller {
 
     private $extraRules = array();
+    private $model;
     private $modelName;
     private $friendlyModelName;
-
-    protected function setModelName($modelName) {
-        $this->modelName = $modelName;
+    
+    
+    protected function setModel(CActiveRecord $model){
+        $this->model = $model;
+        $this->modelName = get_class($model);
+    }
+    
+    protected function getModel(){
+        return $this->model;
     }
 
     protected function setFriendlyModelName($name) {
@@ -85,14 +92,8 @@ abstract class CrudController extends Controller {
      */
     public function actionCreate() {
 
-        $model = new $this->modelName();
+        $model = $this->getModel();
         
-        if($model->hasAttribute('creation_date'))
-            $model->creation_date = date('Y-m-d h:i:s');
-
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
         if (isset($_POST[$this->modelName])) {
             $model->attributes = $_POST[$this->modelName];
             if ($model->save()) {

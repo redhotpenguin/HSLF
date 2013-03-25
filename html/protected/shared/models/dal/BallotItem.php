@@ -228,7 +228,7 @@ class BallotItem extends BaseActiveRecord {
     public function behaviors() {
         return array(
             'beforeSave' => array(
-                'class' => 'ItemBehavior',
+                'class' => 'BallotItemBehavior',
             ),
             'OrganizationBehavior' => array(
                 'class' => 'ItemOrganizationBehavior',

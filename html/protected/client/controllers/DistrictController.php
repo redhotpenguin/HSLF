@@ -4,7 +4,7 @@ class DistrictController extends CrudController {
 
     public function __construct() {
         parent::__construct('district');
-        $this->setModelName('District');
+        $this->setModel(new District);
         $this->setFriendlyModelName('District');
 
         $this->setExtraRules(

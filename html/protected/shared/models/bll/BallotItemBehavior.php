@@ -5,7 +5,7 @@
  *
  * @author jonas
  */
-class ItemBehavior extends CActiveRecordBehavior {
+class BallotItemBehavior extends CActiveRecordBehavior {
 
     public function beforeSave($event) {
 
