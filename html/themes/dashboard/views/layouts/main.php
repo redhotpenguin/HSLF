@@ -73,7 +73,7 @@
                     }
 
 
-                    // dynamic mobile app menu
+                    // communication menu (formerly called mobile application menu)
                     $applicationMenu = array();
                     $applicationMenuItems = array();
 
@@ -99,7 +99,7 @@
                             'items' => array(
                                 '---',
                                 array('label' =>
-                                    'Mobile Application',
+                                    'Communication',
                                     'url' => '#',
                                     'items' => $applicationMenuItems),
                             ),
