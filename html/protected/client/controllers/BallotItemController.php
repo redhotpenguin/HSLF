@@ -7,11 +7,18 @@ class BallotItemController extends CrudController {
         $this->setModelName('BallotItem');
         $this->setFriendlyModelName('Ballot Item');
 
-        $this->setExtraRules(array(
-            'allow',
-            'actions' => array('exportNewsCSV', 'exportOrganizationCSV'),
-            'roles' => array('admin')
-        ));
+
+        $rules = array(
+            array('allow',
+                'actions' => array('exportNewsCSV', 'exportOrganizationCSV'),
+                'roles' => array('admin')),
+            array('allow',
+                'actions' => array('ajax'),
+                'roles' => array('createBallotItem'),
+            )
+        );
+
+        $this->setExtraRules($rules);
     }
 
     protected function afterSave(CActiveRecord $model, $postData = array()) {
@@ -124,11 +131,11 @@ class BallotItemController extends CrudController {
             case 'validateURL':
                 // get the current record if an ID is provided
                 if (isset($_GET['id'])) {
-                    $item = Item::model()->findByPk($_GET['id']);
+                    $item = BallotItem::model()->findByPk($_GET['id']);
                     $validated_url = $item->validateURL($_GET['url']);
                 }
                 else
-                    $validated_url = Item::model()->validateURL($_GET['url']);
+                    $validated_url = BallotItem::model()->validateURL($_GET['url']);
 
                 if ($validated_url == false)
                     echo 'invalid_url';

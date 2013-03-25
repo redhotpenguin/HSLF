@@ -70,8 +70,7 @@ abstract class CrudController extends Controller {
             ),
         );
 
-        array_push($rules, $this->getExtraRules());
-
+        $rules =  array_merge($rules,  $this->getExtraRules() ) ;
         
         array_push($rules, array('deny', // deny all users
             'users' => array('*'),

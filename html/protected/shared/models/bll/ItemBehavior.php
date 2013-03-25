@@ -76,7 +76,7 @@ class ItemBehavior extends CActiveRecordBehavior {
                     array('slug' => $slug), 'id!=:item_id', array(':item_id' => $item_id)
             );
         } else {
-            $items = Item::model()->findAllByAttributes(
+            $items = BallotItem::model()->findAllByAttributes(
                     array('slug' => $slug));
         }
 
