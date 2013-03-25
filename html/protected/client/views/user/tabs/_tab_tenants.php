@@ -19,7 +19,7 @@
         echo '<td>' . $tenant->name . '</td>';
         echo '<td>' . $tenant->display_name . '</td>';
         echo '<td>' . $tenant->email . '</td>';
-        echo '<td>' . CHtml::link("permissions", $permissionEditorLink, array("target" => '_blank')) . '</td>';
+        echo '<td>' . CHtml::link("permissions", $permissionEditorLink) . '</td>';
         echo '</tr>';
     }
     ?>
