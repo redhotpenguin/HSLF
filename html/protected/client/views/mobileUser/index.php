@@ -13,18 +13,21 @@ $ns = "var ns  = {action_url: '" . $action_url . "'};";
 Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::POS_HEAD);
 
 
+if ($isAdmin)
+    $navBarItems = array(
+        '',
+        array('label' => 'Browse', 'url' => array('browse')),
+        '',
+    );
 
-$navBarItems = array(
-    '',
-    array('label' => 'Browse', 'url' => array('browse')),
-    '',
-);
+else
+    $navBarItems = array();
+
+
 
 $this->secondaryNav['items'] = $navBarItems;
 $this->secondaryNav['name'] = 'Mobile Users';
-$this->secondaryNav['url'] =array('mobileUser/index');
-
-
+$this->secondaryNav['url'] = array('mobileUser/index');
 ?>
 
 <div class="hero-unit">
@@ -184,7 +187,6 @@ $this->secondaryNav['url'] =array('mobileUser/index');
                 'size' => 'large',
                 'htmlOptions' => array('id' => 'cancel_alert_btn', 'style' => 'float:right;')
             ));
-
             ?>
         </div>
     </div>

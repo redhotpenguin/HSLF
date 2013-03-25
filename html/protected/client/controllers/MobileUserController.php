@@ -21,8 +21,13 @@ class MobileUserController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'browse', 'view', 'delete', 'getCount', 'sendAlert', 'export'),
+                'actions' => array('index', 'view', 'delete', 'getCount', 'sendAlert', 'export'),
                 'roles' => array('manageMobileUsers'),
+            ),
+            array(
+                'allow',
+                'actions' => array('browse'),
+                'roles' => array('admin')
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -36,6 +41,7 @@ class MobileUserController extends Controller {
     public function actionIndex() {
         $this->render('index', array(
             'mobile_user_count' => MobileUser::model()->count(),
+            'isAdmin' => Yii::app()->user->hasPermission('admin'),
         ));
     }
 
@@ -191,7 +197,6 @@ class MobileUserController extends Controller {
             Yii::app()->user->setFlash('error', "Error while generating a user export.");
 
         $this->redirect(array('index'));
-
     }
 
     /**
