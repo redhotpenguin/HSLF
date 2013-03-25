@@ -15,124 +15,28 @@ class BallotItemController extends CrudController {
     }
 
     protected function afterSave(CActiveRecord $model, $postData = array()) {
-        
-    }
 
-    /**
-     * Creates a new model.
-     * If creation is successful, the browser will be redirected to the 'edit' page.
-     */
-    public function actionCreate() {
-
-        //  error_log(print_r($_REQUEST, true));
-
-        $model = new BallotItem;
-
-        if (isset($_POST['BallotItem'])) {
-            $model->attributes = $_POST['BallotItem'];
-
-            // a file for image_url has been uploded
-            if (!empty($_FILES['image_url']['tmp_name'])) {
-                if ($this->upload($_FILES))
-                    $model->image_url = $saved_file_url;
-            }
-
-            if ($model->save()) {
-
-                // if any organizations are selected
-                if (isset($_POST['organizations'])) {
-                    // remove organizations that are not selected ( unselected )
-                    //   $model->removeOrganizationsNotIn($organization_ids);
-                    // add organizations
-                    foreach ($_POST['organizations'] as $organization_id => $position) {
-                        if ($position != 'na') {
-                            $model->addOrganization($organization_id, $position);
-                        } else {
-                            // @todo: remove organization if exist
-                            $model->removeOrganization($organization_id);
-                        }
-                    }
-                }
-
-
-                Yii::app()->user->setFlash('success', "Ballot item successfully created");
-
-                $this->redirect(array('update', 'id' => $model->id,));
-            }
-        }
-
-        $model->date_published = date('Y-m-d h:i:s');
-
-
-        $this->render('editor', array(
-            'active_tab' => 'item',
-            'model' => $model,
-            'organization_list' => Organization::model()->findAll(array('order' => 'name')),
-        ));
-    }
-
-    /**
-     * Updates a particular model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id the ID of the model to be updated
-     */
-    public function actionUpdate($id, $activeTab = 'item') {
-
-        //   logIt($_REQUEST);
-
-        $model = $this->loadModel($id);
-
-        if (!$model->recommendation_id)
-            $model->recommendation_id = Recommendation::model()->findByAttributes(array('value' => 'N/A'))->id;
-
-
-        if (Yii::app()->request->isPostRequest) {
-            $model->attributes = $_POST['BallotItem'];
-
-            if (Yii::app()->request->isAjaxRequest) { // if ajax request, perform ajax validation.
-                $this->performAjaxValidation($model);
-            }
-
-            // a file for image_url has been uploded
-            if (!empty($_FILES['image_url']['tmp_name'])) {
-                if ($this->upload($_FILES))
-                    $model->image_url = $saved_file_url;
-            }
-            if (Yii::app()->request->isAjaxRequest) { // AJAX Post Request
-                if ($model->save()) {
-                    echo 'success';
+        // if any organizations are selected
+        if (isset($postData['organizations'])) {
+            // remove organizations that are not selected ( unselected )
+            //   $model->removeOrganizationsNotIn($organization_ids);
+            // add organizations
+            foreach ($postData['organizations'] as $organization_id => $position) {
+                if ($position != 'na') {
+                    $model->addOrganization($organization_id, $position);
                 } else {
-                    throw new CException(print_r($model->getErrors(), true));
-                }
-            } else {  // normal POST request
-                if ($model->save())
-                    $this->redirect(array('update', 'id' => $model->id,));
-            }
-
-
-            // if any organizations are selected
-            if (isset($_POST['organizations'])) {
-                // remove organizations that are not selected ( unselected )
-                //   $model->removeOrganizationsNotIn($organization_ids);
-                // add organizations
-                foreach ($_POST['organizations'] as $organization_id => $position) {
-                    if ($position != 'na') {
-                        $model->addOrganization($organization_id, $position);
-                    } else {
-                        // @todo: remove organization if exist
-                        $model->removeOrganization($organization_id);
-                    }
+                    // @todo: remove organization if exist
+                    $model->removeOrganization($organization_id);
                 }
             }
-
-            return;
         }
+    }
 
-        $this->render('editor', array(
-            'active_tab' => $activeTab,
-            'model' => $model,
+    protected function renderData() {
+        return array(
+            'active_tab' => 'item',
             'organization_list' => Organization::model()->findAll(array('order' => 'name')),
-        ));
+        );
     }
 
     /**

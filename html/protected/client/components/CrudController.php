@@ -28,6 +28,8 @@ abstract class CrudController extends Controller {
 
     abstract protected function afterSave(CActiveRecord $model, $postData = array());
 
+    abstract protected function renderData();
+
     /**
      * @return array action filters
      */
@@ -71,10 +73,9 @@ abstract class CrudController extends Controller {
                 ));
 
         array_push($rules, $this->getExtraRules());
-        
+
 
         return $rules;
-
     }
 
     /**
@@ -97,9 +98,13 @@ abstract class CrudController extends Controller {
             }
         }
 
-        $this->render('editor', array(
+        $data = array(
             'model' => $model,
-        ));
+        );
+
+        $data = array_merge($data, $this->renderData());
+
+        $this->render('editor', $data);
     }
 
     /**
@@ -130,9 +135,14 @@ abstract class CrudController extends Controller {
             }
         }
 
-        $this->render('editor', array(
+
+        $data = array(
             'model' => $model,
-        ));
+        );
+
+        $data = array_merge($data, $this->renderData());
+
+        $this->render('editor', $data);
     }
 
     /**
