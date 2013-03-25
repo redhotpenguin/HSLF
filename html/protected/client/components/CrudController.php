@@ -6,6 +6,7 @@
  */
 abstract class CrudController extends Controller {
 
+    private $extraRules = array();
     private $modelName;
     private $friendlyModelName;
 
@@ -17,8 +18,15 @@ abstract class CrudController extends Controller {
         $this->friendlyModelName = $name;
     }
 
+    protected function setExtraRules(array $rules) {
+        $this->extraRules = $rules;
+    }
+
+    protected function getExtraRules() {
+        return $this->extraRules;
+    }
+
     abstract protected function afterSave(CActiveRecord $model, $postData = array());
-    
 
     /**
      * @return array action filters
@@ -36,8 +44,7 @@ abstract class CrudController extends Controller {
      */
     public function accessRules() {
 
-
-        return array(
+        $rules = array(
             array('allow',
                 'actions' => array('index'),
                 'roles' => array('read' . $this->modelName),
@@ -61,8 +68,13 @@ abstract class CrudController extends Controller {
             ),
             array('deny', // deny all users
                 'users' => array('*'),
-            ),
-        );
+                ));
+
+        array_push($rules, $this->getExtraRules());
+        
+
+        return $rules;
+
     }
 
     /**

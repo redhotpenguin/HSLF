@@ -51,7 +51,7 @@ class ItemNewsController extends Controller {
         if (!is_numeric($item_id))
             return false;
 
-        $item = Item::model()->findByPk($item_id);
+        $item = BallotItem::model()->findByPk($item_id);
 
         if (!$item)
             return false;
@@ -120,7 +120,7 @@ class ItemNewsController extends Controller {
 
             // if not ajax edirect to the item update view
             if (!isset($_GET['ajax']))
-                $this->redirect(array('item/update', 'id' => $item_id));
+                $this->redirect(array('ballotItem/update', 'id' => $item_id));
         }
         else
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');

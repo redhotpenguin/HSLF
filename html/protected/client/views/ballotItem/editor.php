@@ -95,7 +95,7 @@ $cs->registerScriptFile($baseUrl . '/static/ballotitem/item.js');
 
     if (!$model->isNewRecord) {
         $url = CHtml::normalizeUrl(array(
-                    'item/update',
+                    'ballotItem/update',
                     'id' => $model->id,
                     'enctype' => 'multipart/form-data',
                 ));

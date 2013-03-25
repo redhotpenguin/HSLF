@@ -67,7 +67,7 @@ function filterURL(item_name, id, _cb){
     id = id || "";
 
     // ajax request url
-    ajax_url = ns.site_url+ "/item/ajax?a=validateURL&url="+item_name;
+    ajax_url = ns.site_url+ "/ballotItem/ajax?a=validateURL&url="+item_name;
     if(id != "undefined" && id!="" )
         ajax_url += "&id="+id;
 
