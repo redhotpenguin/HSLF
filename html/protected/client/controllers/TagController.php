@@ -8,12 +8,4 @@ class TagController extends CrudController {
         $this->setFriendlyModelName('Tag');
     }
 
-    protected function afterSave(CActiveRecord $model, $postData = array()) {
-        
-    }
-
-    protected function renderData() {
-        return array();
-    }
-
 }

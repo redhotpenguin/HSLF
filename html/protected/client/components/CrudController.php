@@ -10,14 +10,13 @@ abstract class CrudController extends Controller {
     private $model;
     private $modelName;
     private $friendlyModelName;
-    
-    
-    protected function setModel(CActiveRecord $model){
+
+    protected function setModel(CActiveRecord $model) {
         $this->model = $model;
         $this->modelName = get_class($model);
     }
-    
-    protected function getModel(){
+
+    protected function getModel() {
         return $this->model;
     }
 
@@ -32,10 +31,6 @@ abstract class CrudController extends Controller {
     protected function getExtraRules() {
         return $this->extraRules;
     }
-
-    abstract protected function afterSave(CActiveRecord $model, $postData = array());
-
-    abstract protected function renderData();
 
     /**
      * @return array action filters
@@ -77,8 +72,8 @@ abstract class CrudController extends Controller {
             ),
         );
 
-        $rules =  array_merge($rules,  $this->getExtraRules() ) ;
-        
+        $rules = array_merge($rules, $this->getExtraRules());
+
         array_push($rules, array('deny', // deny all users
             'users' => array('*'),
         ));
@@ -93,11 +88,15 @@ abstract class CrudController extends Controller {
     public function actionCreate() {
 
         $model = $this->getModel();
-        
+
         if (isset($_POST[$this->modelName])) {
             $model->attributes = $_POST[$this->modelName];
             if ($model->save()) {
-                $this->afterSave($model, $_POST);
+
+                if (method_exists($this, 'afterSave'))
+                    $this->afterSave($model, $_POST);
+
+
                 Yii::app()->user->setFlash('success', "{$this->friendlyModelName}  successfully created");
                 $this->redirect(array('update', 'id' => $model->id));
             }
@@ -107,7 +106,9 @@ abstract class CrudController extends Controller {
             'model' => $model,
         );
 
-        $data = array_merge($data, $this->renderData());
+
+        if (method_exists($this, 'renderData'))
+            $data = array_merge($data, $this->renderData());
 
         $this->render('editor', $data);
     }
@@ -127,7 +128,8 @@ abstract class CrudController extends Controller {
             $model->attributes = $_POST[$this->modelName];
             if ($model->save()) {
 
-                $this->afterSave($model, $_POST);
+                if (method_exists($this, 'afterSave'))
+                    $this->afterSave($model, $_POST);
 
                 if (Yii::app()->request->isAjaxRequest) { // AJAX Post Request
                     echo 'success';
@@ -145,7 +147,8 @@ abstract class CrudController extends Controller {
             'model' => $model,
         );
 
-        $data = array_merge($data, $this->renderData());
+        if (method_exists($this, 'renderData'))
+            $data = array_merge($data, $this->renderData());
 
         $this->render('editor', $data);
     }

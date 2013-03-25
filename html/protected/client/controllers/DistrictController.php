@@ -13,14 +13,6 @@ class DistrictController extends CrudController {
                         'users' => array('@'))));
     }
 
-    protected function afterSave(CActiveRecord $model, $postData = array()) {
-        
-    }
-
-    protected function renderData() {
-        return array();
-    }
-
     // print a list of district tag <select>
     public function actionDynamicDistrictNumber() {
 

@@ -8,12 +8,4 @@ class PartyController extends CrudController {
         $this->setFriendlyModelName('Party');
     }
 
-    protected function afterSave(CActiveRecord $model, $postData = array()) {
-        
-    }
-
-    protected function renderData() {
-        return array();
-    }
-
 }

@@ -8,13 +8,4 @@ class AlertTypeController extends CrudController {
         $this->setModel(new AlertType);
         $this->setFriendlyModelName('Alert Type');
     }
-
-    protected function afterSave(CActiveRecord $model, $postData = array()) {
-        
-    }
-
-    protected function renderData() {
-        return array();
-    }
-
 }

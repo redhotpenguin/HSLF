@@ -7,13 +7,4 @@ class ScorecardItemController extends CrudController {
         $this->setModel(new ScorecardItem );
         $this->setFriendlyModelName('Scorecard Item');
     }
-
-    protected function afterSave(CActiveRecord $model, $postData = array()) {
-
-    }
-
-    protected function renderData() {
-        return array();
-    }
-
 }

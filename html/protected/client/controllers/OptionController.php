@@ -8,12 +8,4 @@ class OptionController extends CrudController {
         $this->setFriendlyModelName('Option');
     }
 
-    protected function afterSave(CActiveRecord $model, $postData = array()) {
-        
-    }
-
-    protected function renderData() {
-        return array();
-    }
-
 }

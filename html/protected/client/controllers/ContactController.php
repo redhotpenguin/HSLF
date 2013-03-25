@@ -8,12 +8,4 @@ class ContactController extends CrudController {
         $this->setFriendlyModelName('Contact');
     }
 
-    protected function afterSave(CActiveRecord $model, $postData = array()) {
-
-    }
-
-    protected function renderData() {
-        return array();
-    }
-
 }

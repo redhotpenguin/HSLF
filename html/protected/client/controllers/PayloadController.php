@@ -41,11 +41,4 @@ class PayloadController extends CrudController {
         Yii::app()->end();
     }
 
-    protected function afterSave(CActiveRecord $model, $postData = array()) {
-    }
-
-    protected function renderData() {
-        return array();
-    }
-
 }

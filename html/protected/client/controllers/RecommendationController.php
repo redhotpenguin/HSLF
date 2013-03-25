@@ -8,12 +8,4 @@ class RecommendationController extends CrudController {
         $this->setFriendlyModelName('Recommendation');
     }
 
-    protected function afterSave(CActiveRecord $model, $postData = array()) {
-        
-    }
-
-    protected function renderData() {
-        return array();
-    }
-
 }

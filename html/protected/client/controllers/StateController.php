@@ -8,12 +8,4 @@ class StateController extends CrudController {
         $this->setFriendlyModelName('State');
     }
 
-    protected function afterSave(CActiveRecord $model, $postData = array()) {
-        
-    }
-
-    protected function renderData() {
-        return array();
-    }
-
 }

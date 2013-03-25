@@ -8,14 +8,6 @@ class TenantController extends CrudController {
         $this->setFriendlyModelName('Tenant');
     }
 
-    protected function afterSave(CActiveRecord $model, $postData = array()) {
-        
-    }
-
-    protected function renderData() {
-        return array();
-    }
-
     /**
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.

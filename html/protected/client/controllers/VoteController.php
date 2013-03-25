@@ -8,11 +8,4 @@ class VoteController extends CrudController {
         $this->setFriendlyModelName('Vote');
     }
 
-    protected function afterSave(CActiveRecord $model, $postData = array()) {
-
-    }
-
-    protected function renderData() {
-        return array();
-    }
 }

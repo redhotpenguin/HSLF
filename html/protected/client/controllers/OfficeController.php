@@ -8,12 +8,4 @@ class OfficeController extends CrudController {
         $this->setFriendlyModelName('Office');
     }
 
-    protected function afterSave(CActiveRecord $model, $postData = array()) {
-        
-    }
-
-    protected function renderData() {
-        return array();
-    }
-
 }

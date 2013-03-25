@@ -21,8 +21,4 @@ class PushMessageController extends CrudController {
             $model->removeAllTagsAssociation();
     }
 
-    protected function renderData() {
-        return array();
-    }
-
 }
