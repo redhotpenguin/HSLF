@@ -19,7 +19,7 @@ class TagSelector extends CInputWidget {
         $baseUrl = Yii::app()->assetManager->publish($assets);
         if (is_dir($assets)) {
             Yii::app()->clientScript->registerCoreScript('jquery');
-            Yii::app()->clientScript->registerScriptFile($baseUrl . '/tag_creator.js', CClientScript::POS_HEAD);
+            Yii::app()->clientScript->registerScriptFile($baseUrl . '/tag_creator.js', CClientScript::POS_END);
         }
     }
 

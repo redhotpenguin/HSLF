@@ -109,11 +109,7 @@ abstract class CrudController extends Controller {
 
         $model = $this->getModel();
 
-
-
         if (isset($_POST[$this->modelName])) {
-
-
             $model->attributes = $_POST[$this->modelName];
 
             if ($model->save()) {
@@ -126,7 +122,6 @@ abstract class CrudController extends Controller {
                     echo CJSON::encode($model);
                     Yii::app()->end();
                 }
-
 
                 Yii::app()->user->setFlash('success', "{$this->friendlyModelName}  successfully created");
                 $this->redirect(array('update', 'id' => $model->id));

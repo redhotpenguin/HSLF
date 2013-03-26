@@ -111,10 +111,10 @@ return array(
             'redis_db' => REDIS_QUEUE_DB,
         ),
         'assetManager' => array(
-          //  'class' => 'S3AssetManager',
-          //  'host' => S3_HOST,
-           // 'bucket' => S3_BUCKET,
-           // 'path' => 'assets', //or any other folder you want
+            'class' => 'S3AssetManager',
+            'host' => S3_HOST,
+            'bucket' => S3_BUCKET,
+            'path' => 'assets', //or any other folder you want
         ),
         'errorHandler' => array(
             'errorAction' => 'site/error',

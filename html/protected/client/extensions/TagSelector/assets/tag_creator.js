@@ -1,8 +1,13 @@
 jQuery(document).ready(tagCreator);
 
-
-
 function tagCreator($){
+    
+    var tagNameInput = $('#new_tag_form [name="name"]')
+    
+    $('#new_tag_form [name="display_name"]').keyup(function(){
+        var value = $(this).val();
+        tagNameInput .val(value.toLowerCase().replace(/ /g,"_").replace(/\W/g, ''));
+    });
     
     $("#save_tag_btn").click(function(){
                  
@@ -14,7 +19,7 @@ function tagCreator($){
             display_name: $('[name="display_name"]').val()
         }
                 
-        $.post('/client/ouroregon/tag/create', {
+        $.post(tagSelector_ns.site_url+'/tag/create', {
             'Tag' : serializedForm
         }, function(tag) {
             updateTagTable(tag);

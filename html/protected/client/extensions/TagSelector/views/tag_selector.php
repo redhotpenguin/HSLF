@@ -1,4 +1,13 @@
 <?php
+$tenant = Yii::app()->user->getLoggedInUserTenant();
+$siteUrl = $siteUrl = Yii::app()->params['site_url'] . '/client/' . $tenant->name;
+
+
+$ns = "var tagSelector_ns  = {site_url: '" . $siteUrl ."'};";
+
+
+Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::POS_HEAD);
+
 if (!empty($checkBoxList)):
     ?>
     <table id="table_tag" class="table table-bordered table-striped">
@@ -22,7 +31,7 @@ endif;
 $this->beginWidget(
         'bootstrap.widgets.TbModal', array(
     'id' => 'createTagModal',
-    'autoOpen' => true,
+    'autoOpen' => false,
 ));
     ?>
 
@@ -43,9 +52,8 @@ $this->beginWidget(
         'type' => 'primary',
         'label' => 'Save',
         'url' => '#',
-       
         'htmlOptions' => array(
-             'id'=>'save_tag_btn',
+            'id' => 'save_tag_btn',
             'data-dismiss' => 'modal'),
     ));
     ?>
