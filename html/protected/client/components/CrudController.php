@@ -115,16 +115,15 @@ abstract class CrudController extends Controller {
 
 
             $model->attributes = $_POST[$this->modelName];
-            
-            logIt(  $model->name );
-            
+
             if ($model->save()) {
 
                 if (method_exists($this, 'afterSave'))
                     $this->afterSave($model, $_POST);
 
                 if (Yii::app()->request->isAjaxRequest) { // AJAX Post Request
-                    echo 'success';
+                    header('Content-type: application/json');
+                    echo CJSON::encode($model);
                     Yii::app()->end();
                 }
 

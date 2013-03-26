@@ -1,8 +1,7 @@
 <?php
-
 if (!empty($checkBoxList)):
     ?>
-    <table class="table table-bordered table-striped">
+    <table id="table_tag" class="table table-bordered table-striped">
 
         <?php
         foreach ($checkBoxList as $tagId => $item):
@@ -20,22 +19,52 @@ else:
     echo 'No tags avalaible';
 endif;
 
-$this->beginWidget('zii.widgets.jui.CJuiDialog', array(
-    'id' => 'new_tag_modal',
-    'options' => array(
-        'title' => 'Create a new tag',
-        'autoOpen' => true,
-    ),
-));
-
-$this->render('tag_creator', array('tagTypes'=>$tagTypes));
-
-$this->endWidget('zii.widgets.jui.CJuiDialog');
-
-// the link that may open the dialog
-echo CHtml::link('Create new tag', '#', array(
-    'onclick' => '$("#new_tag_modal").dialog("open"); return false;',
-    'class' => 'btn btn-info',
+$this->beginWidget(
+        'bootstrap.widgets.TbModal', array(
+    'id' => 'createTagModal',
+    'autoOpen' => true,
 ));
     ?>
 
+<div class="modal-header">
+    <a class="close" data-dismiss="modal">&times;</a>
+    <h4>Create a new tag</h4>
+</div>
+
+<div class="modal-body">
+    <?php
+    $this->render('tag_creator', array('tagTypes' => $tagTypes));
+    ?>
+</div>
+
+<div class="modal-footer">
+    <?php
+    $this->widget('bootstrap.widgets.TbButton', array(
+        'type' => 'primary',
+        'label' => 'Save',
+        'url' => '#',
+       
+        'htmlOptions' => array(
+             'id'=>'save_tag_btn',
+            'data-dismiss' => 'modal'),
+    ));
+    ?>
+    <?php
+    $this->widget('bootstrap.widgets.TbButton', array(
+        'label' => 'Close',
+        'url' => '#',
+        'htmlOptions' => array('data-dismiss' => 'modal'),
+    ));
+    ?>
+</div>
+
+<?php $this->endWidget(); ?><?php
+$this->widget('bootstrap.widgets.TbButton', array(
+    'label' => 'Create a new tag',
+    'type' => 'info',
+    'htmlOptions' => array(
+        'data-toggle' => 'modal',
+        'data-target' => '#createTagModal',
+    ),
+));
+?>
