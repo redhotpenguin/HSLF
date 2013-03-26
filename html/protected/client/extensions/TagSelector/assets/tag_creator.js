@@ -11,12 +11,19 @@ function tagCreator($){
     
     $("#save_tag_btn").click(function(){
                  
-        var form = $('#new_tag_form').find('input');
-       
+        var form = $('#new_tag_form').find('input'),
+        tagType = $('[name="type"]').val(),
+        tagName = $('[name="name"]').val(),
+        tagDisplayName = $('[name="display_name"]').val();
+        
+        if(!tagName || !tagDisplayName){
+            return;
+        }
+        
         var serializedForm = {
-            type: $('[name="type"]').val(),
-            name: $('[name="name"]').val(),
-            display_name: $('[name="display_name"]').val()
+            type: tagType,
+            name: tagName,
+            display_name: tagDisplayName
         }
                 
         $.post(tagSelector_ns.site_url+'/tag/create', {
