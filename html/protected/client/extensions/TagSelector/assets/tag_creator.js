@@ -22,6 +22,8 @@ function tagCreator($){
         $.post(tagSelector_ns.site_url+'/tag/create', {
             'Tag' : serializedForm
         }, function(tag) {
+            $('[name="display_name"]').val('');
+            $('[name="name"]').val('');
             updateTagTable(tag);
         });
     });
