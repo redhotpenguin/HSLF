@@ -24,7 +24,8 @@ function tagCreator($){
         }, function(tag) {
             $('[name="display_name"]').val('');
             $('[name="name"]').val('');
-            updateTagTable(tag);
+            if(tag.id != undefined)
+                updateTagTable(tag);
         });
     });
     
