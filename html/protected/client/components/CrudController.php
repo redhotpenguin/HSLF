@@ -109,12 +109,24 @@ abstract class CrudController extends Controller {
 
         $model = $this->getModel();
 
+
+
         if (isset($_POST[$this->modelName])) {
+
+
             $model->attributes = $_POST[$this->modelName];
+            
+            logIt(  $model->name );
+            
             if ($model->save()) {
 
                 if (method_exists($this, 'afterSave'))
                     $this->afterSave($model, $_POST);
+
+                if (Yii::app()->request->isAjaxRequest) { // AJAX Post Request
+                    echo 'success';
+                    Yii::app()->end();
+                }
 
 
                 Yii::app()->user->setFlash('success', "{$this->friendlyModelName}  successfully created");

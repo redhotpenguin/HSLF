@@ -19,7 +19,7 @@ $this->secondaryNav['url'] = array('organization/index');
 
 
 $this->widget('bootstrap.widgets.TbGridView', array(
-    'id' => 'vote-grid',
+    'id' => 'organization-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
     'columns' => array(
