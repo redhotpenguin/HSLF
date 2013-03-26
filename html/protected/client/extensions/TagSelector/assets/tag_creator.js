@@ -32,7 +32,7 @@ function tagCreator($){
         
         var row = '<tr><td>'+tag.display_name+'</td>';
         
-        row += '<td><input value="'+tag.id+'" type="checkbox" name="Organization[tags][]"></td>';
+        row += '<td><input value="'+tag.id+'" type="checkbox" name='+tagSelector_ns.modelName+'[tags][]"></td>';
         
         row += '</tr>';
    

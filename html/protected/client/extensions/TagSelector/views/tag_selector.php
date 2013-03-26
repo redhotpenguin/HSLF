@@ -3,7 +3,7 @@ $tenant = Yii::app()->user->getLoggedInUserTenant();
 $siteUrl = $siteUrl = Yii::app()->params['site_url'] . '/client/' . $tenant->name;
 
 
-$ns = "var tagSelector_ns  = {site_url: '" . $siteUrl ."'};";
+$ns = "var tagSelector_ns  = {site_url: '" . $siteUrl ."', modelName:'$modelName'};";
 
 
 Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::POS_HEAD);
