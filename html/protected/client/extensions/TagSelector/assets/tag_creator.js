@@ -11,8 +11,7 @@ function tagCreator($){
     
     $("#save_tag_btn").click(function(){
                  
-        var form = $('#new_tag_form').find('input'),
-        tagType = $('[name="type"]').val(),
+        var tagType = $('[name="type"]').val(),
         tagName = $('[name="name"]').val(),
         tagDisplayName = $('[name="display_name"]').val();
         
