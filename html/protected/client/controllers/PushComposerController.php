@@ -20,7 +20,7 @@ class PushComposerController extends Controller {
         return array(
             array(// restrict State to admins only
                 'allow',
-                'actions' => array('index'),
+                'actions' => array('index', 'composer'),
                 'roles' => array('manageMobileUsers'),
             ),
             array('deny', // deny all users
@@ -31,6 +31,10 @@ class PushComposerController extends Controller {
 
     public function actionIndex() {
         $this->render('index');
+    }
+    
+      public function actionComposer() {
+        $this->render('form');
     }
 
 }
