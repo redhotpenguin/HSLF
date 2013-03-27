@@ -30,7 +30,7 @@ $this->secondaryNav['url'] =array('payload/index');
 
     <div class="row-fluid">
         <?php echo $form->labelEx($model, 'title'); ?>
-        <?php echo $form->textField($model, 'title', array('placeholder' => 'title', 'size' => 60, 'maxlength' => 512, 'class' => 'span11')); ?>
+        <?php echo $form->textField($model, 'title', array('placeholder' => 'For Share payload, appears as preview text on share screens, Facebook share title, email subject line. For push to post, not displayed on the app.', 'size' => 60, 'maxlength' => 512, 'class' => 'span11')); ?>
         <?php echo $form->error($model, 'title'); ?>
     </div>
 
@@ -53,7 +53,7 @@ $this->secondaryNav['url'] =array('payload/index');
     <div id="share_related_inputs">
         <div class="row-fluid">
             <?php echo $form->labelEx($model, 'url'); ?>
-            <?php echo $form->textField($model, 'url', array('placeholder' => 'Target URL', 'size' => 60, 'maxlength' => 2048, 'class' => 'span11')); ?>
+            <?php echo $form->textField($model, 'url', array('placeholder' => 'Target URL (for Facebook and Email shares)', 'size' => 60, 'maxlength' => 2048, 'class' => 'span11')); ?>
             <?php echo $form->error($model, 'url'); ?>
         </div>
 
@@ -61,19 +61,19 @@ $this->secondaryNav['url'] =array('payload/index');
 
         <div class="row-fluid">
             <?php echo $form->labelEx($model, 'description'); ?>
-            <?php echo $form->textArea($model, 'description', array('placeholder' => 'Link description for Facebook excerpt and email body', 'rows' => 6, 'cols' => 50, 'class' => 'span11')); ?>
+            <?php echo $form->textArea($model, 'description', array('placeholder' => 'Link description for Facebook excerpts', 'rows' => 6, 'cols' => 50, 'class' => 'span11')); ?>
             <?php echo $form->error($model, 'description'); ?>
         </div>
 
         <div class="row-fluid">
             <?php echo $form->labelEx($model, 'tweet'); ?>
-            <?php echo $form->textArea($model, 'tweet', array('placeholder' => 'Content of the Tweet', 'rows' => 2, 'cols' => 50, 'class' => 'span11')); ?>
+            <?php echo $form->textArea($model, 'tweet', array('placeholder' => 'Exact content of the Tweet', 'rows' => 2, 'cols' => 50, 'class' => 'span11')); ?>
             <?php echo $form->error($model, 'tweet'); ?>
         </div>
 
         <div class="row-fluid">
             <?php echo $form->labelEx($model, 'email'); ?>
-            <?php echo $form->textField($model, 'email', array('placeholder' => 'Recipient email address', 'size' => 60, 'maxlength' => 320, 'class' => 'span11')); ?>
+            <?php echo $form->textField($model, 'email', array('placeholder' => 'Recipient email address (optional)', 'size' => 60, 'maxlength' => 320, 'class' => 'span11')); ?>
             <?php echo $form->error($model, 'email'); ?>
         </div>
     </div>

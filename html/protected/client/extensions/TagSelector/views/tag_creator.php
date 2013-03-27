@@ -14,7 +14,7 @@
     <div class="row">
         <?php
         echo Chtml::label('Name', 'name');
-        echo Chtml::textField('name', '', array('size' => 60, 'maxlength' => 255));
+        echo Chtml::textField('name', '', array('size' => 60, 'maxlength' => 255, 'placeholder'=>''));
         ?>
     </div>
 
