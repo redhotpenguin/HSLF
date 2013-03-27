@@ -1,5 +1,4 @@
 <?php
-
 $this->secondaryNav['name'] = 'Push Composer';
 $this->secondaryNav['url'] = array('pushComposer/index');
 
@@ -11,21 +10,26 @@ $cs->registerCssFile($baseUrl . '/static/pushcomposer/pushcomposer.css');
 
 
 <?php
-
 $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'id' => 'push_composer',
     'type' => 'horizontal',
         ));
 
+
+$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'type' => 'primary', 'size' => 'large', 'label' => 'Back', 'htmlOptions' => array('style' => 'float:left;', 'id' => 'composerBackBtn')));
+
+$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'type' => 'primary', 'size' => 'large', 'label' => 'Next', 'htmlOptions' => array('style' => 'float:right;', 'id' => 'composerNextBtn')));
 ?>
 
+<div class="clearfix"></div>
+
+<hr/>
+
 <div id="dynamicComposerContent">
-    
+
 </div>
 
+
 <?php
-
-$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'type' => 'primary', 'label' => 'Next', 'htmlOptions' => array('id' => 'composerNextBtn')));
-
 $this->endWidget();
 ?>

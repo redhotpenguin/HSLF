@@ -4,6 +4,7 @@ jQuery(document).ready(composer);
 function composer($){
     
     var composerNextBtn = $("#composerNextBtn"),
+    composerBackBtn = $("#composerBackBtn"),
     dynamicComposerContent = $("#dynamicComposerContent"),
     currentPage = 0,
     steps = ['message', 'recipients', 'action', 'review','thankyou'];
@@ -12,7 +13,14 @@ function composer($){
         if(currentPage < steps.length)
             currentPage++;
         
-        updateForm(steps[currentPage -1 ]);
+        updateForm(steps[currentPage]);
+    });
+    
+    composerBackBtn.click(function(){
+        if(currentPage > 0)
+            currentPage--;
+        
+        updateForm(steps[currentPage]);
     });
  
  
@@ -21,8 +29,11 @@ function composer($){
         
         
         $.get(query, function(form){
-           dynamicComposerContent.html(form);
+            dynamicComposerContent.html(form);
         })
     }
+    
+    
+    updateForm('message');
 } 
 
