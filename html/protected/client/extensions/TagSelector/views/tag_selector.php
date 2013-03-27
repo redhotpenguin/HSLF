@@ -3,37 +3,41 @@ $tenant = Yii::app()->user->getLoggedInUserTenant();
 $siteUrl = $siteUrl = Yii::app()->params['site_url'] . '/client/' . $tenant->name;
 
 
-$ns = "var tagSelector_ns  = {site_url: '" . $siteUrl ."', modelName:'$modelName'};";
+$ns = "var tagSelector_ns  = {site_url: '" . $siteUrl . "', modelName:'$modelName'};";
 
 
 Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::POS_HEAD);
-
-if (!empty($checkBoxList)):
-    ?>
-    <table id="table_tag" class="table table-bordered table-striped">
-
+?>
+<table id="table_tag" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th colspan="2">Name</th>
+        </tr>
+    </thead>
+    <tbody>
         <?php
-        foreach ($checkBoxList as $tagId => $item):
-            ?>
-            <tr>
-                <td> <?php echo $item['name']; ?> </td>
-                <td> <?php echo CHtml::checkBox($modelName . '[tags][]', $item['checked'], array('value' => $tagId)); ?> </td>
-            </tr>
+        if (!empty($checkBoxList)):
+            foreach ($checkBoxList as $tagId => $item):
+                ?>
+                <tr>
+                    <td> <?php echo $item['name']; ?> </td>
+                    <td> <?php echo CHtml::checkBox($modelName . '[tags][]', $item['checked'], array('value' => $tagId)); ?> </td>
+                </tr>
 
-            <?php
-        endforeach;
+                <?php
+            endforeach;
+        endif;
         ?>
-    </table><?php
-else:
-    echo 'No tags avalaible';
-endif;
+    </tbody>
+</table>
 
+<?php
 $this->beginWidget(
         'bootstrap.widgets.TbModal', array(
     'id' => 'createTagModal',
     'autoOpen' => false,
 ));
-    ?>
+?>
 
 <div class="modal-header">
     <a class="close" data-dismiss="modal">&times;</a>
