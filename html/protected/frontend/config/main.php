@@ -57,14 +57,6 @@ return array(
             'rules' => array(
             ),
         ),
-        'db' => array(
-            'connectionString' => "pgsql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME,
-            'emulatePrepare' => true,
-            'username' => DB_USER,
-            'password' => DB_PASS,
-            'charset' => 'UTF-8',
-            'schemaCachingDuration' => '3600',
-        ),
         'cache' => array(
             'class' => 'application.shared.extensions.Redis.CRedisCache',
             'predisPath' => 'application.shared.extensions.Redis.Predis',
