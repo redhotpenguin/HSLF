@@ -58,10 +58,10 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
 
     set_include_path(get_include_path() . PATH_SEPARATOR . '/home/dotcloud/php-env/share/php');
 } else {    //dev server conf
-    $dbhost = 'ec2-23-21-161-153.compute-1.amazonaws.com';
-    $dbname = 'd3icdm6opovq73';
-    $dbuser = 'epvcnwunkcismg';
-    $dbpass = 'TaqyZyhLHQUU8y_baP7nJTLgUr';
+    $dbhost = '127.0.0.1';
+    $dbname = 'mobile_advocacy_platform';
+    $dbuser = 'postgres';
+    $dbpass = 'pengu1n';
     $dbport = '5432';
 
     $mongodbhost = "mongodb://localhost:27017";
