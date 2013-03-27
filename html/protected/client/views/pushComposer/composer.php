@@ -1,25 +1,31 @@
 <?php
+
 $this->secondaryNav['name'] = 'Push Composer';
 $this->secondaryNav['url'] = array('pushComposer/index');
 
 $baseUrl = Yii::app()->baseUrl;
 $cs = Yii::app()->getClientScript();
-$cs->registerScriptFile($baseUrl . '/static/global/js/form/jquery.multipage.js');
-$cs->registerCssFile($baseUrl . '/static/global/css/jquery.multipage.css');
+$cs->registerScriptFile($baseUrl . '/static/pushcomposer/pushcomposer.js');
+$cs->registerCssFile($baseUrl . '/static/pushcomposer/pushcomposer.css');
 ?>
 
 
 <?php
+
 $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'id' => 'push_composer',
     'type' => 'horizontal',
         ));
 
-echo $this->renderPartial('composer/_message', array('form' => $form, 'pushMessageModel' => $pushMessageModel));
+?>
 
-echo $this->renderPartial('composer/_recipients', array('form' => $form));
+<div id="dynamicComposerContent">
+    
+</div>
 
-echo $this->renderPartial('composer/_action', array('form' => $form));
+<?php
+
+$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'type' => 'primary', 'label' => 'Next', 'htmlOptions' => array('id' => 'composerNextBtn')));
 
 $this->endWidget();
 ?>
