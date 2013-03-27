@@ -100,7 +100,7 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
 
     $maintenance = 'off';
 
-    define('YII_DEBUG', true);
+   // define('YII_DEBUG', true);
 }
 
 
