@@ -34,7 +34,7 @@ class PushComposerController extends Controller {
     }
     
       public function actionComposer() {
-        $this->render('form');
+        $this->render('composer', array("pushMessageModel" => new PushMessage ));
     }
 
 }
