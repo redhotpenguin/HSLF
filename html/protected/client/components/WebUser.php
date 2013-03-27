@@ -62,15 +62,21 @@ class WebUser extends CWebUser {
     }
 
     /**
-     * return the composite primary key from tenant_user
-     * @return
+     * Get the key identifiying a user for a specific tenant. Ex 2/13.  2 = tenant id and 13 = user id
+     * @return mixed tenant user id or false
      */
     public function getLoggedInTenantUserId() {
 
-        if (($tenant = $this->getLoggedInUserTenant()) != null)
-            return $this->getModel()->getTenantUserId($tenant->id, $this->getState('userId'));
+        $model = $this->getModel();
 
-        return $this->getModel()->getTenantUserId(0, $this->getState('userId')); // 0 means no tenant. Ex: (super)admin dashboard or home page
+        if (!$model)
+            return false;
+
+
+        if (($tenant = $this->getLoggedInUserTenant()) != null)
+            return $model->getTenantUserId($tenant->id, $this->getState('userId'));
+
+        return $model->getTenantUserId(0, $this->getState('userId')); // 0 means no tenant. Ex: (super)admin dashboard or home page
     }
 
     public function getModel() {
@@ -107,19 +113,18 @@ class WebUser extends CWebUser {
      * @param string permission name
      */
     public function hasPermission($permissionName) {
-                
+
         if (in_array($permissionName, $this->permissions)) {
             return true;
         }
-   
+
         $cAuthAssignments = Yii::app()->getAuthManager()->getAuthAssignments($this->getLoggedInTenantUserId());
-        
-        if(is_array($cAuthAssignments))
-        
-        foreach ($cAuthAssignments as $cAuthAssignment){
-            array_push($this->permissions, $cAuthAssignment->itemName);
-        }
-        
+
+        if (is_array($cAuthAssignments))
+            foreach ($cAuthAssignments as $cAuthAssignment) {
+                array_push($this->permissions, $cAuthAssignment->itemName);
+            }
+
         return (in_array($permissionName, $this->permissions));
     }
 

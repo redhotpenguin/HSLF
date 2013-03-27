@@ -82,7 +82,7 @@
             <?php echo $form->labelEx($model, 'date_published'); ?>
             <?php
             $this->widget('zii.widgets.jui.CJuiDatePicker', array(
-                'name' => 'Item[date_published]',
+                'name' => 'BallotItem[date_published]',
                 'value' => $model->date_published,
                 // additional javascript options for the date picker plugin
                 'options' => array(

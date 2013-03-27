@@ -25,7 +25,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         'email',
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
-            'template' => "{update}{view}"
+            'template' => "{update}"
         ),
     ),
 ));

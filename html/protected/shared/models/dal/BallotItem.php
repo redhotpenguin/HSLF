@@ -30,7 +30,7 @@
 
 
  */
-class Item extends BaseActiveRecord {
+class BallotItem extends BaseActiveRecord {
 
     public $state_id; // not part of the model, here for cgridview (admin search)
     public $district_type; // not part of the model, here for cgridview (admin search)
@@ -228,7 +228,7 @@ class Item extends BaseActiveRecord {
     public function behaviors() {
         return array(
             'beforeSave' => array(
-                'class' => 'ItemBehavior',
+                'class' => 'BallotItemBehavior',
             ),
             'OrganizationBehavior' => array(
                 'class' => 'ItemOrganizationBehavior',

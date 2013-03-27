@@ -25,12 +25,12 @@ if ($isAdmin) {
 
 $this->secondaryNav['items'] = $navBarItems;
 $this->secondaryNav['name'] = 'Ballot Items';
-$this->secondaryNav['url'] = array('item/index');
+$this->secondaryNav['url'] = array('ballotItem/index');
 
 
 $state_list = array('' => 'All') + CHtml::listData(State::model()->findAll(), 'id', 'name');
 $district_list = array('' => 'All') + District::model()->getTypeOptions();
-$item_type_list = array('' => 'All') + Item::model()->getItemTypeOptions();
+$item_type_list = array('' => 'All') + BallotItem::model()->getItemTypeOptions();
 
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'item-grid',

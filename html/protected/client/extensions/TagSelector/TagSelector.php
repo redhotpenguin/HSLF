@@ -10,6 +10,17 @@ class TagSelector extends CInputWidget {
         $behaviors = $this->model->behaviors();
         if (!isset($behaviors['TagRelation']))
             throw new CException('Model "' . get_class($this->model) . '" does not have a behavior called TagRelation');
+
+        $this->publishAssets();
+    }
+
+    protected static function publishAssets() {
+        $assets = dirname(__FILE__) . '/assets';
+        $baseUrl = Yii::app()->assetManager->publish($assets);
+        if (is_dir($assets)) {
+            Yii::app()->clientScript->registerCoreScript('jquery');
+            Yii::app()->clientScript->registerScriptFile($baseUrl . '/tag_creator.js', CClientScript::POS_END);
+        }
     }
 
     public function run() {
@@ -28,12 +39,13 @@ class TagSelector extends CInputWidget {
 
         foreach ($unAssociatedTags as $tag)
             $checkBoxList[$tag->id] = array('name' => $tag->display_name, 'checked' => false);
-        
-        $checkBoxList = $this->array_sort($checkBoxList, 'name', SORT_ASC );
+
+        $checkBoxList = $this->array_sort($checkBoxList, 'name', SORT_ASC);
 
         $data = array(
             'modelName' => get_class($this->model),
             'checkBoxList' => $checkBoxList,
+            'tagTypes' => $this->tag_types
         );
 
         $this->render('tag_selector', $data);

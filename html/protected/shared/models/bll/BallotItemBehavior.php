@@ -5,13 +5,13 @@
  *
  * @author jonas
  */
-class ItemBehavior extends CActiveRecordBehavior {
+class BallotItemBehavior extends CActiveRecordBehavior {
 
     public function beforeSave($event) {
 
         if (!empty($this->owner->slug)) {
 
-            $items = Item::model()->findAllByAttributes(
+            $items = BallotItem::model()->findAllByAttributes(
                     array('slug' => $this->owner->slug), 'id!=:the_id', array(':the_id' => $this->owner->id)
             );
 
@@ -72,11 +72,11 @@ class ItemBehavior extends CActiveRecordBehavior {
     public function isURLUnique($slug, $item_id = null) {
         // avoid returning false positive
         if (isset($item_id)) {
-            $items = Item::model()->findAllByAttributes(
+            $items = BallotItem::model()->findAllByAttributes(
                     array('slug' => $slug), 'id!=:item_id', array(':item_id' => $item_id)
             );
         } else {
-            $items = Item::model()->findAllByAttributes(
+            $items = BallotItem::model()->findAllByAttributes(
                     array('slug' => $slug));
         }
 

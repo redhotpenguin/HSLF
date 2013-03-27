@@ -22,7 +22,7 @@ jQuery.fn.updateURLUsingName = function() {
 
 jQuery.fn.updateURLUsingInput = function() {
     var o = $(this[0]),
-    site_url_input = $("#Item_slug"),
+    site_url_input = $("#BallotItem_slug"),
 
     
     // retrieve the item site url
@@ -41,8 +41,8 @@ jQuery.fn.updateURLUsingInput = function() {
 };
 
 jQuery.fn.printURL = function(filtered_url) {
-    var date_published_input = $("#Item_date_published"),
-    site_url_input = $("#Item_slug");
+    var date_published_input = $("#BallotItem_date_published"),
+    site_url_input = $("#BallotItem_slug");
 
     // get the year from the publication field
     var  year_published = date_published_input.val().substr(0, 4);
@@ -67,7 +67,7 @@ function filterURL(item_name, id, _cb){
     id = id || "";
 
     // ajax request url
-    ajax_url = ns.site_url+ "/item/ajax?a=validateURL&url="+item_name;
+    ajax_url = ns.site_url+ "/ballotItem/ajax?a=validateURL&url="+item_name;
     if(id != "undefined" && id!="" )
         ajax_url += "&id="+id;
 
@@ -87,10 +87,10 @@ function filterURL(item_name, id, _cb){
 function itemForm($){
 
     var site_url_span = $("#dynamic_site_url"),
-    date_published_input = $("#Item_date_published"),
-    item_name_input = $("#Item_item"),
-    site_url_input = $("#Item_slug"),
-    item_item_type = $("#Item_item_type");
+    date_published_input = $("#BallotItem_date_published"),
+    item_name_input = $("#BallotItem_item"),
+    site_url_input = $("#BallotItem_slug"),
+    item_item_type = $("#BallotItem_item_type");
     candidate_related_inputs = $("#candidate_related_inputs");
     measure_related_inputs = $("#measure_related_inputs");
     
@@ -152,7 +152,7 @@ function itemForm($){
             return;
         
     
-        textarea = $('#Item_detail');
+        textarea = $('#BallotItem_detail');
         
         content = textarea.val();
 

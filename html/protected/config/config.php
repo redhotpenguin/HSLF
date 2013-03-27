@@ -97,7 +97,9 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
     $apiShortCacheDuration = 10;
     $apiNormalCacheDuration = 100;
     $apiLongCacheDuration = 3600;
+
     $maintenance = 'off';
+
     define('YII_DEBUG', true);
 }
 

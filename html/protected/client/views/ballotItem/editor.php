@@ -8,7 +8,7 @@ if (!$model->isNewRecord) {
 
 $this->secondaryNav['items'] = $navBarItems;
 $this->secondaryNav['name'] = 'Ballot Items';
-$this->secondaryNav['url'] =array('item/index');
+$this->secondaryNav['url'] =array('ballotItem/index');
 
 
 $tenant = Yii::app()->user->getLoggedInUserTenant();
@@ -95,7 +95,7 @@ $cs->registerScriptFile($baseUrl . '/static/ballotitem/item.js');
 
     if (!$model->isNewRecord) {
         $url = CHtml::normalizeUrl(array(
-                    'item/update',
+                    'ballotItem/update',
                     'id' => $model->id,
                     'enctype' => 'multipart/form-data',
                 ));

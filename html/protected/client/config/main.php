@@ -52,9 +52,9 @@ return array(
             'autoCreateSessionTable' => false,
             'connectionID' => 'db',
             'sessionTableName' => 'user_session',
-            // 'sessionName' => 'winningmarkmobile', // cookie name
             'cookieMode' => 'only', // only use cookies 
             'useTransparentSessionID' => false, // disable cookie less sessions,
+            'timeout' => 24 * 60 // 24 minutes
         ),
         'urlManager' => array(
             'urlFormat' => 'path',

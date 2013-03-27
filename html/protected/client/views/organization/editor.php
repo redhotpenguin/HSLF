@@ -43,7 +43,7 @@ $this->secondaryNav['url'] = array('organization/index');
         'type' => 'tabs', // 'tabs' or 'pills'
         'placement' => 'left',
         'tabs' => array(
-            array('label' => 'Organization', 'content' => $orgTab, 'active' => true),
+            array('label' => 'Organization', 'content' => $orgTab, 'active' => true ),
             array('label' => 'Details', 'content' => $detailTab),
             array('label' => 'Contacts', 'content' => $contactTab),
             array('label' => 'Tags', 'content' => $tagsTab),

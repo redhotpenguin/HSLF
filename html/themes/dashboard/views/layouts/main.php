@@ -42,7 +42,7 @@
                     $contentMenuItems = array();
 
                     if (Yii::app()->user->hasPermission('manageBallotItems'))
-                        array_push($contentMenuItems, array('label' => 'Ballot Items', 'url' => array('/item/index')));
+                        array_push($contentMenuItems, array('label' => 'Ballot Items', 'url' => array('/ballotItem/index')));
 
                     if (Yii::app()->user->hasPermission('manageOrganizations'))
                         array_push($contentMenuItems, array('label' => 'Organizations', 'url' => array('/organization/index')));
