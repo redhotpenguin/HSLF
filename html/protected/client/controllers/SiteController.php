@@ -49,7 +49,9 @@ class SiteController extends Controller {
     }
 
     public function actionHome() {
-        $this->render('home');
+        $tenant = Yii::app()->user->getLoggedInUserTenant();
+        $tenantDisplayName = $tenant->display_name;
+        $this->render('home', array('tenantDisplayName'=>$tenantDisplayName));
     }
 
     /**
