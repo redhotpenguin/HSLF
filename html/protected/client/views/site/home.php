@@ -1,34 +1,53 @@
 <?php $this->pageTitle = Yii::app()->name; ?>
 
-<div>
+<div id="homepage">
+    <div class="hero-unit">
+        <h1>Dashboard</h1>
+        <p>Welcome to your mobile advocacy platform administration dashboard.<br/>
+            Use the drop-down navigation above or click one of the buttons below to manage your mobile application.</p>
+    </div>
 
-    <?php
+    <div class="action_group">
+        <span class="action_title">Manage Content</span>
 
-    if (Yii::app()->user->id):
-        ?>
-        <div class="hero-unit">
-            <h1>Dashboard</h1>
-            <p>Welcome to the administration dashboard.</p>
-
-
+        <div class="action_block_group">
             <?php
-            if ($itemCount != null) {
-                echo "<p><b>$itemCount</b> " . CHtml::link("Ballot Items", array("ballotItem/index")) . '</p>';
-            }
+            if (Yii::app()->user->hasPermission('manageBallotItems'))
+                echo CHtml::link('Ballot Items', array('ballotItem/index'), array('class' => 'action_block'));
 
+            if (Yii::app()->user->hasPermission('manageOrganizations'))
+                echo CHtml::link('Organizations', array('organizations/index'), array('class' => 'action_block'));
 
-            if ($mobileUserCount != null) {
-                echo "<p><b>$mobileUserCount</b> " . CHtml::link("Mobile Users", array("mobileUser/Index")) . '</p>';
-            }
+            if (Yii::app()->user->hasPermission('manageContacts'))
+                echo CHtml::link('Contacts', array('contact/index'), array('class' => 'action_block'));
+
+            if (Yii::app()->user->hasPermission('manageTags'))
+                echo CHtml::link('Tags', array('tag/index'), array('class' => 'action_block'));
             ?>
-
-
         </div>
-
 
     </div>
 
-    <?php
+    <div class="action_group">
+        <span class="action_title">Manage Communication</span>
+
+        <div class="action_block_group">
+            <?php
+            if (Yii::app()->user->hasPermission('manageMobileUsers'))
+                echo CHtml::link('Mobile Users', array('mobileUser/index'), array('class' => 'action_block'));
+
+            if (Yii::app()->user->hasPermission('managePushMessages'))
+                echo CHtml::link('Push Messages', array('pushMessage/index'), array('class' => 'action_block'));
+
+            if (Yii::app()->user->hasPermission('manageAlertTypes'))
+                echo CHtml::link('Alert Types', array('alertType/index'), array('class' => 'action_block'));
+
+            if (Yii::app()->user->hasPermission('managePayloads'))
+                echo CHtml::link('Payloads', array('payload/index'), array('class' => 'action_block'));
+            ?>
+        </div>
+
+    </div>
 
 
-endif; //end test is user logged in
+</div>
