@@ -2,7 +2,7 @@
 
 <div id="homepage">
     <div class="hero-unit">
-        <h1><?php echo $tenantDisplayName;?></h1>
+        <h1><?php echo $tenantDisplayName;?>,</h1>
         <p>Welcome to your mobile advocacy platform administration dashboard.<br/>
             Use the drop-down navigation above or click one of the buttons below to manage your mobile application.</p>
     </div>

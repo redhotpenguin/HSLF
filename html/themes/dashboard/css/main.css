@@ -135,7 +135,7 @@ h4{
 
 
 #homepage .action_block_group .action_block{
-    background-color:#5D8FA8;
+    background-color:#0081C2;
     color:#fff;
     font-weight:bold;
     border-radius:3px;
@@ -147,11 +147,12 @@ h4{
     height:50px;
     text-align:center;
     padding-top:8%;
+    
 }
 
 #homepage .action_block_group .action_block:hover{
     text-decoration:none;
-    background-color:#557E92;
+    background-color:#0E76AA;
     -webkit-transition: all .2s ease-out;
     -moz-transition: all .2s ease-out;
     transition: all .2s ease-out;
