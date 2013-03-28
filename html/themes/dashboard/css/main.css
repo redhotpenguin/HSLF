@@ -108,7 +108,7 @@ h4{
 
 #homepage .action_group{
     padding:15px;
-    border-radius:5px;
+    border-radius:6px;
     width:33%;
     float:left;
     margin-right:2%;
@@ -116,11 +116,12 @@ h4{
 }
 
 #homepage .action_group .action_title{
-    font-size:1.5em;
-    font-weight:bold;
-    display:block;
-    color:#333;
-    margin-left:5%;
+    padding-top: 10px;
+    font-size: 1.7em;
+    font-weight: bold;
+    display: block;
+    color: #333;
+    margin-left: 5%;
 }
 
 #homepage .action_group .action_block_group{

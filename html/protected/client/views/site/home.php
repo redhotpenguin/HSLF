@@ -8,7 +8,7 @@
     </div>
 
     <div class="action_group">
-        <span class="action_title">Manage Content</span>
+        <span class="action_title">Content</span>
 
         <div class="action_block_group">
             <?php
@@ -16,7 +16,7 @@
                 echo CHtml::link('Ballot Items', array('ballotItem/index'), array('class' => 'action_block'));
 
             if (Yii::app()->user->hasPermission('manageOrganizations'))
-                echo CHtml::link('Organizations', array('organizations/index'), array('class' => 'action_block'));
+                echo CHtml::link('Organizations', array('organization/index'), array('class' => 'action_block'));
 
             if (Yii::app()->user->hasPermission('manageContacts'))
                 echo CHtml::link('Contacts', array('contact/index'), array('class' => 'action_block'));
@@ -29,7 +29,7 @@
     </div>
 
     <div class="action_group">
-        <span class="action_title">Manage Communication</span>
+        <span class="action_title">Communication</span>
 
         <div class="action_block_group">
             <?php
