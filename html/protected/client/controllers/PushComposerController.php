@@ -44,16 +44,21 @@ class PushComposerController extends Controller {
 
     public function actionNextStep($pageName, $virtualSessionId, $message = "") {
         $data = array();
+
+        $data['message'] = Yii::app()->session['message_' . $virtualSessionId];
+
         switch ($pageName) {
             case 'message':
-                $data['message'] = Yii::app()->session['message_' . $virtualSessionId];
                 $view = 'composer/_message';
                 break;
 
             case 'action':
                 Yii::app()->session['message_' . $virtualSessionId] = $message;
-
                 $view = 'composer/_action';
+                break;
+
+            case 'recipients':
+                $view = 'composer/_recipients';
                 break;
 
             case 'review':
