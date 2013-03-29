@@ -20,7 +20,7 @@ class PushComposerController extends Controller {
         return array(
             array(// restrict State to admins only
                 'allow',
-                'actions' => array('index', 'composer', 'recipients', 'message', 'action', 'review', 'thankyou'),
+                'actions' => array('index', 'composer', 'nextStep'),
                 'roles' => array('manageMobileUsers'),
             ),
             array('deny', // deny all users
@@ -34,48 +34,38 @@ class PushComposerController extends Controller {
     }
 
     public function actionComposer() {
-        
+
         // virtual session is to avoid session collision within one actual user session.
         // without it, session variables can collide when multiple tabs are open
-        
+
         $virtualSessionId = md5(microtime(true));
-        $this->render('composer', array("pushMessageModel" => new PushMessage, 'virtualSessionId'=>$virtualSessionId));
+        $this->render('composer', array("pushMessageModel" => new PushMessage, 'virtualSessionId' => $virtualSessionId));
     }
 
-    /**
-     * render a partial message view
-     */
-    public function actionMessage($virtualSessionId) {
-        $data = array(
-            'message' => Yii::app()->session['message_'.$virtualSessionId],
-        );
-        $this->renderPartial('composer/_message', $data);
-    }
+    public function actionNextStep($pageName, $virtualSessionId, $message = "") {
+        $data = array();
+        switch ($pageName) {
+            case 'message':
+                $data['message'] = Yii::app()->session['message_' . $virtualSessionId];
+                $view = 'composer/_message';
+                break;
 
-    public function actionRecipients($virtualSessionId, $message) {
-        logIt("got:" . $message);
-        Yii::app()->session['message_'.$virtualSessionId] = $message;
-        $this->renderPartial('composer/_recipients');
-    }
+            case 'action':
+                Yii::app()->session['message_' . $virtualSessionId] = $message;
 
-    public function actionAction() {
-        $this->renderPartial('composer/_action');
-    }
+                $view = 'composer/_action';
+                break;
 
-    public function actionReview($virtualSessionId) {
-        
-        $message = Yii::app()->session['message_'.$virtualSessionId];
-        
-        if($message == null)
-            throw new CHttpException("Oops");
-        
-        
-        
-        $this->renderPartial('composer/_review', array('message'=>$message));
-    }
+            case 'review':
+                $view = 'composer/_review';
+                break;
 
-    public function actionThankYou() {
-        $this->renderPartial('composer/_thankyou');
+            case 'thankyou':
+                $view = 'composer/_thankyou';
+                break;
+        }
+
+        $this->renderPartial($view, $data);
     }
 
 }

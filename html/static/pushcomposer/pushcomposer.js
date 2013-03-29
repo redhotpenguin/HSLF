@@ -7,7 +7,7 @@ function composer($){
     composerBackBtn = $("#composerBackBtn"),
     dynamicComposerContent = $("#dynamicComposerContent"),
     currentPage = 0,
-    steps = ['message', 'recipients', 'action', 'review','thankyou'];
+    steps = ['message',  'action', 'recipients', 'review','thankyou'];
     
     composerBackBtn.hide();
     
@@ -16,13 +16,11 @@ function composer($){
             composerBackBtn.show();
             currentPage++;
         }
-        if(currentPage == steps.length -1 ){
-            console.log("hide");
+        if(currentPage == steps.length -1 ){ // thank you page
+            composerBackBtn.hide();
             composerNextBtn.hide();
         }
-        
-        console.log(currentPage);
-        
+                
         updateForm(steps[currentPage]);
     });
     
@@ -40,48 +38,40 @@ function composer($){
  
  
     function updateForm(pageName){
-        var query ='/client/ouroregon/pushComposer/'+pageName;
+        var query ='/client/ouroregon/pushComposer/nextStep?pageName='+pageName;
         
         var virtualSessionIdVal = $("#virtualSessionId").val();
 
+        var data = {
+            virtualSessionId: virtualSessionIdVal
+        };
+        
+        console.log(query);
                 
         switch(pageName){
-            
+
             case 'message':
-                $.get(query, {
-                    virtualSessionId: virtualSessionIdVal
-                }, function(form){
-                    dynamicComposerContent.html(form);
-                });
-                break;
-            
-            case 'recipients': // send message
-                var messageVal = $("textarea#message").val();     
-                $.get(query, {
-                    message: messageVal,
-                    virtualSessionId: virtualSessionIdVal
-                }, function(form){
-                    dynamicComposerContent.html(form);
-                });
                 break;
                 
+            case 'action':
+                data.message = $("textarea#message").val();
+                break;
+            
+            case 'recipients':
+                break;
                 
             case 'review': // send message
-                var messageVal = $("textarea#message").val();     
-                $.get(query, {
-                    virtualSessionId: virtualSessionIdVal
-                }, function(form){
-                    dynamicComposerContent.html(form);
-                });
+                break;
+                
+            case 'thankyou':
                 break;
              
-             
-            default:
-                $.get(query, function(form){
-                    dynamicComposerContent.html(form);
-                });
-                break;
         }
+        
+        $.get(query, data, function(form){
+            dynamicComposerContent.html(form);
+        });
+   
         
         
       
