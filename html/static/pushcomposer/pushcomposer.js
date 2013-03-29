@@ -16,12 +16,19 @@ function composer($){
             composerBackBtn.show();
             currentPage++;
         }
+        if(currentPage == steps.length -1 ){
+            console.log("hide");
+            composerNextBtn.hide();
+        }
+        
+        console.log(currentPage);
         
         updateForm(steps[currentPage]);
     });
     
     composerBackBtn.click(function(){
         if(currentPage > 0){
+            composerNextBtn.show();
             currentPage--;
         }
         if(currentPage == 0){
@@ -41,7 +48,9 @@ function composer($){
         switch(pageName){
             
             case 'message':
-                $.get(query, {virtualSessionId: virtualSessionIdVal}, function(form){
+                $.get(query, {
+                    virtualSessionId: virtualSessionIdVal
+                }, function(form){
                     dynamicComposerContent.html(form);
                 });
                 break;
@@ -55,6 +64,17 @@ function composer($){
                     dynamicComposerContent.html(form);
                 });
                 break;
+                
+                
+            case 'review': // send message
+                var messageVal = $("textarea#message").val();     
+                $.get(query, {
+                    virtualSessionId: virtualSessionIdVal
+                }, function(form){
+                    dynamicComposerContent.html(form);
+                });
+                break;
+             
              
             default:
                 $.get(query, function(form){

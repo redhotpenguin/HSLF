@@ -62,8 +62,16 @@ class PushComposerController extends Controller {
         $this->renderPartial('composer/_action');
     }
 
-    public function actionReview() {
-        $this->renderPartial('composer/_review');
+    public function actionReview($virtualSessionId) {
+        
+        $message = Yii::app()->session['message_'.$virtualSessionId];
+        
+        if($message == null)
+            throw new CHttpException("Oops");
+        
+        
+        
+        $this->renderPartial('composer/_review', array('message'=>$message));
     }
 
     public function actionThankYou() {
