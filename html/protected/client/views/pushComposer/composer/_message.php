@@ -5,9 +5,9 @@
 
 <div class="row-fluid">
 
-    <div class="span6">
+    <div class="span12">
         <?php
-        echo CHtml::textArea('message');
+        echo CHtml::textArea('message', $message, array('class'=>'span12','rows'=>10));
         ?>
     </div>
 
