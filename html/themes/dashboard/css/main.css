@@ -51,7 +51,11 @@ h4{
     -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
     -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+    margin-top:-35px;
+
 }
+
+
 
 .news_item{
     padding: 10px;
@@ -85,7 +89,7 @@ h4{
 }
 
 .not_found{
-       height:400px;
+    height:400px;
     text-align:center;
 }
 
@@ -99,5 +103,60 @@ h4{
 .not_found .reason{
     color:#666;
     font-size:1em;
-     margin-top:10%;
+    margin-top:10%;
 }
+
+#homepage .hero-unit h1{
+    margin-bottom:10px;
+}
+
+#homepage .action_group{
+    padding:15px;
+    border-radius:6px;
+    width:33%;
+    float:left;
+    margin-right:2%;
+    background-color:#EEE;
+}
+
+#homepage .action_group .action_title{
+    padding-top: 10px;
+    font-size: 1.7em;
+    font-weight: bold;
+    display: block;
+    color: #707070;
+    margin-left: 5%;
+}
+
+#homepage .action_group .action_block_group{
+    margin-top:25px;
+}
+
+
+
+#homepage .action_block_group .action_block{
+    background-color:#0081C2;
+    color:#fff;
+    font-weight:bold;
+    border-radius:3px;
+    width:40%;
+    float:left;
+    margin-left:5%;
+    margin-right:5%;
+    margin-bottom:5%;
+    height:50px;
+    text-align:center;
+    padding-top:8%;
+    
+}
+
+#homepage .action_block_group .action_block:hover{
+    text-decoration:none;
+    background-color:#0E76AA;
+    -webkit-transition: all .2s ease-out;
+    -moz-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+    -webkit-transition: all .2s ease-out;
+}
+
+

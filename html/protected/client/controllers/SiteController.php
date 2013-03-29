@@ -49,23 +49,9 @@ class SiteController extends Controller {
     }
 
     public function actionHome() {
-        
-        if (Yii::app()->user->hasPermission('manageBallotItems'))
-            $itemCount = BallotItem::model()->count();
-        else
-            $itemCount = null;
-
-        if (Yii::app()->user->hasPermission('manageMobileUsers'))
-            $mobileUserCount = MobileUser::model()->count();
-        else
-            $mobileUserCount = null;
-
-
-        $data = array(
-            'itemCount' => $itemCount,
-            'mobileUserCount' => $mobileUserCount,
-        );
-        $this->render('home', $data);
+        $tenant = Yii::app()->user->getLoggedInUserTenant();
+        $tenantDisplayName = $tenant->display_name;
+        $this->render('home', array('tenantDisplayName'=>$tenantDisplayName));
     }
 
     /**

@@ -8,7 +8,7 @@ if (!$model->isNewRecord) {
 
 $this->secondaryNav['items'] = $navBarItems;
 $this->secondaryNav['name'] = 'Payloads';
-$this->secondaryNav['url'] =array('payload/index');
+$this->secondaryNav['url'] = array('payload/index');
 ?>
 
 
@@ -30,7 +30,8 @@ $this->secondaryNav['url'] =array('payload/index');
 
     <div class="row-fluid">
         <?php echo $form->labelEx($model, 'title'); ?>
-        <?php echo $form->textField($model, 'title', array('placeholder' => 'For Share payload, appears as preview text on share screens, Facebook share title, email subject line. For push to post, not displayed on the app.', 'size' => 60, 'maxlength' => 512, 'class' => 'span11')); ?>
+        <?php echo $form->textField($model, 'title', array('placeholder' => '', 'size' => 60, 'maxlength' => 512, 'class' => 'span11')); ?>
+        <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="For Share payload, appears as preview text on share screens, Facebook share title, email subject line. For push to post, not displayed on the app."></a>
         <?php echo $form->error($model, 'title'); ?>
     </div>
 
@@ -45,7 +46,8 @@ $this->secondaryNav['url'] =array('payload/index');
     <div id="post_related_inputs">
         <div class="row-fluid">
             <?php echo $form->labelEx($model, 'post_number'); ?>
-            <?php echo $form->textField($model, 'post_number', array('placeholder' => 'Ex: wordpress post id', 'size' => 60, 'class' => 'span11')); ?>
+            <?php echo $form->textField($model, 'post_number', array('placeholder' => '', 'size' => 60, 'class' => 'span11')); ?>
+            <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="Ex: wordpress post id"></a>
             <?php echo $form->error($model, 'post_number'); ?>
         </div>
     </div>
@@ -53,7 +55,8 @@ $this->secondaryNav['url'] =array('payload/index');
     <div id="share_related_inputs">
         <div class="row-fluid">
             <?php echo $form->labelEx($model, 'url'); ?>
-            <?php echo $form->textField($model, 'url', array('placeholder' => 'Target URL (for Facebook and Email shares)', 'size' => 60, 'maxlength' => 2048, 'class' => 'span11')); ?>
+            <?php echo $form->textField($model, 'url', array('placeholder' => '', 'size' => 60, 'maxlength' => 2048, 'class' => 'span11')); ?>
+            <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="Target URL (for Facebook and Email shares)"></a>
             <?php echo $form->error($model, 'url'); ?>
         </div>
 
@@ -61,19 +64,23 @@ $this->secondaryNav['url'] =array('payload/index');
 
         <div class="row-fluid">
             <?php echo $form->labelEx($model, 'description'); ?>
-            <?php echo $form->textArea($model, 'description', array('placeholder' => 'Link description for Facebook excerpts', 'rows' => 6, 'cols' => 50, 'class' => 'span11')); ?>
+            <?php echo $form->textArea($model, 'description', array('placeholder' => '', 'rows' => 6, 'cols' => 50, 'class' => 'span11')); ?>
+            <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="Link description for Facebook excerpts"></a>
             <?php echo $form->error($model, 'description'); ?>
         </div>
 
         <div class="row-fluid">
             <?php echo $form->labelEx($model, 'tweet'); ?>
-            <?php echo $form->textArea($model, 'tweet', array('placeholder' => 'Exact content of the Tweet', 'rows' => 2, 'cols' => 50, 'class' => 'span11')); ?>
+            <?php echo $form->textArea($model, 'tweet', array('placeholder' => '', 'rows' => 2, 'cols' => 50, 'class' => 'span11')); ?>
+            <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="Exact content of the Tweet"></a>
             <?php echo $form->error($model, 'tweet'); ?>
         </div>
 
         <div class="row-fluid">
             <?php echo $form->labelEx($model, 'email'); ?>
-            <?php echo $form->textField($model, 'email', array('placeholder' => 'Recipient email address (optional)', 'size' => 60, 'maxlength' => 320, 'class' => 'span11')); ?>
+            <?php echo $form->textField($model, 'email', array('placeholder' => '', 'size' => 60, 'maxlength' => 320, 'class' => 'span11')); ?>
+            <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="Recipient email address (optional)"></a>
+
             <?php echo $form->error($model, 'email'); ?>
         </div>
     </div>
