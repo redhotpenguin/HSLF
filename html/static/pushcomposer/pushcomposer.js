@@ -8,7 +8,7 @@ function composer($){
     dynamicComposerContent = $("#dynamicComposerContent"),
     loadingIndicator = $("#loadingIndicator"),
     errorIndicator = $("#errorIndicator");
-    currentPage = 0,
+    currentPage = 0;
     steps = ['message',  'action', 'recipients', 'review','thankyou'];
     
     loadingIndicator.hide();
@@ -17,7 +17,18 @@ function composer($){
     composerBackBtn.hide();
     
     composerNextBtn.click(function(){
-        if(currentPage < steps.length){
+        updateFormState(steps[currentPage]);
+    });
+    
+    composerBackBtn.click(function(){
+        updateFormState(steps[currentPage]);
+    });
+ 
+ 
+    function updateFormState(pageName){
+        
+        /*
+         *        if(currentPage < steps.length){
             composerBackBtn.show();
             currentPage++;
         }
@@ -26,23 +37,8 @@ function composer($){
             composerNextBtn.hide();
         }
                 
-        updateForm(steps[currentPage]);
-    });
-    
-    composerBackBtn.click(function(){
-        if(currentPage > 0){
-            composerNextBtn.show();
-            currentPage--;
-        }
-        if(currentPage == 0){
-            composerBackBtn.hide();
-        }
-        
-        updateForm(steps[currentPage]);
-    });
- 
- 
-    function updateForm(pageName){
+         *
+         **/
         
         var virtualSessionIdVal = $("#virtualSessionId").val();
         
@@ -88,6 +84,7 @@ function composer($){
             errorIndicator.hide();
             composerNextBtn.show();
             dynamicComposerContent.show();
+            currentPage++;
 
         }).fail(function(jqXHR, textStatus){
             loadingIndicator.hide();
@@ -97,6 +94,6 @@ function composer($){
 
     }
     
-    updateForm('message');
+    updateFormState('message');
 } 
 
