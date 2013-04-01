@@ -48,8 +48,6 @@ class PushComposerController extends Controller {
 
         $data = array();
 
-        $displayNextButton = false;
-
         if (isset(Yii::app()->session['step' . $virtualSessionId])) {
             $step = Yii::app()->session['step' . $virtualSessionId];
         } else {
@@ -63,11 +61,9 @@ class PushComposerController extends Controller {
 
                 $data['pushMessageModel'] = new PushMessage();
                 Yii::app()->session['step' . $virtualSessionId] = 'action';
-                $displayNextButton = true;
                 break;
 
             case 'action':
-                $displayNextButton = true;
                 $pushMessageModel = new PushMessage;
 
                 $pushMessageModel->attributes = $_POST['PushMessage'];
@@ -79,7 +75,7 @@ class PushComposerController extends Controller {
                     $data['payloadModel'] = new Payload;
                     Yii::app()->session['step' . $virtualSessionId] = 'recipients';
 
-                    Yii::app()->session['alert' . $virtualSessionId] = $pushMessageModel->alert;
+                    Yii::app()->session['pushMessage' . $virtualSessionId] = $pushMessageModel->attributes;
                 } else { // validation issue
                     $view = 'composer/_message';
                     $data['pushMessageModel'] = $pushMessageModel;
@@ -88,15 +84,11 @@ class PushComposerController extends Controller {
                 break;
 
             case 'recipients':
-
-
-                $displayNextButton = true;
-
                 $payLoadModel = new Payload();
                 $payLoadModel->attributes = $_POST['Payload'];
                 if ($payLoadModel->validate()) { // model validated ok. move to next step
                     $view = 'composer/_recipients';
-                    Yii::app()->session['step' . $virtualSessionId] = 'review';
+                    Yii::app()->session['step' . $virtualSessionId] = 'confirmation';
                     Yii::app()->session['payload' . $virtualSessionId] = $payLoadModel->attributes;
                 } else { // validation issue
                     $view = 'composer/_action';
@@ -106,11 +98,10 @@ class PushComposerController extends Controller {
 
                 break;
 
-            case 'review':
-                $displayNextButton = true;
-                $view = 'composer/_review';
+            case 'confirmation':
+                $view = 'composer/_confirmation';
 
-                $data['alert'] = Yii::app()->session['alert' . $virtualSessionId];
+                $data['pushMessage'] = Yii::app()->session['pushMessage' . $virtualSessionId];
                 $data['payload'] = Yii::app()->session['payload' . $virtualSessionId];
 
 
@@ -118,12 +109,11 @@ class PushComposerController extends Controller {
                 break;
 
             case 'thankyou':
-                $data['message'] = Yii::app()->session['message_' . $virtualSessionId];
+                $data['pushMessage'] = Yii::app()->session['pushMessage' . $virtualSessionId];
                 $view = 'composer/_thankyou';
                 break;
         }
 
-        $data['displayNextButton'] = $displayNextButton;
 
         $this->renderPartial($view, $data);
     }
