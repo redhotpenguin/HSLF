@@ -1,17 +1,19 @@
-<fieldset id="message">
+<div class="form">
+    <div class="row-fluid">
 
+        <div class="span12">
+            <?php
+            $form = $this->beginWidget('CActiveForm', array(
+                'id' => 'push_composer',
+                    ));
 
-    <h1>Message</h1>
+            echo $form->errorSummary($pushMessageModel);
 
-<div class="row-fluid">
+            echo $form->textArea($pushMessageModel, 'alert', array('class' => 'span12', 'rows' => 10));
 
-    <div class="span12">
-        <?php
-        echo CHtml::textArea('message', $message, array('class'=>'span12','rows'=>10));
-        ?>
+            $this->endWidget();
+            ?>
+        </div>
+
     </div>
-
 </div>
-
-
-</fieldset>

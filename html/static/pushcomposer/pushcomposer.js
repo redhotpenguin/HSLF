@@ -8,8 +8,6 @@ function composer($){
     dynamicComposerContent = $("#dynamicComposerContent"),
     loadingIndicator = $("#loadingIndicator"),
     errorIndicator = $("#errorIndicator");
-    currentPage = 0;
-    steps = ['message',  'action', 'recipients', 'review','thankyou'];
     
     loadingIndicator.hide();
     errorIndicator.hide();
@@ -17,58 +15,27 @@ function composer($){
     composerBackBtn.hide();
     
     composerNextBtn.click(function(){
-        updateFormState(steps[currentPage]);
+        updateFormState();
     });
     
     composerBackBtn.click(function(){
-        updateFormState(steps[currentPage]);
+        updateFormState();
     });
  
  
-    function updateFormState(pageName){
-        
-        /*
-         *        if(currentPage < steps.length){
-            composerBackBtn.show();
-            currentPage++;
-        }
-        if(currentPage == steps.length -1 ){ // thank you page
-            composerBackBtn.hide();
-            composerNextBtn.hide();
-        }
-                
-         *
-         **/
+    function updateFormState(){
+       
         
         var virtualSessionIdVal = $("#virtualSessionId").val();
         
-        var query ='/client/ouroregon/pushComposer/nextStep?pageName='+pageName+'&virtualSessionId='+virtualSessionIdVal;
+        var query ='/client/ouroregon/pushComposer/nextStep?virtualSessionId='+virtualSessionIdVal;
 
 
         var data = {
             virtualSessionId: virtualSessionIdVal
         };
                         
-        switch(pageName){
-
-            case 'message':
-                break;
-                
-            case 'action':
-                data.message = $("textarea#message").val();
-                break;
-            
-            case 'recipients':
-                data = $("#push_composer").serialize();
-                break;
-                
-            case 'review': // send message
-                break;
-                
-            case 'thankyou':
-                break;
-             
-        }
+        data = $("#push_composer").serialize();
         
         dynamicComposerContent.hide();
         errorIndicator.hide();
@@ -84,8 +51,6 @@ function composer($){
             errorIndicator.hide();
             composerNextBtn.show();
             dynamicComposerContent.show();
-            currentPage++;
-
         }).fail(function(jqXHR, textStatus){
             loadingIndicator.hide();
             composerNextBtn.hide();
@@ -94,6 +59,6 @@ function composer($){
 
     }
     
-    updateFormState('message');
+    updateFormState();
 } 
 

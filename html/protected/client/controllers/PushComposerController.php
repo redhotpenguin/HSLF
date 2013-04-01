@@ -37,36 +37,55 @@ class PushComposerController extends Controller {
         $this->render('index', array("pushMessageModel" => new PushMessage, 'virtualSessionId' => $virtualSessionId));
     }
 
-
     /**
      * Experimental
      * Load next step
      * Validate data
      * => refactor this crap
      */
-    public function actionNextStep($pageName, $virtualSessionId) {
+    public function actionNextStep($virtualSessionId) {
         $data = array();
-        logIt($pageName);
-        //   logIt($_POST);
+        logIt($_POST);
 
         $data['message'] = Yii::app()->session['message_' . $virtualSessionId];
 
-        switch ($pageName) {
+
+        if (isset(Yii::app()->session['step' . $virtualSessionId])) {
+            $step = Yii::app()->session['step' . $virtualSessionId];
+        } else {
+            $step = 'message';
+        }
+
+
+        switch ($step) {
             case 'message':
                 $view = 'composer/_message';
+
+                $pushMessageModel = new PushMessage();
+
+                $data['pushMessageModel'] = $pushMessageModel;
+                Yii::app()->session['step' . $virtualSessionId] = 'action';
                 break;
 
             case 'action':
-                // message is stored in $_POST when user click Next Button and is saved in session when user click BACK button.
-                if ((!isset($_POST['message']) || empty($_POST['message']) ) && !isset(Yii::app()->session['message_' . $virtualSessionId]))
-                    throw new CHttpException(500, "Message missing");
 
+                $pushMessageModel = new PushMessage;
 
-                if (!isset(Yii::app()->session['message_' . $virtualSessionId]))
-                    Yii::app()->session['message_' . $virtualSessionId] = $_POST['message'];
+                $pushMessageModel->attributes = $_POST['PushMessage'];
+                $pushMessageModel->creation_date = date('Y-m-d h:i:s');
+                $pushMessageModel->payload_id = 0;
 
-                $view = 'composer/_action';
-                $data['payloadModel'] = new Payload;
+                if ($pushMessageModel->validate()) {
+                    $view = 'composer/_action';
+                    $data['payloadModel'] = new Payload;
+                    Yii::app()->session['step' . $virtualSessionId] = 'recipients';
+                } else { // validation issue
+                    $view = 'composer/_message';
+                    $data['pushMessageModel'] = $pushMessageModel;
+                    Yii::app()->session['step' . $virtualSessionId] = 'action';
+                }
+
+                Yii::app()->session['step' . $virtualSessionId] = 'recipients';
 
                 break;
 
@@ -76,15 +95,18 @@ class PushComposerController extends Controller {
                 $payLoadModel->attributes = $_POST['Payload'];
                 if ($payLoadModel->validate()) { // model validated ok. move to next step
                     $view = 'composer/_recipients';
+                    Yii::app()->session['step' . $virtualSessionId] = 'review';
                 } else { // validation issue
                     $view = 'composer/_action';
-                    $data['payloadModel'] =  $payLoadModel;
+                    $data['payloadModel'] = $payLoadModel;
+                    Yii::app()->session['step' . $virtualSessionId] = 'recipients';
                 }
 
                 break;
 
             case 'review':
                 $view = 'composer/_review';
+                Yii::app()->session['step' . $virtualSessionId] = 'thankyou';
                 break;
 
             case 'thankyou':
