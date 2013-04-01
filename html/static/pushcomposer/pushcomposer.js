@@ -5,7 +5,8 @@ function composer($){
     
     var composerNextBtn = $("#composerNextBtn"),
     composerBackBtn = $("#composerBackBtn"),
-    dynamicComposerContent = $("#dynamicComposerContent"),
+    dynamicComposerContent = $("#dynamicComposerContent")
+    var loadingIndicator = $("#loadingIndicator"),
     currentPage = 0,
     steps = ['message',  'action', 'recipients', 'review','thankyou'];
     
@@ -68,13 +69,22 @@ function composer($){
              
         }
         
+        displayLoadingIndicator();
         $.get(query, data, function(form){
             dynamicComposerContent.html(form);
+            hideLoadingIndicator();
         });
    
-        
-        
-      
+    }
+    
+    function displayLoadingIndicator(){
+        dynamicComposerContent.hide();
+        loadingIndicator.show();
+    }
+    
+    function hideLoadingIndicator(){
+        dynamicComposerContent.show();
+        loadingIndicator.hide();
     }
     
  
