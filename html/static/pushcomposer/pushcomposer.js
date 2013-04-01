@@ -14,22 +14,20 @@ function composer($){
     
     composerBackBtn.hide();
     
-    composerNextBtn.click(function(){
-        updateFormState();
+    composerNextBtn.live('click',function(){
+        updateFormState('next');
     });
     
-    composerBackBtn.click(function(){
-        updateFormState();
+    composerBackBtn.live('click',function(){
+        updateFormState('back');
     });
  
  
-    function updateFormState(){
-       
-        
+    function updateFormState(direction){
+
         var virtualSessionIdVal = $("#virtualSessionId").val();
         
-        var query ='/client/ouroregon/pushComposer/nextStep?virtualSessionId='+virtualSessionIdVal;
-
+        var query ='/client/ouroregon/pushComposer/step?virtualSessionId='+virtualSessionIdVal+"&direction="+direction;
 
         var data = {
             virtualSessionId: virtualSessionIdVal
@@ -41,14 +39,13 @@ function composer($){
         errorIndicator.hide();
         
         loadingIndicator.show();
-        var jqxhr  = jQuery.ajax({
+        $.ajax({
             url:query,
             type:'POST',
             data:data
         }).success(function(result){
             loadingIndicator.hide();
             dynamicComposerContent.html(result);
-            errorIndicator.hide();
             composerNextBtn.show();
             dynamicComposerContent.show();
         }).fail(function(jqXHR, textStatus){

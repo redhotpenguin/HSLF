@@ -7,10 +7,7 @@ $cs = Yii::app()->getClientScript();
 $cs->registerScriptFile($baseUrl . '/static/pushcomposer/pushcomposer.js');
 $cs->registerCssFile($baseUrl . '/static/pushcomposer/pushcomposer.css');
 
-
-$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'type' => 'primary', 'size' => 'large', 'label' => 'Back', 'htmlOptions' => array('style' => 'float:left;', 'id' => 'composerBackBtn')));
-
-$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'type' => 'primary', 'size' => 'large', 'label' => 'Next', 'htmlOptions' => array('style' => 'float:right;', 'id' => 'composerNextBtn')));
+//$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'type' => 'primary', 'size' => 'large', 'label' => 'Back', 'htmlOptions' => array('style' => 'float:left;', 'id' => 'composerBackBtn')));
 
 echo CHtml::hiddenField('virtualSessionId', $virtualSessionId);
 ?>

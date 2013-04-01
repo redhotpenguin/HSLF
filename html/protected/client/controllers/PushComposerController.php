@@ -20,7 +20,7 @@ class PushComposerController extends Controller {
         return array(
             array(// restrict State to admins only
                 'allow',
-                'actions' => array('index', 'nextStep'),
+                'actions' => array('index', 'step'),
                 'roles' => array('manageMobileUsers'),
             ),
             array('deny', // deny all users
@@ -42,13 +42,13 @@ class PushComposerController extends Controller {
      * Load next step
      * Validate data
      * => refactor this crap
+     * object serialization does not work great with Yii's sessions. Use plain old strings or arrays instead
      */
-    public function actionNextStep($virtualSessionId) {
+    public function actionStep($virtualSessionId, $direction = 'next') {
+
         $data = array();
-        logIt($_POST);
 
-        $data['message'] = Yii::app()->session['message_' . $virtualSessionId];
-
+        $displayNextButton = false;
 
         if (isset(Yii::app()->session['step' . $virtualSessionId])) {
             $step = Yii::app()->session['step' . $virtualSessionId];
@@ -61,14 +61,13 @@ class PushComposerController extends Controller {
             case 'message':
                 $view = 'composer/_message';
 
-                $pushMessageModel = new PushMessage();
-
-                $data['pushMessageModel'] = $pushMessageModel;
+                $data['pushMessageModel'] = new PushMessage();
                 Yii::app()->session['step' . $virtualSessionId] = 'action';
+                $displayNextButton = true;
                 break;
 
             case 'action':
-
+                $displayNextButton = true;
                 $pushMessageModel = new PushMessage;
 
                 $pushMessageModel->attributes = $_POST['PushMessage'];
@@ -79,23 +78,26 @@ class PushComposerController extends Controller {
                     $view = 'composer/_action';
                     $data['payloadModel'] = new Payload;
                     Yii::app()->session['step' . $virtualSessionId] = 'recipients';
+
+                    Yii::app()->session['alert' . $virtualSessionId] = $pushMessageModel->alert;
                 } else { // validation issue
                     $view = 'composer/_message';
                     $data['pushMessageModel'] = $pushMessageModel;
                     Yii::app()->session['step' . $virtualSessionId] = 'action';
                 }
-
-                Yii::app()->session['step' . $virtualSessionId] = 'recipients';
-
                 break;
 
             case 'recipients':
+
+
+                $displayNextButton = true;
 
                 $payLoadModel = new Payload();
                 $payLoadModel->attributes = $_POST['Payload'];
                 if ($payLoadModel->validate()) { // model validated ok. move to next step
                     $view = 'composer/_recipients';
                     Yii::app()->session['step' . $virtualSessionId] = 'review';
+                    Yii::app()->session['payload' . $virtualSessionId] = $payLoadModel->attributes;
                 } else { // validation issue
                     $view = 'composer/_action';
                     $data['payloadModel'] = $payLoadModel;
@@ -105,14 +107,23 @@ class PushComposerController extends Controller {
                 break;
 
             case 'review':
+                $displayNextButton = true;
                 $view = 'composer/_review';
+
+                $data['alert'] = Yii::app()->session['alert' . $virtualSessionId];
+                $data['payload'] = Yii::app()->session['payload' . $virtualSessionId];
+
+
                 Yii::app()->session['step' . $virtualSessionId] = 'thankyou';
                 break;
 
             case 'thankyou':
+                $data['message'] = Yii::app()->session['message_' . $virtualSessionId];
                 $view = 'composer/_thankyou';
                 break;
         }
+
+        $data['displayNextButton'] = $displayNextButton;
 
         $this->renderPartial($view, $data);
     }
