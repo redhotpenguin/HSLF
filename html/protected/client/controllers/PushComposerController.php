@@ -104,7 +104,6 @@ class PushComposerController extends Controller {
                 $data['pushMessage'] = Yii::app()->session['pushMessage' . $virtualSessionId];
                 $data['payload'] = Yii::app()->session['payload' . $virtualSessionId];
 
-
                 Yii::app()->session['step' . $virtualSessionId] = 'thankyou';
                 break;
 
