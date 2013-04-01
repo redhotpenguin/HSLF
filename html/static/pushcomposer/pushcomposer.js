@@ -52,9 +52,7 @@ function composer($){
         var data = {
             virtualSessionId: virtualSessionIdVal
         };
-        
-        console.log(query);
-                
+                        
         switch(pageName){
 
             case 'message':
@@ -65,6 +63,7 @@ function composer($){
                 break;
             
             case 'recipients':
+                data = $("#push_composer").serialize();
                 break;
                 
             case 'review': // send message
@@ -87,19 +86,17 @@ function composer($){
             loadingIndicator.hide();
             dynamicComposerContent.html(result);
             errorIndicator.hide();
+            composerNextBtn.show();
             dynamicComposerContent.show();
 
         }).fail(function(jqXHR, textStatus){
             loadingIndicator.hide();
+            composerNextBtn.hide();
             errorIndicator.html(jqXHR.responseText).show();
         });
-       
-   
+
     }
     
- 
-    
- 
     updateForm('message');
 } 
 

@@ -20,7 +20,7 @@ class PushComposerController extends Controller {
         return array(
             array(// restrict State to admins only
                 'allow',
-                'actions' => array('index', 'composer', 'nextStep'),
+                'actions' => array('index', 'nextStep'),
                 'roles' => array('manageMobileUsers'),
             ),
             array('deny', // deny all users
@@ -30,38 +30,33 @@ class PushComposerController extends Controller {
     }
 
     public function actionIndex() {
-        $this->render('index');
-    }
-
-    public function actionComposer() {
 
         // virtual session is to avoid session collision within one actual user session.
         // without it, session variables can collide when multiple tabs are open
 
         $virtualSessionId = md5(microtime(true));
-        $this->render('composer', array("pushMessageModel" => new PushMessage, 'virtualSessionId' => $virtualSessionId));
+        $this->render('index', array("pushMessageModel" => new PushMessage, 'virtualSessionId' => $virtualSessionId));
     }
 
     public function actionNextStep($pageName, $virtualSessionId) {
         $data = array();
 
-      //  logIt($_POST);
-        
-        $message = 'debug';
-usleep(200000);
         $data['message'] = Yii::app()->session['message_' . $virtualSessionId];
-
+        
         switch ($pageName) {
             case 'message':
                 $view = 'composer/_message';
                 break;
 
             case 'action':
-                if(!isset($_POST['message']) || empty($_POST['message']))
-                    throw new CHttpException(500, "message missing");
+                // message is stored in $_POST when user click Next Button and is saved in session when user click BACK button.
+                if( ( !isset($_POST['message']) || empty($_POST['message']) ) && !isset(Yii::app()->session['message_' . $virtualSessionId]))
+                    throw new CHttpException(500, "Message missing");
                 
-                logIt("mess: ".$_POST['message']);
-                Yii::app()->session['message_' . $virtualSessionId] = $_POST['message'];
+               
+                if(!isset(Yii::app()->session['message_' . $virtualSessionId]))
+                    Yii::app()->session['message_' . $virtualSessionId] = $_POST['message'];
+                
                 $view = 'composer/_action';
                 $data['payloadModel'] = new Payload;
                 break;
