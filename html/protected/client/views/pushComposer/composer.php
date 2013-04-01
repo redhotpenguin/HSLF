@@ -27,6 +27,8 @@ echo CHtml::hiddenField('virtualSessionId', $virtualSessionId);
 
 <div id="dynamicComposerContent"></div>
 <div id="loadingIndicator">loading...</div>
+<div class="alert alert-error" id="errorIndicator"></div>
+
 
 <?php
 $this->endWidget();

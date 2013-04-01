@@ -5,10 +5,14 @@ function composer($){
     
     var composerNextBtn = $("#composerNextBtn"),
     composerBackBtn = $("#composerBackBtn"),
-    dynamicComposerContent = $("#dynamicComposerContent")
-    var loadingIndicator = $("#loadingIndicator"),
+    dynamicComposerContent = $("#dynamicComposerContent"),
+    loadingIndicator = $("#loadingIndicator"),
+    errorIndicator = $("#errorIndicator");
     currentPage = 0,
     steps = ['message',  'action', 'recipients', 'review','thankyou'];
+    
+    loadingIndicator.hide();
+    errorIndicator.hide();
     
     composerBackBtn.hide();
     
@@ -39,9 +43,11 @@ function composer($){
  
  
     function updateForm(pageName){
-        var query ='/client/ouroregon/pushComposer/nextStep?pageName='+pageName;
         
         var virtualSessionIdVal = $("#virtualSessionId").val();
+        
+        var query ='/client/ouroregon/pushComposer/nextStep?pageName='+pageName+'&virtualSessionId='+virtualSessionIdVal;
+
 
         var data = {
             virtualSessionId: virtualSessionIdVal
@@ -69,23 +75,29 @@ function composer($){
              
         }
         
-        displayLoadingIndicator();
-        $.get(query, data, function(form){
-            dynamicComposerContent.html(form);
-            hideLoadingIndicator();
+        dynamicComposerContent.hide();
+        errorIndicator.hide();
+        
+        loadingIndicator.show();
+        var jqxhr  = jQuery.ajax({
+            url:query,
+            type:'POST',
+            data:data
+        }).success(function(result){
+            loadingIndicator.hide();
+            dynamicComposerContent.html(result);
+            errorIndicator.hide();
+            dynamicComposerContent.show();
+
+        }).fail(function(jqXHR, textStatus){
+            loadingIndicator.hide();
+            errorIndicator.html(jqXHR.responseText).show();
         });
+       
    
     }
     
-    function displayLoadingIndicator(){
-        dynamicComposerContent.hide();
-        loadingIndicator.show();
-    }
-    
-    function hideLoadingIndicator(){
-        dynamicComposerContent.show();
-        loadingIndicator.hide();
-    }
+ 
     
  
     updateForm('message');

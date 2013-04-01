@@ -42,9 +42,13 @@ class PushComposerController extends Controller {
         $this->render('composer', array("pushMessageModel" => new PushMessage, 'virtualSessionId' => $virtualSessionId));
     }
 
-    public function actionNextStep($pageName, $virtualSessionId, $message = "") {
+    public function actionNextStep($pageName, $virtualSessionId) {
         $data = array();
 
+      //  logIt($_POST);
+        
+        $message = 'debug';
+usleep(200000);
         $data['message'] = Yii::app()->session['message_' . $virtualSessionId];
 
         switch ($pageName) {
@@ -53,8 +57,13 @@ class PushComposerController extends Controller {
                 break;
 
             case 'action':
-                Yii::app()->session['message_' . $virtualSessionId] = $message;
+                if(!isset($_POST['message']) || empty($_POST['message']))
+                    throw new CHttpException(500, "message missing");
+                
+                logIt("mess: ".$_POST['message']);
+                Yii::app()->session['message_' . $virtualSessionId] = $_POST['message'];
                 $view = 'composer/_action';
+                $data['payloadModel'] = new Payload;
                 break;
 
             case 'recipients':
