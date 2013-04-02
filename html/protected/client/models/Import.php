@@ -27,27 +27,34 @@ class Import extends CModel {
         }
 
         // csv column header
-        $keys = fgetcsv($fHandle);
-
+        $header = fgetcsv($fHandle);
+        $headerCount = count ($header);
         $connection = Yii::app()->db;
         $command = $connection->createCommand();
 
         $transaction = $connection->beginTransaction();
 
         $i = 0; // index
+        
         try {
             while (($data = fgetcsv($fHandle, 0, ",")) !== FALSE) {
-                $mapped_data[] = array_combine($keys, $data);
+                
+                if( $headerCount != count($data) ){
+                    throw new Exception('Data format issue');
+                }
+                
+                // array_combine excepts $header and $data to have the same number of items
+                $mapped_data[] = array_combine($header, $data);
 
                 // insert statements
                 if ($mapped_data[$i]['id'] == null) {
-                    array_shift($mapped_data[$i]);
+                    array_shift($mapped_data[$i]); // remove the ID column
                     $command->insert($table_name, $mapped_data[$i]);
                 }
                 // update statements
                 else {
                     $id = $mapped_data[$i]['id'];
-                    array_shift($mapped_data[$i]);
+                    array_shift($mapped_data[$i]);  // remove the ID column
                     $command->update($table_name, $mapped_data[$i], 'id=:id', array(':id' => $id)
                     );
                 }
