@@ -30,8 +30,8 @@ class PushComposerController extends Controller {
     }
 
     public function actionIndex() {
-        // virtual session is to avoid session collision within one actual user session.
-        // without it, session variables can collide when multiple tabs are open
+// virtual session is to avoid session collision within one actual user session.
+// without it, session variables can collide when multiple tabs are open
 
         $virtualSessionId = md5(microtime(true));
         $this->render('index', array("pushMessageModel" => new PushMessage, 'virtualSessionId' => $virtualSessionId));
@@ -49,72 +49,106 @@ class PushComposerController extends Controller {
         $data = array();
 
         if (isset(Yii::app()->session['step' . $virtualSessionId])) {
-            $step = Yii::app()->session['step' . $virtualSessionId];
+            $view = $step = Yii::app()->session['step' . $virtualSessionId];
         } else {
-            $step = 'message';
+            $view = $step = 'message';
         }
-
 
         switch ($step) {
             case 'message':
-                $view = 'composer/_message';
-
-                $data['pushMessageModel'] = new PushMessage();
-                Yii::app()->session['step' . $virtualSessionId] = 'action';
+                $data = $this->handleMessageStep($virtualSessionId, $direction, $_POST);
                 break;
 
             case 'action':
-                $pushMessageModel = new PushMessage;
+                $this->handleActionStep($virtualSessionId, $direction, $_POST);
 
-                $pushMessageModel->attributes = $_POST['PushMessage'];
-                $pushMessageModel->creation_date = date('Y-m-d h:i:s');
-                $pushMessageModel->payload_id = 0;
-
-                if ($pushMessageModel->validate()) {
-                    $view = 'composer/_action';
-                    $data['payloadModel'] = new Payload;
-                    Yii::app()->session['step' . $virtualSessionId] = 'recipients';
-
-                    Yii::app()->session['pushMessage' . $virtualSessionId] = $pushMessageModel->attributes;
-                } else { // validation issue
-                    $view = 'composer/_message';
-                    $data['pushMessageModel'] = $pushMessageModel;
-                    Yii::app()->session['step' . $virtualSessionId] = 'action';
-                }
                 break;
 
             case 'recipients':
-                $payLoadModel = new Payload();
-                $payLoadModel->attributes = $_POST['Payload'];
-                if ($payLoadModel->validate()) { // model validated ok. move to next step
-                    $view = 'composer/_recipients';
-                    Yii::app()->session['step' . $virtualSessionId] = 'confirmation';
-                    Yii::app()->session['payload' . $virtualSessionId] = $payLoadModel->attributes;
-                } else { // validation issue
-                    $view = 'composer/_action';
-                    $data['payloadModel'] = $payLoadModel;
-                    Yii::app()->session['step' . $virtualSessionId] = 'recipients';
-                }
+                $this->handleRecipientStep($virtualSessionId, $direction, $_POST);
 
                 break;
 
             case 'confirmation':
-                $view = 'composer/_confirmation';
-
-                $data['pushMessage'] = Yii::app()->session['pushMessage' . $virtualSessionId];
-                $data['payload'] = Yii::app()->session['payload' . $virtualSessionId];
-
-                Yii::app()->session['step' . $virtualSessionId] = 'thankyou';
                 break;
 
             case 'thankyou':
-                $data['pushMessage'] = Yii::app()->session['pushMessage' . $virtualSessionId];
-                $view = 'composer/_thankyou';
+
                 break;
         }
 
 
-        $this->renderPartial($view, $data);
+
+        //  $this->renderPartial('composer/_' . $view, $data);
+    }
+
+    private function handleMessageStep($virtualSessionId, $direction, $payload = array()) {
+
+
+        $pushMessageModel = new PushMessage();
+        $view = 'message';
+
+// message posted
+        if (isset($payload['PushMessage'])) {
+            $pushMessageModel->attributes = $payload['PushMessage'];
+            $pushMessageModel->creation_date = date('Y-m-d h:i:s');
+            $pushMessageModel->payload_id = 0;
+
+            if ($pushMessageModel->validate()) {
+                Yii::app()->session['step' . $virtualSessionId] = 'action';
+                Yii::app()->session['pushMessage' . $virtualSessionId] = $pushMessageModel->attributes;
+                return $this->handleActionStep($virtualSessionId, 'next');
+            }
+        } elseif (isset(Yii::app()->session['pushMessage' . $virtualSessionId])) { // used by back button. fetched the message from the user session
+            $pushMessageModel->attributes = Yii::app()->session['pushMessage' . $virtualSessionId];
+        }
+
+        $data = array('pushMessageModel' => $pushMessageModel);
+
+        $this->renderPartial('composer/_' . $view, $data);
+    }
+
+    private function handleActionStep($virtualSessionId, $direction, $payload = array()) {
+        if ($direction == 'back') {
+            Yii::app()->session['step' . $virtualSessionId] = 'message';
+            return $this->handleMessageStep($virtualSessionId, 'next');
+        }
+
+        $view = 'action';
+        $payloadModel = new Payload;
+
+        if (isset($payload['Payload'])) {
+            $payloadModel->attributes = $payload['Payload'];
+            if ($payloadModel->validate()) { // model validated ok. move to next step
+                Yii::app()->session['step' . $virtualSessionId] = 'recipients';
+                Yii::app()->session['payload' . $virtualSessionId] = $payloadModel->attributes;
+
+                return $this->handleRecipientStep($virtualSessionId, 'next');
+            } else {
+                $view = 'action';
+            }
+        } elseif (isset(Yii::app()->session['payload' . $virtualSessionId])) {
+            $payloadModel->attributes = Yii::app()->session['payload' . $virtualSessionId];
+        } else {
+            $view = 'action';
+        }
+
+        $data = array('payloadModel' => $payloadModel);
+        $this->renderPartial('composer/_' . $view, $data);
+    }
+
+    private function handleRecipientStep($virtualSessionId, $direction, $payload = array()) {
+        if ($direction == 'back') {
+            Yii::app()->session['step' . $virtualSessionId] = 'action';
+            return $this->handleActionStep($virtualSessionId, 'next');
+        }
+
+
+        error_log("handle recipients");
+        $data = array();
+        $view = 'recipients';
+
+        $this->renderPartial('composer/_' . $view, $data);
     }
 
 }

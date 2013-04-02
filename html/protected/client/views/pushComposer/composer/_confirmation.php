@@ -2,10 +2,10 @@
     <h1>Confirmation</h1>
 
     <p><?php
-print_r($pushMessage);
+//print_r($pushMessage);
 
 echo '<hr>';
-print_r($payload);
+//print_r($payload);
 ?> </p>
 
 </fieldset>
