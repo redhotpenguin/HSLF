@@ -62,8 +62,7 @@ class PushComposerController extends Controller {
     }
 
     private function handleMessageStep($virtualSessionId, $direction, $payload = array()) {
-
-
+        
         $pushMessageModel = new PushMessage();
         $view = 'message';
 
