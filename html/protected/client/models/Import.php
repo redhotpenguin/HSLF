@@ -28,38 +28,35 @@ class Import extends CModel {
 
         // csv column header
         $header = fgetcsv($fHandle);
-        $headerCount = count ($header);
+        $headerCount = count($header);
         $connection = Yii::app()->db;
         $command = $connection->createCommand();
 
         $transaction = $connection->beginTransaction();
 
         $i = 0; // index
-        
+
         try {
             while (($data = fgetcsv($fHandle, 0, ",")) !== FALSE) {
-                
-                if( $headerCount != count($data) ){
+
+                if ($headerCount != count($data)) {
                     throw new Exception('Data format issue');
                 }
-                
+
                 // array_combine excepts $header and $data to have the same number of items
                 $mapped_data[] = array_combine($header, $data);
 
-                // insert statements
-                if ($mapped_data[$i]['id'] == null) {
-                    array_shift($mapped_data[$i]); // remove the ID column
+                $id = $mapped_data[$i]['id'];
+                array_shift($mapped_data[$i]);  // remove the ID column 
+
+                if ($id == null) {  // No ID, insert row    
                     $command->insert($table_name, $mapped_data[$i]);
-                }
-                // update statements
-                else {
-                    $id = $mapped_data[$i]['id'];
-                    array_shift($mapped_data[$i]);  // remove the ID column
-                    $command->update($table_name, $mapped_data[$i], 'id=:id', array(':id' => $id)
-                    );
+                } else { // ID found, update row
+                    $command->update($table_name, $mapped_data[$i], 'id=:id', array(':id' => $id));
                 }
                 ++$i;
             }
+            
             $transaction->commit();
             $result = true;
         } catch (Exception $e) {
@@ -69,7 +66,6 @@ class Import extends CModel {
         return $result;
     }
 
-  
     public static function importModel($modelName, $tmpName, $fileName) {
         $model = new $modelName();
 
