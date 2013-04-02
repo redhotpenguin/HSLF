@@ -1,3 +1,6 @@
+<?php
+$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'type' => 'primary', 'size' => 'large', 'label' => 'Back', 'htmlOptions' => array('style' => 'float:left;', 'id' => 'composerBackBtn')));
+?>
 <fieldset id="review">
     <h1>Confirmation</h1>
 
