@@ -47,14 +47,7 @@ return array(
             'class' => 'WebUser',
         ),
         'session' => array(
-            'class' => 'CDbHttpSession',
-            'autoCreateSessionTable' => false,
-            'autoCreateSessionTable' => false,
-            'connectionID' => 'db',
-            'sessionTableName' => 'user_session',
-            'cookieMode' => 'only', // only use cookies 
-            'useTransparentSessionID' => false, // disable cookie less sessions,
-            'timeout' => 24 * 60 // 24 minutes
+            'class' => 'RedisSession',
         ),
         'urlManager' => array(
             'urlFormat' => 'path',
