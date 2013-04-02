@@ -43,7 +43,7 @@ class Import extends CModel {
                     throw new Exception('Data format issue');
                 }
 
-                // array_combine expect $header and $data to have the same number of items
+                // array_combine expects $header and $data to have the same number of items
                 $mapped_data[] = array_combine($header, $data);
 
                 $id = $mapped_data[$i]['id'];
