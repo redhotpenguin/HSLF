@@ -16,7 +16,7 @@ return array(
     'viewPath' => $clientDirectory . '/views/',
     'runtimePath' => $clientDirectory . '/runtime',
     'name' => 'Admin Dashboard - Winning Mark Mobile ',
-    'preload' => array('bootstrap'), // preload the bootstrap component),
+    'preload' => array('log', 'bootstrap'), // preload the bootstrap component),
     'import' => array(
         'application.shared.extensions.directmongosuite.components.*',
         'backend.extensions.*',
@@ -40,6 +40,19 @@ return array(
             'password' => DB_PASS,
             'charset' => 'UTF-8',
             'schemaCachingDuration' => 3600,
+            'enableParamLogging' => true,
+            'enableProfiling' => true,
+        ),
+        'log' => array(
+            'class' => 'CLogRouter',
+            'routes' => array(
+                array(
+                    'class' => 'CWebLogRoute',
+                    'enabled' => true,
+                // 'levels' => 'error, warning, trace, info, profile',
+                   'categories' => 'system.db.*',
+                )
+            )
         ),
         'user' => array(
 // enable cookie-based authentication
