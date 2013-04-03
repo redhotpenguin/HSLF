@@ -16,9 +16,9 @@ class SiteController extends Controller {
 
             $user = Yii::app()->user->getModel(array('tenants'));
 
-           // if ($user->tenants)
-              //  $tenants = $user->tenants;
-         //   else
+            if ($user->tenants)
+                $tenants = $user->tenants;
+            else
                 $tenants = array();
 
             $options = array(
@@ -51,6 +51,8 @@ class SiteController extends Controller {
     public function actionHome() {
         $tenant = Yii::app()->user->getLoggedInUserTenant();
         $tenantDisplayName = $tenant->display_name;
+        
+        
         $this->render('home', array('tenantDisplayName'=>$tenantDisplayName));
     }
 

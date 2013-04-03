@@ -52,7 +52,6 @@ class WebUser extends CWebUser {
     }
 
     public function getLoggedInUserTenant() {
-        //   print_r(Yii::app()->params);
         return Yii::app()->params['current_tenant'];
     }
 
