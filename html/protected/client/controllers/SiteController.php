@@ -14,11 +14,11 @@ class SiteController extends Controller {
 //@bug: Yii::app()->user->id is sometimes a string. Ex: 'jonas'
         if (Yii::app()->user->id) {
 
-            $user = Yii::app()->user->getModel();
+            $user = Yii::app()->user->getModel(array('tenants'));
 
-            if ($user->tenants)
-                $tenants = $user->tenants;
-            else
+           // if ($user->tenants)
+              //  $tenants = $user->tenants;
+         //   else
                 $tenants = array();
 
             $options = array(

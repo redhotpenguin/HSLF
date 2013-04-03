@@ -40,7 +40,6 @@ return array(
             'password' => DB_PASS,
             'charset' => 'UTF-8',
             'schemaCachingDuration' => 3600,
-            'enableParamLogging' => true,
             'enableProfiling' => true,
         ),
         'log' => array(
