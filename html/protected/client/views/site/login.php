@@ -41,21 +41,6 @@ $this->pageTitle = Yii::app()->name . ' - Login';
             </div>
 
             <div class="clearfix"></div>
-
-
-            <div class="remember checkbox">
-                <?php
-                echo $form->checkBox($model, 'rememberMe');
-
-                echo $form->labelEx($model, 'rememberMe');
-                echo $form->error($model, 'rememberMe');
-                ?>
-
-            </div>
-
-
-
-            <div class="clearfix"></div>
             
             <div class="prepend">
                 <?php

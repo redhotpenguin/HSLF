@@ -46,9 +46,6 @@ return array(
             'allowAutoLogin' => true,
             'class' => 'WebUser',
         ),
-        'session' => array(
-            'class' => 'RedisSession',
-        ),
         'urlManager' => array(
             'urlFormat' => 'path',
             'showScriptName' => false,
@@ -91,6 +88,10 @@ return array(
                     'database' => REDIS_DATABASE
                 ),
         )),
+        'session' => array(
+            'class' => 'ARedisSession',
+            'redis' => 'cache',
+        ),
         's3' => array(
             'class' => 'application.shared.extensions.S3.ES3',
             'aKey' => S3_AKEY,
