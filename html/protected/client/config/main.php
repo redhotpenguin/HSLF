@@ -50,7 +50,7 @@ return array(
                     'class' => 'CWebLogRoute',
                     'enabled' => true,
                 // 'levels' => 'error, warning, trace, info, profile',
-                   'categories' => 'system.db.*',
+                   'categories' => 'system.db.CDbCommand.query',
                 )
             )
         ),
