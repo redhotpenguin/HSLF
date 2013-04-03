@@ -7,7 +7,9 @@ function composer($){
     composerBackBtn = $("#composerBackBtn"),
     dynamicComposerContent = $("#dynamicComposerContent"),
     loadingIndicator = $("#loadingIndicator"),
-    errorIndicator = $("#errorIndicator");
+    errorIndicator = $("#errorIndicator")
+    deleteTagSpan = $("#delete_tag_original"),
+    addTagBtn = $("#add_tag_btn");
     
     loadingIndicator.hide();
     errorIndicator.hide();
@@ -56,6 +58,31 @@ function composer($){
 
     }
     
+    
+    
+    addTagBtn.live('click',function(){
+        console.log("test");
+        var clonedTagBoxCount = $("#tag_list .tagBox").length;
+        
+        var newTagBox =   $("#original_tag").clone().attr("id", "tagBox"+clonedTagBoxCount);
+      
+        
+        var tagInput = newTagBox.find(".tagInput");
+        
+        tagInput.val("")
+        tagInput.attr("id", "");
+        newTagBox.append(deleteTagSpan.clone().css("display", "inline").click(deleteTagBox));
+       
+        
+        $("#tag_list").append(newTagBox);
+    });
+    
+    function deleteTagBox(ev){
+        $(this).parent(".tagBox").remove();
+        updateCount();
+    }
+    
     updateFormState();
+    
 } 
 

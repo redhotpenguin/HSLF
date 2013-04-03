@@ -2,6 +2,7 @@
     $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'type' => 'primary', 'size' => 'large', 'label' => 'Next', 'htmlOptions' => array('style' => 'float:right;', 'id' => 'composerNextBtn')));
 ?>
 
+<div class="clearfix"></div>
 
 <fieldset id="action">
     <h1>Message</h1>

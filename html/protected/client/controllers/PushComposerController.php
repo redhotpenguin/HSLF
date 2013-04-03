@@ -62,7 +62,7 @@ class PushComposerController extends Controller {
     }
 
     private function handleMessageStep($virtualSessionId, $direction, $payload = array()) {
-        
+
         $pushMessageModel = new PushMessage();
         $view = 'message';
 
@@ -124,9 +124,21 @@ class PushComposerController extends Controller {
 
         $view = 'recipient';
 
+        logIt($_POST);
 
-        if (isset($_POST['foobar'])) {
+        // remove empty tags
+        if (isset($payload['tags'])) {
+            foreach ($payload['tags'] as $k => $v) {
+                if (empty($v)) {
+                    unset($payload['tags'][$k]);
+                }
+            }
+        }
+
+        if (isset($payload['tags']) && !empty($payload['tags'])) {
+            error_log("got tags");
             Yii::app()->session['step' . $virtualSessionId] = 'confirmation';
+            return $this->handleConfirmationStep($virtualSessionId, 'next');
         }
 
         $this->renderPartial('composer/_' . $view, $data);
@@ -134,7 +146,7 @@ class PushComposerController extends Controller {
 
     private function handleConfirmationStep($virtualSessionId, $direction, $payload = array()) {
         if ($direction === 'back') {
-            Yii::app()->session['step' . $virtualSessionId] = 'recipients';
+            Yii::app()->session['step' . $virtualSessionId] = 'recipient';
             return $this->handleRecipientStep($virtualSessionId, 'next');
         }
 
@@ -144,6 +156,13 @@ class PushComposerController extends Controller {
         if (isset($_POST['foobar'])) {
             Yii::app()->session['step' . $virtualSessionId] = 'thankyou';
         }
+
+        $this->renderPartial('composer/_' . $view, $data);
+    }
+
+    private function handleThankYouStep($virtualSessionId, $direction) {
+        $data = array();
+        $view = 'thankyou';
 
         $this->renderPartial('composer/_' . $view, $data);
     }
