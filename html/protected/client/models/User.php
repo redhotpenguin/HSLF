@@ -144,11 +144,11 @@ class User extends BaseActiveRecord {
         return $save_result;
     }
 
-    public function getUser($userIdOrName) {
+    public function getUser($userIdOrName, $relations = array() ) {
         if (is_numeric($userIdOrName))
-            $user = User::model()->findByPk($userIdOrName);
+            $user = User::model()->with($relations)->findByPk($userIdOrName);
         else
-            $user = User::model()->findByAttributes(array('username' => $userIdOrName));
+            $user = User::model()->with($relations)->findByAttributes(array('username' => $userIdOrName));
 
 
         return $user;

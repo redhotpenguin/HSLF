@@ -37,8 +37,7 @@ class WebUser extends CWebUser {
         if ($tenant == null)
             return false;
 
-        $user = User::model()->getUser(Yii::app()->user->id);
-
+        $user = $this->getModel(Yii::app()->user->id);
 
         if ($user == null)
             return false;
@@ -53,7 +52,6 @@ class WebUser extends CWebUser {
     }
 
     public function getLoggedInUserTenant() {
-        //   print_r(Yii::app()->params);
         return Yii::app()->params['current_tenant'];
     }
 
@@ -79,9 +77,9 @@ class WebUser extends CWebUser {
         return $model->getTenantUserId(0, $this->getState('userId')); // 0 means no tenant. Ex: (super)admin dashboard or home page
     }
 
-    public function getModel() {
+    public function getModel($relations = array()) {
         if (empty($this->_userModel))
-            $this->_userModel = User::model()->getUser($this->getId());
+            $this->_userModel = User::model()->getUser($this->getId(), $relations);
 
         return $this->_userModel;
     }

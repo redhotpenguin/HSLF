@@ -14,7 +14,7 @@ class SiteController extends Controller {
 //@bug: Yii::app()->user->id is sometimes a string. Ex: 'jonas'
         if (Yii::app()->user->id) {
 
-            $user = Yii::app()->user->getModel();
+            $user = Yii::app()->user->getModel(array('tenants'));
 
             if ($user->tenants)
                 $tenants = $user->tenants;
@@ -51,6 +51,8 @@ class SiteController extends Controller {
     public function actionHome() {
         $tenant = Yii::app()->user->getLoggedInUserTenant();
         $tenantDisplayName = $tenant->display_name;
+        
+        
         $this->render('home', array('tenantDisplayName'=>$tenantDisplayName));
     }
 
