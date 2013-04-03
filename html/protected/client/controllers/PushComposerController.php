@@ -138,7 +138,7 @@ class PushComposerController extends Controller {
         if (isset($payload['tags']) && !empty($payload['tags'])) {
             error_log("got tags");
             Yii::app()->session['step' . $virtualSessionId] = 'confirmation';
-            return $this->handleConfirmationStep($virtualSessionId, 'next');
+            return $this->handleConfirmationStep($virtualSessionId, 'continue');
         }
 
         $this->renderPartial('composer/_' . $view, $data);
@@ -153,7 +153,7 @@ class PushComposerController extends Controller {
         $data = array();
         $view = 'confirmation';
 
-        if (isset($_POST['foobar'])) {
+        if (isset($payload['foobar'])) {
             Yii::app()->session['step' . $virtualSessionId] = 'thankyou';
         }
 
