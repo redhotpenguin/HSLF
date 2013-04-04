@@ -8,13 +8,19 @@ $config = dirname(__FILE__) . '/protected/client/config/main.php';
 require ( 'protected/helpers/globals.php' );
 
 require_once($yii);
-try {
-    $yii = Yii::createWebApplication($config);
 
+$yii = Yii::createWebApplication($config);
+
+ 
+try {   
     $yii->run();
-} catch (Exception $e) {
-    header('HTTP/1.1 503 Service Temporarily Unavailable');
-    header('Status: 503 Service Temporarily Unavailable');
-    header('Retry-After: 60');
-    echo '<h1>Service unavailable</h1>';
+} catch (CDbException $e) {
+    if ($e->getCode() == 7) {
+        header('HTTP/1.1 503 Service Temporarily Unavailable');
+        header('Status: 503 Service Temporarily Unavailable');
+        header('Retry-After: 60');
+        echo '<h1>Service unavailable</h1> Database Connection Lost';
+        die;
+    }
+    throw $e;
 }
