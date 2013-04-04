@@ -8,14 +8,9 @@ function composer($){
     dynamicComposerContent = $("#dynamicComposerContent"),
     loadingIndicator = $("#loadingIndicator"),
     errorIndicator = $("#errorIndicator"),
-    steps = ['message','payload','recipient','validation','confirmation'],
-    currentStepIndex = 0;
-    
-    
-    loadingIndicator.hide();
-    errorIndicator.hide();
-    
-    composerBackBtn.hide();
+    steps = ['Message','Payload','Recipient','Validation','Confirmation'],
+    currentStepIndex = 0
+    validatedData = []; // experimental, store valided models
     
     composerNextBtn.live('click',function(){
         updateFormState(steps[currentStepIndex], 'next');
@@ -24,18 +19,18 @@ function composer($){
     composerBackBtn.live('click',function(){
         updateFormState(steps[currentStepIndex], 'back');
     });
- 
- 
+    
+    
+    
     function updateFormState(action,direction){   
         
-        console.log("step is: " + steps[currentStepIndex] );
-        
+        //  console.log(validatedData);
         
         var query ='/client/ouroregon/pushComposer/'+action+'/?direction='+direction;
-
+        
         var data = {
         };
-                        
+        
         data = $("#push_composer").serialize();
         
         
@@ -45,8 +40,19 @@ function composer($){
             data:data
         }).success(function(result){
             
-            dynamicComposerContent.html(result.html);
-           
+            var step = steps[currentStepIndex];
+            
+            // todo: refactor using switch or dynamic function name
+            if(step == 'Message')
+                handleMessageStep(result);
+            
+            else if(step == 'Payload')
+                handlePayloadStep(result);
+            
+            else if(step == 'Recipient')
+                handleRecipientStep(result);
+            
+            
             if(result.proceedToNextStep){
                 currentStepIndex+=1;   
                 updateFormState(steps[currentStepIndex], 'next');
@@ -55,19 +61,41 @@ function composer($){
                 currentStepIndex -=1;   
                 updateFormState(steps[currentStepIndex], 'next');
             }
-                
-          
-            
+        
         }).fail(function(jqXHR, textStatus){
             console.log(jqXHR.responseText);
         });
-
+    
+    }
+    
+    function handleMessageStep(data){
+        if(data.validatedModel != undefined && data.validatedModel.pushMessage != undefined){
+            validatedData['pushMessage'] = data.validatedModel.pushMessage;
+        }
+        
+        dynamicComposerContent.html(data.html);
+        
+        
+        if(validatedData['pushMessage']){
+            $("#PushMessage_alert").val(validatedData['pushMessage'].alert);
+        }
+    
+    }
+    
+    function handlePayloadStep(data){
+        dynamicComposerContent.html(data.html);
+    }
+    
+    function handleRecipientStep(data){
+        dynamicComposerContent.html(data.html);
     }
     
     
-
-    
+    loadingIndicator.hide();
+    errorIndicator.hide();
     updateFormState(steps[currentStepIndex], 'next');
-    
+
+
+
 } 
 

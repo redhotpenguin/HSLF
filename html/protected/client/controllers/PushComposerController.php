@@ -40,6 +40,7 @@ class PushComposerController extends Controller {
     public function actionMessage($direction = 'next') {
         $pushMessageModel = new PushMessage();
         $data = array();
+        $response = array();
         $proceedToNextStep = false;
 
 
@@ -51,16 +52,15 @@ class PushComposerController extends Controller {
 
             if ($pushMessageModel->validate()) {
                 $proceedToNextStep = true;
+                $response['validatedModel'] = array('pushMessage' => $pushMessageModel);
             }
         }
 
         $data['pushMessageModel'] = $pushMessageModel;
 
+        $response['proceedToNextStep'] = $proceedToNextStep;
+        $response['html'] = $this->renderPartial('composer/_message', $data, true);
 
-        $response = array(
-            'html' => $this->renderPartial('composer/_message', $data, true),
-            'proceedToNextStep' => $proceedToNextStep,
-        );
 
         $this->printJsonResponse($response);
     }
