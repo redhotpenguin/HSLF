@@ -20,7 +20,7 @@ class PushComposerController extends Controller {
         return array(
             array(// restrict State to admins only
                 'allow',
-                'actions' => array('index', 'message', 'payload', 'recipient'),
+                'actions' => array('index', 'message', 'payload', 'recipient', 'validation', 'confirmation'),
                 'roles' => array('manageMobileUsers'),
             ),
             array('deny', // deny all users
@@ -37,7 +37,7 @@ class PushComposerController extends Controller {
         $this->render('index', array("pushMessageModel" => new PushMessage, 'virtualSessionId' => $virtualSessionId));
     }
 
-    public function actionMessage($direction = 'next') {  
+    public function actionMessage($direction = 'next') {
         $pushMessageModel = new PushMessage();
         $data = array();
         $response = array();
@@ -94,15 +94,56 @@ class PushComposerController extends Controller {
             $this->printJsonResponse(array('proceedToLastStep' => true));
         }
 
+        $response = array();
+        $proceedToNextStep = false;
+        $tags = array();
+
+        // remove empty tags
+        if (isset($_POST['Tags'])) {
+            $tags = $_POST['Tags'];
+            foreach ($tags as $k => $v) {
+                if (empty($v)) {
+                    unset($tags[$k]);
+                }
+            }
+        }
+
+        if (!empty($tags)) {
+            $proceedToNextStep = true;
+            $response['validatedModel'] = array('tags' => $tags);
+        }
+
+        $response['proceedToNextStep'] = $proceedToNextStep;
+        $response['html'] = $this->renderPartial('composer/_recipient', array(), true);
+
+        $this->printJsonResponse($response);
+    }
+
+    public function actionValidation($direction = 'next') {
+        if ($direction == 'back') {
+            $this->printJsonResponse(array('proceedToLastStep' => true));
+        }
 
         $proceedToNextStep = false;
 
-        if (isset($_POST['Recipient'])) {
+        if (isset($_POST['DATA'])) {
             $proceedToNextStep = true;
         }
 
         $response = array(
-            'html' => $this->renderPartial('composer/_recipient', array(), true),
+            'html' => $this->renderPartial('composer/_validation', array(), true),
+            'proceedToNextStep' => $proceedToNextStep,
+        );
+
+
+        $this->printJsonResponse($response);
+    }
+
+    public function actionConfirmation($direction = 'next') {
+        $proceedToNextStep = false;
+
+        $response = array(
+            'html' => $this->renderPartial('composer/_confirmation', array(), true),
             'proceedToNextStep' => $proceedToNextStep,
         );
 

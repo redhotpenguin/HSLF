@@ -83,20 +83,16 @@ function composer($){
         
         if(validatedData['payload']){
             populateFormFromModel(validatedData['payload']);
-
         }
         
-        var
-        payload_type = $("#Payload_type");
+        var payload_type = $("#Payload_type");
         post_related_inputs = $("#post_related_inputs");
         share_related_inputs = $("#share_related_inputs");
     
         share_related_inputs.hide();
         post_related_inputs.hide();
-
-
+        
         payload_type.change(function(){
-     
             var type = this.value;
         
             if(type == 'share'){
@@ -115,8 +111,62 @@ function composer($){
     }
     
     self.handleRecipientStep = function (data){
+                
+        if(data.validatedModel != undefined && data.validatedModel.tags != undefined){
+            validatedData['tags'] = data.validatedModel.tags;
+        }
+        
         dynamicComposerContent.html(data.html);
+        
+        if(validatedData['tags']){                       
+            var tagList = $("#tag_list");
+            console.log("her");
+            $.each(validatedData['tags'], function(index,tagName){
+         
+                var tagRow = '<div class="row tagBox" > <input class="tagInput" type="text" value="'+tagName+'" name="Tags[]" /><span class="delete_tag" style="display: inline;">X</span></div>';
+
+                tagList.append(tagRow);
+  
+            });
+            
+            $("#original_tag").hide();
+        }
+        
+ 
+        
+        
+   
+        
+        var  addTagBtn = $("#add_tag_btn"),
+        deleteTagSpan = $("#delete_tag_original");
+        
+        addTagBtn.click(function(){
+            var clonedTagBoxCount = $("#tag_list .tagBox").length;
+        
+            var newTagBox =   $("#original_tag").clone().attr("id", "tagBox"+clonedTagBoxCount);
+      
+        
+            var tagInput = newTagBox.find(".tagInput");
+        
+            tagInput.val("")
+            tagInput.attr("id", "");
+            newTagBox.append(deleteTagSpan.clone().css("display", "inline").click(function(){
+                $(this).parent(".tagBox").remove();
+                updateCount();   
+            }));
+       
+        
+            $("#tag_list").append(newTagBox);
+        });
     }
+    
+    self.handleValidationStep = function(data){
+        dynamicComposerContent.html(data.html);
+    };
+    
+    self.handleConfirmationStep = function(data){
+        dynamicComposerContent.html(data.html);
+    };
     
     // heplers
     function populateFormFromModel(model){

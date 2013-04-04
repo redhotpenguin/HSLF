@@ -27,7 +27,7 @@ $form = $this->beginWidget('CActiveForm', array(
 
         <div class="row tagBox" id="original_tag">
             <?php
-            echo CHtml::textField("tags[]", "", array('class' => 'tagInput'));
+            echo CHtml::textField("Tags[]", "", array('class' => 'tagInput'));
             ?>
         </div>
     </div>
