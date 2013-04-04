@@ -14,7 +14,5 @@ echo CHtml::hiddenField('virtualSessionId', $virtualSessionId);
 
 <div class="clearfix"></div>
 
-<hr/>
-
 <div id="dynamicComposerContent"></div>
 <div class="alert alert-error" id="errorIndicator"></div>

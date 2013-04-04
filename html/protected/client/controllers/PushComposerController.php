@@ -1,5 +1,7 @@
 <?php
 
+logIt($_POST);
+
 class PushComposerController extends Controller {
 
     /**
@@ -42,7 +44,6 @@ class PushComposerController extends Controller {
         $data = array();
         $response = array();
         $proceedToNextStep = false;
-
 
         // message posted
         if (isset($_POST['PushMessage'])) {
@@ -126,7 +127,7 @@ class PushComposerController extends Controller {
 
         $proceedToNextStep = false;
 
-        if (isset($_POST['DATA'])) {
+        if (isset($_POST['Validation'])) {
             $proceedToNextStep = true;
         }
 
