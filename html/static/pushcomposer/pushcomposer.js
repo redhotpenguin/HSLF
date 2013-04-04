@@ -27,6 +27,10 @@ function composer($){
  
  
     function updateFormState(action,direction){   
+        
+        console.log("step is: " + steps[currentStepIndex] );
+        
+        
         var query ='/client/ouroregon/pushComposer/'+action+'/?direction='+direction;
 
         var data = {
@@ -47,8 +51,12 @@ function composer($){
                 currentStepIndex+=1;   
                 updateFormState(steps[currentStepIndex], 'next');
             }
+            else if(result.proceedToLastStep){
+                currentStepIndex -=1;   
+                updateFormState(steps[currentStepIndex], 'next');
+            }
                 
-           
+          
             
         }).fail(function(jqXHR, textStatus){
             console.log(jqXHR.responseText);
