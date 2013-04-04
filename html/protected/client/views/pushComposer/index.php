@@ -17,5 +17,4 @@ echo CHtml::hiddenField('virtualSessionId', $virtualSessionId);
 <hr/>
 
 <div id="dynamicComposerContent"></div>
-<div id="loadingIndicator">loading...</div>
 <div class="alert alert-error" id="errorIndicator"></div>

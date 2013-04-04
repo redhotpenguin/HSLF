@@ -3,10 +3,11 @@ jQuery(document).ready(composer);
 
 function composer($){
     
-    var composerNextBtn = $("#composerNextBtn"),
+    var 
+    self = this,
+    composerNextBtn = $("#composerNextBtn"),
     composerBackBtn = $("#composerBackBtn"),
     dynamicComposerContent = $("#dynamicComposerContent"),
-    loadingIndicator = $("#loadingIndicator"),
     errorIndicator = $("#errorIndicator"),
     steps = ['Message','Payload','Recipient','Validation','Confirmation'],
     currentStepIndex = 0
@@ -21,38 +22,26 @@ function composer($){
     });
     
     
-    
-    function updateFormState(action,direction){   
-        
-        //  console.log(validatedData);
-        
+    function updateFormState(action,direction){         
         var query ='/client/ouroregon/pushComposer/'+action+'/?direction='+direction;
         
         var data = {
         };
         
         data = $("#push_composer").serialize();
-        
-        
+            
+        dynamicComposerContent.fadeOut(100);
         $.ajax({
             url:query,
             type:'POST',
             data:data
         }).success(function(result){
-            
-            var step = steps[currentStepIndex];
-            
-            // todo: refactor using switch or dynamic function name
-            if(step == 'Message')
-                handleMessageStep(result);
-            
-            else if(step == 'Payload')
-                handlePayloadStep(result);
-            
-            else if(step == 'Recipient')
-                handleRecipientStep(result);
+                        
+            var fnct = 'handle'+steps[currentStepIndex]+'Step';
             
             
+            self[fnct](result);
+
             if(result.proceedToNextStep){
                 currentStepIndex+=1;   
                 updateFormState(steps[currentStepIndex], 'next');
@@ -61,15 +50,18 @@ function composer($){
                 currentStepIndex -=1;   
                 updateFormState(steps[currentStepIndex], 'next');
             }
+            
+            dynamicComposerContent.fadeIn(100);
         
         }).fail(function(jqXHR, textStatus){
             console.log(jqXHR.responseText);
+            dynamicComposerContent.show();
         });
     
     }
     
 
-    function handleMessageStep(data){
+    self.handleMessageStep = function(data){
         if(data.validatedModel != undefined && data.validatedModel.pushMessage != undefined){
             validatedData['pushMessage'] = data.validatedModel.pushMessage;
         }
@@ -77,14 +69,12 @@ function composer($){
         dynamicComposerContent.html(data.html);
                 
         if(validatedData['pushMessage']){
-            
             populateFormFromModel(validatedData['pushMessage']);
-
         }
     
     }
     
-    function handlePayloadStep(data){
+    self.handlePayloadStep = function(data){
         if(data.validatedModel != undefined && data.validatedModel.payload != undefined){
             validatedData['payload'] = data.validatedModel.payload;
         }
@@ -97,7 +87,7 @@ function composer($){
         }
     }
     
-    function handleRecipientStep(data){
+    self.handleRecipientStep = function (data){
         dynamicComposerContent.html(data.html);
     }
     
@@ -114,8 +104,6 @@ function composer($){
         });
     }
     
-    
-    loadingIndicator.hide();
     errorIndicator.hide();
     updateFormState(steps[currentStepIndex], 'next');
 

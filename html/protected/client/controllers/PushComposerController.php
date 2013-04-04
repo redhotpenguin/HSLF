@@ -37,7 +37,7 @@ class PushComposerController extends Controller {
         $this->render('index', array("pushMessageModel" => new PushMessage, 'virtualSessionId' => $virtualSessionId));
     }
 
-    public function actionMessage($direction = 'next') {
+    public function actionMessage($direction = 'next') {  
         $pushMessageModel = new PushMessage();
         $data = array();
         $response = array();
