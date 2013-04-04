@@ -12,8 +12,7 @@ function form($){
 
 
     payload_type.change(function(){
-
-        
+     
         var type = this.value;
         
         if(type == 'share'){
