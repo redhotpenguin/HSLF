@@ -58,7 +58,7 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
 
     set_include_path(get_include_path() . PATH_SEPARATOR . '/home/dotcloud/php-env/share/php');
 } else {    //dev server conf
-    $dbhost = '127.0.10.1';
+    $dbhost = '127.0.0.1';
     $dbname = 'mobile_advocacy_platform';
     $dbuser = 'postgres';
     $dbpass = 'pengu1n';
@@ -100,7 +100,7 @@ if (file_exists($dotcloud_conf)) {     // dotcloud server conf
 
     $maintenance = 'off';
 
-   // define('YII_DEBUG', true);
+    define('YII_DEBUG', true);
 }
 
 
