@@ -10,7 +10,7 @@ class ApiController extends Controller {
     }
 
     public function actionError() {
-        $this->sendResponse(500);
+        $this->sendResponse(503);
     }
 
     /**
@@ -146,6 +146,10 @@ class ApiController extends Controller {
             $container['results'] = $body;
         } else {
             $container['results'] = 'no_results';
+        }
+        
+        if($status == 503){
+            header('Retry-After: 60');
         }
 
 
