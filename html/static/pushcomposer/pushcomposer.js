@@ -118,40 +118,48 @@ function composer($){
         
         dynamicComposerContent.html(data.html);
         
-        if(validatedData['tags']){                       
-            var tagList = $("#tag_list");
-            console.log("her");
-            $.each(validatedData['tags'], function(index,tagName){
-         
-                var tagRow = '<div class="row tagBox" > <input class="tagInput" type="text" value="'+tagName+'" name="Tags[]" /><span class="delete_tag" style="display: inline;">X</span></div>';
-
-                tagList.append(tagRow);
-  
-            });
-            
-           // $("#original_tag").hide();
-        }
-        
- 
-        
         var  addTagBtn = $("#add_tag_btn"),
         deleteTagSpan = $("#delete_tag_original");
         
-        addTagBtn.click(function(){
-            var clonedTagBoxCount = $("#tag_list .tagBox").length;
+        if(validatedData['tags']){                       
+            
+            $.each(validatedData['tags'], function(index,tagName){
+
+                var clonedTagBoxCount = $("#tag_list .tagBox").length;
         
-            var newTagBox =   $("#original_tag").clone().attr("id", "tagBox"+clonedTagBoxCount);
+                var newTagBox =   $("#original_tag").clone().attr("id", "tagBox"+clonedTagBoxCount);
       
+                var tagInput = newTagBox.find(".tagInput");
         
+                tagInput.val(tagName)
+                tagInput.attr("id", "");
+                newTagBox.append(deleteTagSpan.clone().css("display", "inline").click(function(){
+                    $(this).parent(".tagBox").remove();
+                }));
+       
+        
+                $("#tag_list").append(newTagBox);
+  
+            });
+            
+            $("#original_tag").hide();
+        }
+        
+
+        addTagBtn.click(function(){
+            
+            var clonedTagBoxCount = $("#tag_list .tagBox").length;
+
+            var newTagBox =   $("#original_tag").clone().attr("id", "tagBox"+clonedTagBoxCount);
+
             var tagInput = newTagBox.find(".tagInput");
         
             tagInput.val("")
             tagInput.attr("id", "");
             newTagBox.append(deleteTagSpan.clone().css("display", "inline").click(function(){
                 $(this).parent(".tagBox").remove();
-                updateCount();   
             }));
-       
+            newTagBox.show();
         
             $("#tag_list").append(newTagBox);
         });
