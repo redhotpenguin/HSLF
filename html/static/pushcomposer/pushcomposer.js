@@ -129,13 +129,10 @@ function composer($){
   
             });
             
-            $("#original_tag").hide();
+           // $("#original_tag").hide();
         }
         
  
-        
-        
-   
         
         var  addTagBtn = $("#add_tag_btn"),
         deleteTagSpan = $("#delete_tag_original");
