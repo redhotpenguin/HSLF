@@ -77,15 +77,14 @@ class PushComposerController extends Controller {
             $payloadModel->attributes = $_POST['Payload'];
             if ($payloadModel->validate()) { // model validated ok. move to next step
                 $proceedToNextStep = true;
+                $response['validatedModel'] = array('payload' => $payloadModel);
             }
         }
 
         $data['payloadModel'] = $payloadModel;
 
-        $response = array(
-            'html' => $this->renderPartial('composer/_payload', $data, true),
-            'proceedToNextStep' => $proceedToNextStep,
-        );
+        $response['proceedToNextStep'] = $proceedToNextStep;
+        $response['html'] = $this->renderPartial('composer/_payload', $data, true);
 
         $this->printJsonResponse($response);
     }

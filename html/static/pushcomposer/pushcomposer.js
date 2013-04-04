@@ -68,26 +68,50 @@ function composer($){
     
     }
     
+
     function handleMessageStep(data){
         if(data.validatedModel != undefined && data.validatedModel.pushMessage != undefined){
             validatedData['pushMessage'] = data.validatedModel.pushMessage;
         }
         
         dynamicComposerContent.html(data.html);
-        
-        
+                
         if(validatedData['pushMessage']){
-            $("#PushMessage_alert").val(validatedData['pushMessage'].alert);
+            
+            populateFormFromModel(validatedData['pushMessage']);
+
         }
     
     }
     
     function handlePayloadStep(data){
+        if(data.validatedModel != undefined && data.validatedModel.payload != undefined){
+            validatedData['payload'] = data.validatedModel.payload;
+        }
+                
         dynamicComposerContent.html(data.html);
+        
+        if(validatedData['payload']){
+            populateFormFromModel(validatedData['payload']);
+
+        }
     }
     
     function handleRecipientStep(data){
         dynamicComposerContent.html(data.html);
+    }
+    
+    // heplers
+    function populateFormFromModel(model){
+        $.each($("#dynamicComposerContent").find(':input'), function(k,input){
+            var inputName = $(input).attr('name'); // Ex: PushMessage[alert] 
+              
+            var property=inputName.substring(inputName.lastIndexOf("[")+1,inputName.lastIndexOf("]")); // extrat property name. Ex: alert
+            if(model[property]){
+                $(input).attr('value',  model[property] )
+            }
+              
+        });
     }
     
     
