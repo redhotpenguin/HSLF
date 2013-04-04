@@ -7,9 +7,10 @@ function composer($){
     composerBackBtn = $("#composerBackBtn"),
     dynamicComposerContent = $("#dynamicComposerContent"),
     loadingIndicator = $("#loadingIndicator"),
-    errorIndicator = $("#errorIndicator")
-    deleteTagSpan = $("#delete_tag_original"),
-    addTagBtn = $("#add_tag_btn");
+    errorIndicator = $("#errorIndicator"),
+    steps = ['message','payload','recipient','validation','confirmation'],
+    currentStepIndex = 0;
+    
     
     loadingIndicator.hide();
     errorIndicator.hide();
@@ -17,72 +18,48 @@ function composer($){
     composerBackBtn.hide();
     
     composerNextBtn.live('click',function(){
-        updateFormState('next');
+        updateFormState(steps[currentStepIndex], 'next');
     });
     
     composerBackBtn.live('click',function(){
-        updateFormState('back');
+        updateFormState(steps[currentStepIndex], 'back');
     });
  
  
-    function updateFormState(direction){
-
-        var virtualSessionIdVal = $("#virtualSessionId").val();
-        
-        var query ='/client/ouroregon/pushComposer/step?virtualSessionId='+virtualSessionIdVal+"&direction="+direction;
+    function updateFormState(action,direction){   
+        var query ='/client/ouroregon/pushComposer/'+action+'/?direction='+direction;
 
         var data = {
-            virtualSessionId: virtualSessionIdVal
         };
                         
         data = $("#push_composer").serialize();
         
-        dynamicComposerContent.hide();
-        errorIndicator.hide();
         
-        loadingIndicator.show();
         $.ajax({
             url:query,
             type:'POST',
             data:data
         }).success(function(result){
-            loadingIndicator.hide();
-            dynamicComposerContent.html(result);
-            composerNextBtn.show();
-            dynamicComposerContent.show();
+            
+            dynamicComposerContent.html(result.html);
+           
+            if(result.proceedToNextStep){
+                currentStepIndex+=1;   
+                updateFormState(steps[currentStepIndex], 'next');
+            }
+                
+           
+            
         }).fail(function(jqXHR, textStatus){
-            loadingIndicator.hide();
-            composerNextBtn.hide();
-            errorIndicator.html(jqXHR.responseText).show();
+            console.log(jqXHR.responseText);
         });
 
     }
     
     
+
     
-    addTagBtn.live('click',function(){
-        console.log("test");
-        var clonedTagBoxCount = $("#tag_list .tagBox").length;
-        
-        var newTagBox =   $("#original_tag").clone().attr("id", "tagBox"+clonedTagBoxCount);
-      
-        
-        var tagInput = newTagBox.find(".tagInput");
-        
-        tagInput.val("")
-        tagInput.attr("id", "");
-        newTagBox.append(deleteTagSpan.clone().css("display", "inline").click(deleteTagBox));
-       
-        
-        $("#tag_list").append(newTagBox);
-    });
-    
-    function deleteTagBox(ev){
-        $(this).parent(".tagBox").remove();
-        updateCount();
-    }
-    
-    updateFormState();
+    updateFormState(steps[currentStepIndex], 'next');
     
 } 
 

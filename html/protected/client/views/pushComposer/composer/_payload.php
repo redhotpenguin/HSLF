@@ -7,7 +7,7 @@ $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'typ
 
 
 <fieldset id="action">
-    <h1>Action</h1>
+    <h1>Payload</h1>
 </fieldset>
 
 <div class="form">
