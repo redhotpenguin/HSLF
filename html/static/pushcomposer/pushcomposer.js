@@ -23,7 +23,7 @@ function composer($){
     
     
     function updateFormState(action,direction){         
-        var query ='/client/ouroregon/pushComposer/'+action+'/?direction='+direction;
+        var query = pushcomposer_ns.controller_url + '/'+action+'/?direction='+direction;
         
         var data = {};
         
