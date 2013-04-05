@@ -9,7 +9,7 @@ function composer($){
     composerBackBtn = $("#composerBackBtn"),
     dynamicComposerContent = $("#dynamicComposerContent"),
     errorIndicator = $("#errorIndicator"),
-    steps = ['Recipient', 'Payload', 'Message','Payload','Recipient','Validation'],
+    steps = ['Message','Payload','Recipient','Validation'],
     currentStepIndex = 0
     validatedData = []; // store valided models
     
@@ -148,8 +148,6 @@ function composer($){
             $("#original_tag").hide();
         }
         
-        
-
         $('.deleteBtn').click(deleteDropDown);
 
         $("#addTagBtn").click(function(){
@@ -172,6 +170,7 @@ function composer($){
         
         dynamicComposerContent.html(data.html);
   
+  /*
         validatedData['pushMessage']  = {}
         validatedData['tags']  = ['tag1', 'tag2', 'tag3']
         validatedData['pushMessage'].alert = 'alert goes here';
@@ -188,7 +187,7 @@ function composer($){
             url: "http://www.google.fr"
         };
 
-
+*/
         var hiddenInputs = $("#hiddenInputs");
         $.each(validatedData['tags'], function(k,v){
             hiddenInputs.append(' <input type="hidden" name="Validation[Tags][]" value ="'+v+'" />');
