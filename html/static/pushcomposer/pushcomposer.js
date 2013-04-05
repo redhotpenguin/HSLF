@@ -9,15 +9,15 @@ function composer($){
     composerBackBtn = $("#composerBackBtn"),
     dynamicComposerContent = $("#dynamicComposerContent"),
     errorIndicator = $("#errorIndicator"),
-    steps = ['Message','Payload','Recipient','Validation','Confirmation'],
+    steps = ['Validation', 'Message','Payload','Recipient','Validation'],
     currentStepIndex = 0
     validatedData = []; // store valided models
     
     composerNextBtn.live('click',function(){
-        if(currentStepIndex == 3){
-            if(confirm("Are you sure you want to send this alert?") == false)
-                return;
-        }
+        //  if(currentStepIndex == 3){
+        //  if(confirm("Are you sure you want to send this alert?") == false)
+        //    return;
+        //  }
         updateFormState(steps[currentStepIndex], 'next');
     });
     
@@ -173,24 +173,34 @@ function composer($){
         
         dynamicComposerContent.html(data.html);
   
-        /*validatedData['pushMessage']  = {}
+        validatedData['pushMessage']  = {}
         validatedData['tags']  = ['tag1', 'tag2', 'tag3']
         validatedData['pushMessage'].alert = 'alert goes here';
         
         validatedData['payload'] = {
             description: "deads",
             email: "dad@gmail.com",
-            id: null,
+        //    id: null,
             post_number: 14,
             tenant_id: null,
             title: "ffff",
             tweet: "tweet",
             type: "share",
             url: "http://www.google.fr"
-        };*/
+        };
 
 
+        var hiddenInputs = $("#hiddenInputs");
+        $.each(validatedData['tags'], function(k,v){
+            hiddenInputs.append(' <input type="hidden" name="Validation[Tags][]" value ="'+v+'" />');
+        })
+        $.each(validatedData['payload'], function(k,v){
+            hiddenInputs.append(' <input type="hidden" name="Validation[Payload]['+k+']" value ="'+v+'" />');
+        })
+   
         var payloadTable = $("#payloadTable");
+        payloadTable.append('<tr><td><strong>Title</strong></td><td>'+validatedData['payload'].title+'</td></tr>');
+
         payloadTable.append('<tr><td><strong>Title</strong></td><td>'+validatedData['payload'].title+'</td></tr>');
         payloadTable.append('<tr><td><strong>Type</strong></td><td>'+validatedData['payload'].type+'</td></tr>');
 
@@ -215,16 +225,7 @@ function composer($){
         });
         
     };
-    
-    self.handleConfirmationStep = function(data){
-        
-        dynamicComposerContent.html(data.html);
-        
-        
-        
-        
-    };
-    
+
     // heplers
     function populateFormFromModel(model){
         $.each($("#dynamicComposerContent").find(':input'), function(k,input){

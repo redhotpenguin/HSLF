@@ -17,7 +17,7 @@ $form = $this->beginWidget('CActiveForm', array(
     <h3>Alert</h3>
 
     <div id="pushMessage">
-        <textarea id="pushMessageArea" class="span12" name="Validation[push_message] "></textarea>
+        <textarea id="pushMessageArea" class="span12" name="Validation[PushMessage][alert] "></textarea>
     </div>
 </div>
 
@@ -33,6 +33,8 @@ $form = $this->beginWidget('CActiveForm', array(
 </div>
 
 <div class="clearfix"></div>
+
+<div id="hiddenInputs"></div>
 
 <hr/>
 

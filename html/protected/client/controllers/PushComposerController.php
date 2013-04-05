@@ -1,7 +1,5 @@
 <?php
 
-logIt($_POST);
-
 class PushComposerController extends Controller {
 
     /**
@@ -121,11 +119,62 @@ class PushComposerController extends Controller {
             $this->printJsonResponse(array('proceedToLastStep' => true));
         }
 
-        $proceedToNextStep = false;
+        $tenant = Yii::app()->user->getLoggedInUserTenant();
 
-        if (isset($_POST['Validation'])) {
-            $proceedToNextStep = true;
+
+
+        $proceedToNextStep = false;
+        //    logIt($_POST);
+        if (isset($_POST['Validation']) && isset($_POST['Validation']['PushMessage']) && isset($_POST['Validation']['Payload'])) {
+
+            $unfilteredPushMessage = $_POST['Validation']['PushMessage'];
+            $unfilteredPayload = $_POST['Validation']['Payload'];
+            $unfilterdTags = $_POST['Validation']['Tags'];
+
+            unset($unfilteredPushMessage['id']); // If id = null. Yii saves the record with id = 0 
+            unset($unfilteredPayload['id']);
+
+            $payloadModel = new Payload;
+            $payloadModel->attributes = $unfilteredPayload;
+            $payloadModel->tenant_id = $tenant->id;
+
+
+            $pushMessageModel = new PushMessage();
+            $pushMessageModel->attributes = $unfilteredPushMessage;
+            $pushMessageModel->creation_date = date('Y-m-d h:i:s');
+            $pushMessageModel->payload_id = 0; // necessary to pass validation. Needs to be overriden by actual payload_id
+
+            if (!$payloadModel->validate() && !$pushMessageModel->validate()) {
+                return false;
+            }
+
+
+
+            $payloadModel->setIsNewRecord(true);
+
+            if ($payloadModel->save()) {
+                logIt("payload id: " . $payloadModel->id);
+
+
+                $pushMessageModel->payload_id = $payloadModel->id;
+
+                if ($pushMessageModel->save()) {
+                    error_log("push saved");
+                } else {
+                    error_log("not saved");
+                }
+            }
+            
+            /*
+             * @todo: save tags
+             * link tags to pushMessage
+             * talk to UAP API
+             */
+
+
+            //      $this->actionConfirmation();
         }
+
 
         $response = array(
             'html' => $this->renderPartial('composer/_validation', array(), true),
@@ -137,6 +186,10 @@ class PushComposerController extends Controller {
     }
 
     public function actionConfirmation($direction = 'next') {
+        error_log('conf');
+        logIt($_POST);
+
+
         $proceedToNextStep = false;
 
         $response = array(
