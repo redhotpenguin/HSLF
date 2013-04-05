@@ -198,8 +198,6 @@ function composer($){
    
         var payloadTable = $("#payloadTable");
         payloadTable.append('<tr><td><strong>Title</strong></td><td>'+validatedData['payload'].title+'</td></tr>');
-
-        payloadTable.append('<tr><td><strong>Title</strong></td><td>'+validatedData['payload'].title+'</td></tr>');
         payloadTable.append('<tr><td><strong>Type</strong></td><td>'+validatedData['payload'].type+'</td></tr>');
 
         if(validatedData['payload'].type == 'share'){
