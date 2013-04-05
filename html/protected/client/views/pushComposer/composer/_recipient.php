@@ -21,28 +21,29 @@ $form = $this->beginWidget('CActiveForm', array(
     <span class="delete_tag" style="display:none;" id="delete_district_original">X</span>
 
 
-    <div id="tag_list">
-        <h4>Tags: </h4>
-        <em>Users who have at least one of the following tags</em>
+    <div class="row-fluid">
+        <div class="span15">
+            <div id="tag_list">
+                <h4>Tags: </h4>
+                <?php
+             
+                ?>
 
-        <div class="row tagBox" id="original_tag">
+            </div>
+
             <?php
-            echo CHtml::textField("Tags[]", "", array('class' => 'tagInput'));
+            $this->widget('bootstrap.widgets.TbButton', array(
+                'label' => 'Add a tag',
+                'type' => 'info',
+                'htmlOptions' => array(
+                    'id' => 'addTagBtn'
+                ),
+            ));
             ?>
         </div>
-    </div>
 
-    <div class="row">
-        <?php
-        $this->widget('bootstrap.widgets.TbButton', array(
-            'label' => 'Add a tag',
-            'htmlOptions' => array('id' => 'add_tag_btn')
-        ));
-        ?>
     </div>
-
 </div>
 
 <?php
 $this->endWidget();
-?>

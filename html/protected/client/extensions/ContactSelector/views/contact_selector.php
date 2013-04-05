@@ -18,9 +18,6 @@ Yii::app()->clientScript->registerScript('contactSelector_ns', $ns, CClientScrip
 // Helpers
 function contactDropdown($modelName, $contactList, $id = 'contactDropDown', $class = 'contact', $selected = null) {
 
-
-
-
     $options = array(
         'tabindex' => '1',
         'class' => 'span11 ' . $class,

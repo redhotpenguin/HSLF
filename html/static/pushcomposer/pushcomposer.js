@@ -9,15 +9,15 @@ function composer($){
     composerBackBtn = $("#composerBackBtn"),
     dynamicComposerContent = $("#dynamicComposerContent"),
     errorIndicator = $("#errorIndicator"),
-    steps = ['Validation', 'Message','Payload','Recipient','Validation'],
+    steps = ['Recipient', 'Payload', 'Message','Payload','Recipient','Validation'],
     currentStepIndex = 0
     validatedData = []; // store valided models
     
     composerNextBtn.live('click',function(){
-        //  if(currentStepIndex == 3){
-        //  if(confirm("Are you sure you want to send this alert?") == false)
-        //    return;
-        //  }
+        if(currentStepIndex == 3){
+            if(confirm("Are you sure you want to send this alert?") == false)
+                return;
+        }
         updateFormState(steps[currentStepIndex], 'next');
     });
     
@@ -57,8 +57,9 @@ function composer($){
             dynamicComposerContent.fadeIn(100);
         
         }).fail(function(jqXHR, textStatus){
-            console.log(jqXHR.responseText);
+            errorIndicator.html(jqXHR.responseText);
             dynamicComposerContent.show();
+            errorIndicator.show();
         });
     
     }
@@ -123,25 +124,24 @@ function composer($){
         
         var  addTagBtn = $("#add_tag_btn"),
         deleteTagSpan = $("#delete_tag_original");
-        
+     
+        // build a tag dropdown
+        var tagList = "";
+        $.each(pushcomposer_ns.tagList, function (id, displayName) {
+            tagList += "<option value='" + id + "'>" + displayName + "</option>";
+        });
+    
+        var contactDropDown = $("<div class='row-fluid'><select style='float:left;' class='span6 ' name='Tags[]'>"+tagList+"</select></div>");
+
         if(validatedData['tags']){                       
             
-            $.each(validatedData['tags'], function(index,tagName){
+            $.each(validatedData['tags'], function(index,tagId){
                 
-                var clonedTagBoxCount = $("#tag_list .tagBox").length;
-                
-                var newTagBox =   $("#original_tag").clone().attr("id", "tagBox"+clonedTagBoxCount);
-                
-                var tagInput = newTagBox.find(".tagInput");
-                
-                tagInput.val(tagName)
-                tagInput.attr("id", "");
-                newTagBox.append(deleteTagSpan.clone().css("display", "inline").click(function(){
-                    $(this).parent(".tagBox").remove();
-                }));
-                
-                
-                $("#tag_list").append(newTagBox);
+                var dropDown = $("<div class='row-fluid'><select style='float:left;' class='span6 ' name='Tags[]'>"+tagList+"</select></div>");
+                                        
+                $('<div>').attr('class', 'span3 btn btn-warning').attr('id','').text("delete").appendTo(dropDown).click(deleteDropDown);
+
+                $("#tag_list").append(dropDown);
             
             });
             
@@ -149,23 +149,22 @@ function composer($){
         }
         
         
-        addTagBtn.click(function(){
-            
-            var clonedTagBoxCount = $("#tag_list .tagBox").length;
-            
-            var newTagBox =   $("#original_tag").clone().attr("id", "tagBox"+clonedTagBoxCount);
-            
-            var tagInput = newTagBox.find(".tagInput");
-            
-            tagInput.val("")
-            tagInput.attr("id", "");
-            newTagBox.append(deleteTagSpan.clone().css("display", "inline").click(function(){
-                $(this).parent(".tagBox").remove();
-            }));
-            newTagBox.show();
-            
-            $("#tag_list").append(newTagBox);
+
+        $('.deleteBtn').click(deleteDropDown);
+
+        $("#addTagBtn").click(function(){
+
+            var clonedDropDown = contactDropDown.clone();
+        
+            var deleteButton = $('<div>').attr('class', 'span3 btn btn-warning').attr('id','').text("delete").appendTo(clonedDropDown).click(deleteDropDown);
+
+            $("#tag_list").append(clonedDropDown);
+     
         });
+ 
+        function deleteDropDown(){
+            console.log($(this).parent().remove());
+        }
     }
     
     self.handleValidationStep = function(data){
@@ -180,7 +179,7 @@ function composer($){
         validatedData['payload'] = {
             description: "deads",
             email: "dad@gmail.com",
-        //    id: null,
+            id: null,
             post_number: 14,
             tenant_id: null,
             title: "ffff",

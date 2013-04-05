@@ -30,7 +30,7 @@ class PushComposerController extends Controller {
     }
 
     public function actionIndex() {
-        $this->render('index');
+        $this->render('index', array('tags'=> Tag::model()->findAll()));
     }
 
     public function actionMessage($direction = 'next') {
@@ -88,6 +88,7 @@ class PushComposerController extends Controller {
         if ($direction == 'back') {
             $this->printJsonResponse(array('proceedToLastStep' => true));
         }
+logIt($_POST);
 
         $response = array();
         $proceedToNextStep = false;
@@ -108,8 +109,9 @@ class PushComposerController extends Controller {
             $response['validatedModel'] = array('tags' => $tags);
         }
 
+        $data['tags'] = Tag::model()->findAll();
         $response['proceedToNextStep'] = $proceedToNextStep;
-        $response['html'] = $this->renderPartial('composer/_recipient', array(), true);
+        $response['html'] = $this->renderPartial('composer/_recipient', $data, true);
 
         $this->printJsonResponse($response);
     }
@@ -148,31 +150,24 @@ class PushComposerController extends Controller {
                 return false;
             }
 
-
-
             $payloadModel->setIsNewRecord(true);
 
             if ($payloadModel->save()) {
-                logIt("payload id: " . $payloadModel->id);
-
 
                 $pushMessageModel->payload_id = $payloadModel->id;
 
                 if ($pushMessageModel->save()) {
-                    error_log("push saved");
+                    $this->actionConfirmation();
                 } else {
-                    error_log("not saved");
+                    $payloadModel->delete();
                 }
             }
-            
+
             /*
              * @todo: save tags
              * link tags to pushMessage
              * talk to UAP API
              */
-
-
-            //      $this->actionConfirmation();
         }
 
 
