@@ -14,10 +14,14 @@ function composer($){
     validatedData = []; // store valided models
     
     composerNextBtn.live('click',function(){
+        if(currentStepIndex == 3){
+            if(confirm("Are you sure you want to send this alert?") == false)
+                return;
+        }
         updateFormState(steps[currentStepIndex], 'next');
     });
     
-    composerBackBtn.live('click',function(){
+    composerBackBtn.live('click',function(){  
         updateFormState(steps[currentStepIndex], 'back');
     });
     
@@ -169,7 +173,7 @@ function composer($){
         
         dynamicComposerContent.html(data.html);
   
-  /*validatedData['pushMessage']  = {}
+        /*validatedData['pushMessage']  = {}
         validatedData['tags']  = ['tag1', 'tag2', 'tag3']
         validatedData['pushMessage'].alert = 'alert goes here';
         

@@ -1,14 +1,10 @@
-#pushMessageArea{
-
-}
-
-
 #tagList .tagPill{
+    padding: 5px;
     text-align: center;
     margin-right: 7px;
     float: left;
-    width: 100px;
-    display: block;
+    min-width: 100px;
+    display: inline-block;
     padding-top: 8px;
     padding-bottom: 8px;
     margin-top: 2px;
