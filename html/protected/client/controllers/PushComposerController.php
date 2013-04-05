@@ -32,11 +32,7 @@ class PushComposerController extends Controller {
     }
 
     public function actionIndex() {
-// virtual session is to avoid session collision within one actual user session.
-// without it, session variables can collide when multiple tabs are open
-
-        $virtualSessionId = md5(microtime(true));
-        $this->render('index', array("pushMessageModel" => new PushMessage, 'virtualSessionId' => $virtualSessionId));
+        $this->render('index');
     }
 
     public function actionMessage($direction = 'next') {
