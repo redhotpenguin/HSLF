@@ -9,7 +9,7 @@ function composer($){
     composerBackBtn = $("#composerBackBtn"),
     dynamicComposerContent = $("#dynamicComposerContent"),
     errorIndicator = $("#errorIndicator"),
-    steps = ['Message','Payload','Recipient','Validation'],
+    steps = ['Recipient','Validation','Message','Payload','Recipient','Validation'],
     currentStepIndex = 0
     validatedData = []; // store valided models
     
@@ -116,8 +116,8 @@ function composer($){
     
     self.handleRecipientStep = function (data){
         
-        if(data.validatedModel != undefined && data.validatedModel.tags != undefined){
-            validatedData['tags'] = data.validatedModel.tags;
+        if(data.validatedModel != undefined && data.validatedModel.tagIds != undefined){
+            validatedData['tagIds'] = data.validatedModel.tagIds;
         }
         
         dynamicComposerContent.html(data.html);
@@ -131,13 +131,13 @@ function composer($){
             tagList += "<option value='" + id + "'>" + displayName + "</option>";
         });
     
-        var contactDropDown = $("<div class='row-fluid'><select style='float:left;' class='span6 ' name='Tags[]'>"+tagList+"</select></div>");
+        var contactDropDown = $("<div class='row-fluid'><select style='float:left;' class='span6 ' name='TagIds[]'>"+tagList+"</select></div>");
 
-        if(validatedData['tags']){                       
+        if(validatedData['tagIds']){                       
             
-            $.each(validatedData['tags'], function(index,tagId){
-                
-                var dropDown = $("<div class='row-fluid'><select style='float:left;' class='span6 ' name='Tags[]'>"+tagList+"</select></div>");
+            $.each(validatedData['tagIds'], function(index,tagId){
+                                
+                var dropDown = $("<div class='row-fluid'><select style='float:left;' class='span6 ' name='TagIds[]'>"+tagList+"</select></div>");
                                         
                 $('<div>').attr('class', 'span3 btn btn-warning').attr('id','').text("delete").appendTo(dropDown).click(deleteDropDown);
 
@@ -169,10 +169,10 @@ function composer($){
         
         
         dynamicComposerContent.html(data.html);
-  
-  /*
+        //  validatedData['tagIds']  = [20, 21, 22]
+       
         validatedData['pushMessage']  = {}
-        validatedData['tags']  = ['tag1', 'tag2', 'tag3']
+       
         validatedData['pushMessage'].alert = 'alert goes here';
         
         validatedData['payload'] = {
@@ -185,11 +185,10 @@ function composer($){
             tweet: "tweet",
             type: "share",
             url: "http://www.google.fr"
-        };
+        }
 
-*/
         var hiddenInputs = $("#hiddenInputs");
-        $.each(validatedData['tags'], function(k,v){
+        $.each(validatedData['tagIds'], function(k,v){
             hiddenInputs.append(' <input type="hidden" name="Validation[Tags][]" value ="'+v+'" />');
         })
         $.each(validatedData['payload'], function(k,v){
@@ -216,7 +215,7 @@ function composer($){
         $('#pushMessageArea').val( validatedData['pushMessage'].alert ).attr('readonly','readonly');
         
         var tagList = $("#tagList");
-        $.each(validatedData['tags'], function(index,tagName){
+        $.each(validatedData['tagIds'], function(index,tagName){
             tagList.append("<span  class='tagPill'>"+tagName+"</span>");
         });
         

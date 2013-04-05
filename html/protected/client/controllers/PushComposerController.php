@@ -88,30 +88,17 @@ class PushComposerController extends Controller {
         if ($direction == 'back') {
             $this->printJsonResponse(array('proceedToLastStep' => true));
         }
-logIt($_POST);
 
         $response = array();
         $proceedToNextStep = false;
-        $tags = array();
 
-        // remove empty tags
-        if (isset($_POST['Tags'])) {
-            $tags = $_POST['Tags'];
-            foreach ($tags as $k => $v) {
-                if (empty($v)) {
-                    unset($tags[$k]);
-                }
-            }
-        }
-
-        if (!empty($tags)) {
+        if (isset($_POST['TagIds'])) {
             $proceedToNextStep = true;
-            $response['validatedModel'] = array('tags' => $tags);
+            $response['validatedModel'] = array('tagIds' => $_POST['TagIds']);
         }
 
-        $data['tags'] = Tag::model()->findAll();
         $response['proceedToNextStep'] = $proceedToNextStep;
-        $response['html'] = $this->renderPartial('composer/_recipient', $data, true);
+        $response['html'] = $this->renderPartial('composer/_recipient', array(), true);
 
         $this->printJsonResponse($response);
     }
