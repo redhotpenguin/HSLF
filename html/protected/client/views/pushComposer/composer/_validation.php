@@ -8,23 +8,29 @@ $form = $this->beginWidget('CActiveForm', array(
 
 <div class="clearfix"></div>
 
+
 <fieldset id="review">
-    <h1>Confirmation</h1>
+    <h1>Validation</h1>
 </fieldset>
 
+<div class="row-fluid">
+    <h3>Alert</h3>
 
-<h3>Alert</h3>
-<div id="pushMessage">
-    <textarea id="pushMessageArea" name="Validation[push_message] "></textarea>
+    <div id="pushMessage">
+        <textarea id="pushMessageArea" class="span12" name="Validation[push_message] "></textarea>
+    </div>
 </div>
 
 
-<h3>Payload</h3>
-<div id="payload"></div>
+<div class="row-fluid">
+    <h3>Payload</h3>
+    <table class="table table-hover" id="payloadTable"></table>
+</div>
 
-
-<h3>Tags</h3>
-<div id="tagList"></div>
+<div class="row-fluid">
+    <h3>Tags</h3>
+    <div id="tagList"></div>
+</div>
 
 <div class="clearfix"></div>
 

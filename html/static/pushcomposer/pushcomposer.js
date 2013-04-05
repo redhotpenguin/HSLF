@@ -11,7 +11,7 @@ function composer($){
     errorIndicator = $("#errorIndicator"),
     steps = ['Message','Payload','Recipient','Validation','Confirmation'],
     currentStepIndex = 0
-    validatedData = []; // experimental, store valided models
+    validatedData = []; // store valided models
     
     composerNextBtn.live('click',function(){
         updateFormState(steps[currentStepIndex], 'next');
@@ -168,6 +168,40 @@ function composer($){
         
         
         dynamicComposerContent.html(data.html);
+  
+  /*validatedData['pushMessage']  = {}
+        validatedData['tags']  = ['tag1', 'tag2', 'tag3']
+        validatedData['pushMessage'].alert = 'alert goes here';
+        
+        validatedData['payload'] = {
+            description: "deads",
+            email: "dad@gmail.com",
+            id: null,
+            post_number: 14,
+            tenant_id: null,
+            title: "ffff",
+            tweet: "tweet",
+            type: "share",
+            url: "http://www.google.fr"
+        };*/
+
+
+        var payloadTable = $("#payloadTable");
+        payloadTable.append('<tr><td><strong>Title</strong></td><td>'+validatedData['payload'].title+'</td></tr>');
+        payloadTable.append('<tr><td><strong>Type</strong></td><td>'+validatedData['payload'].type+'</td></tr>');
+
+        if(validatedData['payload'].type == 'share'){
+            payloadTable.append('<tr><td><strong>URL</strong></td><td>'+validatedData['payload'].url+'</td></tr>');
+            payloadTable.append('<tr><td><strong>Description</strong></td><td>'+validatedData['payload'].description+'</td></tr>');
+            payloadTable.append('<tr><td><strong>Tweet</strong></td><td>'+validatedData['payload'].tweet+'</td></tr>');
+            payloadTable.append('<tr><td><strong>Email</strong></td><td>'+validatedData['payload'].email+'</td></tr>');
+        }
+        
+        else if(validatedData['payload'].type == 'post'){
+            payloadTable.append('<tr><td><strong>Post number</td><td>'+validatedData['payload'].post_number+'</td></tr>');
+
+        }
+     
                 
         $('#pushMessageArea').val( validatedData['pushMessage'].alert ).attr('readonly','readonly');
         
