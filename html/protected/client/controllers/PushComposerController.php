@@ -30,7 +30,7 @@ class PushComposerController extends Controller {
     }
 
     public function actionIndex() {
-        $this->render('index', array('tags'=> Tag::model()->findAll()));
+        $this->render('index', array('tags' => Tag::model()->findAll()));
     }
 
     public function actionMessage($direction = 'next') {
@@ -93,8 +93,9 @@ class PushComposerController extends Controller {
         $proceedToNextStep = false;
 
         if (isset($_POST['TagIds'])) {
+            $tagIds = array_unique($_POST['TagIds']);
             $proceedToNextStep = true;
-            $response['validatedModel'] = array('tagIds' => $_POST['TagIds']);
+            $response['validatedModel'] = array('tagIds' => $tagIds);
         }
 
         $response['proceedToNextStep'] = $proceedToNextStep;
@@ -113,12 +114,11 @@ class PushComposerController extends Controller {
 
 
         $proceedToNextStep = false;
-        //    logIt($_POST);
         if (isset($_POST['Validation']) && isset($_POST['Validation']['PushMessage']) && isset($_POST['Validation']['Payload'])) {
 
             $unfilteredPushMessage = $_POST['Validation']['PushMessage'];
             $unfilteredPayload = $_POST['Validation']['Payload'];
-            $unfilterdTags = $_POST['Validation']['Tags'];
+            $unfilterdTagIds = $_POST['Validation']['TagIds'];
 
             unset($unfilteredPushMessage['id']); // If id = null. Yii saves the record with id = 0 
             unset($unfilteredPayload['id']);
@@ -144,6 +144,9 @@ class PushComposerController extends Controller {
                 $pushMessageModel->payload_id = $payloadModel->id;
 
                 if ($pushMessageModel->save()) {
+                    
+                    $pushMessageModel->massUpdateTags($unfilterdTagIds); // @WARNING
+                    
                     $this->actionConfirmation();
                 } else {
                     $payloadModel->delete();

@@ -9,7 +9,7 @@ function composer($){
     composerBackBtn = $("#composerBackBtn"),
     dynamicComposerContent = $("#dynamicComposerContent"),
     errorIndicator = $("#errorIndicator"),
-    steps = ['Recipient','Validation','Message','Payload','Recipient','Validation'],
+    steps = [ 'Message','Payload','Recipient','Validation'],
     currentStepIndex = 0
     validatedData = []; // store valided models
     
@@ -41,7 +41,6 @@ function composer($){
         }).success(function(result){
             
             var fnct = 'handle'+steps[currentStepIndex]+'Step';
-            
             
             self[fnct](result);
             
@@ -138,6 +137,8 @@ function composer($){
             $.each(validatedData['tagIds'], function(index,tagId){
                                 
                 var dropDown = $("<div class='row-fluid'><select style='float:left;' class='span6 ' name='TagIds[]'>"+tagList+"</select></div>");
+                
+                dropDown.find(':input').val(tagId);
                                         
                 $('<div>').attr('class', 'span3 btn btn-warning').attr('id','').text("delete").appendTo(dropDown).click(deleteDropDown);
 
@@ -166,10 +167,10 @@ function composer($){
     }
     
     self.handleValidationStep = function(data){
-        
-        
+
         dynamicComposerContent.html(data.html);
-        //  validatedData['tagIds']  = [20, 21, 22]
+      
+      /*validatedData['tagIds']  = [20, 21, 22]
        
         validatedData['pushMessage']  = {}
        
@@ -185,11 +186,11 @@ function composer($){
             tweet: "tweet",
             type: "share",
             url: "http://www.google.fr"
-        }
+        }*/
 
         var hiddenInputs = $("#hiddenInputs");
         $.each(validatedData['tagIds'], function(k,v){
-            hiddenInputs.append(' <input type="hidden" name="Validation[Tags][]" value ="'+v+'" />');
+            hiddenInputs.append(' <input type="hidden" name="Validation[TagIds][]" value ="'+v+'" />');
         })
         $.each(validatedData['payload'], function(k,v){
             hiddenInputs.append(' <input type="hidden" name="Validation[Payload]['+k+']" value ="'+v+'" />');
@@ -208,18 +209,22 @@ function composer($){
         
         else if(validatedData['payload'].type == 'post'){
             payloadTable.append('<tr><td><strong>Post number</td><td>'+validatedData['payload'].post_number+'</td></tr>');
-
         }
      
                 
         $('#pushMessageArea').val( validatedData['pushMessage'].alert ).attr('readonly','readonly');
         
         var tagList = $("#tagList");
-        $.each(validatedData['tagIds'], function(index,tagName){
+        $.each(validatedData['tagIds'], function(index,tagId){
+            var tagName = getTagName(tagId);
             tagList.append("<span  class='tagPill'>"+tagName+"</span>");
         });
         
     };
+    
+    function getTagName(tagId){
+        return pushcomposer_ns.tagList[tagId];
+    }
 
     // heplers
     function populateFormFromModel(model){
