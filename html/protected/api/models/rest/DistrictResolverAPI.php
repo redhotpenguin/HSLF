@@ -63,7 +63,7 @@ class DistrictResolverAPI implements IAPI {
 
 
         $resolvedDistricts = array();
-       
+
         // retrieve districts that match the specified arguments
         foreach ($districts as $district) {
             $explodedDistrict = explode('/', $district);
@@ -75,41 +75,43 @@ class DistrictResolverAPI implements IAPI {
 
 
             if ($explodedDistrict[0] == 'legislative') {
-                array_push($resolvedDistricts, $this->getLegislativeDistricts($location));
+                $data = $this->getLegislativeDistricts($location);
+                if ($data && !empty($data))
+                    array_push($resolvedDistricts, $data);
             } elseif ($explodedDistrict[0] == 'nonlegislative') {
-                array_push($resolvedDistricts, $this->getNonLegislativeDistricts($location, $districtType));
+
+                $data = $this->getNonLegislativeDistricts($location, $districtType);
+                if ($data && !empty($data))
+                    array_push($resolvedDistricts, $data);
             } else {
                 continue;
             }
         }
-
-
 
         return $resolvedDistricts;
     }
 
     private function getLegislativeDistricts($location) {
 
-        
+
         $options = array('requesting' => 'legislative_district');
 
         if (isset($location['address'])) {
             return $this->geoCodingClient->getDistrictIdsByAddress($location['address'], $options);
-        } elseif(isset($location['lat']) && isset($location['long'])) {
+        } elseif (isset($location['lat']) && isset($location['long'])) {
             return $this->geoCodingClient->getDistrictIdsByLatLong($location['lat'], $location['long'], $options);
         }
     }
 
     private function getNonLegislativeDistricts($location, $districtType) {
-          $options = array(
-                'requesting' => 'nonlegislative_district',
-                'type' => $districtType
-            );
-          
+        $options = array(
+            'requesting' => 'nonlegislative_district',
+            'type' => $districtType
+        );
+
         if (isset($location['address'])) {
-           return  $this->geoCodingClient->getDistrictIdsByAddress($location['address'], $options);
-        }
-        else{
+            return $this->geoCodingClient->getDistrictIdsByAddress($location['address'], $options);
+        } else {
             return $this->geoCodingClient->getDistrictIdsByLatLong($location['lat'], $location['long'], $options);
         }
     }
