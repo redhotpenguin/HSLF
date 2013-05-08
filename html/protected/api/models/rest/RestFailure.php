@@ -31,6 +31,11 @@ class RestFailure {
      */
     const HTTP_INTERNAL_ERROR_CODE = 500;
     
+      /**
+     * @const Not Implemented Server error
+     */
+    const HTTP_NOT_IMPLEMENTED_ERROR_CODE = 501;
+    
 
     public function __construct($httpCode, $reason = null) {
         $this->httpCode = $httpCode;
