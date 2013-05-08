@@ -77,18 +77,19 @@ class DistrictResolverAPI implements IAPI {
             if ($explodedDistrict[0] == 'legislative') {
                 $data = $this->getLegislativeDistricts($location);
                 if ($data && !empty($data))
-                    array_push($resolvedDistricts, $data);
+                   $resolvedDistricts =  array_merge($resolvedDistricts, $data);
             } elseif ($explodedDistrict[0] == 'nonlegislative') {
 
                 $data = $this->getNonLegislativeDistricts($location, $districtType);
                 if ($data && !empty($data))
-                    array_push($resolvedDistricts, $data);
+                   $resolvedDistricts=  array_merge($resolvedDistricts, $data);
             } else {
                 continue;
             }
         }
 
         return $resolvedDistricts;
+        
     }
 
     private function getLegislativeDistricts($location) {
