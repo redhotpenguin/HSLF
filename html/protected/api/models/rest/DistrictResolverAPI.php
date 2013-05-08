@@ -8,25 +8,37 @@
 
 class DistrictResolverAPI implements IAPI {
 
+    private $cacheDuration;
     private $geoCodingClient;
 
     public function __construct($tenantId) {
         $geoCodingCLientProvider = new GeoCodingClientProvider($tenantId);
         $this->geoCodingClient = $geoCodingCLientProvider->getGeoCodingClient('cicero');
+        $this->cacheDuration = Yii::app()->params->normal_cache_duration;
     }
 
     public function create($tenantId, $arguments = array()) {
         return new RestFailure(RestFailure::HTTP_NOT_IMPLEMENTED_ERROR_CODE);
     }
 
+    /**
+     * /api/n/DistrictResolver/?address=bla bla
+     * alternative:  /api/n/DistrictResolver/?lat=123&long=456
+     * required: &district=legislative,nonlegislative/county,nonlegislative/school,nonlegislative/census
+     * 
+     * @param integer $tenantId tenant id
+     * @param array $arguments options
+     * @return array of districts
+     * 
+     */
     public function getList($tenantId, $arguments = array()) {
-        /*
-         * /api/n/DistrictResolver/?address=bla bla
-         * alternative:  /api/n/DistrictResolver/?lat=123&long=456
-         * 
-         * &district=legislative,nonlegislative/county,nonlegislative/school,nonlegislative/census
-         * 
-         */
+
+        $cacheKey = APIBase::cacheKeyBuilder('DistrictResolver', $tenantId, $arguments);
+        // serve from cache?
+        if (($r = Yii::app()->cache->get($cacheKey)) == true) {
+            return $r;
+        }
+
 
         // user proofing:
         //  address or lat AND long must be set
@@ -77,19 +89,22 @@ class DistrictResolverAPI implements IAPI {
             if ($explodedDistrict[0] == 'legislative') {
                 $data = $this->getLegislativeDistricts($location);
                 if ($data && !empty($data))
-                   $resolvedDistricts =  array_merge($resolvedDistricts, $data);
+                    $resolvedDistricts = array_merge($resolvedDistricts, $data);
             } elseif ($explodedDistrict[0] == 'nonlegislative') {
 
                 $data = $this->getNonLegislativeDistricts($location, $districtType);
                 if ($data && !empty($data))
-                   $resolvedDistricts=  array_merge($resolvedDistricts, $data);
+                    $resolvedDistricts = array_merge($resolvedDistricts, $data);
             } else {
                 continue;
             }
         }
 
+        if (!empty($resolvedDistricts)) {
+            Yii::app()->cache->set($cacheKey, $resolvedDistricts, $this->cacheDuration);
+        }
+
         return $resolvedDistricts;
-        
     }
 
     private function getLegislativeDistricts($location) {
@@ -122,7 +137,7 @@ class DistrictResolverAPI implements IAPI {
     }
 
     public function requiresAuthentification() {
-        return false;
+        return true;
     }
 
     public function update($tenantId, $id, $arguments = array()) {
