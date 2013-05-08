@@ -104,7 +104,7 @@ class ApiController extends Controller {
         $model = null;
 
         if (class_exists($modelName)) {
-            $model = new $modelName();
+            $model = new $modelName($tenantId);
 
             if ($model->requiresAuthentification()) {
                 if ($this->checkAuth($tenantId)) {
