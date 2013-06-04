@@ -147,8 +147,8 @@ class ApiController extends Controller {
         } else {
             $container['results'] = 'no_results';
         }
-        
-        if($status == 503){
+
+        if ($status == 503) {
             header('Retry-After: 60');
         }
 
@@ -192,7 +192,6 @@ class ApiController extends Controller {
      * @return boolean return authentification result
      */
     private function checkAuth($tenantId) {
-
         // Check if we have the USERNAME and PASSWORD HTTP headers set?
         if (!(isset($_SERVER['PHP_AUTH_USER']) and isset($_SERVER['PHP_AUTH_PW']))) {
             return false;
@@ -204,19 +203,24 @@ class ApiController extends Controller {
         $cacheKey = APIBase::cacheKeyBuilder('tenant', $tenantId);
 
         if (($r = Yii::app()->cache->get($cacheKey)) == true) {
-            $tenant = $r;
+            $tenantInfo = $r;
         } else {
-            $tenant = Tenant::model()->findByPk($tenantId);
-            Yii::app()->cache->set($cacheKey, $tenant, Yii::app()->params->long_cache_duration);
+            // only query the columns we actually care for (return an array)
+            $tenantInfo = Yii::app()->db->createCommand()
+                    ->select('api_key, api_secret')
+                    ->from('tenant')
+                    ->where('id=:id', array(':id' => $tenantId))
+                    ->limit(1)
+                    ->queryRow();
+            Yii::app()->cache->set($cacheKey, $tenantInfo, Yii::app()->params->long_cache_duration);
         }
 
-
-        if ($tenant == null) {
+        if ($tenantInfo == null) {
             return;
         }
-        $api_key = $tenant->api_key;
+        $api_key = $tenantInfo['api_key'];
 
-        $api_secret = $tenant->api_secret;
+        $api_secret = $tenantInfo['api_secret'];
 
         return ( $api_key == $http_key && $api_secret == $http_pass );
     }
