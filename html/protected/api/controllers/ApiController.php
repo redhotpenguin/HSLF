@@ -65,6 +65,7 @@ class ApiController extends Controller {
      */
     private function resolveAction($method, $modelName, $tenantId, $actionName, $id = null, $data = array()) {
         $cacheKey = $_SERVER['REQUEST_URI'];
+        $cachable = false;
 
 
         Yii::app()->params['current_tenant_id'] = $tenantId;
@@ -79,14 +80,11 @@ class ApiController extends Controller {
         unset($data['model']);
 
         if ($method === 'GET' && $model->getCacheDuration() > 0) {
-          //  error_log('looking for cahe');
-
+            $cachable = true;
             if (($cachedJsonResult = Yii::app()->cache->get($cacheKey)) == true) {
-             //   error_log('serving from cache');
                 $this->sendResponse(200, $cachedJsonResult);
             }
         }
-
 
 
         if ($id == null) {
@@ -99,10 +97,9 @@ class ApiController extends Controller {
             $jsonData = $this->buildResponse($result->getHttpCode(),  $result->getReason());
         } else {
             $code = 200;
+            $jsonData = $this->buildResponse($code,  $result );
 
-            if ($method === 'GET' && $model->getCacheDuration() > 0) {
-            //    error_log('caching');
-                $jsonData = $this->buildResponse($code,  $result );
+            if ($cachable) {
                 Yii::app()->cache->set($cacheKey, $jsonData, $model->getCacheDuration());
             }
         }
@@ -223,7 +220,7 @@ class ApiController extends Controller {
         $http_key = $_SERVER['PHP_AUTH_USER'];
         $http_pass = $_SERVER['PHP_AUTH_PW'];
 
-        $cacheKey = APIBase::cacheKeyBuilder('tenant', $tenantId);
+        $cacheKey = 'tenant_'.$tenantId;
 
         if (($r = Yii::app()->cache->get($cacheKey)) == true) {
             $tenantInfo = $r;
