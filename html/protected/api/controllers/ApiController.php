@@ -24,21 +24,24 @@ class ApiController extends Controller {
      * List supported models
      */
     public function actionList($tenant_id, $model) {
-        $this->resolveAction('GET', $model, $tenant_id, 'getList', null, $_GET);
+        $result = $this->resolveAction('GET', $model, $tenant_id, 'getList', null, $_GET);
+        $this->sendResponse($result['httpCode'], $result['data']);
     }
 
     /**
      * List models according to a specific request
      */
     public function actionView($tenant_id, $model, $id) {
-        $this->resolveAction('GET', $model, $tenant_id, 'getSingle', $id, $_GET);
+        $result = $this->resolveAction('GET', $model, $tenant_id, 'getSingle', $id, $_GET);
+        $this->sendResponse($result['httpCode'], $result['data']);
     }
 
     /**
      * Handle POST Requests
      */
     public function actionCreate($tenant_id, $model) {
-        $this->resolveAction('POST', $model, $tenant_id, 'create', null, $_POST);
+        $result = $this->resolveAction('POST', $model, $tenant_id, 'create', null, $_POST);
+        $this->sendResponse($result['httpCode'], $result['data']);
     }
 
     /**
@@ -50,7 +53,8 @@ class ApiController extends Controller {
         // retrieve PUT data
         parse_str(file_get_contents("php://input"), $data);
 
-        $this->resolveAction('PUT', $model, $tenant_id, 'update', $id, $data);
+        $result = $this->resolveAction('PUT', $model, $tenant_id, 'update', $id, $data);
+        $this->sendResponse($result['httpCode'], $result['data']);
     }
 
     /**
@@ -61,7 +65,7 @@ class ApiController extends Controller {
      * @param string $actionName action name
      * @param integer $id id - optionnal
      * @param array $data extra parameters - optionnal
-     * @return array
+     * @return array containg an http code and the json result
      */
     private function resolveAction($method, $modelName, $tenantId, $actionName, $id = null, $data = array()) {
         $cacheKey = $_SERVER['REQUEST_URI'];
@@ -95,19 +99,21 @@ class ApiController extends Controller {
 
         if ($result instanceof RestFailure) {
             $code = $result->getHttpCode();
-            $jsonData = $this->buildResponse($code,  $result->getReason());
-                        
+            $jsonData = $this->buildResponse($code, $result->getReason());
         } else {
             $code = 200;
-            $jsonData = $this->buildResponse($code,  $result );
+            $jsonData = $this->buildResponse($code, $result);
 
             if ($cachable) {
                 Yii::app()->cache->set($cacheKey, $jsonData, $model->getCacheDuration());
             }
         }
 
-       
-        $this->sendResponse($code, $jsonData);
+
+        return array(
+            'httpCode' => $code,
+            'data' => $jsonData
+        );
     }
 
     /**
@@ -222,7 +228,7 @@ class ApiController extends Controller {
         $http_key = $_SERVER['PHP_AUTH_USER'];
         $http_pass = $_SERVER['PHP_AUTH_PW'];
 
-        $cacheKey = 'tenant_'.$tenantId;
+        $cacheKey = 'tenant_' . $tenantId;
 
         if (($r = Yii::app()->cache->get($cacheKey)) == true) {
             $tenantInfo = $r;
