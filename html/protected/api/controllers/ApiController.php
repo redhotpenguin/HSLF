@@ -94,7 +94,9 @@ class ApiController extends Controller {
         }
 
         if ($result instanceof RestFailure) {
-            $jsonData = $this->buildResponse($result->getHttpCode(),  $result->getReason());
+            $code = $result->getHttpCode();
+            $jsonData = $this->buildResponse($code,  $result->getReason());
+                        
         } else {
             $code = 200;
             $jsonData = $this->buildResponse($code,  $result );
