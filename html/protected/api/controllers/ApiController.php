@@ -24,21 +24,21 @@ class ApiController extends Controller {
      * List supported models
      */
     public function actionList($tenant_id, $model) {
-        $this->resolveAction($model, $tenant_id, 'getList', null, $_GET);
+        $this->resolveAction('GET', $model, $tenant_id, 'getList', null, $_GET);
     }
 
     /**
      * List models according to a specific request
      */
     public function actionView($tenant_id, $model, $id) {
-        $this->resolveAction($model, $tenant_id, 'getSingle', $id, $_GET);
+        $this->resolveAction('GET', $model, $tenant_id, 'getSingle', $id, $_GET);
     }
 
     /**
      * Handle POST Requests
      */
     public function actionCreate($tenant_id, $model) {
-        $this->resolveAction($model, $tenant_id, 'create', null, $_POST);
+        $this->resolveAction('POST', $model, $tenant_id, 'create', null, $_POST);
     }
 
     /**
@@ -50,19 +50,23 @@ class ApiController extends Controller {
         // retrieve PUT data
         parse_str(file_get_contents("php://input"), $data);
 
-        $this->resolveAction($model, $tenant_id, 'update', $id, $data);
+        $this->resolveAction('PUT', $model, $tenant_id, 'update', $id, $data);
     }
 
     /**
+     * @todo - REFACTOR THIS CRAP
      * Helpers - call the correct rest model based on the given arguments
      * @param string $requestModelName model name
      * @param integer $tenantId tenant id
      * @param string $actionName action name
-     *  @param integer $id id - optionnal
-     *  @param array $data extra parameters - optionnal
+     * @param integer $id id - optionnal
+     * @param array $data extra parameters - optionnal
      * @return array
      */
-    private function resolveAction($modelName, $tenantId, $actionName, $id = null, $data = array()) {
+    private function resolveAction($method, $modelName, $tenantId, $actionName, $id = null, $data = array()) {
+        $cacheKey = $_SERVER['REQUEST_URI'];
+
+
         Yii::app()->params['current_tenant_id'] = $tenantId;
 
         if (( $requestedModel = $this->getRequestedModel($modelName, $tenantId) ) && $requestedModel['model'] != null) {
@@ -74,6 +78,17 @@ class ApiController extends Controller {
 
         unset($data['model']);
 
+        if ($method === 'GET' && $model->getCacheDuration() > 0) {
+          //  error_log('looking for cahe');
+
+            if (($cachedJsonResult = Yii::app()->cache->get($cacheKey)) == true) {
+             //   error_log('serving from cache');
+                $this->sendResponse(200, $cachedJsonResult);
+            }
+        }
+
+
+
         if ($id == null) {
             $result = $model->$actionName($tenantId, $data);
         } else {
@@ -81,13 +96,19 @@ class ApiController extends Controller {
         }
 
         if ($result instanceof RestFailure) {
-            $code = $result->getHttpCode();
-            $result = $result->getReason();
+            $jsonData = $this->buildResponse($result->getHttpCode(),  $result->getReason());
         } else {
             $code = 200;
+
+            if ($method === 'GET' && $model->getCacheDuration() > 0) {
+            //    error_log('caching');
+                $jsonData = $this->buildResponse($code,  $result );
+                Yii::app()->cache->set($cacheKey, $jsonData, $model->getCacheDuration());
+            }
         }
 
-        $this->sendResponse($code, $result);
+       
+        $this->sendResponse($code, $jsonData);
     }
 
     /**
@@ -128,19 +149,8 @@ class ApiController extends Controller {
         );
     }
 
-    /**
-     * Print json data . Set http headers to application/json
-     * @param integer $status HTTP status
-     * @param mixed $body content to print
-     * @param string $template template to use
-     */
-    private function sendResponse($status = 200, $body = '') {
+    private function buildResponse($status, $body = '') {
         $container = array('api_name' => self::APPLICATION_ID, 'api_version' => self::API_VERSION, 'status' => $status);
-
-        $status_header = 'HTTP/1.1 ' . $status . ' ' . $this->getStatusCodeMessage($status);
-        header($status_header);
-        header('Content-type: ' . 'application/json;charset=UTF-8');
-
 
         if (!empty($body)) {
             $container['results'] = $body;
@@ -148,20 +158,33 @@ class ApiController extends Controller {
             $container['results'] = 'no_results';
         }
 
-        if ($status == 503) {
-            header('Retry-After: 60');
-        }
-
-
         $json_encoded_result = CJSON_Nested::encode($container);
 
         // serve padded json
         if (isset($_GET['callback']))
-            echo $_GET['callback'] . ' (' . $json_encoded_result . ');';
+            return $_GET['callback'] . ' (' . $json_encoded_result . ');';
         else
-            echo $json_encoded_result;
+            return $json_encoded_result;
+    }
 
-        die();
+    /**
+     * Print json data . Set http headers to application/json
+     * @param integer $status HTTP status
+     * @param mixed $body content to print
+     * @param string $template template to use
+     */
+    private function sendResponse($status = 200, $jsonData) {
+        header('HTTP/1.1 ' . $status . ' ' . $this->getStatusCodeMessage($status));
+        header('Content-type: ' . 'application/json;charset=UTF-8');
+
+
+        if ($status == 503) {
+            header('Retry-After: 60');
+        }
+
+        echo $jsonData;
+
+        Yii::app()->end();
     }
 
     /**

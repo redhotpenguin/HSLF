@@ -144,4 +144,8 @@ class DistrictResolverAPI implements IAPI {
         return new RestFailure(RestFailure::HTTP_NOT_IMPLEMENTED_ERROR_CODE);
     }
 
+    public function getCacheDuration() {
+        return 0;
+    }
+
 }

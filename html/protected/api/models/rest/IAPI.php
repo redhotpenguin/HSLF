@@ -12,4 +12,9 @@ interface IAPI {
     
     public function requiresAuthentification();
     
+    /**
+     * return cache duration in seconds
+     */
+    public function getCacheDuration();
+    
 }

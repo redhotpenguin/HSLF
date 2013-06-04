@@ -7,20 +7,11 @@ abstract class APIBase implements IAPI {
     protected $tableAlias;
 
     public function __construct(CActiveRecord $model) {
-        $this->cacheDuration = Yii::app()->params->normal_cache_duration;
         $this->model = $model;
         $this->tableAlias = $model->getTableAlias();
     }
 
     public function getList($tenantId, $arguments = array()) {
-
-        $cacheKey = APIBase::cacheKeyBuilder(get_class($this->model), $tenantId, $arguments);
-
-        // serve from cache?
-        if (($r = Yii::app()->cache->get($cacheKey)) == true) {
-            return $r;
-        }
-
         // cache hasn't been found, build it
         $relations = array();
         $attributes = array();
@@ -63,21 +54,10 @@ abstract class APIBase implements IAPI {
             return "no_results";
         }
 
-        if (!empty($result)) {
-            Yii::app()->cache->set($cacheKey, $result, $this->cacheDuration);
-        }
-
         return $result;
     }
 
     public function getSingle($tenantId, $id, $arguments = array()) {
-        $cacheKey = APIBase::cacheKeyBuilder(get_class($this->model), $tenantId, $arguments, $id);
-
-        // serve from cache if possible
-        if (($r = Yii::app()->cache->get($cacheKey)) == true) {
-            return $r;
-        }
-
         $relations = array();
 
         if (isset($arguments['relations'])) {
@@ -97,11 +77,6 @@ abstract class APIBase implements IAPI {
             $result = "no_results";
         }
 
-
-        if (!empty($result)) {
-            Yii::app()->cache->set($cacheKey, $result, $this->cacheDuration);
-        }
-
         return $result;
     }
 
@@ -116,7 +91,12 @@ abstract class APIBase implements IAPI {
     public function requiresAuthentification() {
         return false;
     }
+    
+    public function getCacheDuration(){
+        return $this->cacheDuration = Yii::app()->params->normal_cache_duration;
+    }
 
+    
     /**
      * Helper
      * build a unique key based on the model requested and arguments
@@ -125,7 +105,7 @@ abstract class APIBase implements IAPI {
      * @param array $arguments - API request arguments
      * @param integer $id - primary key (optional)
      * 
-     */
+     *//*
     public static function cacheKeyBuilder($prefix, $tenantId, $arguments = array(), $id = null) {
 
         $string = $prefix . '_' . $tenantId . '_' . serialize($arguments);
@@ -135,6 +115,6 @@ abstract class APIBase implements IAPI {
         }
 
         return $string;
-    }
+    }*/
 
 }

@@ -160,4 +160,8 @@ class MobileUsersAPI implements IAPI {
         return true;
     }
 
+    public function getCacheDuration() {
+        return 0;
+    }
+
 }
