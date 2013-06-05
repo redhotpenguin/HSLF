@@ -77,7 +77,7 @@ class ApiController extends Controller {
         if (( $requestedModel = $this->getRequestedModel($modelName, $tenantId) ) && $requestedModel['model'] != null) {
             $model = $requestedModel['model'];
         } else {
-            $this->sendResponse($requestedModel['code'], $requestedModel['message']);
+            $this->sendResponse($requestedModel['code'], $this->buildResponse($requestedModel['code'], $requestedModel['message'] ) );
             return;
         }
 
@@ -86,11 +86,11 @@ class ApiController extends Controller {
         if ($method === 'GET' && $model->getCacheDuration() > 0) {
             $cachable = true;
             if (($cachedJsonResult = Yii::app()->cache->get($cacheKey)) == true) {
+                error_log('from cache');
                 $this->sendResponse(200, $cachedJsonResult);
             }
         }
-
-
+        
         if ($id == null) {
             $result = $model->$actionName($tenantId, $data);
         } else {
@@ -104,7 +104,8 @@ class ApiController extends Controller {
             $code = 200;
             $jsonData = $this->buildResponse($code, $result);
 
-            if ($cachable) {
+            if ($cachable && !empty($result)) {
+                error_log('caching');
                 Yii::app()->cache->set($cacheKey, $jsonData, $model->getCacheDuration());
             }
         }
@@ -130,7 +131,7 @@ class ApiController extends Controller {
         $model = null;
 
         if (class_exists($modelName)) {
-            $model = new $modelName($tenantId);
+            $model = new $modelName();
 
             if ($model->requiresAuthentification()) {
                 if ($this->checkAuth($tenantId)) {
