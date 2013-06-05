@@ -86,7 +86,6 @@ class ApiController extends Controller {
         if ($method === 'GET' && $model->getCacheDuration() > 0) {
             $cachable = true;
             if (($cachedJsonResult = Yii::app()->cache->get($cacheKey)) == true) {
-                error_log('from cache');
                 $this->sendResponse(200, $cachedJsonResult);
             }
         }
@@ -105,7 +104,6 @@ class ApiController extends Controller {
             $jsonData = $this->buildResponse($code, $result);
 
             if ($cachable && !empty($result)) {
-                error_log('caching');
                 Yii::app()->cache->set($cacheKey, $jsonData, $model->getCacheDuration());
             }
         }
