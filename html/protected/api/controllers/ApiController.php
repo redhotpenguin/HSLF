@@ -6,11 +6,11 @@ class ApiController extends Controller {
     const API_VERSION = '2.0';
 
     public function actionIndex() {
-        $this->sendResponse(404);
+        $this->sendResponse(404, $this->buildResponse(404));
     }
 
     public function actionError() {
-        $this->sendResponse(503);
+        $this->sendResponse(503, $this->buildResponse(503));
     }
 
     /**
@@ -77,7 +77,7 @@ class ApiController extends Controller {
         if (( $requestedModel = $this->getRequestedModel($modelName, $tenantId) ) && $requestedModel['model'] != null) {
             $model = $requestedModel['model'];
         } else {
-            $this->sendResponse($requestedModel['code'], $this->buildResponse($requestedModel['code'], $requestedModel['message'] ) );
+            $this->sendResponse($requestedModel['code'], $this->buildResponse($requestedModel['code'], $requestedModel['message']));
             return;
         }
 
@@ -89,7 +89,7 @@ class ApiController extends Controller {
                 $this->sendResponse(200, $cachedJsonResult);
             }
         }
-        
+
         if ($id == null) {
             $result = $model->$actionName($tenantId, $data);
         } else {
@@ -129,7 +129,7 @@ class ApiController extends Controller {
         $model = null;
 
         if (class_exists($modelName)) {
-            $model = new $modelName();
+            $model = new $modelName($tenantId);
 
             if ($model->requiresAuthentification()) {
                 if ($this->checkAuth($tenantId)) {

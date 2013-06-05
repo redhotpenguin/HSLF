@@ -8,13 +8,11 @@
 
 class DistrictResolverAPI implements IAPI {
 
-    private $cacheDuration;
     private $geoCodingClient;
 
     public function __construct($tenantId) {
         $geoCodingCLientProvider = new GeoCodingClientProvider($tenantId);
         $this->geoCodingClient = $geoCodingCLientProvider->getGeoCodingClient('cicero');
-        $this->cacheDuration = Yii::app()->params->normal_cache_duration;
     }
 
     public function create($tenantId, $arguments = array()) {
@@ -32,14 +30,6 @@ class DistrictResolverAPI implements IAPI {
      * 
      */
     public function getList($tenantId, $arguments = array()) {
-
-        $cacheKey = APIBase::cacheKeyBuilder('DistrictResolver', $tenantId, $arguments);
-        // serve from cache?
-        if (($r = Yii::app()->cache->get($cacheKey)) == true) {
-            return $r;
-        }
-
-
         // user proofing:
         //  address or lat AND long must be set
         if (!isset($arguments['address']) && (!isset($arguments['lat']) || !isset($arguments['long']) )) {
@@ -99,11 +89,7 @@ class DistrictResolverAPI implements IAPI {
                 continue;
             }
         }
-
-        if (!empty($resolvedDistricts)) {
-            Yii::app()->cache->set($cacheKey, $resolvedDistricts, $this->cacheDuration);
-        }
-
+        
         return $resolvedDistricts;
     }
 
@@ -145,7 +131,7 @@ class DistrictResolverAPI implements IAPI {
     }
 
     public function getCacheDuration() {
-        return 0;
+        return Yii::app()->params->normal_cache_duration;
     }
 
 }
