@@ -35,9 +35,10 @@ class APITest extends CDbTestCase {
 
     public function testDistrictResolverAPI() {
         $result = $this->getResource('DistrictResolver/?address=4261%20glacier%20lily%20st%20lake%20oswego%20oregon&districts=legislative,nonlegislative/census', true);
+        $this->log($result);
         $this->assertEquals(200, $result->status);
         $this->assertNotEmpty($result->results);
-        
+
         $result2 = $this->getResource('DistrictResolver/?lat=45.548294&long=-122.725525&districts=legislative,nonlegislative/census', true);
         $this->assertEquals(200, $result2->status);
         $this->assertNotEmpty($result2->results);
@@ -79,12 +80,12 @@ class APITest extends CDbTestCase {
 
 
         if ($authRequired) {
+            $this->log($this->tenant->api_key . ':' . $this->tenant->api_secret);
             curl_setopt($session, CURLOPT_USERPWD, $this->tenant->api_key . ':' . $this->tenant->api_secret);
         }
         curl_setopt($session, CURLOPT_RETURNTRANSFER, True);
         $content = curl_exec($session);
 
-        $this->log($this->tenant->api_key . ':' . $this->tenant->api_secret);
 
         curl_close($session);
 

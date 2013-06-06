@@ -5,13 +5,20 @@ class ApiController extends Controller {
     const APPLICATION_ID = 'MOBILE API';
     const API_VERSION = '2.0';
 
+    private $cacheKey;
+
+    public function __construct() {
+        $this->cacheKey = $_SERVER['REQUEST_URI'];
+    }
+
     public function actionIndex() {
         $this->sendResponse(404, $this->buildResponse(404));
     }
 
-    public function actionError() {
-        $this->sendResponse(503, $this->buildResponse(503));
+    public function actionError($httpCode = 503, $message = "") {
+        $this->sendResponse($httpCode, $this->buildResponse($httpCode, $message));
     }
+    
 
     /**
      * @return array action filters
@@ -23,9 +30,66 @@ class ApiController extends Controller {
     /**
      * List supported models
      */
-    public function actionList($tenant_id, $model) {
-        $result = $this->resolveAction('GET', $model, $tenant_id, 'getList', null, $_GET);
-        $this->sendResponse($result['httpCode'], $result['data']);
+    public function actionList($tenantId, $resource) {
+        $this->setTenantId($tenantId);
+
+        $model = $this->getModelFromResource($resource);
+        if (!$model) {
+            $this->actionError(404, 'Resource not found');
+        }
+
+        if ($model->requiresAuthentification()) {
+            if (!$this->checkAuth($tenantId)) {
+                $this->actionError(401, 'invalid credentials');
+            }
+        }
+
+        if ($model->getCacheDuration() > 0) {
+            $cachable = true;
+            if (($cachedJsonResult = Yii::app()->cache->get($this->cacheKey)) == true) {
+                error_log('from cache');
+                $this->sendResponse(200, $cachedJsonResult);
+            }
+        }
+        
+        $result = $model->getList($tenantId, $_GET);
+
+        if ($result instanceof RestFailure) {
+            $code = $result->getHttpCode();
+            $jsonData = $this->buildResponse($code, $result->getReason());
+        } else {
+            $code = 200;
+            $jsonData = $this->buildResponse($code, $result);
+
+            if ($cachable && !empty($result)) {
+                Yii::app()->cache->set($this->cacheKey, $jsonData, $model->getCacheDuration());
+            }
+        }
+
+        $this->sendResponse($code, $jsonData);
+    }
+
+    
+    /**
+     * setTenant 'session' tenant ID 
+     * @param $tenantId
+     */
+    private function setTenantId($tenantId) {
+        Yii::app()->params['current_tenant_id'] = $tenantId;
+    }
+
+     /**
+     * Retrieve a Rest Model from a resource name
+     * @param $resource
+     * @return Rest API model or false
+     */
+    private function getModelFromResource($resource) {
+        $modelName = $resource . 'API';
+        if (class_exists($modelName)) {
+            return new $modelName();
+        }
+        
+        return false;
     }
 
     /**
@@ -177,7 +241,7 @@ class ApiController extends Controller {
      * @param mixed $body content to print
      * @param string $template template to use
      */
-    private function sendResponse($status = 200, $jsonData) {
+    private function sendResponse($status, $jsonData) {
         header('HTTP/1.1 ' . $status . ' ' . $this->getStatusCodeMessage($status));
         header('Content-type: ' . 'application/json;charset=UTF-8');
 

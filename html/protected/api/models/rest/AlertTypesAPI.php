@@ -6,4 +6,8 @@ class AlertTypesAPI extends APIBase implements IAPI {
         parent::__construct( new AlertType );
     }
 
+    
+    public function requiresAuthentification() {
+        //return true;
+    }
 }

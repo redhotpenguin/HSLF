@@ -10,8 +10,8 @@ class DistrictResolverAPI implements IAPI {
 
     private $geoCodingClient;
 
-    public function __construct($tenantId) {
-        $geoCodingCLientProvider = new GeoCodingClientProvider($tenantId);
+    public function __construct() {
+        $geoCodingCLientProvider = new GeoCodingClientProvider( Yii::app()->params['current_tenant_id'] );
         $this->geoCodingClient = $geoCodingCLientProvider->getGeoCodingClient('cicero');
     }
 
