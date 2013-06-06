@@ -18,7 +18,6 @@ class ApiController extends Controller {
     public function actionError($httpCode = 503, $message = "") {
         $this->sendResponse($httpCode, $this->buildResponse($httpCode, $message));
     }
-    
 
     /**
      * @return array action filters
@@ -33,25 +32,15 @@ class ApiController extends Controller {
     public function actionList($tenantId, $resource) {
         $this->setTenantId($tenantId);
 
-        $model = $this->getModelFromResource($resource);
-        if (!$model) {
-            $this->actionError(404, 'Resource not found');
-        }
-
-        if ($model->requiresAuthentification()) {
-            if (!$this->checkAuth($tenantId)) {
-                $this->actionError(401, 'invalid credentials');
-            }
-        }
+        $model = $this->getVerifiedModel($tenantId, $resource);
 
         if ($model->getCacheDuration() > 0) {
             $cachable = true;
             if (($cachedJsonResult = Yii::app()->cache->get($this->cacheKey)) == true) {
-                error_log('from cache');
                 $this->sendResponse(200, $cachedJsonResult);
             }
         }
-        
+
         $result = $model->getList($tenantId, $_GET);
 
         if ($result instanceof RestFailure) {
@@ -69,96 +58,22 @@ class ApiController extends Controller {
         $this->sendResponse($code, $jsonData);
     }
 
-    
-    /**
-     * setTenant 'session' tenant ID 
-     * @param $tenantId
-     */
-    private function setTenantId($tenantId) {
-        Yii::app()->params['current_tenant_id'] = $tenantId;
-    }
-
-     /**
-     * Retrieve a Rest Model from a resource name
-     * @param $resource
-     * @return Rest API model or false
-     */
-    private function getModelFromResource($resource) {
-        $modelName = $resource . 'API';
-        if (class_exists($modelName)) {
-            return new $modelName();
-        }
-        
-        return false;
-    }
-
     /**
      * List models according to a specific request
      */
-    public function actionView($tenant_id, $model, $id) {
-        $result = $this->resolveAction('GET', $model, $tenant_id, 'getSingle', $id, $_GET);
-        $this->sendResponse($result['httpCode'], $result['data']);
-    }
+    public function actionView($tenantId, $resource, $id) {
+        $this->setTenantId($tenantId);
 
-    /**
-     * Handle POST Requests
-     */
-    public function actionCreate($tenant_id, $model) {
-        $result = $this->resolveAction('POST', $model, $tenant_id, 'create', null, $_POST);
-        $this->sendResponse($result['httpCode'], $result['data']);
-    }
+        $model = $this->getVerifiedModel($tenantId, $resource);
 
-    /**
-     * Handle PUT Requests
-     */
-    public function actionUpdate($tenant_id, $model, $id) {
-        $data = array();
-
-        // retrieve PUT data
-        parse_str(file_get_contents("php://input"), $data);
-
-        $result = $this->resolveAction('PUT', $model, $tenant_id, 'update', $id, $data);
-        $this->sendResponse($result['httpCode'], $result['data']);
-    }
-
-    /**
-     * @todo - REFACTOR THIS CRAP
-     * Helpers - call the correct rest model based on the given arguments
-     * @param string $requestModelName model name
-     * @param integer $tenantId tenant id
-     * @param string $actionName action name
-     * @param integer $id id - optionnal
-     * @param array $data extra parameters - optionnal
-     * @return array containg an http code and the json result
-     */
-    private function resolveAction($method, $modelName, $tenantId, $actionName, $id = null, $data = array()) {
-        $cacheKey = $_SERVER['REQUEST_URI'];
-        $cachable = false;
-
-
-        Yii::app()->params['current_tenant_id'] = $tenantId;
-
-        if (( $requestedModel = $this->getRequestedModel($modelName, $tenantId) ) && $requestedModel['model'] != null) {
-            $model = $requestedModel['model'];
-        } else {
-            $this->sendResponse($requestedModel['code'], $this->buildResponse($requestedModel['code'], $requestedModel['message']));
-            return;
-        }
-
-        unset($data['model']);
-
-        if ($method === 'GET' && $model->getCacheDuration() > 0) {
+        if ($model->getCacheDuration() > 0) {
             $cachable = true;
-            if (($cachedJsonResult = Yii::app()->cache->get($cacheKey)) == true) {
+            if (($cachedJsonResult = Yii::app()->cache->get($this->cacheKey)) == true) {
                 $this->sendResponse(200, $cachedJsonResult);
             }
         }
 
-        if ($id == null) {
-            $result = $model->$actionName($tenantId, $data);
-        } else {
-            $result = $model->$actionName($tenantId, $id, $data);
-        }
+        $result = $model->getSingle($tenantId, $id, $_GET);
 
         if ($result instanceof RestFailure) {
             $code = $result->getHttpCode();
@@ -168,53 +83,95 @@ class ApiController extends Controller {
             $jsonData = $this->buildResponse($code, $result);
 
             if ($cachable && !empty($result)) {
-                Yii::app()->cache->set($cacheKey, $jsonData, $model->getCacheDuration());
+                Yii::app()->cache->set($this->cacheKey, $jsonData, $model->getCacheDuration());
             }
         }
 
-
-        return array(
-            'httpCode' => $code,
-            'data' => $jsonData
-        );
+        $this->sendResponse($code, $jsonData);
     }
 
     /**
-     * Helpers - return a $requestModelName object 
-     * Also set the authentification flag
-     * @param string $requestModelName model name
-     * @param integer $tenantId tenant id - needed for checking authorization
-     * @return array
+     * Handle POST Requests
      */
-    private function getRequestedModel($requestModelName, $tenantId) {
-        $modelName = $requestModelName . 'API';
-        $message = "";
-        $code = 200;
-        $model = null;
+    public function actionCreate($tenantId, $resource) {
+        $this->setTenantId($tenantId);
 
-        if (class_exists($modelName)) {
-            $model = new $modelName($tenantId);
+        $model = $this->getVerifiedModel($tenantId, $resource);
 
-            if ($model->requiresAuthentification()) {
-                if ($this->checkAuth($tenantId)) {
-                    $model = $model;
-                } else {
-                    $code = 401;
-                    $message = 'invalid credentials';
-                    $model = null;
-                }
-            }
+        $result = $model->create($tenantId, $_POST);
+
+        if ($result instanceof RestFailure) {
+            $code = $result->getHttpCode();
+            $jsonData = $this->buildResponse($code, $result->getReason());
         } else {
-            $message = 'not found';
-            $code = 404;
+            $code = 200;
+            $jsonData = $this->buildResponse($code, $result);
         }
 
+        $this->sendResponse($code, $jsonData);
+    }
 
-        return array(
-            'model' => $model,
-            'code' => $code,
-            'message' => $message
-        );
+    /**
+     * Handle PUT Requests
+     */
+    public function actionUpdate($tenantId, $resource, $id) {
+        $data = array();
+
+        // retrieve PUT data
+        parse_str(file_get_contents("php://input"), $data);
+
+        $this->setTenantId($tenantId);
+
+        $model = $this->getVerifiedModel($tenantId, $resource);
+
+        $result = $model->update($tenantId, $id, $data);
+
+        if ($result instanceof RestFailure) {
+            $code = $result->getHttpCode();
+            $jsonData = $this->buildResponse($code, $result->getReason());
+        } else {
+            $code = 200;
+            $jsonData = $this->buildResponse($code, $result);
+        }
+
+        $this->sendResponse($code, $jsonData);
+    }
+
+
+    /**
+     * setTenant 'session' tenant ID 
+     * @param $tenantId
+     */
+    private function setTenantId($tenantId) {
+        Yii::app()->params['current_tenant_id'] = $tenantId;
+    }
+
+    /**
+     * Retrieve and verify that $resource corresospond to a  Rest Model
+     * also check authorization
+     * @param $tenantId 
+     * @param $resource
+     * @return Rest verified API model or false
+     */
+    private function getVerifiedModel($tenantId, $resource) {
+        $modelName = $resource . 'API';
+        if (!class_exists($modelName)) {
+            return false;
+        }
+
+        $model = new $modelName();
+
+        if (!$model) {
+            $this->actionError(404, 'Resource not found');
+        }
+
+        if ($model->requiresAuthentification()) {
+            if (!$this->checkAuth($tenantId)) {
+                $this->actionError(401, 'invalid credentials');
+            }
+        }
+
+        return $model;
     }
 
     private function buildResponse($status, $body = '') {
