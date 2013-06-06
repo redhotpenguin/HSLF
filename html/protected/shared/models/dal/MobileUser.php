@@ -90,7 +90,10 @@ class MobileUser extends ActiveMongoDocument {
                         array(
                             'pagination' => array(
                                 'pageSize' => 25,
-                            )
+                            ),
+                            'sort' => array(
+                                'defaultOrder' => '_id ASC',
+                            ),
                         )
         );
     }

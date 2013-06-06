@@ -1,6 +1,6 @@
 <?php
 $this->secondaryNav['name'] = 'Mobile Users';
-$this->secondaryNav['url'] =array('mobileUser/index');
+$this->secondaryNav['url'] = array('mobileUser/index');
 ?>
 
 <?php
@@ -42,6 +42,16 @@ $this->widget('bootstrap.widgets.TbGridView', array(
             'name' => 'device_type',
             'header' => 'Device Type',
         ),
+        array(
+            'name' => 'registration_date',
+            'header' => 'Registration Date',
+            'value' => 'date("l jS \of F Y - h:i:s A", $data["registration_date"]->sec)'
+       ),
+        array(
+            'name' => 'last_connection_date',
+            'header' => 'Last Connection Date',
+            'value' => 'date("l jS \of F Y - h:i:s A", $data["registration_date"]->sec)'
+       ),
         array
             (
             'class' => 'bootstrap.widgets.TbButtonColumn',
@@ -62,4 +72,3 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         ),
     ),
 ));
-?>
