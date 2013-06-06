@@ -24,7 +24,7 @@ class RestException extends Exception {
     }
 
     private function getMessageFromHttpCode($httpCode) {
-       return isset($this->codes[$httpCode]) ? $this->codes[$httpCode] : $this->codes[500];
+       return isset($this->codes[$httpCode]) ? $this->codes[$httpCode] : 'Internal Server Error';
     }
 
 }
