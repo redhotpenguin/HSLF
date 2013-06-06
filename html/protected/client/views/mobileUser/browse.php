@@ -1,9 +1,7 @@
 <?php
 $this->secondaryNav['name'] = 'Mobile Users';
 $this->secondaryNav['url'] = array('mobileUser/index');
-?>
 
-<?php
 Yii::app()->clientScript->registerScript('search', "
 $('.search-form form').submit(function(){
 	$.fn.yiiGridView.update('MobileUser-grid', {
