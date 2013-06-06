@@ -42,6 +42,9 @@ class APITest extends CDbTestCase {
         $result2 = $this->getResource('DistrictResolver/?lat=45.548294&long=-122.725525&districts=legislative,nonlegislative/census', true);
         $this->assertEquals(200, $result2->status);
         $this->assertNotEmpty($result2->results);
+        
+        $result3= $this->getResource('DistrictResolver/?lat=45.548294&long=-122.725525&districts=legislative,nonlegislative/census', false);
+        $this->assertEquals(401, $result3->status);
     }
 
     public function testItemNewsAPI() {

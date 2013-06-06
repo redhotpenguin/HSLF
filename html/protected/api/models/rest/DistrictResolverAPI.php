@@ -119,7 +119,7 @@ class DistrictResolverAPI implements IAPI {
     }
 
     public function requiresAuthentification() {
-        //     return true;
+        return true;
     }
 
     public function update($tenantId, $id, $arguments = array()) {
