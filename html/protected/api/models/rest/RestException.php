@@ -1,6 +1,18 @@
 <?php
 
 class RestException extends Exception {
+    
+    private  $codes = Array(
+            200 => 'OK',
+            400 => 'Bad Request',
+            401 => 'Unauthorized',
+            402 => 'Payment Required',
+            403 => 'Forbidden',
+            404 => 'Not Found',
+            409 => 'Conflict',
+            500 => 'Internal Server Error',
+            501 => 'Not Implemented',
+     );
 
     public function __construct($httpCode = 0, $message = null, Exception $previous = null) {
 
@@ -12,23 +24,7 @@ class RestException extends Exception {
     }
 
     private function getMessageFromHttpCode($httpCode) {
-        switch ($httpCode) {
-            case 400 : $message = "Bad Request";
-                break;
-            case 404 : $message = "Not Found";
-                break;
-            case 409 : $message = "Conflict";
-                break;
-            case 500 : $message = "Internal Server Error";
-                break;
-            case 501 : $message = "Not Implemented";
-                break;
-
-            default : $message = "Internal Server Error";
-                break;
-        }
-
-        return $message;
+       return isset($this->codes[$httpCode]) ? $this->codes[$httpCode] : $this->codes[500];
     }
 
 }
