@@ -27,9 +27,9 @@ class ApiController extends Controller {
     }
 
     /**
-     * List supported models
+     * Retrieve all resources (READ)
      */
-    public function actionList($tenantId, $resource) {
+    public function actionList($tenantId, $resource) {        
         $this->setTenantId($tenantId);
 
         $model = $this->getVerifiedModel($tenantId, $resource);
@@ -59,7 +59,7 @@ class ApiController extends Controller {
     }
 
     /**
-     * List models according to a specific request
+     * Retrieve a resource by ID (READ)
      */
     public function actionView($tenantId, $resource, $id) {
         $this->setTenantId($tenantId);
@@ -91,7 +91,7 @@ class ApiController extends Controller {
     }
 
     /**
-     * Handle POST Requests
+     * Handle POST Requests (CREATE)
      */
     public function actionCreate($tenantId, $resource) {
         $this->setTenantId($tenantId);
@@ -112,7 +112,7 @@ class ApiController extends Controller {
     }
 
     /**
-     * Handle PUT Requests
+     * Handle PUT Requests (UPDATE)
      */
     public function actionUpdate($tenantId, $resource, $id) {
         $data = array();
