@@ -43,13 +43,17 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         array(
             'name' => 'registration_date',
             'header' => 'Registration Date',
-            'value' => 'date("l jS \of F Y - h:i:s A", $data["registration_date"]->sec)'
+            'value' => 'isset($data["registration_date"]) && date("l jS \of F Y - h:i:s A", $data["registration_date"]->sec)'
        ),
         array(
             'name' => 'last_connection_date',
             'header' => 'Last Connection Date',
-            'value' => 'date("l jS \of F Y - h:i:s A", $data["last_connection_date"]->sec)'
+            'value' => 'isset($data["last_connection_date"]) && date("l jS \of F Y - h:i:s A", $data["last_connection_date"]->sec)'
        ),
+       array(
+            'name' => 'app_version',
+            'header' => 'Version',
+        ),
         array
             (
             'class' => 'bootstrap.widgets.TbButtonColumn',
