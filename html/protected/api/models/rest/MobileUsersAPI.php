@@ -49,14 +49,14 @@ class MobileUsersAPI implements IAPI {
     public function create($tenantId, $arguments = array()) {
 
         if (!isset($arguments['user']))
-            return $this->buildErrorResponse(RestFailure::HTTP_BAD_REQUEST_CODE, self::ERROR_INCORRECT_USAGE_MSG);
+            throw new RestException(400, self::ERROR_INCORRECT_USAGE_MSG);
 
         $tenantId = (int) $tenantId;
 
         $userData = CJSON::decode($arguments['user'], false); // map json string to an stdobject
 
         if (!is_object($userData))
-            return $this->buildErrorResponse(RestFailure::HTTP_BAD_REQUEST_CODE, self::ERROR_INCORRECT_DATA_MSG);
+            throw new RestException(400, self::ERROR_INCORRECT_DATA_MSG);
 
         if (isset($userData->ua_identifier)) {
 
@@ -67,7 +67,7 @@ class MobileUsersAPI implements IAPI {
                     ));
 
             if ($mUser != null && $mUser->ua_identifier == $userData->ua_identifier) {
-                return $this->buildErrorResponse(RestFailure::HTTP_CONFLICT_CODE, "ua identifier already used");
+                throw new RestException(409, "ua identifier already used");
             }
         }
 
@@ -87,12 +87,12 @@ class MobileUsersAPI implements IAPI {
         }
 
         if ($mUser->lastErrorCode == 11000) { // duplicate key error. Should not happen unless unique constraints are set
-            return $this->buildErrorResponse(RestFailure::HTTP_CONFLICT_CODE, self::ERROR_USER_ALREADY_EXISTS_MSG);
+            throw new RestException(409, self::ERROR_USER_ALREADY_EXISTS_MSG);
         } elseif (!empty($mUser->lastError)) {
-            return $this->buildErrorResponse(RestFailure::HTTP_CONFLICT_CODE, $mUser->lastError);
+            throw new RestException(409,  $mUser->lastError[0] );
         }
 
-        return $this->buildErrorResponse(RestFailure::HTTP_INTERNAL_ERROR_CODE, $mUser->lastError);
+        throw new RestException(500, $mUser->lastError[0] );
     }
 
     /**
@@ -105,7 +105,7 @@ class MobileUsersAPI implements IAPI {
     public function update($tenantId, $id, $arguments = array()) {
 
         if (!isset($arguments['user']))
-            return $this->buildErrorResponse(RestFailure::HTTP_BAD_REQUEST_CODE, self::ERROR_INCORRECT_USAGE_MSG);
+            throw new RestException(400, self::ERROR_INCORRECT_USAGE_MSG);
 
         $mUser = new MobileUser();
         $tenantId = (int) $tenantId;
@@ -115,7 +115,7 @@ class MobileUsersAPI implements IAPI {
         $userData = CJSON::decode($arguments['user'], true); // decode json string as an array
 
         if (!is_array($userData))
-            return $this->buildErrorResponse(RestFailure::HTTP_BAD_REQUEST_CODE, self::ERROR_INCORRECT_DATA_MSG);
+            throw new RestException(400, self::ERROR_INCORRECT_DATA_MSG);
 
         $conditions = array(
             "_id" => new MongoId($id)
@@ -136,21 +136,12 @@ class MobileUsersAPI implements IAPI {
         if ($updateResult === true) {
             return self::SUCCESS_MSG;
         } elseif ($updateResult === -1) {
-            return $this->buildErrorResponse(RestFailure::HTTP_NOT_FOUND_CODE, self::ERROR_USER_NOT_FOUND_MSG);
+            throw new RestException(404, self::ERROR_USER_NOT_FOUND_MSG);
         } else {
-            return $this->buildErrorResponse(RestFailure::HTTP_INTERNAL_ERROR_CODE, $mUser->lastError);
+            throw new RestException(500, $mUser->lastError[0] );
         }
     }
 
-    /**
-     * Helper - generate a unifor error response
-     * @param integer $httpCode -  http error code
-     * @param string $reason - failure reason
-     * @return array failure 
-     */
-    private function buildErrorResponse($httpCode, $reason) {
-        return new RestFailure($httpCode, array('error' => $reason));
-    }
 
     /**
      * Enable authentification for this end point

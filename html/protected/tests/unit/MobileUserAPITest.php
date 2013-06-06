@@ -224,13 +224,11 @@ class MobileUserAPITest extends CDbTestCase {
         $requestResult = json_decode($this->put($this->tenant1, $data, $this->mobileUserAPI . '/youwontfindme', $code));
         //      $this->log($requestResult);
 
-
-
         $response = $requestResult->results;
 
         $this->assertEquals(404, $code);
 
-        $this->assertEquals("user not found", $response->error);
+        $this->assertEquals("user not found", $response);
     }
 
     public function testUpdateUserExistingFields() {

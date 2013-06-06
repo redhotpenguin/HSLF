@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @DEPRECATED - use RestException instead
  * RestFailure
  * Represent an invalid rest response
  */
