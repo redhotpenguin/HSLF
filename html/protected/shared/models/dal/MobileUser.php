@@ -31,6 +31,7 @@ class MobileUser extends ActiveMongoDocument {
             'phone_number' => 'Phone Number',
             'registration_date' => 'Registration Date',
             'last_connection_date' => 'Last Connection date',
+            'app_version' => 'Application Version'
         );
     }
 
