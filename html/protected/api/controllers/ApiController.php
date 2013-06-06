@@ -44,7 +44,6 @@ class ApiController extends Controller {
 
         try {
             $result = $model->getList($tenantId, $_GET);
-
             $code = 200;
             $jsonData = $this->buildResponse($code, $result);
 

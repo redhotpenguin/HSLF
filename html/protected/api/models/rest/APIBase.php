@@ -50,8 +50,8 @@ abstract class APIBase implements IAPI {
 
         try {
             $result = $this->model->with($relations)->findAllByAttributes($attributes, $options);
-        } catch (CDbException $cdbE) {
-            return "no_results";
+        } catch (Exception $cdbE) {
+            throw new RestException(500);
         }
 
         return $result;
@@ -73,48 +73,32 @@ abstract class APIBase implements IAPI {
 
         try {
             $result = $this->model->with($relations)->findByPk($id);
-        } catch (CDbException $cdbE) {
-            $result = "no_results";
+
+            if (!$result) {
+                throw new RestException(404);
+            }
+        } catch (RestException $cdbE) {
+            throw $cdbE;
+        } catch (Exception $cdbE) {
+            throw new RestException(500);
         }
 
         return $result;
     }
 
     public function create($tenantId, $arguments = array()) {
-        return "operation not supported";
+        throw new RestException(501);
     }
 
     public function update($tenantId, $id, $arguments = array()) {
-        return "operation not supported";
+        throw new RestException(501);
     }
 
     public function requiresAuthentification() {
         return false;
     }
-    
-    public function getCacheDuration(){
+
+    public function getCacheDuration() {
         return $this->cacheDuration = Yii::app()->params->normal_cache_duration;
     }
-
-    
-    /**
-     * Helper
-     * build a unique key based on the model requested and arguments
-     * @param string $prefix prefix - should be a unique name describing the resource requested
-     * @param integer $tenantId - tenant id
-     * @param array $arguments - API request arguments
-     * @param integer $id - primary key (optional)
-     * 
-     *//*
-    public static function cacheKeyBuilder($prefix, $tenantId, $arguments = array(), $id = null) {
-
-        $string = $prefix . '_' . $tenantId . '_' . serialize($arguments);
-
-        if ($id != null) {
-            $string.= '_' . $id;
-        }
-
-        return $string;
-    }*/
-
 }
