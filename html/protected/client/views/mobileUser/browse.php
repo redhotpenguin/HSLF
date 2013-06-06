@@ -48,7 +48,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         array(
             'name' => 'last_connection_date',
             'header' => 'Last Connection Date',
-            'value' => 'date("l jS \of F Y - h:i:s A", $data["registration_date"]->sec)'
+            'value' => 'date("l jS \of F Y - h:i:s A", $data["last_connection_date"]->sec)'
        ),
         array
             (
