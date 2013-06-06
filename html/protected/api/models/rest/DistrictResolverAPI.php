@@ -11,12 +11,12 @@ class DistrictResolverAPI implements IAPI {
     private $geoCodingClient;
 
     public function __construct() {
-        $geoCodingCLientProvider = new GeoCodingClientProvider( Yii::app()->params['current_tenant_id'] );
+        $geoCodingCLientProvider = new GeoCodingClientProvider(Yii::app()->params['current_tenant_id']);
         $this->geoCodingClient = $geoCodingCLientProvider->getGeoCodingClient('cicero');
     }
 
     public function create($tenantId, $arguments = array()) {
-        return new RestFailure(RestFailure::HTTP_NOT_IMPLEMENTED_ERROR_CODE);
+        throw new RestException(501);
     }
 
     /**
@@ -33,17 +33,13 @@ class DistrictResolverAPI implements IAPI {
         // user proofing:
         //  address or lat AND long must be set
         if (!isset($arguments['address']) && (!isset($arguments['lat']) || !isset($arguments['long']) )) {
-            $failure = new RestFailure(RestFailure::HTTP_BAD_REQUEST_CODE);
-            $failure->setReason("An address or a lat/long coordinate is missing.");
-            return $failure;
+            throw new RestException(400, "An address or a lat/long coordinate is missing");
         }
 
 
         // check districts
         if (!isset($arguments['districts'])) {
-            $failure = new RestFailure(RestFailure::HTTP_BAD_REQUEST_CODE);
-            $failure->setReason("A list of district types are missing.");
-            return $failure;
+            throw new RestException(400, "A list of district types are missing.");
         }
 
 
@@ -89,7 +85,7 @@ class DistrictResolverAPI implements IAPI {
                 continue;
             }
         }
-        
+
         return $resolvedDistricts;
     }
 
@@ -119,15 +115,15 @@ class DistrictResolverAPI implements IAPI {
     }
 
     public function getSingle($tenantId, $id, $arguments = array()) {
-        return new RestFailure(RestFailure::HTTP_NOT_IMPLEMENTED_ERROR_CODE);
+        throw new RestException(501);
     }
 
     public function requiresAuthentification() {
-        return true;
+        //     return true;
     }
 
     public function update($tenantId, $id, $arguments = array()) {
-        return new RestFailure(RestFailure::HTTP_NOT_IMPLEMENTED_ERROR_CODE);
+        throw new RestException(501);
     }
 
     public function getCacheDuration() {

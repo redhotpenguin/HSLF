@@ -29,7 +29,7 @@ class ApiController extends Controller {
     /**
      * Retrieve all resources (READ)
      */
-    public function actionList($tenantId, $resource) {        
+    public function actionList($tenantId, $resource) {
         $this->setTenantId($tenantId);
 
         $model = $this->getVerifiedModel($tenantId, $resource);
@@ -41,19 +41,21 @@ class ApiController extends Controller {
             }
         }
 
-        $result = $model->getList($tenantId, $_GET);
 
-        if ($result instanceof RestFailure) {
-            $code = $result->getHttpCode();
-            $jsonData = $this->buildResponse($code, $result->getReason());
-        } else {
+        try {
+            $result = $model->getList($tenantId, $_GET);
+
             $code = 200;
             $jsonData = $this->buildResponse($code, $result);
 
             if ($cachable && !empty($result)) {
                 Yii::app()->cache->set($this->cacheKey, $jsonData, $model->getCacheDuration());
             }
+        } catch (Exception $e) {
+            $code = $e->getCode();
+            $jsonData = $this->buildResponse($code, $e->getMessage());
         }
+
 
         $this->sendResponse($code, $jsonData);
     }
@@ -73,18 +75,19 @@ class ApiController extends Controller {
             }
         }
 
-        $result = $model->getSingle($tenantId, $id, $_GET);
 
-        if ($result instanceof RestFailure) {
-            $code = $result->getHttpCode();
-            $jsonData = $this->buildResponse($code, $result->getReason());
-        } else {
+        try {
             $code = 200;
+            $result = $model->getSingle($tenantId, $id, $_GET);
+
             $jsonData = $this->buildResponse($code, $result);
 
             if ($cachable && !empty($result)) {
                 Yii::app()->cache->set($this->cacheKey, $jsonData, $model->getCacheDuration());
             }
+        } catch (Exception $e) {
+            $code = $e->getCode();
+            $jsonData = $this->buildResponse($code, $e->getMessage());
         }
 
         $this->sendResponse($code, $jsonData);
@@ -136,7 +139,6 @@ class ApiController extends Controller {
 
         $this->sendResponse($code, $jsonData);
     }
-
 
     /**
      * setTenant 'session' tenant ID 
