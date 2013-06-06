@@ -75,7 +75,6 @@ class ApiController extends Controller {
             }
         }
 
-
         try {
             $code = 200;
             $result = $model->getSingle($tenantId, $id, $_GET);
@@ -101,14 +100,14 @@ class ApiController extends Controller {
 
         $model = $this->getVerifiedModel($tenantId, $resource);
 
-        $result = $model->create($tenantId, $_POST);
-
-        if ($result instanceof RestFailure) {
-            $code = $result->getHttpCode();
-            $jsonData = $this->buildResponse($code, $result->getReason());
-        } else {
+        try {
             $code = 200;
+            $result = $model->create($tenantId, $_POST);
+
             $jsonData = $this->buildResponse($code, $result);
+        } catch (Exception $e) {
+            $code = $e->getCode();
+            $jsonData = $this->buildResponse($code, $e->getMessage());
         }
 
         $this->sendResponse($code, $jsonData);
@@ -127,14 +126,13 @@ class ApiController extends Controller {
 
         $model = $this->getVerifiedModel($tenantId, $resource);
 
-        $result = $model->update($tenantId, $id, $data);
-
-        if ($result instanceof RestFailure) {
-            $code = $result->getHttpCode();
-            $jsonData = $this->buildResponse($code, $result->getReason());
-        } else {
+        try {
             $code = 200;
+            $result = $model->update($tenantId, $id, $data);
             $jsonData = $this->buildResponse($code, $result);
+        } catch (Exception $e) {
+            $code = $e->getCode();
+            $jsonData = $this->buildResponse($code, $e->getMessage());
         }
 
         $this->sendResponse($code, $jsonData);
