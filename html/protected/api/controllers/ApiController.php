@@ -2,9 +2,6 @@
 
 class ApiController extends Controller {
 
-    const APPLICATION_ID = 'MOBILE API';
-    const API_VERSION = '2.0';
-
     private $cacheKey;
 
     public function __construct() {
@@ -173,8 +170,15 @@ class ApiController extends Controller {
         return $model;
     }
 
+    
+    /**
+     * Build and return a JSON response
+     * @param $status http status
+     * @param $body response
+     * @return JSON response
+     */
     private function buildResponse($status, $body = '') {
-        $container = array('api_name' => self::APPLICATION_ID, 'api_version' => self::API_VERSION, 'status' => $status);
+        $container = array('status' => $status);
 
         if (!empty($body)) {
             $container['results'] = $body;
