@@ -111,21 +111,11 @@ h4{
 }
 
 #homepage .action_group{
-    padding:15px;
-    border-radius:6px;
-    width:33%;
-    float:left;
-    margin-right:2%;
-    background-color:#EEE;
-}
-
-#homepage .action_group .action_title{
-    padding-top: 10px;
-    font-size: 1.7em;
-    font-weight: bold;
-    display: block;
-    color: #707070;
-    margin-left: 5%;
+    border: 1px solid #EFEFEF;
+    padding: 0px;
+    width: 49%;
+    float: left;
+    margin-right: 9px;
 }
 
 #homepage .action_group .action_block_group{
@@ -138,7 +128,6 @@ h4{
     background-color:#0081C2;
     color:#fff;
     font-weight:bold;
-    border-radius:3px;
     width:40%;
     float:left;
     margin-left:5%;
@@ -147,7 +136,7 @@ h4{
     height:50px;
     text-align:center;
     padding-top:8%;
-    
+
 }
 
 #homepage .action_block_group .action_block:hover{

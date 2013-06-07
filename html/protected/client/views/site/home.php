@@ -8,8 +8,6 @@
     </div>
 
     <div class="action_group">
-        <span class="action_title">Content</span>
-
         <div class="action_block_group">
             <?php
             if (Yii::app()->user->hasPermission('manageBallotItems'))
@@ -29,8 +27,6 @@
     </div>
 
     <div class="action_group">
-        <span class="action_title">Communication</span>
-
         <div class="action_block_group">
             <?php
             if (Yii::app()->user->hasPermission('manageMobileUsers'))
