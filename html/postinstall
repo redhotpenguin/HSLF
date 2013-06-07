@@ -3,3 +3,7 @@
 crontab mvgcron
 
 ln -s /home/dotcloud/data /home/dotcloud/current/content
+
+set -e
+
+sed -i 's/;newrelic/newrelic/' /home/dotcloud/current/php.ini

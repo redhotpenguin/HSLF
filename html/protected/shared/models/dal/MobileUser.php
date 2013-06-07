@@ -31,6 +31,7 @@ class MobileUser extends ActiveMongoDocument {
             'phone_number' => 'Phone Number',
             'registration_date' => 'Registration Date',
             'last_connection_date' => 'Last Connection date',
+            'app_version' => 'Application Version'
         );
     }
 
@@ -89,7 +90,10 @@ class MobileUser extends ActiveMongoDocument {
                         array(
                             'pagination' => array(
                                 'pageSize' => 25,
-                            )
+                            ),
+                            'sort' => array(
+                                'defaultOrder' => '_id ASC',
+                            ),
                         )
         );
     }

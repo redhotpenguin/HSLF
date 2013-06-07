@@ -43,10 +43,6 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
         else
             $requesting = 'nonlegislative_district';
 
-        if (isset($options['type']))
-            $type = $options['type'];
-        else
-            $type = 'CENSUS';
 
         if (isset($options['format']))
             $format = $options['format'];
@@ -54,7 +50,13 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
             $format = 'json';
 
 
-        $destination = "{$this->apiBase}/{$requesting}?f={$format}&user={$this->userId}&token={$this->token}&type={$type}&search_loc={$address}";
+        $destination = "{$this->apiBase}/{$requesting}?f={$format}&user={$this->userId}&token={$this->token}&search_loc={$address}";
+
+        if (isset($options['type'])) {
+            $destination.= '&type=' . $options['type'];
+        }
+
+        //logIt($destination);
 
         $response = $this->httpRequestClient->getRequest($destination);
 
@@ -85,18 +87,21 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
         else
             $requesting = 'nonlegislative_district';
 
-        if (isset($options['type']))
-            $type = $options['type'];
-        else
-            $type = 'CENSUS';
-
         if (isset($options['format']))
             $format = $options['format'];
         else
             $format = 'json';
 
-        $destination = "{$this->apiBase}/{$requesting}?f={$format}&user={$this->userId}&token={$this->token}&type={$type}&lat={$lat}&lon={$long}";
+        $destination = "{$this->apiBase}/{$requesting}?f={$format}&user={$this->userId}&token={$this->token}&lat={$lat}&lon={$long}";
+        
+        
+         if (isset($options['type'])) {
+            $destination.= '&type=' . $options['type'];
+        }
+        
         $response = $this->httpRequestClient->getRequest($destination);
+        
+        //logIt($destination);
 
         if ($response == null || empty($response)) {
             return false;
@@ -113,8 +118,7 @@ class CiceroGeoCodingClient implements GeoCodingClientInterface {
             return false;
         }
 
-        return  $jsonResponse->response->results->districts;
-
+        return $jsonResponse->response->results->districts;
     }
 
 }

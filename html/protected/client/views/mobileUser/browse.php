@@ -1,9 +1,7 @@
 <?php
 $this->secondaryNav['name'] = 'Mobile Users';
-$this->secondaryNav['url'] =array('mobileUser/index');
-?>
+$this->secondaryNav['url'] = array('mobileUser/index');
 
-<?php
 Yii::app()->clientScript->registerScript('search', "
 $('.search-form form').submit(function(){
 	$.fn.yiiGridView.update('MobileUser-grid', {
@@ -42,6 +40,20 @@ $this->widget('bootstrap.widgets.TbGridView', array(
             'name' => 'device_type',
             'header' => 'Device Type',
         ),
+        array(
+            'name' => 'registration_date',
+            'header' => 'Registration Date',
+            'value' => 'isset($data["registration_date"]) ? date("l M j Y  - G:i:s (T)", $data["registration_date"]->sec) : "N/A"'
+       ),
+        array(
+            'name' => 'last_connection_date',
+            'header' => 'Last Connection Date',
+            'value' => 'isset($data["last_connection_date"]) ? date("l M j Y  - G:i:s (T)", $data["last_connection_date"]->sec) : "N/A"'
+       ),
+       array(
+            'name' => 'app_version',
+            'header' => 'Version',
+        ),
         array
             (
             'class' => 'bootstrap.widgets.TbButtonColumn',
@@ -62,4 +74,3 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         ),
     ),
 ));
-?>

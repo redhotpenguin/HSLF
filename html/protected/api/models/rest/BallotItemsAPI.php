@@ -4,11 +4,9 @@ class BallotItemsAPI implements IAPI {
 
     private $allIncludes = array('districts', 'organizations', 'recommendations', 'news', 'party');
     private $item;
-    private $cacheDuration;
 
     public function __construct() {
         $this->item = new BallotItem();
-        $this->cacheDuration = Yii::app()->params->normal_cache_duration;
     }
 
     /**
@@ -17,15 +15,6 @@ class BallotItemsAPI implements IAPI {
      * @return array wrapped items
      */
     public function getList($tenantId, $arguments = array()) {
-        // build a unique cache key
-        $cacheKey = APIBase::cacheKeyBuilder('item', $tenantId, $arguments);
-
-
-        // serve from cache?
-        if (($r = Yii::app()->cache->get($cacheKey)) == true) {
-            return $r;
-        }
-
         $relations = array();
 
         $itemCriteria = new ItemCriteria($this->item);
@@ -49,9 +38,7 @@ class BallotItemsAPI implements IAPI {
         $items = $itemCriteria->search();
 
         if ($items) {
-            $result = $this->itemsWrapper($items, $relations);
-            Yii::app()->cache->set($cacheKey, $result, $this->cacheDuration);
-            return $result;
+            return $this->itemsWrapper($items, $relations);
         }
         else
             return false;
@@ -63,22 +50,12 @@ class BallotItemsAPI implements IAPI {
      * @todo Refactor this function to use ItemCriteria?
      */
     public function getSingle($tenantId, $id, $arguments = array()) {
-        $cacheKey = APIBase::cacheKeyBuilder('item', $tenantId, $arguments, $id);
-
-        // serve from cache if possible
-        if (($r = Yii::app()->cache->get($cacheKey)) == true) {
-            return $r;
-        }
-        
-
-
         // todo: find better way to do this
         $item = $this->item->with(array('district', 'recommendation', 'party'))->findByPk($id);
        
 
         if ($this->item != false) {
-            $result = $this->itemWrapper($item, $this->allIncludes);
-            Yii::app()->cache->set($cacheKey, $result, $this->cacheDuration);
+            return $this->itemWrapper($item, $this->allIncludes);
         }
         else
             $result = false;
@@ -256,6 +233,10 @@ class BallotItemsAPI implements IAPI {
 
     public function update($tenantId, $id, $arguments = array()) {
         return "operation not supported";
+    }
+
+    public function getCacheDuration() {
+        return Yii::app()->params->normal_cache_duration;
     }
 
 }

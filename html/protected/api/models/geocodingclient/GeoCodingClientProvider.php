@@ -15,7 +15,9 @@ class GeoCodingClientProvider {
 
 
             $tenant = Tenant::model()->findByPk($this->tenantId);
-
+            if(!$tenant)
+                  throw new Exception('Tenant not found');
+            
             $options = array(
                 'tenantId' => $this->tenantId,
                 'username' => $tenant->cicero_user,

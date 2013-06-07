@@ -262,13 +262,15 @@ class CJSON_Nested
                                 else
                                         $vars = get_object_vars($var);
                                         
-                                // related
-                                foreach ($var->relations() as $key => $related)
-                                {
-                                        if ($var->hasRelated($key))
-                                        {
-                                                $vars[$key] = $var->$key;
-                                        }
+                                if(method_exists($var, 'relations')){
+                                    // related
+                                    foreach ($var->relations() as $key => $related)
+                                    {
+                                            if ($var->hasRelated($key))
+                                            {
+                                                    $vars[$key] = $var->$key;
+                                            }
+                                    }
                                 }
                                 
                                 return '{' .

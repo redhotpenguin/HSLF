@@ -29,21 +29,15 @@ return array(
     ),
     // application components
     'components' => array(
-        'user' => array(
-            // enable cookie-based authentication
-            'allowAutoLogin' => true,
-        ),
-        // uncomment the following to enable URLs in path-format
-
         'urlManager' => array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'rules' => array(
                 array('api/index', 'pattern' => 'api', 'verb' => 'GET'),
-                array('api/list', 'pattern' => 'api/<tenant_id:\d+>/<model:\w+>/', 'verb' => 'GET'),
-                array('api/view', 'pattern' => 'api/<tenant_id:\d+>/<model:\w+>/<id:\d+>', 'verb' => 'GET'),
-                array('api/create', 'pattern' => 'api/<tenant_id:\d+>/<model:\w+>/', 'verb' => 'POST'),
-                array('api/update', 'pattern' => 'api/<tenant_id:\d+>/<model:\w+>/<id:\w+>', 'verb' => 'PUT'),
+                array('api/list', 'pattern' => 'api/<tenantId:\d+>/<resource:\w+>/', 'verb' => 'GET'),
+                array('api/view', 'pattern' => 'api/<tenantId:\d+>/<resource:\w+>/<id:\d+>', 'verb' => 'GET'),
+                array('api/create', 'pattern' => 'api/<tenantId:\d+>/<resource:\w+>/', 'verb' => 'POST'),
+                array('api/update', 'pattern' => 'api/<tenantId:\d+>/<resource:\w+>/<id:\w+>', 'verb' => 'PUT'),
             ),
         ),
         'db' => array(

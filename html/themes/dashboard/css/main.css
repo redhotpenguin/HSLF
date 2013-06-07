@@ -4,6 +4,33 @@ html,body
     height:100%;
 }
 
+/* bootstrap tweaks*/
+#menu-top .navbar-inverse .brand {
+    font-family: 'Open Sans';
+    color: #fff;
+    font-weight: bold;
+}
+#menu-top .navbar-inverse .nav > li > a {
+    font-family: 'Open Sans';
+    font-weight: bold;
+    color: #fff;
+}
+
+#menu-top .navbar-inverse .nav > li > a:hover,
+#menu-top .navbar-inverse .nav > li > a:active{
+    font-weight: bold;
+    color: #CCC;
+}
+
+
+.hero-unit{
+    border-radius: 0 !important;
+}
+
+.hero-unit h1{
+    margin-bottom:10px;
+}
+
 body{
     background: #fbfbfa url('/static/global/img/white-noise.png') top right repeat !important;
 }
@@ -30,7 +57,7 @@ h4{
     background-color: white;
     padding:20px;
     margin-top:40px;
-
+    font-family: 'Open Sans';
 }
 #subnav + #container{
     margin-top:80px;
@@ -106,53 +133,32 @@ h4{
     margin-top:10%;
 }
 
-#homepage .hero-unit h1{
-    margin-bottom:10px;
-}
-
 #homepage .action_group{
-    padding:15px;
-    border-radius:6px;
-    width:33%;
-    float:left;
-    margin-right:2%;
-    background-color:#EEE;
+    padding: 0px;
+    width: 50%;
+    float: left;
 }
 
-#homepage .action_group .action_title{
-    padding-top: 10px;
-    font-size: 1.7em;
+#homepage .action_group .action_block{
+    background-color: #EEE;
+    color: #333;
     font-weight: bold;
-    display: block;
-    color: #707070;
-    margin-left: 5%;
+    width: 50%;
+    float: left;
+    height: 120px;
+    text-align: center;
+    padding-top: 55px;
+    border-left: 1px solid #E6E6E6;
+    border-top: 1px solid #E6E6E6;
+    min-width: 175px;
+    webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
-#homepage .action_group .action_block_group{
-    margin-top:25px;
-}
-
-
-
-#homepage .action_block_group .action_block{
-    background-color:#0081C2;
-    color:#fff;
-    font-weight:bold;
-    border-radius:3px;
-    width:40%;
-    float:left;
-    margin-left:5%;
-    margin-right:5%;
-    margin-bottom:5%;
-    height:50px;
-    text-align:center;
-    padding-top:8%;
-    
-}
-
-#homepage .action_block_group .action_block:hover{
+#homepage .action_group .action_block:hover{
     text-decoration:none;
-    background-color:#0E76AA;
+    background-color:#E9E9E9;
     -webkit-transition: all .2s ease-out;
     -moz-transition: all .2s ease-out;
     transition: all .2s ease-out;

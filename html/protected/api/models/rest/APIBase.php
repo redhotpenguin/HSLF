@@ -7,20 +7,11 @@ abstract class APIBase implements IAPI {
     protected $tableAlias;
 
     public function __construct(CActiveRecord $model) {
-        $this->cacheDuration = Yii::app()->params->normal_cache_duration;
         $this->model = $model;
         $this->tableAlias = $model->getTableAlias();
     }
 
     public function getList($tenantId, $arguments = array()) {
-
-        $cacheKey = APIBase::cacheKeyBuilder(get_class($this->model), $tenantId, $arguments);
-
-        // serve from cache?
-        if (($r = Yii::app()->cache->get($cacheKey)) == true) {
-            return $r;
-        }
-
         // cache hasn't been found, build it
         $relations = array();
         $attributes = array();
@@ -59,25 +50,14 @@ abstract class APIBase implements IAPI {
 
         try {
             $result = $this->model->with($relations)->findAllByAttributes($attributes, $options);
-        } catch (CDbException $cdbE) {
-            return "no_results";
-        }
-
-        if (!empty($result)) {
-            Yii::app()->cache->set($cacheKey, $result, $this->cacheDuration);
+        } catch (Exception $cdbE) {
+            throw new RestException(500);
         }
 
         return $result;
     }
 
     public function getSingle($tenantId, $id, $arguments = array()) {
-        $cacheKey = APIBase::cacheKeyBuilder(get_class($this->model), $tenantId, $arguments, $id);
-
-        // serve from cache if possible
-        if (($r = Yii::app()->cache->get($cacheKey)) == true) {
-            return $r;
-        }
-
         $relations = array();
 
         if (isset($arguments['relations'])) {
@@ -93,48 +73,32 @@ abstract class APIBase implements IAPI {
 
         try {
             $result = $this->model->with($relations)->findByPk($id);
-        } catch (CDbException $cdbE) {
-            $result = "no_results";
-        }
 
-
-        if (!empty($result)) {
-            Yii::app()->cache->set($cacheKey, $result, $this->cacheDuration);
+            if (!$result) {
+                throw new RestException(404);
+            }
+        } catch (RestException $cdbE) {
+            throw $cdbE;
+        } catch (Exception $cdbE) {
+            throw new RestException(500);
         }
 
         return $result;
     }
 
     public function create($tenantId, $arguments = array()) {
-        return "operation not supported";
+        throw new RestException(501);
     }
 
     public function update($tenantId, $id, $arguments = array()) {
-        return "operation not supported";
+        throw new RestException(501);
     }
 
     public function requiresAuthentification() {
         return false;
     }
 
-    /**
-     * Helper
-     * build a unique key based on the model requested and arguments
-     * @param string $prefix prefix - should be a unique name describing the resource requested
-     * @param integer $tenantId - tenant id
-     * @param array $arguments - API request arguments
-     * @param integer $id - primary key (optional)
-     * 
-     */
-    public static function cacheKeyBuilder($prefix, $tenantId, $arguments = array(), $id = null) {
-
-        $string = $prefix . '_' . $tenantId . '_' . serialize($arguments);
-
-        if ($id != null) {
-            $string.= '_' . $id;
-        }
-
-        return $string;
+    public function getCacheDuration() {
+        return $this->cacheDuration = Yii::app()->params->normal_cache_duration;
     }
-
 }
