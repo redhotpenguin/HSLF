@@ -149,7 +149,7 @@ class PushComposerController extends Controller {
                     
                     $this->actionConfirmation();
                 } else {
-                    $payloadModel->delete();
+                    $payloadModel->delete(); // @todo: use transactions to rollback all changes if an error happens
                 }
             }
 
@@ -171,10 +171,6 @@ class PushComposerController extends Controller {
     }
 
     public function actionConfirmation($direction = 'next') {
-        error_log('conf');
-        logIt($_POST);
-
-
         $proceedToNextStep = false;
 
         $response = array(
