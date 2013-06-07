@@ -23,11 +23,12 @@ html,body
 }
 
 
-.hero-unit{
+#container .hero-unit{
     border-radius: 0 !important;
+    margin-bottom: 20px;
 }
 
-.hero-unit h1{
+#container .hero-unit h1{
     margin-bottom:10px;
 }
 
@@ -82,8 +83,6 @@ h4{
 
 }
 
-
-
 .news_item{
     padding: 10px;
     margin-bottom: 10px;
@@ -137,6 +136,12 @@ h4{
     padding: 0px;
     width: 50%;
     float: left;
+}
+
+#homepage .heroUserCount{
+    text-align:center;
+    padding: 60px;
+    margin-top: 30px;
 }
 
 #homepage .action_group .action_block{

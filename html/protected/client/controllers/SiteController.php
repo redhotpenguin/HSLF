@@ -53,7 +53,7 @@ class SiteController extends Controller {
         $tenantDisplayName = $tenant->display_name;
         
         
-        $this->render('home', array('tenantDisplayName'=>$tenantDisplayName));
+        $this->render('home', array('tenantDisplayName'=>$tenantDisplayName, 'userCount' => MobileUser::model()->count()));
     }
 
     /**
