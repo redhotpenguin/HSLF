@@ -107,6 +107,10 @@ h4{
     margin-top:10%;
 }
 
+#homepage .hero-unit{
+    border-radius: 0;
+}
+
 #homepage .hero-unit h1{
     margin-bottom:10px;
 }
@@ -117,21 +121,24 @@ h4{
     float: left;
 }
 
-#homepage .action_block_group .action_block{
+#homepage .action_group .action_block{
     background-color: #EEE;
     color: #333;
     font-weight: bold;
-    width: 49%;
+    width: 50%;
     float: left;
-    height: 60px;
+    height: 120px;
     text-align: center;
     padding-top: 50px;
     border-left: 1px solid #E6E6E6;
     border-top: 1px solid #E6E6E6;
     min-width: 175px;
+    webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
-#homepage .action_block_group .action_block:hover{
+#homepage .action_group .action_block:hover{
     text-decoration:none;
     background-color:#E9E9E9;
     -webkit-transition: all .2s ease-out;
