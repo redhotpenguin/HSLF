@@ -6,7 +6,6 @@ html,body
 
 body{
     background: #fbfbfa url('/static/global/img/white-noise.png') top right repeat !important;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 h1{
@@ -31,6 +30,7 @@ h4{
     background-color: white;
     padding:20px;
     margin-top:40px;
+    font-family: 'Open Sans';
 
 }
 #subnav + #container{
@@ -133,7 +133,7 @@ h4{
 
 #homepage .action_block_group .action_block:hover{
     text-decoration:none;
-    background-color:#ddd;
+    background-color:#E9E9E9;
     -webkit-transition: all .2s ease-out;
     -moz-transition: all .2s ease-out;
     transition: all .2s ease-out;
