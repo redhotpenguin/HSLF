@@ -23,11 +23,11 @@ html,body
 }
 
 
-.hero-unit{
+#container .hero-unit{
     border-radius: 0 !important;
 }
 
-.hero-unit h1{
+#container .hero-unit h1{
     margin-bottom:10px;
 }
 
