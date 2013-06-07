@@ -4,6 +4,33 @@ html,body
     height:100%;
 }
 
+/* bootstrap tweaks*/
+#menu-top .navbar-inverse .brand {
+    font-family: 'Open Sans';
+    color: #fff;
+    font-weight: bold;
+}
+#menu-top .navbar-inverse .nav > li > a {
+    font-family: 'Open Sans';
+    font-weight: bold;
+    color: #fff;
+}
+
+#menu-top .navbar-inverse .nav > li > a:hover,
+#menu-top .navbar-inverse .nav > li > a:active{
+    font-weight: bold;
+    color: #CCC;
+}
+
+
+.hero-unit{
+    border-radius: 0 !important;
+}
+
+.hero-unit h1{
+    margin-bottom:10px;
+}
+
 body{
     background: #fbfbfa url('/static/global/img/white-noise.png') top right repeat !important;
 }
@@ -31,7 +58,6 @@ h4{
     padding:20px;
     margin-top:40px;
     font-family: 'Open Sans';
-
 }
 #subnav + #container{
     margin-top:80px;
@@ -105,14 +131,6 @@ h4{
     color:#666;
     font-size:1em;
     margin-top:10%;
-}
-
-.hero-unit{
-    border-radius: 0 !important;
-}
-
-.hero-unit h1{
-    margin-bottom:10px;
 }
 
 #homepage .action_group{
