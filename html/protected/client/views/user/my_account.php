@@ -60,7 +60,7 @@ if (getParam('updated') == '1' || getParam('created') == '1') {
 
             <div class="clearfix"></div>
 
-            <div class="button-login">
+            <div class="prepend button-login">
                 <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'Save')); ?>
             </div>
         </fieldset>
