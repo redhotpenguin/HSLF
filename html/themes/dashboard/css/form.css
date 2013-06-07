@@ -210,17 +210,15 @@ input{
 
 
 .login-box {
-    width: 400px;
+    min-width: 400px;
+    width:50%;
     margin: 100px auto;
     background: #fff;
     color: #666;
     overflow: hidden;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-    -webkit-box-shadow: 0px 0px 0px 5px rgba(0,0,0,0.15);
-    -moz-box-shadow: 0px 0px 0px 5px rgba(0,0,0,0.15);
-    box-shadow: 0px 0px 0px 5px rgba(0,0,0,0.15);
+    border: 1px solid #D9D7CC;
+    border-radius: 4px;
+    box-shadow: rgba(128, 126, 115, .3) 0 2px 3px;
 }
 
 .login-box .icons {
@@ -242,14 +240,12 @@ input{
 .login-box h2 {
     color: #646464;
     margin-left: 30px;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: normal;
 }
 
 .login-box h3 {
     color: #646464;
     margin-left: 30px;
-    font-family: monaco;
     font-weight: normal;
 }
 
@@ -267,7 +263,7 @@ input{
 }
 
 .login-box .prepend{
-    padding: 15px 0px 0 20px;
+    padding: 15px 0px 0 35px;
 }
 
 .login-box .input-prepend-focus {
@@ -307,9 +303,6 @@ input{
 }
 
 .login-box .button-login {
-    margin-top: 20px;
-    margin-right: 20px;
-    float: right;
 }
 
 .halflings-icon {
