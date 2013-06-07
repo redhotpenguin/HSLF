@@ -38,6 +38,8 @@
             echo CHtml::link('Payloads', array('payload/index'), array('class' => 'action_block'));
         ?>
     </div>
-
-
+    <div class="clearfix"></div>
+    <div class="heroUserCount">
+        <h2><?php echo CHtml::link($userCount, array('mobileUser/index')); ?> people have installed your application.</h2>
+    </div>
 </div>

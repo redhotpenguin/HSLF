@@ -139,6 +139,12 @@ h4{
     float: left;
 }
 
+#homepage .heroUserCount{
+    text-align:center;
+    padding: 60px;
+    margin-top: 30px;
+}
+
 #homepage .action_group .action_block{
     background-color: #EEE;
     color: #333;
