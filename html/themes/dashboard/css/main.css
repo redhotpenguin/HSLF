@@ -107,11 +107,11 @@ h4{
     margin-top:10%;
 }
 
-#homepage .hero-unit{
-    border-radius: 0;
+.hero-unit{
+    border-radius: 0 !important;
 }
 
-#homepage .hero-unit h1{
+.hero-unit h1{
     margin-bottom:10px;
 }
 
