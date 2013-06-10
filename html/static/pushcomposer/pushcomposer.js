@@ -209,10 +209,11 @@ function composer($){
         var hiddenInputs = $("#hiddenInputs");
         $.each(validatedData['tagIds'], function(k,v){
             hiddenInputs.append(' <input type="hidden" name="Validation[TagIds][]" value ="'+v+'" />');
-        })
+        });
+        
         $.each(validatedData['payload'], function(k,v){
             hiddenInputs.append(' <input type="hidden" name="Validation[Payload]['+k+']" value ="'+v+'" />');
-        })
+        });
    
         var payloadTable = $("#payloadTable");
         payloadTable.append('<tr><td><strong>Title</strong></td><td>'+validatedData['payload'].title+'</td></tr>');

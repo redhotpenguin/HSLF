@@ -7,6 +7,7 @@
     </div>
 
     <?php
+    echo "<em>Push Message ID: #{$pushMessage->id}</em><br/>";
     if ($pushMessage->payload->type != 'other') {
         echo "<em>Payload ID: #{$pushMessage->payload->id}</em>";
     }
