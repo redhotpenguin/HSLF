@@ -30,13 +30,9 @@ function composer($){
     
     
     function updateFormState(action,direction){         
-        var query = pushcomposer_ns.controller_url + '/'+action+'/?direction='+direction;
-        
-        var data = {};
-        
+        var query = pushcomposer_ns.controller_url + '/'+action+'/?direction='+direction,
         data = $("#push_composer").serialize();
-               
-        dynamicComposerContent.fadeOut(100);
+    
         $.ajax({
             url:query,
             type:'POST',
@@ -44,9 +40,7 @@ function composer($){
         }).success(function(result){
             
             var fnct = 'handle'+steps[currentStepIndex]+'Step';
-            
-            self[fnct](result);
-            
+              
             if(result.proceedToNextStep){
                 currentStepIndex+=1;   
                 updateFormState(steps[currentStepIndex], 'next');
@@ -58,9 +52,11 @@ function composer($){
                 currentStepIndex = totalStepNumber;
             }
             
+            self[fnct](result);
+
             updateProgressBar(currentStepIndex);
 
-            dynamicComposerContent.fadeIn(100);
+            dynamicComposerContent.fadeIn(300);
         
         }).fail(function(jqXHR, textStatus){
             errorIndicator.html(jqXHR.responseText);
@@ -186,8 +182,8 @@ function composer($){
         dynamicComposerContent.html(data.html);
       
       
-      // test data. uncomment to prefill validation form
-      /*
+        // test data. uncomment to prefill validation form
+        /*
         validatedData['tagIds']  = [20, 21, 22]
        
         validatedData['pushMessage']  = {}

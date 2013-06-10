@@ -14,7 +14,7 @@ class PushMessageController extends CrudController {
 
         $extraRules = array(
             array('allow',
-                'actions' => array('composer','message', 'payload', 'recipient', 'validation', 'confirmation'),
+                'actions' => array('composer', 'message', 'payload', 'recipient', 'validation', 'confirmation'),
                 'roles' => array('managePushMessages'),
             )
         );
@@ -93,10 +93,12 @@ class PushMessageController extends CrudController {
         $response = array();
         $proceedToNextStep = false;
 
-        if (isset($_POST['TagIds'])) {
-            $tagIds = array_unique($_POST['TagIds']);
-            $proceedToNextStep = true;
-            $response['validatedModel'] = array('tagIds' => $tagIds);
+        if (Yii::app()->request->isPostRequest) {
+            if (isset($_POST['TagIds'])) {
+                $tagIds = array_unique($_POST['TagIds']);
+                $proceedToNextStep = true;
+                $response['validatedModel'] = array('tagIds' => $tagIds);
+            }
         }
 
         $response['proceedToNextStep'] = $proceedToNextStep;

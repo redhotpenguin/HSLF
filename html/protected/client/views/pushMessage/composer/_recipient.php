@@ -17,9 +17,6 @@ $form = $this->beginWidget('CActiveForm', array(
         <div class="span15">
             <div id="tag_list">
                 <h4>Tags: </h4>
-                <?php
-                ?>
-
             </div>
 
             <?php
