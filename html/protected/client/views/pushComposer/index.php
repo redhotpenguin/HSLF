@@ -23,6 +23,8 @@ Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::
 ?>
 
 <div class="clearfix"></div>
-
+<div id="progressIndicator" class="progress progress-info">
+    <div class="bar" id="progressBar"S></div>
+</div>
 <div id="dynamicComposerContent"></div>
 <div class="alert alert-error" id="errorIndicator"></div>

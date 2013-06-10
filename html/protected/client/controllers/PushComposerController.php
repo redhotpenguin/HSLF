@@ -144,15 +144,14 @@ class PushComposerController extends Controller {
                 $pushMessageModel->payload_id = $payloadModel->id;
 
                 if ($pushMessageModel->save()) {
-                    
+
                     $pushMessageModel->massUpdateTags($unfilterdTagIds); // @WARNING
-                    
+
                     $this->actionConfirmation($pushMessageModel);
                 } else {
                     $payloadModel->delete(); // @todo: use transactions to rollback all changes if an error happens
                 }
             }
-
         }
 
         $response = array(
@@ -168,6 +167,7 @@ class PushComposerController extends Controller {
         $response = array(
             'html' => $this->renderPartial('composer/_confirmation', array('pushMessage' => $pushMessage), true),
             'proceedToNextStep' => false,
+            'end' => true
         );
 
 

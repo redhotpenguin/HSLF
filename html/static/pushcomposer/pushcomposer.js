@@ -10,7 +10,9 @@ function composer($){
     dynamicComposerContent = $("#dynamicComposerContent"),
     errorIndicator = $("#errorIndicator"),
     messageTextarea = $("#PushMessage_alert"),
+    progressBar = $('#progressBar'),
     steps = [ 'Message','Payload','Recipient','Validation'],
+    totalStepNumber = steps.length,
     currentStepIndex = 0
     validatedData = []; // store valided models
     
@@ -52,8 +54,12 @@ function composer($){
             else if(result.proceedToLastStep){
                 currentStepIndex -=1;   
                 updateFormState(steps[currentStepIndex], 'next');
+            }else if(result.end){
+                currentStepIndex = totalStepNumber;
             }
             
+            updateProgressBar(currentStepIndex);
+
             dynamicComposerContent.fadeIn(100);
         
         }).fail(function(jqXHR, textStatus){
@@ -176,10 +182,13 @@ function composer($){
     }
     
     self.handleValidationStep = function(data){
-
+        
         dynamicComposerContent.html(data.html);
       
-        /*validatedData['tagIds']  = [20, 21, 22]
+      
+      // test data. uncomment to prefill validation form
+      /*
+        validatedData['tagIds']  = [20, 21, 22]
        
         validatedData['pushMessage']  = {}
        
@@ -273,6 +282,14 @@ function composer($){
         previewChars.html( charLeft  );
     }
 
-
+    function updateProgressBar(stepNumber){
+        var barWidth =  ( (stepNumber/totalStepNumber) * 100 ) + "%";
+        
+        if(stepNumber === totalStepNumber){ // last step
+            $("#progressIndicator").removeClass('progress-info').addClass('progress-success');
+        }
+       
+        progressBar.width(barWidth);
+    }
      
 } // jquery ready/end

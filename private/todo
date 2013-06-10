@@ -4,7 +4,7 @@ On push submission (PushComposerController/actionConfirmation), server should ta
 If requests take too long, a worker can be used (see MobileUserController/actionExport for an example).
 
 Tagging gotcha:
-The phone uses the tag named 'default' to retrieve broadcast push messages from the back-end. However, that tag shouldn't be communicated to UAP.
+The phone uses the tag named 'default' to retrieve broadcast push messages from the back-end. However, that tag shouldn't be communicated to UA.
 (/api/1/PushMessages/?tags=default,tag1,tag2,...). See https://github.com/OverlappingElvis/Oregon-AFSCME/blob/master/app/controllers/alertList.js#L39-L52
 
 
