@@ -14,7 +14,7 @@ class PushMessageController extends CrudController {
 
         $extraRules = array(
             array('allow',
-                'actions' => array('composer'),
+                'actions' => array('composer', 'confirmation'),
                 'roles' => array('managePushMessages'),
             )
         );
@@ -33,6 +33,40 @@ class PushMessageController extends CrudController {
     public function actionComposer() {
         $pushMessage = new PushMessage();
         $payload = new Payload();
+        $unfilterdTagIds = array();
+
+        if (Yii::app()->request->isPostRequest) {
+            $pushMessage->attributes = $_POST['PushMessage'];
+            $payload->attributes = $_POST['Payload'];
+
+            $pushMessage->creation_date = date('Y-m-d h:i:s');
+            $pushMessage->payload_id = 0;
+
+            if (isset($_POST['TagIds'])) {
+                $unfilterdTagIds = array_unique($_POST['TagIds']);
+            }
+
+            $pushMessage->validate();
+            $payload->validate();
+
+            if (!$pushMessage->errors && !$payload->errors) {
+                if ($payload->save()) {
+
+                    $pushMessage->payload_id = $payload->id;
+
+                    if ($pushMessage->save()) {
+
+                        if (!empty($unfilterdTagIds)) {
+                            $pushMessage->massUpdateTags($unfilterdTagIds); // @WARNING - todo: make sure $unfilterdTagIds contains legit data
+                        }
+                    } else {
+                        $payload->delete(); // @todo: use transactions to rollback all changes if an error happens
+                    }
+
+                    $this->redirect(array('confirmation', 'pushMessageId' => $pushMessage->id));
+                }
+            }
+        }
 
         $data = array(
             'tags' => Tag::model()->findAll(),
@@ -41,6 +75,11 @@ class PushMessageController extends CrudController {
         );
 
         $this->render('composer', $data);
+    }
+
+    public function actionConfirmation($pushMessageId) {
+        $pushMessage = PushMessage::model()->findByPk($pushMessageId);
+        $this->render('confirmation', array('pushMessage' => $pushMessage));
     }
 
 }

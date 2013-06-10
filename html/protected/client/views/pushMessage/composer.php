@@ -3,9 +3,11 @@ $baseUrl = Yii::app()->baseUrl;
 $cs = Yii::app()->getClientScript();
 $cs->registerScriptFile($baseUrl . '/static/pushcomposer/pushcomposer.js');
 $cs->registerCssFile($baseUrl . '/static/pushcomposer/pushcomposer.css');
+$tenant = Yii::app()->user->getLoggedInUserTenant();
+$controller_url = Yii::app()->params['site_url'] . '/client/' . $tenant->name;
 $tagList = CHtml::listData($tags, 'id', 'display_name');
 $jsonTagList = CJSON::encode($tagList);
-$ns = "var pushcomposer_ns  = {tagList:$jsonTagList};";
+$ns = "var pushcomposer_ns  = {controller_url: '" . $controller_url . "/pushMessage', tagList:$jsonTagList};";
 
 Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::POS_HEAD);
 
@@ -55,7 +57,7 @@ $form = $this->beginWidget('CActiveForm', array(
 
     <div class="row">
         <?php
-        $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'type' => 'primary', 'size' => 'large', 'label' => 'Send Push Notification', 'htmlOptions' => array('id' => 'sendNotificationBtn', 'style' => 'float:left;')));
+        $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'size' => 'large', 'label' => 'Send Push Notification', 'htmlOptions' => array('id' => 'sendNotificationBtn', 'style' => 'float:left;')));
         ?>
     </div>
 </div>

@@ -3,13 +3,13 @@ jQuery(document).ready(composer);
 
 function composer($){
     
-    var 
+    var
+    form = $("#push_composer"),
     payloadType = $("#Payload_type"),
     postRelatedInputs = $("#post_related_inputs"),
     shareRelatedInputs = $("#share_related_inputs"),
     pushMessageTextarea  = $("#PushMessage_alert"),
     payloadTitleInput = $("#Payload_title"),
-    sendNotificationBtn = $("#sendNotificationBtn"),
     updatePayloadType = function(){
         var type = this.value;
             
@@ -49,8 +49,6 @@ function composer($){
         $(this).parent().remove();
     },
     initializeRecipientStep = function (data){
-        var  addTagBtn = $("#add_tag_btn"),
-        deleteTagSpan = $("#delete_tag_original");
      
         // build a tag dropdown
         var tagList = "";
@@ -66,27 +64,20 @@ function composer($){
 
             var clonedDropDown = contactDropDown.clone();
         
-            var deleteButton = $('<div>').attr('class', 'span3 btn btn-warning').attr('id','').text("delete").appendTo(clonedDropDown).click(deleteDropDown);
+            $('<div>').attr('class', 'span3 btn btn-warning').attr('id','').text("delete").appendTo(clonedDropDown).click(deleteDropDown);
 
             $("#tag_list").append(clonedDropDown);
      
         });
  
    
-    },
-    confirmationButtonEvent = function(){
-        if(confirm("Are you sure you want to send this alert?") == false)
-            return;
-        
-        console.log('sending');
     };
        
-        
+       
     // event binding    
     payloadType.change(updatePayloadType); 
     payloadType.trigger('change');
     pushMessageTextarea.keyup(pushMessageTextareaChange);
-    sendNotificationBtn.click(confirmationButtonEvent);
     
     // initialization    
     shareRelatedInputs.hide();
