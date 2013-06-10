@@ -4,7 +4,7 @@ $form = $this->beginWidget('CActiveForm', array(
         ));
 ?>
 <fieldset id="recipients">
-    <h1>Recipients</h1>
+    <h1>Audience</h1>
 </fieldset>
 <div class="form">
 
