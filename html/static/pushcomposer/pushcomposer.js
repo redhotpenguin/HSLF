@@ -79,9 +79,7 @@ function composer($){
     }
     
     self.handlePayloadStep = function(data){
-        var payload_type = $("#Payload_type"),
-        post_related_inputs = $("#post_related_inputs"),
-        share_related_inputs = $("#share_related_inputs");
+      
             
         if(data.validatedModel != undefined && data.validatedModel.payload != undefined){
             validatedData['payload'] = data.validatedModel.payload;
@@ -89,10 +87,16 @@ function composer($){
         
         dynamicComposerContent.html(data.html);
         
+        
+        var payload_type = $("#Payload_type"),
+        post_related_inputs = $("#post_related_inputs"),
+        share_related_inputs = $("#share_related_inputs"),
+        payloadTitle = $("#Payload_title");
+        
         if(validatedData['payload']){
             populateFormFromModel(validatedData['payload']);
         }else{ // first time form is displayed
-            $("#Payload_title").val(validatedData['pushMessage'].alert);
+            payloadTitle.val(validatedData['pushMessage'].alert);
         }
         
 
