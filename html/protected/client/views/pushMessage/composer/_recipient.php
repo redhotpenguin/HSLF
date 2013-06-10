@@ -4,11 +4,10 @@
 
 
 <div id="tag_list">
-    <h4>Tags: </h4>
+    <label>Tags</label>
 </div>
 
 <?php
-
 $this->widget('bootstrap.widgets.TbButton', array(
     'label' => 'Add a tag',
     'htmlOptions' => array(

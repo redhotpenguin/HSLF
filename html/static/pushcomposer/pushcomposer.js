@@ -5,28 +5,30 @@ function composer($){
     
     var 
     payloadType = $("#Payload_type"),
-    post_related_inputs = $("#post_related_inputs"),
-    share_related_inputs = $("#share_related_inputs"),
+    postRelatedInputs = $("#post_related_inputs"),
+    shareRelatedInputs = $("#share_related_inputs"),
     pushMessageTextarea  = $("#PushMessage_alert"),
+    payloadTitleInput = $("#Payload_title"),
+    sendNotificationBtn = $("#sendNotificationBtn"),
     updatePayloadType = function(){
         var type = this.value;
             
         if(type == 'share'){
-            share_related_inputs.show();
-            post_related_inputs.hide();
+            shareRelatedInputs.show();
+            postRelatedInputs.hide();
         }else if(type == 'post'){
-            post_related_inputs.show();
-            share_related_inputs.hide();
+            postRelatedInputs.show();
+            shareRelatedInputs.hide();
         }else{
-            post_related_inputs.hide();
-            share_related_inputs.hide();
+            postRelatedInputs.hide();
+            shareRelatedInputs.hide();
         }
     },
-    updateCharacterCounter = function(e){
-        var textarea =  pushMessageTextarea.val();
+    pushMessageTextareaChange = function(e){
+        var message =  pushMessageTextarea.val();
         var previewChars = $("#previewChars");
         previewChars.removeClass('badge-success badge-warning badge-important');
-        var charLeft = 140 - ( textarea ? textarea.length : 0 );
+        var charLeft = 140 - ( message ? message.length : 0 );
        
         if(charLeft > 10){
             previewChars.addClass('badge badge-success');
@@ -37,6 +39,9 @@ function composer($){
         else{
             previewChars.addClass('badge badge-important');
         }
+        
+        payloadTitleInput.val(message);
+       
               
         previewChars.html( charLeft  );
     },
@@ -44,8 +49,6 @@ function composer($){
         $(this).parent().remove();
     },
     initializeRecipientStep = function (data){
-       
-        
         var  addTagBtn = $("#add_tag_btn"),
         deleteTagSpan = $("#delete_tag_original");
      
@@ -70,18 +73,25 @@ function composer($){
         });
  
    
+    },
+    confirmationButtonEvent = function(){
+        if(confirm("Are you sure you want to send this alert?") == false)
+            return;
+        
+        console.log('sending');
     };
        
         
     // event binding    
     payloadType.change(updatePayloadType); 
     payloadType.trigger('change');
-    pushMessageTextarea.keyup(updateCharacterCounter);
+    pushMessageTextarea.keyup(pushMessageTextareaChange);
+    sendNotificationBtn.click(confirmationButtonEvent);
     
     // initialization    
-    share_related_inputs.hide();
-    post_related_inputs.hide();
-    updateCharacterCounter();
+    shareRelatedInputs.hide();
+    postRelatedInputs.hide();
+    pushMessageTextareaChange();
     initializeRecipientStep();
     
     
