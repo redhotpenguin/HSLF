@@ -7,10 +7,13 @@
     </div>
 
     <?php
-    echo "<em>Push Message ID: #{$pushMessage->id}</em><br/>";
+    echo "<p><em>Push Message ID: #{$pushMessage->id}</em><br";
     if ($pushMessage->payload->type != 'other') {
         echo "<em>Payload ID: #{$pushMessage->payload->id}</em>";
     }
+
+        echo '</p><p>'.CHtml::link('Go back to push messages', array('pushMessage/index')).'</p>';
     ?>
+
 
 </fieldset>
