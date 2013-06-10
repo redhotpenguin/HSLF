@@ -34,7 +34,7 @@ class Payload extends BaseActiveRecord {
     }
 
     public function getTypeOptions() {
-        return array('post' => 'Post', 'share' => 'Share', 'other' => 'Other');
+        return array('other' => 'None', 'post' => 'Post', 'share' => 'Share');
     }
 
     /**
@@ -80,6 +80,7 @@ class Payload extends BaseActiveRecord {
             'description' => 'Description',
             'tweet' => 'Tweet',
             'email' => 'Email',
+            'type' => 'Action Type',
         );
     }
 
