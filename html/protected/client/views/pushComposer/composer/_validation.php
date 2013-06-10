@@ -35,7 +35,7 @@ $form = $this->beginWidget('CActiveForm', array(
 <div class="clearfix"></div>
 <hr/>
 <?php
-$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'type' => 'primary', 'size' => 'large', 'label' => 'Back', 'htmlOptions' => array('style' => 'float:left;', 'id' => 'composerBackBtn')));
-$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'type' => 'info', 'size' => 'large', 'label' => 'Send Push Notification', 'htmlOptions' => array('id' => 'composerNextBtn', 'style' => 'float:right;')));
+$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'size' => 'large', 'label' => 'Back', 'htmlOptions' => array('style' => 'float:left;', 'id' => 'composerBackBtn')));
+$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'type' => 'primary', 'size' => 'large', 'label' => 'Send Push Notification', 'htmlOptions' => array('id' => 'composerNextBtn', 'style' => 'float:right;')));
 $this->endWidget();
 ?>
