@@ -4,16 +4,12 @@ jQuery(document).ready(mobileUser);
 function mobileUser($){
     var 
     filters = $("#filters"),
-    composer = $("#composer"),
-    composerInput = $("#composer_input");
     filterInputs = $('input:text'),
     mobileUserCount = $("#mobile_user_count"),
     mobileUserForm = $("#mobile_user_form"),
-    composerBtn = $("#compose_alert_btn"),
     addTagBtn = $("#add_tag_btn"),
     addOptionBtn = $("#add_option_btn"),
     deleteTagSpan = $("#delete_tag_original"),
-    send_alert_btn = $("#send_alert_btn"),
     pushOnlyCheckBox = $("#push_only_checkbox");
     resultBox =   $("#push_result"),
     addDistrictBtn = $("#add_district_btn"),
@@ -33,15 +29,7 @@ function mobileUser($){
     pushOnlyCheckBox.change(function(){
         updateCount();
     });
-    
-
-    composerBtn.click(function(){
-        pushOnlyCheckBox.attr('checked', 'checked');
-        pushOnlyCheckBox.trigger('change');
-        filters.hide(100);
-        composer.show(100);
-    });
-    
+   
     
     
     addTagBtn.click(function(){
@@ -75,37 +63,6 @@ function mobileUser($){
        
         
         $("#district_list").append(newBox);
-    });
-    
-    $("#cancel_alert_btn").click(function(){
-        filters.show(100);
-        composer.hide(100);
-        composerInput.val("");
-        resultBox.html("");
-        resultBox.hide();
-        
-        $.each($("#key_value_list").find(':input'), function(){
-            $(this).val(""); 
-        });
-    });
-    
-    
-    send_alert_btn.click(function(){
-        submitForm( ns.action_url + '/mobileUser/sendAlert', function(result){
-            resultBox.show(100);
-            
-            
-            if(result == "success"){
-                resultBox.html("<div class='alert alert-success'>Message successfuly sent.</div>");
-                $("#alert").val('');
-                $("#composer_input").val('');
-            }
-            else{
-                resultBox.html("<div class='alert alert-error'>Error: "+result+"</div>");
-            }
-          
-        }, 'POST');
-            
     });
     
     function deleteTagBox(ev){
@@ -159,7 +116,6 @@ function mobileUser($){
     });
     
     function submitForm(actionUrl, _cb, method){  
-        console.log(actionUrl);
         if(method == 'undefined')
             method = 'GET';
 

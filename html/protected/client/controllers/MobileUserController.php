@@ -21,7 +21,7 @@ class MobileUserController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'view', 'delete', 'getCount', 'sendAlert', 'export'),
+                'actions' => array('index', 'view', 'delete', 'getCount', 'export'),
                 'roles' => array('manageMobileUsers'),
             ),
             array(
@@ -115,54 +115,6 @@ class MobileUserController extends Controller {
         die;
     }
 
-    /**
-     * Push an alert to a worker
-     */
-    public function actionSendAlert() {
-
-        $extra = array();
-
-        if (!isset($_POST['alert']) || empty($_POST['alert'])) {
-            echo 'Alert missing.';
-            die;
-        }
-
-
-        $searchAttributes = $this->parseSearchAttributes($_POST);
-
-        $searchAttributes['ua_identifier'] = array('$exists' => true); // make sure we only select users with a ua identifier
-
-        $alert = $_POST['alert']; //@todo: filter  + check length
-        // parse key value (extra)
-        if (isset($_POST['keys']) && isset($_POST['values'])) {
-            $keys = $_POST['keys'];
-            $values = $_POST['values'];
-
-
-            if (count($keys) == count($values)) {
-
-                $i = 0;
-
-                foreach ($keys as $key) {
-                    $extra[$key] = $values[$i];
-                    $i++;
-                }
-            }
-        }
-
-        $tenant = Yii::app()->user->getLoggedInUserTenant();
-
-        try {
-            $jobProducer = new UAJobProducer($tenant);
-            $jobResult = $jobProducer->pushUrbanAirshipMessage($alert, $searchAttributes, $extra);
-        } catch (JobProducerException $e) {
-            $jobResult = $e->getMessage();
-        }
-
-        echo ($jobResult === true ? "success" : $jobResult);
-
-        die;
-    }
 
     public function actionExport() { // @todo: move logic to a model
         $mobileUserModel = MobileUser::model();

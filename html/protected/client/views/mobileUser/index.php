@@ -116,12 +116,7 @@ $this->secondaryNav['url'] = array('mobileUser/index');
 
         <div style="margin-top:20px" class="row">
             <?php
-            $this->widget('bootstrap.widgets.TbButton', array(
-                'label' => 'Compose an alert',
-                'type' => 'primary',
-                'size' => 'large',
-                'htmlOptions' => array('id' => 'compose_alert_btn')
-            ));
+       
 
             $this->widget('bootstrap.widgets.TbButton', array(
                 'label' => 'Export current selection',
@@ -133,65 +128,6 @@ $this->secondaryNav['url'] = array('mobileUser/index');
         </div>
 
     </div>
-
-
-
-    <div id="composer" style="display:none;
-         ">
-        <div class="row-fluid">
-            <h4>Alert:</h4>
-            <?php
-            echo CHtml::textArea("alert", null, array('id' => 'composer_input', 'placeholder' => 'Message goes here', 'class' => 'span12', 'rows' => 3));
-            ?>
-
-        </div>
-        <hr/>
-        <div id="key_value_list">
-            <h4>Options:</h4>
-
-
-            <div class="row keyValueBox" id="original_key_value">
-                <?php
-                echo ' <b>key:</b> ' . CHtml::textField("keys[]", "", array('class' => 'keyInput'));
-
-                echo ' <b> value:</b> ' . CHtml::textField("values[]", "", array('class' => 'valueInput'));
-                ?>
-
-            </div>
-        </div>
-
-        <div class="row">
-            <?php
-            $this->widget('bootstrap.widgets.TbButton', array(
-                'label' => 'Add an option',
-                'htmlOptions' => array('id' => 'add_option_btn')
-            ));
-            ?>
-        </div>
-
-        <hr/>
-
-        <div class="row-fluid">
-
-            <?php
-            $this->widget('bootstrap.widgets.TbButton', array(
-                'label' => 'Go!',
-                'type' => 'info',
-                'size' => 'large',
-                'htmlOptions' => array('id' => 'send_alert_btn')
-            ));
-
-            $this->widget('bootstrap.widgets.TbButton', array(
-                'label' => 'Cancel',
-                'type' => 'warning',
-                'size' => 'large',
-                'htmlOptions' => array('id' => 'cancel_alert_btn', 'style' => 'float:right;')
-            ));
-            ?>
-        </div>
-    </div>
-
-    <div id="push_result"></div>
 
     <?php
     echo CHtml::endForm();
