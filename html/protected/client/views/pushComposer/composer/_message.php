@@ -1,9 +1,3 @@
-<?php
-    $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'type' => 'primary', 'size' => 'large', 'label' => 'Next', 'htmlOptions' => array('style' => 'float:right;', 'id' => 'composerNextBtn')));
-?>
-
-<div class="clearfix"></div>
-
 <fieldset id="action">
     <h1>Message</h1>
 </fieldset>
@@ -18,12 +12,12 @@
                     ));
 
             echo $form->errorSummary($pushMessageModel);
-            
+
             echo $form->textArea($pushMessageModel, 'alert', array('class' => 'span12', 'rows' => 3));
             ?>
-            
+
             <p>You have <span id="previewChars" class="badge"></span> characters left.</p>
-            
+
             <?php
             $this->endWidget();
             ?>
@@ -31,3 +25,9 @@
 
     </div>
 </div>
+
+<div class="clearfix"></div>
+<hr/>
+<?php
+$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'type' => 'primary', 'size' => 'large', 'label' => 'Next', 'htmlOptions' => array('style' => 'float:right;', 'id' => 'composerNextBtn')));
+?>

@@ -1,16 +1,8 @@
 <?php
-$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'type' => 'primary', 'size' => 'large', 'label' => 'Back', 'htmlOptions' => array('style' => 'float:left;', 'id' => 'composerBackBtn')));
-
-
-$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'type' => 'primary', 'size' => 'large', 'label' => 'Next', 'htmlOptions' => array('style' => 'float:right;', 'id' => 'composerNextBtn')));
-
-
 $form = $this->beginWidget('CActiveForm', array(
     'id' => 'push_composer',
         ));
 ?>
-
-<div class="clearfix"></div>
 <fieldset id="recipients">
     <h1>Recipients</h1>
 </fieldset>
@@ -26,7 +18,6 @@ $form = $this->beginWidget('CActiveForm', array(
             <div id="tag_list">
                 <h4>Tags: </h4>
                 <?php
-             
                 ?>
 
             </div>
@@ -45,5 +36,9 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
 </div>
 
+<div class="clearfix"></div>
+<hr/>
 <?php
+$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'type' => 'primary', 'size' => 'large', 'label' => 'Back', 'htmlOptions' => array('style' => 'float:left;', 'id' => 'composerBackBtn')));
+$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'type' => 'primary', 'size' => 'large', 'label' => 'Next', 'htmlOptions' => array('style' => 'float:right;', 'id' => 'composerNextBtn')));
 $this->endWidget();

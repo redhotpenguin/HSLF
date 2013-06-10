@@ -1,11 +1,3 @@
-<?php
-$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'type' => 'primary', 'size' => 'large', 'label' => 'Back', 'htmlOptions' => array('style' => 'float:left;', 'id' => 'composerBackBtn')));
-$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'type' => 'primary', 'size' => 'large', 'label' => 'Next', 'htmlOptions' => array('style' => 'float:right;', 'id' => 'composerNextBtn')));
-?>
-
-<div class="clearfix"></div>
-
-
 <fieldset id="action">
     <h1>Action</h1>
 </fieldset>
@@ -38,8 +30,9 @@ $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'typ
         echo $form->error($payloadModel, 'type');
         ?>
     </div>
-    <hr/>
+
     <div id="post_related_inputs">
+        <hr/>
         <div class="row-fluid">
             <?php echo $form->labelEx($payloadModel, 'post_number'); ?>
             <?php echo $form->textField($payloadModel, 'post_number', array('placeholder' => '', 'size' => 60, 'class' => 'span11')); ?>
@@ -49,6 +42,7 @@ $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'typ
     </div>
 
     <div id="share_related_inputs">
+        <hr/>
         <div class="row-fluid">
             <?php echo $form->labelEx($payloadModel, 'url'); ?>
             <?php echo $form->textField($payloadModel, 'url', array('placeholder' => '', 'size' => 60, 'maxlength' => 2048, 'class' => 'span11')); ?>
@@ -87,3 +81,11 @@ $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'typ
     ?>
 
 </div><!-- form -->
+
+<div class="clearfix"></div>
+<hr/>
+<?php
+$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'type' => 'primary', 'size' => 'large', 'label' => 'Back', 'htmlOptions' => array('style' => 'float:left;', 'id' => 'composerBackBtn')));
+$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'type' => 'primary', 'size' => 'large', 'label' => 'Next', 'htmlOptions' => array('style' => 'float:right;', 'id' => 'composerNextBtn')));
+?>
+

@@ -1,12 +1,8 @@
 <?php
-$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'type' => 'primary', 'size' => 'large', 'label' => 'Back', 'htmlOptions' => array('style' => 'float:left;', 'id' => 'composerBackBtn')));
-
 $form = $this->beginWidget('CActiveForm', array(
     'id' => 'push_composer',
         ));
 ?>
-
-<div class="clearfix"></div>
 
 
 <fieldset id="review">
@@ -36,9 +32,10 @@ $form = $this->beginWidget('CActiveForm', array(
 
 <div id="hiddenInputs"></div>
 
+<div class="clearfix"></div>
 <hr/>
-
 <?php
-$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'type' => 'primary', 'size' => 'large', 'label' => 'Send Push Notification', 'htmlOptions' => array('id' => 'composerNextBtn')));
+$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'type' => 'primary', 'size' => 'large', 'label' => 'Back', 'htmlOptions' => array('style' => 'float:left;', 'id' => 'composerBackBtn')));
+$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'button', 'type' => 'info', 'size' => 'large', 'label' => 'Send Push Notification', 'htmlOptions' => array('id' => 'composerNextBtn', 'style' => 'float:right;')));
 $this->endWidget();
 ?>
