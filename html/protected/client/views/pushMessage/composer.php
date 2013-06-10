@@ -1,31 +1,58 @@
 <?php
-
-$this->secondaryNav['name'] = 'Push Messages';
-$this->secondaryNav['url'] = array('pushMessage/index');
-
 $baseUrl = Yii::app()->baseUrl;
 $cs = Yii::app()->getClientScript();
 $cs->registerScriptFile($baseUrl . '/static/pushcomposer/pushcomposer.js');
 $cs->registerCssFile($baseUrl . '/static/pushcomposer/pushcomposer.css');
-
-$tenant = Yii::app()->user->getLoggedInUserTenant();
-
-$controller_url = Yii::app()->params['site_url'] . '/client/' . $tenant->name;
-
 $tagList = CHtml::listData($tags, 'id', 'display_name');
-
 $jsonTagList = CJSON::encode($tagList);
-
-$dropDownName = '[tags][]';
-
-$ns = "var pushcomposer_ns  = {controller_url: '" . $controller_url . "/pushMessage', tagList:$jsonTagList};";
+$ns = "var pushcomposer_ns  = {tagList:$jsonTagList};";
 
 Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::POS_HEAD);
+
+$this->secondaryNav['name'] = 'Push Messages';
+$this->secondaryNav['url'] = array('pushMessage/index');
 ?>
 
-<div class="clearfix"></div>
-<div id="progressIndicator" class="progress progress-info">
-    <div class="bar" id="progressBar"S></div>
+<?php
+$form = $this->beginWidget('CActiveForm', array(
+    'id' => 'push_composer',
+        ));
+?>
+<div class="form">
+
+    <h4 class="leader">Message</h4>
+    <div class="step row" >
+
+        <div class="span12">
+            <?php
+            echo $this->renderPartial('composer/_message', array('form' => $form, 'pushMessage' => $pushMessage));
+            ?>
+        </div>
+
+    </div>
+
+    <h4 class="leader">Action</h4>
+    <div class="step row">
+
+        <div class="span12">
+            <?php
+            echo $this->renderPartial('composer/_payload', array('form' => $form, 'payload' => $payload));
+            ?>
+        </div>
+
+    </div>
+
+    <h4 class="leader">Recipients</h4>
+    <div class="step row">
+
+        <div class="span12">
+            <?php
+            echo $this->renderPartial('composer/_recipient', array('form' => $form, 'payload' => $payload));
+            ?>
+        </div>
+
+    </div>
 </div>
-<div id="dynamicComposerContent"></div>
-<div class="alert alert-error" id="errorIndicator"></div>
+<?php
+$this->endWidget();
+?>

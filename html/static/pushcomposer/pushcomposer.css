@@ -1,3 +1,14 @@
+form#push_composer .step{
+    background-color:#F0EDE4;
+    margin-bottom:25px;
+    border:1px solid #eee;
+    padding:10px;
+}
+
+form#push_composer h4.leader{
+    margin-bottom: 15px;
+}
+
 #tagList .tagPill{
     padding: 5px 10px;
     text-align: center;
