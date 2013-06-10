@@ -2,7 +2,7 @@
 
 $navBarItems = array(
     '',
-    array('label' => 'Create', 'url' => array('create')),
+    array('label' => 'Composer', 'url' => array('pushMessage/composer')),
     '',
 );
 

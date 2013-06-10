@@ -1,6 +1,7 @@
 <?php
-$this->secondaryNav['name'] = 'Push Composer';
-$this->secondaryNav['url'] = array('pushComposer/index');
+
+$this->secondaryNav['name'] = 'Push Messages';
+$this->secondaryNav['url'] = array('pushMessage/index');
 
 $baseUrl = Yii::app()->baseUrl;
 $cs = Yii::app()->getClientScript();
@@ -17,7 +18,7 @@ $jsonTagList = CJSON::encode($tagList);
 
 $dropDownName = '[tags][]';
 
-$ns = "var pushcomposer_ns  = {controller_url: '" . $controller_url . "/pushComposer', tagList:$jsonTagList};";
+$ns = "var pushcomposer_ns  = {controller_url: '" . $controller_url . "/pushMessage', tagList:$jsonTagList};";
 
 Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::POS_HEAD);
 ?>
