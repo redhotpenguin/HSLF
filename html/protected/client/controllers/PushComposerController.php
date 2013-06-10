@@ -147,19 +147,13 @@ class PushComposerController extends Controller {
                     
                     $pushMessageModel->massUpdateTags($unfilterdTagIds); // @WARNING
                     
-                    $this->actionConfirmation();
+                    $this->actionConfirmation($pushMessageModel);
                 } else {
                     $payloadModel->delete(); // @todo: use transactions to rollback all changes if an error happens
                 }
             }
 
-            /*
-             * @todo: save tags
-             * link tags to pushMessage
-             * talk to UAP API
-             */
         }
-
 
         $response = array(
             'html' => $this->renderPartial('composer/_validation', array(), true),
@@ -170,12 +164,10 @@ class PushComposerController extends Controller {
         $this->printJsonResponse($response);
     }
 
-    public function actionConfirmation($direction = 'next') {
-        $proceedToNextStep = false;
-
+    public function actionConfirmation($pushMessage) {
         $response = array(
-            'html' => $this->renderPartial('composer/_confirmation', array(), true),
-            'proceedToNextStep' => $proceedToNextStep,
+            'html' => $this->renderPartial('composer/_confirmation', array('pushMessage' => $pushMessage), true),
+            'proceedToNextStep' => false,
         );
 
 
