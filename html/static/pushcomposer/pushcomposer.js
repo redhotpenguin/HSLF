@@ -75,10 +75,14 @@ function composer($){
         if(validatedData['pushMessage']){
             populateFormFromModel(validatedData['pushMessage']);
         }
-         updateCharacterCounter();
+        updateCharacterCounter();
     }
     
     self.handlePayloadStep = function(data){
+        var payload_type = $("#Payload_type"),
+        post_related_inputs = $("#post_related_inputs"),
+        share_related_inputs = $("#share_related_inputs");
+            
         if(data.validatedModel != undefined && data.validatedModel.payload != undefined){
             validatedData['payload'] = data.validatedModel.payload;
         }
@@ -87,11 +91,11 @@ function composer($){
         
         if(validatedData['payload']){
             populateFormFromModel(validatedData['payload']);
+        }else{ // first time form is displayed
+            $("#Payload_title").val(validatedData['pushMessage'].alert);
         }
         
-        var payload_type = $("#Payload_type");
-        post_related_inputs = $("#post_related_inputs");
-        share_related_inputs = $("#share_related_inputs");
+
         
         share_related_inputs.hide();
         post_related_inputs.hide();
@@ -247,23 +251,21 @@ function composer($){
     dynamicComposerContent.on('keyup', messageTextarea, updateCharacterCounter);
 
     function updateCharacterCounter(e){
-       var textarea =  $("#PushMessage_alert").val();
-       var previewChars = $("#previewChars");
-       previewChars.removeClass('badge-success badge-warning badge-important');
-       var charLeft = 140 - ( textarea ? textarea.length : 0 );
+        var textarea =  $("#PushMessage_alert").val();
+        var previewChars = $("#previewChars");
+        previewChars.removeClass('badge-success badge-warning badge-important');
+        var charLeft = 140 - ( textarea ? textarea.length : 0 );
        
-       if(charLeft > 10){
-           previewChars.addClass('badge badge-success');
-       }
-       else if(charLeft > -1){
-           previewChars.addClass('badge badge-warning');
-       }
-       else{
-           previewChars.addClass('badge badge-important');
-       }
-       
-       console.log(charLeft);
-       
+        if(charLeft > 10){
+            previewChars.addClass('badge badge-success');
+        }
+        else if(charLeft > -1){
+            previewChars.addClass('badge badge-warning');
+        }
+        else{
+            previewChars.addClass('badge badge-important');
+        }
+              
         previewChars.html( charLeft  );
     }
 
