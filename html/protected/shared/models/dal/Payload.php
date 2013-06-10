@@ -34,7 +34,7 @@ class Payload extends BaseActiveRecord {
     }
 
     public function getTypeOptions() {
-        return array('other' => 'None', 'post' => 'Post', 'share' => 'Share');
+        return array('other' => 'None', 'post' => 'Push to Post', 'share' => 'Push to Share');
     }
 
     /**
