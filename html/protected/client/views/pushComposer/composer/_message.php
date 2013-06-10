@@ -18,9 +18,13 @@
                     ));
 
             echo $form->errorSummary($pushMessageModel);
-
-            echo $form->textArea($pushMessageModel, 'alert', array('class' => 'span12', 'rows' => 10));
-
+            
+            echo $form->textArea($pushMessageModel, 'alert', array('class' => 'span12', 'rows' => 3));
+            ?>
+            
+            <p>You have <span id="previewChars" class="badge"></span> characters left.</p>
+            
+            <?php
             $this->endWidget();
             ?>
         </div>

@@ -9,6 +9,7 @@ function composer($){
     composerBackBtn = $("#composerBackBtn"),
     dynamicComposerContent = $("#dynamicComposerContent"),
     errorIndicator = $("#errorIndicator"),
+    messageTextarea = $("#PushMessage_alert"),
     steps = [ 'Message','Payload','Recipient','Validation'],
     currentStepIndex = 0
     validatedData = []; // store valided models
@@ -74,7 +75,7 @@ function composer($){
         if(validatedData['pushMessage']){
             populateFormFromModel(validatedData['pushMessage']);
         }
-    
+         updateCharacterCounter();
     }
     
     self.handlePayloadStep = function(data){
@@ -162,7 +163,7 @@ function composer($){
         });
  
         function deleteDropDown(){
-            console.log($(this).parent().remove());
+            $(this).parent().remove();
         }
     }
     
@@ -170,7 +171,7 @@ function composer($){
 
         dynamicComposerContent.html(data.html);
       
-      /*validatedData['tagIds']  = [20, 21, 22]
+        /*validatedData['tagIds']  = [20, 21, 22]
        
         validatedData['pushMessage']  = {}
        
@@ -243,8 +244,29 @@ function composer($){
     updateFormState(steps[currentStepIndex], 'next');
 
 
+    dynamicComposerContent.on('keyup', messageTextarea, updateCharacterCounter);
+
+    function updateCharacterCounter(e){
+       var textarea =  $("#PushMessage_alert").val();
+       var previewChars = $("#previewChars");
+       previewChars.removeClass('badge-success badge-warning badge-important');
+       var charLeft = 140 - ( textarea ? textarea.length : 0 );
+       
+       if(charLeft > 10){
+           previewChars.addClass('badge badge-success');
+       }
+       else if(charLeft > -1){
+           previewChars.addClass('badge badge-warning');
+       }
+       else{
+           previewChars.addClass('badge badge-important');
+       }
+       
+       console.log(charLeft);
+       
+        previewChars.html( charLeft  );
+    }
 
 
-
-} 
-
+     
+} // jquery ready/end
