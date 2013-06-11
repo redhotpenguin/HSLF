@@ -29,7 +29,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
             'name' => 'delivered',
             'header' => 'Status',
             'value' => '$data->getDelivered() ? "Delivered" : "Not delivered";',
-            'filter' => CHtml::dropDownList('PushMessage[delivered]', null, array('any' => 'Any', 'true' => 'Delivered', 'false' => 'Not Delivered')),
+            'filter' => CHtml::dropDownList('PushMessage[delivered]', $model->delivered, array('any' => 'Any', 'true' => 'Delivered', 'false' => 'Not Delivered')),
         ),
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',

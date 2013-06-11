@@ -117,13 +117,15 @@ class PushMessage extends BaseActiveRecord {
         }
 
         if ($this->delivered && $this->delivered !== 'any') {
+
             if ($this->delivered === 'true') {
                 $criteria->addCondition('push_identifier IS NOT NULL');
             } else {
                 $criteria->addCondition('push_identifier IS NULL');
             }
+            
         }
-        
+
         $criteria->compare('id', $this->id);
         $criteria->compare('payload_id', $this->payload_id);
         $criteria->compare('alert', $this->alert, true);
