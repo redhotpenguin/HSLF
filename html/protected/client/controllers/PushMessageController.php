@@ -50,20 +50,25 @@ class PushMessageController extends CrudController {
             $payload->validate();
 
             if (!$pushMessage->errors && !$payload->errors) {
-                if ($payload->save()) {
+
+                $transaction = $payload->dbConnection->beginTransaction();
+
+                try {
+                    $payload->save();
 
                     $pushMessage->payload_id = $payload->id;
 
-                    if ($pushMessage->save()) {
-
-                        if (!empty($unfilterdTagIds)) {
-                            $pushMessage->massUpdateTags($unfilterdTagIds); // @WARNING - todo: make sure $unfilterdTagIds contains legit data
-                        }
-                    } else {
-                        $payload->delete(); // @todo: use transactions to rollback all changes if an error happens
+                    $pushMessage->save();
+                    
+                    if (!empty($unfilterdTagIds)) {
+                        $pushMessage->massUpdateTags($unfilterdTagIds); // @WARNING - todo: make sure $unfilterdTagIds contains legit data
                     }
+                    $transaction->commit();
 
                     $this->redirect(array('confirmation', 'pushMessageId' => $pushMessage->id));
+                } catch (Exception $e) {
+                    $transaction->rollback();
+                    Yii::app()->user->setFlash('error', $e->getMessage());
                 }
             }
         }
