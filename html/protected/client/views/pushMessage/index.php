@@ -4,6 +4,8 @@ $navBarItems = array(
     '',
     array('label' => 'Composer', 'url' => array('pushMessage/composer')),
     '',
+    array('label' => 'Create', 'url' => array('pushMessage/create')),
+    '',
 );
 
 if ($isAdmin) {
