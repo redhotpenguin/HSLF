@@ -8,12 +8,15 @@
  * @property integer $payload_id
  * @property string $creation_date
  * @property string $alert
+ * @property string $push_identifier
  *
  * The followings are the available model relations:
  * @property Tag[] $tags
  * @property Payload $Payload
  */
 class PushMessage extends BaseActiveRecord {
+
+    public $delivered; // virtual property
 
     public function __construct($scenario = 'insert', $table = "") {
         $this->parentName = "Payload";
@@ -52,7 +55,7 @@ class PushMessage extends BaseActiveRecord {
             array('alert', 'length', 'max' => 140),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, payload_id, creation_date, alert', 'safe', 'on' => 'search'),
+            array('id, payload_id, creation_date, alert, push_identifier, delivered', 'safe', 'on' => 'search'),
         );
     }
 
@@ -77,7 +80,16 @@ class PushMessage extends BaseActiveRecord {
             'payload_id' => 'Payload',
             'creation_date' => 'Creation Date',
             'alert' => 'Alert',
+            'push_identifier' => 'Push Identifier'
         );
+    }
+
+    /**
+     * Return whether or not a message was deliverd to the push provider (urban airship)
+     * @return boolean
+     */
+    public function getDelivered() {
+        return $this->push_identifier ? true : false;
     }
 
     /**
@@ -104,9 +116,19 @@ class PushMessage extends BaseActiveRecord {
             }
         }
 
+        if ($this->delivered && $this->delivered !== 'any') {
+            if ($this->delivered === 'true') {
+                $criteria->addCondition('push_identifier IS NOT NULL');
+            } else {
+                $criteria->addCondition('push_identifier IS NULL');
+            }
+        }
+        
         $criteria->compare('id', $this->id);
         $criteria->compare('payload_id', $this->payload_id);
         $criteria->compare('alert', $this->alert, true);
+
+
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,

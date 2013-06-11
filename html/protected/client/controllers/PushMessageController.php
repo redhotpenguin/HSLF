@@ -14,7 +14,7 @@ class PushMessageController extends CrudController {
 
         $extraRules = array(
             array('allow',
-                'actions' => array('composer', 'confirmation'),
+                'actions' => array('composer', 'view', 'detail'),
                 'roles' => array('managePushMessages'),
             )
         );
@@ -84,8 +84,13 @@ class PushMessageController extends CrudController {
 
     public function actionConfirmation($pushMessageId) {
         $pushMessage = $this->loadModel($pushMessageId);
-        
+
         $this->render('confirmation', array('pushMessage' => $pushMessage));
+    }
+
+    public function actionView($id) {
+        $pushMessage = $this->loadModel($id);
+        $this->render('view', array('pushMessage' => $pushMessage));
     }
 
 }
