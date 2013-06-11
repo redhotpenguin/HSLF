@@ -22,7 +22,8 @@ form#push_composer h4.leader{
     -moz-border-radius: 5px;
     border-radius: 5px;
     color: #3A3A3A;
-    background-color: #CCC;
+    background-color: #fff;
+    border:1px solid #eee;
 }
 
 #PushMessage_alert{
