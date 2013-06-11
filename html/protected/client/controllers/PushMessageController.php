@@ -59,7 +59,7 @@ class PushMessageController extends CrudController {
                     $pushMessage->payload_id = $payload->id;
 
                     $pushMessage->save();
-                    
+
                     if (!empty($unfilterdTagIds)) {
                         $pushMessage->massUpdateTags($unfilterdTagIds); // @WARNING - todo: make sure $unfilterdTagIds contains legit data
                     }
@@ -83,7 +83,8 @@ class PushMessageController extends CrudController {
     }
 
     public function actionConfirmation($pushMessageId) {
-        $pushMessage = PushMessage::model()->findByPk($pushMessageId);
+        $pushMessage = $this->loadModel($pushMessageId);
+        
         $this->render('confirmation', array('pushMessage' => $pushMessage));
     }
 
