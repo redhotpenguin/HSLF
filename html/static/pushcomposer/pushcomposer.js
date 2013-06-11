@@ -10,6 +10,7 @@ function composer($){
     shareRelatedInputs = $("#share_related_inputs"),
     pushMessageTextarea  = $("#PushMessage_alert"),
     payloadTitleInput = $("#Payload_title"),
+    payloadTitleInputModified = false,
     updatePayloadType = function(){
         var type = this.value;
             
@@ -40,8 +41,11 @@ function composer($){
             previewChars.addClass('badge badge-important');
         }
         
-        payloadTitleInput.val(message);
-       
+        
+        // only auto update this field if the user has never changed it
+        if(!payloadTitleInputModified){
+            payloadTitleInput.val(message);
+        }
               
         previewChars.html( charLeft  );
     },
@@ -71,20 +75,25 @@ function composer($){
         });
  
    
+    },
+    setPayloadTitleModified = function(){
+        payloadTitleInputModified = true;
     };
        
        
     // event binding    
     payloadType.change(updatePayloadType); 
-    payloadType.trigger('change');
     pushMessageTextarea.keyup(pushMessageTextareaChange);
+    payloadTitleInput.change(setPayloadTitleModified);
+    
     
     // initialization    
     shareRelatedInputs.hide();
     postRelatedInputs.hide();
     pushMessageTextareaChange();
     initializeRecipientStep();
-    
+    payloadType.trigger('change');
+
     
 
      
