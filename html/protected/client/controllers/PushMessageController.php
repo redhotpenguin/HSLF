@@ -14,7 +14,7 @@ class PushMessageController extends CrudController {
 
         $extraRules = array(
             array('allow',
-                'actions' => array('composer', 'view', 'detail'),
+                'actions' => array('composer', 'view', 'detail', 'confirmation'),
                 'roles' => array('managePushMessages'),
             )
         );
@@ -63,8 +63,11 @@ class PushMessageController extends CrudController {
                     if (!empty($unfilterdTagIds)) {
                         $pushMessage->massUpdateTags($unfilterdTagIds); // @WARNING - todo: make sure $unfilterdTagIds contains legit data
                     }
+                    
+                    $pushMessage->deliverPush();
+                    
                     $transaction->commit();
-
+                    
                     $this->redirect(array('confirmation', 'pushMessageId' => $pushMessage->id));
                 } catch (Exception $e) {
                     $transaction->rollback();

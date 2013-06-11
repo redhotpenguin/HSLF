@@ -123,7 +123,6 @@ class PushMessage extends BaseActiveRecord {
             } else {
                 $criteria->addCondition('push_identifier IS NULL');
             }
-            
         }
 
         $criteria->compare('id', $this->id);
@@ -142,14 +141,14 @@ class PushMessage extends BaseActiveRecord {
 
     public function behaviors() {
         return array(
-            'MultiTenant' => array(
-                'class' => 'MultiTenantBehavior'),
+            'MultiTenant' => array('class' => 'MultiTenantBehavior'),
             'TagRelation' => array(
                 'class' => 'TagRelationBehavior',
                 'joinTableName' => 'tag_push_message',
                 'tagRelationName' => 'push_messages', // relation to this class, defined in Tags.
                 'foreignKeyName' => 'push_message_id'
-            )
+            ),
+            'DeliverPushMessageBehavior' => array('class'=>'DeliverPushMessageBehavior')
         );
     }
 

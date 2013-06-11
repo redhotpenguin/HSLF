@@ -2,14 +2,12 @@ jQuery(document).ready(composer);
 
 
 function composer($){
-    
-    var
-    form = $("#push_composer"),
-    payloadType = $("#Payload_type"),
+    var payloadType = $("#Payload_type"),
     postRelatedInputs = $("#post_related_inputs"),
     shareRelatedInputs = $("#share_related_inputs"),
     pushMessageTextarea  = $("#PushMessage_alert"),
     payloadTitleInput = $("#Payload_title"),
+    sendNotificationBtn = $("#sendNotificationBtn"),
     payloadTitleInputModified = false,
     updatePayloadType = function(){
         var type = this.value;
@@ -78,6 +76,9 @@ function composer($){
     },
     setPayloadTitleModified = function(){
         payloadTitleInputModified = true;
+    }
+    formSubmitEvent = function(){
+        return confirm("Are you sure you want to send this alert?");
     };
        
        
@@ -85,6 +86,7 @@ function composer($){
     payloadType.change(updatePayloadType); 
     pushMessageTextarea.keyup(pushMessageTextareaChange);
     payloadTitleInput.change(setPayloadTitleModified);
+    sendNotificationBtn.click(formSubmitEvent);
     
     
     // initialization    
@@ -93,8 +95,5 @@ function composer($){
     pushMessageTextareaChange();
     initializeRecipientStep();
     payloadType.trigger('change');
-
-    
-
      
 } // jquery ready/end
