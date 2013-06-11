@@ -57,7 +57,7 @@ $form = $this->beginWidget('CActiveForm', array(
 
     <div class="row">
         <?php
-        $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'size' => 'large', 'label' => 'Send Push Notification', 'htmlOptions' => array('id' => 'sendNotificationBtn', 'style' => 'float:left;')));
+        $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'size' => 'large', 'label' => 'Send Push Message', 'htmlOptions' => array('id' => 'sendNotificationBtn', 'style' => 'float:left;')));
         ?>
     </div>
 </div>

@@ -9,5 +9,7 @@ if ($pushMessage->payload->type != 'other') {
     echo "<em>Payload ID: #{$pushMessage->payload->id}</em>";
 }
 
-echo '</p><p>' . CHtml::link('Go back to push messages', array('pushMessage/index')) . '</p>';
+echo '</p><p>' . CHtml::link('Go back to push messages', array('pushMessage/index'));
+echo '<br/>' . CHtml::link('Send another message', array('pushMessage/composer')) . '</p>';
+
 ?>
