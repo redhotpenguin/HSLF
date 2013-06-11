@@ -26,6 +26,7 @@ html,body
 #container .hero-unit{
     border-radius: 0 !important;
     margin-bottom: 20px;
+    word-wrap: break-word;
 }
 
 #container .hero-unit h1{
