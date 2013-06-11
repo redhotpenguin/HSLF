@@ -9,7 +9,7 @@ form#push_composer h4.leader{
     margin-bottom: 15px;
 }
 
-#tagList .tagPill{
+.tagPill{
     padding: 5px 10px;
     text-align: center;
     margin-right: 7px;

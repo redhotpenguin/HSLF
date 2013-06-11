@@ -88,7 +88,7 @@ class PushMessage extends BaseActiveRecord {
      * Return whether or not a message was deliverd to the push provider (urban airship)
      * @return boolean
      */
-    public function getDelivered() {
+    public function isDelivered() {
         return $this->push_identifier ? true : false;
     }
 
