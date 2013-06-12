@@ -27,7 +27,40 @@ abstract class UrbanAirshipClient {
     }
 
     /**
+     * GET JSON data from UA API
+     * @param string $endPoint
+     * @param boolean $rawEndPoint indicate whether or not the endpoint is a full link or not
+     * @return result or throw exception
+     */
+    protected final function getJsonData($endPoint, $rawEndPoint = false) {
+
+
+        if ($rawEndPoint == false) {
+            $query = self::UA_API . $endPoint;
+        }
+
+
+        $ch = curl_init($query);
+        curl_setopt($ch, CURLOPT_USERPWD, $this->apiKey . ":" . $this->apiSecret);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+
+        $result = curl_exec($ch);
+
+        $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        curl_close($ch);
+
+        if ($status === 200) {
+            return $result;
+        }
+
+        throw new Exception($result);
+    }
+
+    /**
      * Post JSON data to UA API
+     * @param strign $endPoint
      * @param string $data (json format)
      * @return result or throw exception
      */
@@ -40,8 +73,7 @@ abstract class UrbanAirshipClient {
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json',)
-        );
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 
         $result = curl_exec($ch);
 

@@ -5,7 +5,15 @@ Yii::import("backend.vendors.UrbanAirship.*", true);
 
 $segmentClient = new SegmentClient('SOebz9QcSEmguGMiUKqj-Q','PUbBlrsnQP-pkAoV8uPDSA');
 
-$segmentClient->foo();
+echo '<pre>';
+
+$segments = $segmentClient->getSegments();
+
+
+print_r($segments);
+
+
+die;
 
 
 

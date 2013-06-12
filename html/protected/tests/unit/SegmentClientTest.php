@@ -15,7 +15,12 @@ class SegmentClientTest extends CDbTestCase {
     private $apiKey = "SOebz9QcSEmguGMiUKqj-Q"; // map-framework account https://go.urbanairship.com/apps/SOebz9QcSEmguGMiUKqj-Q/api/
     private $apiSecret = "PUbBlrsnQP-pkAoV8uPDSA"; // map-framework account  https://go.urbanairship.com/apps/SOebz9QcSEmguGMiUKqj-Q/api/
 
-
+    public function testGetSegments(){
+        
+        $result = $this->getSegmentClient()->getSegments();
+        
+        $this->assertNotEmpty($result);
+    }
 
     private function getSegmentClient() {
         return new SegmentClient($this->apiKey, $this->apiSecret);
