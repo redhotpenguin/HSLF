@@ -9,6 +9,7 @@
  * @property string $creation_date
  * @property string $alert
  * @property string $push_identifier
+ * @property string $recipient_type
  *
  * The followings are the available model relations:
  * @property Tag[] $tags
@@ -50,12 +51,13 @@ class PushMessage extends BaseActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('alert, creation_date, payload_id', 'required'),
+            array('alert, creation_date, payload_id, recipient_type', 'required'),
             array('payload_id', 'numerical', 'integerOnly' => true),
             array('alert', 'length', 'max' => 140),
+            array('recipient_type', 'length', 'max' => 16),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, payload_id, creation_date, alert, push_identifier, delivered', 'safe', 'on' => 'search'),
+            array('id, payload_id, creation_date, alert, push_identifier, delivered, recipient_type', 'safe', 'on' => 'search'),
         );
     }
 
@@ -80,7 +82,8 @@ class PushMessage extends BaseActiveRecord {
             'payload_id' => 'Payload',
             'creation_date' => 'Creation Date',
             'alert' => 'Alert',
-            'push_identifier' => 'Push Identifier'
+            'push_identifier' => 'Push Identifier',
+            'recipient_type' => 'Recipient Type'
         );
     }
 
@@ -128,7 +131,7 @@ class PushMessage extends BaseActiveRecord {
         $criteria->compare('id', $this->id);
         $criteria->compare('payload_id', $this->payload_id);
         $criteria->compare('alert', $this->alert, true);
-
+        $criteria->compare('recipient_type', $this->recipient_type, false);
 
 
         return new CActiveDataProvider($this, array(
@@ -147,7 +150,14 @@ class PushMessage extends BaseActiveRecord {
                 'joinTableName' => 'tag_push_message',
                 'tagRelationName' => 'push_messages', // relation to this class, defined in Tags.
                 'foreignKeyName' => 'push_message_id'
-            ));
+                ));
+    }
+
+    public static function getRecipientTypes() {
+        return array(
+            'tag' => 'Tag',
+            'broadcast' => 'Broadcast'
+        );
     }
 
 }

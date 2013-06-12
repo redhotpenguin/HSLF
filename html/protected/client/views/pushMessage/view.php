@@ -18,6 +18,13 @@ $this->secondaryNav['items'] = array('', array('label' => 'Composer', 'url' => a
         </div>
     </div>
 
+    <h4 class="leader">Recipient Type</h4>
+    <div class="step row" >
+        <div class="span12">
+            <p><?php echo $pushMessage->recipient_type; ?></p>
+        </div>
+    </div>
+
     <h4 class="leader">Status</h4>
     <div class="step row" >
         <div class="span12">

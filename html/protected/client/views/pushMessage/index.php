@@ -28,6 +28,11 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         ),
         'creation_date',
         array(
+            'header' => 'Recipient Type',
+            'value' => '$data->recipient_type',
+            'filter' => CHtml::dropDownList('PushMessage[recipient_type]', $model->recipient_type, $model->getRecipientTypes()),
+        ),
+        array(
             'name' => 'delivered',
             'header' => 'Status',
             'value' => '$data->isDelivered() ? "Delivered" : "Not delivered";',

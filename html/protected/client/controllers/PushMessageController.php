@@ -50,8 +50,8 @@ class PushMessageController extends CrudController {
 
             $pushMessage->creation_date = date('Y-m-d h:i:s');
             $pushMessage->payload_id = 0;
-
-
+            $pushMessage->recipient_type = $recipientType;
+            
             $pushMessage->validate();
             $payload->validate();
 
@@ -108,6 +108,8 @@ class PushMessageController extends CrudController {
     }
 
     private function sendPushMessage(PushMessage $pushMessage, $method) {
+        
+        return 1234;
 
         $tenant = Yii::app()->user->getLoggedInUserTenant();
 
