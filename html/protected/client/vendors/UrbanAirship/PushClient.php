@@ -7,7 +7,7 @@
  */
 class PushClient {
 
-    const PUSH_API = 'https://go.urbanairship.com/api/push/';
+    const UA_API = 'https://go.urbanairship.com/api';
 
     /**
      * API Key
@@ -39,9 +39,9 @@ class PushClient {
      */
     public function sendPushNotificationByTags(PushNotification $pushNotification, array $tags) {
         $payload = $pushNotification->getPayload();
-        
+
         $container = $payload;
-        
+
 
         $container['tags'] = $tags;
 
@@ -49,17 +49,51 @@ class PushClient {
             'alert' => $pushNotification->getAlert()
         );
 
-        $container['android'] =  array(
+        $container['android'] = array(
             'alert' => $pushNotification->getAlert()
         );
-        
-        if(!empty($payload)){
+
+        if (!empty($payload)) {
             $container['android']['extra'] = $payload;
         }
 
 
         try {
-            $jsonResult = $this->postJsonData(json_encode($container));
+            $jsonResult = $this->postJsonData('/push/', json_encode($container));
+            $result = json_decode($jsonResult, true);
+            if (isset($result['push_id'])) {
+                return $result['push_id'];
+            }
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+    /**
+     * Send a broadcast push notification
+     * @param PushNotification $PushNotification notification object to be sent
+     * @return push id if success or throw exception on failure
+     */
+    public function sendBroadcastPushNotification(PushNotification $pushNotification) {
+        $payload = $pushNotification->getPayload();
+
+        $container = $payload;
+
+
+        $container['aps'] = array(
+            'alert' => $pushNotification->getAlert()
+        );
+
+        $container['android'] = array(
+            'alert' => $pushNotification->getAlert()
+        );
+
+        if (!empty($payload)) {
+            $container['android']['extra'] = $payload;
+        }
+
+        try {
+            $jsonResult = $this->postJsonData('/push/broadcast/', json_encode($container));
             $result = json_decode($jsonResult, true);
             if (isset($result['push_id'])) {
                 return $result['push_id'];
@@ -74,11 +108,11 @@ class PushClient {
      * @param string $data (json format)
      * @return result or throw exception
      */
-    private function postJsonData($data) {
+    private function postJsonData($endPoint, $data) {
 
-        logIt($data);
+        error_log("Sending following payload to Urban Airship: " . $data);
 
-        $ch = curl_init(self::PUSH_API);
+        $ch = curl_init(self::UA_API . $endPoint);
         curl_setopt($ch, CURLOPT_USERPWD, $this->apiKey . ":" . $this->apiSecret);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
