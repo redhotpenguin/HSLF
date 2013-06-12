@@ -28,7 +28,8 @@ class PushMessageCriteria extends CDbCriteria {
      */
     public function setTags($tagNames) {
 
-        $this->addTagRelation();
+        //   $this->addTagRelation();
+        $this->setRelations(array('tags'));
 
         $i = 0;
 
@@ -54,6 +55,7 @@ class PushMessageCriteria extends CDbCriteria {
      * @param integer $limit - limit number
      */
     public function setLimit($limit) {
+        $this->together = true; // ADDED THIS
         $this->limit = $limit;
     }
 
@@ -97,8 +99,7 @@ class PushMessageCriteria extends CDbCriteria {
         try {
             $pushMessages = $activeDataProvider->getData();
         } catch (CDbException $cdbE) {
-           //echo $cdbE->getMessage(); // debug
-            $pushMessages = false;
+            throw new RestException(500, $cdbE->getMessage());
         }
 
 
