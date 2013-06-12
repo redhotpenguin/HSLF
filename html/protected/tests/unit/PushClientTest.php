@@ -1,6 +1,7 @@
 <?php
 
 require_once('/var/www/html/mobile_platform/html/protected/helpers/globals.php'); // there is a better way to do this..
+require_once('/var/www/html/mobile_platform/html/protected/client/vendors/UrbanAirship/UrbanAirshipClient.php'); // there is a better way to do this..
 require_once('/var/www/html/mobile_platform/html/protected/client/vendors/UrbanAirship/PushNotification.php'); // there is a better way to do this..
 require_once('/var/www/html/mobile_platform/html/protected/client/vendors/UrbanAirship/PushClient.php'); // there is a better way to do this..
 
