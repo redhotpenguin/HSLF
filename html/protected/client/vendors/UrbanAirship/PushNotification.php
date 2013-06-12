@@ -1,8 +1,11 @@
 <?php
 
+/**
+ * Represent a push message containg an alert and a payload
+ * @todo: make sure total push message byte size doesn't exceed allowed limit.
+ */
 class PushNotification {
 
-    private $tags = array();
     private $payload = array();
     private $alert;
     
@@ -16,14 +19,6 @@ class PushNotification {
     
     public function getAlert(){
         return $this->alert;
-    }
-
-    public function getTags() {
-        return $this->tags;
-    }
-
-    public function setTags(array $tags) {
-        $this->tags = $tags;
     }
 
     public function getPayload() {

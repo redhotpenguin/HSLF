@@ -147,9 +147,7 @@ class PushMessage extends BaseActiveRecord {
                 'joinTableName' => 'tag_push_message',
                 'tagRelationName' => 'push_messages', // relation to this class, defined in Tags.
                 'foreignKeyName' => 'push_message_id'
-            ),
-            'DeliverPushMessageBehavior' => array('class'=>'DeliverPushMessageBehavior')
-        );
+            ));
     }
 
 }

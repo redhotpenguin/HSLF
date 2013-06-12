@@ -32,22 +32,31 @@ class PushClient {
     }
 
     /**
-     * Send a push notification
+     * Send a push notification using tags
      * @param PushNotification $PushNotification notification object to be sent
+     * @param array $tags tags that should receive the notification
      * @return push id if success or throw exception on failure
      */
-    public function sendPushNotification(PushNotification $pushNotification) {
-        $container = $pushNotification->getPayload();
+    public function sendPushNotificationByTags(PushNotification $pushNotification, array $tags) {
+        $payload = $pushNotification->getPayload();
+        
+        $container = $payload;
+        
 
-        $container['tags'] = $pushNotification->getTags();
+        $container['tags'] = $tags;
 
         $container['aps'] = array(
             'alert' => $pushNotification->getAlert()
         );
 
-        $container['android'] = $pushNotification->getPayload() + array(
+        $container['android'] =  array(
             'alert' => $pushNotification->getAlert()
         );
+        
+        if(!empty($payload)){
+            $container['android']['extra'] = $payload;
+        }
+
 
         try {
             $jsonResult = $this->postJsonData(json_encode($container));
@@ -66,6 +75,9 @@ class PushClient {
      * @return result or throw exception
      */
     public function postJsonData($data) {
+
+        logIt($data);
+
         $ch = curl_init(self::PUSH_API);
         curl_setopt($ch, CURLOPT_USERPWD, $this->apiKey . ":" . $this->apiSecret);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");

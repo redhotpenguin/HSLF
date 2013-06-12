@@ -1,5 +1,7 @@
 <?php
 
+Yii::import("backend.vendors.UrbanAirship.*", true);
+
 class PushMessageController extends CrudController {
 
     public function __construct() {
@@ -63,11 +65,10 @@ class PushMessageController extends CrudController {
                     if (!empty($unfilterdTagIds)) {
                         $pushMessage->massUpdateTags($unfilterdTagIds); // @WARNING - todo: make sure $unfilterdTagIds contains legit data
                     }
-                    
-                    $pushMessage->deliverPush();
-                    
+
+                    $this->sendPushMessage($pushMessage);
+
                     $transaction->commit();
-                    
                     $this->redirect(array('confirmation', 'pushMessageId' => $pushMessage->id));
                 } catch (Exception $e) {
                     $transaction->rollback();
@@ -94,6 +95,28 @@ class PushMessageController extends CrudController {
     public function actionView($id) {
         $pushMessage = $this->loadModel($id);
         $this->render('view', array('pushMessage' => $pushMessage));
+    }
+
+    private function sendPushMessage(PushMessage $pushMessage) {
+        
+        $tenant = Yii::app()->user->getLoggedInUserTenant();
+        
+        $client = new PushClient($tenant->ua_api_key, $tenant->ua_api_secret);
+        $payload = array();
+        $tags = array();
+
+        if ($pushMessage->payload->type != 'other') {
+            $payload = array('payload_id' => (string) $pushMessage->payload->id);
+        }
+
+        foreach ($pushMessage->tags as $tag) {
+            array_push($tags, $tag->name);
+        }
+
+        $pushNotification = new PushNotification($pushMessage->alert);
+        $pushNotification->setPayload($payload);
+
+        return $client->sendPushNotificationByTags($pushNotification, $tags);
     }
 
 }
