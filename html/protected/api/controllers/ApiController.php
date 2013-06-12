@@ -36,6 +36,8 @@ class ApiController extends Controller {
             if (($cachedJsonResult = Yii::app()->cache->get($this->cacheKey)) == true) {
                 $this->sendResponse(200, $cachedJsonResult);
             }
+        } else {
+            $cachable = false;
         }
 
 
@@ -69,6 +71,8 @@ class ApiController extends Controller {
             if (($cachedJsonResult = Yii::app()->cache->get($this->cacheKey)) == true) {
                 $this->sendResponse(200, $cachedJsonResult);
             }
+        } else {
+            $cachable = false;
         }
 
         try {
@@ -170,7 +174,6 @@ class ApiController extends Controller {
         return $model;
     }
 
-    
     /**
      * Build and return a JSON response
      * @param $status http status
