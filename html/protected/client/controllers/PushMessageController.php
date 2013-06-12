@@ -3,20 +3,6 @@
 Yii::import("backend.vendors.UrbanAirship.*", true);
 
 
-$segmentClient = new SegmentClient('SOebz9QcSEmguGMiUKqj-Q','PUbBlrsnQP-pkAoV8uPDSA');
-
-echo '<pre>';
-
-$segments = $segmentClient->getSegments();
-
-
-print_r($segments);
-
-
-die;
-
-
-
 class PushMessageController extends CrudController {
 
     public function __construct() {
