@@ -38,7 +38,7 @@ $this->secondaryNav['items'] = array('', array('label' => 'Composer', 'url' => a
             <?php
             if ($pushMessage->tags) {
                 foreach ($pushMessage->tags as $tag) {
-                    echo "<span class='tagPill'>{$tag}</span>";
+                    echo "<span class='tagPill'>{$tag->name}</span>";
                 }
             } else {
                 echo '<p>No tags set</p>';
