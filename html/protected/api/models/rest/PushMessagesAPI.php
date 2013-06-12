@@ -24,12 +24,20 @@ class PushMessagesAPI extends APIBase {
         if (isset($arguments['tags']) && !empty($arguments['tags'])) {
             $tags = explode(',', $arguments['tags']);
             $criteria->setTags($tags);
+
+            $criteria->addCondition('recipient_type=:recipient_type', 'OR');
+            $criteria->params[":recipient_type"] = 'broadcast';
         }
 
         // limit results
         if (isset($arguments['limit']) && is_numeric($arguments['limit'])) {
             $criteria->setLimit($arguments['limit']);
         }
+
+        // uncomment the following lines to see the 'query' structure
+        //  echo '<pre>';
+        //print_r($criteria->toArray());
+        // echo '</pre>';
 
         return $criteria->search();
     }
