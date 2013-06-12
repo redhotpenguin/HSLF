@@ -11,6 +11,8 @@ function composer($){
     recipientTypeInputs = $('#recipientSection input[name="recipient_type"]'),
     tagListChoice = $("#tagListChoice"),
     broadcastChoice = $("#broadcastChoice"),
+    segmentChoice = $("#segmentChoice"),
+    segmentSelectInput = $("#segmentSelectInput"),
     payloadTitleInputModified = false,
     updatePayloadType = function(){
         var type = this.value;
@@ -85,14 +87,36 @@ function composer($){
     },
     recipientChoiceChange = function(){
         var recipientType = $(this).val();
+        tagListChoice.hide();
+        broadcastChoice.hide();
+        segmentChoice.hide();
+        
+        
         if(recipientType == 'broadcast'){
             broadcastChoice.show();
             tagListChoice.hide();
-        }else{
-            broadcastChoice.hide();
+        }else if (recipientType == 'tag' ){
             tagListChoice.show();
         }
-    };
+        else{
+            populateSegmentList();
+            segmentChoice.show();
+        }
+    },
+    getSegments = function(_cb){
+        $.get(pushcomposer_ns.controller_url+'/jsonSegments',_cb);
+    },
+    populateSegmentList = function(){
+        segmentSelectInput.empty();
+        getSegments(function(segments){
+            $.each(segments, function(segmentIndex){
+                var segment = segments[segmentIndex];
+                segmentSelectInput.append( $('<option name="segmentId" value="'+segment.id+'"> '+ segment.display_name +'  </option>'));
+            }); 
+        });
+    }
+       
+
        
        
     // event binding    
@@ -109,5 +133,6 @@ function composer($){
     pushMessageTextareaChange();
     initializeRecipientStep();
     payloadType.trigger('change');
-    $("#id_recipient_type_broadcast").change();
+    populateSegmentList();
+    $("#id_recipient_type_segment").click();
 } // jquery ready/end

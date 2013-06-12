@@ -2,7 +2,6 @@
 
 Yii::import("backend.vendors.UrbanAirship.*", true);
 
-
 class PushMessageController extends CrudController {
 
     public function __construct() {
@@ -17,7 +16,7 @@ class PushMessageController extends CrudController {
 
         $extraRules = array(
             array('allow',
-                'actions' => array('composer', 'view', 'detail', 'confirmation'),
+                'actions' => array('composer', 'view', 'detail', 'confirmation', 'jsonSegments'),
                 'roles' => array('managePushMessages'),
             )
         );
@@ -78,9 +77,9 @@ class PushMessageController extends CrudController {
                     }
 
                     $pushMessage->push_identifier = $this->sendPushMessage($pushMessage, $recipientType);
-                
+
                     $pushMessage->save();
-                    
+
                     $transaction->commit();
                     $this->redirect(array('confirmation', 'pushMessageId' => $pushMessage->id));
                 } catch (Exception $e) {
@@ -136,6 +135,19 @@ class PushMessageController extends CrudController {
         }
 
         return $result;
+    }
+
+    public function actionJsonSegments() {
+        header('Content-type: ' . 'application/json;charset=UTF-8');
+
+        $tenant = Yii::app()->user->getLoggedInUserTenant();
+
+        $segmentClient = new SegmentClient($tenant->ua_api_key, $tenant->ua_api_secret);
+
+        $response = $segmentClient->getSegments();
+
+        echo CJSON::encode($response);
+        Yii::app()->end();
     }
 
 }
