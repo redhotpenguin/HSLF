@@ -51,7 +51,7 @@ class PushMessageController extends CrudController {
             $pushMessage->creation_date = date('Y-m-d h:i:s');
             $pushMessage->payload_id = 0;
             $pushMessage->recipient_type = $recipientType;
-            
+
             $pushMessage->validate();
             $payload->validate();
 
@@ -68,7 +68,7 @@ class PushMessageController extends CrudController {
 
                     if ($recipientType === 'tag') {
 
-                        if(isset($_POST['TagIds'])) {
+                        if (isset($_POST['TagIds'])) {
                             $unfilterdTagIds = array_unique($_POST['TagIds']);
                             $pushMessage->massUpdateTags($unfilterdTagIds); // @WARNING - todo: make sure $unfilterdTagIds contains legit data
                         } else {
@@ -76,8 +76,10 @@ class PushMessageController extends CrudController {
                         }
                     }
 
-                    $this->sendPushMessage($pushMessage, $recipientType);
-
+                    $pushMessage->push_identifier = $this->sendPushMessage($pushMessage, $recipientType);
+                
+                    $pushMessage->save();
+                    
                     $transaction->commit();
                     $this->redirect(array('confirmation', 'pushMessageId' => $pushMessage->id));
                 } catch (Exception $e) {
@@ -108,9 +110,6 @@ class PushMessageController extends CrudController {
     }
 
     private function sendPushMessage(PushMessage $pushMessage, $method) {
-        
-        return 1234;
-
         $tenant = Yii::app()->user->getLoggedInUserTenant();
 
         $client = new PushClient($tenant->ua_api_key, $tenant->ua_api_secret);
@@ -134,7 +133,6 @@ class PushMessageController extends CrudController {
         } else { // broadcast
             $result = $client->sendBroadcastPushNotification($pushNotification);
         }
-
 
         return $result;
     }

@@ -1,10 +1,11 @@
 <?php
+$header = 'Thank You';
+
 if (!$pushMessage->push_identifier) {
-    $header = 'Thank You';
     $note = "{$pushMessage->alert} was successfully saved.";
 } else {
-    $header = 'Push Message delivered';
-    $note = CHtml::link('Details', Chtml::normalizeUrl(array('pushMessage/view', 'id' => $pushMessage->id)));
+    $note = '"' . $pushMessage->alert . '" was successfully delivered.<br/>';
+    $note .= CHtml::link('Details', Chtml::normalizeUrl(array('pushMessage/view', 'id' => $pushMessage->id)));
 }
 ?>
 
