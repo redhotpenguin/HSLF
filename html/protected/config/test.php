@@ -1,5 +1,10 @@
 <?php
 
+$clientDirectory = dirname(dirname(__FILE__));
+$appDirectory = dirname($clientDirectory);
+
+Yii::setPathOfAlias('backend', $clientDirectory);
+
 return CMap::mergeArray(
                 require(dirname(__FILE__) . '/main.php'), array(
             'import' => array(

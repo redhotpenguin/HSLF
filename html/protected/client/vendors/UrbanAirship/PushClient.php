@@ -74,7 +74,7 @@ class PushClient {
      * @param string $data (json format)
      * @return result or throw exception
      */
-    public function postJsonData($data) {
+    private function postJsonData($data) {
 
         logIt($data);
 
