@@ -8,6 +8,9 @@ function composer($){
     pushMessageTextarea  = $("#PushMessage_alert"),
     payloadTitleInput = $("#Payload_title"),
     sendNotificationBtn = $("#sendNotificationBtn"),
+    recipientTypeInputs = $('#recipientSection input[name="recipient_type"]'),
+    tagListChoice = $("#tagListChoice"),
+    broadcastChoice = $("#broadcastChoice"),
     payloadTitleInputModified = false,
     updatePayloadType = function(){
         var type = this.value;
@@ -68,7 +71,7 @@ function composer($){
         
             $('<div>').attr('class', 'span3 btn btn-warning').attr('id','').text("delete").appendTo(clonedDropDown).click(deleteDropDown);
 
-            $("#tag_list").append(clonedDropDown);
+            tagListChoice.append(clonedDropDown);
      
         });
  
@@ -79,6 +82,16 @@ function composer($){
     }
     formSubmitEvent = function(){
         return confirm("Are you sure you want to send this alert?");
+    },
+    recipientChoiceChange = function(){
+        var recipientType = $(this).val();
+        if(recipientType == 'broadcast'){
+            broadcastChoice.show();
+            tagListChoice.hide();
+        }else{
+            broadcastChoice.hide();
+            tagListChoice.show();
+        }
     };
        
        
@@ -87,7 +100,8 @@ function composer($){
     pushMessageTextarea.keyup(pushMessageTextareaChange);
     payloadTitleInput.change(setPayloadTitleModified);
     sendNotificationBtn.click(formSubmitEvent);
-    
+    recipientTypeInputs.bind('change', recipientChoiceChange);
+
     
     // initialization    
     shareRelatedInputs.hide();
@@ -95,5 +109,5 @@ function composer($){
     pushMessageTextareaChange();
     initializeRecipientStep();
     payloadType.trigger('change');
-     
+    $("#id_recipient_type_broadcast").change();
 } // jquery ready/end
