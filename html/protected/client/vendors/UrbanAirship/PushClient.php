@@ -140,8 +140,8 @@ class PushClient extends UrbanAirshipClient {
                 $container['android']['extra'] = $payload;
             }
         } else {
-            $container['ios'] = $payload;
-            $container['ios']['aps']['alert'] = $pushNotification->getAlert();
+            $container['aps'] = $payload;
+            $container['aps']['alert'] = $pushNotification->getAlert();
             $container['device_tokens'] = array($deviceId);
         }
 
