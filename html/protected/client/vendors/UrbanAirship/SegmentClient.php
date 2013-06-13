@@ -34,16 +34,20 @@ class SegmentClient extends UrbanAirshipClient {
      * @todo: query paginated data by using next_page
      */
     public function getSegment($segmentId) {
-
         if (!($this->validateId($segmentId))) {
             throw new Exception("Invalid Segment ID");
         }
+        
+        $segment = new Segment();
 
         $jsonResult = $this->getJsonData('/segments/' . $segmentId);
 
-        $result = json_decode($jsonResult, false);
+        $rawSegment = json_decode($jsonResult, true);
 
-        return $result;
+        $segment->setDisplayName($rawSegment['display_name']);
+        $segment->setCriteria($rawSegment['criteria']);
+
+        return $segment;
     }
 
 }
