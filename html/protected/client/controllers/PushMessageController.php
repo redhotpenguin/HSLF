@@ -150,7 +150,11 @@ class PushMessageController extends CrudController {
 
         $segmentClient = new SegmentClient($tenant->ua_api_key, $tenant->ua_api_secret);
 
-        $response = $segmentClient->getSegments();
+        $segments = $segmentClient->getSegments();
+        $response = array();
+        foreach ($segments as $segment) {
+            array_push($response, array('id' => $segment->getId(), 'display_name' => $segment->getDisplayName()));
+        }
 
         echo CJSON::encode($response);
         Yii::app()->end();
