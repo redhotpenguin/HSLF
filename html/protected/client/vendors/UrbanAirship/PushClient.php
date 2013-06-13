@@ -101,13 +101,6 @@ class PushClient extends UrbanAirshipClient {
             $container['android']['extra'] = $payload;
         }
 
-        echo '<pre>';
-
-        echo json_encode($container);
-
-      //  die;
-
-
         try {
             $jsonResult = $this->postJsonData('/push/segments/', json_encode($container));
             $result = json_decode($jsonResult, true);
@@ -117,8 +110,6 @@ class PushClient extends UrbanAirshipClient {
         } catch (Exception $e) {
             throw $e;
         }
-        
-        die;
     }
 
 }
