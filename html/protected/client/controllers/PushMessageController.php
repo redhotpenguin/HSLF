@@ -1,5 +1,4 @@
 <?php
-
 Yii::import("backend.vendors.UrbanAirship.*", true);
 
 class PushMessageController extends CrudController {

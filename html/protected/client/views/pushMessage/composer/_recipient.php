@@ -25,8 +25,8 @@
             ?>
         </div>
         <div id="broadcastChoice"><p>All devices that have registered with this application.</p></div>
-        <div id="singleDeviceChoice"><input type="text" name="device_id" placeholder="Enter a Device ID"/></div>
-        <div id="segmentChoice"> <select name="segment_id" id="segmentSelectInput"></select> </div>
+        <div id="singleDeviceChoice"><input class="span6" type="text" name="device_id" placeholder="Enter a Device ID"/></div>
+        <div id="segmentChoice"> <select class="span6" name="segment_id" id="segmentSelectInput"><option>Loading Segments...</option></select> </div>
     </div>
 
 </div>

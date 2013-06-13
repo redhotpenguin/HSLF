@@ -113,12 +113,13 @@ function composer($){
         $.get(pushcomposer_ns.controller_url+'/jsonSegments',_cb);
     },
     populateSegmentList = function(){
-        segmentSelectInput.empty();
         getSegments(function(segments){
+            segmentSelectInput.empty();
             $.each(segments, function(segmentIndex){
                 var segment = segments[segmentIndex];
                 segmentSelectInput.append( $('<option name="segmentId" value="'+segment.id+'"> '+ segment.display_name +'  </option>'));
             }); 
+            
         });
     }
        
