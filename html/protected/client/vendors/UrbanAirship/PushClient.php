@@ -5,8 +5,7 @@
  * API Doc: http://docs.urbanairship.com/reference/api/push.html
  * @author jonas
  */
-class PushClient extends UrbanAirshipClient{
-
+class PushClient extends UrbanAirshipClient {
 
     /**
      * Send a push notification using tags
@@ -79,4 +78,47 @@ class PushClient extends UrbanAirshipClient{
             throw $e;
         }
     }
+
+    /**
+     * Send a push notification to a segment
+     * @param PushNotification $PushNotification notification object to be sent
+     * @param string $segmentId segment id
+     * @return push id if success or throw exception on failure
+     */
+    public function sendPushNotificationBySegment(PushNotification $pushNotification, $segmentId) {
+        $payload = $pushNotification->getPayload();
+
+
+        $container = array(
+            'segments' => array($segmentId)
+        );
+
+        $container['ios'] = $payload;
+        $container['ios']['aps']['alert'] = $pushNotification->getAlert();
+
+        $container['android']['alert'] = $pushNotification->getAlert();
+        if (!empty($payload)) {
+            $container['android']['extra'] = $payload;
+        }
+
+        echo '<pre>';
+
+        echo json_encode($container);
+
+      //  die;
+
+
+        try {
+            $jsonResult = $this->postJsonData('/push/segments/', json_encode($container));
+            $result = json_decode($jsonResult, true);
+            if (isset($result['push_id'])) {
+                return $result['push_id'];
+            }
+        } catch (Exception $e) {
+            throw $e;
+        }
+        
+        die;
+    }
+
 }

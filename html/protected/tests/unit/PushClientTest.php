@@ -27,8 +27,20 @@ class PushClientTest extends CDbTestCase {
     public function testSendBroadcastPushNotification() {
         $notification = new PushNotification('[UNIT TESTS] PushClientTest - testSendBroadcastPushNotification');
         $notification->setPayload(array('payload_id' => "123"));
-        
+
         $pushId = $this->getPushClient()->sendBroadcastPushNotification($notification);
+
+        $this->assertTrue($pushId !== false);
+    }
+
+    public function testSendPushNotificationBySegment() {
+        $segmentId = "983c8acc-c576-47f9-9096-ac0a59e2ad11";
+
+        $p = new PushNotification('[UNIT TESTS] PushClientTest - testSendPushNotificationBySegment');
+        $p->setPayload(array('payload_id' => '123', 'p2' => 'bar'));
+
+        $pushId = $this->getPushClient()->sendPushNotificationBySegment($p, $segmentId);
+
 
         $this->assertTrue($pushId !== false);
     }

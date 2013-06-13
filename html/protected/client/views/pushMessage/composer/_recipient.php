@@ -26,7 +26,7 @@
         </div>
         <div id="broadcastChoice"><p>All devices that have registered with this application.</p></div>
         <div id="segmentChoice"><div id="">
-                <select name="Payload[segmentList]" id="segmentSelectInput">
+                <select name="segment_id" id="segmentSelectInput">
 
                 </select>
             </div>

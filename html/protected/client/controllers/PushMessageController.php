@@ -32,16 +32,22 @@ class PushMessageController extends CrudController {
             $model->removeAllTagsAssociation();
     }
 
+    
+    
+    // @todo: refactor
     public function actionComposer() {
+
         $pushMessage = new PushMessage();
         $payload = new Payload();
         $unfilterdTagIds = array();
+        $segmentId = null;
 
         if (Yii::app()->request->isPostRequest && isset($_POST['recipient_type'])) {
 
+
             $recipientType = $_POST['recipient_type'];
 
-            if ($recipientType !== 'broadcast' && $recipientType !== 'tag') {
+            if ($recipientType !== 'broadcast' && $recipientType !== 'tag' && $recipientType !== 'segment') { // todo: move allowed segment types to PushMessage model
                 throw new CHttpException(500, "Invalid recipient type");
             }
 
@@ -74,9 +80,12 @@ class PushMessageController extends CrudController {
                         } else {
                             throw new Exception("At least one tag must be present.");
                         }
+                    }elseif($recipientType == 'segment'){
+                        $segmentId = $_POST['segment_id'];
+                        error_log($segmentId);
                     }
 
-                    $pushMessage->push_identifier = $this->sendPushMessage($pushMessage, $recipientType);
+                    $pushMessage->push_identifier = $this->sendPushMessage($pushMessage, $recipientType, $segmentId);
 
                     $pushMessage->save();
 
@@ -109,9 +118,9 @@ class PushMessageController extends CrudController {
         $this->render('view', array('pushMessage' => $pushMessage));
     }
 
-    private function sendPushMessage(PushMessage $pushMessage, $method) {
+    private function sendPushMessage(PushMessage $pushMessage, $method, $segmentId = null) {
         $tenant = Yii::app()->user->getLoggedInUserTenant();
-
+       
         $client = new PushClient($tenant->ua_api_key, $tenant->ua_api_secret);
         $payload = array();
         $tags = array();
@@ -130,8 +139,10 @@ class PushMessageController extends CrudController {
 
         if ($method == 'tag') {
             $result = $client->sendPushNotificationByTags($pushNotification, $tags);
-        } else { // broadcast
+        } elseif ($method == 'broadcast') {
             $result = $client->sendBroadcastPushNotification($pushNotification);
+        } else { // segment
+            $result = $client->sendPushNotificationBySegment($segmentId);
         }
 
         return $result;
