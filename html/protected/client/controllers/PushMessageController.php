@@ -5,14 +5,14 @@ Yii::import("backend.vendors.UrbanAirship.*", true);
 class PushMessageController extends CrudController {
 
     private $pushClient;
-    private $segmentclient;
+    private $segmentClient;
 
     public function __construct() {
         parent::__construct('pushMessage');
 
         $tenant = Yii::app()->user->getLoggedInUserTenant();
         $this->pushClient = new PushClient($tenant->ua_api_key, $tenant->ua_api_secret);
-        $this->segmentclient = new SegmentClient($tenant->ua_api_key, $tenant->ua_api_secret);
+        $this->segmentClient = new SegmentClient($tenant->ua_api_key, $tenant->ua_api_secret);
 
 
         $pushMessage = new PushMessage;
@@ -88,7 +88,9 @@ class PushMessageController extends CrudController {
                         $segmentId = $_POST['segment_id'];
                         // retrieve tags from the segment and assign them to the push message
 
-                        $segmentTags = $this->segmentClient->getSegment($segmentId)->getTags();
+                        $segment = $this->segmentClient->getSegment($segmentId);
+
+                        $segmentTags = $segment->getTags();
 
                         foreach ($segmentTags as $segmentTag) {
                             $tag = new Tag();
@@ -179,7 +181,7 @@ class PushMessageController extends CrudController {
     public function actionJsonSegments() {
         header('Content-type: ' . 'application/json;charset=UTF-8');
 
-        $segments = $this->segmentclient->getSegments();
+        $segments = $this->segmentClient->getSegments();
         $response = array();
         foreach ($segments as $segment) {
             array_push($response, array('id' => $segment->getId(), 'display_name' => $segment->getDisplayName()));
