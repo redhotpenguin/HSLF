@@ -4,8 +4,16 @@ Yii::import("backend.vendors.UrbanAirship.*", true);
 
 class PushMessageController extends CrudController {
 
+    private $pushClient;
+    private $segmentclient;
+
     public function __construct() {
         parent::__construct('pushMessage');
+
+        $tenant = Yii::app()->user->getLoggedInUserTenant();
+        $this->pushClient = new PushClient($tenant->ua_api_key, $tenant->ua_api_secret);
+        $this->segmentclient = new SegmentClient($tenant->ua_api_key, $tenant->ua_api_secret);
+
 
         $pushMessage = new PushMessage;
 
@@ -78,6 +86,28 @@ class PushMessageController extends CrudController {
                         }
                     } elseif ($recipientType == 'segment') {
                         $segmentId = $_POST['segment_id'];
+                        // retrieve tags from the segment and assign them to the push message
+
+                        $segmentTags = $this->segmentClient->getSegment($segmentId)->getTags();
+
+                        foreach ($segmentTags as $segmentTag) {
+                            $tag = new Tag();
+                            $tag->type = 'alert';
+                            $tag->display_name = ucfirst(str_replace("_", " ", $segmentTag));
+                            $tag->name = $segmentTag;
+
+                            if ($tag->validate()) {
+                                error_log('tag validated');
+                                $r = $tag->save();
+
+
+                                error_log('saved?' . $tag->id);
+
+                                $pushMessage->addTagAssociation($tag->id);
+                            } else {
+                                logIt($tag->errors);
+                            }
+                        }
                     }
 
                     $pushMessage->push_identifier = $this->sendPushMessage($pushMessage, $recipientType, $segmentId);
@@ -114,17 +144,13 @@ class PushMessageController extends CrudController {
     }
 
     private function sendPushMessage(PushMessage $pushMessage, $method, $segmentId = null) {
-        $tenant = Yii::app()->user->getLoggedInUserTenant();
-
-        $pushClient = new PushClient($tenant->ua_api_key, $tenant->ua_api_secret);
-        $payload = array();
+        $pushNotification = new PushNotification($pushMessage->alert);
 
         if ($pushMessage->payload->type != 'other') {
             $payload = array('payload_id' => (string) $pushMessage->payload->id);
+            // @todo: include payload for 2.0 users
+            $pushNotification->setPayload($payload);
         }
-
-        $pushNotification = new PushNotification($pushMessage->alert);
-        $pushNotification->setPayload($payload);
 
         switch ($method) {
             case "tag":
@@ -132,32 +158,28 @@ class PushMessageController extends CrudController {
                 foreach ($pushMessage->tags as $tag) {
                     array_push($tags, $tag->name);
                 }
-                $pushId = $pushClient->sendPushNotificationByTags($pushNotification, $tags);
+                $pushId = $this->pushClient->sendPushNotificationByTags($pushNotification, $tags);
                 break;
 
             case "broadcast":
-                $pushId = $pushClient->sendBroadcastPushNotification($pushNotification);
+                $pushId = $this->pushClient->sendBroadcastPushNotification($pushNotification);
                 break;
 
             case "segment":
-                $pushId = $pushClient->sendPushNotificationBySegment($pushNotification, $segmentId);
-
+                $pushId = $this->pushClient->sendPushNotificationBySegment($pushNotification, $segmentId);
                 break;
+
             default: throw new Exception("method not supported");
         }
 
- 
+
         return $pushId;
     }
 
     public function actionJsonSegments() {
         header('Content-type: ' . 'application/json;charset=UTF-8');
 
-        $tenant = Yii::app()->user->getLoggedInUserTenant();
-
-        $segmentClient = new SegmentClient($tenant->ua_api_key, $tenant->ua_api_secret);
-
-        $segments = $segmentClient->getSegments();
+        $segments = $this->segmentclient->getSegments();
         $response = array();
         foreach ($segments as $segment) {
             array_push($response, array('id' => $segment->getId(), 'display_name' => $segment->getDisplayName()));
