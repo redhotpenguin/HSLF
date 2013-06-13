@@ -63,4 +63,26 @@ class Segment {
         return $this;
     }
 
+    /**
+     * Extract tags from a criteria (very hacky)
+     * @param array $criteria
+     * @retrn array of tags
+     */
+    function getTags() {
+        global $criteriaTags;
+        $criteriaTags = array();
+        $criteria = $this->getCriteria();
+        
+        array_walk_recursive($criteria, function($item, $key) {
+                    global $criteriaTags;
+
+                    if ($key == 'tag') {
+                        array_push($criteriaTags, $item);
+                    }
+                });
+
+        unset($GLOBALS['criteriaTags']);
+        return $criteriaTags;
+    }
+
 }

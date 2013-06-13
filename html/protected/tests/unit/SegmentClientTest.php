@@ -25,12 +25,21 @@ class SegmentClientTest extends CDbTestCase {
     public function testGetSegment() {
 
         $segmentId = '954bb924-6dff-4741-9897-594aad05b4f0'; // potland district segment id
-        
+
         $result = $this->getSegmentClient()->getSegment($segmentId);
-        
-        print_r($result);
 
         $this->assertNotEmpty($result);
+    }
+
+    public function testGetTags() {
+
+        $segmentId = 'cc3d595f-f8e7-4925-b2b0-7083ba17bc3e'; // complex tag segments
+
+        $result = $this->getSegmentClient()->getSegment($segmentId)->getTags();
+
+        $this->assertNotEmpty($result);
+        
+        $this->assertTrue(in_array('district__census_urban-area_portland-or--wa_71317', $result));
     }
 
     private function getSegmentClient() {
