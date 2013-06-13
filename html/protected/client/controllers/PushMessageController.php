@@ -32,8 +32,6 @@ class PushMessageController extends CrudController {
             $model->removeAllTagsAssociation();
     }
 
-    
-    
     // @todo: refactor
     public function actionComposer() {
 
@@ -43,7 +41,6 @@ class PushMessageController extends CrudController {
         $segmentId = null;
 
         if (Yii::app()->request->isPostRequest && isset($_POST['recipient_type'])) {
-
 
             $recipientType = $_POST['recipient_type'];
 
@@ -69,7 +66,6 @@ class PushMessageController extends CrudController {
                     $payload->save();
 
                     $pushMessage->payload_id = $payload->id;
-
                     $pushMessage->save();
 
                     if ($recipientType === 'tag') {
@@ -80,16 +76,15 @@ class PushMessageController extends CrudController {
                         } else {
                             throw new Exception("At least one tag must be present.");
                         }
-                    }elseif($recipientType == 'segment'){
+                    } elseif ($recipientType == 'segment') {
                         $segmentId = $_POST['segment_id'];
-                        error_log($segmentId);
                     }
 
                     $pushMessage->push_identifier = $this->sendPushMessage($pushMessage, $recipientType, $segmentId);
 
                     $pushMessage->save();
-
                     $transaction->commit();
+
                     $this->redirect(array('confirmation', 'pushMessageId' => $pushMessage->id));
                 } catch (Exception $e) {
                     $transaction->rollback();
@@ -120,7 +115,7 @@ class PushMessageController extends CrudController {
 
     private function sendPushMessage(PushMessage $pushMessage, $method, $segmentId = null) {
         $tenant = Yii::app()->user->getLoggedInUserTenant();
-       
+
         $client = new PushClient($tenant->ua_api_key, $tenant->ua_api_secret);
         $payload = array();
         $tags = array();
@@ -142,7 +137,7 @@ class PushMessageController extends CrudController {
         } elseif ($method == 'broadcast') {
             $result = $client->sendBroadcastPushNotification($pushNotification);
         } else { // segment
-            $result = $client->sendPushNotificationBySegment($segmentId);
+            $result = $client->sendPushNotificationBySegment($pushNotification, $segmentId);
         }
 
         return $result;

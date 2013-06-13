@@ -29,6 +29,7 @@ $this->secondaryNav['items'] = array('', array('label' => 'Composer', 'url' => a
     <div class="step row" >
         <div class="span12">
             <p><?php echo $status; ?></p>
+            <em>Push ID: <?php echo $pushMessage->push_identifier; ?></em>
         </div>
     </div>
 
