@@ -1,7 +1,7 @@
 <?php
 
 /**
- * UrbanAirship API Client
+ * UrbanAirship Segment API Client
  * API Doc: http://docs.urbanairship.com/reference/api/segments.html
  * @author jonas
  */

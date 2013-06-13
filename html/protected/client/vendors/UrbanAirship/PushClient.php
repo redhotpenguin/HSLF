@@ -1,7 +1,7 @@
 <?php
 
 /**
- * UrbanAirship API Client
+ * UrbanAirship Push API Client
  * API Doc: http://docs.urbanairship.com/reference/api/push.html
  * @author jonas
  */
