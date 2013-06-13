@@ -15,7 +15,7 @@ class PushClientTest extends CDbTestCase {
     private $apiKey = "SOebz9QcSEmguGMiUKqj-Q"; // map-framework account https://go.urbanairship.com/apps/SOebz9QcSEmguGMiUKqj-Q/api/
     private $apiSecret = "PUbBlrsnQP-pkAoV8uPDSA"; // map-framework account  https://go.urbanairship.com/apps/SOebz9QcSEmguGMiUKqj-Q/api/
 
-    public function _testSendPushNotificationByTags() {
+    public function testSendPushNotificationByTags() {
         $notification = new PushNotification("[UNIT TESTS] PushClientTest - testSendPushNotificationByTags");
         $tags = array('district_or_census_place_lake-oswego_4140550', 'tag2');
 
@@ -24,7 +24,7 @@ class PushClientTest extends CDbTestCase {
         $this->assertTrue($pushId !== false);
     }
 
-    public function _testSendBroadcastPushNotification() {
+    public function testSendBroadcastPushNotification() {
         $notification = new PushNotification('[UNIT TESTS] PushClientTest - testSendBroadcastPushNotification');
         $notification->setPayload(array('payload_id' => "123"));
 
@@ -43,6 +43,18 @@ class PushClientTest extends CDbTestCase {
 
 
         $this->assertTrue($pushId !== false);
+    }
+
+    public function testSendPushNotificationToDevice() {
+        $p = new PushNotification('[UNIT TESTS] PushClientTest - testSendPushNotificationToDevice');
+
+        $pushId1 = $this->getPushClient()->sendPushNotificationToDevice($p, "3fa17c2f-2eeb-4e86-8077-ac27d11bab99");
+
+        $this->assertTrue($pushId1 !== false);
+
+        $pushId2 = $this->getPushClient()->sendPushNotificationToDevice($p, "0628314ae87f4b811edd3b70d56355fbf0cd92272a505c9811203d216723829f");
+
+        $this->assertTrue($pushId2 !== false);
     }
 
     private function getPushClient() {

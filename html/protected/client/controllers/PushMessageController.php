@@ -46,13 +46,14 @@ class PushMessageController extends CrudController {
         $pushMessage = new PushMessage();
         $payload = new Payload();
         $unfilterdTagIds = array();
-        $segmentId = null;
+        $id = null;
 
         if (Yii::app()->request->isPostRequest && isset($_POST['recipient_type'])) {
 
             $recipientType = $_POST['recipient_type'];
 
-            if ($recipientType !== 'broadcast' && $recipientType !== 'tag' && $recipientType !== 'segment') { // todo: move allowed segment types to PushMessage model
+
+            if (!in_array($recipientType, array('broadcast', 'tag', 'segment', 'single'))) { // todo: move allowed segment types to PushMessage model
                 throw new CHttpException(500, "Invalid recipient type");
             }
 
@@ -85,10 +86,10 @@ class PushMessageController extends CrudController {
                             throw new Exception("At least one tag must be present.");
                         }
                     } elseif ($recipientType == 'segment') {
-                        $segmentId = $_POST['segment_id'];
+                        $id = $_POST['segment_id'];
                         // retrieve tags from the segment and assign them to the push message
 
-                        $segment = $this->segmentClient->getSegment($segmentId);
+                        $segment = $this->segmentClient->getSegment($id);
 
                         $segmentTags = $segment->getTags();
 
@@ -110,9 +111,11 @@ class PushMessageController extends CrudController {
                                 logIt($tag->errors);
                             }
                         }
+                    } else {
+                        $id = $_POST['device_id'];
                     }
 
-                    $pushMessage->push_identifier = $this->sendPushMessage($pushMessage, $recipientType, $segmentId);
+                    $pushMessage->push_identifier = $this->sendPushMessage($pushMessage, $recipientType, $id);
 
                     $pushMessage->save();
                     $transaction->commit();
@@ -145,7 +148,7 @@ class PushMessageController extends CrudController {
         $this->render('view', array('pushMessage' => $pushMessage));
     }
 
-    private function sendPushMessage(PushMessage $pushMessage, $method, $segmentId = null) {
+    private function sendPushMessage(PushMessage $pushMessage, $method, $id = null) {
         $pushNotification = new PushNotification($pushMessage->alert);
 
         if ($pushMessage->payload->type != 'other') {
@@ -168,7 +171,11 @@ class PushMessageController extends CrudController {
                 break;
 
             case "segment":
-                $pushId = $this->pushClient->sendPushNotificationBySegment($pushNotification, $segmentId);
+                $pushId = $this->pushClient->sendPushNotificationBySegment($pushNotification, $id);
+                break;
+
+            case "single":
+                $pushId = $this->pushClient->sendPushNotificationToDevice($pushNotification, $id);
                 break;
 
             default: throw new Exception("method not supported");

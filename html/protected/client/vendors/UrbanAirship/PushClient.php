@@ -86,12 +86,12 @@ class PushClient extends UrbanAirshipClient {
      * @return push id if success or throw exception on failure
      */
     public function sendPushNotificationBySegment(PushNotification $pushNotification, $segmentId) {
-        
-        if(!($this->validateId($segmentId))){
+
+        if (!($this->validateId($segmentId))) {
             throw new Exception("Invalid Segment ID");
         }
-        
-        
+
+
         $payload = $pushNotification->getPayload();
 
 
@@ -116,6 +116,64 @@ class PushClient extends UrbanAirshipClient {
         } catch (Exception $e) {
             throw $e;
         }
+    }
+
+    /**
+     * Send a push notification to a single device
+     * @param PushNotification $PushNotification notification object to be sent
+     * @param string $deviceId device id
+     * @return push id if success or throw exception on failure
+     */
+    public function sendPushNotificationToDevice(PushNotification $pushNotification, $deviceId) {
+        $deviceType = $this->findDeviceTypeFromId($deviceId);
+
+        if (!$deviceType) {
+            throw new Exception("Device type not supported");
+        }
+
+        $payload = $pushNotification->getPayload();
+
+        if ($deviceType === 'android') {
+            $container['apids'] = array($deviceId);
+            $container['android']['alert'] = $pushNotification->getAlert();
+            if (!empty($payload)) {
+                $container['android']['extra'] = $payload;
+            }
+        } else {
+            $container['ios'] = $payload;
+            $container['ios']['aps']['alert'] = $pushNotification->getAlert();
+            $container['device_tokens'] = array($deviceId);
+        }
+
+        try {
+            $jsonResult = $this->postJsonData('/push/', json_encode($container));
+            $result = json_decode($jsonResult, true);
+            if (isset($result['push_id'])) {
+                return $result['push_id'];
+            }
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+    /**
+     * Find the device type using the device ID (only works with android and iOS)
+     * @param $id
+     * @return mixed android or ios or false
+     */
+    public function findDeviceTypeFromId($id) {
+        $androidPattern = "/^[a-zA-Z-0-9]{8}-[a-zA-Z-0-9]{4}-[a-zA-Z-0-9]{4}-[a-zA-Z-0-9]{4}-[a-zA-Z-0-9]{12}$/";
+        $iosPattern = "/^[a-zA-Z-0-9]{64}$/";
+
+        if (preg_match($androidPattern, $id) === 1) {
+            return 'android';
+        }
+
+        if (preg_match($iosPattern, $id) === 1) {
+            return 'ios';
+        }
+
+        return false;
     }
 
 }

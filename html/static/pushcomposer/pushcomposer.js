@@ -13,6 +13,7 @@ function composer($){
     broadcastChoice = $("#broadcastChoice"),
     segmentChoice = $("#segmentChoice"),
     segmentSelectInput = $("#segmentSelectInput"),
+    singleDeviceChoice = $("#singleDeviceChoice"),
     payloadTitleInputModified = false,
     updatePayloadType = function(){
         var type = this.value;
@@ -90,17 +91,22 @@ function composer($){
         tagListChoice.hide();
         broadcastChoice.hide();
         segmentChoice.hide();
+        singleDeviceChoice.hide();
         
-        
-        if(recipientType == 'broadcast'){
-            broadcastChoice.show();
-            tagListChoice.hide();
-        }else if (recipientType == 'tag' ){
-            tagListChoice.show();
-        }
-        else{
-            populateSegmentList();
-            segmentChoice.show();
+        switch(recipientType){
+            case "broadcast":
+                broadcastChoice.show();
+                break;
+            case "tag":
+                tagListChoice.show();
+                break;
+            case "segment":
+                populateSegmentList();
+                segmentChoice.show();
+                break;
+            case "single":
+                singleDeviceChoice.show();
+                break;
         }
     },
     getSegments = function(_cb){
@@ -134,5 +140,5 @@ function composer($){
     initializeRecipientStep();
     payloadType.trigger('change');
     populateSegmentList();
-    $("#id_recipient_type_segment").click();
+    $("#id_recipient_type_single").click();
 } // jquery ready/end
