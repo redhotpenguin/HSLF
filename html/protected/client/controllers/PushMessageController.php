@@ -116,31 +116,38 @@ class PushMessageController extends CrudController {
     private function sendPushMessage(PushMessage $pushMessage, $method, $segmentId = null) {
         $tenant = Yii::app()->user->getLoggedInUserTenant();
 
-        $client = new PushClient($tenant->ua_api_key, $tenant->ua_api_secret);
+        $pushClient = new PushClient($tenant->ua_api_key, $tenant->ua_api_secret);
         $payload = array();
-        $tags = array();
 
         if ($pushMessage->payload->type != 'other') {
             $payload = array('payload_id' => (string) $pushMessage->payload->id);
         }
 
-        foreach ($pushMessage->tags as $tag) {
-            array_push($tags, $tag->name);
-        }
-
         $pushNotification = new PushNotification($pushMessage->alert);
         $pushNotification->setPayload($payload);
 
+        switch ($method) {
+            case "tag":
+                $tags = array();
+                foreach ($pushMessage->tags as $tag) {
+                    array_push($tags, $tag->name);
+                }
+                $pushId = $pushClient->sendPushNotificationByTags($pushNotification, $tags);
+                break;
 
-        if ($method == 'tag') {
-            $result = $client->sendPushNotificationByTags($pushNotification, $tags);
-        } elseif ($method == 'broadcast') {
-            $result = $client->sendBroadcastPushNotification($pushNotification);
-        } else { // segment
-            $result = $client->sendPushNotificationBySegment($pushNotification, $segmentId);
+            case "broadcast":
+                $pushId = $pushClient->sendBroadcastPushNotification($pushNotification);
+                break;
+
+            case "segment":
+                $pushId = $pushClient->sendPushNotificationBySegment($pushNotification, $segmentId);
+
+                break;
+            default: throw new Exception("method not supported");
         }
 
-        return $result;
+ 
+        return $pushId;
     }
 
     public function actionJsonSegments() {
