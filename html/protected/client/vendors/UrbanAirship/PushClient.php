@@ -86,6 +86,12 @@ class PushClient extends UrbanAirshipClient {
      * @return push id if success or throw exception on failure
      */
     public function sendPushNotificationBySegment(PushNotification $pushNotification, $segmentId) {
+        
+        if(!($this->validateId($segmentId))){
+            throw new Exception("Invalid Segment ID");
+        }
+        
+        
         $payload = $pushNotification->getPayload();
 
 

@@ -88,4 +88,15 @@ abstract class UrbanAirshipClient {
         throw new Exception($result);
     }
 
+    /**
+     * Validate a Urban Airship ID (push id, segment_id)
+     * @param string $id to be validated
+     * @return boolean true if id is valid
+     */
+    protected final function validateId($id) {
+        $pattern = "/^[a-zA-Z-0-9]{8}-[a-zA-Z-0-9]{4}-[a-zA-Z-0-9]{4}-[a-zA-Z-0-9]{4}-[a-zA-Z-0-9]{12}$/";
+
+        return ( preg_match($pattern, $id) === 1 );
+    }
+
 }
