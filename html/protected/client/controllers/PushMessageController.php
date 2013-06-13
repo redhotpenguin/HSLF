@@ -1,4 +1,5 @@
 <?php
+
 Yii::import("backend.vendors.UrbanAirship.*", true);
 
 class PushMessageController extends CrudController {
@@ -93,21 +94,18 @@ class PushMessageController extends CrudController {
                         $segmentTags = $segment->getTags();
 
                         foreach ($segmentTags as $segmentTag) {
-                            $tag = new Tag();
-                            $tag->type = 'alert';
-                            $tag->display_name = ucfirst(str_replace("_", " ", $segmentTag));
-                            $tag->name = $segmentTag;
-
-                            if ($tag->validate()) {
-                                error_log('tag validated');
-                                $r = $tag->save();
-
-
-                                error_log('saved?' . $tag->id);
-
-                                $pushMessage->addTagAssociation($tag->id);
+                            if (( $tagId = Tag::model()->getTagId($segmentTag))) {
+                                $pushMessage->addTagAssociation($tagId);
                             } else {
-                                logIt($tag->errors);
+                                $tag = new Tag();
+                                $tag->type = 'alert';
+                                $tag->display_name = ucfirst(str_replace("_", " ", $segmentTag));
+                                $tag->name = $segmentTag;
+
+                                if ($tag->validate()) {
+                                    $tag->save();
+                                    $pushMessage->addTagAssociation($tag->id);
+                                }
                             }
                         }
                     } else {

@@ -141,5 +141,5 @@ function composer($){
     initializeRecipientStep();
     payloadType.trigger('change');
     populateSegmentList();
-    $("#id_recipient_type_single").click();
+    $("#id_recipient_type_segment").click();
 } // jquery ready/end

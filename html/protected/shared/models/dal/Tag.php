@@ -96,8 +96,13 @@ class Tag extends BaseActiveRecord {
                 ));
     }
 
-    public function getTagId($tag_name) {
-        return $this->findByAttributes(array('name' => $tag_name))->id;
+    public function getTagId($tagName) {
+        $tag = $this->findByAttributes(array('name' => $tagName));
+        if ($tag) {
+            return $tag->id;
+        }
+        
+        return false;
     }
 
     public function behaviors() {
