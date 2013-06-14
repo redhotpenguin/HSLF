@@ -10,6 +10,7 @@ class m130611_162922_push_message_push_id extends CDbMigration {
 
     public function safeUp() {
         $this->addColumn('push_message', 'push_identifier', 'text');
+        $this->refreshTableSchema('push_message');
     }
 
     public function saveDown() {
