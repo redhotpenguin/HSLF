@@ -7,7 +7,7 @@
     <div id="recipient-choices">
         <?php
         $recipientTypes = $pushMessage::getRecipientTypes();
-        echo CHtml::radioButtonList('recipient_type', 'broadcast' , $recipientTypes, array('separator' => ''));
+        echo CHtml::radioButtonList('recipient_type', $pushMessage->recipient_type , $recipientTypes, array('separator' => ''));
         ?>
     </div>
 

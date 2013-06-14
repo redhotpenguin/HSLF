@@ -44,6 +44,7 @@ class PushMessageController extends CrudController {
     public function actionComposer() {
 
         $pushMessage = new PushMessage();
+        $pushMessage->recipient_type = 'broadcast'; // default recipient type
         $payload = new Payload();
         $unfilterdTagIds = array();
         $id = null;
