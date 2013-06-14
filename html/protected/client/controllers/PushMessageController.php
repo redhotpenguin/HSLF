@@ -24,7 +24,7 @@ class PushMessageController extends CrudController {
 
         $extraRules = array(
             array('allow',
-                'actions' => array('composer', 'view', 'detail', 'confirmation', 'jsonSegments'),
+                'actions' => array('composer', 'view', 'detail', 'confirmation', 'jsonSegments', 'jsonSegment'),
                 'roles' => array('managePushMessages'),
             )
         );
@@ -40,7 +40,7 @@ class PushMessageController extends CrudController {
             $model->removeAllTagsAssociation();
     }
 
-    // @todo: refactor
+// @todo: refactor
     public function actionComposer() {
 
         $pushMessage = new PushMessage();
@@ -88,7 +88,7 @@ class PushMessageController extends CrudController {
                         }
                     } elseif ($recipientType == 'segment') {
                         $id = $_POST['segment_id'];
-                        // retrieve tags from the segment and assign them to the push message
+// retrieve tags from the segment and assign them to the push message
 
                         $segment = $this->segmentClient->getSegment($id);
 
@@ -200,6 +200,21 @@ class PushMessageController extends CrudController {
         foreach ($segments as $segment) {
             array_push($response, array('id' => $segment->getId(), 'display_name' => $segment->getDisplayName()));
         }
+
+        echo CJSON::encode($response);
+        Yii::app()->end();
+    }
+
+    public function actionJsonSegment($segmentId) {
+        header('Content-type: ' . 'application/json;charset=UTF-8');
+
+        $segment = $this->segmentClient->getSegment($segmentId);
+
+        $response = array(
+            'id' => $segment->getId(),
+            'name' => $segment->getDisplayName(),
+            'criteria' => $segment->getCriteria()
+        );
 
         echo CJSON::encode($response);
         Yii::app()->end();
