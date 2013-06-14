@@ -33,13 +33,15 @@ form#push_composer h4.leader{
     box-shadow: 0 0 2px 0 #08c;
 }
 
-div#recipientSection #recipient-choices label{
-    display:inline-block;
-    padding-right: 15px;
-}
 
 div#recipientSection #recipient-choices input{
     display: inline-block;
-    margin: 2px 3px 0 0;
+    margin: 2px 0px 0 5px;
     vertical-align: top;
+}
+
+div#recipientSection #recipient-choices label{
+    display:inline-block;
+    padding-right: 15px;
+    margin:0;
 }

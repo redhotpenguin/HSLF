@@ -155,10 +155,10 @@ class PushMessage extends BaseActiveRecord {
 
     public static function getRecipientTypes() {
         return array(
-            'tag' => 'Tag',
             'broadcast' => 'Broadcast',
-            'segment' => 'Segment',
+            'tag' => 'Tag',
             'single' => 'Single',
+            'segment' => 'Segment',
         );
     }
 

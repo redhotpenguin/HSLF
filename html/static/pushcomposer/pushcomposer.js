@@ -142,5 +142,5 @@ function composer($){
     initializeRecipientStep();
     payloadType.trigger('change');
     populateSegmentList();
-    $("#id_recipient_type_broadcast").click();    
+    $("#recipient_type_0").change();    
 } // jquery ready/end
