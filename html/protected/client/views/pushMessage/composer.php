@@ -49,7 +49,7 @@ $form = $this->beginWidget('CActiveForm', array(
 
         <div class="span12">
             <?php
-            echo $this->renderPartial('composer/_recipient', array('form' => $form, 'payload' => $payload));
+            echo $this->renderPartial('composer/_recipient', array('form' => $form,  'pushMessage' => $pushMessage, 'payload' => $payload));
             ?>
         </div>
 
