@@ -149,8 +149,17 @@ class PushMessageController extends CrudController {
         $pushNotification = new PushNotification($pushMessage->alert);
 
         if ($pushMessage->payload->type != 'other') {
-            $payload = array('payload_id' => (string) $pushMessage->payload->id);
-            // @todo: include payload for 2.0 users
+
+            if ($pushMessage->payload->type == 'post') {
+                $legacyPayload = '{ "type": "post", "data": { "id": ' . $pushMessage->payload->post_number . ' } }';
+            } else {
+                $legacyPayload = '{ "type": "share", "data": { "id": ' . $pushMessage->payload->id . ' } }';
+            }
+
+            $payload = array(
+                'payload_id' => (string) $pushMessage->payload->id,
+                'payload' => $legacyPayload // old payload format (2.0 apps..)
+            );
             $pushNotification->setPayload($payload);
         }
 
