@@ -130,7 +130,7 @@ function composer($){
     pushMessageTextarea.keyup(pushMessageTextareaChange);
     payloadTitleInput.change(setPayloadTitleModified);
     sendNotificationBtn.click(formSubmitEvent);
-    recipientTypeInputs.bind('change', recipientChoiceChange);
+    recipientTypeInputs.bind('click', recipientChoiceChange);
 
     
     // initialization    
@@ -140,5 +140,5 @@ function composer($){
     initializeRecipientStep();
     payloadType.trigger('change');
     populateSegmentList();
-    $("#recipient_type_0").change();    
+    $('input[name=recipient_type]:checked', '#recipient_type').click();
 } // jquery ready/end
