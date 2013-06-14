@@ -5,7 +5,7 @@
 
 
     <div id="recipient-choices">
-        <label for="id_recipient_type_broadcast"><input checked="checked" type="radio" id="id_recipient_type_broadcast" value="broadcast" name="recipient_type" checked="checked">Broadcast</label>
+        <label for="id_recipient_type_broadcast"><input type="radio" id="id_recipient_type_broadcast" value="broadcast" name="recipient_type">Broadcast</label>
         <label for="id_recipient_type_tag"><input type="radio" id="id_recipient_type_tag" value="tag" name="recipient_type">Devices by Tag</label>
         <label for="id_recipient_type_single"><input type="radio" id="id_recipient_type_single" value="single" name="recipient_type">One Device</label>
         <label for="id_recipient_type_segment"><input type="radio" id="id_recipient_type_segment" value="segment" name="recipient_type">Devices by Segment</label>

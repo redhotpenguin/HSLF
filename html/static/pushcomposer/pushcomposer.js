@@ -86,8 +86,9 @@ function composer($){
     formSubmitEvent = function(){
         return confirm("Are you sure you want to send this alert?");
     },
-    recipientChoiceChange = function(){
+    recipientChoiceChange = function(){        
         var recipientType = $(this).val();
+        
         tagListChoice.hide();
         broadcastChoice.hide();
         segmentChoice.hide();
@@ -141,5 +142,5 @@ function composer($){
     initializeRecipientStep();
     payloadType.trigger('change');
     populateSegmentList();
-    $("#id_recipient_type_segment").click();
+    $("#id_recipient_type_broadcast").click();    
 } // jquery ready/end
