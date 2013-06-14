@@ -14,7 +14,6 @@ function composer($){
     segmentChoice = $("#segmentChoice"),
     segmentSelectInput = $("#segmentSelectInput"),
     singleDeviceChoice = $("#singleDeviceChoice"),
-    payloadTitleInputModified = false,
     updatePayloadType = function(){
         var type = this.value;
             
@@ -46,10 +45,9 @@ function composer($){
         }
         
         
-        // only auto update this field if the user has never changed it
-        if(!payloadTitleInputModified){
-            payloadTitleInput.val(message);
-        }
+        // uncomment when debuggign
+        // payloadTitleInput.val(message);
+       
               
         previewChars.html( charLeft  );
     },
