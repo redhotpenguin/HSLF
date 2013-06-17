@@ -3,7 +3,6 @@
 <div class="row-fluid">
     <?php echo $form->labelEx($payload, 'title'); ?>
     <?php echo $form->textField($payload, 'title', array('placeholder' => '', 'size' => 60, 'maxlength' => 512, 'class' => 'span11')); ?>
-    <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="For Share payload, appears as preview text on share screens, Facebook share title, email subject line. For push to post, not displayed on the app."></a>
     <?php echo $form->error($payload, 'title'); ?>
 </div>
 
@@ -48,13 +47,5 @@
         <?php echo $form->textArea($payload, 'tweet', array('placeholder' => '', 'rows' => 2, 'cols' => 50, 'class' => 'span11')); ?>
         <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="Exact content of the Tweet"></a>
         <?php echo $form->error($payload, 'tweet'); ?>
-    </div>
-
-    <div class="row-fluid">
-        <?php echo $form->labelEx($payload, 'email'); ?>
-        <?php echo $form->textField($payload, 'email', array('placeholder' => '', 'size' => 60, 'maxlength' => 320, 'class' => 'span11')); ?>
-        <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="Recipient email address (optional)"></a>
-
-        <?php echo $form->error($payload, 'email'); ?>
     </div>
 </div>
