@@ -20,9 +20,23 @@ $form = $this->beginWidget('CActiveForm', array(
     'id' => 'push_composer',
         ));
 ?>
+
 <div class="form">
 
-    <h4 class="leader">Message</h4>
+    <h4 class="floatLeft leader">Message</h4>
+
+    <?php
+    $this->widget('bootstrap.widgets.TbButton', array(
+        'label' => 'Help',
+        'type' => 'button',
+        'htmlOptions' => array(
+            'data-toggle' => 'modal',
+            'data-target' => '#modalHelp',
+            'id' => 'helpButton'
+        ),
+    ));
+    ?>
+    <div class="clearfix"></div>
     <div class="step row" >
 
         <div class="span12">
@@ -49,7 +63,7 @@ $form = $this->beginWidget('CActiveForm', array(
 
         <div class="span12">
             <?php
-            echo $this->renderPartial('composer/_recipient', array('form' => $form,  'pushMessage' => $pushMessage, 'payload' => $payload));
+            echo $this->renderPartial('composer/_recipient', array('form' => $form, 'pushMessage' => $pushMessage, 'payload' => $payload));
             ?>
         </div>
 
@@ -63,4 +77,31 @@ $form = $this->beginWidget('CActiveForm', array(
 </div>
 <?php
 $this->endWidget();
+
+$this->beginWidget(
+        'bootstrap.widgets.TbModal', array(
+    'id' => 'modalHelp',
+    'autoOpen' => false,
+    'htmlOptions' => array(
+        'style' => 'width:50%;left:40%'
+    ),
+));
 ?>
+<div class="modal-header">
+    <a class="close" data-dismiss="modal">&times;</a>
+    <h4>Push Composer</h4>
+</div>
+<?php
+echo $this->renderPartial('composer/_help');
+?>
+
+<div class="modal-footer">
+    <?php
+    $this->widget('bootstrap.widgets.TbButton', array(
+        'label' => 'Close',
+        'url' => '#',
+        'htmlOptions' => array('data-dismiss' => 'modal'),
+    ));
+    $this->endWidget();
+    ?>
+</div>

@@ -45,3 +45,16 @@ div#recipientSection #recipient-choices label{
     padding-right: 15px;
     margin:0;
 }
+
+
+#push_composer #helpButton{
+    float:right;
+}
+
+#demo{
+    padding:20px;
+}
+
+.floatLeft{
+    float:left;
+}
