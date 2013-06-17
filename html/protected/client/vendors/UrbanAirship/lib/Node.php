@@ -1,5 +1,8 @@
 <?php
 
+namespace UrbanAirship\lib;
+
+
 /**
  * Abstract class representing a simple node
  */

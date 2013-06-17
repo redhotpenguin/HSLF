@@ -1,5 +1,7 @@
 <?php
 
+namespace UrbanAirship\lib;
+
 /**
  * Represent a conditition
  * Concrete implementation of Node

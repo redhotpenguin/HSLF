@@ -1,11 +1,15 @@
 <?php
 
+namespace UrbanAirship;
+
+use UrbanAirship\lib\Segment as Segment;
+
 /**
  * UrbanAirship Segment API Client
  * API Doc: http://docs.urbanairship.com/reference/api/segments.html
  * @author jonas
  */
-class SegmentClient extends UrbanAirshipClient {
+class SegmentClient extends lib\UrbanAirshipClient {
 
     /**
      * GET /api/segments/
@@ -35,7 +39,7 @@ class SegmentClient extends UrbanAirshipClient {
      */
     public function getSegment($segmentId) {
         if (!($this->validateId($segmentId))) {
-            throw new Exception("Invalid Segment ID");
+            throw new \Exception("Invalid Segment ID");
         }
         
         $segment = new Segment();

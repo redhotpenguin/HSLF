@@ -1,6 +1,11 @@
 <?php
 
-Yii::import("backend.vendors.UrbanAirship.*", true);
+Yii::import("backend.vendors.UrbanAirship.*", false);
+Yii::setPathOfAlias('UrbanAirship', '/var/www/html/mobile_platform/html/protected/client/vendors/UrbanAirship');
+
+use UrbanAirship\PushClient as PushClient;
+use UrbanAirship\SegmentClient as SegmentClient;
+use UrbanAirship\lib\PushNotification as PushNotification;
 
 class PushMessageController extends CrudController {
 

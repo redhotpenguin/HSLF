@@ -1,5 +1,7 @@
 <?php
 
+namespace UrbanAirship\lib;
+
 /**
  * Represent a tag
  * Concrete implementation of Node

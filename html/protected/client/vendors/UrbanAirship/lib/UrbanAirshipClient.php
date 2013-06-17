@@ -1,5 +1,7 @@
 <?php
 
+namespace UrbanAirship\lib;
+
 abstract class UrbanAirshipClient {
 
     const UA_API = 'https://go.urbanairship.com/api';

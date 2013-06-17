@@ -1,5 +1,7 @@
 <?php
 
+namespace UrbanAirship\lib;
+
 /**
  * Encapsulate a Segment
  */

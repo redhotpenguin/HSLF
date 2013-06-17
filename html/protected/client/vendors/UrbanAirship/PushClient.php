@@ -1,11 +1,16 @@
 <?php
 
+namespace UrbanAirship;
+
+use UrbanAirship\lib\PushNotification as PushNotification;
+
+
 /**
  * UrbanAirship Push API Client
  * API Doc: http://docs.urbanairship.com/reference/api/push.html
  * @author jonas
  */
-class PushClient extends UrbanAirshipClient {
+class PushClient extends lib\UrbanAirshipClient {
 
     /**
      * Send a push notification using tags
@@ -40,7 +45,7 @@ class PushClient extends UrbanAirshipClient {
             if (isset($result['push_id'])) {
                 return $result['push_id'];
             }
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             throw $e;
         }
     }
@@ -74,7 +79,7 @@ class PushClient extends UrbanAirshipClient {
             if (isset($result['push_id'])) {
                 return $result['push_id'];
             }
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             throw $e;
         }
     }
@@ -113,7 +118,7 @@ class PushClient extends UrbanAirshipClient {
             if (isset($result['push_id'])) {
                 return $result['push_id'];
             }
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             throw $e;
         }
     }
@@ -151,7 +156,7 @@ class PushClient extends UrbanAirshipClient {
             if (isset($result['push_id'])) {
                 return $result['push_id'];
             }
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             throw $e;
         }
     }

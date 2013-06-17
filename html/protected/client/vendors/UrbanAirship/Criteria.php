@@ -1,5 +1,12 @@
 <?php
 
+namespace UrbanAirship;
+
+use UrbanAirship\lib\Node as Node;
+use UrbanAirship\lib\Condition as Condition;
+use UrbanAirship\lib\Tag as Tag;
+
+
 /**
  * Represent a segment criteria (tree structure)
  */
