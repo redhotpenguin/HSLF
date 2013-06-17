@@ -2,12 +2,15 @@
 
 Yii::setPathOfAlias('bootstrap', dirname(__FILE__) . '/../../shared/extensions/bootstrap');
 
+
 /* BACKEND CONFIG FILE */
 
 $clientDirectory = dirname(dirname(__FILE__));
 $appDirectory = dirname($clientDirectory);
 
 Yii::setPathOfAlias('backend', $clientDirectory);
+
+Yii::setPathOfAlias('UrbanAirship', Yii::getPathOfAlias('backend').'/vendors/UrbanAirship'  );
 
 return array(
     'catchAllRequest' => (MAINTENANCE === 'on' ? array('site/maintenance') : null),
