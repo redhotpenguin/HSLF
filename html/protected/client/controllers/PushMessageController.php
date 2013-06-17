@@ -3,6 +3,7 @@
 Yii::import("backend.vendors.UrbanAirship.*", false);
 
 use UrbanAirship\PushClient as PushClient;
+use UrbanAirship\ReportClient as ReportClient;
 use UrbanAirship\SegmentClient as SegmentClient;
 use UrbanAirship\lib\PushNotification as PushNotification;
 
@@ -10,6 +11,7 @@ class PushMessageController extends CrudController {
 
     private $pushClient;
     private $segmentClient;
+    private $reportClient;
 
     public function __construct() {
         parent::__construct('pushMessage');
@@ -17,7 +19,7 @@ class PushMessageController extends CrudController {
         $tenant = Yii::app()->user->getLoggedInUserTenant();
         $this->pushClient = new PushClient($tenant->ua_api_key, $tenant->ua_api_secret);
         $this->segmentClient = new SegmentClient($tenant->ua_api_key, $tenant->ua_api_secret);
-
+        $this->reportClient = new ReportClient($tenant->ua_api_key, $tenant->ua_api_secret);
 
         $pushMessage = new PushMessage;
 
@@ -28,7 +30,7 @@ class PushMessageController extends CrudController {
 
         $extraRules = array(
             array('allow',
-                'actions' => array('composer', 'view', 'detail', 'confirmation', 'jsonSegments', 'jsonSegment'),
+                'actions' => array('composer', 'view', 'detail', 'confirmation', 'jsonSegments', 'jsonSegment', 'jsonReport'),
                 'roles' => array('managePushMessages'),
             )
         );
@@ -219,6 +221,15 @@ class PushMessageController extends CrudController {
             'name' => $segment->getDisplayName(),
             'criteria' => $segment->getCriteria()
         );
+
+        echo CJSON::encode($response);
+        Yii::app()->end();
+    }
+
+    public function actionJsonReport($pushId) {
+        header('Content-type: ' . 'application/json;charset=UTF-8');
+
+        $response = $this->reportClient->getPushReport($pushId);
 
         echo CJSON::encode($response);
         Yii::app()->end();

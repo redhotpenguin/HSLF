@@ -2,6 +2,19 @@
 $baseUrl = Yii::app()->baseUrl;
 $cs = Yii::app()->getClientScript();
 $cs->registerCssFile($baseUrl . '/static/pushcomposer/pushcomposer.css');
+$cs->registerScriptFile($baseUrl . '/static/pushcomposer/report.js');
+$tenant = Yii::app()->user->getLoggedInUserTenant();
+$controller_url = Yii::app()->params['site_url'] . '/client/' . $tenant->name;
+$pushId = $pushMessage->push_identifier;
+$ns = "var pushmessage_ns  = {controller_url: '" . $controller_url . "/pushMessage', pushId:'$pushId'};";
+Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::POS_HEAD);
+
+
+
+
+
+
+
 $status = $pushMessage->isDelivered() ? "Delivered" : "Not delivered";
 
 
@@ -39,7 +52,7 @@ $this->secondaryNav['items'] = array('', array('label' => 'Composer', 'url' => a
             <?php
             if ($pushMessage->tags) {
                 foreach ($pushMessage->tags as $tag) {
-                    echo "<span class='tagPill'>{$tag ->display_name} ({$tag->name})</span>";
+                    echo "<span class='tagPill'>{$tag->display_name} ({$tag->name})</span>";
                 }
             } else {
                 echo '<p>No tags set</p>';
@@ -54,5 +67,13 @@ $this->secondaryNav['items'] = array('', array('label' => 'Composer', 'url' => a
             <p><?php echo $pushMessage->creation_date; ?></p>
         </div>
     </div>
+
+    <h4 class="leader">Statistics</h4>
+    <div class="step row" >
+        <div class="span12">
+            <div id="pushStats">Loading ...</div>
+        </div>
+    </div>
+
 
 </div>
