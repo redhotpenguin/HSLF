@@ -1,9 +1,13 @@
 <?php
 
 require_once('/var/www/html/mobile_platform/html/protected/helpers/globals.php'); // there is a better way to do this..
-require_once('/var/www/html/mobile_platform/html/protected/client/vendors/UrbanAirship/UrbanAirshipClient.php'); // there is a better way to do this..
-require_once('/var/www/html/mobile_platform/html/protected/client/vendors/UrbanAirship/PushNotification.php'); // there is a better way to do this..
+require_once('/var/www/html/mobile_platform/html/protected/client/vendors/UrbanAirship/lib/UrbanAirshipClient.php'); // there is a better way to do this..
+require_once('/var/www/html/mobile_platform/html/protected/client/vendors/UrbanAirship/lib/PushNotification.php'); // there is a better way to do this..
 require_once('/var/www/html/mobile_platform/html/protected/client/vendors/UrbanAirship/PushClient.php'); // there is a better way to do this..
+
+
+
+use UrbanAirship\lib\PushNotification as PushNotification;
 
 /**
  * Unitary tests for the Push Client module
@@ -58,7 +62,7 @@ class PushClientTest extends CDbTestCase {
     }
 
     private function getPushClient() {
-        return new PushClient($this->apiKey, $this->apiSecret);
+        return new UrbanAirship\PushClient($this->apiKey, $this->apiSecret);
     }
 
 }
