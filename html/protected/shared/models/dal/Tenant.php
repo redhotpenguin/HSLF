@@ -5,6 +5,7 @@
  *
  * The followings are the available columns in table 'tenant':
  * @property integer $id
+ * @property integer $tenant_setting_id
  * @property string $name
  * @property string $display_name
  * @property string $creation_date
@@ -12,7 +13,6 @@
  * @property string $email
  * @property string $api_key
  * @property string $api_secret
- * @property string $ua_dashboard_link
  * @property string $cicero_user
  * @property string $cicero_password
  * @property string $ua_api_key
@@ -44,16 +44,15 @@ class Tenant extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('name, display_name,  creation_date, web_app_url, email, api_key, api_secret, ua_dashboard_link,ua_api_key,ua_api_secret, cicero_user, cicero_password', 'required'),
+            array('name, display_name,  creation_date, web_app_url, email, api_key, api_secret,ua_api_key,ua_api_secret, cicero_user, cicero_password', 'required'),
             array('name', 'length', 'max' => 32),
             array('display_name', 'length', 'max' => 256),
             array('name', 'match', 'pattern' => '/^([a-z0-9_])+$/'),
-            array('ua_dashboard_link', 'safe'),
             array('email', 'email'),
-            array('web_app_url, ua_dashboard_link', 'url'),
+            array('web_app_url', 'url'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, name, display_name, creation_date, tenant_id, email, api_key, api_secret, ua_dashboard_link', 'safe', 'on' => 'search'),
+            array('id, name, display_name, creation_date, tenant_id, email, api_key, api_secret', 'safe', 'on' => 'search'),
         );
     }
 
@@ -82,7 +81,6 @@ class Tenant extends CActiveRecord {
             'email' => 'Email',
             'api_key' => 'API key',
             'api_secret' => 'API Secret',
-            'ua_dashboard_link' => 'Urban Airship Dashboard Link',
             'cicero_user' => 'Cicero Username',
             'cicero_password' => 'Cicero Password',
             'ua_api_key' => 'Urban Airship Key',
