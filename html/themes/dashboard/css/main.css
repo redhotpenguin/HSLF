@@ -133,19 +133,18 @@ h4{
     margin-top:10%;
 }
 
-#homepage .action_group{
+.heroUserCount{
+    text-align:center;
+    padding: 60px;
+    margin-top: 30px;
+}
+.action_group{
     padding: 0px;
     width: 50%;
     float: left;
 }
 
-#homepage .heroUserCount{
-    text-align:center;
-    padding: 60px;
-    margin-top: 30px;
-}
-
-#homepage .action_group .action_block{
+.action_group .action_block{
     background-color: #EEE;
     color: #333;
     font-weight: bold;
@@ -162,7 +161,7 @@ h4{
     box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
-#homepage .action_group .action_block:hover{
+.action_group .action_block:hover{
     text-decoration:none;
     background-color:#E9E9E9;
     -webkit-transition: all .2s ease-out;

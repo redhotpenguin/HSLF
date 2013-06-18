@@ -34,8 +34,8 @@
         if (Yii::app()->user->hasPermission('manageAlertTypes'))
             echo CHtml::link('Alert Types', array('alertType/index'), array('class' => 'action_block'));
 
-        if (Yii::app()->user->hasPermission('managePayloads'))
-            echo CHtml::link('Payloads', array('payload/index'), array('class' => 'action_block'));
+        if (Yii::app()->user->hasPermission('manageMobileUsers'))
+            echo CHtml::link('Reports', array('report/index'), array('class' => 'action_block'));
         ?>
     </div>
     

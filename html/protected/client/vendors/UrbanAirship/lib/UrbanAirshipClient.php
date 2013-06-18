@@ -41,6 +41,7 @@ abstract class UrbanAirshipClient {
             $query = self::UA_API . $endPoint;
         }
 
+        // error_log("Getting following request from Urban Airship: " . $query);
 
         $ch = curl_init($query);
         curl_setopt($ch, CURLOPT_USERPWD, $this->apiKey . ":" . $this->apiSecret);
@@ -57,7 +58,7 @@ abstract class UrbanAirshipClient {
             return $result;
         }
 
-        throw new Exception($result);
+        throw new \Exception($result);
     }
 
     /**
@@ -68,7 +69,7 @@ abstract class UrbanAirshipClient {
      */
     protected final function postJsonData($endPoint, $data) {
 
-        error_log("Sending following payload to Urban Airship: " . $data);
+        //  error_log("Sending following payload to Urban Airship: " . $data);
 
         $ch = curl_init(self::UA_API . $endPoint);
         curl_setopt($ch, CURLOPT_USERPWD, $this->apiKey . ":" . $this->apiSecret);
@@ -83,11 +84,11 @@ abstract class UrbanAirshipClient {
 
         curl_close($ch);
 
-        if ($status === 200) {
+        if ($status === 200 || $status === 201) {
             return $result;
         }
 
-        throw new Exception($result);
+        throw new \Exception($result);
     }
 
     /**

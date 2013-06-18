@@ -21,7 +21,7 @@
 
         $baseUrl = Yii::app()->baseUrl;
         $cs = Yii::app()->getClientScript();
-        $cs->registerScriptFile($baseUrl . '/static/global/js/dashboard.js');
+        $cs->registerScriptFile($baseUrl . '/static/dashboard/js/dashboard.js');
         ?>
 
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>

@@ -162,4 +162,14 @@ class PushMessage extends BaseActiveRecord {
         );
     }
 
+    public function scopes() {
+       
+        return array(
+            'lastRecord' => array(
+                'order' =>  $this->tableAlias.'.id DESC',
+                'limit' => 1,
+            ),
+        );
+    }
+
 }
