@@ -24,11 +24,10 @@ $this->widget('bootstrap.widgets.TbGridView', array(
     'columns' => array(
         array(
             'name' => 'alert',
-            'value' => 'substr($data->alert, 0, 30)."...";'
         ),
         'creation_date',
         array(
-            'header' => 'Recipient Type',
+            'header' => 'Recipient',
             'value' => '$data->recipient_type',
             'filter' => CHtml::dropDownList('PushMessage[recipient_type]', $model->recipient_type, array("" => "Any") + $model->getRecipientTypes()),
         ),

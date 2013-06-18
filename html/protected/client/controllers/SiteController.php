@@ -1,6 +1,5 @@
 <?php
 
- 
 class SiteController extends Controller {
 
     /**
@@ -49,11 +48,21 @@ class SiteController extends Controller {
     }
 
     public function actionHome() {
+
+        Yii::import("backend.vendors.UrbanAirship.*", false);
+
+
+
         $tenant = Yii::app()->user->getLoggedInUserTenant();
-        $tenantDisplayName = $tenant->display_name;
-        
-        
-        $this->render('home', array('tenantDisplayName'=>$tenantDisplayName, 'userCount' => MobileUser::model()->count()));
+
+        $data = array(
+            'tenantSettings' => $tenant->getSettingRelation(),
+            'userCount' => MobileUser::model()->count(),
+            'tenantDisplayName' => $tenant->display_name
+        );
+
+
+        $this->render('home', $data);
     }
 
     /**
@@ -105,7 +114,7 @@ class SiteController extends Controller {
                 case 23505:
                     $message = "A field with the same value already exists.";
                     break;
-                
+
                 default: $message = "Internal error";
             }
         }
@@ -137,8 +146,8 @@ class SiteController extends Controller {
         Yii::app()->user->logout();
         $this->redirect('/client');
     }
-    
-    public function actionMaintenance(){
+
+    public function actionMaintenance() {
         $this->render('maintenance');
     }
 

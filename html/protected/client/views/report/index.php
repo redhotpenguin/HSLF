@@ -1,9 +1,9 @@
 
 
-<h3> Overview for <?php echo date('F Y') ?></h3>
+<h3> Overview</h3>
 
-<p> Total Push Sends: <b><?php echo CHtml::link($totalPushSent, array('pushMessage/index')) ?> </b> </p>
-
+<p>Total Push Sends: <b><?php echo CHtml::link($totalPushSent, array('pushMessage/index')); ?> </b> (<?php echo date('F Y') ?>) </p>
+<p>Total Installs  : <b><?php echo CHtml::link($userCount, array('mobileUser/index')); ?></b> </p>
 
 <div class="section-divider">
     <h3>Reports</h3>

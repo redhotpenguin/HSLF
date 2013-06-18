@@ -7,6 +7,10 @@
             Use the drop-down navigation above or click one of the buttons below to manage your mobile application.</p>
     </div>
 
+    <div class="section-divider">
+        <h3>Manage</h3>
+    </div>
+
     <div class="action_group">
         <?php
         if (Yii::app()->user->hasPermission('manageBallotItems'))
@@ -38,10 +42,18 @@
             echo CHtml::link('Reports', array('report/index'), array('class' => 'action_block'));
         ?>
     </div>
-    
+
     <div class="clearfix"></div>
-        
+
+    <div class="section-divider">
+        <h3>Stats</h3>
+    </div>
+
     <div class="heroUserCount">
         <h2><?php echo CHtml::link($userCount, array('mobileUser/index')); ?> people have installed your application.</h2>
+        <?php
+        echo CHtml::link('more', array('report/index'), array('class' => 'action_block'));
+        ?>
     </div>
+
 </div>
