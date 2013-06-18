@@ -35,14 +35,11 @@ class ReportController extends Controller {
     public function actionIndex() {
         $tenant = Yii::app()->user->getLoggedInUserTenant();
 
-      //  $reportClient = new ReportClient($tenant->ua_api_key, $tenant->ua_api_secret);
+        $reportClient = new ReportClient($tenant->ua_api_key, $tenant->ua_api_secret);
 
-      //  $report = $reportClient->getCurrentMonthReport();
+        $report = $reportClient->getCurrentMonthReport();
 
-       // $totalPushSent = $report['sends'][0]['ios'] + $report['sends'][0]['android'];
-
-        
-        $totalPushSent = 1234;
+        $totalPushSent = $report['sends'][0]['ios'] + $report['sends'][0]['android'];
 
         $data = array(
             'tenantSettings' => $tenant->getSettingRelation(),

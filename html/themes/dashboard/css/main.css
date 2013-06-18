@@ -135,7 +135,6 @@ h4{
 
 .heroUserCount{
     text-align:center;
-    padding: 60px;
     margin-top: 30px;
 }
 .action_group{
@@ -171,6 +170,22 @@ h4{
 }
 
 
-.section-divder{
-    
+.section-divider{
+    background: url('/themes/dashboard/img/section_divider.png') left center repeat-x;
+    width: 100%;
+    padding: 20pt 0;
+}
+
+.section-divider h3{
+    position: relative;
+    margin: 0 auto;
+    padding: 3px 20px 0;
+    max-width: 152px;
+    background: url('/themes/dashboard/img/section_divider_circle.png') center left no-repeat,url('/themes/dashboard/img/section_divider_circle.png') center right no-repeat;
+    background-color: #fff;
+    text-align: center;
+    font-size: 12pt;
+    line-height: 13pt;
+    color: #08C;
+    text-transform: uppercase;
 }
