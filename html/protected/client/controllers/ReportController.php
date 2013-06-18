@@ -26,6 +26,9 @@ class ReportController extends Controller {
                 'actions' => array('index'),
                 'roles' => array('manageMobileUsers'),
             ),
+            array('deny', // deny all users
+                'users' => array('*'),
+            ),
         );
     }
 

@@ -45,15 +45,19 @@
 
     <div class="clearfix"></div>
 
-    <div class="section-divider">
-        <h3>Did you know?</h3>
-    </div>
+    <?php if (Yii::app()->user->hasPermission('manageMobileUsers')): ?>
 
-    <div class="heroUserCount">
-        <h2><?php echo CHtml::link($userCount, array('mobileUser/index')); ?> people have installed your application.</h2>
+        <div class = "section-divider">
+            <h3>Did you know?</h3>
+        </div>
+
+        <div class = "heroUserCount">
+            <h2><?php echo CHtml::link($userCount, array('mobileUser/index')); ?> people have installed your application.</h2>
+            <?php echo CHtml::link('more', array('report/index'), array('class' => 'action_block')); ?>
+        </div>
+
         <?php
-        echo CHtml::link('more', array('report/index'), array('class' => 'action_block'));
-        ?>
-    </div>
+    endif;
+    ?>
 
 </div>
