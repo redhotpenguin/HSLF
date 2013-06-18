@@ -3,7 +3,7 @@
 /* @var $model Tenant */
 
 $this->secondaryNav['name'] = 'Tenants';
-$this->secondaryNav['url'] =array('tenant/index');
+$this->secondaryNav['url'] = array('tenant/index');
 ?>
 
 <?php
@@ -91,12 +91,6 @@ $this->secondaryNav['url'] =array('tenant/index');
     <h4>Urban Airship Configuration</h4>
 
     <div class="row-fluid">
-        <?php echo $form->labelEx($model, 'ua_dashboard_link'); ?>
-        <?php echo $form->textField($model, 'ua_dashboard_link', array('class' => 'span9',)); ?>
-        <?php echo $form->error($model, 'ua_dashboard_link'); ?>
-    </div>
-
-    <div class="row-fluid">
         <?php echo $form->labelEx($model, 'ua_api_key'); ?>
         <?php echo $form->textField($model, 'ua_api_key', array('class' => 'span9',)); ?>
         <?php echo $form->error($model, 'ua_api_key'); ?>
@@ -108,13 +102,30 @@ $this->secondaryNav['url'] =array('tenant/index');
         <?php echo $form->error($model, 'ua_api_secret'); ?>
     </div>
 
+    <hr/>
+    <h4>Other settings</h4>
+    <div class="row-fluid">
+        <?php echo $form->labelEx($tenantSetting, 'analytics_link'); ?>
+        <?php echo $form->textField($tenantSetting, 'analytics_link', array('class' => 'span9',)); ?>
+        <?php echo $form->error($tenantSetting, 'analytics_link'); ?>
+    </div>
+
+    <div class="row-fluid">
+        <?php echo $form->labelEx($tenantSetting, 'ios_link'); ?>
+        <?php echo $form->textField($tenantSetting, 'ios_link', array('class' => 'span9',)); ?>
+        <?php echo $form->error($tenantSetting, 'ios_link'); ?>
+    </div>
+    <div class="row-fluid">
+        <?php echo $form->labelEx($tenantSetting, 'android_link'); ?>
+        <?php echo $form->textField($tenantSetting, 'android_link', array('class' => 'span9',)); ?>
+        <?php echo $form->error($tenantSetting, 'android_link'); ?>
+    </div>
+
     <div class="row-fluid buttons">
         <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'Save')); ?>
     </div>
-
     <?php
     $this->endWidget();
-
     ?>
 
 </div><!-- form -->

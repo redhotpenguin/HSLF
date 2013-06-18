@@ -14,18 +14,25 @@ class TenantController extends CrudController {
      */
     public function actionCreate() {
         $model = new Tenant;
+        $tenantSetting = new TenantSetting();
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['Tenant'])) {  
+        if (isset($_POST['Tenant']) && isset($_POST['TenantSetting'])) {
+            // save tenant settings first
+            $tenantSetting->attributes = $_POST['TenantSetting'];
+            $tenantSetting->save();
+
+
             $model->attributes = $_POST['Tenant'];
-            if ($model->save()){
+            $model->tenant_setting_id = $tenantSetting->id;
+            
+            if ($model->save()) {
                 Yii::app()->user->setFlash('success', "Tenant successfully created");
                 $this->redirect(array('update', 'id' => $model->id,));
             }
-            
-        }else {
+        } else {
             $model->creation_date = date('Y-m-d h:i:s');
             $model->api_key = rand(10000, 99999);
             $model->api_secret = md5(rand(10000, 99999));
@@ -34,32 +41,38 @@ class TenantController extends CrudController {
 
         $this->render('editor', array(
             'model' => $model,
+            'tenantSetting' => new TenantSetting(),
         ));
     }
-    
-      /**
+
+    /**
      * Updates a particular model.
      * If update is successful, the browser will be redirected to the 'view' page.
-    * @param integer $id the ID of the model to be updated
+     * @param integer $id the ID of the model to be updated
      */
-   public function actionUpdate($id) {
+    public function actionUpdate($id) {
         $model = $this->loadModel($id);
+        $tenantSetting = $model->getSettingRelation();
 
-       // Uncomment the following line if AJAX validation is needed
+        // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['Tenant'])) {
+        if (isset($_POST['Tenant']) && isset($_POST['TenantSetting'])) {
             $model->attributes = $_POST['Tenant'];
-            if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id, ));
+            $tenantSetting->attributes = $_POST['TenantSetting'];
+
+
+            if ($model->save() && $tenantSetting->save())
+                $this->redirect(array('update', 'id' => $model->id,));
         }
 
         $this->render('editor', array(
             'model' => $model,
+            'tenantSetting' => $tenantSetting
         ));
     }
-    
-     /**
+
+    /**
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer $id the ID of the model to be loaded
@@ -83,7 +96,7 @@ class TenantController extends CrudController {
             Yii::app()->end();
         }
     }
-    
+
     public function accessRules() {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions

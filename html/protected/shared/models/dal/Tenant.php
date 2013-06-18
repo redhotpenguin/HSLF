@@ -64,11 +64,14 @@ class Tenant extends CActiveRecord {
         // class name for the relations automatically generated below.
         return array(
             'users' => array(self::MANY_MANY, 'User',
-                'tenant_user(tenant_id, user_id)')
+                'tenant_user(tenant_id, user_id)'),
+            'tenantSetting' => array(self::BELONGS_TO, 'TenantSetting', 'tenant_setting_id'),
         );
     }
 
     /**
+
+      /**
      * @return array customized attribute labels (name=>label)
      */
     public function attributeLabels() {
@@ -106,6 +109,10 @@ class Tenant extends CActiveRecord {
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
                 ));
+    }
+
+    public function getSettingRelation() {
+        return TenantSetting::model()->findByPk($this->id);
     }
 
 }
