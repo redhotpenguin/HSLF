@@ -34,7 +34,7 @@ html,body
 }
 
 body{
-    background: #F0EDE4 url('/static/global/img/white-noise.png') top right repeat !important;
+    background: #F0EDE4 url('/themes/dashboard/img/white-noise.png') top right repeat !important;
 }
 
 h1{
@@ -74,7 +74,7 @@ h4{
     color:#8E8E8C;
     text-align:center;
     font-size: 14px;
-    background: #111 url('/static/global/img/white-noise.png') top right repeat !important;
+    background: #111 url('/themes/dashboard/img/white-noise.png') top right repeat !important;
     border-top: 1px solid #ccc;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
     -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
@@ -171,3 +171,6 @@ h4{
 }
 
 
+.section-divder{
+    
+}
