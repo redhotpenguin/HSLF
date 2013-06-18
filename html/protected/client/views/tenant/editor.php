@@ -103,7 +103,7 @@ $this->secondaryNav['url'] = array('tenant/index');
     </div>
 
     <hr/>
-    <h4>Other settings</h4>
+    <h4>Other Settings</h4>
     <div class="row-fluid">
         <?php echo $form->labelEx($tenantSetting, 'analytics_link'); ?>
         <?php echo $form->textField($tenantSetting, 'analytics_link', array('class' => 'span9',)); ?>
