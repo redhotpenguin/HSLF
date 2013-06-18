@@ -48,11 +48,6 @@ class SiteController extends Controller {
     }
 
     public function actionHome() {
-
-        Yii::import("backend.vendors.UrbanAirship.*", false);
-
-
-
         $tenant = Yii::app()->user->getLoggedInUserTenant();
 
         $data = array(

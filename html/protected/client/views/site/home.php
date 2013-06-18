@@ -46,7 +46,7 @@
     <div class="clearfix"></div>
 
     <div class="section-divider">
-        <h3>Stats</h3>
+        <h3>Did you know?</h3>
     </div>
 
     <div class="heroUserCount">
