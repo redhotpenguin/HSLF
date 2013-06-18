@@ -91,6 +91,10 @@
                     if (Yii::app()->user->hasPermission('managePushMessages'))
                         array_push($applicationMenuItems, array('label' => 'Push Messages', 'url' => array('/pushMessage/index')));
 
+                    if (Yii::app()->user->hasPermission('manageMobileUsers'))
+                        array_push($applicationMenuItems, array('label' => 'Reports', 'url' => array('/report/index')));
+
+
                     if (count($applicationMenuItems) > 0) {
                         $applicationMenu = array(
                             'class' => 'bootstrap.widgets.TbMenu',

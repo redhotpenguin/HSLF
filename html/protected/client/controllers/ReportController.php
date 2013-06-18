@@ -1,6 +1,6 @@
 <?php
 
-class ReportingController extends Controller {
+class ReportController extends Controller {
 
     /**
      * @return array action filters
