@@ -16,6 +16,7 @@ class ReportClient extends lib\UrbanAirshipClient {
      * @param string $end date
      * @param string precision (HOURLY, DAILY, MONTHLY, YEARLY)
      * @return StdObject report
+     * @todo: validate arguments
      */
     public function getReport($start, $end, $precision = 'DAILY') {
         $jsonResult = $this->getJsonData("/reports/sends/?start=$start&end=$end&precision=$precision");
@@ -24,13 +25,14 @@ class ReportClient extends lib\UrbanAirshipClient {
 
     /**
      * Get the number of pushes sent for the current month
+     * @param $precision - optionnal. Default to Monthly - (HOURLY, DAILY, MONTHLY, YEARLY)
      * @return StdObject report
      */
-    public function getCurrentMonthReport() {
+    public function getCurrentMonthReport($precision = "MONTHLY") {
 
         $start = date("Y-m-01") . "%2000:00:00";
         $end = date("Y-m-t") . "%2023:59:59";
-        $result = $this->getReport($start, $end, "MONTHLY");
+        $result = $this->getReport($start, $end, $precision);
         return $result;
     }
 
