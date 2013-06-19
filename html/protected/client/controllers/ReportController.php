@@ -34,7 +34,7 @@ class ReportController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'monthlyJsonReport'),
+                'actions' => array('index', 'monthlyPushJsonReport', 'monthlyJsonUserRegistration'),
                 'roles' => array('manageMobileUsers'),
             ),
             array('deny', // deny all users
@@ -59,14 +59,34 @@ class ReportController extends Controller {
     /**
      * Print JSON reports
      */
-    public function actionMonthlyJsonReport() {
+    public function actionMonthlyPushJsonReport() {
         header('Content-type: ' . 'application/json;charset=UTF-8');
 
-        
+
         $response = $this->reportClient->getCurrentMonthReport('DAILY');
 
 
         echo CJSON::encode($response);
+        Yii::app()->end();
+    }
+
+    /**
+     * Print all the users registered for the month of June (JSON)
+     */
+    public function actionMonthlyJsonUserRegistration() {
+        $start = new MongoDate(strtotime("2013-04-01 00:00:00"));
+
+        $registrations = MobileUser::model()->getCountSinceDate($start);
+
+        $count = MobileUser::model()->count(array('registration_date' => array('$gt' => $start)));
+
+        $result = array(
+            'total' => $count,
+            'registrations' => $registrations
+        );
+
+        header('Content-type: ' . 'application/json;charset=UTF-8');
+        echo json_encode($result);
         Yii::app()->end();
     }
 
