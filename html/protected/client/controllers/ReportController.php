@@ -6,6 +6,17 @@ use UrbanAirship\ReportClient as ReportClient;
 
 class ReportController extends Controller {
 
+    private $reportClient;
+    private $tenant;
+
+    public function __construct() {
+        parent::__construct('report');
+
+        $this->tenant = Yii::app()->user->getLoggedInUserTenant();
+
+        $this->reportClient = new ReportClient($this->tenant->ua_api_key, $this->tenant->ua_api_secret);
+    }
+
     /**
      * @return array action filters
      */
@@ -23,7 +34,7 @@ class ReportController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index'),
+                'actions' => array('index', 'monthlyJsonReport'),
                 'roles' => array('manageMobileUsers'),
             ),
             array('deny', // deny all users
@@ -36,22 +47,27 @@ class ReportController extends Controller {
      * index page
      */
     public function actionIndex() {
-        $tenant = Yii::app()->user->getLoggedInUserTenant();
-
-        $reportClient = new ReportClient($tenant->ua_api_key, $tenant->ua_api_secret);
-
-        $report = $reportClient->getCurrentMonthReport();
-
-        $totalPushSent = $report['sends'][0]['ios'] + $report['sends'][0]['android'];
-
         $data = array(
-            'tenantSettings' => $tenant->getSettingRelation(),
+            'tenantSettings' => $this->tenant->getSettingRelation(),
             'userCount' => MobileUser::model()->count(),
-            'totalPushSent' => $totalPushSent
         );
 
 
         $this->render('index', $data);
+    }
+
+    /**
+     * Print JSON reports
+     */
+    public function actionMonthlyJsonReport() {
+        header('Content-type: ' . 'application/json;charset=UTF-8');
+
+        
+        $response = $this->reportClient->getCurrentMonthReport('DAILY');
+
+
+        echo CJSON::encode($response);
+        Yii::app()->end();
     }
 
 }
