@@ -48,18 +48,14 @@ h4{
 #content h1{
     margin-bottom:10px;
 }
-.container{
-    min-height: 91%;
-}
-
-
 #container{
     border-left: 1px solid #eee;
     border-right: 1px solid #eee;
     background-color: white;
-    padding:20px;
+    padding:20px 20px 50px 20px;
     margin-top:40px;
     font-family: 'Open Sans';
+    min-height: 91%;
 }
 #subnav + #container{
     margin-top:80px;
@@ -70,7 +66,7 @@ h4{
     position: fixed;
     width:100%;
     bottom:0;
-    height: 20px;
+    height: 15px;
     clear:both;
     padding:10px;
     color:#8E8E8C;
@@ -173,7 +169,7 @@ h4{
 .section-divider{
     background: url('/themes/dashboard/img/section_divider.png') left center repeat-x;
     width: 100%;
-    padding: 20pt 0;
+    padding: 10pt 0;
 }
 
 .section-divider h3{
