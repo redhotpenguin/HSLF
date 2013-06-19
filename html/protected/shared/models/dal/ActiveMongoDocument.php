@@ -13,7 +13,7 @@ abstract class ActiveMongoDocument extends CModel {
     public static $mongoClient;
     public $lastError;
     private $collectionName;
-    protected $collection;
+    private $collection;
     private static $model;
     public $searchAttributes = array(); // search attributes
 
@@ -224,10 +224,29 @@ abstract class ActiveMongoDocument extends CModel {
 
     /**
      * count the number of documents
+     * @param array $attributes - optionnal, search attributes
      */
-    public function count() {
+    public function count($attributes = array()) {
         $this->beforeFind();
-        return $this->collection->count($this->searchAttributes);
+        return $this->collection->count(array_merge($attributes, $this->searchAttributes));
+    }
+
+    /**
+     * Perform a group() on the current collection
+     * @param mixed $keys string or MongoCode
+     * @param string $initial
+     * @param array $condition (optional)
+     * @return array reduced result
+     */
+    public function group($keys, $initial, $reduce, $condition = array()) {
+        $this->beforeFind();
+
+
+        $options = array('condition' => array_merge($condition, $this->searchAttributes));
+
+        $g = $this->collection->group($keys, $initial, $reduce, $options);
+
+        return isset($g['retval']) ? $g['retval'] : false;
     }
 
     /**
