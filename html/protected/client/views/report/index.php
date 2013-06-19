@@ -16,6 +16,8 @@ $controller_url = Yii::app()->params['site_url'] . '/client/' . $tenant->name;
 $ns = "var report_ns  = {controller_url: '" . $controller_url . "'};";
 
 Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::POS_HEAD);
+
+$currentMonth = date('F');
 ?>
 
 
@@ -25,8 +27,11 @@ Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::
 </div>
 
 
-<b>Pushes sent for the month of <?php echo date('F'); ?>:</b>
+<b>Pushes sent for the month of <?php echo $currentMonth ?>:</b>
 <div id="monthlyPushChart" ></div>
+
+<b>User registrations for the month of <?php echo $currentMonth ?> <span id="totalMonthlyUser"></span>:</b>
+<div id="monthlyUserRegistrationChart" ></div>
 
 <b>Total Installs: <?php echo CHtml::link($userCount, array('mobileUser/index')); ?></b>
 

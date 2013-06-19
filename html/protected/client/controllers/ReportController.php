@@ -74,8 +74,8 @@ class ReportController extends Controller {
      * Print all the users registered for the month of June (JSON)
      */
     public function actionMonthlyJsonUserRegistration() {
-        $start = new MongoDate(strtotime("2013-04-01 00:00:00"));
-
+        $start = new MongoDate(strtotime( date("Y-m-01") . " 00:00:00" ));
+  
         $registrations = MobileUser::model()->getCountSinceDate($start);
 
         $count = MobileUser::model()->count(array('registration_date' => array('$gt' => $start)));
