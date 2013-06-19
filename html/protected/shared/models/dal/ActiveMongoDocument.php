@@ -13,7 +13,7 @@ abstract class ActiveMongoDocument extends CModel {
     public static $mongoClient;
     public $lastError;
     private $collectionName;
-    private $collection;
+    protected $collection;
     private static $model;
     public $searchAttributes = array(); // search attributes
 
