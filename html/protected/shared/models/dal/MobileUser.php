@@ -125,5 +125,25 @@ class MobileUser extends ActiveMongoDocument {
         }
     }
 
+    /**
+     * Return the number of daily users since the date indicated
+     * @return array();
+     */
+    public function getCountSinceDate(MongoDate $date) {
+      
+        $keys = new MongoCode('function(user) { var dateKey = (user.registration_date.getMonth()+1) + "/" +  user.registration_date.getDate() + "/" + user.registration_date.getFullYear();return {day: dateKey}; }');
+
+        $initial = array('total' => 0);
+
+        $reduce = "function(curr, result) { result.total +=1; }";
+
+        $conditions = array(
+            'registration_date' => array('$exists' => true, '$gt' => $date),
+        );
+
+        
+        return $this->group($keys, $initial, $reduce, $conditions);
+    }
+
 }
 
