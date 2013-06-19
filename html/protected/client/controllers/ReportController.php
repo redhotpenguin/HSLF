@@ -6,7 +6,14 @@ use UrbanAirship\ReportClient as ReportClient;
 
 class ReportController extends Controller {
 
+    /**
+     * @var ReportClient
+     */
     private $reportClient;
+
+    /**
+     * @var Tenant
+     */
     private $tenant;
 
     public function __construct() {
@@ -34,7 +41,7 @@ class ReportController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'monthlyPushJsonReport', 'monthlyJsonUserRegistration'),
+                'actions' => array('index', 'jsonPushReport', 'jsonUserRegistrationReport', 'jsonResponseReport'),
                 'roles' => array('manageMobileUsers'),
             ),
             array('deny', // deny all users
@@ -59,7 +66,7 @@ class ReportController extends Controller {
     /**
      * Print JSON reports
      */
-    public function actionMonthlyPushJsonReport() {
+    public function actionJsonPushReport() {
         header('Content-type: ' . 'application/json;charset=UTF-8');
 
 
@@ -73,9 +80,9 @@ class ReportController extends Controller {
     /**
      * Print all the users registered for the month of June (JSON)
      */
-    public function actionMonthlyJsonUserRegistration() {
-        $start = new MongoDate(strtotime( date("Y-m-01") . " 00:00:00" ));
-  
+    public function actionJsonUserRegistrationReport() {
+        $start = new MongoDate(strtotime(date("Y-m-01") . " 00:00:00"));
+
         $registrations = MobileUser::model()->getCountSinceDate($start);
 
         $count = MobileUser::model()->count(array('registration_date' => array('$gt' => $start)));
@@ -87,6 +94,16 @@ class ReportController extends Controller {
 
         header('Content-type: ' . 'application/json;charset=UTF-8');
         echo json_encode($result);
+        Yii::app()->end();
+    }
+
+    public function actionJsonResponseReport() {
+        $start = date("Y-m-01") . "%2000:00:00";
+        $end = date("Y-m-t") . "%2023:59:59";
+        $precision = "DAILY";
+        
+        header('Content-type: ' . 'application/json;charset=UTF-8');
+        echo json_encode($this->reportClient->getResponseReport($start, $end, $precision));
         Yii::app()->end();
     }
 

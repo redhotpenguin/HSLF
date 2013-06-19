@@ -7,7 +7,7 @@ function report($){
         var serie = [],
         ticks = [];
     
-        $.get(report_ns.controller_url + '/report/monthlyPushJsonReport', function(report){
+        $.get(report_ns.controller_url + '/report/jsonPushReport', function(report){
             var l  = report['sends'].length;
             var prevTotal = 1;
             for(var i = 0; i < l; i++){
@@ -84,7 +84,7 @@ function report($){
         var s1 = [];
         var ticks = [];
     
-        $.get(report_ns.controller_url + '/report/monthlyJsonUserRegistration', function(report){
+        $.get(report_ns.controller_url + '/report/jsonUserRegistrationReport', function(report){
             
             
             $("#totalMonthlyUserCount").html('('  + report.total + ' total)');

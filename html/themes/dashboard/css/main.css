@@ -25,7 +25,7 @@ html,body
 
 #container .hero-unit{
     border-radius: 0 !important;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     word-wrap: break-word;
 }
 
@@ -169,7 +169,7 @@ h4{
 .section-divider{
     background: url('/themes/dashboard/img/section_divider.png') left center repeat-x;
     width: 100%;
-    padding: 10pt 0;
+    padding: 15pt 0;
 }
 
 .section-divider h3{
