@@ -25,7 +25,7 @@ Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::
 </div>
 
 
-<b>Pushes sent for the month of <?php echo date('F'); ?></b>
+<b>Pushes sent for the month of <?php echo date('F'); ?>:</b>
 <div id="monthlyPushChart" ></div>
 
 <b>Total Installs: <?php echo CHtml::link($userCount, array('mobileUser/index')); ?></b>

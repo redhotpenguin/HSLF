@@ -27,8 +27,11 @@ function report($){
                 prevTotal =  total;
             }
 
+
+         
      
-            $.jqplot('monthlyPushChart', [s1], {
+            var plot1= $.jqplot('monthlyPushChart', [s1], {
+                seriesColors : ["#0088cc"],
                 animate: true,
                 axesDefaults:{
                     min:0
@@ -76,8 +79,6 @@ function report($){
                 }
 
             });
-    
-    
         });
     
     }  // displayMonthlyPushReport end
