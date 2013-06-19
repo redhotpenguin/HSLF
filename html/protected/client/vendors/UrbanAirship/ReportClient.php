@@ -14,7 +14,7 @@ class ReportClient extends lib\UrbanAirshipClient {
      * Get the number of pushes sent within a specified time period.
      * @param string $start date
      * @param string $end date
-     * @param string precision (HOURLY, DAILY, MONTHLY, YEARLY)
+     * @param string $precision (HOURLY, DAILY, MONTHLY, YEARLY)
      * @return StdObject report
      * @todo: validate arguments
      */
@@ -34,6 +34,19 @@ class ReportClient extends lib\UrbanAirshipClient {
         $end = date("Y-m-t") . "%2023:59:59";
         $result = $this->getReport($start, $end, $precision);
         return $result;
+    }
+
+    /**
+     * Get the number of direct and influenced opens of your app.
+     * @param string $start date
+     * @param string $end date
+     * @param string $precision (HOURLY, DAILY, MONTHLY, YEARLY)
+     * @return StdObject response report
+     * @todo: validate arguments
+     */
+    public function getResponseReport($start, $end, $precision = 'DAILY') {
+        $jsonResult = $this->getJsonData("/reports/responses/?start=$start&end=$end&precision=$precision");
+        return json_decode($jsonResult, true);
     }
 
     /**
