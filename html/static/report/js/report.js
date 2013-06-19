@@ -2,6 +2,7 @@ jQuery(document).ready(report);
 
 
 function report($){
+    
     function displayMonthlyPushReport(){
         var s1 = [];
         var ticks = [];
@@ -27,10 +28,7 @@ function report($){
                 prevTotal =  total;
             }
 
-
-         
-     
-            var plot1= $.jqplot('monthlyPushChart', [s1], {
+            $.jqplot('monthlyPushChart', [s1], {
                 seriesColors : ["#0088cc"],
                 animate: true,
                 axesDefaults:{
@@ -70,7 +68,7 @@ function report($){
                     sizeAdjust: 7.5,
                     formatString: "%d",
                     tooltipContentEditor: function(str, seriesIndex, pointIndex, jqPlot) {
-                        return s1[pointIndex];
+                        return s1[pointIndex] + " pushes sent";
                     }
 
                 }, 
