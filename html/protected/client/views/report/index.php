@@ -30,7 +30,7 @@ $currentMonth = date('F');
 <b>Pushes sent for the month of <?php echo $currentMonth ?>:</b>
 <div id="monthlyPushChart" ></div>
 
-<b>User registrations for the month of <?php echo $currentMonth ?> <span id="totalMonthlyUser"></span>:</b>
+<b>User registrations for the month of <?php echo $currentMonth ?> <span id="totalMonthlyUserCount"></span>:</b>
 <div id="monthlyUserRegistrationChart" ></div>
 
 <b>Total Installs: <?php echo CHtml::link($userCount, array('mobileUser/index')); ?></b>

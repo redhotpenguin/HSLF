@@ -87,7 +87,7 @@ function report($){
         $.get(report_ns.controller_url + '/report/monthlyJsonUserRegistration', function(report){
             
             
-            $("#totalMonthlyUserCount").html('('  + report.total + ' total )');
+            $("#totalMonthlyUserCount").html('('  + report.total + ' total)');
             
             var l  = report['registrations'].length;
 
