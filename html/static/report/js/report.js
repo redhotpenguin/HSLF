@@ -40,7 +40,7 @@ function report($){
                 axesDefaults:{
                     min:0
                 },
-                seriesColors:["red","blue"],
+                seriesColors : ["#0088cc"], 
                 seriesDefaults:{
                     renderer:$.jqplot.BarRenderer,
                     rendererOptions: {
@@ -118,7 +118,7 @@ function report($){
             
             
             var graphOptions = {
-                seriesColors : ["#0088cc", "#8800cc"],                
+                seriesColors : ["#0088cc", "#DD5336"],                
                 series:[
 
                 {
@@ -214,7 +214,7 @@ function report($){
             }
             
             var graphOptions = {
-                seriesColors : ["#0088cc","#00cc88"],
+                seriesColors : ["#0088cc", "#DD5336"], 
                 animate: true,
                 stackSeries: true,
                 axesDefaults:{
