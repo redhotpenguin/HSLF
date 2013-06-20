@@ -81,50 +81,86 @@ class ReportController extends Controller {
      * Print JSON reports
      */
     public function actionJsonPushReport($start = null, $end = null) {
-        try {
-            if ($start && $end) {
-                $response = $this->reportClient->getReport($start, $end, 'DAILY');
-            } else {
-                $response = $this->reportClient->getCurrentMonthReport('DAILY');
+        header('Content-type: ' . 'application/json;charset=UTF-8');
+        $cacheKey = $this->tenant->id . '_actionJsonPushReport' . $start . $end;
+
+        if (($cachedJsonResult = Yii::app()->cache->get($cacheKey)) == true) {
+            echo $cachedJsonResult;
+        } else {
+
+            try {
+                if ($start && $end) {
+                    $response = $this->reportClient->getReport($start, $end, 'DAILY');
+                } else {
+                    $response = $this->reportClient->getCurrentMonthReport('DAILY');
+                }
+                $jsonResult = json_encode($response);
+
+                Yii::app()->cache->set($cacheKey, $jsonResult, 600); // cache json result for 10 minutes
+
+                echo $jsonResult;
+            } catch (Exception $e) {
+                
             }
-            header('Content-type: ' . 'application/json;charset=UTF-8');
-            echo json_encode($response);
-            Yii::app()->end();
-        } catch (Exception $e) {
-            
         }
+
+        Yii::app()->end();
     }
 
     /**
      * Print all the users registered for the month of June (JSON)
      */
     public function actionJsonUserRegistrationReport() {
-        $start = new MongoDate(strtotime(date("Y-m-01") . " 00:00:00"));
-
-        $registrations = MobileUser::model()->getCountSinceDate($start);
-
-        $androidCount = MobileUser::model()->count(array('device_type' => 'android', 'registration_date' => array('$gt' => $start)));
-        $iosCount = MobileUser::model()->count(array('device_type' => 'ios', 'registration_date' => array('$gt' => $start)));
-
-
-        $result = array(
-            'android' => $androidCount,
-            'ios' => $iosCount,
-            'registrations' => $registrations
-        );
-
         header('Content-type: ' . 'application/json;charset=UTF-8');
-        echo json_encode($result);
+
+        $cacheKey = $this->tenant->id . '_actionJsonUserRegistrationReport';
+        if (($cachedJsonResult = Yii::app()->cache->get($cacheKey)) == true) {
+            echo $cachedJsonResult;
+        } else {
+
+            $start = new MongoDate(strtotime(date("Y-m-01") . " 00:00:00"));
+
+            $registrations = MobileUser::model()->getCountSinceDate($start);
+
+            $mobileUserModel = MobileUser::model();
+            $mobileUserModel->setReadPreference(MongoClient::RP_SECONDARY_PREFERRED);
+
+            $androidCount = $mobileUserModel->count(array('device_type' => 'android', 'registration_date' => array('$gt' => $start)));
+            $iosCount = $mobileUserModel->count(array('device_type' => 'ios', 'registration_date' => array('$gt' => $start)));
+
+
+            $result = array(
+                'android' => $androidCount,
+                'ios' => $iosCount,
+                'registrations' => $registrations
+            );
+
+            $jsonResult = json_encode($result);
+
+            Yii::app()->cache->set($cacheKey, $jsonResult, 600); // cache json result for 10 minutes
+
+            echo $jsonResult;
+        }
         Yii::app()->end();
     }
 
     public function actionJsonResponseReport() {
-        $start = date("Y-m-01") . "%2000:00:00";
-        $end = date("Y-m-t") . "%2023:59:59";
-        $precision = "DAILY";
-
         header('Content-type: ' . 'application/json;charset=UTF-8');
-        echo json_encode($this->reportClient->getResponseReport($start, $end, $precision));
+
+        $cacheKey = $this->tenant->id . '_actionJsonResponseReport';
+        
+        if (($cachedJsonResult = Yii::app()->cache->get($cacheKey)) == true) {
+            echo $cachedJsonResult;
+        } else {
+
+            $start = date("Y-m-01") . "%2000:00:00";
+            $end = date("Y-m-t") . "%2023:59:59";
+            $precision = "DAILY";
+            $jsonResult = json_encode($this->reportClient->getResponseReport($start, $end, $precision));
+            Yii::app()->cache->set($cacheKey, $jsonResult, 600); // cache json result for 10 minutes
+            echo $jsonResult;
+        }
+
         Yii::app()->end();
     }
 
