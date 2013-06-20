@@ -53,8 +53,8 @@ function report($){
 
                 legend: {
                     show: true,
-                    placement: "outsideGrid"
-                    
+                    placement: "inside",
+                    location: 'ne'
                 },
                 axes: {
                     xaxis: {
@@ -146,8 +146,8 @@ function report($){
 
                 legend: {
                     show: true,
-                    placement: "outsideGrid"
-                    
+                    placement: "inside",
+                    location: 'ne'         
                 },
                 axes: {
                     xaxis: {
@@ -239,8 +239,8 @@ function report($){
                 ],
                 legend: {
                     show: true,
-                    placement: "outsideGrid"
-                    
+                    placement: "inside",
+                    location: 'ne'
                 },
                 axes: {
                     xaxis: {
