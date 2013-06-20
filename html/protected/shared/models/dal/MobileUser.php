@@ -130,18 +130,19 @@ class MobileUser extends ActiveMongoDocument {
      * @return array();
      */
     public function getCountSinceDate(MongoDate $date) {
-      
+
         $keys = new MongoCode('function(user) { var dateKey = (user.registration_date.getMonth()+1) + "/" +  user.registration_date.getDate() + "/" + user.registration_date.getFullYear();return {day: dateKey}; }');
 
-        $initial = array('total' => 0);
+        $initial = array('total' => 0, 'android' => 0, 'ios' => 0);
 
-        $reduce = "function(curr, result) { result.total +=1; }";
+        $reduce = "function(curr, result) { result.total +=1;  if(curr.device_type == 'ios'){result.ios +=1; }else{result.android +=1; }  }";
 
         $conditions = array(
             'registration_date' => array('$exists' => true, '$gt' => $date),
+            'device_type' => array('$exists' => true),
         );
 
-        
+
         return $this->group($keys, $initial, $reduce, $conditions);
     }
 
