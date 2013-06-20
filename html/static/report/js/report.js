@@ -7,24 +7,24 @@ function report($){
         return $.jqplot(target, series, graphOptions); 
     },
     buildMonthlyPushChart = function(){
-        $.get(report_ns.controller_url + '/report/jsonPushReport', function(report){
-            var serie = [],
+        $.get(report_ns.controller_url + '/report/jsonPushReport', function(pushReport){
+            var pushSerie = [],
             ticks = [];
         
-            var l  = report['sends'].length;
+            var totalSends  = pushReport['sends'].length;
             var prevTotal = 1;
-            for(var i = 0; i < l; i++){
-                var r = report['sends'][i],
-                total = r.android + r.ios;
+            for(var i = 0; i < totalSends; i++){
+                var report = pushReport['sends'][i],
+                total = report.android + report.ios;
             
                 if(total == 0 &&  prevTotal  == 0  ){ // skip consecutive 0s
                     continue;
                 }    
                        
-                var d=new Date(Date.parse(r.date)),
+                var d=new Date(Date.parse(report.date)),
                 month = d.getMonth() + 1; // month sare zero based (jan = 0)
             
-                serie.push(total);
+                pushSerie.push(total);
                 ticks.push( month + "/" + d.getDate() );
             
                 prevTotal =  total;
@@ -33,11 +33,7 @@ function report($){
             var graphOptions =  {
                 series:[
                 {
-                    label:'Direct'
-                },
-
-                {
-                    label:'Influenced'
+                    label:'Pushes Sent'
                 },
                 ],
                 animate: true,
@@ -81,12 +77,7 @@ function report($){
                     sizeAdjust: 7.5,
                     formatString: "%d",
                     tooltipContentEditor: function(str, seriesIndex, pointIndex, jqPlot) {
-                        if(seriesIndex == 0){ // direct
-                        //   return directSerie[pointIndex] + " directs";
-                        }else{ // influenced
-                        //  return influenceSerie[pointIndex] + " influenced";
-                        }
-                       
+                        return pushSerie[pointIndex] + " pushes sent";
                     }
 
                 }, 
@@ -95,27 +86,27 @@ function report($){
                 }
 
             },
-            graph = buildGraph("monthlyPushChart", [serie], ticks, graphOptions);
+            graph = buildGraph("monthlyPushChart", [pushSerie], ticks, graphOptions);
         });
     },
     buildMonthlyUserRegistrationChart = function(){
-        var s1 = [];
-        var ticks = [];
+        var userRegistrationSerie = [],
+        ticks = [];
     
-        $.get(report_ns.controller_url + '/report/jsonUserRegistrationReport', function(report){
+        $.get(report_ns.controller_url + '/report/jsonUserRegistrationReport', function(userRegistrationReport){
             
             
-            $("#totalMonthlyUserCount").html('('  + report.total + ' total)');
+            $("#totalMonthlyUserCount").html('('  + userRegistrationReport.total + ' total)');
             
-            var l  = report['registrations'].length;
+            var totalUserRegistration  = userRegistrationReport['registrations'].length;
 
-            for(var i = 0; i < l; i++){
-                var r = report['registrations'][i],
-                d=new Date(Date.parse(r.day)),
-                month = d.getMonth() + 1; // month sare zero based (jan = 0)
+            for(var i = 0; i < totalUserRegistration; i++){
+                var report = userRegistrationReport['registrations'][i],
+                registrationDate = new Date(Date.parse(report.day)),
+                month = registrationDate.getMonth() + 1; // month sare zero based (jan = 0)
   
-                s1.push(r.total);
-                ticks.push( month + "/" + d.getDate() );
+                userRegistrationSerie.push(report.total);
+                ticks.push( month + "/" + registrationDate.getDate() );
             
             }
             
@@ -134,9 +125,15 @@ function report($){
                         }
                     }
                 },
-
+                series:[
+                {
+                    label:'User Registrations'
+                }
+                ],
                 legend: {
-                    show: false
+                    show: true,
+                    placement: "outsideGrid"
+                    
                 },
                 axes: {
                     xaxis: {
@@ -159,7 +156,7 @@ function report($){
                     sizeAdjust: 7.5,
                     formatString: "%d",
                     tooltipContentEditor: function(str, seriesIndex, pointIndex, jqPlot) {
-                        return s1[pointIndex] + " user registrations";
+                        return userRegistrationSerie[pointIndex] + " user registrations";
                     }
 
                 }, 
@@ -168,32 +165,41 @@ function report($){
                 }
 
             };
-            var graph = buildGraph("monthlyUserRegistrationChart", [s1], ticks, graphOptions);
-
+            var graph = buildGraph("monthlyUserRegistrationChart", [userRegistrationSerie], ticks, graphOptions);
         });
     },
     buildMonthlyUserResponseChart = function(){
-        var directSerie = [], // red
-        influenceSerie = [], // blue
-        ticks = [];
+        var directSerie = [],
+        influenceSerie = [],
+        ticks = [],
+        prevTotal = 1;
     
-        $.get(report_ns.controller_url + '/report/jsonResponseReport', function(report){
+        $.get(report_ns.controller_url + '/report/jsonResponseReport', function(pushResponseReport){
                         
-            var l  = report['responses'].length;
+            var totalPushResponse  = pushResponseReport['responses'].length;
 
-            for(var i = 0; i < l; i++){
-                var response = report['responses'][i] ;
-                var date=new Date(Date.parse(response.date)),
-                month = date.getMonth() + 1; // month sare zero based (jan = 0)
-                directSerie.push( response.ios.direct + response.android.direct );
+            for(var i = 0; i < totalPushResponse; i++){
+                var response = pushResponseReport['responses'][i],
+                date = new Date(Date.parse(response.date)),
+                total = response.ios.direct + response.android.direct;
+                
+                if(total == 0 &&  prevTotal  == 0  ){ // skip consecutive 0s
+                    continue;
+                }    
+                     
+                
+                var month = date.getMonth() + 1; // month sare zero based (jan = 0)
+                directSerie.push( total );
                 influenceSerie.push(response.ios.influenced + response.android.influenced );
                 ticks.push( month + "/" + date.getDate() );
+                prevTotal = total;
             }
             
             
             var graphOptions = {
-                seriesColors : ["red","blue"],
+                seriesColors : ["#0088cc", "#8800cc"],                
                 series:[
+
                 {
                     label:'Direct'
                 },
@@ -256,9 +262,8 @@ function report($){
                 }
 
           
-            };
-            
-            var graph = buildGraph("monthlyUserResponseChart", [directSerie, influenceSerie], ticks, graphOptions);
+            },
+            graph = buildGraph("monthlyUserResponseChart", [directSerie, influenceSerie], ticks, graphOptions);
         });
     };
     
@@ -267,7 +272,8 @@ function report($){
  
     
     buildMonthlyPushChart();
-    buildMonthlyUserRegistrationChart();
     buildMonthlyUserResponseChart();
+    buildMonthlyUserRegistrationChart();
+
     
 } // jquery ready/end
