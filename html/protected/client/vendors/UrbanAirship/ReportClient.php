@@ -16,7 +16,7 @@ class ReportClient extends lib\UrbanAirshipClient {
      * @param string $end date
      * @param string $precision (HOURLY, DAILY, MONTHLY, YEARLY)
      * @return StdObject report
-     * @todo: validate arguments
+     * @todo: validate arguments (dates should be ISO8601)
      */
     public function getReport($start, $end, $precision = 'DAILY') {
         $jsonResult = $this->getJsonData("/reports/sends/?start=$start&end=$end&precision=$precision");

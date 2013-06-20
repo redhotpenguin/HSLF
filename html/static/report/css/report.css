@@ -1,3 +1,4 @@
-#monthlyPushChart{
+.chart{
     margin-bottom:15px;
+    min-height:250px;
 }

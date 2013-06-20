@@ -63,18 +63,34 @@ class ReportController extends Controller {
         $this->render('index', $data);
     }
 
+    function validateDate($date) {
+        if (preg_match('/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})Z$/', $date, $parts) == true) {
+            $time = gmmktime($parts[4], $parts[5], $parts[6], $parts[2], $parts[3], $parts[1]);
+
+            $input_time = strtotime($date);
+            if ($input_time === false)
+                return false;
+
+            return $input_time == $time;
+        } else {
+            return false;
+        }
+    }
+
     /**
      * Print JSON reports
      */
-    public function actionJsonPushReport() {
-        header('Content-type: ' . 'application/json;charset=UTF-8');
-
-
-        $response = $this->reportClient->getCurrentMonthReport('DAILY');
-
-
-        echo CJSON::encode($response);
-        Yii::app()->end();
+    public function actionJsonPushReport($start = null, $end = null) {
+        try {
+            if ($start && $end) {
+                $response = $this->reportClient->getReport($start, $end, 'DAILY');
+            } else {
+                $response = $this->reportClient->getCurrentMonthReport('DAILY');
+            }
+            header('Content-type: ' . 'application/json;charset=UTF-8');
+            echo json_encode($response);
+            Yii::app()->end();
+        } catch (Exception $e) { }
     }
 
     /**
@@ -101,7 +117,7 @@ class ReportController extends Controller {
         $start = date("Y-m-01") . "%2000:00:00";
         $end = date("Y-m-t") . "%2023:59:59";
         $precision = "DAILY";
-        
+
         header('Content-type: ' . 'application/json;charset=UTF-8');
         echo json_encode($this->reportClient->getResponseReport($start, $end, $precision));
         Yii::app()->end();

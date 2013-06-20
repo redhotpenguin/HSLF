@@ -28,10 +28,15 @@ $currentMonth = date('F');
 
 
 <b>Pushes sent for the month of <?php echo $currentMonth ?>:</b>
-<div id="monthlyPushChart" ></div>
+<div id="monthlyPushChart"  class="chart" ></div>
 
 <b>User registrations for the month of <?php echo $currentMonth ?> <span id="totalMonthlyUserCount"></span>:</b>
-<div id="monthlyUserRegistrationChart" ></div>
+<div id="monthlyUserRegistrationChart" class="chart" ></div>
+
+
+<b>Push Responses for the month of <?php echo $currentMonth ?>:</b>
+<div id="monthlyUserResponseChart" class="chart" ></div>
+
 
 <b>Total Installs: <?php echo CHtml::link($userCount, array('mobileUser/index')); ?></b>
 
