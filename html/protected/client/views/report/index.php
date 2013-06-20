@@ -26,16 +26,16 @@ $currentMonth = date('F');
     <h3>Reports</h3>
 </div>
 
+<h3>Overview for the month of  <?php echo $currentMonth ?>:</h3>
 
-<b>Pushes sent for the month of <?php echo $currentMonth ?>:</b>
+<b>Pushes Sent:</b>
 <div id="monthlyPushChart"  class="chart" ></div>
 
-<b>User registrations for the month of <?php echo $currentMonth ?> <span id="totalMonthlyUserCount"></span>:</b>
-<div id="monthlyUserRegistrationChart" class="chart" ></div>
-
-
-<b>Push Responses for the month of <?php echo $currentMonth ?>:</b>
+<b>Push Responses:</b>
 <div id="monthlyUserResponseChart" class="chart" ></div>
+
+<b>User registrations <span id="totalMonthlyUserCount"></span>:</b>
+<div id="monthlyUserRegistrationChart" class="chart" ></div>
 
 
 <b>Total Installs: <?php echo CHtml::link($userCount, array('mobileUser/index')); ?></b>
