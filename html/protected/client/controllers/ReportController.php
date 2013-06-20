@@ -90,7 +90,9 @@ class ReportController extends Controller {
             header('Content-type: ' . 'application/json;charset=UTF-8');
             echo json_encode($response);
             Yii::app()->end();
-        } catch (Exception $e) { }
+        } catch (Exception $e) {
+            
+        }
     }
 
     /**
@@ -101,10 +103,13 @@ class ReportController extends Controller {
 
         $registrations = MobileUser::model()->getCountSinceDate($start);
 
-        $count = MobileUser::model()->count(array('registration_date' => array('$gt' => $start)));
+        $androidCount = MobileUser::model()->count(array('device_type' => 'android', 'registration_date' => array('$gt' => $start)));
+        $iosCount = MobileUser::model()->count(array('device_type' => 'ios', 'registration_date' => array('$gt' => $start)));
+
 
         $result = array(
-            'total' => $count,
+            'android' => $androidCount,
+            'ios' => $iosCount,
             'registrations' => $registrations
         );
 

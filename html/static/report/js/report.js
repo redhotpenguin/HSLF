@@ -6,7 +6,7 @@ function report($){
     var buildGraph = function(target, series, graphOptions){
         return $.jqplot(target, series, graphOptions); 
     },
-    buildMonthlyPushChart = function(){
+    buildMonthlyPushReport = function(){
         $.get(report_ns.controller_url + '/report/jsonPushReport', function(pushReport){
             var pushSerie = [],
             ticks = [];
@@ -89,86 +89,7 @@ function report($){
             graph = buildGraph("monthlyPushChart", [pushSerie], graphOptions);
         });
     },
-    buildMonthlyUserRegistrationChart = function(){
-        var userRegistrationSerie = [],
-        ticks = [];
-    
-        $.get(report_ns.controller_url + '/report/jsonUserRegistrationReport', function(userRegistrationReport){
-            
-            
-            $("#totalMonthlyUserCount").html('('  + userRegistrationReport.total + ' total)');
-            
-            var totalUserRegistration  = userRegistrationReport['registrations'].length;
-
-            for(var i = 0; i < totalUserRegistration; i++){
-                var report = userRegistrationReport['registrations'][i],
-                registrationDate = new Date(Date.parse(report.day)),
-                month = registrationDate.getMonth() + 1; // month sare zero based (jan = 0)
-  
-                userRegistrationSerie.push(report.total);
-                ticks.push( month + "/" + registrationDate.getDate() );
-            
-            }
-            
-            var graphOptions = {
-                seriesColors : ["#0088cc"],
-                animate: true,
-                axesDefaults:{
-                    min:0
-                },
-                seriesDefaults:{
-                    renderer:$.jqplot.BarRenderer,
-                    rendererOptions: {
-                        fillToZero: false,
-                        animation: {
-                            speed: 1000
-                        }
-                    }
-                },
-                series:[
-                {
-                    label:'User Registrations'
-                }
-                ],
-                legend: {
-                    show: true,
-                    placement: "outsideGrid"
-                    
-                },
-                axes: {
-                    xaxis: {
-                        renderer: $.jqplot.CategoryAxisRenderer,
-                        ticks: ticks,
-                        tickOptions:{
-                            showGridline: false
-                        }
-                    },
-                    yaxis: {
-                        pad: 1.05,
-                        tickOptions: {
-                            formatString: '%d',
-                            showGridline: true
-                        }
-                    }
-                },
-                highlighter: {
-                    show: true,
-                    sizeAdjust: 7.5,
-                    formatString: "%d",
-                    tooltipContentEditor: function(str, seriesIndex, pointIndex, jqPlot) {
-                        return userRegistrationSerie[pointIndex] + " user registrations";
-                    }
-
-                }, 
-                cursor: {
-                    show: false
-                }
-
-            };
-            var graph = buildGraph("monthlyUserRegistrationChart", [userRegistrationSerie], graphOptions);
-        });
-    },
-    buildMonthlyUserResponseChart = function(){
+    buildMonthlyUserResponseReport = function(){
         var directSerie = [],
         influenceSerie = [],
         ticks = [],
@@ -208,6 +129,7 @@ function report($){
                     label:'Influenced'
                 },
                 ],
+                stackSeries: true,
                 animate: true,
                 axesDefaults:{
                     min:0
@@ -265,15 +187,107 @@ function report($){
             },
             graph = buildGraph("monthlyUserResponseChart", [directSerie, influenceSerie], graphOptions);
         });
+    },
+    buildMonthlyUserRegistrationReport = function(){
+        var androidSerie = [],
+        iosSerie = [],
+        ticks = [];
+    
+        $.get(report_ns.controller_url + '/report/jsonUserRegistrationReport', function(userRegistrationReport){
+            
+            
+            $("#totalMonthlyUserCount").html('('  + ( userRegistrationReport.android + userRegistrationReport.ios ) + ' total)');
+            
+            var totalUserRegistration  = userRegistrationReport['registrations'].length;
+
+            for(var i = 0; i < totalUserRegistration; i++){
+                var report = userRegistrationReport['registrations'][i],
+                registrationDate = new Date(Date.parse(report.day)),
+                month = registrationDate.getMonth() + 1; // month sare zero based (jan = 0)
+  
+                
+                androidSerie.push(report.android);
+                iosSerie.push(report.ios);
+                
+                ticks.push( month + "/" + registrationDate.getDate() );
+            
+            }
+            
+            var graphOptions = {
+                seriesColors : ["#0088cc","#00cc88"],
+                animate: true,
+                stackSeries: true,
+                axesDefaults:{
+                    min:0
+                },
+                seriesDefaults:{
+                    renderer:$.jqplot.BarRenderer,
+                    rendererOptions: {
+                        fillToZero: false,
+                        animation: {
+                            speed: 1000
+                        }
+                    }
+                },
+                series:[
+                {
+                    label:'Android'
+                },
+                {
+                    label:'iOs'
+                }
+                ],
+                legend: {
+                    show: true,
+                    placement: "outsideGrid"
+                    
+                },
+                axes: {
+                    xaxis: {
+                        renderer: $.jqplot.CategoryAxisRenderer,
+                        ticks: ticks,
+                        tickOptions:{
+                            showGridline: false
+                        }
+                    },
+                    yaxis: {
+                        pad: 1.05,
+                        tickOptions: {
+                            formatString: '%d',
+                            showGridline: true
+                        }
+                    }
+                },
+                highlighter: {
+                    show: true,
+                    sizeAdjust: 7.5,
+                    formatString: "%d",
+                    tooltipContentEditor: function(str, seriesIndex, pointIndex, jqPlot) {
+                        if(seriesIndex == 0){
+                            return androidSerie[pointIndex] + " android users";
+                        }else{
+                            return iosSerie[pointIndex] + " iOs users";
+                        }
+                        
+                    }
+
+                }, 
+                cursor: {
+                    show: false
+                }
+
+            };
+            var graph = buildGraph("monthlyUserRegistrationChart", [androidSerie, iosSerie], graphOptions);
+        });
     };
     
     
     
  
     
-    buildMonthlyPushChart();
-    buildMonthlyUserResponseChart();
-    buildMonthlyUserRegistrationChart();
+    buildMonthlyPushReport();
+    buildMonthlyUserResponseReport();
+    buildMonthlyUserRegistrationReport();
 
     
 } // jquery ready/end
