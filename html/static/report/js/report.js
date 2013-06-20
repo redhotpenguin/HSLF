@@ -3,7 +3,7 @@ jQuery(document).ready(report);
 
 function report($){
     
-    var buildGraph = function(target, series, ticks, graphOptions){
+    var buildGraph = function(target, series, graphOptions){
         return $.jqplot(target, series, graphOptions); 
     },
     buildMonthlyPushChart = function(){
@@ -86,7 +86,7 @@ function report($){
                 }
 
             },
-            graph = buildGraph("monthlyPushChart", [pushSerie], ticks, graphOptions);
+            graph = buildGraph("monthlyPushChart", [pushSerie], graphOptions);
         });
     },
     buildMonthlyUserRegistrationChart = function(){
@@ -165,7 +165,7 @@ function report($){
                 }
 
             };
-            var graph = buildGraph("monthlyUserRegistrationChart", [userRegistrationSerie], ticks, graphOptions);
+            var graph = buildGraph("monthlyUserRegistrationChart", [userRegistrationSerie], graphOptions);
         });
     },
     buildMonthlyUserResponseChart = function(){
@@ -263,7 +263,7 @@ function report($){
 
           
             },
-            graph = buildGraph("monthlyUserResponseChart", [directSerie, influenceSerie], ticks, graphOptions);
+            graph = buildGraph("monthlyUserResponseChart", [directSerie, influenceSerie], graphOptions);
         });
     };
     
