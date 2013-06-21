@@ -5,9 +5,7 @@ $cs->registerScriptFile($baseUrl . '/static/pushcomposer/pushcomposer.js');
 $cs->registerCssFile($baseUrl . '/static/pushcomposer/pushcomposer.css');
 $tenant = Yii::app()->user->getLoggedInUserTenant();
 $controller_url = Yii::app()->params['site_url'] . '/client/' . $tenant->name;
-$tagList = CHtml::listData($tags, 'id', 'display_name');
-$jsonTagList = CJSON::encode($tagList);
-$ns = "var pushcomposer_ns  = {controller_url: '" . $controller_url . "/pushMessage', tagList:$jsonTagList};";
+$ns = "var pushcomposer_ns  = {controller_url: '" . $controller_url . "/pushMessage'};";
 
 Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::POS_HEAD);
 

@@ -54,30 +54,6 @@ function composer($){
     deleteDropDown =  function (){
         $(this).parent().remove();
     },
-    initializeRecipientStep = function (data){
-     
-        // build a tag dropdown
-        var tagList = "";
-        $.each(pushcomposer_ns.tagList, function (id, displayName) {
-            tagList += "<option value='" + id + "'>" + displayName + "</option>";
-        });
-    
-        var contactDropDown = $("<div class='row-fluid'><select style='float:left;' class='span6 ' name='TagIds[]'>"+tagList+"</select></div>");
-  
-        $('.deleteBtn').click(deleteDropDown);
-
-        $("#addTagBtn").click(function(){
-
-            var clonedDropDown = contactDropDown.clone();
-        
-            $('<div>').attr('class', 'span3 btn btn-warning').attr('id','').text("delete").appendTo(clonedDropDown).click(deleteDropDown);
-
-            tagListChoice.append(clonedDropDown);
-     
-        });
- 
-   
-    },
     setPayloadTitleModified = function(){
         payloadTitleInputModified = true;
     }
@@ -137,7 +113,6 @@ function composer($){
     shareRelatedInputs.hide();
     postRelatedInputs.hide();
     pushMessageTextareaChange();
-    initializeRecipientStep();
     payloadType.trigger('change');
     populateSegmentList();
     $('input[name=recipient_type]:checked', '#recipient_type').click();

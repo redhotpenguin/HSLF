@@ -6,7 +6,7 @@ $siteUrl = $siteUrl = Yii::app()->params['site_url'] . '/client/' . $tenant->nam
 $ns = "var tagSelector_ns  = {site_url: '" . $siteUrl . "', modelName:'$modelName'};";
 
 
-Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::POS_HEAD);
+Yii::app()->clientScript->registerScript('tag-selector-script', $ns, CClientScript::POS_HEAD);
 ?>
 <table id="table_tag" class="table table-bordered table-striped">
     <thead>

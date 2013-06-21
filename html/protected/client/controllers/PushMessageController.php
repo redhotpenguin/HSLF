@@ -86,9 +86,8 @@ class PushMessageController extends CrudController {
 
                     if ($recipientType === 'tag') {
 
-                        if (isset($_POST['TagIds'])) {
-                            $unfilterdTagIds = array_unique($_POST['TagIds']);
-                            $pushMessage->massUpdateTags($unfilterdTagIds); // @WARNING - todo: make sure $unfilterdTagIds contains legit data
+                        if (isset($_POST['PushMessage']['tags'])) {
+                            $pushMessage->massUpdateTags($_POST['PushMessage']['tags']); // @WARNING - todo: make sure tags contains legit data
                         } else {
                             throw new Exception("At least one tag must be present.");
                         }
@@ -133,7 +132,6 @@ class PushMessageController extends CrudController {
         }
 
         $data = array(
-            'tags' => Tag::model()->findAll(),
             'pushMessage' => $pushMessage,
             'payload' => $payload
         );

@@ -17,14 +17,14 @@
         <div id="broadcastChoice"><p>All devices that have registered with this application.</p></div>
         <div id="tagListChoice">
             <p>All devices that have at least one of the following tags.</p>
-            <?php
-            $this->widget('bootstrap.widgets.TbButton', array(
-                'label' => 'Add a tag',
-                'htmlOptions' => array(
-                    'id' => 'addTagBtn'
-                ),
-            ));
-            ?>
+            <div class="row-fluid">
+                <?php
+                $this->widget('backend.extensions.TagSelector.TagSelector', array(
+                    'model' => $pushMessage,
+                    'tag_types' => array('organization')
+                ));
+                ?>
+            </div>
         </div>
         <div id="singleDeviceChoice">
             <p>A unique device identified by an ID.</p>
