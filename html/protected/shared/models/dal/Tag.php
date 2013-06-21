@@ -11,6 +11,8 @@
  */
 class Tag extends BaseActiveRecord {
 
+    private $allowedTypes = array('alert', 'organization');
+
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
@@ -31,6 +33,10 @@ class Tag extends BaseActiveRecord {
         return array('alert' => 'Alert', 'organization' => 'Organization');
     }
 
+    public function getAllowedTypes() {
+        return $this->allowedTypes;
+    }
+
     /**
      * @return array validation rules for model attributes.
      */
@@ -46,6 +52,7 @@ class Tag extends BaseActiveRecord {
             array('name, type, display_name', 'required'),
             array('id, name, type, tenant_id, display_name', 'safe', 'on' => 'search'),
             array('name', 'filter', 'filter' => array($this, 'remove_spaces')),
+            array('type', 'tagType'),
         );
     }
 
@@ -101,7 +108,7 @@ class Tag extends BaseActiveRecord {
         if ($tag) {
             return $tag->id;
         }
-        
+
         return false;
     }
 
@@ -135,6 +142,16 @@ class Tag extends BaseActiveRecord {
             } else {
                 return true;
             }
+        }
+    }
+
+    /**
+     * Validators - validate the tag type
+     * @param array attributes
+     */
+    public function tagType($attributes) {
+        if(!in_array($this->type, $this->allowedTypes)){
+             $this->addError('type', 'Invalid Type');
         }
     }
 
