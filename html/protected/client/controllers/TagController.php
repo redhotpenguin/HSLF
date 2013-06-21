@@ -18,7 +18,7 @@ class TagController extends CrudController {
         $this->setExtraRules($rules);
     }
 
-    public function actionFindTag($term) {
+    public function actionFindTag($term, $type = null) {
         header('Content-type: ' . 'application/json');
 
         if (strlen($term) < 2) {
@@ -30,16 +30,22 @@ class TagController extends CrudController {
         $tenantId = Yii::app()->user->getLoggedInUserTenant()->id;
 
         if ($term) {
+            $query = 'SELECT id, name, display_name FROM tag where display_name ILIKE :display_name AND tenant_id =:tenant_id';
+            
+            if ($type) {
+                $query .= ' AND type =:type';
+            } 
 
-            // ILIKE only works with postgresql
-            if (substr(strtolower(Yii::app()->db->connectionString), 0, 5) === 'pgsql')
-                $query = 'SELECT id, name, display_name FROM tag where display_name ILIKE :display_name AND tenant_id =:tenant_id';
-            else
-                $query = 'SELECT id, name, display_name FROM tag where display_name LIKE :display_name AND tenant_id =:tenant_id';
 
             $cmd = Yii::app()->db->createCommand($query);
             $cmd->bindValue(":display_name", "%" . $term . "%", PDO::PARAM_STR);
             $cmd->bindValue(":tenant_id", $tenantId, PDO::PARAM_INT);
+
+
+            if ($type) {
+                $cmd->bindValue(":type", $type, PDO::PARAM_STR);
+            }
+
             $res = $cmd->queryAll();
         }
 
