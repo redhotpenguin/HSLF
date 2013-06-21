@@ -79,6 +79,8 @@ function tagCreator($){
         delay: 50, 
         source: function(request, response){
            
+           response(['Loading...']);
+           
             var tagFinderUrl = tagSelector_ns.site_url + '/tag/findTag?term=' + request.term + encodedTypeString;
             
             $.get(tagFinderUrl, function(tags){
