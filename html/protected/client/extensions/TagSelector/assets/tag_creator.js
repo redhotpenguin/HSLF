@@ -62,12 +62,19 @@ function tagCreator($){
     };
     
 
+    var encodedTypeString = "";
+    tagSelector_ns.tagTypes.map(function(type){
+        encodedTypeString += "&types[]="+type;
+    });
+            
     $( "#searchTag" ).autocomplete({
         minLength: 2,
         delay: 50, 
         source: function(request, response){
+           
+            var tagFinderUrl = tagSelector_ns.site_url + '/tag/findTag?term=' + request.term + encodedTypeString;
             
-            $.get(tagSelector_ns.site_url + '/tag/findTag?term=' + request.term, function(tags){
+            $.get(tagFinderUrl, function(tags){
                 response( tags.map(function(tag){
                     return {
                         label: tag.display_name,
