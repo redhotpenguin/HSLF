@@ -54,7 +54,14 @@ function tagCreator($){
         row += '<input value="'+ id +'" type="hidden" name='+ tagSelector_ns.modelName +'[tags][]">';
         row += '<td><span name="deleteTagBtn" class=" btn btn-warning" >remove</span></td>';    
         row +='</tr>';
-        modelTagTable.find('tr[name="tagRow"]:last').after(row);
+        
+        
+        if(  modelTagTable.find('tr[name="tagRow"]').length == 0){
+            modelTagTable.find('tbody').after(row);
+        }else{
+            modelTagTable.find('tr[name="tagRow"]:last').after(row);
+        }
+
     },
     tagTableUpdated = function(e){
         console.log('cl');
