@@ -18,7 +18,13 @@ class TagController extends CrudController {
         $this->setExtraRules($rules);
     }
 
-    public function actionFindTag($term, $type = null) {
+    
+    /**
+     * Print JSON tags and end the application
+     * @param string $term  - tag display name
+     * @param array $types - tag types (optional)
+     */
+    public function actionFindTag($term, array $types = null) {
         header('Content-type: ' . 'application/json');
 
         if (strlen($term) < 2) {
@@ -31,18 +37,34 @@ class TagController extends CrudController {
 
         if ($term) {
             $query = 'SELECT id, name, display_name FROM tag where display_name ILIKE :display_name AND tenant_id =:tenant_id';
-            
-            if ($type) {
-                $query .= ' AND type =:type';
-            } 
+
+            if ($types) {
+
+
+                $typeCondition = "";
+                foreach ($types as $i => $type) {
+                    if ($i == 0) {
+                        $typeCondition .= " type =:type$i ";
+                    } else {
+                        $typeCondition .= "OR type =:type$i ";
+                    }
+                }
+
+                $query .= " AND ( $typeCondition )";
+            }
+
 
 
             $cmd = Yii::app()->db->createCommand($query);
             $cmd->bindValue(":display_name", "%" . $term . "%", PDO::PARAM_STR);
             $cmd->bindValue(":tenant_id", $tenantId, PDO::PARAM_INT);
 
-            if ($type) {
-                $cmd->bindValue(":type", $type, PDO::PARAM_STR);
+
+
+            if ($types) {
+                foreach ($types as $i => $type) {
+                    $cmd->bindValue(":type{$i}", $type, PDO::PARAM_STR);
+                }
             }
 
             $res = $cmd->queryAll();
