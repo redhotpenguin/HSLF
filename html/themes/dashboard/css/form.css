@@ -311,7 +311,7 @@ input{
     height: 14px;
     line-height: 14px;
     vertical-align: text-top;
-    background-image: url('/static/global/img/glyphicons_halflings.svg');
+    background-image: url('/themes/dashboard/img/glyphicons_halflings.svg');
     background-position: 0 0;
     background-repeat: no-repeat;
     vertical-align: top;
