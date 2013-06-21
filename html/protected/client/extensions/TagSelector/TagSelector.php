@@ -25,7 +25,11 @@ class TagSelector extends CInputWidget {
 
     public function run() {
 
-        $allTags = Tag::model()->findAllByAttributes(array("type" => $this->tag_types));
+        if (!empty($this->tag_types)) {
+            $allTags = Tag::model()->findAllByAttributes(array("type" => $this->tag_types));
+        } else {
+            $allTags = Tag::model()->findAll();
+        }
 
         $associatedTags = $this->model->getTags();
 

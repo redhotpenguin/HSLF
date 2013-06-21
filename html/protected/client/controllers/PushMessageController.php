@@ -133,7 +133,8 @@ class PushMessageController extends CrudController {
 
         $data = array(
             'pushMessage' => $pushMessage,
-            'payload' => $payload
+            'payload' => $payload,
+            'tagTypes' => Tag::model()->getAllowedTypes()
         );
 
         $this->render('composer', $data);

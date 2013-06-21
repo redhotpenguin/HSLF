@@ -1,3 +1,10 @@
+<?php
+/**
+ *
+ * The followings variables are available for this view:
+ */
+?>
+
 <div id="recipientSection">
 
     <span class="delete_tag" style="display:none;" id="delete_tag_original">X</span>
@@ -21,7 +28,7 @@
                 <?php
                 $this->widget('backend.extensions.TagSelector.TagSelector', array(
                     'model' => $pushMessage,
-                    'tag_types' => array('organization')
+                    'tag_types' => $tagTypes
                 ));
                 ?>
             </div>
