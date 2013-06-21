@@ -28,19 +28,17 @@ $currentMonth = date('F');
 
 <h3>Overview for the month of  <?php echo $currentMonth ?>:</h3>
 
+<b>User registrations <span id="totalMonthlyUserCount"></span>:</b>
+<div id="monthlyUserRegistrationChart" class="chart" ></div>
+
 <b>Pushes Sent:</b>
 <div id="monthlyPushChart"  class="chart" ></div>
 
 <b>Push Responses:</b>
 <div id="monthlyUserResponseChart" class="chart" ></div>
 
-<b>User registrations <span id="totalMonthlyUserCount"></span>:</b>
-<div id="monthlyUserRegistrationChart" class="chart" ></div>
-
 
 <b>Total Installs: <?php echo CHtml::link($userCount, array('mobileUser/index')); ?></b>
-
-
 
 <div class="section-divider">
     <h3>Resources</h3>
