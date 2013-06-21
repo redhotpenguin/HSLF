@@ -7,10 +7,6 @@
 
 <div id="recipientSection">
 
-    <span class="delete_tag" style="display:none;" id="delete_tag_original">X</span>
-    <span class="delete_tag" style="display:none;" id="delete_district_original">X</span>
-
-
     <div id="recipient-choices">
         <?php
         $recipientTypes = $pushMessage::getRecipientTypes();

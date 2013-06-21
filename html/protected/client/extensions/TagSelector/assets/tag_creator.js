@@ -50,8 +50,15 @@ function tagCreator($){
   
     var modelTagTable = $("#modelTagTable"),
     addItem = function(name, id){
-        var row = '<tr><td> '+ name + '</td><td><input value="'+ id +'" type="text" name='+ tagSelector_ns.modelName +'[tags][]"></td></tr>';
-        modelTagTable.find('tr:last').after(row);
+        var row = '<tr name="tagRow"><td> '+ name + '</td>';
+        row += '<input value="'+ id +'" type="hidden" name='+ tagSelector_ns.modelName +'[tags][]">';
+        row += '<td><span name="deleteTagBtn" class=" btn btn-warning" >remove</span></td>';    
+        row +='</tr>';
+        modelTagTable.find('tr[name="tagRow"]:last').after(row);
+    },
+    tagTableUpdated = function(e){
+        console.log('cl');
+        $(this).parents("tr[name='tagRow']").first().remove();
     };
     
 
@@ -60,7 +67,7 @@ function tagCreator($){
         delay: 50, 
         source: function(request, response){
             
-            $.get('http://www.voterguide.com/client/afscme/tag/findTag?term=' + request.term, function(tags){
+            $.get(tagSelector_ns.site_url + '/tag/findTag?term=' + request.term, function(tags){
                 response( tags.map(function(tag){
                     return {
                         label: tag.display_name,
@@ -77,8 +84,10 @@ function tagCreator($){
         return false;
         
     });
-   
-   
+    
+    // event binding
+    // modelTagTable.find("span[name='deleteTagBtn']").bind('click', tagTableUpdated);
+    modelTagTable.on("click", "span[name='deleteTagBtn']", tagTableUpdated);
    
    
 }

@@ -41,7 +41,6 @@ class TagController extends CrudController {
             $cmd->bindValue(":display_name", "%" . $term . "%", PDO::PARAM_STR);
             $cmd->bindValue(":tenant_id", $tenantId, PDO::PARAM_INT);
 
-
             if ($type) {
                 $cmd->bindValue(":type", $type, PDO::PARAM_STR);
             }

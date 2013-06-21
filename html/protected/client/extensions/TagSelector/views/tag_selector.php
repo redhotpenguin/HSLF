@@ -3,9 +3,12 @@ $tenant = Yii::app()->user->getLoggedInUserTenant();
 $siteUrl = Yii::app()->params['site_url'] . '/client/' . $tenant->name;
 
 
-$ns = "var tagSelector_ns  = {site_url: '" . $siteUrl . "', modelName:'$modelName'};";
 
-$findTagUrl = $siteUrl . "/tag/findTag";
+$jsTagTypes = json_encode($tagTypes);
+
+$ns = "var tagSelector_ns  = {site_url: '" . $siteUrl . "', modelName:'$modelName', tagTypes:$jsTagTypes};";
+
+
 Yii::app()->clientScript->registerCoreScript('jquery.ui');
 Yii::app()->clientScript->registerCssFile(
         Yii::app()->clientScript->getCoreScriptUrl() .
@@ -24,9 +27,16 @@ Yii::app()->clientScript->registerScript('tag-selector-script', $ns, CClientScri
         if (!empty($modelTags)):
             foreach ($modelTags as $tag):
                 ?>
-                <tr>
-                    <td> <?php echo $tag->display_name; ?> </td>
-                    <td> <?php echo CHtml::textField($modelName . '[tags][]', $tag->id); ?> </td>
+                <tr name="tagRow">
+                    <td> 
+                        <?php
+                        echo $tag->display_name;
+                        echo CHtml::hiddenField($modelName . '[tags][]', $tag->id);
+                        ?>
+                    </td>
+                    <td>
+                        <span name="deleteTagBtn" class="btn btn-warning" >remove</span>
+                    </td>
                 </tr>
 
                 <?php
@@ -34,14 +44,17 @@ Yii::app()->clientScript->registerScript('tag-selector-script', $ns, CClientScri
         endif;
         ?>
     </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="2">  
+                <?php
+                echo CHtml::textField('searchTag', null, array('placeholder' => 'Start entering a tag name', 'class' => 'span10 ui-autocomplete-input', 'autocomplete' => 'off'));
+                ?>
+            </td>    
+        </tr>
+
+    </tfoot>
 </table>
-
-
-<div class="row-fluid">
-    <?php
-    echo CHtml::textField('searchTag', null, array('placeholder' => 'tag name', 'class' => 'ui-autocomplete-input', 'autocomplete' => 'off'));
-    ?>
-</div>
 
 
 
