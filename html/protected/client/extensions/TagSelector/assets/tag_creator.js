@@ -1,7 +1,7 @@
 jQuery(document).ready(tagCreator);
 
 function tagCreator($){
-    
+    /*
     var tagNameInput = $('#new_tag_form [name="name"]')
     
     $('#new_tag_form [name="display_name"]').keyup(function(){
@@ -46,5 +46,39 @@ function tagCreator($){
         $('#table_tag tr:last').after(row);
         
     }
+   */
+  
+    var modelTagTable = $("#modelTagTable"),
+    addItem = function(name, id){
+        var row = '<tr><td> '+ name + '</td><td><input value="'+ id +'" type="text" name='+ tagSelector_ns.modelName +'[tags][]"></td></tr>';
+        modelTagTable.find('tr:last').after(row);
+    };
+    
+
+    $( "#searchTag" ).autocomplete({
+        minLength: 2,
+        delay: 50, 
+        source: function(request, response){
+            
+            $.get('http://www.voterguide.com/client/afscme/tag/findTag?term=' + request.term, function(tags){
+                response( tags.map(function(tag){
+                    return {
+                        label: tag.display_name,
+                        value: tag.id
+                    }
+                }));
+                
+            });
+        }
+
+    }).on("autocompleteselect", function(event, ui){
+        addItem( ui.item.label, ui.item.value );
+        $(this).val('');
+        return false;
+        
+    });
+   
+   
+   
    
 }

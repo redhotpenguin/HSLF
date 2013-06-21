@@ -1,14 +1,19 @@
 <?php
 $tenant = Yii::app()->user->getLoggedInUserTenant();
-$siteUrl = $siteUrl = Yii::app()->params['site_url'] . '/client/' . $tenant->name;
+$siteUrl = Yii::app()->params['site_url'] . '/client/' . $tenant->name;
 
 
 $ns = "var tagSelector_ns  = {site_url: '" . $siteUrl . "', modelName:'$modelName'};";
 
-
+$findTagUrl = $siteUrl . "/tag/findTag";
+Yii::app()->clientScript->registerCoreScript('jquery.ui');
+Yii::app()->clientScript->registerCssFile(
+        Yii::app()->clientScript->getCoreScriptUrl() .
+        '/jui/css/base/jquery-ui.css'
+);
 Yii::app()->clientScript->registerScript('tag-selector-script', $ns, CClientScript::POS_HEAD);
 ?>
-<table id="table_tag" class="table table-bordered table-striped">
+<table id="modelTagTable" class="table table-bordered table-striped">
     <thead>
         <tr>
             <th colspan="2">Name</th>
@@ -16,12 +21,12 @@ Yii::app()->clientScript->registerScript('tag-selector-script', $ns, CClientScri
     </thead>
     <tbody>
         <?php
-        if (!empty($checkBoxList)):
-            foreach ($checkBoxList as $tagId => $item):
+        if (!empty($modelTags)):
+            foreach ($modelTags as $tag):
                 ?>
                 <tr>
-                    <td> <?php echo $item['name']; ?> </td>
-                    <td> <?php echo CHtml::checkBox($modelName . '[tags][]', $item['checked'], array('value' => $tagId)); ?> </td>
+                    <td> <?php echo $tag->display_name; ?> </td>
+                    <td> <?php echo CHtml::textField($modelName . '[tags][]', $tag->id); ?> </td>
                 </tr>
 
                 <?php
@@ -30,6 +35,16 @@ Yii::app()->clientScript->registerScript('tag-selector-script', $ns, CClientScri
         ?>
     </tbody>
 </table>
+
+
+<div class="row-fluid">
+    <?php
+    echo CHtml::textField('searchTag', null, array('placeholder' => 'tag name', 'class' => 'ui-autocomplete-input', 'autocomplete' => 'off'));
+    ?>
+</div>
+
+
+
 
 <?php
 $this->beginWidget(

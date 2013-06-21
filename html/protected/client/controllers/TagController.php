@@ -18,11 +18,13 @@ class TagController extends CrudController {
         $this->setExtraRules($rules);
     }
 
-    public function actionFindTag($term) {   
-        if(strlen($term) < 3){
+    public function actionFindTag($term) {
+        header('Content-type: ' . 'application/json');
+
+        if (strlen($term) < 2) {
             return;
         }
-        
+
         $res = array();
 
         $tenantId = Yii::app()->user->getLoggedInUserTenant()->id;
