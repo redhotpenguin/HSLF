@@ -51,7 +51,7 @@ class PushMessageController extends CrudController {
 
         $pushMessage = new PushMessage();
         $pushMessage->recipient_type = 'broadcast'; // default recipient type
-        $payload = new Payload();
+        $payload = new Payload('composer');
         $unfilterdTagIds = array();
         $id = null;
 
@@ -71,8 +71,17 @@ class PushMessageController extends CrudController {
             $pushMessage->payload_id = 0;
             $pushMessage->recipient_type = $recipientType;
 
+
+            if ($_POST['Payload']['type'] == 'post') {
+                $payload->scenario = 'type_post';
+            } elseif ($_POST['Payload']['type'] == 'share') {
+                $payload->scenario = 'type_share';
+            }
+
+            error_log($payload->scenario);
             $pushMessage->validate();
             $payload->validate();
+
 
             if (!$pushMessage->errors && !$payload->errors) {
 

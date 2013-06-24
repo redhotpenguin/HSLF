@@ -45,6 +45,9 @@ class Payload extends BaseActiveRecord {
         // will receive user inputs.
         return array(
             array('title, type', 'required'),
+            array('post_number, url, tweet', 'required', 'on' => 'composer'),
+            array('post_number', 'required', 'on' => 'type_post'),
+            array('url, tweet ', 'required', 'on' => 'type_share'),
             array('tenant_id, post_number', 'numerical', 'integerOnly' => true),
             array('url', 'length', 'max' => 2048),
             array('title', 'length', 'max' => 512),
