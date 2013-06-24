@@ -32,7 +32,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         ),
         array(
             'header' => 'Recipient',
-            'value' => '$data->recipient_type',
+            'name' => 'recipient_type',
             'filter' => CHtml::dropDownList('PushMessage[recipient_type]', $model->recipient_type, array("" => "Any") + $model->getRecipientTypes()),
         ),
         array(
