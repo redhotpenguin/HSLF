@@ -1,5 +1,4 @@
 <?php
-
 $navBarItems = array(
     '',
     array('label' => 'New Message', 'url' => array('pushMessage/composer')),
@@ -27,7 +26,10 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         array(
             'name' => 'alert',
         ),
-        'creation_date',
+        array(
+            'name' => 'creation_date',
+            'value' => 'date("Y-m-d",  strtotime( $data->creation_date ) )',
+        ),
         array(
             'header' => 'Recipient',
             'value' => '$data->recipient_type',

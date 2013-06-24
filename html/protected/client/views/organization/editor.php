@@ -29,25 +29,33 @@ $this->secondaryNav['url'] = array('organization/index');
         'form' => $form,
             ), true);
 
-    $tagsTab = $this->renderPartial('tabs/_tab_tags', array(
-        'model' => $model,
-        'form' => $form,
-            ), true);
+
 
     $contactTab = $this->renderPartial('tabs/_tab_contact', array(
         'model' => $model,
         'form' => $form,
             ), true);
 
+
+    $tabs = array(
+        array('label' => 'Organization', 'content' => $orgTab, 'active' => true),
+        array('label' => 'Details', 'content' => $detailTab),
+        array('label' => 'Contacts', 'content' => $contactTab),
+    );
+
+    if (Yii::app()->user->hasPermission('manageTags')) {
+        $tagsTab = $this->renderPartial('tabs/_tab_tags', array(
+            'model' => $model,
+            'form' => $form,
+                ), true);
+
+        array_push($tabs, array('label' => 'Tags', 'content' => $tagsTab));
+    }
+
     $this->widget('bootstrap.widgets.TbTabs', array(
         'type' => 'tabs', // 'tabs' or 'pills'
         'placement' => 'left',
-        'tabs' => array(
-            array('label' => 'Organization', 'content' => $orgTab, 'active' => true ),
-            array('label' => 'Details', 'content' => $detailTab),
-            array('label' => 'Contacts', 'content' => $contactTab),
-            array('label' => 'Tags', 'content' => $tagsTab ),
-        ),
+        'tabs' => $tabs,
     ));
     ?>
 
