@@ -21,27 +21,28 @@ $this->secondaryNav['url'] = array('pushMessage/index');
         'enableAjaxValidation' => false,
             ));
 
-
-
-
     $pushMessageTab = $this->renderPartial('tabs/_tab_push_message', array(
         'model' => $model,
         'form' => $form,
             ), true);
 
-    
-    $tagsTab = $this->renderPartial('tabs/_tab_tags', array(
-        'model' => $model,
-        'form' => $form,
-            ), true);
+
+    $tabs = array(array('label' => 'Push Message', 'content' => $pushMessageTab, 'active' => true));
+
+    if ($model->isNewRecord) {
+        $tagsTab = $this->renderPartial('tabs/_tab_tags', array(
+            'model' => $model,
+            'form' => $form,
+                ), true);
+
+
+        array_push($tabs, array('label' => 'Tags', 'content' => $tagsTab));
+    }
 
     $this->widget('bootstrap.widgets.TbTabs', array(
         'type' => 'tabs', // 'tabs' or 'pills'
         'placement' => 'left',
-        'tabs' => array(
-            array('label' => 'Push Message', 'content' => $pushMessageTab, 'active' => true),
-            array('label' => 'Tags', 'content' => $tagsTab),
-        ),
+        'tabs' => $tabs
     ));
     ?>
 
@@ -55,9 +56,9 @@ $this->secondaryNav['url'] = array('pushMessage/index');
     <?php
     if (!$model->isNewRecord):
         ?>
-        <p>
-            <span class="label label-warning">Updates to push messages will not affect previously sent push notifications. Changes will only be reflected in the Alert Inbox.</span>
-        </p>
+        <div class="alert alert-info">
+            Updates to push messages will not affect previously sent push notifications. Changes will only be reflected in the Alert Inbox.
+        </div>
         <?php
     endif;
     ?>
