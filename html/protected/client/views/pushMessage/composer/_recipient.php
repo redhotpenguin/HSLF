@@ -24,7 +24,8 @@
                 <?php
                 $this->widget('backend.extensions.TagSelector.TagSelector', array(
                     'model' => $pushMessage,
-                    'tag_types' => $tagTypes
+                    'tag_types' => $tagTypes,
+                    'display_tag_creator' => false,
                 ));
                 ?>
             </div>

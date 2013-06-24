@@ -4,6 +4,7 @@ class TagSelector extends CInputWidget {
 
     public $options = array();
     public $tag_types = array();
+    public $display_tag_creator = true;
 
     public function init() {
         // check that the model has the correct behavior
@@ -35,7 +36,8 @@ class TagSelector extends CInputWidget {
             'model' => $this->model,
             'modelName' => get_class($this->model),
             'modelTags' => $this->model->getTags(),
-            'tagTypes' => $this->tag_types
+            'tagTypes' => $this->tag_types,
+            'displayTagCreator' => $this->display_tag_creator
         );
 
         $this->render('tag_selector', $data);

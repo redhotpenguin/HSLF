@@ -60,51 +60,54 @@ Yii::app()->clientScript->registerScript('tag-selector-script', $ns, CClientScri
 
 
 <?php
-$this->beginWidget(
-        'bootstrap.widgets.TbModal', array(
-    'id' => 'createTagModal',
-    'autoOpen' => false,
-));
-?>
+if ($displayTagCreator) {
 
-<div class="modal-header">
-    <a class="close" data-dismiss="modal">&times;</a>
-    <h4>Create a new tag</h4>
-</div>
-
-<div class="modal-body">
-    <?php
-    $this->render('tag_creator', array('tagTypes' => $tagTypes));
+    $this->beginWidget(
+            'bootstrap.widgets.TbModal', array(
+        'id' => 'createTagModal',
+        'autoOpen' => false,
+    ));
     ?>
-</div>
 
-<div class="modal-footer">
-    <?php
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">&times;</a>
+        <h4>Create a new tag</h4>
+    </div>
+
+    <div class="modal-body">
+        <?php
+        $this->render('tag_creator', array('tagTypes' => $tagTypes));
+        ?>
+    </div>
+
+    <div class="modal-footer">
+        <?php
+        $this->widget('bootstrap.widgets.TbButton', array(
+            'type' => 'primary',
+            'label' => 'Save',
+            'url' => '#',
+            'htmlOptions' => array(
+                'id' => 'save_tag_btn',
+                'data-dismiss' => 'modal'),
+        ));
+        ?>
+        <?php
+        $this->widget('bootstrap.widgets.TbButton', array(
+            'label' => 'Close',
+            'url' => '#',
+            'htmlOptions' => array('data-dismiss' => 'modal'),
+        ));
+        ?>
+    </div>
+
+    <?php $this->endWidget(); ?><?php
     $this->widget('bootstrap.widgets.TbButton', array(
-        'type' => 'primary',
-        'label' => 'Save',
-        'url' => '#',
+        'label' => 'Create a new tag',
+        'type' => 'info',
         'htmlOptions' => array(
-            'id' => 'save_tag_btn',
-            'data-dismiss' => 'modal'),
+            'data-toggle' => 'modal',
+            'data-target' => '#createTagModal',
+        ),
     ));
-    ?>
-    <?php
-    $this->widget('bootstrap.widgets.TbButton', array(
-        'label' => 'Close',
-        'url' => '#',
-        'htmlOptions' => array('data-dismiss' => 'modal'),
-    ));
-    ?>
-</div>
-
-<?php $this->endWidget(); ?><?php
-$this->widget('bootstrap.widgets.TbButton', array(
-    'label' => 'Create a new tag',
-    'type' => 'info',
-    'htmlOptions' => array(
-        'data-toggle' => 'modal',
-        'data-target' => '#createTagModal',
-    ),
-));
+}
 ?>
