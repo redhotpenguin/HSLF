@@ -137,7 +137,7 @@ class PushMessage extends BaseActiveRecord {
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
                     'sort' => array(
-                        'defaultOrder' => $this->getTableAlias(false, false) . '.id DESC'
+                        'defaultOrder' => $this->getTableAlias(false, false) . '.creation_date DESC'
                     )
                 ));
     }

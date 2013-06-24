@@ -9,7 +9,7 @@ $ns = "var pushcomposer_ns  = {controller_url: '" . $controller_url . "/pushMess
 
 Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::POS_HEAD);
 
-$this->secondaryNav['name'] = 'Push Messages';
+$this->secondaryNav['name'] = 'Push Notifications';
 $this->secondaryNav['url'] = array('pushMessage/index');
 ?>
 
@@ -69,7 +69,7 @@ $form = $this->beginWidget('CActiveForm', array(
 
     <div class="row">
         <?php
-        $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'size' => 'large', 'label' => 'Send Push Message', 'htmlOptions' => array('id' => 'sendNotificationBtn', 'style' => 'float:left;')));
+        $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'size' => 'large', 'label' => 'Send Push Notification', 'htmlOptions' => array('id' => 'sendNotificationBtn', 'style' => 'float:left;')));
         ?>
     </div>
 </div>
@@ -87,7 +87,7 @@ $this->beginWidget(
 ?>
 <div class="modal-header">
     <a class="close" data-dismiss="modal">&times;</a>
-    <h4>Push Composer</h4>
+    <h4>Push Notification Composer</h4>
 </div>
 <?php
 echo $this->renderPartial('composer/_help');

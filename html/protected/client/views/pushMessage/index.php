@@ -2,9 +2,7 @@
 
 $navBarItems = array(
     '',
-    array('label' => 'Composer', 'url' => array('pushMessage/composer')),
-    '',
-    array('label' => 'Create', 'url' => array('pushMessage/create')),
+    array('label' => 'Compose New Message', 'url' => array('pushMessage/composer')),
     '',
 );
 
@@ -14,9 +12,13 @@ if ($isAdmin) {
 }
 
 $this->secondaryNav['items'] = $navBarItems;
-$this->secondaryNav['name'] = 'Push Messages';
+$this->secondaryNav['name'] = 'Push Notifications';
 $this->secondaryNav['url'] = array('pushMessage/index');
+?>
 
+<h4>History</h4>
+
+<?php
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'push-message-grid',
     'dataProvider' => $model->search(),

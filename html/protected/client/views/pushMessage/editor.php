@@ -2,12 +2,12 @@
 $navBarItems = array();
 
 if (!$model->isNewRecord) {
-    array_push($navBarItems, '', array('label' => 'Composer', 'url' => array('composer'),
+    array_push($navBarItems, '', array('label' => 'Compose New Message', 'url' => array('composer'),
             ), '', array('label' => 'Delete', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this push message?')), '');
 }
 
 $this->secondaryNav['items'] = $navBarItems;
-$this->secondaryNav['name'] = 'Push Messages';
+$this->secondaryNav['name'] = 'Push Notifications';
 $this->secondaryNav['url'] =array('pushMessage/index');
 ?>
 
