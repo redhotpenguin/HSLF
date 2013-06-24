@@ -133,7 +133,7 @@ class PushClient extends lib\UrbanAirshipClient {
         $deviceType = $this->findDeviceTypeFromId($deviceId);
 
         if (!$deviceType) {
-            throw new Exception("Device type not supported");
+            throw new \Exception("Device type not supported");
         }
 
         $payload = $pushNotification->getPayload();
