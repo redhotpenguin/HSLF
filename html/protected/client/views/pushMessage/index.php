@@ -2,7 +2,7 @@
 
 $navBarItems = array(
     '',
-    array('label' => 'Compose New Message', 'url' => array('pushMessage/composer')),
+    array('label' => 'New Message', 'url' => array('pushMessage/composer')),
     '',
 );
 

@@ -81,7 +81,7 @@ class PushMessage extends BaseActiveRecord {
             'id' => 'ID',
             'payload_id' => 'Payload',
             'creation_date' => 'Creation Date',
-            'alert' => 'Alert',
+            'alert' => 'Message',
             'push_identifier' => 'Push Identifier',
             'recipient_type' => 'Recipient Type'
         );

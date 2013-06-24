@@ -3,7 +3,7 @@
 <div class="row-fluid">
     <?php echo $form->labelEx($payload, 'title'); ?>
     <?php echo $form->textField($payload, 'title', array('placeholder' => '', 'size' => 60, 'maxlength' => 512, 'class' => 'span11')); ?>
-    <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="For Push to Post, enter the exact title of the article being shared. For Push to Share, enter the text that will be used for: the preview text on the share screen, the title of the shared item on Facebook and the subject line in the email share (all three use the same text)."></a>
+    <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="For Push to Post, enter the exact title of the post being shared. For Push to Share, enter the text that will be used for: the preview text on the share screen, the title of the shared item on Facebook and the subject line in the email share (all three use the same text)."></a>
     <?php echo $form->error($payload, 'title'); ?>
 </div>
 
@@ -12,7 +12,7 @@
     echo $form->labelEx($payload, 'type');
     echo $form->dropDownList($payload, 'type', $payload->getTypeOptions());
     ?>
-    <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title='Determines what happens when the user opens a push notification. Select "None" for notifications that do not include an action. Select "Push to Post" to direct the user to an article from a notification. Select "Push to Share" to direct the user to a share screen from a notification.'></a>
+    <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title='Determines what happens when the user opens a push notification. Select "None" for notifications that do not include an action. Select "Push to Post" to direct the user to a post from a notification. Select "Push to Share" to direct the user to a share screen from a notification.'></a>
 
     <?php
     echo $form->error($payload, 'type');
@@ -26,7 +26,7 @@
         echo $form->labelEx($payload, 'post_number');
         echo $form->textField($payload, 'post_number', array('placeholder' => '', 'size' => 60, 'class' => 'span11','placeholder' => 'Example: 1234'));
         ?>
-        <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="Determines which article the user is directed to from a Push to Post. Enter the unique numerical ID of the article, which can be found in your Content Management System."></a>
+        <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="Determines which post the user is directed to from a Push to Post. Enter the unique numerical ID of the post, which can be found in your Content Management System."></a>
         <?php echo $form->error($payload, 'post_number'); ?>
     </div>
 </div>

@@ -2,14 +2,16 @@
 $navBarItems = array();
 
 if (!$model->isNewRecord) {
-    array_push($navBarItems, '', array('label' => 'Compose New Message', 'url' => array('composer'),
+    array_push($navBarItems, '', array('label' => 'New Message', 'url' => array('composer'),
             ), '', array('label' => 'Delete', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this push message?')), '');
 }
 
 $this->secondaryNav['items'] = $navBarItems;
 $this->secondaryNav['name'] = 'Push Notifications';
-$this->secondaryNav['url'] =array('pushMessage/index');
+$this->secondaryNav['url'] = array('pushMessage/index');
 ?>
+
+
 
 <div class="form">
 
@@ -27,6 +29,7 @@ $this->secondaryNav['url'] =array('pushMessage/index');
         'form' => $form,
             ), true);
 
+    
     $tagsTab = $this->renderPartial('tabs/_tab_tags', array(
         'model' => $model,
         'form' => $form,
@@ -48,6 +51,17 @@ $this->secondaryNav['url'] =array('pushMessage/index');
 
     <div class="clearfix"></div>
     <hr/>
+
+    <?php
+    if (!$model->isNewRecord):
+        ?>
+        <p>
+            <span class="label label-warning">Updates to push messages will not affect previously sent push notifications. Changes will only be reflected in the Alert Inbox.</span>
+        </p>
+        <?php
+    endif;
+    ?>
+
     <?php
     $this->widget('bootstrap.widgets.TbButton', array(
         'buttonType' => 'submit',

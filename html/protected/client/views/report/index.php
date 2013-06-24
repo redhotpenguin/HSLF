@@ -21,6 +21,24 @@ $currentMonth = date('F');
 ?>
 
 
+<div class="section-divider">
+    <h3>Resources</h3>
+</div>
+
+
+<div class="action_group">
+    <?php echo CHtml::link("Google Analytics", $tenantSettings->analytics_link, array('class' => 'action_block', 'target' => '_blank')); ?>
+    <?php echo CHtml::link("App Store", $tenantSettings->ios_link, array('class' => 'action_block', 'target' => '_blank')); ?>
+
+</div>
+
+<div class="action_group">
+    <?php echo CHtml::link("Google Play", $tenantSettings->android_link, array('class' => 'action_block', 'target' => '_blank')); ?>
+    <?php echo CHtml::link("Push Messages", array('pushMessage/index'), array('class' => 'action_block', 'target' => '_blank')); ?>
+</div>
+
+<div class="clearfix"></div>
+
 
 <div class="section-divider">
     <h3>Reports</h3>
@@ -39,23 +57,5 @@ $currentMonth = date('F');
 
 
 <b>Total Installs: <?php echo CHtml::link($userCount, array('mobileUser/index')); ?></b>
-
-<div class="section-divider">
-    <h3>Resources</h3>
-</div>
-
-
-<div class="action_group">
-    <?php echo CHtml::link("Google Analytics", $tenantSettings->analytics_link, array('class' => 'action_block')); ?>
-    <?php echo CHtml::link("App Store", $tenantSettings->ios_link, array('class' => 'action_block')); ?>
-
-</div>
-
-<div class="action_group">
-    <?php echo CHtml::link("Google Play", $tenantSettings->android_link, array('class' => 'action_block')); ?>
-    <?php echo CHtml::link("Push Messages", array('pushMessage/index'), array('class' => 'action_block')); ?>
-</div>
-
-
 
 

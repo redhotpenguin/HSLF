@@ -20,7 +20,7 @@ $status = $pushMessage->isDelivered() ? "Delivered" : "Not delivered";
 
 $this->secondaryNav['name'] = 'Push Notifications';
 $this->secondaryNav['url'] = array('pushMessage/index');
-$this->secondaryNav['items'] = array('', array('label' => 'Compose New Message', 'url' => array('composer')), '');
+$this->secondaryNav['items'] = array('', array('label' => 'New Message', 'url' => array('composer')), '');
 ?>
 
 <div class="form">
@@ -67,15 +67,40 @@ $this->secondaryNav['items'] = array('', array('label' => 'Compose New Message',
     <h4 class="leader">Tags</h4>
     <div class="step row" >
         <div class="span12">
-<?php
-if ($pushMessage->tags) {
-    foreach ($pushMessage->tags as $tag) {
-        echo "<span class='tagPill'>{$tag->display_name} ({$tag->name})</span>";
-    }
-} else {
-    echo '<p>No tags set</p>';
-}
-?>
+            <?php
+            if ($pushMessage->tags) {
+                foreach ($pushMessage->tags as $tag) {
+                    echo "<span class='tagPill'>{$tag->display_name} ({$tag->name})</span>";
+                }
+            } else {
+                echo '<p>No tags set</p>';
+            }
+            ?>
+        </div>
+    </div>
+
+
+    <h4 class="leader">Action</h4>
+    <div class="step row" >
+        <div class="span12">
+            <?php
+            $type = $pushMessage->payload->type == 'other' ? 'none' : $pushMessage->payload->type;
+
+            echo "<p>Type: $type </p><p> Title: {$pushMessage->payload->title}</p>";
+
+            if ($type == 'share'):
+                ?>
+                <p>Link: <?php echo $pushMessage->payload->url; ?></p>
+                <p>Description: <?php echo $pushMessage->payload->description; ?></p>
+                <p>Tweet: <?php echo $pushMessage->payload->tweet; ?></p>
+                <?php
+            elseif ($type == 'post'):
+                ?>
+                <p>Post ID: <?php echo $pushMessage->payload->post_number; ?></p>
+
+                <?php
+            endif;
+            ?>
         </div>
     </div>
 
