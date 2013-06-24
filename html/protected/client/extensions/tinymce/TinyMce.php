@@ -57,7 +57,7 @@ class TinyMce extends CInputWidget {
                     theme_advanced_toolbar_align : "left",                                             
                     relative_urls : false,
                     convert_urls : false,       
-                    theme_ribbon_tab1 : {   title : "Start",
+                    theme_ribbon_tab1 : {   title : "HTML",
                         items : [
                             ["paste"], 
                             ["justifyleft,justifycenter,justifyright,justifyfull",
@@ -67,22 +67,18 @@ class TinyMce extends CInputWidget {
                                 "outdent,indent"], 
                             ["paragraph", "heading1", "heading2", "heading3"],
                             ["fontselect","|","fontsizeselect"],
-                            ["search", "|", "replace", "|", "removeformat"]]
+                            ["search", "|", "replace", "|", "removeformat", "|", "link"]]
                     },
-                                                                                                                                            
+                                                                                                                                                    
 
-                                                                                                                                            
-                    theme_ribbon_tab2 : {   title : "Insert",
-                        items : [["tabledraw"],
-                            ["link", "|", "unlink", "|", "anchor"],
-                            ["loremipsum", "|", "charmap", "|", "hr"]]
-                    },
-                                                                                                                        
+                                                                                                                                                    
+                    theme_ribbon_tab2 : { },
+                                                                                                                                
                     theme_ribbon_tab3 : {   title : "Source",
                         source : true                                                                                       
                     },                                                                                                                                           
                     content_css : "<?php echo $baseUrl . '/static/tinymce/css/'; ?>content.css"
-                                                                                                                                                                                     		
+                                                                                                                                                                                             		
                 });
             });
         </script>
