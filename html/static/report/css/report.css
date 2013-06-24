@@ -2,3 +2,13 @@
     margin-bottom:15px;
     min-height:250px;
 }
+
+.helpBtn{
+    float:right;
+    position: relative;
+    top: -15px;
+}
+
+.helpContainer{
+    padding:20px
+}
