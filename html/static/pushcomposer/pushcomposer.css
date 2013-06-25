@@ -52,9 +52,21 @@ div#recipientSection #recipient-choices label{
 }
 
 #demo{
-    padding:20px;
+    padding:0 20px 20px 20px;
 }
 
+
+.modal{
+}
 .floatLeft{
     float:left;
+}
+
+#container #demo h4 {
+    color: #333 !important;
+    margin: 20px 0 5px 20px;
+}
+
+#container #demo h4 +  p{
+    margin-left:20px;
 }

@@ -49,43 +49,45 @@ $this->widget('bootstrap.widgets.TbButton', array(
 
 <div class="action_group">
     <?php echo CHtml::link("Google Play", $tenantSettings->android_link, array('class' => 'action_block', 'target' => '_blank')); ?>
-    <?php echo CHtml::link("Push Messages", array('pushMessage/index'), array('class' => 'action_block', 'target' => '_blank')); ?>
+    <?php echo CHtml::link("Push Notifications", array('pushMessage/index'), array('class' => 'action_block')); ?>
 </div>
 
 <div class="clearfix"></div>
 
 
 <div class="section-divider">
-    <h3>Reports</h3>
+    <h3>Stats</h3>
 </div>
 
+<h3>Total User Registrations: <?php echo $userCount;  ?></h3>
 
-<?php
-$this->widget('bootstrap.widgets.TbButton', array(
-    'label' => 'Help',
-    'type' => 'button',
-    'htmlOptions' => array(
-        'data-toggle' => 'modal',
-        'data-target' => '#modalReportsHelp',
-        'id' => 'reportsHelpButton',
-        'class' => 'helpBtn'
-    ),
-));
-?>
 
-<h3>Overview for the month of  <?php echo $currentMonth ?>:</h3>
+<h4>Overview for the month of  <?php echo $currentMonth ?>:</h4>
 
 <b>User registrations <span id="totalMonthlyUserCount"></span>:</b>
+<a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title='Total amount of monthly user registrations for the current year separated by iOs and Android.'></a>
+
+    
 <div id="monthlyUserRegistrationChart" class="chart" ></div>
 
 <b>Pushes Sent:</b>
+<a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title='Number of push notifications sent by month.'></a>
+<br/>
+
+<?php echo CHtml::link("More Stats", array('pushMessage/index'), array('class' => 'action_block')); ?>
+
+<div class="clearfix"></div>
+
 <div id="monthlyPushChart"  class="chart" ></div>
 
+
 <b>Push Responses:</b>
+<a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title='Number of direct opens and push influence for notifications sent by month. A direct open means a user clicked directly on the notification to open it. Push influence calculates the total number of users that likely opened your app as a result of receiving a push notification.'></a>
+
+
 <div id="monthlyUserResponseChart" class="chart" ></div>
 
 
-<b>Total Installs: <?php echo CHtml::link($userCount, array('mobileUser/index')); ?></b>
 
 
 <?php
@@ -104,34 +106,6 @@ $this->beginWidget(
 </div>
 <?php
 echo $this->renderPartial('help/_resources');
-?>
-
-<div class="modal-footer">
-    <?php
-    $this->widget('bootstrap.widgets.TbButton', array(
-        'label' => 'Close',
-        'url' => '#',
-        'htmlOptions' => array('data-dismiss' => 'modal'),
-    ));
-    $this->endWidget();
-    ?>
-</div>
-<?php
-$this->beginWidget(
-        'bootstrap.widgets.TbModal', array(
-    'id' => 'modalReportsHelp',
-    'autoOpen' => false,
-    'htmlOptions' => array(
-        'style' => 'width:50%;left:40%'
-    ),
-));
-?>
-<div class="modal-header">
-    <a class="close" data-dismiss="modal">&times;</a>
-    <h4>Reports</h4>
-</div>
-<?php
-echo $this->renderPartial('help/_reports');
 ?>
 
 <div class="modal-footer">

@@ -9,7 +9,7 @@ $ns = "var pushcomposer_ns  = {controller_url: '" . $controller_url . "/pushMess
 
 Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::POS_HEAD);
 
-$this->secondaryNav['name'] = 'Push Notifications';
+$this->secondaryNav['name'] = 'Push Notification Composer';
 $this->secondaryNav['url'] = array('pushMessage/index');
 ?>
 
@@ -20,6 +20,8 @@ $form = $this->beginWidget('CActiveForm', array(
 ?>
 
 <div class="form">
+    
+    <p class="introText">The composer allows you to create and send targeted messages to your users' devices and save them to the Alert Inbox in the app. iOS users must opt in to receive notifications, while Android users automatically opt in when downloading the app. </p>
 
     <h4 class="floatLeft leader">Message</h4>
 
@@ -81,7 +83,7 @@ $this->beginWidget(
     'id' => 'modalHelp',
     'autoOpen' => false,
     'htmlOptions' => array(
-        'style' => 'width:50%;left:40%'
+        'style' => 'width:90%;left:20%'
     ),
 ));
 ?>

@@ -118,7 +118,7 @@ function report($){
             
             
             var graphOptions = {
-                seriesColors : ["#0088cc", "#DD5336"],                
+                seriesColors : ["#0088cc", "#83CDF2"],                
                 series:[
 
                 {
@@ -126,7 +126,7 @@ function report($){
                 },
 
                 {
-                    label:'Influenced'
+                    label:'Influence'
                 },
                 ],
                 stackSeries: true,
@@ -173,7 +173,7 @@ function report($){
                         if(seriesIndex == 0){ // direct
                             return directSerie[pointIndex] + " directs";
                         }else{ // influenced
-                            return influenceSerie[pointIndex] + " influenced";
+                            return influenceSerie[pointIndex] + " influences";
                         }
                        
                     }
@@ -214,7 +214,7 @@ function report($){
             }
             
             var graphOptions = {
-                seriesColors : ["#0088cc", "#DD5336"], 
+                seriesColors : ["#0088cc", "#83CDF2"], 
                 animate: true,
                 stackSeries: true,
                 axesDefaults:{
@@ -264,7 +264,7 @@ function report($){
                     formatString: "%d",
                     tooltipContentEditor: function(str, seriesIndex, pointIndex, jqPlot) {
                         if(seriesIndex == 0){
-                            return androidSerie[pointIndex] + " android users";
+                            return androidSerie[pointIndex] + " Android users";
                         }else{
                             return iosSerie[pointIndex] + " iOs users";
                         }
