@@ -112,7 +112,7 @@ class Tenant extends CActiveRecord {
     }
 
     public function getSettingRelation() {
-        return TenantSetting::model()->findByPk($this->id);
+        return $this->tenantSetting;
     }
 
 }
