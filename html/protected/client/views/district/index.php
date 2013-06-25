@@ -12,12 +12,6 @@ $this->secondaryNav['items'] = $navBarItems;
 $this->secondaryNav['name'] = 'Districts';
 $this->secondaryNav['url'] = array('district/index');
 
-
-?>
-
-
-<?php
-
 $state_list = CHtml::listData(State::model()->findAll(), 'id', 'name');
 $district_list = array('' => 'All') + District::model()->getTypeOptions();
 
@@ -49,4 +43,3 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         ),
     ),
 ));
-?>
