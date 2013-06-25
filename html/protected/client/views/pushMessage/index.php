@@ -22,25 +22,27 @@ $this->widget('backend.extensions.ExtendedWidgets.GridView', array(
     'id' => 'push-message-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
+    'type'=>'striped',
     'columns' => array(
         array(
             'name' => 'alert',
-            'placeholder' => 'Search by message'
+            'placeholder' => 'Search by message',
+            'htmlOptions' => array('width' => '50%', 'style' => 'height:50px;  vertical-align: middle;'),
         ),
         array(
             'name' => 'creation_date',
-            'value' => 'date("F d, Y - h:i A (T)",  strtotime( $data->creation_date ) )',
+            'value' => 'date("F d, Y - h:i A",  strtotime( $data->creation_date ) )',
             'filter' => $this->widget('zii.widgets.jui.CJuiDatePicker', array(
                 'model' => $model,
                 'attribute' => 'creation_date',
                 'language' => 'en',
-                'i18nScriptFile' => 'jquery.ui.datepicker-ja.js', // (#2)
+                'i18nScriptFile' => 'jquery.ui.datepicker-ja.js',
                 'htmlOptions' => array(
                     'id' => 'datepicker_for_creation_date',
                     'size' => '10',
                     'placeholder' => 'Search by date',
                 ),
-                'defaultOptions' => array(// (#3)
+                'defaultOptions' => array(
                     'showOn' => 'focus',
                     'dateFormat' => 'yy-mm-dd',
                     'showOtherMonths' => true,
@@ -49,19 +51,22 @@ $this->widget('backend.extensions.ExtendedWidgets.GridView', array(
                     'changeYear' => true,
                     'showButtonPanel' => true,
                 )
-                    ), true), // (#4)
+                    ), true),
+            'htmlOptions' => array('width' => '20%','style' => 'vertical-align: middle;'),
         ),
         array(
             'placeholder' => 'Recipient',
             'header' => 'Recipient',
             'name' => 'recipient_type',
             'filter' => CHtml::dropDownList('PushMessage[recipient_type]', $model->recipient_type, array("" => "Any") + $model->getRecipientTypes()),
+            'htmlOptions' => array('width' => '15%', 'style' => 'vertical-align: middle;' ),
         ),
         array(
             'name' => 'delivered',
             'header' => 'Status',
             'value' => '$data->isDelivered() ? "Delivered" : "Not delivered";',
             'filter' => CHtml::dropDownList('PushMessage[delivered]', $model->delivered, array('any' => 'Any', 'true' => 'Delivered', 'false' => 'Not Delivered')),
+            'htmlOptions' => array('width' => '10%',  'style' => 'vertical-align: middle;'),
         ),
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
