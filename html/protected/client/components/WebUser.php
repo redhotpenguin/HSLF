@@ -32,7 +32,7 @@ class WebUser extends CWebUser {
      * @param string $tenant name
      */
     public function setLoggedInUserTenant($tenantName) {
-        $tenant = Tenant::model()->findByAttributes(array('name' => $tenantName));
+        $tenant = Tenant::model()->with('tenantSetting')->findByAttributes(array('name' => $tenantName));
         if ($tenant == null)
             return false;
 
