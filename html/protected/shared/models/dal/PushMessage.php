@@ -106,16 +106,12 @@ class PushMessage extends BaseActiveRecord {
         if ($this->creation_date) {
             // trim white spaces
             $this->creation_date = trim($this->creation_date);
-            // handle users habit to uses / as a separator
-            $this->creation_date = str_replace('/', '-', $this->creation_date);
 
             // check that the format is yyyy-mm-dd. also checks that the values are correct
-            if (preg_match('/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/', $this->creation_date)) {
+            if (preg_match('/^\d{4}-\d{2}-\d{2}$/', $this->creation_date)) {
+                $this->creation_date = str_replace('/', '-', $this->creation_date);
                 $criteria->compare('creation_date', '> ' . $this->creation_date . ' 00:00:00', false);
-            } // if user has just entered a year, ex: 2012
-            elseif (preg_match('/^[0-9]{4}$/', $this->creation_date)) {
-                $criteria->compare('creation_date', '> ' . $this->creation_date . ' 01-01 00:00:00', false);
-                $criteria->compare('creation_date', '< ' . $this->creation_date . ' 12-31 23:59:59', false, 'AND');
+                $criteria->compare('creation_date', '< ' . $this->creation_date . ' 23:59:59', false, 'AND');
             }
         }
 
@@ -163,10 +159,10 @@ class PushMessage extends BaseActiveRecord {
     }
 
     public function scopes() {
-       
+
         return array(
             'lastRecord' => array(
-                'order' =>  $this->tableAlias.'.id DESC',
+                'order' => $this->tableAlias . '.id DESC',
                 'limit' => 1,
             ),
         );
