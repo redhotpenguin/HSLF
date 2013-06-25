@@ -18,19 +18,21 @@ $this->secondaryNav['url'] = array('pushMessage/index');
 <h4>History</h4>
 
 <?php
-$this->widget('bootstrap.widgets.TbGridView', array(
+$this->widget('backend.extensions.ExtendedWidgets.GridView', array(
     'id' => 'push-message-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
     'columns' => array(
         array(
             'name' => 'alert',
+            'placeholder' => 'Search a message'
         ),
         array(
             'name' => 'creation_date',
             'value' => 'date("Y-m-d",  strtotime( $data->creation_date ) )',
         ),
         array(
+            'placeholder' => 'Recipient',
             'header' => 'Recipient',
             'name' => 'recipient_type',
             'filter' => CHtml::dropDownList('PushMessage[recipient_type]', $model->recipient_type, array("" => "Any") + $model->getRecipientTypes()),
