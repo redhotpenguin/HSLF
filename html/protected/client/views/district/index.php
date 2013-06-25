@@ -23,7 +23,7 @@ $district_list = array('' => 'All') + District::model()->getTypeOptions();
 
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'district-grid',
-    'dataProvider' => $model->search(),
+    'dataProvider' => $model->with('state')->search(),
     'filter' => $model,
     'template' => "{pager}{summary}\n{items}\n{pager}", // pagination on top and on bottom
     'columns' => array(
