@@ -32,18 +32,12 @@ class WebUser extends CWebUser {
      * @param string $tenant name
      */
     public function setLoggedInUserTenant($tenantName) {
-
         $tenant = Tenant::model()->findByAttributes(array('name' => $tenantName));
         if ($tenant == null)
             return false;
 
-        $user = $this->getModel(Yii::app()->user->id);
-
-        if ($user == null)
-            return false;
-
-        if ($user->belongsToTenant($tenant->id)) {
-            //     error_log("setting tenant");
+  
+        if (User::model()->belongsToTenant($tenant->id, Yii::app()->user->id)) {
             Yii::app()->params['current_tenant'] = $tenant;
             return true;
         }
