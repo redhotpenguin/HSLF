@@ -25,11 +25,31 @@ $this->widget('backend.extensions.ExtendedWidgets.GridView', array(
     'columns' => array(
         array(
             'name' => 'alert',
-            'placeholder' => 'Search a message'
+            'placeholder' => 'Search by message'
         ),
         array(
             'name' => 'creation_date',
-            'value' => 'date("Y-m-d",  strtotime( $data->creation_date ) )',
+            'value' => 'date("F d, Y - h:i A (T)",  strtotime( $data->creation_date ) )',
+            'filter' => $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+                'model' => $model,
+                'attribute' => 'creation_date',
+                'language' => 'en',
+                'i18nScriptFile' => 'jquery.ui.datepicker-ja.js', // (#2)
+                'htmlOptions' => array(
+                    'id' => 'datepicker_for_creation_date',
+                    'size' => '10',
+                    'placeholder' => 'Search by date',
+                ),
+                'defaultOptions' => array(// (#3)
+                    'showOn' => 'focus',
+                    'dateFormat' => 'yy-mm-dd',
+                    'showOtherMonths' => true,
+                    'selectOtherMonths' => true,
+                    'changeMonth' => true,
+                    'changeYear' => true,
+                    'showButtonPanel' => true,
+                )
+                    ), true), // (#4)
         ),
         array(
             'placeholder' => 'Recipient',
@@ -48,4 +68,6 @@ $this->widget('backend.extensions.ExtendedWidgets.GridView', array(
             'template' => '{view}{update}{delete}'
         ),
     ),
+    'afterAjaxUpdate' => 'function reinstallDatePicker(id, data) { $("#datepicker_for_creation_date").datepicker();}',
 ));
+
