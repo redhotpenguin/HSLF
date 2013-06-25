@@ -22,7 +22,7 @@ $this->widget('backend.extensions.ExtendedWidgets.GridView', array(
     'id' => 'push-message-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
-    'type'=>'striped',
+    'type' => 'striped',
     'columns' => array(
         array(
             'name' => 'alert',
@@ -52,25 +52,26 @@ $this->widget('backend.extensions.ExtendedWidgets.GridView', array(
                     'showButtonPanel' => true,
                 )
                     ), true),
-            'htmlOptions' => array('width' => '20%','style' => 'vertical-align: middle;'),
+            'htmlOptions' => array('width' => '20%', 'style' => 'vertical-align: middle;'),
         ),
         array(
             'placeholder' => 'Recipient',
             'header' => 'Recipient',
             'name' => 'recipient_type',
             'filter' => CHtml::dropDownList('PushMessage[recipient_type]', $model->recipient_type, array("" => "Any") + $model->getRecipientTypes()),
-            'htmlOptions' => array('width' => '15%', 'style' => 'vertical-align: middle;' ),
+            'htmlOptions' => array('width' => '15%', 'style' => 'vertical-align: middle;'),
         ),
         array(
             'name' => 'delivered',
             'header' => 'Status',
             'value' => '$data->isDelivered() ? "Delivered" : "Not delivered";',
             'filter' => CHtml::dropDownList('PushMessage[delivered]', $model->delivered, array('any' => 'Any', 'true' => 'Delivered', 'false' => 'Not Delivered')),
-            'htmlOptions' => array('width' => '10%',  'style' => 'vertical-align: middle;'),
+            'htmlOptions' => array('width' => '10%', 'style' => 'vertical-align: middle;'),
         ),
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
-            'template' => '{view}{update}{delete}'
+            'template' => '{view}{update}{delete}',
+            'htmlOptions' => array('style' => 'vertical-align: middle;'),
         ),
     ),
     'afterAjaxUpdate' => 'function reinstallDatePicker(id, data) { $("#datepicker_for_creation_date").datepicker();}',
