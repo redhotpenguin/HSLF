@@ -123,14 +123,21 @@ class UserBehavior extends CActiveRecordBehavior {
     /**
      * Verify that a user belong to a  tenant
      * @param integer $tenantId tenant id
+     * @param integer $userId - optionnal. 
      * @return boolean
      */
-    public function belongsToTenant($tenantId) {
+    public function belongsToTenant($tenantId, $userId = null) {
+        
+        if(!$userId){
+            $userId = $this->owner->id;
+        }
+            
+        
         $user = User::model()->with('tenants')->find(
                 array(
                     'condition' => "user_id = :user_id AND tenant_id =:tenant_id",
                     'params' => array(
-                        ':user_id' => $this->owner->id,
+                        ':user_id' => $userId,
                         ':tenant_id' => $tenantId
                     )
                 ));
