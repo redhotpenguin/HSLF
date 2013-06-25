@@ -13,6 +13,10 @@ class PushMessagesAPI extends APIBase {
     public function getList($tenantId, $arguments = array()) {
         $criteria = new PushMessageCriteria($this->model);
 
+        $criteria->addCondition('recipient_type !=:recipient', 'AND');
+        $criteria->params[":recipient"] = 'single';
+
+
         // check if relationships are set
         if (isset($arguments['relations']) && !empty($arguments['relations'])) {
             $relations = explode(',', $arguments['relations']);
@@ -37,7 +41,7 @@ class PushMessagesAPI extends APIBase {
         // uncomment the following lines to see the 'query' structure
         //  echo '<pre>';
         //print_r($criteria->toArray());
-        // echo '</pre>';
+         //echo '</pre>';
 
         return $criteria->search();
     }
