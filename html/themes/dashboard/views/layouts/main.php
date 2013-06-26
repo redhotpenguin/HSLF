@@ -74,43 +74,42 @@
                     }
 
 
-                    // communication menu (formerly called mobile application menu)
-                    $applicationMenu = array();
-                    $applicationMenuItems = array();
+                    $communicationMenu = array();
+                    $communicationMenuItems = array();
 
 
                     if (Yii::app()->user->hasPermission('manageMobileUsers'))
-                        array_push($applicationMenuItems, array('label' => 'Mobile Users', 'url' => array('/mobileUser/index')));
+                        array_push($communicationMenuItems, array('label' => 'Mobile Users', 'url' => array('/mobileUser/index')));
 
                     if (Yii::app()->user->hasPermission('manageAlertTypes'))
-                        array_push($applicationMenuItems, array('label' => 'Alert types', 'url' => array('/alertType/index')));
+                        array_push($communicationMenuItems, array('label' => 'Alert types', 'url' => array('/alertType/index')));
 
                     if (Yii::app()->user->hasPermission('managePayloads'))
-                        array_push($applicationMenuItems, array('label' => 'Payloads', 'url' => array('/payload/index')));
+                        array_push($communicationMenuItems, array('label' => 'Payloads', 'url' => array('/payload/index')));
 
                     if (Yii::app()->user->hasPermission('managePushMessages'))
-                        array_push($applicationMenuItems, array('label' => 'Push Messages', 'url' => array('/pushMessage/index')));
+                        array_push($communicationMenuItems, array('label' => 'Push Messages', 'url' => array('/pushMessage/index')));
 
                     if (Yii::app()->user->hasPermission('manageMobileUsers'))
-                        array_push($applicationMenuItems, array('label' => 'Reports', 'url' => array('/report/index')));
+                        array_push($communicationMenuItems, array('label' => 'Reports', 'url' => array('/report/index')));
 
 
-                    if (count($applicationMenuItems) > 0) {
-                        $applicationMenu = array(
+                    if (count($communicationMenuItems) > 0) {
+                        $communicationMenu = array(
                             'class' => 'bootstrap.widgets.TbMenu',
                             'items' => array(
                                 '---',
                                 array('label' =>
                                     'Communication',
                                     'url' => '#',
-                                    'items' => $applicationMenuItems),
+                                    'items' => $communicationMenuItems),
                             ),
                         );
                     }
 
 
                     array_push($items, $contentMenu);
-                    array_push($items, $applicationMenu);
+                    array_push($items, $communicationMenu);
 
                     $brand = $tenant->display_name;
                     $brandUrl = '/client/' . $tenant->name;
