@@ -185,3 +185,17 @@ h4{
     color: #858585;
     text-transform: uppercase;
 }
+
+.helpContainer{
+    padding:0 20px 20px 20px;
+}
+
+
+.helpContainer h4 {
+    color: #333 !important;
+    margin: 20px 0 5px 20px;
+}
+
+.helpContainer h4 +  p{
+    margin-left:20px;
+}

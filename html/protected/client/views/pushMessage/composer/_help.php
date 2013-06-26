@@ -1,4 +1,4 @@
-<div id="demo">
+<div class="helpContainer">
 
     <p></p>
 
