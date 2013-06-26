@@ -17,22 +17,21 @@
     </div>
 </div>
 
-
 <div class="row-fluid">
-    <div class="span6">
-        <?php
-        echo $form->labelEx($model, 'slug');
-        echo $form->textField($model, 'slug', array('size' => 60, 'class' => 'span11'));
-        echo $form->error($model, 'slug');
-        ?>
-
-    </div>
 
     <div  class="span6">
         <?php
         echo $form->labelEx($model, 'website');
         echo $form->textField($model, 'website', array('size' => 60, 'maxlength' => 2048, 'class' => 'span11'));
         echo $form->error($model, 'website');
+        ?>
+    </div>
+
+    <div class="span6">
+        <?php
+        echo $form->labelEx($model, 'image_url');
+        echo $form->textField($model, 'image_url', array('size' => 60, 'maxlength' => 2048, 'class' => 'span11'));
+        echo $form->error($model, 'image_url');
         ?>
     </div>
 </div>
@@ -54,15 +53,6 @@
         echo $form->error($model, 'twitter_handle');
         ?>
     </div>
-</div>
-
-
-<div class="">
-    <?php
-    echo $form->labelEx($model, 'image_url');
-    echo $form->textField($model, 'image_url', array('size' => 60, 'maxlength' => 2048, 'class' => 'span12'));
-    echo $form->error($model, 'image_url');
-    ?>
 </div>
 
 <div class="">
