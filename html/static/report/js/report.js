@@ -201,6 +201,8 @@ function report($){
                     min:0
                 },
                 seriesDefaults:{
+                    renderer:$.jqplot.BarRenderer,
+
                     rendererOptions: {
                         fillToZero: false,
                         animation: {
