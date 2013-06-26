@@ -8,8 +8,10 @@
 class m130626_180858_organization_alter extends CDbMigration {
 
     public function safeUp() {
-        $this->dropColumn('organization', 'slug');
-        $this->dropColumn('organization', 'primary_contact_id');
+        // $this->dropColumn('organization', 'slug');
+        //     $this->dropColumn('organization', 'primary_contact_id');
+
+        $this->execute("ALTER TABLE organization ALTER COLUMN address DROP NOT NULL;");
     }
 
     public function safeDown() {
