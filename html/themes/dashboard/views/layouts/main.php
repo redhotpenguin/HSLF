@@ -85,7 +85,7 @@
                         array_push($communicationMenuItems, array('label' => 'Payloads', 'url' => array('/payload/index')));
 
                     if (Yii::app()->user->hasPermission('managePushMessages'))
-                        array_push($communicationMenuItems, array('label' => 'Push Messages', 'url' => array('/pushMessage/index')));
+                        array_push($communicationMenuItems, array('label' => 'Push Notifications', 'url' => array('/pushMessage/index')));
 
 
 
