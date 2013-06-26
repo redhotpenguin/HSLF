@@ -112,15 +112,15 @@ class ReportController extends Controller {
      * Print all the users registered for the month of June (JSON)
      */
     public function actionJsonUserRegistrationReport() {
- header('Content-type: ' . 'application/json;charset=UTF-8');
+        header('Content-type: ' . 'application/json;charset=UTF-8');
 
         $cacheKey = $this->tenant->id . '_actionJsonUserRegistrationReport';
-    //    if (($cachedJsonResult = Yii::app()->cache->get($cacheKey)) == true) {
-        //    echo $cachedJsonResult;
-      //  } else {
+        if (($cachedJsonResult = Yii::app()->cache->get($cacheKey)) == true) {
+            echo $cachedJsonResult;
+        } else {
 
             $start = new MongoDate(strtotime("-1 year", time()));
-            
+
 
             $registrations = MobileUser::model()->getCountSinceDate($start, 'YEARLY');
 
@@ -139,10 +139,10 @@ class ReportController extends Controller {
 
             $jsonResult = json_encode($result);
 
-         //   Yii::app()->cache->set($cacheKey, $jsonResult, 600); // cache json result for 10 minutes
+            Yii::app()->cache->set($cacheKey, $jsonResult, 600); // cache json result for 10 minutes
 
-         echo $jsonResult;
-       // }
+            echo $jsonResult;
+        }
         Yii::app()->end();
     }
 
