@@ -199,3 +199,8 @@ h4{
 .helpContainer h4 +  p{
     margin-left:20px;
 }
+
+.container .grid-view td{
+    height: 40px; 
+    vertical-align: middle;
+}
