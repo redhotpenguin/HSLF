@@ -11,7 +11,7 @@
  */
 class Tag extends BaseActiveRecord {
 
-    private $allowedTypes = array('alert', 'organization');
+    private $allowedTypes = array('alert', 'organization', 'district');
 
     /**
      * Returns the static model of the specified AR class.
@@ -30,7 +30,7 @@ class Tag extends BaseActiveRecord {
     }
 
     public function getTagTypes() {
-        return array('alert' => 'Alert', 'organization' => 'Organization');
+        return array('alert' => 'Alert', 'organization' => 'Organization', 'district' => 'District');
     }
 
     public function getAllowedTypes() {
