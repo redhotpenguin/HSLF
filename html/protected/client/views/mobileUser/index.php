@@ -31,7 +31,7 @@ $this->secondaryNav['url'] = array('mobileUser/index');
 ?>
 
 <div class="hero-unit">
-    <h1> <span id="mobile_user_count"><?php echo $mobile_user_count; ?></span> mobile users</h1>
+    <h1> <span id="mobile_user_count"><?php echo number_format($mobile_user_count); ?></span> mobile users</h1>
 </div>
 
 
@@ -116,8 +116,6 @@ $this->secondaryNav['url'] = array('mobileUser/index');
 
         <div style="margin-top:20px" class="row">
             <?php
-       
-
             $this->widget('bootstrap.widgets.TbButton', array(
                 'label' => 'Export current selection',
                 'type' => 'info',
@@ -129,9 +127,9 @@ $this->secondaryNav['url'] = array('mobileUser/index');
 
     </div>
 
-    <?php
-    echo CHtml::endForm();
-    ?>
+<?php
+echo CHtml::endForm();
+?>
 
 </div>
 
