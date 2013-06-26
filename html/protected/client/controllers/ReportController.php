@@ -89,7 +89,6 @@ class ReportController extends Controller {
         } else {
             try {
 
-
                 $start = date('Y-m-d H:i:s', strtotime("-1 year", time())); // 365 days ago
 
                 $end = date('Y-m-d H:i:s', time()); // now
@@ -113,16 +112,17 @@ class ReportController extends Controller {
      * Print all the users registered for the month of June (JSON)
      */
     public function actionJsonUserRegistrationReport() {
-        header('Content-type: ' . 'application/json;charset=UTF-8');
+ header('Content-type: ' . 'application/json;charset=UTF-8');
 
         $cacheKey = $this->tenant->id . '_actionJsonUserRegistrationReport';
-        if (($cachedJsonResult = Yii::app()->cache->get($cacheKey)) == true) {
-            echo $cachedJsonResult;
-        } else {
+    //    if (($cachedJsonResult = Yii::app()->cache->get($cacheKey)) == true) {
+        //    echo $cachedJsonResult;
+      //  } else {
 
-            $start = new MongoDate(strtotime(date("Y-m-01") . " 00:00:00"));
+            $start = new MongoDate(strtotime("-1 year", time()));
+            
 
-            $registrations = MobileUser::model()->getCountSinceDate($start);
+            $registrations = MobileUser::model()->getCountSinceDate($start, 'YEARLY');
 
             $mobileUserModel = MobileUser::model();
             $mobileUserModel->setReadPreference(MongoClient::RP_SECONDARY_PREFERRED);
@@ -139,10 +139,10 @@ class ReportController extends Controller {
 
             $jsonResult = json_encode($result);
 
-            Yii::app()->cache->set($cacheKey, $jsonResult, 600); // cache json result for 10 minutes
+         //   Yii::app()->cache->set($cacheKey, $jsonResult, 600); // cache json result for 10 minutes
 
-            echo $jsonResult;
-        }
+         echo $jsonResult;
+       // }
         Yii::app()->end();
     }
 
@@ -150,15 +150,15 @@ class ReportController extends Controller {
         header('Content-type: ' . 'application/json;charset=UTF-8');
 
         $cacheKey = $this->tenant->id . '_actionJsonResponseReport';
-
         if (($cachedJsonResult = Yii::app()->cache->get($cacheKey)) == true) {
             echo $cachedJsonResult;
         } else {
 
-            $start = date("Y-m-01") . "%2000:00:00";
-            $end = date("Y-m-t") . "%2023:59:59";
-            $precision = "DAILY";
-            $jsonResult = json_encode($this->reportClient->getResponseReport($start, $end, $precision));
+            $start = date('Y-m-d H:i:s', strtotime("-1 year", time()));
+
+            $end = date('Y-m-d H:i:s', time());
+
+            $jsonResult = json_encode($this->reportClient->getResponseReport($start, $end, 'MONTHLY'));
             Yii::app()->cache->set($cacheKey, $jsonResult, 600); // cache json result for 10 minutes
             echo $jsonResult;
         }

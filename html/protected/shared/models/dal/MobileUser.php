@@ -127,11 +127,18 @@ class MobileUser extends ActiveMongoDocument {
 
     /**
      * Return the number of daily users since the date indicated
+     * @param MongoDate date
+     * @param string precision
      * @return array();
      */
-    public function getCountSinceDate(MongoDate $date) {
+    public function getCountSinceDate(MongoDate $date, $precision = 'DAILY') {
 
-        $keys = new MongoCode('function(user) { var dateKey = (user.registration_date.getMonth()+1) + "/" +  user.registration_date.getDate() + "/" + user.registration_date.getFullYear();return {day: dateKey}; }');
+        if ($precision == 'DAILY') {
+            $keys = new MongoCode('function(user) { var dateKey = (user.registration_date.getMonth()+1) + "/" +  user.registration_date.getDate() + "/" + user.registration_date.getFullYear();return {date: dateKey}; }');
+        } else {
+            $keys = new MongoCode('function(user) { var dateKey = (user.registration_date.getMonth()+1) + "/01/" + user.registration_date.getFullYear();return {date: dateKey}; }');
+        }
+
 
         $initial = array('total' => 0, 'android' => 0, 'ios' => 0);
 

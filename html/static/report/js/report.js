@@ -84,8 +84,7 @@ function report($){
     buildMonthlyUserResponseReport = function(){
         var directSerie = [],
         influenceSerie = [],
-        ticks = [],
-        prevTotal = 1;
+        ticks = [];
     
         $.get(report_ns.controller_url + '/report/jsonResponseReport', function(pushResponseReport){
                         
@@ -93,19 +92,12 @@ function report($){
 
             for(var i = 0; i < totalPushResponse; i++){
                 var response = pushResponseReport['responses'][i],
-                date = new Date(Date.parse(response.date)),
                 total = response.ios.direct + response.android.direct;
-                
-                if(total == 0 &&  prevTotal  == 0  ){ // skip consecutive 0s
-                    continue;
-                }    
-                     
-                
-                var month = date.getMonth() + 1; // month sare zero based (jan = 0)
+    
+    
                 directSerie.push( total );
                 influenceSerie.push(response.ios.influenced + response.android.influenced );
-                ticks.push( month + "/" + date.getDate() );
-                prevTotal = total;
+                ticks.push( moment(response.date).format('MM-DD-YYYY') );
             }
             
             
@@ -193,16 +185,12 @@ function report($){
             var totalUserRegistration  = userRegistrationReport['registrations'].length;
 
             for(var i = 0; i < totalUserRegistration; i++){
-                var report = userRegistrationReport['registrations'][i],
-                registrationDate = new Date(Date.parse(report.day)),
-                month = registrationDate.getMonth() + 1; // month sare zero based (jan = 0)
+                var report = userRegistrationReport['registrations'][i];
   
                 
                 androidSerie.push(report.android);
                 iosSerie.push(report.ios);
-                
-                ticks.push( month + "/" + registrationDate.getDate() );
-            
+                ticks.push( moment(report.date).format('MM-DD-YYYY') );            
             }
             
             var graphOptions = {
@@ -213,7 +201,6 @@ function report($){
                     min:0
                 },
                 seriesDefaults:{
-                    renderer:$.jqplot.BarRenderer,
                     rendererOptions: {
                         fillToZero: false,
                         animation: {
