@@ -12,22 +12,14 @@ function report($){
             ticks = [];
         
             var totalSends  = pushReport['sends'].length;
-            var prevTotal = 1;
             for(var i = 0; i < totalSends; i++){
                 var report = pushReport['sends'][i],
                 total = report.android + report.ios;
             
-                if(total == 0 &&  prevTotal  == 0  ){ // skip consecutive 0s
-                    continue;
-                }    
-                       
-                var d=new Date(Date.parse(report.date)),
-                month = d.getMonth() + 1; // month sare zero based (jan = 0)
-            
+  
                 pushSerie.push(total);
-                ticks.push( month + "/" + d.getDate() );
+                ticks.push( moment(report.date).format('MM-DD-YYYY') );
             
-                prevTotal =  total;
             }
        
             var graphOptions =  {

@@ -80,27 +80,29 @@ class ReportController extends Controller {
     /**
      * Print JSON reports
      */
-    public function actionJsonPushReport($start = null, $end = null) {
+    public function actionJsonPushReport() {
         header('Content-type: ' . 'application/json;charset=UTF-8');
-        $cacheKey = $this->tenant->id . '_actionJsonPushReport' . $start . $end;
+        $cacheKey = $this->tenant->id . '_actionJsonPushReport';
 
         if (($cachedJsonResult = Yii::app()->cache->get($cacheKey)) == true) {
             echo $cachedJsonResult;
         } else {
-
             try {
-                if ($start && $end) {
-                    $response = $this->reportClient->getReport($start, $end, 'DAILY');
-                } else {
-                    $response = $this->reportClient->getCurrentMonthReport('DAILY');
-                }
+
+
+                $start = date('Y-m-d H:i:s', strtotime("-1 year", time())); // 365 days ago
+
+                $end = date('Y-m-d H:i:s', time()); // now
+
+                $response = $this->reportClient->getReport($start, $end, 'MONTHLY');
+
                 $jsonResult = json_encode($response);
 
                 Yii::app()->cache->set($cacheKey, $jsonResult, 600); // cache json result for 10 minutes
 
                 echo $jsonResult;
             } catch (Exception $e) {
-                
+                echo $e->getMessage();
             }
         }
 
@@ -148,7 +150,7 @@ class ReportController extends Controller {
         header('Content-type: ' . 'application/json;charset=UTF-8');
 
         $cacheKey = $this->tenant->id . '_actionJsonResponseReport';
-        
+
         if (($cachedJsonResult = Yii::app()->cache->get($cacheKey)) == true) {
             echo $cachedJsonResult;
         } else {
