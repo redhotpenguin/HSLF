@@ -17,16 +17,7 @@
     </div>
 </div>
 
-
 <div class="row-fluid">
-    <div class="span6">
-        <?php
-        echo $form->labelEx($model, 'slug');
-        echo $form->textField($model, 'slug', array('size' => 60, 'class' => 'span11'));
-        echo $form->error($model, 'slug');
-        ?>
-
-    </div>
 
     <div  class="span6">
         <?php

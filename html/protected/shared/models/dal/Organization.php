@@ -10,7 +10,6 @@
  * @property string $website
  * @property string $image_url
  * @property string $display_name
- * @property string $slug
  * @property string $facebook_url
  * @property string $twitter_handle
  * @tenant_id integer tenant id
@@ -41,14 +40,14 @@ class Organization extends BaseActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('name, display_name, slug, address', 'required'),
-            array('name, slug', 'length', 'max' => 512),
+            array('name, display_name, address', 'required'),
+            array('name', 'length', 'max' => 512),
             array('website, image_url', 'length', 'max' => 2048),
             array('facebook_url', 'length', 'max' => 1024),
             array('twitter_handle', 'length', 'max' => 140),
-            array('description, display_name, primary_contact_id', 'safe'),
+            array('description, display_name', 'safe'),
             array('website, image_url', 'url'),
-            array('id, name, description, website, image_url, display_name, slug, facebook_url, twitter_handle, address', 'safe', 'on' => 'search'),
+            array('id, name, description, website, image_url, display_name, facebook_url, twitter_handle, address', 'safe', 'on' => 'search'),
         );
     }
 
@@ -65,7 +64,6 @@ class Organization extends BaseActiveRecord {
                 'tag_organization(organization_id, tag_id)'),
             'contacts' => array(self::MANY_MANY, 'Contact',
                 'contact_organization(organization_id, contact_id)'),
-            'primary_contact' => array(self::BELONGS_TO, 'Contact', 'primary_contact_id'),
         );
     }
 
@@ -80,9 +78,7 @@ class Organization extends BaseActiveRecord {
             'website' => 'Website',
             'image_url' => 'Image url',
             'display_name' => 'Display Name',
-            'slug' => 'Slug',
             'address' => 'Address',
-            'primary_contact_id' => 'Primary Contact'
         );
     }
 
@@ -102,7 +98,6 @@ class Organization extends BaseActiveRecord {
         $criteria->compare('website', $this->website, true);
         $criteria->compare('image_url', $this->image_url, true);
         $criteria->compare('display_name', $this->display_name, true);
-        $criteria->compare('slug', $this->slug, true);
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
                     'pagination' => array(
