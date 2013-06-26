@@ -59,7 +59,7 @@ $this->widget('bootstrap.widgets.TbButton', array(
     <h3>Stats</h3>
 </div>
 
-<h3>Total User Registrations: <?php echo $userCount;  ?></h3>
+<h3>Total User Registrations: <?php echo number_format($userCount);  ?></h3>
 
 
 <h4>Overview for the month of  <?php echo $currentMonth ?>:</h4>

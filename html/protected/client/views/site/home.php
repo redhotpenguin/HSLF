@@ -52,7 +52,7 @@
         </div>
 
         <div class = "heroUserCount">
-            <h2><?php echo CHtml::link($userCount, array('mobileUser/index')); ?> users have registered with your app.</h2>
+            <h2><?php echo CHtml::link( number_format($userCount), array('mobileUser/index')); ?> users have registered with your app.</h2>
             <?php echo CHtml::link('more stats', array('report/index'), array('class' => 'action_block')); ?>
         </div>
 
