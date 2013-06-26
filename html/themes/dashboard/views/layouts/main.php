@@ -78,9 +78,6 @@
                     $communicationMenuItems = array();
 
 
-                    if (Yii::app()->user->hasPermission('manageMobileUsers'))
-                        array_push($communicationMenuItems, array('label' => 'Mobile Users', 'url' => array('/mobileUser/index')));
-
                     if (Yii::app()->user->hasPermission('manageAlertTypes'))
                         array_push($communicationMenuItems, array('label' => 'Alert types', 'url' => array('/alertType/index')));
 
@@ -90,8 +87,6 @@
                     if (Yii::app()->user->hasPermission('managePushMessages'))
                         array_push($communicationMenuItems, array('label' => 'Push Messages', 'url' => array('/pushMessage/index')));
 
-                    if (Yii::app()->user->hasPermission('manageMobileUsers'))
-                        array_push($communicationMenuItems, array('label' => 'Reports', 'url' => array('/report/index')));
 
 
                     if (count($communicationMenuItems) > 0) {
@@ -107,9 +102,33 @@
                         );
                     }
 
+                    $reportMenu = array();
+                    $reportMenuItems = array();
+
+                    if (Yii::app()->user->hasPermission('manageMobileUsers')) {
+                        array_push($reportMenuItems, array('label' => 'App Usage', 'url' => array('/report/index')));
+                        array_push($reportMenuItems, array('label' => 'Mobile Users', 'url' => array('/mobileUser/index')));
+                    }
+
+                    if (count($reportMenuItems) > 0) {
+                        $reportMenu = array(
+                            'class' => 'bootstrap.widgets.TbMenu',
+                            'items' => array(
+                                '---',
+                                array('label' =>
+                                    'Reports',
+                                    'url' => '#',
+                                    'items' => $reportMenuItems),
+                            ),
+                        );
+                    }
+
+
+
 
                     array_push($items, $contentMenu);
                     array_push($items, $communicationMenu);
+                    array_push($items, $reportMenu);
 
                     $brand = $tenant->display_name;
                     $brandUrl = '/client/' . $tenant->name;
