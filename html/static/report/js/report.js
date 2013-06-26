@@ -196,7 +196,7 @@ function report($){
         $.get(report_ns.controller_url + '/report/jsonUserRegistrationReport', function(userRegistrationReport){
             
             
-            $("#totalMonthlyUserCount").html('('  + ( userRegistrationReport.android + userRegistrationReport.ios ) + ' total)');
+            $("#totalMonthlyUserCount").html('('  + ( userRegistrationReport.android + userRegistrationReport.ios ).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' total)');
             
             var totalUserRegistration  = userRegistrationReport['registrations'].length;
 
