@@ -10,16 +10,19 @@ function report($){
         $.get(report_ns.controller_url + '/report/jsonPushReport', function(pushReport){
             var pushSerie = [],
             ticks = [];
-        
+            var prevTotal =0;
             var totalSends  = pushReport['sends'].length;
             for(var i = 0; i < totalSends; i++){
                 var report = pushReport['sends'][i],
                 total = report.android + report.ios;
             
+                if(total == 0 &&  prevTotal  == 0  ){ // skip consecutive 0s
+                    continue;
+                }    
   
                 pushSerie.push(total);
                 ticks.push( moment(report.date).format('MM-DD-YYYY') );
-            
+                prevTotal =  total;
             }
        
             var graphOptions =  {
@@ -88,16 +91,23 @@ function report($){
     
         $.get(report_ns.controller_url + '/report/jsonResponseReport', function(pushResponseReport){
                         
-            var totalPushResponse  = pushResponseReport['responses'].length;
+            var totalPushResponse  = pushResponseReport['responses'].length,
+            prevTotal = 0;
 
             for(var i = 0; i < totalPushResponse; i++){
                 var response = pushResponseReport['responses'][i],
                 total = response.ios.direct + response.android.direct;
+                
+                if(total == 0 &&  prevTotal  == 0  ){ // skip consecutive 0s
+                    continue;
+                }       
     
     
                 directSerie.push( total );
                 influenceSerie.push(response.ios.influenced + response.android.influenced );
                 ticks.push( moment(response.date).format('MM-DD-YYYY') );
+                
+                prevTotal = total;
             }
             
             
