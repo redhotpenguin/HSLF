@@ -1,24 +1,21 @@
-<?php
-if (empty($tenants)):
-    echo '<h1>No Projects</h1>';
-else:
+<div class="hero-unit">
+    <h1>Dashboard</h1>
+</div>
+<div class="action_group">
+    <?php
+    usort($tenants, function($a, $b) {
+                return strcmp($a->display_name, $b->display_name);
+            });
     ?>
 
+    <div class="section-divider">
+        <h3>My Project<?php echo count($tenants) > 1 ? 's' : ''; ?></h3>
+    </div>
 
-    <div class="hero-unit">
-        <h1>Dashboard</h1>
-        
-        <br/>
-            <?php
-            foreach ($tenants as $tenant) {
-                echo '<h3>';
-                echo CHtml::link($tenant->display_name, "/client/" . $tenant->name, array('class' => ''));
-                echo '</h3>';
-            }
-            ?>
 
     <?php
-    endif;
+    foreach ($tenants as $tenant) {
+        echo CHtml::link($tenant->display_name, "/client/" . $tenant->name, array('class' => "action_block fourth"));
+    }
     ?>
-
 </div>
