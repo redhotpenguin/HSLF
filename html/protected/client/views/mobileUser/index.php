@@ -39,55 +39,14 @@ $this->secondaryNav['url'] = array('mobileUser/index');
 
     <div id="filters"">
 
-        <span class="delete_tag" style="display:none;" id="delete_tag_original">X</span>
-        <span class="delete_tag" style="display:none;" id="delete_district_original">X</span>
-
 
         <?php
-        echo CHtml::beginForm('mobileUser/sendAlert', "POST", array("id" => "mobile_user_form"));
+        $this->widget('backend.extensions.TagSelector.TagSelector', array(
+            'model' => new MobileUser,
+            'display_tag_creator' => false,
+        ));
         ?>
 
-        <div id="tag_list">
-            <h4>Tags: </h4>
-            <em>Users who have at least one of the following tags</em>
-
-            <div class="row tagBox" id="original_tag">
-                <?php
-                echo CHtml::textField("tags[]", "", array('class' => 'tagInput'));
-                ?>
-            </div>
-        </div>
-
-        <div class="row">
-            <?php
-            $this->widget('bootstrap.widgets.TbButton', array(
-                'label' => 'Add a tag',
-                'htmlOptions' => array('id' => 'add_tag_btn')
-            ));
-            ?>
-        </div>
-
-        <hr/>
-
-        <div id="district_list">
-            <h4>Districts:</h4>
-            <em>Users who are least in one of the following districts</em>
-
-            <div class="row districtBox" id="original_district">
-                <?php
-                echo CHtml::textField("districts[]", "", array('class' => 'districtInput'));
-                ?>
-            </div>
-        </div>
-
-        <div class="row">
-            <?php
-            $this->widget('bootstrap.widgets.TbButton', array(
-                'label' => 'Add a district',
-                'htmlOptions' => array('id' => 'add_district_btn')
-            ));
-            ?>
-        </div>
 
         <hr/>
 
@@ -126,10 +85,6 @@ $this->secondaryNav['url'] = array('mobileUser/index');
         </div>
 
     </div>
-
-<?php
-echo CHtml::endForm();
-?>
 
 </div>
 
