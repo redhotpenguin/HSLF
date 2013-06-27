@@ -63,7 +63,7 @@ $this->widget('bootstrap.widgets.TbButton', array(
 <h3>Total User Registrations: <?php echo number_format($userCount); ?></h3>
 
 
-<h4>Overview for the last year:</h4>
+<h4>Overview for the last twelve months:</h4>
 
 <b>User registrations <span id="totalMonthlyUserCount"></span>:</b>
 <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title='Total amount of monthly user registrations for the current year separated by iOs and Android.'></a>
