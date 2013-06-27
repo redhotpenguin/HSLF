@@ -46,11 +46,24 @@ $this->secondaryNav['url'] = array('mobileUser/index');
         <hr/>
 
         <div class="row">
+            <h4>Tags</h4>
+            <?php
+            $this->widget('backend.extensions.TagSelector.TagSelector', array(
+                'model' => new MobileUser,
+                'tag_types' => array('organization', 'alert')
+            ));
+            ?>
+        </div>
+
+        <div class="row">
             <h4>Device Type:</h4>
             <?php
             echo CHtml::dropDownList("device_type", "device_type", array("" => "Any", "ios" => "iOS", "android" => "Android"));
             ?>
         </div>
+
+
+
 
         <hr/>
 
@@ -69,12 +82,14 @@ $this->secondaryNav['url'] = array('mobileUser/index');
 
         <div style="margin-top:20px" class="row">
             <?php
-            $this->widget('bootstrap.widgets.TbButton', array(
-                'label' => 'Export current selection',
-                'type' => 'info',
-                'size' => 'large',
-                'htmlOptions' => array('id' => 'export_btn', 'style' => 'float:right;')
-            ));
+            if ($isAdmin) {
+                $this->widget('bootstrap.widgets.TbButton', array(
+                    'label' => 'Export current selection',
+                    'type' => 'info',
+                    'size' => 'large',
+                    'htmlOptions' => array('id' => 'export_btn', 'style' => 'float:right;')
+                ));
+            }
             ?>
         </div>
 
