@@ -1,12 +1,6 @@
 jQuery(document).ready(tagCreator);
 
 function tagCreator($){
-   
-
-
-
-
-  
     var modelTagTable = $("#modelTagTable"),
     tagNameInput = $('#new_tag_form [name="name"]'),
     addItem = function(name, id){
@@ -24,7 +18,7 @@ function tagCreator($){
 
     },
     tagTableUpdated = function(e){
-        console.log('cl');
+        $.event.trigger({type: "tagTableUpdate" });
         $(this).parents("tr[name='tagRow']").first().remove();
     },
     autoCompleteInit = function(){
@@ -54,6 +48,11 @@ function tagCreator($){
             }
 
         }).on("autocompleteselect", function(event, ui){
+            
+            $.event.trigger({
+                type: "tagTableUpdate"
+            });
+            
             addItem( ui.item.label, ui.item.value );
             $(this).val('');
             return false;
