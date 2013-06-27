@@ -80,35 +80,53 @@ class ReportController extends Controller {
     /**
      * Print JSON reports
      */
-    public function actionJsonPushReport($start = null, $end = null) {
+    public function actionJsonPushReport() {
         header('Content-type: ' . 'application/json;charset=UTF-8');
-        $cacheKey = $this->tenant->id . '_actionJsonPushReport' . $start . $end;
+        $cacheKey = $this->tenant->id . '_actionJsonPushReport';
 
         if (($cachedJsonResult = Yii::app()->cache->get($cacheKey)) == true) {
             echo $cachedJsonResult;
         } else {
-
             try {
-                if ($start && $end) {
-                    $response = $this->reportClient->getReport($start, $end, 'DAILY');
-                } else {
-                    $response = $this->reportClient->getCurrentMonthReport('DAILY');
-                }
+
+                $start = date('Y-m-d H:i:s', strtotime("-1 year", time())); // 365 days ago
+
+                $end = date('Y-m-d H:i:s', time()); // now
+
+                $response = $this->reportClient->getReport($start, $end, 'MONTHLY');
+
                 $jsonResult = json_encode($response);
 
                 Yii::app()->cache->set($cacheKey, $jsonResult, 600); // cache json result for 10 minutes
 
                 echo $jsonResult;
             } catch (Exception $e) {
-                
+                echo $e->getMessage();
             }
         }
 
         Yii::app()->end();
     }
 
+    private function findAndRemoveUserRegistration(&$registrations, $date) {
+        $result = false;
+        foreach ($registrations as $i => $registration) {
+            if ($registration['date'] == $date) {
+                $result = $registration;
+                break;
+            }
+        }
+
+        if ($result) {
+            unset($registrations[$i]);
+        }
+
+        return $result;
+    }
+
     /**
      * Print all the users registered for the month of June (JSON)
+     * Bad time complexity (nested loop)
      */
     public function actionJsonUserRegistrationReport() {
         header('Content-type: ' . 'application/json;charset=UTF-8');
@@ -118,9 +136,11 @@ class ReportController extends Controller {
             echo $cachedJsonResult;
         } else {
 
-            $start = new MongoDate(strtotime(date("Y-m-01") . " 00:00:00"));
+            $timeStamp = strtotime("-1 year", time());
 
-            $registrations = MobileUser::model()->getCountSinceDate($start);
+            $start = new MongoDate($timeStamp);
+
+            $registrations = MobileUser::model()->getCountSinceDate($start, 'YEARLY');
 
             $mobileUserModel = MobileUser::model();
             $mobileUserModel->setReadPreference(MongoClient::RP_SECONDARY_PREFERRED);
@@ -129,10 +149,31 @@ class ReportController extends Controller {
             $iosCount = $mobileUserModel->count(array('device_type' => 'ios', 'registration_date' => array('$gt' => $start)));
 
 
+            // $registrations doesn't contain periods with no users
+            // pad $registrations with missing periods
+            $paddedRegistrations = array();
+
+            for ($i = 0; $i < 13; $i++) { // show 13 months
+                $tmp = array(
+                    'date' => date('n/01/Y', $timeStamp),
+                    'total' => 0,
+                    'ios' => 0,
+                    'android' => 0
+                );
+
+                if (( $foundRecord = $this->findAndRemoveUserRegistration($registrations, $tmp['date']))) {
+                    $tmp = $foundRecord;
+                }
+
+                array_push($paddedRegistrations, $tmp);
+                $timeStamp += date('t', $timeStamp) * 24 * 3600;
+            }
+
+
             $result = array(
                 'android' => $androidCount,
                 'ios' => $iosCount,
-                'registrations' => $registrations
+                'registrations' => $paddedRegistrations
             );
 
             $jsonResult = json_encode($result);
@@ -148,15 +189,15 @@ class ReportController extends Controller {
         header('Content-type: ' . 'application/json;charset=UTF-8');
 
         $cacheKey = $this->tenant->id . '_actionJsonResponseReport';
-        
         if (($cachedJsonResult = Yii::app()->cache->get($cacheKey)) == true) {
             echo $cachedJsonResult;
         } else {
 
-            $start = date("Y-m-01") . "%2000:00:00";
-            $end = date("Y-m-t") . "%2023:59:59";
-            $precision = "DAILY";
-            $jsonResult = json_encode($this->reportClient->getResponseReport($start, $end, $precision));
+            $start = date('Y-m-d H:i:s', strtotime("-1 year", time()));
+
+            $end = date('Y-m-d H:i:s', time());
+
+            $jsonResult = json_encode($this->reportClient->getResponseReport($start, $end, 'MONTHLY'));
             Yii::app()->cache->set($cacheKey, $jsonResult, 600); // cache json result for 10 minutes
             echo $jsonResult;
         }

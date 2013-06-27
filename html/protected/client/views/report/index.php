@@ -1,6 +1,7 @@
 <?php
 $baseUrl = Yii::app()->baseUrl;
 $cs = Yii::app()->getClientScript();
+$cs->registerScriptFile($baseUrl . '/static/libs/moment/moment.js');
 $cs->registerScriptFile($baseUrl . '/static/libs/jqplot/js/jquery.jqplot.min.js');
 $cs->registerScriptFile($baseUrl . '/static/libs/jqplot/plugins/jqplot.barRenderer.min.js');
 $cs->registerScriptFile($baseUrl . '/static/libs/jqplot/plugins/jqplot.categoryAxisRenderer.min.js');
@@ -59,15 +60,15 @@ $this->widget('bootstrap.widgets.TbButton', array(
     <h3>Stats</h3>
 </div>
 
-<h3>Total User Registrations: <?php echo number_format($userCount);  ?></h3>
+<h3>Total User Registrations: <?php echo number_format($userCount); ?></h3>
 
 
-<h4>Overview for the month of  <?php echo $currentMonth ?>:</h4>
+<h4>Overview for the last twelve months:</h4>
 
 <b>User registrations <span id="totalMonthlyUserCount"></span>:</b>
-<a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title='Total amount of monthly user registrations for the current year separated by iOs and Android.'></a>
+<a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title='Total amount of monthly user registrations for the last twelve months separated by iOs and Android.'></a>
 
-    
+
 <div id="monthlyUserRegistrationChart" class="chart" ></div>
 
 <b>Pushes Sent:</b>

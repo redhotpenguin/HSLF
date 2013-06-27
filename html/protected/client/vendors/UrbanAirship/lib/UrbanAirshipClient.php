@@ -41,6 +41,8 @@ abstract class UrbanAirshipClient {
             $query = self::UA_API . $endPoint;
         }
 
+        $query = str_replace(' ', '%20', trim($query));
+
         // error_log("Getting following request from Urban Airship: " . $query);
 
         $ch = curl_init($query);
@@ -57,6 +59,8 @@ abstract class UrbanAirshipClient {
         if ($status === 200) {
             return $result;
         }
+
+        error_log("ERROR whith follwoing request: $query");
 
         throw new \Exception($result);
     }
