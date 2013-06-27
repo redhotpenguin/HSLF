@@ -3,3 +3,4 @@ html/content/*
 html/img/*
 /.dotcloud/
 /nbproject/private/
+nbproject/*
