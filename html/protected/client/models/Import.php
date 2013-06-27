@@ -16,6 +16,8 @@ class Import extends CModel {
     }
 
     private static function insertDataFromCSV($tmp_name, $file_name, $table_name, array $fields) {
+        ini_set('auto_detect_line_endings', true);
+
         $fHandle = fopen($tmp_name, 'r');
 
         if (!$fHandle) {
@@ -56,7 +58,7 @@ class Import extends CModel {
                 }
                 ++$i;
             }
-            
+
             $transaction->commit();
             $result = true;
         } catch (Exception $e) {
