@@ -9,9 +9,10 @@ $cs->registerScriptFile($baseUrl . '/static/libs/jqplot/plugins/jqplot.highlight
 
 
 
-$cs->registerCssFile($baseUrl . '/static/libs/jqplot/css/jquery.jqplot.min.css');
 $cs->registerScriptFile($baseUrl . '/static/report/js/report.js', CClientScript::POS_END);
+$cs->registerCssFile($baseUrl . '/static/report/css/plot.css');
 $cs->registerCssFile($baseUrl . '/static/report/css/report.css');
+
 $tenant = Yii::app()->user->getLoggedInUserTenant();
 $controller_url = Yii::app()->params['site_url'] . '/client/' . $tenant->name;
 $ns = "var report_ns  = {controller_url: '" . $controller_url . "'};";
