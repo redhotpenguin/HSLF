@@ -153,7 +153,7 @@ class ReportController extends Controller {
         // pad $registrations with missing periods
         $paddedRegistrations = array();
 
-        for ($i = 1; $i < 14; $i++) { // show 13 months
+        for ($i = 0; $i < 13; $i++) { // show 13 months
             $tmp = array(
                 'date' => date('n/01/Y', $timeStamp),
                 'total' => 0,
@@ -161,17 +161,14 @@ class ReportController extends Controller {
                 'android' => 0
             );
 
-
-
-            $timeStamp += 30 * 24 * 3600; // this will shift
-            array_push($paddedRegistrations, $tmp);
-        }
-
-        foreach ($paddedRegistrations as &$paddedRegistration) {
-            if (( $foundRecord = $this->findRecord($registrations, $paddedRegistration['date']))) {
-                $paddedRegistration  = $foundRecord;
+            if (( $foundRecord = $this->findRecord($registrations, $tmp['date']))) {
+                $tmp = $foundRecord;
             }
+
+            array_push($paddedRegistrations, $tmp);
+            $timeStamp += date('t', $timeStamp) * 24 * 3600;
         }
+
 
         $result = array(
             'android' => $androidCount,
@@ -182,6 +179,7 @@ class ReportController extends Controller {
         $jsonResult = json_encode($result);
 
         //     Yii::app()->cache->set($cacheKey, $jsonResult, 600); // cache json result for 10 minutes
+
 
         echo $jsonResult;
         // }
