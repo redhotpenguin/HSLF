@@ -37,16 +37,11 @@ $this->secondaryNav['url'] = array('mobileUser/index');
 
 <div class="form">
 
-    <div id="filters"">
-
+    <div id="filters">
 
         <?php
-        $this->widget('backend.extensions.TagSelector.TagSelector', array(
-            'model' => new MobileUser,
-            'display_tag_creator' => false,
-        ));
+        echo CHtml::beginForm('/', "POST", array("id" => "mobile_user_form"));
         ?>
-
 
         <hr/>
 
@@ -58,7 +53,6 @@ $this->secondaryNav['url'] = array('mobileUser/index');
         </div>
 
         <hr/>
-
 
         <div class="row">
             <h4>Push only:</h4>
@@ -85,6 +79,10 @@ $this->secondaryNav['url'] = array('mobileUser/index');
         </div>
 
     </div>
+
+    <?php
+    echo CHtml::endForm();
+    ?>
 
 </div>
 
