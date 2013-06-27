@@ -108,41 +108,83 @@ class ReportController extends Controller {
         Yii::app()->end();
     }
 
+    /*
+     * This has bad time complexity
+     */
+
+    private function findRecord($registrations, $date) {
+        foreach ($registrations as $registration) {
+            if ($registration['date'] == $date) {
+                return $registration;
+            }
+        }
+
+        return false;
+    }
+
     /**
      * Print all the users registered for the month of June (JSON)
+     * Terrible time complexity
      */
     public function actionJsonUserRegistrationReport() {
         header('Content-type: ' . 'application/json;charset=UTF-8');
 
-        $cacheKey = $this->tenant->id . '_actionJsonUserRegistrationReport';
-        if (($cachedJsonResult = Yii::app()->cache->get($cacheKey)) == true) {
-            echo $cachedJsonResult;
-        } else {
+        /*  $cacheKey = $this->tenant->id . '_actionJsonUserRegistrationReport';
+          if (($cachedJsonResult = Yii::app()->cache->get($cacheKey)) == true) {
+          echo $cachedJsonResult;
+          } else {
+         */
 
-            $start = new MongoDate(strtotime("-1 year", time()));
+        $timeStamp = strtotime("-1 year", time());
 
-
-            $registrations = MobileUser::model()->getCountSinceDate($start, 'YEARLY');
-
-            $mobileUserModel = MobileUser::model();
-            $mobileUserModel->setReadPreference(MongoClient::RP_SECONDARY_PREFERRED);
-
-            $androidCount = $mobileUserModel->count(array('device_type' => 'android', 'registration_date' => array('$gt' => $start)));
-            $iosCount = $mobileUserModel->count(array('device_type' => 'ios', 'registration_date' => array('$gt' => $start)));
+        $start = new MongoDate($timeStamp);
 
 
-            $result = array(
-                'android' => $androidCount,
-                'ios' => $iosCount,
-                'registrations' => $registrations
+        $registrations = MobileUser::model()->getCountSinceDate($start, 'YEARLY');
+
+        $mobileUserModel = MobileUser::model();
+        $mobileUserModel->setReadPreference(MongoClient::RP_SECONDARY_PREFERRED);
+
+        $androidCount = $mobileUserModel->count(array('device_type' => 'android', 'registration_date' => array('$gt' => $start)));
+        $iosCount = $mobileUserModel->count(array('device_type' => 'ios', 'registration_date' => array('$gt' => $start)));
+
+
+        // $registrations doesn't contain periods with no users
+        // pad $registrations with missing periods
+        $paddedRegistrations = array();
+
+        for ($i = 1; $i < 14; $i++) { // show 13 months
+            $tmp = array(
+                'date' => date('n/01/Y', $timeStamp),
+                'total' => 0,
+                'ios' => 0,
+                'android' => 0
             );
 
-            $jsonResult = json_encode($result);
 
-            Yii::app()->cache->set($cacheKey, $jsonResult, 600); // cache json result for 10 minutes
 
-            echo $jsonResult;
+            $timeStamp += 30 * 24 * 3600; // this will shift
+            array_push($paddedRegistrations, $tmp);
         }
+
+        foreach ($paddedRegistrations as &$paddedRegistration) {
+            if (( $foundRecord = $this->findRecord($registrations, $paddedRegistration['date']))) {
+                $paddedRegistration  = $foundRecord;
+            }
+        }
+
+        $result = array(
+            'android' => $androidCount,
+            'ios' => $iosCount,
+            'registrations' => $paddedRegistrations
+        );
+
+        $jsonResult = json_encode($result);
+
+        //     Yii::app()->cache->set($cacheKey, $jsonResult, 600); // cache json result for 10 minutes
+
+        echo $jsonResult;
+        // }
         Yii::app()->end();
     }
 
