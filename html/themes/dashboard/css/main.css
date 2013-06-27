@@ -134,16 +134,14 @@ h4{
     margin: 10px;
 }
 .action_group{
+    width:100%;
     padding: 0px;
-    width: 50%;
-    float: left;
 }
 
 .action_group .action_block{
     background-color: #EEE;
     color: #333;
     font-weight: bold;
-    width: 50%;
     float: left;
     height: 120px;
     text-align: center;
@@ -155,6 +153,15 @@ h4{
     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
     box-sizing: border-box;         /* Opera/IE 8+ */
 }
+
+.fourth{
+    width:25%;
+}
+
+.third{
+    width:33%;
+}
+
 
 .action_group .action_block:hover{
     text-decoration:none;

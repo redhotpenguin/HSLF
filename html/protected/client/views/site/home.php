@@ -15,11 +15,11 @@
     <div class="action_group">
         <?php
         if (Yii::app()->user->hasPermission('manageMobileUsers')) {
-            echo CHtml::link('Mobile Users', array('mobileUser/index'), array('class' => 'action_block'));
-            echo CHtml::link('App Usage', array('report/index'), array('class' => 'action_block'));
+            echo CHtml::link('Mobile Users', array('mobileUser/index'), array('class' => 'action_block third'));
+            echo CHtml::link('App Usage', array('report/index'), array('class' => 'action_block third'));
         }
         if (Yii::app()->user->hasPermission('managePushMessages')) {
-            echo CHtml::link('Push Notifications', array('pushMessage/index'), array('class' => 'action_block'));
+            echo CHtml::link('Push Notifications', array('pushMessage/index'), array('class' => 'action_block third'));
         }
         ?>
     </div>

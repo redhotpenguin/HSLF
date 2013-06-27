@@ -7,7 +7,7 @@ $cs->registerScriptFile($baseUrl . '/static/libs/jqplot/plugins/jqplot.barRender
 $cs->registerScriptFile($baseUrl . '/static/libs/jqplot/plugins/jqplot.categoryAxisRenderer.min.js');
 $cs->registerScriptFile($baseUrl . '/static/libs/jqplot/plugins/jqplot.highlighter.js');
 $cs->registerScriptFile($baseUrl . '/static/libs/jqplot/plugins/jqplot.enhancedLegendRenderer.js');
-	
+
 
 
 $cs->registerScriptFile($baseUrl . '/static/report/js/report.js', CClientScript::POS_END);
@@ -45,24 +45,23 @@ $this->widget('bootstrap.widgets.TbButton', array(
 
 
 <div class="action_group">
-    <?php echo CHtml::link("Google Analytics", $tenantSettings->analytics_link, array('class' => 'action_block', 'target' => '_blank')); ?>
-    <?php echo CHtml::link("App Store", $tenantSettings->ios_link, array('class' => 'action_block', 'target' => '_blank')); ?>
-
+    <?php
+    echo CHtml::link("Google Analytics", $tenantSettings->analytics_link, array('class' => 'action_block fourth', 'target' => '_blank'));
+    echo CHtml::link("App Store", $tenantSettings->ios_link, array('class' => 'action_block fourth', 'target' => '_blank'));
+    echo CHtml::link("Google Play", $tenantSettings->android_link, array('class' => 'action_block fourth', 'target' => '_blank'));
+    echo CHtml::link("Push Notifications", array('pushMessage/index'), array('class' => 'action_block fourth'));
+    ?>
 </div>
 
-<div class="action_group">
-    <?php echo CHtml::link("Google Play", $tenantSettings->android_link, array('class' => 'action_block', 'target' => '_blank')); ?>
-    <?php echo CHtml::link("Push Notifications", array('pushMessage/index'), array('class' => 'action_block')); ?>
-</div>
-
-<div class="clearfix"></div>
+<div class = "clearfix"></div>
 
 
-<div class="section-divider">
+<div class = "section-divider">
     <h3>Stats</h3>
 </div>
 
-<h3>Total User Registrations: <?php echo number_format($userCount); ?></h3>
+<h3>Total User Registrations: <?php echo number_format($userCount);
+    ?></h3>
 
 
 <h4>Overview for the last twelve months:</h4>
