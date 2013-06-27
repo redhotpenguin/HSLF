@@ -11,35 +11,16 @@
         <h3>Manage</h3>
     </div>
 
-    <div class="action_group">
-        <?php
-        if (Yii::app()->user->hasPermission('manageBallotItems'))
-            echo CHtml::link('Ballot Items', array('ballotItem/index'), array('class' => 'action_block'));
-
-        if (Yii::app()->user->hasPermission('manageOrganizations'))
-            echo CHtml::link('Organizations', array('organization/index'), array('class' => 'action_block'));
-
-        if (Yii::app()->user->hasPermission('manageContacts'))
-            echo CHtml::link('Contacts', array('contact/index'), array('class' => 'action_block'));
-
-        if (Yii::app()->user->hasPermission('manageTags'))
-            echo CHtml::link('Tags', array('tag/index'), array('class' => 'action_block'));
-        ?>
-    </div>
 
     <div class="action_group">
         <?php
-        if (Yii::app()->user->hasPermission('manageMobileUsers'))
+        if (Yii::app()->user->hasPermission('manageMobileUsers')) {
             echo CHtml::link('Mobile Users', array('mobileUser/index'), array('class' => 'action_block'));
-
-        if (Yii::app()->user->hasPermission('managePushMessages'))
-            echo CHtml::link('Push Notifications', array('pushMessage/index'), array('class' => 'action_block'));
-
-        if (Yii::app()->user->hasPermission('manageAlertTypes'))
-            echo CHtml::link('Alert Types', array('alertType/index'), array('class' => 'action_block'));
-
-        if (Yii::app()->user->hasPermission('manageMobileUsers'))
             echo CHtml::link('App Usage', array('report/index'), array('class' => 'action_block'));
+        }
+        if (Yii::app()->user->hasPermission('managePushMessages')) {
+            echo CHtml::link('Push Notifications', array('pushMessage/index'), array('class' => 'action_block'));
+        }
         ?>
     </div>
 
@@ -52,7 +33,7 @@
         </div>
 
         <div class = "heroUserCount">
-            <h2><?php echo CHtml::link( number_format($userCount), array('mobileUser/index')); ?> users have registered with your app.</h2>
+            <h2><?php echo CHtml::link(number_format($userCount), array('mobileUser/index')); ?> users have registered with your app.</h2>
             <?php echo CHtml::link('more stats', array('report/index'), array('class' => 'action_block')); ?>
         </div>
 
