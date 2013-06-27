@@ -42,9 +42,13 @@ function report($){
                 },
 
                 legend: {
+                    renderer: $.jqplot.EnhancedLegendRenderer,
                     show: true,
-                    placement: "inside",
-                    location: 'ne'
+                    placement: "outsideGrid",
+                    location: 's',
+                    rendererOptions: {
+                        numberRows: 1
+                    }        
                 },
                 axes: {
                     xaxis: {
@@ -127,9 +131,13 @@ function report($){
                 },
 
                 legend: {
+                    renderer: $.jqplot.EnhancedLegendRenderer,
                     show: true,
-                    placement: "inside",
-                    location: 'ne'         
+                    placement: "outsideGrid",
+                    location: 's',
+                    rendererOptions: {
+                        numberRows: 1
+                    }        
                 },
                 axes: {
                     xaxis: {
@@ -217,9 +225,13 @@ function report($){
                 }
                 ],
                 legend: {
+                    renderer: $.jqplot.EnhancedLegendRenderer,
                     show: true,
-                    placement: "inside",
-                    location: 'ne'
+                    placement: "outsideGrid",
+                    location: 's',
+                    rendererOptions: {
+                        numberRows: 1
+                    }
                 },
                 axes: {
                     xaxis: {

@@ -6,7 +6,8 @@ $cs->registerScriptFile($baseUrl . '/static/libs/jqplot/js/jquery.jqplot.min.js'
 $cs->registerScriptFile($baseUrl . '/static/libs/jqplot/plugins/jqplot.barRenderer.min.js');
 $cs->registerScriptFile($baseUrl . '/static/libs/jqplot/plugins/jqplot.categoryAxisRenderer.min.js');
 $cs->registerScriptFile($baseUrl . '/static/libs/jqplot/plugins/jqplot.highlighter.js');
-
+$cs->registerScriptFile($baseUrl . '/static/libs/jqplot/plugins/jqplot.enhancedLegendRenderer.js');
+	
 
 
 $cs->registerScriptFile($baseUrl . '/static/report/js/report.js', CClientScript::POS_END);
