@@ -52,7 +52,6 @@ class PushMessageController extends CrudController {
         $pushMessage = new PushMessage();
         $pushMessage->recipient_type = 'broadcast'; // default recipient type
         $payload = new Payload('composer');
-        $unfilterdTagIds = array();
         $id = null;
 
         if (Yii::app()->request->isPostRequest && isset($_POST['recipient_type'])) {
@@ -76,6 +75,8 @@ class PushMessageController extends CrudController {
                 $payload->scenario = 'type_post';
             } elseif ($_POST['Payload']['type'] == 'share') {
                 $payload->scenario = 'type_share';
+            } else {
+                $payload->scenario = 'insert';
             }
 
             error_log($payload->scenario);
