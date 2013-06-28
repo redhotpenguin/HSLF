@@ -22,7 +22,10 @@ $this->widget('bootstrap.widgets.TbGridView', array(
     'columns' => array(
         'name',
         'display_name',
-        'type',
+        array(
+            'name' => 'type',
+            'filter' => CHtml::dropDownList('Tag[type]', $model->type, array("" => 'Any') + Tag::model()->getTagTypes()),
+        ),
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
             'template' => '{update}{delete}'
