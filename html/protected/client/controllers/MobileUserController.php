@@ -122,7 +122,6 @@ class MobileUserController extends Controller {
         if ($tenant == null)
             throw new CHttpException(404, 'The requested page does not exist.');
 
-        $searchAttributes = $this->parseSearchAttributes($_GET);
 
 
         $headers = $mobileUserModel->getAttributes();
@@ -137,7 +136,6 @@ class MobileUserController extends Controller {
             'mongodb_password' => Yii::app()->params['mongodb_password'],
             'mongodb_collection_name' => 'mobile_user',
             'csvHeaders' => $headers,
-            'filterAttributes' => $searchAttributes,
             'requested_by' => Yii::app()->user->name,
         );
 

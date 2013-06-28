@@ -18,6 +18,8 @@ if ($isAdmin)
         '',
         array('label' => 'Browse', 'url' => array('browse')),
         '',
+        array('label' => 'Export', 'url' => 'export'),
+        ''
     );
 
 else
@@ -76,23 +78,6 @@ $this->secondaryNav['url'] = array('mobileUser/index');
             ?>
 
         </div>
-
-        <hr/>
-
-
-        <div style="margin-top:20px" class="row">
-            <?php
-            if ($isAdmin) {
-                $this->widget('bootstrap.widgets.TbButton', array(
-                    'label' => 'Export current selection',
-                    'type' => 'info',
-                    'size' => 'large',
-                    'htmlOptions' => array('id' => 'export_btn', 'style' => 'float:right;')
-                ));
-            }
-            ?>
-        </div>
-
     </div>
 
     <?php

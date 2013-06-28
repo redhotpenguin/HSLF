@@ -21,7 +21,7 @@ $csvHeaders = array(
 
 $parameters = array(
     'tenant_id' => 2,
-    'tenant_name' => 'Our Oregon',
+    'tenant_name' => 'AFSCME',
     'email' => 'jonas.palmero@gmail.com',
     'mongodb_host' => 'mongodb://localhost:27017',
     'mongodb_name' => 'mobile_advocacy_platform',

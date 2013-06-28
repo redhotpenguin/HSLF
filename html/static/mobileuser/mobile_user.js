@@ -31,12 +31,7 @@ function mobileUser($){
     $("#device_type").change(updateUserCount);
     pushOnlyCheckBox.change(updateUserCount);
     
-        
-    $("#export_btn").click(function(){
-        var serializedForm = mobileUserForm.serialize();
-        window.location = ns.action_url + '/mobileUser/export?'+serializedForm;
-    });
-        
+    // the tagTableUpdate event is fired by the district selector widget
     $(document).on("tagTableUpdate", function(){
         updateUserCount();
     });

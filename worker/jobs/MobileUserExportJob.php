@@ -100,14 +100,15 @@ class MobileUserExportJob {
      */
     private function generateExport() {
 
-        $tmpFileName = 'tid_' . $this->args['tenant_id'] . '_';
+        $tmpFileName = $this->args['tenant_name'] . '_';
         $tmpFileName .=date('Y-m-d\-h-i-s');
 
-        $tmpFileName .= '_' . microtime(true);
+        $tmpFileName .= '_' . microtime();
         $tmpFileName.='.csv';
 
+        $tmpFileName = str_replace(' ', '_', $tmpFileName);
+        
         $tmpFilePath = sys_get_temp_dir() . '/' . $tmpFileName;
-
 
         $fp = fopen($tmpFilePath, 'w');
 
