@@ -23,7 +23,7 @@ function mobileUser($){
     },
     updateUserCount = function(){
         submitForm(ns.action_url + '/mobileUser/getCount', function(count){
-            mobileUserCount.html(count)
+            mobileUserCount.html(count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
         });
     };
     
@@ -38,7 +38,7 @@ function mobileUser($){
     });
         
     $(document).on("tagTableUpdate", function(){
-            updateUserCount();
+        updateUserCount();
     });
     
     
