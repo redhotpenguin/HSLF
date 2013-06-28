@@ -49,7 +49,7 @@ $this->introText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui
 
         <div class="row">
             <h4>Filter by Tag</h4>         
-
+            <p class="helpText">Users who have any of the following tags</p>
             <?php
             $this->widget('backend.extensions.TagSelector.TagSelector', array(
                 'model' => new MobileUser,
