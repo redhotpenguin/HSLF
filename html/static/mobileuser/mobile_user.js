@@ -26,7 +26,12 @@ function mobileUser($){
             },
             async:   true
         });  
-    }
+    },
+    updateUserCount = function(){
+        submitForm(ns.action_url + '/mobileUser/getCount', function(count){
+            mobileUserCount.html(count)
+        });
+    };
     
     // event binding
     $("#device_type").change(updateCount);
@@ -37,11 +42,10 @@ function mobileUser($){
         var serializedForm = mobileUserForm.serialize();
         window.location = ns.action_url + '/mobileUser/export?'+serializedForm;
     });
-    
-    filterInputs.live('blur', function(){
-        submitForm(ns.action_url + '/mobileUser/getCount', function(count){
-            mobileUserCount.html(count)
-        });
+        
+    $(document).on("tagTableUpdate", function(){
+            updateUserCount();
     });
+    
     
 }

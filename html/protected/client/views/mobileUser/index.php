@@ -62,9 +62,6 @@ $this->secondaryNav['url'] = array('mobileUser/index');
             ?>
         </div>
 
-
-
-
         <hr/>
 
         <div class="row">

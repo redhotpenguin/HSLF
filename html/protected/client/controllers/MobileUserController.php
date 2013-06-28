@@ -106,6 +106,9 @@ class MobileUserController extends Controller {
      * Print a count of mobile users - ajax 
      */
     public function actionGetCount() {
+        logIt($_REQUEST);
+        
+        
         $attributes = $this->parseSearchAttributes($_GET); // @todo: filter $_GET
 
         $mobileUserModel = MobileUser::model();
