@@ -6,7 +6,6 @@ function composer($){
     postRelatedInputs = $("#post_related_inputs"),
     shareRelatedInputs = $("#share_related_inputs"),
     pushMessageTextarea  = $("#PushMessage_alert"),
-    payloadTitleInput = $("#Payload_title"),
     payloadTitleExplanation = $("#payloadTitleExplanation"),
     payloadTitleSection = $("#payloadTitleSection"),
     sendNotificationBtn = $("#sendNotificationBtn"),
@@ -53,9 +52,6 @@ function composer($){
         
         previewChars.html(charLeft);
     },
-    setPayloadTitleModified = function(){
-        payloadTitleInputModified = true;
-    }
     formSubmitEvent = function(){
         return confirm("Are you sure you want to send this alert?");
     },
@@ -98,12 +94,9 @@ function composer($){
     }
        
 
-       
-       
     // event binding    
     payloadType.change(updatePayloadType); 
     pushMessageTextarea.keyup(pushMessageTextareaChange);
-    payloadTitleInput.change(setPayloadTitleModified);
     sendNotificationBtn.click(formSubmitEvent);
     recipientTypeInputs.bind('click', recipientChoiceChange);
 
