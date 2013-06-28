@@ -111,7 +111,6 @@ class MobileUserController extends Controller {
         $mobileUserModel->setReadPreference(MongoClient::RP_SECONDARY_PREFERRED);
         $count = $mobileUserModel->find($attributes)->count();
         echo $count;
-        Yii::app()->end();
     }
 
     public function actionExport() { // @todo: move logic to a model
@@ -167,7 +166,7 @@ class MobileUserController extends Controller {
 
             $interestTags = array();
             $districtTags = array();
-            
+
             // separate district tags from the rest
             foreach ($tags as $tag) {
                 if ($tag['type'] == 'district') {
@@ -178,13 +177,13 @@ class MobileUserController extends Controller {
             }
 
             if (count($interestTags) > 0) {
-                $searchConditions['tags'] = array(
+                $searchConditions['$or'][]['tags'] = array(
                     '$in' => $interestTags
                 );
             }
 
             if (count($districtTags) > 0) {
-                $searchConditions['districts'] = array(
+                $searchConditions['$or'][]['districts'] = array(
                     '$in' => $districtTags
                 );
             }
@@ -198,7 +197,6 @@ class MobileUserController extends Controller {
         if (isset($data['push_only']) && $data['push_only'] === '1') {
             $searchConditions['ua_identifier'] = array('$exists' => true);
         }
-
 
         return $searchConditions;
     }
