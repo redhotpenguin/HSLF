@@ -122,10 +122,6 @@
                             ),
                         );
                     }
-
-
-
-
                     array_push($items, $contentMenu);
                     array_push($items, $communicationMenu);
                     array_push($items, $reportMenu);
@@ -231,8 +227,19 @@
             <div class="row-fluid">
 
                 <div class="span12">
+                  
 
                     <?php
+                    
+                    if($this->header){
+                        echo "<h4>{$this->header}</h4>";
+                    }
+                    
+                    if($this->introText){
+                        echo "<p class='helpText'>{$this->introText}</p>";
+                    }
+   
+                              
                     echo $content;
 
 

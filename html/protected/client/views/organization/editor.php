@@ -9,6 +9,12 @@ if (!$model->isNewRecord) {
 $this->secondaryNav['items'] = $navBarItems;
 $this->secondaryNav['name'] = 'Organizations';
 $this->secondaryNav['url'] = array('organization/index');
+
+$this->header = $model->isNewRecord? 'Organization' : $model->name;
+$this->introText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis auctor blandit tellus eget pharetra. Donec id massa sit amet felis dictum semper. Maecenas sed nisi a magna aliquet dictum. Interdum et malesuada fames ac ante ipsum primis in faucibus";
+
+
+
 ?>
 
 <div class="form">

@@ -19,6 +19,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'tag-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
+    'type' => 'striped',
     'columns' => array(
         'name',
         'display_name',

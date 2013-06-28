@@ -30,12 +30,10 @@ else
 $this->secondaryNav['items'] = $navBarItems;
 $this->secondaryNav['name'] = 'Mobile Users';
 $this->secondaryNav['url'] = array('mobileUser/index');
+
+$this->header = 'Mobile Users';
+$this->introText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis auctor blandit tellus eget pharetra. Donec id massa sit amet felis dictum semper. Maecenas sed nisi a magna aliquet dictum. Interdum et malesuada fames ac ante ipsum primis in faucibus";
 ?>
-
-<div class="hero-unit">
-    <h1> <span id="mobile_user_count"><?php echo number_format($mobile_user_count); ?></span> mobile users</h1>
-</div>
-
 
 <div class="form">
 
@@ -83,5 +81,10 @@ $this->secondaryNav['url'] = array('mobileUser/index');
     echo CHtml::endForm();
     ?>
 
+</div>
+
+
+<div class="hero-unit">
+    <h1> <span id="mobile_user_count"><?php echo number_format($mobile_user_count); ?></span> mobile users</h1>
 </div>
 

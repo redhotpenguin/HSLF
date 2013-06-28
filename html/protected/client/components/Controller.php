@@ -16,4 +16,6 @@ class Controller extends CController {
     }
     
     public $secondaryNav = array();
+    public $header;
+    public $introText;
 }

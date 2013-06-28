@@ -1,4 +1,5 @@
 <?php
+
 $navBarItems = array(
     '',
     array('label' => 'New Message', 'url' => array('pushMessage/composer')),
@@ -13,11 +14,14 @@ if ($isAdmin) {
 $this->secondaryNav['items'] = $navBarItems;
 $this->secondaryNav['name'] = 'Push Notifications';
 $this->secondaryNav['url'] = array('pushMessage/index');
+
+$this->header = 'History';
+$this->introText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis auctor blandit tellus eget pharetra. Donec id massa sit amet felis dictum semper. Maecenas sed nisi a magna aliquet dictum. Interdum et malesuada fames ac ante ipsum primis in faucibus";
 ?>
 
-<h4>History</h4>
 
 <?php
+
 $this->widget('backend.extensions.ExtendedWidgets.GridView', array(
     'id' => 'push-message-grid',
     'dataProvider' => $model->search(),
