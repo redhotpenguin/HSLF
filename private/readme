@@ -2,3 +2,8 @@ Set of files that don't belong to the code base
 but that are vital to the project.
 
 The code in /private/worker is not used. It is a failed attempt at using RabbitMQ for handling queues.
+
+
+dotcloud.yml is the file that configures the Dotcloud stack
+
+See https://docs.google.com/a/winningmark.com/document/d/1xB5r1ZPLZVVCRN5buDPvC3pI_pxn-fyYXyvdVHA8QOM for more information

@@ -1,0 +1,22 @@
+www:
+    type: php
+    approot: app/mobile_platform/html
+    requirements: 
+       - mongo-1.3.6
+
+data:
+    type: mongodb
+    mongodb_oplog_size: 256
+    mongodb_noprealloc: true
+    mongodb_nopreallocj: true
+    mongodb_smallfiles: true
+
+cache:
+    type: redis
+
+workers:
+     type: php-worker
+     approot: app/mobile_platform/worker
+     requirements:
+         - proctitle
+         - mongo-1.3.4
