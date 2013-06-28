@@ -156,28 +156,40 @@ class MobileUserController extends Controller {
     private function parseSearchAttributes($data) {
         $searchConditions = array();
 
-
         // retrieve tag names from tag Ids
         if (isset($data['MobileUser']['tags'])) {
 
             $tagIds = $data['MobileUser']['tags']; // array of tag ids.
 
             $tags = Yii::app()->db->createCommand()
-                    ->select('name')
+                    ->select('name, type')
                     ->from('tag')
                     ->where('id IN ( ' . implode(', ', $tagIds) . '  )')
                     ->queryAll();
 
+            $interestTags = array();
+            $districtTags = array();
+            
+            // separate district tags from the rest
+            foreach ($tags as $tag) {
+                if ($tag['type'] == 'district') {
+                    array_push($districtTags, $tag['name']);
+                } else {
+                    array_push($interestTags, $tag['name']);
+                }
+            }
 
-            // convert multi dimensional array to flat array.
-            array_walk($tags, function(&$tag) {
-                        $tag = $tag['name'];
-                    });
+            if (count($interestTags) > 0) {
+                $searchConditions['tags'] = array(
+                    '$in' => $interestTags
+                );
+            }
 
-
-            $searchConditions['tags'] = array(
-                '$in' => $tags
-            );
+            if (count($districtTags) > 0) {
+                $searchConditions['districts'] = array(
+                    '$in' => $districtTags
+                );
+            }
         }
 
         if (isset($data['device_type']) && $data['device_type'] != "") {
