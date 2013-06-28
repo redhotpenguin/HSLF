@@ -58,7 +58,6 @@ class PushMessageController extends CrudController {
 
             $recipientType = $_POST['recipient_type'];
 
-
             if (!in_array($recipientType, array('broadcast', 'tag', 'segment', 'single'))) { // todo: move allowed segment types to PushMessage model
                 throw new CHttpException(500, "Invalid recipient type");
             }
@@ -76,10 +75,10 @@ class PushMessageController extends CrudController {
             } elseif ($_POST['Payload']['type'] == 'share') {
                 $payload->scenario = 'type_share';
             } else {
+                $payload->title = $pushMessage->alert;
                 $payload->scenario = 'insert';
             }
 
-            error_log($payload->scenario);
             $pushMessage->validate();
             $payload->validate();
 
@@ -162,6 +161,7 @@ class PushMessageController extends CrudController {
     }
 
     private function sendPushMessage(PushMessage $pushMessage, $method, $id = null) {
+        
         $pushNotification = new PushNotification($pushMessage->alert);
 
         if ($pushMessage->payload->type != 'other') {

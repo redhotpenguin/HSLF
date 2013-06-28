@@ -7,6 +7,8 @@ function composer($){
     shareRelatedInputs = $("#share_related_inputs"),
     pushMessageTextarea  = $("#PushMessage_alert"),
     payloadTitleInput = $("#Payload_title"),
+    payloadTitleExplanation = $("#payloadTitleExplanation"),
+    payloadTitleSection = $("#payloadTitleSection"),
     sendNotificationBtn = $("#sendNotificationBtn"),
     recipientTypeInputs = $('#recipientSection input[name="recipient_type"]'),
     tagListChoice = $("#tagListChoice"),
@@ -16,17 +18,22 @@ function composer($){
     singleDeviceChoice = $("#singleDeviceChoice"),
     updatePayloadType = function(){
         var type = this.value;
-            
+        
+        postRelatedInputs.hide();
+        shareRelatedInputs.hide();
+        payloadTitleSection.show();
+    
         if(type == 'share'){
             shareRelatedInputs.show();
-            postRelatedInputs.hide();
+            payloadTitleExplanation.html('Text that will be used for: the preview text on the share screen, the title of the shared item on Facebook and the subject line in the email share.');
         }else if(type == 'post'){
             postRelatedInputs.show();
-            shareRelatedInputs.hide();
-        }else{
-            postRelatedInputs.hide();
-            shareRelatedInputs.hide();
+            payloadTitleExplanation.html('Title of the post being shared.');
         }
+        else{
+            payloadTitleSection.hide();
+        }
+        
     },
     pushMessageTextareaChange = function(e){
         var message =  pushMessageTextarea.val();
@@ -44,15 +51,7 @@ function composer($){
             previewChars.addClass('badge badge-important');
         }
         
-        
-        // uncomment when debuggign
-        // payloadTitleInput.val(message);
-       
-              
-        previewChars.html( charLeft  );
-    },
-    deleteDropDown =  function (){
-        $(this).parent().remove();
+        previewChars.html(charLeft);
     },
     setPayloadTitleModified = function(){
         payloadTitleInputModified = true;
