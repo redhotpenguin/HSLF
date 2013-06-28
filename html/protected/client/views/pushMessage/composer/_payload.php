@@ -16,7 +16,7 @@
 
 <div class="row-fluid" id="payloadTitleSection">
     <?php echo $form->labelEx($payload, 'title'); ?>
-    <p id="payloadTitleExplanation"></p>
+    <p class="helpText" id="payloadTitleExplanation"></p>
 
     <?php echo $form->textField($payload, 'title', array('placeholder' => '', 'size' => 60, 'maxlength' => 512, 'class' => 'span11')); ?>
     <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="For Push to Post, enter the exact title of the post being shared. For Push to Share, enter the text that will be used for: the preview text on the share screen, the title of the shared item on Facebook and the subject line in the email share (all three use the same text)."></a>
