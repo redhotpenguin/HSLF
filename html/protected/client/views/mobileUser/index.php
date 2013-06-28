@@ -35,6 +35,10 @@ $this->header = 'Mobile Users';
 $this->introText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis auctor blandit tellus eget pharetra. Donec id massa sit amet felis dictum semper. Maecenas sed nisi a magna aliquet dictum. Interdum et malesuada fames ac ante ipsum primis in faucibus";
 ?>
 
+<div class = "section-divider">
+    <h3>filters</h3>
+</div>
+
 <div class="form">
 
     <div id="filters">
@@ -43,11 +47,9 @@ $this->introText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui
         echo CHtml::beginForm('/', "POST", array("id" => "mobile_user_form"));
         ?>
 
-        <hr/>
-
-
-        <h4>Filter by Tag</h4>         
         <div class="row">
+            <h4>Filter by Tag</h4>         
+
             <?php
             $this->widget('backend.extensions.TagSelector.TagSelector', array(
                 'model' => new MobileUser,
@@ -58,16 +60,15 @@ $this->introText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui
         </div>
 
         <div class="row">
-            <h4>Device Type:</h4>
+            <h4>Filter by Device:</h4>
             <?php
             echo CHtml::dropDownList("device_type", "device_type", array("" => "Any", "ios" => "iOS", "android" => "Android"));
             ?>
         </div>
 
-        <hr/>
 
         <div class="row">
-            <h4>Push only:</h4>
+            <h4>Filter by Push </h4>
             <em>Users who have push enabled</em>
 
             <?php
@@ -83,8 +84,12 @@ $this->introText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui
 
 </div>
 
+<div class = "section-divider">
+    <h3>Result</h3>
+</div>
 
-<div class="hero-unit">
-    <h1> <span id="mobile_user_count"><?php echo number_format($mobile_user_count); ?></span> mobile users</h1>
+<div class="heroUserCount">
+    <h2> <span id="mobile_user_count"><?php echo number_format($mobile_user_count); ?></span></h2>
+    <b>mobile users found.</b>
 </div>
 
