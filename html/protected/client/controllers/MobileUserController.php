@@ -106,18 +106,13 @@ class MobileUserController extends Controller {
      * Print a count of mobile users - ajax 
      */
     public function actionGetCount() {
-        logIt($_REQUEST);
-        
-        
-        $attributes = $this->parseSearchAttributes($_GET); // @todo: filter $_GET
-
+        $attributes = $this->parseSearchAttributes($_GET);
         $mobileUserModel = MobileUser::model();
         $mobileUserModel->setReadPreference(MongoClient::RP_SECONDARY_PREFERRED);
         $count = $mobileUserModel->find($attributes)->count();
         echo $count;
-        die;
+        Yii::app()->end();
     }
-
 
     public function actionExport() { // @todo: move logic to a model
         $mobileUserModel = MobileUser::model();
@@ -159,70 +154,43 @@ class MobileUserController extends Controller {
      * return a search array usable by activemongodb
      */
     private function parseSearchAttributes($data) {
+        $searchConditions = array();
 
-        // allowed search attributes @todo: move to MobileUser Model
-        $searchAttributes = array(
-            "tags", "device_type", "push_only", "districts"
-        );
 
-        // strip out key/values that are not in $searchAttributes
-        // remove keys with empty values
-        foreach ($data as $k => $v) {
-            if (!in_array($k, $searchAttributes)) {
-                unset($data[$k]);
-                continue;
-            }
+        // retrieve tag names from tag Ids
+        if (isset($data['MobileUser']['tags'])) {
 
-            if (empty($v)) {
-                unset($data[$k]);
-            }
-        }
+            $tagIds = $data['MobileUser']['tags']; // array of tag ids.
 
-        // remove empty tags
-        if (isset($data['tags'])) {
-            foreach ($data['tags'] as $k => $v) {
-                if (empty($v)) {
-                    unset($data['tags'][$k]);
-                }
-            }
-        }
+            $tags = Yii::app()->db->createCommand()
+                    ->select('name')
+                    ->from('tag')
+                    ->where('id IN ( ' . implode(', ', $tagIds) . '  )')
+                    ->queryAll();
 
-        // remove empty districts
-        if (isset($data['districts'])) {
-            foreach ($data['districts'] as $k => $v) {
-                if (empty($v)) {
-                    unset($data['districts'][$k]);
-                }
-            }
-        }
 
-        if (empty($data['tags'])) {
-            unset($data['tags']);
-        } else {
-            // OR TAGS
-            $tags = array_values($data['tags']); // reindex tags (otherwise mongodb driver fail when using $all)
-            $data['tags'] = array(
+            // convert multi dimensional array to flat array.
+            array_walk($tags, function(&$tag) {
+                        $tag = $tag['name'];
+                    });
+
+
+            $searchConditions['tags'] = array(
                 '$in' => $tags
             );
         }
 
-
-        if (empty($data['districts'])) {
-            unset($data['districts']);
-        } else {
-            // OR Districts 
-            $districts = array_values($data['districts']); // reindex tags (otherwise mongodb driver fail when using $all)
-            $data['districts'] = array(
-                '$in' => $districts
-            );
+        if (isset($data['device_type']) && $data['device_type'] != "") {
+            $searchConditions['device_type'] = $data['device_type'];
         }
+
 
         if (isset($data['push_only']) && $data['push_only'] === '1') {
-            unset($data['push_only']);
-            $data['ua_identifier'] = array('$exists' => true);
+            $searchConditions['ua_identifier'] = array('$exists' => true);
         }
 
-        return $data;
+
+        return $searchConditions;
     }
 
 }

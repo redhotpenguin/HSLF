@@ -18,8 +18,10 @@ function tagCreator($){
 
     },
     tagTableUpdated = function(e){
-        $.event.trigger({type: "tagTableUpdate" });
         $(this).parents("tr[name='tagRow']").first().remove();
+        $.event.trigger({
+            type: "tagTableUpdate"
+        });
     },
     autoCompleteInit = function(){
         var encodedTypeString = "";
@@ -47,14 +49,14 @@ function tagCreator($){
                 });
             }
 
-        }).on("autocompleteselect", function(event, ui){
+        }).on("autocompleteselect", function(event, ui){ 
+            addItem( ui.item.label, ui.item.value );
+            $(this).val('');
             
             $.event.trigger({
                 type: "tagTableUpdate"
             });
             
-            addItem( ui.item.label, ui.item.value );
-            $(this).val('');
             return false;
         
         });
