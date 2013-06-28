@@ -46,7 +46,7 @@ $this->secondaryNav['url'] = array('mobileUser/index');
         <hr/>
 
         <div class="row">
-            <h4>Tags and Districts (any)</h4>
+            <h4>Tags</h4>
             <?php
             $this->widget('backend.extensions.TagSelector.TagSelector', array(
                 'model' => new MobileUser,
