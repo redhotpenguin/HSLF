@@ -236,7 +236,7 @@
                     }
                     
                     if($this->introText){
-                        echo "<p class='helpText'>{$this->introText}</p>";
+                        echo "<div class='introSection'><p class='helpText'>{$this->introText}</p></div>";
                     }
    
                               
