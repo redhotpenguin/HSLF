@@ -83,7 +83,7 @@ class Payload extends BaseActiveRecord {
             'description' => 'Description',
             'tweet' => 'Tweet',
             'email' => 'Email',
-            'type' => 'Action Type',
+            'type' => 'Type',
         );
     }
 
