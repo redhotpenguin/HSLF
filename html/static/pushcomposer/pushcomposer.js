@@ -24,10 +24,10 @@ function composer($){
     
         if(type == 'share'){
             shareRelatedInputs.show();
-            payloadTitleExplanation.html('Text that will be used for: the preview text on the share screen, the title of the shared item on Facebook and the subject line in the email share.');
+            payloadTitleExplanation.html('Text that will be used for: the preview text on the share screen, the title of the shared item on Facebook and the subject line in the email share');
         }else if(type == 'post'){
             postRelatedInputs.show();
-            payloadTitleExplanation.html('Title of the post being shared.');
+            payloadTitleExplanation.html('Title of the post being shared');
         }
         else{
             payloadTitleSection.hide();
