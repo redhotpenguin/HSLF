@@ -89,7 +89,12 @@ $this->introText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui
 </div>
 
 <div class="heroUserCount">
-    <h2> <span id="mobile_user_count"><?php echo number_format($mobile_user_count); ?></span></h2>
-    <b>mobile users found.</b>
+    <div id="userCountLoader"  style="display:none;">
+        <h2>Searching...</h2>
+    </div>
+    <div id="userCountResult">
+        <h2> <span id="mobile_user_count"><?php echo number_format($mobile_user_count); ?></span></h2>
+        <b>mobile users found.</b>
+    </div>
 </div>
 
