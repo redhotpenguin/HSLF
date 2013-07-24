@@ -7,15 +7,23 @@
     <div class="row">
         <?php
         echo Chtml::label('Display Name', 'display_name');
-        echo Chtml::textField('display_name', '', array('size' => 60,));
+        echo Chtml::textField('display_name', '', array('class' => 'span7', 'size' => 60, 'placeholder' => 'City of Portland'));
         ?>
+        <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="Enter the name you will be using to find the tag in the admin dashboard. For example: City of Portland"></a>
+
     </div>
 
     <div class="row">
         <?php
-        echo Chtml::label('Name', 'name');
-        echo Chtml::textField('name', '', array('size' => 60, 'maxlength' => 255, 'placeholder'=>''));
+        echo Chtml::label('Tag Name', 'name');
+        echo Chtml::textField('name', '', array('class' => 'span7', 'size' => 60, 'maxlength' => 255, 'placeholder' => 'org_city_portland'));
+        if (in_array('organization', $tagTypes)):
+            ?>
+            <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="Enter the name of the tag that will be stored in the database. This must begin with “org_”, use underscores instead of spaces and all letters must be lowercase. For example: org_city_portland."></a>
+            <?php
+        endif;
         ?>
+
     </div>
 
 

@@ -25,7 +25,7 @@ $this->introText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui
         'enableAjaxValidation' => false,
             ));
 
-    $orgTab = $this->renderPartial('tabs/_tab_organization', array(
+    $infoTab = $this->renderPartial('tabs/_tab_info', array(
         'model' => $model,
         'form' => $form,
             ), true);
@@ -44,7 +44,7 @@ $this->introText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui
 
 
     $tabs = array(
-        array('label' => 'Organization', 'content' => $orgTab, 'active' => true),
+        array('label' => 'Contact Information', 'content' => $infoTab, 'active' => false),
         array('label' => 'Details', 'content' => $detailTab),
         array('label' => 'Contacts', 'content' => $contactTab),
     );
@@ -55,7 +55,7 @@ $this->introText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui
             'form' => $form,
                 ), true);
 
-        array_push($tabs, array('label' => 'Tags', 'content' => $tagsTab));
+        array_push($tabs, array('label' => 'Tags', 'content' => $tagsTab, 'active' => true));
     }
 
     $this->widget('bootstrap.widgets.TbTabs', array(

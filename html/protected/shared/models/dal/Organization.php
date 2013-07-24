@@ -73,12 +73,13 @@ class Organization extends BaseActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'name' => 'Full Name',
+            'name' => 'Organization Name',
             'description' => 'Description',
             'website' => 'Website',
             'image_url' => 'Image url',
-            'display_name' => 'Display Name',
+            'display_name' => 'Friendly Name',
             'address' => 'Address',
+            'facebook_url' => 'Facebook Page URL',
         );
     }
 

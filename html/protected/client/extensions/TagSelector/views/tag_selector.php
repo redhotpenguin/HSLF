@@ -65,16 +65,17 @@ if ($displayTagCreator) {
     $this->beginWidget(
             'bootstrap.widgets.TbModal', array(
         'id' => 'createTagModal',
-        'autoOpen' => false,
+        'autoOpen' => true,
+                
     ));
     ?>
 
     <div class="modal-header">
         <a class="close" data-dismiss="modal">&times;</a>
-        <h4>Create a new tag</h4>
+        <h4>Create New Tag</h4>
     </div>
 
-    <div class="modal-body">
+    <div class="modal-body" style="height: 170px;">
         <?php
         $this->render('tag_creator', array('tagTypes' => $tagTypes));
         ?>
@@ -110,4 +111,3 @@ if ($displayTagCreator) {
         ),
     ));
 }
-?>
