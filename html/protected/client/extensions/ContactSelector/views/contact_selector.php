@@ -25,7 +25,7 @@ function contactDropdown($modelName, $contactList, $id = 'contactDropDown', $cla
         'style' => 'float:left;'
     );
 
-    $html = '<div class="row-fluid" id=' . $id . '>' . CHtml::dropDownList($modelName . '[contacts][]', $selected, $contactList, $options);
+    $html = '<div class="row contactRow" id=' . $id . '>' . CHtml::dropDownList($modelName . '[contacts][]', $selected, $contactList, $options);
 
     $html.='<div class="span3 deleteBtn btn btn-warning">delete</div></div>';
 

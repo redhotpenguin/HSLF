@@ -10,6 +10,7 @@ class ContactSelector extends CInputWidget {
         if (is_dir($assets)) {
             Yii::app()->clientScript->registerCoreScript('jquery');
             Yii::app()->clientScript->registerScriptFile($baseUrl . '/contact.js', CClientScript::POS_HEAD);
+            Yii::app()->clientScript->registerCssFile($baseUrl . '/contact.css', CClientScript::POS_HEAD);
         }
     }
 
@@ -19,8 +20,6 @@ class ContactSelector extends CInputWidget {
 
     public function run() {
         $contacts = $this->model->contacts;
-
-
         $this->render('contact_selector', array('contacts' => $contacts, 'model' => $this->model));
     }
 

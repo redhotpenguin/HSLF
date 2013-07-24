@@ -9,7 +9,7 @@ function contact($){
         contactList += "<option value='" + contactId + "'>" + contactName + "</option>";
     });
     
-    var contactDropDown = $("<div class='row-fluid'><select style='float:left;' class='span6 ' name='"+contactSelector_ns.dropDownName+"'>"+contactList+"</select></div>");
+    var contactDropDown = $("<div class='row contactRow'><select style='float:left;' class='span6 ' name='"+contactSelector_ns.dropDownName+"'>"+contactList+"</select></div>");
 
     $('.deleteBtn').click(deleteDropDown);
 
@@ -33,5 +33,10 @@ function contact($){
         console.log($(this).parent().remove());
     }
  
+ 
+    // event binding
+    console.log('sort')
+     $( "#contacts" ).sortable();
+
  
 }
