@@ -44,7 +44,7 @@ $this->introText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui
 
 
     $tabs = array(
-        array('label' => 'Contact Information', 'content' => $infoTab, 'active' => false),
+        array('label' => 'Contact Information', 'content' => $infoTab, 'active' => true),
         array('label' => 'Details', 'content' => $detailTab),
         array('label' => 'Contacts', 'content' => $contactTab),
     );
@@ -55,7 +55,7 @@ $this->introText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui
             'form' => $form,
                 ), true);
 
-        array_push($tabs, array('label' => 'Tags', 'content' => $tagsTab, 'active' => true));
+        array_push($tabs, array('label' => 'Tags', 'content' => $tagsTab));
     }
 
     $this->widget('bootstrap.widgets.TbTabs', array(

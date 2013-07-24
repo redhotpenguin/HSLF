@@ -19,7 +19,17 @@ Yii::app()->clientScript->registerScript('tag-selector-script', $ns, CClientScri
 <table id="modelTagTable" class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th colspan="2">Name</th>
+            <th colspan="2">Tags
+
+
+                <?php
+                if (in_array('organization', $tagTypes)):
+                    ?>   
+                    <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="To assign an existing tag to an Organization, begin typing the tag display name in the search bar and then select from the options that appear. To create a new tag, click “Create New Tag.” Click “Remove” next to any tag to remove it from an Organization."></a>
+                </th>
+                <?php
+            endif;
+            ?>
         </tr>
     </thead>
     <tbody>
@@ -65,8 +75,7 @@ if ($displayTagCreator) {
     $this->beginWidget(
             'bootstrap.widgets.TbModal', array(
         'id' => 'createTagModal',
-        'autoOpen' => true,
-                
+        'autoOpen' => false,
     ));
     ?>
 

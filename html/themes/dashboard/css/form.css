@@ -329,3 +329,15 @@ input{
 .halflings-icon.lock {
     background-position: -287px -24px;
 }
+
+#organizationDescription label,
+#organizationContacts label{
+    float:left;
+}
+
+#organizationDescription .icon-question-sign,
+#organizationContacts .icon-question-sign,
+#organizationTags .icon-question-sign{
+    margin-left:5px;
+    margin-top:3px;
+}

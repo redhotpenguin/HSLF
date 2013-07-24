@@ -1,4 +1,4 @@
-<div class="row-fluid">
+<div id="organizationTags" class="row-fluid">
     <?php
     $this->widget('backend.extensions.TagSelector.TagSelector', array(
         'model' => $model,
