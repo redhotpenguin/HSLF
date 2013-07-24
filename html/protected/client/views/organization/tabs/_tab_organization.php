@@ -55,10 +55,18 @@
     </div>
 </div>
 
-<div class="">
+<div>
     <?php
     echo $form->labelEx($model, 'address');
-    echo $form->textArea($model, 'address', array('cols' => 60, 'rows' => 3, 'class' => 'span12'));
-    echo $form->error($model, 'address');
+    $this->widget('backend.extensions.tinymce.TinyMce', array(
+        'model' => $model,
+        'attribute' => 'address',
+        'htmlOptions' => array(
+            'rows' => 3,
+            'class' => 'span12',
+        ),
+    ));
+
+    echo $form->error($model, 'detail');
     ?>
 </div>
