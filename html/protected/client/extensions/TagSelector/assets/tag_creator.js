@@ -91,8 +91,6 @@ function tagCreator($){
         tagNameInput .val(value.toLowerCase().replace(/ /g,"_").replace(/\W/g, ''));
     };
     
-
-   
     
     // event binding
     modelTagTable.on("click", "span[name='deleteTagBtn']", tagTableUpdated);
