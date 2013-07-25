@@ -21,27 +21,7 @@
     </div>
 </div>
 
-<div class="row-fluid">
 
-    <div  class="span6">
-        <?php
-        echo $form->labelEx($model, 'website');
-        echo $form->textField($model, 'website', array('size' => 60, 'maxlength' => 2048, 'class' => 'span11'));
-        echo $form->error($model, 'website');
-        ?>
-        <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="Linked to from the Website button on the Organization Detail Page. Must begin with http://"></a>
-
-    </div>
-
-    <div class="span6">
-        <?php
-        echo $form->labelEx($model, 'image_url');
-        echo $form->textField($model, 'image_url', array('size' => 60, 'maxlength' => 2048, 'class' => 'span11'));
-        echo $form->error($model, 'image_url');
-        ?>
-        <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="Leave blank at this time."></a>
-    </div>
-</div>
 
 <div class="row-fluid">
     <div class="span6">
@@ -62,6 +42,20 @@
         ?>
         <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="Linked to from the Twitter button on the Organization Detail Page. Enter only the Twitter handle without the @ sign."></a>
     </div>
+</div>
+
+<div class="row-fluid">
+
+    <div  class="span6">
+        <?php
+        echo $form->labelEx($model, 'website');
+        echo $form->textField($model, 'website', array('size' => 60, 'maxlength' => 2048, 'class' => 'span11'));
+        echo $form->error($model, 'website');
+        ?>
+        <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="Linked to from the Website button on the Organization Detail Page. Must begin with http://"></a>
+
+    </div>
+
 </div>
 
 <div>
