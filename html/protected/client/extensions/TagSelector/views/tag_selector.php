@@ -23,9 +23,9 @@ Yii::app()->clientScript->registerScript('tag-selector-script', $ns, CClientScri
 
 
                 <?php
-                if (in_array('organization', $tagTypes)):
+                if ($helpText):
                     ?>   
-                    <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="To assign an existing tag to an Organization, begin typing the tag display name in the search bar and then select from the options that appear. To create a new tag, click “Create New Tag.” Click “Remove” next to any tag to remove it from an Organization."></a>
+                    <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="<?php echo $helpText; ?>"></a>
                 </th>
                 <?php
             endif;

@@ -33,9 +33,11 @@ class TagSelector extends CInputWidget {
             'modelName' => get_class($this->model),
             'modelTags' => $this->model_tags,
             'tagTypes' => $this->tag_types,
-            'displayTagCreator' => $this->display_tag_creator
+            'displayTagCreator' => $this->display_tag_creator,
+            'helpText' => isset($this->options['help_text']) ? $this->options['help_text'] : null,
         );
 
         $this->render('tag_selector', $data);
     }
+
 }
