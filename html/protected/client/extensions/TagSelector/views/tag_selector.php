@@ -84,7 +84,7 @@ if ($displayTagCreator) {
         <h4>Create New Tag</h4>
     </div>
 
-    <div class="modal-body" style="height: 170px;">
+    <div class="modal-body" style="height: 170px; overflow:hidden;">
         <?php
         $this->render('tag_creator', array('tagTypes' => $tagTypes));
         ?>
@@ -112,7 +112,7 @@ if ($displayTagCreator) {
 
     <?php $this->endWidget(); ?><?php
     $this->widget('bootstrap.widgets.TbButton', array(
-        'label' => 'Create a new tag',
+        'label' => 'Create New Tag',
         'type' => 'info',
         'htmlOptions' => array(
             'data-toggle' => 'modal',
