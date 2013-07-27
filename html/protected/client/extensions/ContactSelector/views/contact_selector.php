@@ -9,7 +9,7 @@ $contactList = CHtml::listData(Contact::model()->findAll(array('order' => 'first
                 });
 
 
-$ns = "var contactSelector_ns  = {site_url: '" . $siteUrl . "'};";
+$ns = "var contactSelector_ns  = {site_url: '$siteUrl', className: '$className'};";
 
 Yii::app()->clientScript->registerScript('contactSelector_ns', $ns, CClientScript::POS_HEAD);
 ?>
@@ -17,39 +17,54 @@ Yii::app()->clientScript->registerScript('contactSelector_ns', $ns, CClientScrip
 
 <div class="clearfix"></div>
 
-<div class="row-fluid">
-    <div class="span11" id="contacts">
+
+<table id="contacts" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th colspan="2">
+                Contacts
+                <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="<?php echo $help_text; ?>"></a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
         <?php
         if (!empty($contacts))
             foreach ($contacts as $contact) {
                 ?>
-                <div class="contactRow">
-                    <div class='contactName'> 
+                <tr class="contactRow">
+                    <td class='contactName'> 
                         <?php echo $contact->first_name . " " . $contact->last_name; ?>
-                    </div>
-                    <input type='hidden' name='Organization[contacts][]' value='<?php echo $contact->id; ?>'/> 
-
-                </div>
+                    </td>
+                    <td>
+                        <span  name="deleteContactBtn" class="btn btn-warning" >remove</span>
+                        <input type='hidden' name='<?php echo $className;?>[contacts][]' value='<?php echo $contact->id; ?>'/> 
+                    </td>
+                </tr>
                 <?php
             }
         ?>
-    </div>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="2">  
+                <?php
+                $options = array(
+                    'tabindex' => '1',
+                    'class' => 'span11',
+                    'name' => 'contacts[]',
+                    'style' => 'float:left;',
+                    'id' => 'contactDropdown'
+                );
 
-    <div class="span11">
-        <?php
-        $options = array(
-            'tabindex' => '1',
-            'class' => 'span11',
-            'name' => 'contacts[]',
-            'style' => 'float:left;',
-            'id' => 'ContactDropdown'
-        );
+                echo CHtml::dropDownList('contactDropdown', '', $contactList, $options);
+                ?>
+            </td>    
+        </tr>
 
-        echo CHtml::dropDownList('ContactDropdown', '', $contactList, $options);
-        ?>
+    </tfoot>
+</table>
 
-    </div>
-</div>
 
 <?php
 $this->beginWidget(

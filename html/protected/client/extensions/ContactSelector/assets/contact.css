@@ -1,17 +1,18 @@
 div#contacts{
-    border-left:1px solid #eee;
-    padding-left:15px;
-    margin-bottom:10px;
+
 }
 
 div#contacts div.contactRow{
-    padding:10px;
-    margin-bottom:20px;
-    border:1px solid #efefef;
-    cursor: pointer;
-    z-index:1;
+
 }
 
-.deleteBtn{
-    z-index:10;
+.contactName {
+    width:90%;
+    cursor:pointer;
 }
+
+.deleteContactBtn{
+    z-index:10;
+
+}
+

@@ -38,7 +38,7 @@ Yii::app()->clientScript->registerScript('tag-selector-script', $ns, CClientScri
             foreach ($modelTags as $tag):
                 ?>
                 <tr name="tagRow">
-                    <td> 
+                    <td style="width:90%">
                         <?php
                         echo $tag->display_name;
                         echo CHtml::hiddenField($modelName . '[tags][]', $tag->id);

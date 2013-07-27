@@ -4,26 +4,37 @@ jQuery(document).ready(contact);
 function contact($){
         
     // contact selector
-    var  deleteContact = function (){
-        $(this).parent().remove();
-    },
-    addContactRow = function(name, id){
+    var addContactRow = function(name, id){
         
-        var contactRow = $("<div>");
-        contactRow.addClass('contactRow');
+        var contactRow = $("<tr>");
+        contactRow.addClass('contactRow')
         
-        contactRow.append("<div class='contactName'> " + name + " </div>  <input type='hidden' name = 'Organization[contacts][]' value='"+id+"'/>");
+        var html = "<td class='contactName'>" + name + "</td> ";
+        html+= '<td><span  name="deleteContactBtn" class="btn btn-warning" >remove</span>';
+        html+="<input type='hidden' name='" + contactSelector_ns.className + "[contacts][]' value='"+id+"'/></td>";
+        
+        contactRow.append(html);
        
         $("#contacts").append(contactRow);
         
     },
+    removeContactRow = function(){
+        $(this).closest('.contactRow').remove();
+    },
     contactSelected = function(e){        
         var contactName = e.target.options[e.target.selectedIndex].text,
-            contactId = e.target.options[e.target.selectedIndex].value;
+        contactId = e.target.options[e.target.selectedIndex].value;
            
         addContactRow(contactName, contactId);
-    };
+    },
     // contact creator
+    clearFormInput = function(){
+        $('[name="first_name"]').val('');
+        lastName = $('[name="last_name"]').val('');
+        email = $('[name="email"]').val('');
+        title = $('[name="title"]').val('');
+        phoneNumber = $('[name="phone_number"]').val('');
+    },
     saveContact = function(){
         var firstName = $('[name="first_name"]').val(),
         lastName = $('[name="last_name"]').val(),
@@ -49,26 +60,50 @@ function contact($){
         if(email.length > 0 && !email.match(emailPattern)){
             valid = false;
             showError('Email is not a valid email address.');
-            
         }
          
         if(valid){
             $.post( contactSelector_ns.site_url +  '/contact/create', {
                 'Contact': data
-            }, function(e){
-               // updateContactList();
-                addContactRow( data.first_name + " " + data.last_name, data.id );
+            }, function(result){
+                clearFormInput();
+                clearErrors();
+                
+                var contactDropdown = document.getElementById('contactDropdown'),  
+                    option = document.createElement("option");
+                    
+                option.text = result.first_name + " " + result.last_name;
+                option.value = result.id;                
+                contactDropdown.add(option)
+                
+                addContactRow( result.first_name + " " + result.last_name, result.id );
                 $("#close_btn").click();
             });
         }
+    },
+    clearErrors = function(){
+        $("#contact_error").html('').hide();
     },
     showError = function (errorMessage){
         $("#contact_error").html(errorMessage).show();  
     };
  
     // event binding
-    $( "#contacts" ).sortable();
     $("#save_contact_btn").click(saveContact);
-    $("#ContactDropdown").change(contactSelected);
+    $("#contactDropdown").change(contactSelected);
+    $("#contacts").on("click", "span[name='deleteContactBtn']", removeContactRow);
+    
+    // jquery-ui magic
+    // Return a helper with preserved width of cells
+    var fixHelper = function(e, ui) {
+        ui.children().each(function() {
+            $(this).width($(this).width());
+        });
+        return ui;
+    };
 
+    $("#contacts tbody").sortable({
+        helper: fixHelper
+    }).disableSelection();
+    
 }
