@@ -23,7 +23,11 @@ Yii::app()->clientScript->registerScript('contactSelector_ns', $ns, CClientScrip
         <tr>
             <th colspan="2">
                 Contacts
-                <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="<?php echo $help_text; ?>"></a>
+                <?php
+                if ($helpText) {
+                    echo '<a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="' . $helpText . '"></a>';
+                }
+                ?>
             </th>
         </tr>
     </thead>
@@ -38,7 +42,7 @@ Yii::app()->clientScript->registerScript('contactSelector_ns', $ns, CClientScrip
                     </td>
                     <td>
                         <span  name="deleteContactBtn" class="btn btn-warning" >remove</span>
-                        <input type='hidden' name='<?php echo $className;?>[contacts][]' value='<?php echo $contact->id; ?>'/> 
+                        <input type='hidden' name='<?php echo $className; ?>[contacts][]' value='<?php echo $contact->id; ?>'/> 
                     </td>
                 </tr>
                 <?php
@@ -59,6 +63,13 @@ Yii::app()->clientScript->registerScript('contactSelector_ns', $ns, CClientScrip
 
                 echo CHtml::dropDownList('contactDropdown', '', $contactList, $options);
                 ?>
+                <div class="clearfix"></div>
+                <?php
+                if ($dropDownText) {
+                    echo "<em>$dropDownText</em>";
+                }
+                ?>
+
             </td>    
         </tr>
 

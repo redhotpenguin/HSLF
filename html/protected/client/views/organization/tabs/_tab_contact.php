@@ -5,7 +5,8 @@
         'attribute' => '',
         'options' => array(
             'model_name' => 'Organization',
-            'help_text' => 'place holder help text'
+            'help_text' => 'place holder',
+            'dropdown_text' => 'Select contact to assign to organization'
         ),
     ));
     ?>

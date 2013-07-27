@@ -20,7 +20,13 @@ class ContactSelector extends CInputWidget {
 
     public function run() {
         $contacts = $this->model->contacts;
-        $this->render('contact_selector', array('contacts' => $contacts, 'model' => $this->model, 'help_text' => $this->options['help_text']));
+        $this->render('contact_selector', array(
+            'contacts' => $contacts,
+            'model' => $this->model,
+            'helpText' => isset($this->options['help_text']) ? $this->options['help_text'] : null,
+            'dropDownText' => isset($this->options['dropdown_text']) ? $this->options['dropdown_text'] : null,
+                )
+        );
     }
 
 }
