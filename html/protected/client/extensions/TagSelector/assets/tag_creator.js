@@ -6,7 +6,7 @@ function tagCreator($){
     addItem = function(name, id){
         var row = '<tr name="tagRow"><td> '+ name + '</td>';
         row += '<input value="'+ id +'" type="hidden" name='+ tagSelector_ns.modelName +'[tags][]">';
-        row += '<td><span name="deleteTagBtn" class=" btn btn-warning" >remove</span></td>';    
+        row += '<td><span name="deleteTagBtn" class=" btn btn-warning" >Remove</span></td>';    
         row +='</tr>';
         
         

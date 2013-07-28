@@ -4,7 +4,7 @@ $tenant = Yii::app()->user->getLoggedInUserTenant();
 $siteUrl = Yii::app()->params['site_url'] . '/client/' . $tenant->name;
 
 
-$contactList = CHtml::listData(Contact::model()->findAll(array('order' => 'first_name ASC')), 'id', function($contact) {
+$contactList = array('Select Contact') + CHtml::listData(Contact::model()->findAll(array('order' => 'first_name ASC')), 'id', function($contact) {
                     return $contact->first_name . " " . $contact->last_name;
                 });
 
@@ -41,7 +41,7 @@ Yii::app()->clientScript->registerScript('contactSelector_ns', $ns, CClientScrip
                         <?php echo $contact->first_name . " " . $contact->last_name; ?>
                     </td>
                     <td>
-                        <span  name="deleteContactBtn" class="btn btn-warning" >remove</span>
+                        <span  name="deleteContactBtn" class="btn btn-warning" >Remove</span>
                         <input type='hidden' name='<?php echo $className; ?>[contacts][]' value='<?php echo $contact->id; ?>'/> 
                     </td>
                 </tr>
@@ -58,7 +58,7 @@ Yii::app()->clientScript->registerScript('contactSelector_ns', $ns, CClientScrip
                     'class' => 'span11',
                     'name' => 'contacts[]',
                     'style' => 'float:left;',
-                    'id' => 'contactDropdown'
+                    'id' => 'contactDropdown',
                 );
 
                 echo CHtml::dropDownList('contactDropdown', '', $contactList, $options);
@@ -91,21 +91,21 @@ $this->beginWidget(
 </div>
 
 <div class="modal-body">
-    <?php
-    $this->render('contact_creator', array('contact' => new Contact()));
-    ?>
+<?php
+$this->render('contact_creator', array('contact' => new Contact()));
+?>
 </div>
 
 <div class="modal-footer">
-    <?php
-    $this->widget('bootstrap.widgets.TbButton', array(
-        'type' => 'primary',
-        'label' => 'Save',
-        'url' => '#',
-        'htmlOptions' => array(
-            'id' => 'save_contact_btn'),
-    ));
-    ?>
+<?php
+$this->widget('bootstrap.widgets.TbButton', array(
+    'type' => 'primary',
+    'label' => 'Save',
+    'url' => '#',
+    'htmlOptions' => array(
+        'id' => 'save_contact_btn'),
+));
+?>
     <?php
     $this->widget('bootstrap.widgets.TbButton', array(
         'label' => 'Close',
@@ -115,12 +115,12 @@ $this->beginWidget(
     ?>
 </div>
 
-<?php $this->endWidget(); ?><?php
-$this->widget('bootstrap.widgets.TbButton', array(
-    'label' => 'Create New Contact',
-    'type' => 'info',
-    'htmlOptions' => array(
-        'data-toggle' => 'modal',
-        'data-target' => '#createContactModal',
-    ),
-));
+    <?php $this->endWidget(); ?><?php
+    $this->widget('bootstrap.widgets.TbButton', array(
+        'label' => 'Create New Contact',
+        'type' => 'info',
+        'htmlOptions' => array(
+            'data-toggle' => 'modal',
+            'data-target' => '#createContactModal',
+        ),
+    ));

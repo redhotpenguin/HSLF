@@ -45,7 +45,7 @@ Yii::app()->clientScript->registerScript('tag-selector-script', $ns, CClientScri
                         ?>
                     </td>
                     <td>
-                        <span name="deleteTagBtn" class="btn btn-warning" >remove</span>
+                        <span name="deleteTagBtn" class="btn btn-warning" >Remove</span>
                     </td>
                 </tr>
 

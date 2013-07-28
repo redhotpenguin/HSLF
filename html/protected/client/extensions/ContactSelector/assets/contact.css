@@ -1,10 +1,7 @@
-div#contacts{
-
+table#contacts tr.contactRow:hover td{
+    background-color:#ebebeb;
 }
 
-div#contacts div.contactRow{
-
-}
 
 .contactName {
     width:90%;

@@ -5,12 +5,14 @@ function contact($){
         
     // contact selector
     var addContactRow = function(name, id){
+        if(id == void 0 || id <= 0)
+            return;
         
         var contactRow = $("<tr>");
         contactRow.addClass('contactRow')
         
         var html = "<td class='contactName'>" + name + "</td> ";
-        html+= '<td><span  name="deleteContactBtn" class="btn btn-warning" >remove</span>';
+        html+= '<td><span  name="deleteContactBtn" class="btn btn-warning" >Remove</span>';
         html+="<input type='hidden' name='" + contactSelector_ns.className + "[contacts][]' value='"+id+"'/></td>";
         
         contactRow.append(html);
@@ -21,7 +23,7 @@ function contact($){
     removeContactRow = function(){
         $(this).closest('.contactRow').remove();
     },
-    contactSelected = function(e){        
+    contactSelected = function(e){
         var contactName = e.target.options[e.target.selectedIndex].text,
         contactId = e.target.options[e.target.selectedIndex].value;
            
@@ -70,7 +72,7 @@ function contact($){
                 clearErrors();
                 
                 var contactDropdown = document.getElementById('contactDropdown'),  
-                    option = document.createElement("option");
+                option = document.createElement("option");
                     
                 option.text = result.first_name + " " + result.last_name;
                 option.value = result.id;                
@@ -103,7 +105,9 @@ function contact($){
     };
 
     $("#contacts tbody").sortable({
-        helper: fixHelper
+        helper: fixHelper,
+        distance: 5,
+        axis: 'y' 
     }).disableSelection();
     
 }
