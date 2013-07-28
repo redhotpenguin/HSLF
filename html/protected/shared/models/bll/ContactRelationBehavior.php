@@ -12,7 +12,7 @@ class ContactRelationBehavior extends CActiveRecordBehavior {
      * @return boolean true on success or if contact is already linked, false on failure
      */
 
-    public function addContactAssociation($contactId) {
+    public function addContactAssociation($contactId, $position = 0) {
 
         // check that contact actually exists and also check tenancy (through MultiTenantBehavior)
         $contact = Contact::model()->findByPk($contactId);
@@ -24,8 +24,9 @@ class ContactRelationBehavior extends CActiveRecordBehavior {
 
         $data = array(
             'contact_id' => $contactId,
-            $this->foreignKeyName => $this->owner->id
-        );
+            $this->foreignKeyName => $this->owner->id,
+            'position' => $position
+         );
 
         try {
             $command->insert($this->joinTableName, $data);
@@ -107,7 +108,8 @@ class ContactRelationBehavior extends CActiveRecordBehavior {
         $contacts = Contact::model()->with($this->relationName)->findAll(
                 array(
                     'condition' => "{$this->foreignKeyName} =:{$this->foreignKeyName}",
-                    'params' => array(":{$this->foreignKeyName}" => $this->owner->id)
+                    'params' => array(":{$this->foreignKeyName}" => $this->owner->id),
+                    'order' => 'position ASC'
                 ));
                     
         return $contacts;
@@ -136,8 +138,8 @@ class ContactRelationBehavior extends CActiveRecordBehavior {
 
     public function massUpdateContacts(array $contactIds) {
         $this->removeAllContactsAssociation();
-        foreach ($contactIds as $contactId)
-            $this->addContactAssociation($contactId);
+        foreach ($contactIds as $position => $contactId)
+            $this->addContactAssociation($contactId, $position);
     }
 
 }
