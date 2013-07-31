@@ -13,18 +13,14 @@ $ns = "var ns  = {action_url: '" . $action_url . "'};";
 Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::POS_HEAD);
 
 
-if ($isAdmin)
-    $navBarItems = array(
-        '',
-        array('label' => 'Browse', 'url' => array('browse')),
-        '',
-        array('label' => 'Export', 'url' => 'export'),
-        ''
-    );
 
-else
-    $navBarItems = array();
-
+$navBarItems = array(
+    '',
+    array('label' => 'Browse', 'url' => array('browse')),
+    '',
+    array('label' => 'Export', 'url' => 'export'),
+    ''
+);
 
 
 $this->secondaryNav['items'] = $navBarItems;

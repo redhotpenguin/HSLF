@@ -21,13 +21,8 @@ class MobileUserController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('index', 'view', 'delete', 'getCount', 'export'),
+                'actions' => array('index', 'view', 'delete', 'getCount', 'export', 'browse'),
                 'roles' => array('manageMobileUsers'),
-            ),
-            array(
-                'allow',
-                'actions' => array('browse'),
-                'roles' => array('admin')
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -125,10 +120,12 @@ class MobileUserController extends Controller {
 
         $headers = $mobileUserModel->getAttributes();
 
+        $emailAddress = Yii::app()->user->email;
+
         $parameters = array(
             'tenant_id' => $tenant->id,
             'tenant_name' => $tenant->display_name,
-            'email' => $tenant->email,
+            'email' => $emailAddress,
             'mongodb_host' => Yii::app()->params['mongodb_host'],
             'mongodb_name' => Yii::app()->params['mongodb_name'],
             'mongodb_username' => Yii::app()->params['mongodb_user'],
@@ -139,7 +136,7 @@ class MobileUserController extends Controller {
         );
 
         if (Yii::app()->queue->enqueue('mobile_platform', 'MobileUserExportJob', $parameters))
-            Yii::app()->user->setFlash('success', "A user export will be sent to {$tenant->email} shortly.");
+            Yii::app()->user->setFlash('success', "A user export will be sent to $emailAddress shortly.");
         else
             Yii::app()->user->setFlash('error', "Error while generating a user export.");
 
