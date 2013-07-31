@@ -31,6 +31,10 @@ $this->header = 'Mobile Users';
 $this->introText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis auctor blandit tellus eget pharetra. Donec id massa sit amet felis dictum semper. Maecenas sed nisi a magna aliquet dictum. Interdum et malesuada fames ac ante ipsum primis in faucibus";
 ?>
 
+<div class = "heroUserCount">
+    <h2><?php echo CHtml::link(number_format($mobile_user_count), array('mobileUser/index')); ?> users have registered with your app.</h2>
+</div>
+
 <div class = "section-divider">
     <h3>filters</h3>
 </div>
@@ -91,6 +95,10 @@ $this->introText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui
     <div id="userCountResult">
         <h2> <span id="mobile_user_count"><?php echo number_format($mobile_user_count); ?></span></h2>
         <b>mobile users found.</b>
+        <div class="clearfix>"></div>
+        <?php
+        $this->widget('bootstrap.widgets.TbButton', array('htmlOptions' => array('id' => 'export_btn'), 'buttonType' => 'submit', 'type' => 'info', 'label' => 'Export Current Selection'));
+        ?>
     </div>
 </div>
 

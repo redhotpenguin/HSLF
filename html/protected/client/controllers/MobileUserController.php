@@ -116,7 +116,7 @@ class MobileUserController extends Controller {
         if ($tenant == null)
             throw new CHttpException(404, 'The requested page does not exist.');
 
-
+        $filterAttributes = $this->parseSearchAttributes($_GET);
 
         $headers = $mobileUserModel->getAttributes();
 
@@ -133,6 +133,7 @@ class MobileUserController extends Controller {
             'mongodb_collection_name' => 'mobile_user',
             'csvHeaders' => $headers,
             'requested_by' => Yii::app()->user->name,
+            'filterAttributes' => $filterAttributes,
         );
 
         if (Yii::app()->queue->enqueue('mobile_platform', 'MobileUserExportJob', $parameters))

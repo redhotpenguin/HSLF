@@ -42,5 +42,10 @@ function mobileUser($){
         updateUserCount();
     });
     
+     $("#export_btn").click(function(){
+        var serializedForm = mobileUserForm.serialize();
+        window.location = ns.action_url + '/mobileUser/export?'+serializedForm;
+    });
+    
     
 }
