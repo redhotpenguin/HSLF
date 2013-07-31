@@ -72,12 +72,16 @@ class MobileUser extends ActiveMongoDocument {
             $criteria['ua_identifier'] = $this->ua_identifier;
         }
 
-        if ($this->tags != "") {
-            $criteria['tags'] = $this->tags;
+        if ($this->name != "") {
+            $criteria['name'] =  new MongoRegex("/{$this->name}/i");
         }
 
         if ($this->districts != "") {
             $criteria['districts'] = $this->districts;
+        }
+
+        if ($this->email != "") {
+            $criteria['email'] = $this->email;
         }
 
         if ($this->_id != "") {

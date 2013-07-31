@@ -49,7 +49,7 @@ $this->introText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui
 
         <div class="row">
             <h4>Filter by Tag</h4>         
-            <p class="helpText">Users who have any of the following tags</p>
+            <p class="helpText">To filter users by tag, begin typing a tag's display name and then choosing from the options that appear. You can add multiple tags or remove a tag by clicking "Remove," which will appear after a tag has been added.</p>
             <?php
             $this->widget('backend.extensions.TagSelector.TagSelector', array(
                 'model' => new MobileUser,
