@@ -6,6 +6,15 @@ class OrganizationController extends CrudController {
         parent::__construct('organization');
         $this->setModel(new Organization);
         $this->setFriendlyModelName('Organization');
+
+        $rules = array(
+            array('allow',
+                'actions' => array('exportCSV'),
+                'roles' => array('readOrganization')
+            ),
+        );
+
+        $this->setExtraRules($rules);
     }
 
     protected function afterSave(CActiveRecord $model, $postData = array()) {

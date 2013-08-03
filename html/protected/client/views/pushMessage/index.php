@@ -4,12 +4,9 @@ $navBarItems = array(
     '',
     array('label' => 'New Message', 'url' => array('pushMessage/composer')),
     '',
+    array('label' => 'Export', 'url' => array('exportCSV')),
+    ''
 );
-
-if ($isAdmin) {
-    array_push($navBarItems, array('label' => 'Export', 'url' => array('exportCSV')), ''
-    );
-}
 
 $this->secondaryNav['items'] = $navBarItems;
 $this->secondaryNav['name'] = 'Push Notifications';

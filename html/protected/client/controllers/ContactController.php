@@ -6,6 +6,15 @@ class ContactController extends CrudController {
         parent::__construct('contact');
         $this->setModel(new Contact);
         $this->setFriendlyModelName('Contact');
+
+        $rules = array(
+            array('allow',
+                'actions' => array('exportCSV'),
+                'roles' => array('readContact')
+            ),
+        );
+
+        $this->setExtraRules($rules);
     }
 
 }

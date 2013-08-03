@@ -30,7 +30,7 @@ class PushMessageController extends CrudController {
 
         $extraRules = array(
             array('allow',
-                'actions' => array('composer', 'view', 'detail', 'confirmation', 'jsonSegments', 'jsonSegment', 'jsonReport'),
+                'actions' => array('composer', 'view', 'detail', 'confirmation', 'jsonSegments', 'jsonSegment', 'jsonReport', 'exportCSV'),
                 'roles' => array('managePushMessages'),
             )
         );
