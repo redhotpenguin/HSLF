@@ -58,9 +58,10 @@ $this->widget('bootstrap.widgets.TbButton', array(
     <h3>Stats</h3>
 </div>
 
-<h3>Total User Registrations: <?php echo number_format($userCount);?>
-<a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title='Total number of user registrations for the lifetime of your app.' style='margin:10px 0 0 5px;'></a>
-</h3>
+<h3 id="totalUserRegistrationHeader">Total User Registrations: <?php echo number_format($userCount);?></h3>
+<a id="totalUserRegistrationIcon" href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title='Total number of user registrations for the lifetime of your app.'></a>
+
+<div class="clearfix"></div>
 
 <h4>Overview for the last twelve months:</h4>
 

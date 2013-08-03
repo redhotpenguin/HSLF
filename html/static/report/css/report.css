@@ -8,3 +8,13 @@
     position: relative;
     top: -15px;
 }
+
+#totalUserRegistrationHeader{
+    float:left;
+}
+
+#totalUserRegistrationIcon{
+    margin-top: 23px;
+    margin-left: 5px;
+    float: left;
+}
