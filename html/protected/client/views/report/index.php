@@ -19,8 +19,6 @@ $controller_url = Yii::app()->params['site_url'] . '/client/' . $tenant->name;
 $ns = "var report_ns  = {controller_url: '" . $controller_url . "'};";
 
 Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::POS_HEAD);
-
-$currentMonth = date('F');
 ?>
 
 
@@ -60,9 +58,9 @@ $this->widget('bootstrap.widgets.TbButton', array(
     <h3>Stats</h3>
 </div>
 
-<h3>Total User Registrations: <?php echo number_format($userCount);
-    ?></h3>
-
+<h3>Total User Registrations: <?php echo number_format($userCount);?>
+<a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title='Total number of user registrations for the lifetime of your app.' style='margin:10px 0 0 5px;'></a>
+</h3>
 
 <h4>Overview for the last twelve months:</h4>
 
