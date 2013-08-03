@@ -3,12 +3,15 @@ $this->secondaryNav['name'] = 'Mobile Users';
 $this->secondaryNav['url'] = array('mobileUser/index');
 
 Yii::app()->clientScript->registerScript('search', "
-$('.search-form form').submit(function(){
+    
+function submitSearchForm(){
 	$.fn.yiiGridView.update('MobileUser-grid', {
 		data: $(this).serialize()
 	});
 	return false;
-});
+}
+    $('#MobileUser_device_type').change(submitSearchForm);
+    $('.search-form form').submit(submitSearchForm);
 ");
 ?>
 <div class="search-form">

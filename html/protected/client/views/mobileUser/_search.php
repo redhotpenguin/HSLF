@@ -40,7 +40,7 @@
 
     </div>
     <div class="row-fluid buttons">
-        <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'search   ')); ?>
+        <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'search', 'htmlOptions'=> array('style' => 'visibility:hidden;'))); ?>
     </div>
 
     <?php $this->endWidget(); ?>
