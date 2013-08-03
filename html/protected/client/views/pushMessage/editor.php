@@ -26,8 +26,15 @@ $this->secondaryNav['url'] = array('pushMessage/index');
         'form' => $form,
             ), true);
 
-
-    $tabs = array(array('label' => 'Push Message', 'content' => $pushMessageTab, 'active' => true));
+    $tagsTab = $this->renderPartial('tabs/_tab_tags', array(
+        'model' => $model,
+        'form' => $form,
+            ), true);
+    
+    $tabs = array(
+        array('label' => 'Push Message', 'content' => $pushMessageTab, 'active' => true),
+        array('label' => 'Tags', 'content' => $tagsTab)
+    );
 
     if ($model->isNewRecord) {
         $tagsTab = $this->renderPartial('tabs/_tab_tags', array(

@@ -38,8 +38,7 @@ class PushMessageController extends CrudController {
         $this->setExtraRules($extraRules);
     }
 
-    protected function afterSave(CActiveRecord $model, $postData = array()) {
-
+    protected function afterSave(CActiveRecord $model, $postData = array()) {        
         if (isset($postData['PushMessage']['tags']))
             $model->massUpdateTags($postData['PushMessage']['tags']);
         else

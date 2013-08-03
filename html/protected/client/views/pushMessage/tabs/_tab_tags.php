@@ -2,7 +2,9 @@
     <?php
     $this->widget('backend.extensions.TagSelector.TagSelector', array(
         'model' => $model,
-        'tag_types' => array('alert','organization')
+        'model_tags' => $model->tags,
+        'tag_types' => array('alert', 'organization'),
+        'display_tag_creator' => false
     ));
     ?>
 </div>
