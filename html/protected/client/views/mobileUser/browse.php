@@ -62,12 +62,12 @@ $this->widget('bootstrap.widgets.TbGridView', array(
                 (
                 'view' => array
                     (
-                    'label' => '',
+                    'label' => 'View',
                     'url' => 'Yii::app()->createUrl("mobileUser/view",array("id"=>$data["_id"]->{\'$id\'}))',
                 ),
                 'delete' => array
                     (
-                    'label' => '',
+                    'label' => 'Delete',
                     'url' => 'Yii::app()->createUrl("mobileUser/delete",array("id"=>$data["_id"]->{\'$id\'}))',
                 ),
             ),

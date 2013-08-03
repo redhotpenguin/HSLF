@@ -41,7 +41,6 @@
     </div>
     <div class="row-fluid buttons">
         <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'search   ')); ?>
-
     </div>
 
     <?php $this->endWidget(); ?>
