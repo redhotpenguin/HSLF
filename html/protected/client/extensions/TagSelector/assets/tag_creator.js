@@ -9,7 +9,6 @@ function tagCreator($){
         row += '<td><span name="deleteTagBtn" class=" btn btn-warning" >Remove</span></td>';    
         row +='</tr>';
         
-        
         if(  modelTagTable.find('tr[name="tagRow"]').length == 0){
             modelTagTable.find('tbody').after(row);
         }else{
@@ -85,16 +84,11 @@ function tagCreator($){
             if(tag.id != undefined)
                 addItem(tag.display_name, tag.id);
         });
-    },
-    createTagName = function(){
-        var value = $(this).val();
-        tagNameInput .val(value.toLowerCase().replace(/ /g,"_").replace(/\W/g, ''));
     };
     
     
     // event binding
     modelTagTable.on("click", "span[name='deleteTagBtn']", tagTableUpdated);
-    $('#new_tag_form [name="display_name"]').keyup(createTagName);
     $("#save_tag_btn").click(saveTag);
 
     // init
