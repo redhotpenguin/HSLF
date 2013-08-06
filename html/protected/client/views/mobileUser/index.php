@@ -28,7 +28,7 @@ $this->secondaryNav['name'] = 'Mobile Users';
 $this->secondaryNav['url'] = array('mobileUser/index');
 
 $this->header = 'Mobile Users';
-$this->introText = 'To see how many users are tagged with different criteria, use the filters below. After applying filters, you can export the list of users who fit that criteria by clicking “Export this Selection.” An email containing the export will be sent to you.</p><p class="helpText">To view individual user records by user ID, click the "Browse" button above. To export the entire list of users, click the "Export" button above.' ;?>
+$this->introText = 'To see how many users are tagged with different criteria, use the filters below. After applying filters, you can export the list of users who fit that criteria by clicking “Export this Selection.” An email containing the export will be sent to you. To view individual user records by user ID, click the "Browse" button above. To export the entire list of users, click the "Export" button above.' ;?>
 
 <div class = "heroUserCount">
     <h2><?php echo CHtml::link(number_format($mobile_user_count), array('mobileUser/index')); ?> users have registered with your app.</h2>
@@ -48,7 +48,7 @@ $this->introText = 'To see how many users are tagged with different criteria, us
 
         <div class="row">
             <h4>Filter by Tag</h4>         
-            <p class="helpText">To filter users by tag, begin typing a tag's display name and then choosing from the options that appear. You can add multiple tags or remove a tag by clicking "Remove," which will appear after a tag has been added.</p>
+            <p class="helpText">To filter users by tag, begin typing a tag's display name and then choose from the options that appear. You can add multiple tags or remove a tag by clicking "Remove," which will appear after a tag has been added.</p>
             <?php
             $this->widget('backend.extensions.TagSelector.TagSelector', array(
                 'model' => new MobileUser,
@@ -93,10 +93,10 @@ $this->introText = 'To see how many users are tagged with different criteria, us
     </div>
     <div id="userCountResult">
         <h2> <span id="mobile_user_count"><?php echo number_format($mobile_user_count); ?></span></h2>
-        <b>mobile users found.</b>
+        <b>mobile users found</b>
         <div class="clearfix>"></div>
         <?php
-        $this->widget('bootstrap.widgets.TbButton', array('htmlOptions' => array('id' => 'export_btn'), 'buttonType' => 'submit', 'type' => 'info', 'label' => 'Export Current Selection'));
+        $this->widget('bootstrap.widgets.TbButton', array('htmlOptions' => array('id' => 'export_btn'), 'buttonType' => 'submit', 'type' => 'info', 'label' => 'Export This Selection'));
         ?>
     </div>
 </div>
