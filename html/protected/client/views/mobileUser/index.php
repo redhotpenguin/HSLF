@@ -96,7 +96,7 @@ $this->introText = 'To see how many users are tagged with different criteria, us
         <b>mobile users found</b>
         <div class="clearfix>"></div>
         <?php
-        $this->widget('bootstrap.widgets.TbButton', array('htmlOptions' => array('id' => 'export_btn'), 'buttonType' => 'submit', 'type' => 'info', 'label' => 'Export This Selection'));
+        $this->widget('bootstrap.widgets.TbButton', array('htmlOptions' => array('id' => 'export_btn'), 'buttonType' => 'submit', 'type' => 'info', 'label' => 'Export this Selection'));
         ?>
     </div>
 </div>
