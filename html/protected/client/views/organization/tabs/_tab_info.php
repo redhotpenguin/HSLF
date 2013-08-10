@@ -30,7 +30,7 @@
         echo $form->textField($model, 'facebook_url', array('size' => 60, 'maxlength' => 1024, 'class' => 'span11'));
         echo $form->error($model, 'facebook_url');
         ?>
-        <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="Linked to from the Facebook button on the Organization Detail Page."></a>
+        <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title='Linked to from the Facebook button on the Organization Detail Page. The URL must begin with "https://". For example: https://facebook.com.'></a>
     </div>
 
 
