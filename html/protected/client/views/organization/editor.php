@@ -14,7 +14,7 @@ $this->secondaryNav['items'] = $navBarItems;
 $this->secondaryNav['name'] = 'Organizations';
 $this->secondaryNav['url'] = array('organization/index');
 
-$this->header = $model->isNewRecord ? 'Organization' : $model->name;
+$this->header = $model->isNewRecord ? 'Create Organization' : $model->name;
 ?>
 
 <div class="form">
