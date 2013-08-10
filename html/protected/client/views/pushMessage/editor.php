@@ -64,7 +64,7 @@ $this->secondaryNav['url'] = array('pushMessage/index');
     if (!$model->isNewRecord):
         ?>
         <div class="alert alert-info">
-            Updates to push messages will not affect previously sent push notifications. Changes will only be reflected in the Alert Inbox.
+Updates to push notifications will not affect previously sent push notifications. Changes will only be reflected in the Alert Inbox. If the push was sent as a broadcast to all users, the message will appear in all inboxes and that cannot be changed.
         </div>
         <?php
     endif;

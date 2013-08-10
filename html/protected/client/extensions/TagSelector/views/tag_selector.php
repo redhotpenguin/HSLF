@@ -25,7 +25,7 @@ Yii::app()->clientScript->registerScript('tag-selector-script', $ns, CClientScri
                 <?php
                 if ($helpText):
                     ?>   
-                    <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="<?php echo $helpText; ?>"></a>
+                    <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="<?php echo $helpText; ?>"  style='z-index:10;'></a>
                 </th>
                 <?php
             endif;
