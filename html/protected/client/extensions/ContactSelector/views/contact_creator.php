@@ -1,4 +1,6 @@
 <div id="new_contact_form" class="form">
+    
+    <p class="helpText">Fill in the fields below to create a new Contact. Fields with *asterisks are required. If Email or Phone Number are left blank, the buttons in the app will not be active. Click “Save” when you are done making changes or adding new content.</p>
 
     <div class="row-fluid">
 
