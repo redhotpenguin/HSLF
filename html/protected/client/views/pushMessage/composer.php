@@ -11,6 +11,8 @@ Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::
 
 $this->secondaryNav['name'] = 'Push Notification Composer';
 $this->secondaryNav['url'] = array('pushMessage/index');
+
+$this->introText = 'Create and send targeted messages to your users\' devices and save them to the Alert Inbox in the app. iOS users must manually opt in to receive notifications. Android users are automatically opted in when downloading the app. To see how many users are opted-in or have specific tags, visit the “Mobile Users” page from the “Reports” tab above.';
 ?>
 
 <?php
@@ -20,9 +22,6 @@ $form = $this->beginWidget('CActiveForm', array(
 ?>
 
 <div class="form">
-    
-    <p class="helpText">The composer allows you to create and send targeted messages to your users' devices and save them to the Alert Inbox in the app. iOS users must opt in to receive notifications, while Android users automatically opt in when downloading the app. </p>
-
     <h4 class="floatLeft leader">Message</h4>
 
     <?php
