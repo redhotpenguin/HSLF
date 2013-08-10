@@ -7,7 +7,7 @@
     echo $form->labelEx($payload, 'type');
     echo $form->dropDownList($payload, 'type', $payload->getTypeOptions());
     ?>
-    <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title='Determines what happens when the user opens a push notification. Select "None" for notifications that do not include an action. Select "Push to Post" to direct the user to a post from a notification. Select "Push to Share" to direct the user to a share screen from a notification.'></a>
+    <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title='Determines what happens when the user opens a push notification. Select “None” to include no action, “Push to Post” to direct the user to a post or “Push to Share” to direct the user to a share screen.'></a>
 
     <?php
     echo $form->error($payload, 'type');
@@ -37,16 +37,14 @@
     echo $form->labelEx($payload, 'url');
     echo $form->textField($payload, 'url', array('placeholder' => 'Example: http://www.website.com', 'size' => 60, 'maxlength' => 2048, 'class' => 'span11'));
     ?>
-    <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="Determines which link is shared via Facebook and email shares. Enter the full web address, starting with http://."></a>
-    <?php echo $form->error($payload, 'url'); ?>
+    <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="The link that is shared via Facebook and email shares. Enter the full web address starting with http://."></a>   <?php echo $form->error($payload, 'url'); ?>
 
     <div class="row-fluid">
         <?php
         echo $form->labelEx($payload, 'description');
         echo $form->textArea($payload, 'description', array('placeholder' => '', 'rows' => 6, 'cols' => 50, 'class' => 'span11'));
         ?>
-        <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="Determines the text that accompanies the link shared on Facebook (this is separate from the status update, which the user sets when sharing)."></a>
-        <?php echo $form->error($payload, 'description'); ?>
+        <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="The text that accompanies the link shared on Facebook (this is separate from the status update, which the user writes when sharing)."></a>        <?php echo $form->error($payload, 'description'); ?>
     </div>
 
     <div class="row-fluid">
@@ -54,7 +52,7 @@
         echo $form->labelEx($payload, 'tweet');
         echo $form->textArea($payload, 'tweet', array('placeholder' => '', 'rows' => 2, 'cols' => 50, 'class' => 'span11'));
         ?>
-        <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="Determines the exact content of the tweet shared on Twitter."></a>
+        <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="The exact content of the tweet shared on Twitter."></a>
         <?php echo $form->error($payload, 'tweet'); ?>
     </div>
 </div>
