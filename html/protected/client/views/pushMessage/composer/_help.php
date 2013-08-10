@@ -4,10 +4,10 @@
     <p>The text of the notification that will be sent to the user. This text will also appear as the title of the message in the Alert Inbox in the app.</p>
 
     <h3>Action</h3>
-    <p>Selecting an action will tell the phone what the push notification will do when the user opens it. In your app, tapping a notification can perform no action, open a blog post or open a share screen.</p>
-
+    <p>Selecting an action tells the phone what the push notification does when the user opens it. Tapping a notification can open a blog post, open a share screen or perform no action.</p>
+    
     <h4>Push to Post</h4>
-    <p class="indented">Opens a post within the app when the user opens the notification. You will need to know the unique numerical Post ID from your content management system (CMS). Please refer to your CMS to find instructions for locating the Post ID</p>
+    <p class="indented">Opens a post within the app when the user opens the notification. You will need to know the unique numerical Post ID from your content management system (CMS). Please refer to your CMS to find instructions for locating the Post ID.</p>
 
 
     <h4>Push to Share</h4>
