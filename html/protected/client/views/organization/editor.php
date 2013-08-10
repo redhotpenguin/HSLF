@@ -4,17 +4,17 @@ $navBarItems = array();
 if (!$model->isNewRecord) {
     array_push($navBarItems, '', array('label' => 'Create', 'url' => array('create'),
             ), '', array('label' => 'Delete', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this organization?')), '');
+
+    $this->introText = 'View and update your Organizations’ details. Fields with *asterisks are required. Click Save when you are done making changes or adding new content. Be sure to check the Organization in the app after you’ve made updates to ensure changes were made correctly. You may have to wait 30 minutes for the app to refresh before you can see these changes.';
+} else {
+    $this->introText = 'Fill in the fields on the tabs below to create a new Organization. Fields with *asterisks are required. Click Save when you are done making changes or adding new content. Be sure to check the Organization in the app after you’ve made updates to ensure changes were made correctly. You may have to wait 30 minutes for the app to refresh before you can see these changes.';
 }
 
 $this->secondaryNav['items'] = $navBarItems;
 $this->secondaryNav['name'] = 'Organizations';
 $this->secondaryNav['url'] = array('organization/index');
 
-$this->header = $model->isNewRecord? 'Organization' : $model->name;
-$this->introText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis auctor blandit tellus eget pharetra. Donec id massa sit amet felis dictum semper. Maecenas sed nisi a magna aliquet dictum. Interdum et malesuada fames ac ante ipsum primis in faucibus";
-
-
-
+$this->header = $model->isNewRecord ? 'Organization' : $model->name;
 ?>
 
 <div class="form">
@@ -76,7 +76,7 @@ $this->introText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui
 
     <div class="row buttons">
         <?php
-        //$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'Save'));
+//$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'Save'));
 
 
         if (!$model->isNewRecord) {
