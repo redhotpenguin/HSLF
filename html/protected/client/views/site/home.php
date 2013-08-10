@@ -3,8 +3,7 @@
 <div id="homepage">
     <div class="hero-unit">
         <h1><?php echo $tenantDisplayName; ?></h1>
-        <p>Welcome to your mobile app dashboard.<br/>
-            Use the drop-down navigation above or click one of the buttons below to manage your mobile app.</p>
+        <p>Welcome to your mobile app dashboard. Here you can manage communication with your app users, access and evaluate usage data and manage the content of your app. Use the drop-down navigation above or click one of the buttons below to manage your app.</p>
     </div>
 
     <div class="section-divider">
