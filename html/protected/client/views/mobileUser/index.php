@@ -27,7 +27,7 @@ $this->secondaryNav['items'] = $navBarItems;
 $this->secondaryNav['name'] = 'Mobile Users';
 $this->secondaryNav['url'] = array('mobileUser/index');
 
-$this->header = 'Mobile Users';
+$this->header = 'Mobile Users Counts';
 $this->introText = 'To see how many users are tagged with different criteria, use the filters below. After applying filters, you can export the list of users who fit that criteria by clicking “Export this Selection.” An email containing the export will be sent to you. To view individual user records by user ID, click the "Browse" button above. To export the entire list of users, click the "Export" button above.' ;?>
 
 <div class = "heroUserCount">
@@ -35,7 +35,7 @@ $this->introText = 'To see how many users are tagged with different criteria, us
 </div>
 
 <div class = "section-divider">
-    <h3>filters</h3>
+    <h3>Filters Users</h3>
 </div>
 
 <div class="form">
@@ -59,7 +59,7 @@ $this->introText = 'To see how many users are tagged with different criteria, us
         </div>
 
         <div class="row">
-            <h4>Filter by Device:</h4>
+            <h4>Filter by Device</h4>
             <?php
             echo CHtml::dropDownList("device_type", "device_type", array("" => "Any", "ios" => "iOS", "android" => "Android"));
             ?>

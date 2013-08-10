@@ -58,7 +58,7 @@ Yii::app()->clientScript->registerScript('tag-selector-script', $ns, CClientScri
         <tr>
             <td colspan="2">  
                 <?php
-                echo CHtml::textField('searchTag', null, array('placeholder' => 'Start entering a tag name', 'class' => 'span10 ui-autocomplete-input', 'autocomplete' => 'off'));
+                echo CHtml::textField('searchTag', null, array('placeholder' => 'Start entering a tag name to choose from options.', 'class' => 'span10 ui-autocomplete-input', 'autocomplete' => 'off'));
                 ?>
             </td>    
         </tr>
