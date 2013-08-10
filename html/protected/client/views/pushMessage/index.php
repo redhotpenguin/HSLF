@@ -13,11 +13,7 @@ $this->secondaryNav['name'] = 'Push Notifications';
 $this->secondaryNav['url'] = array('pushMessage/index');
 
 $this->header = 'History';
-$this->introText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis auctor blandit tellus eget pharetra. Donec id massa sit amet felis dictum semper. Maecenas sed nisi a magna aliquet dictum. Interdum et malesuada fames ac ante ipsum primis in faucibus";
-?>
-
-
-<?php
+$this->introText = 'Below is the history of all push notifications you have sent. To filter the history by message title, type in the search bar and press enter. You can also filter using the calendar and drop down menus or order the notifications by clicking the words “Message,” “Creation Date” or “Recipient.” To export a full history of notifications and their details, click the “Export” button above.</p><p class="helpText">Click the "Stats" icon to see more details about a notification. Click the "Update" or “Delete” icon to edit the text of a message in the Alert Inbox or remove a notification from the Alert Inbox. To send a new push notification, click the “New Message” button above.</p>';
 
 $this->widget('backend.extensions.ExtendedWidgets.GridView', array(
     'id' => 'push-message-grid',
