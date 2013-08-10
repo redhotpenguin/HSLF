@@ -73,7 +73,7 @@ class MobileUser extends ActiveMongoDocument {
         }
 
         if ($this->name != "") {
-            $criteria['name'] =  new MongoRegex("/{$this->name}/i");
+            $criteria['name'] = new MongoRegex("/{$this->name}/i");
         }
 
         if ($this->districts != "") {
@@ -86,6 +86,10 @@ class MobileUser extends ActiveMongoDocument {
 
         if ($this->_id != "") {
             $criteria['_id'] = new MongoId($this->_id);
+        }
+
+        if ($this->app_version != "") {
+            $criteria['app_version'] = $this->app_version;
         }
 
         $cursor = MobileUser::model()->find($criteria); // $cursor acts as a Cdbcriteria
@@ -155,6 +159,13 @@ class MobileUser extends ActiveMongoDocument {
 
 
         return $this->group($keys, $initial, $reduce, $conditions);
+    }
+
+    public static function getDeviceTypes() {
+        return array(
+            'ios' => 'iOs',
+            'android' => 'Android',
+        );
     }
 
 }
