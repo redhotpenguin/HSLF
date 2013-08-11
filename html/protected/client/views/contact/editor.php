@@ -4,16 +4,16 @@ if (!$model->isNewRecord) {
     array_push($navBarItems, '', array('label' => 'Create', 'url' => array('create'),
             ), '', array('label' => 'Delete', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this contact?')), '');
 
-    $this->introText = 'View and update a Contact’s details. Fields with *asterisks are required. If Email or Phone Number are left blank, the buttons in the app will not be active. Click "Save" when you are done making changes or adding new content.';
+    $this->introText = 'View and update a Contact’s details. Fields with *asterisks are required. If Email or Phone Number is left blank, the buttons in the app will not be active. Click "Save" when you are done making changes or adding new content.';
 } else {
-    $this->introText = 'Fill in the fields below to create a new Contact. Fields with *asterisks are required. If Email or Phone Number are left blank, the buttons in the app will not be active. Click “Save” when you are done making changes or adding new content.';
+    $this->introText = 'Fill in the fields below to create a new Contact. Fields with *asterisks are required. If Email or Phone Number is left blank, the buttons in the app will not be active. Click “Save” when you are done making changes or adding new content.';
 }
 
 $this->secondaryNav['items'] = $navBarItems;
 $this->secondaryNav['name'] = 'Contacts';
 $this->secondaryNav['url'] = array('contact/index');
 
-$this->header = $model->isNewRecord ? 'Contact' : $model->first_name;
+$this->header = $model->isNewRecord ? 'Contact' : "{$model->first_name} {$model->last_name}";
 ?>
 
 <div class="form">
