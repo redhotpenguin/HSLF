@@ -97,7 +97,7 @@ $this->beginWidget(
     'id' => 'modalResourcesHelp',
     'autoOpen' => false,
     'htmlOptions' => array(
-        'style' => 'width:50%;left:40%',
+        'style' => 'height:75%;overflow:auto;width: 960px; left:40%;'
     ),
 ));
 ?>

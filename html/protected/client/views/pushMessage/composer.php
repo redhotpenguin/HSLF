@@ -83,7 +83,7 @@ $this->beginWidget(
     'id' => 'modalHelp',
     'autoOpen' => false,
     'htmlOptions' => array(
-        'style' => 'height:700px;overflow:auto;width: 960px; left:40%;'
+        'style' => 'height:75%;overflow:auto;width: 960px; left:40%;'
     ),
 ));
 ?>
