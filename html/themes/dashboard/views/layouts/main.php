@@ -227,8 +227,6 @@
             <div class="row-fluid">
 
                 <div class="span12">
-                  
-
                     <?php
                     
                     if($this->header){
@@ -238,10 +236,8 @@
                     if($this->introText){
                         echo "<div class='introSection'><p class='helpText'>{$this->introText}</p></div>";
                     }
-   
-                              
+    
                     echo $content;
-
 
                     if (Yii::app()->user->hasFlash('success')):
                         ?>
@@ -265,15 +261,10 @@
 
                 </div>
             </div>
-
-
-
-
         </div><!-- container-->
         <footer class="footer" id="footer"> 
             Copyright &copy; <?php echo date('Y'); ?> by Winning Mark - All Rights Reserved
         </footer><!-- footer -->
-
 
     </body>
 </html>

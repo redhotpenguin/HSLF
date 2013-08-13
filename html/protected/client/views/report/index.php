@@ -95,9 +95,9 @@ $this->widget('bootstrap.widgets.TbButton', array(
 $this->beginWidget(
         'bootstrap.widgets.TbModal', array(
     'id' => 'modalResourcesHelp',
-    'autoOpen' => false,
+    'autoOpen' => true,
     'htmlOptions' => array(
-        'style' => 'height:75%;overflow:auto;width: 80%; left:40%;'
+        'class' => 'modalHelp'
     ),
 ));
 ?>

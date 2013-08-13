@@ -219,3 +219,11 @@ h4{
 .introSection{
     margin-bottom:15px;
 }
+
+div.modalHelp{
+   height:75%;
+   overflow:auto;
+   width: 85%; 
+   max-width:960px;
+   left:35%;
+}
