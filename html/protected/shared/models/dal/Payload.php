@@ -56,8 +56,7 @@ class Payload extends BaseActiveRecord {
             array('type', 'length', 'max' => 16),
             array('url', 'url'),
             array('email', 'email'),
-            array('id, url, title, description, tweet, email', 'safe', 'on' => 'update,insert'),
-            array('id, url, title, description, tweet, email', 'safe', 'on' => 'search'),
+            array('id, url, title, description, tweet, email', 'safe'),
         );
     }
 
