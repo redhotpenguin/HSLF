@@ -71,7 +71,13 @@ $this->widget('backend.extensions.ExtendedWidgets.GridView', array(
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
             'template' => '{view}{update}{delete}',
-        //   'htmlOptions' => array('style' => 'vertical-align: middle;'),
+            'buttons' => array
+                (
+                'view' => array(
+                    'label' => 'Stats',
+                    'icon' => 'icon-signal'
+                )
+            )
         ),
     ),
     'afterAjaxUpdate' => 'function reinstallDatePicker(id, data) { $("#datepicker_for_creation_date").datepicker();}',
