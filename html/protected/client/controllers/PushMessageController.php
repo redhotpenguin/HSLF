@@ -23,7 +23,7 @@ class PushMessageController extends CrudController {
 
         $pushMessage = new PushMessage;
 
-        $pushMessage->creation_date = date('Y-m-d h:i:s');
+        $pushMessage->creation_date = date('Y-m-d H:i:s');
 
         $this->setModel($pushMessage);
         $this->setFriendlyModelName('Push Message');
@@ -64,7 +64,7 @@ class PushMessageController extends CrudController {
             $pushMessage->attributes = $_POST['PushMessage'];
             $payload->attributes = $_POST['Payload'];
 
-            $pushMessage->creation_date = date('Y-m-d h:i:s');
+            $pushMessage->creation_date = date('Y-m-d H:i:s');
             $pushMessage->payload_id = 0;
             $pushMessage->recipient_type = $recipientType;
 
