@@ -81,7 +81,7 @@ $this->endWidget();
 $this->beginWidget(
         'bootstrap.widgets.TbModal', array(
     'id' => 'modalHelp',
-    'autoOpen' => true,
+    'autoOpen' => false,
     'htmlOptions' => array(
         'class' => 'modalHelp'
     ),

@@ -95,7 +95,7 @@ $this->widget('bootstrap.widgets.TbButton', array(
 $this->beginWidget(
         'bootstrap.widgets.TbModal', array(
     'id' => 'modalResourcesHelp',
-    'autoOpen' => true,
+    'autoOpen' => false,
     'htmlOptions' => array(
         'class' => 'modalHelp'
     ),
