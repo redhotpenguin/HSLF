@@ -163,11 +163,15 @@ h4{
 }
 
 .fourth{
-    width:25%;
+    width:24%;
+    margin-left: 6px;
+    margin-right: 5px;
 }
 
 .third{
-    width:33%;
+    width:32%;
+    margin-left: 8px;
+    margin-right: 7px;
 }
 
 
@@ -229,9 +233,9 @@ h4{
 }
 
 div.modalHelp{
-   height:75%;
-   overflow:auto;
-   width: 85%; 
-   max-width:960px;
-   left:35%;
+    height:75%;
+    overflow:auto;
+    width: 85%; 
+    max-width:960px;
+    left:35%;
 }
