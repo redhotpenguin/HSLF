@@ -3,7 +3,13 @@ $navBarItems = array();
 
 if (!$model->isNewRecord) {
     array_push($navBarItems, '', array('label' => 'Create', 'url' => array('create'),
-            ), '', array('label' => 'Delete', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this organization?')), '');
+            ), '');
+
+    $this->headerButton = Chtml::linkButton('Remove', array(
+                'class' => 'btn btn-warning',
+                'submit' => array('delete', 'id' => $model->id),
+                'confirm' => 'Are you sure you want to delete this organization?'
+            ));
 
     $this->introText = 'View and update your Organization’s details. Fields with *asterisks are required. Click "Save" when you are done making changes or adding new content. Be sure to check the Organization in the app after you’ve made updates to ensure changes were made correctly. You may have to wait 30 minutes for the app to refresh before you can see these changes.';
 } else {

@@ -227,16 +227,22 @@
             <div class="row-fluid">
 
                 <div class="span12">
+                    <div class="clearfix" id="pageHeader">
                     <?php
-                    
-                    if($this->header){
-                        echo "<h4>{$this->header}</h4>";
+                    if ($this->header) {
+                        echo "<h4 id='pageHeaderTitle'>{$this->header}</h4>";
                     }
-                    
-                    if($this->introText){
+
+                    if ($this->headerButton) {
+                        echo "<div id='pageHeaderButton'>$this->headerButton</div>";
+                    }
+                    ?>
+                    </div>
+                    <?php
+                    if ($this->introText) {
                         echo "<div class='introSection'><p class='helpText'>{$this->introText}</p></div>";
                     }
-    
+
                     echo $content;
 
                     if (Yii::app()->user->hasFlash('success')):

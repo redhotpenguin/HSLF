@@ -33,6 +33,14 @@ html,body
     margin-bottom:10px;
 }
 
+#container #pageHeader #pageHeaderTitle{
+    float:left;
+}
+
+#container #pageHeader #pageHeaderButton{
+    float:right;
+}
+
 body{
     background: #F0EDE4 url('/themes/dashboard/img/white-noise.png') top right repeat !important;
 }
