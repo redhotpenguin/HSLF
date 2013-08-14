@@ -6,26 +6,78 @@
         <p>Welcome to your mobile app dashboard. Here you can manage communication with your app users, access and evaluate usage data and manage the content of your app. Use the drop-down navigation above or click one of the buttons below to manage your app.</p>
     </div>
 
-    <div class="section-divider">
-        <h3>Manage</h3>
-    </div>
-
-
-    <div class="action_group">
-        <?php
-        if (Yii::app()->user->hasPermission('manageMobileUsers')) {
-            echo CHtml::link('Mobile Users', array('mobileUser/index'), array('class' => 'action_block third'));
-            echo CHtml::link('App Usage', array('report/index'), array('class' => 'action_block third'));
-        }
-        if (Yii::app()->user->hasPermission('managePushMessages')) {
-            echo CHtml::link('Push Notifications', array('pushMessage/index'), array('class' => 'action_block third'));
-        }
+    <?php
+    if (Yii::app()->user->hasPermission('managePushMessages')):
         ?>
-    </div>
+        <div class="section-divider clearfix">
+            <h3>Communicate</h3>
+        </div>
 
-    <div class="clearfix"></div>
+        <div class = "action_group clearfix">
+            <?php
+            echo CHtml::link('Push Notifications', array('pushMessage/index'), array('class' => 'action_block whole'));
+            ?>
+        </div>
+        <?php
+    endif;
 
-    <?php if (Yii::app()->user->hasPermission('manageMobileUsers')): ?>
+    if (Yii::app()->user->hasPermission('manageMobileUsers')) :
+        ?>
+
+        <div class="section-divider clearfix">
+            <h3>Evaluate</h3>
+        </div>
+        <div class="action_group clearfix">
+            <?php
+            echo CHtml::link('App Usage', array('report/index'), array('class' => 'action_block half'));
+            echo CHtml::link('Mobile Users', array('mobileUser/index'), array('class' => 'action_block half'));
+            ?>
+        </div>
+        <?php
+    endif;
+
+    $canManageOrganizations = Yii::app()->user->hasPermission('manageOrganizations');
+    $canManageContacts = Yii::app()->user->hasPermission('manageContacts');
+    $canManageTags = Yii::app()->user->hasPermission('manageTags');
+
+    // dynamic block size
+    $manageBlockNumber = 0;
+    $manageBlockNumber += $canManageOrganizations ? 1 : 0;
+    $manageBlockNumber += $canManageContacts ? 1 : 0;
+    $manageBlockNumber += $canManageTags ? 1 : 0;
+    $classBlock = 'whole';
+
+    if ($manageBlockNumber == 3) {
+        $classBlock = 'third';
+    } elseif ($manageBlockNumber == 2) {
+        $classBlock = 'half';
+    }
+
+    if ($manageBlockNumber > 0):
+        ?>
+
+        <div class="action_group clearfix">
+
+            <div class="section-divider">
+                <h3>Manage</h3>
+            </div>
+            <?php
+            if ($canManageOrganizations) {
+                echo CHtml::link('Organizations', array('organization/index'), array('class' => "action_block $classBlock"));
+            }
+            if ($canManageContacts) {
+                echo CHtml::link('Contacts', array('contact/index'), array('class' => "action_block $classBlock"));
+            }
+            if ($canManageTags) {
+                echo CHtml::link('Tags', array('tag/index'), array('class' => "action_block $classBlock"));
+            }
+            ?>
+        </div>
+        <?php
+    endif;
+
+    if (Yii::app()->user->hasPermission('manageMobileUsers')):
+        ?>
 
         <div class = "section-divider">
             <h3>Did you know?</h3>

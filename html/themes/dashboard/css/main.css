@@ -162,10 +162,15 @@ h4{
     box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
-.fourth{
-    width:24%;
-    margin-left: 6px;
-    margin-right: 5px;
+/* block sizes*/
+.whole{
+    width:99%;
+
+}
+.half{
+    width:48%;
+    margin-right: 11px;
+    margin-left: 12px;
 }
 
 .third{
@@ -173,6 +178,13 @@ h4{
     margin-left: 8px;
     margin-right: 7px;
 }
+
+.fourth{
+    width:24%;
+    margin-left: 6px;
+    margin-right: 5px;
+}
+
 
 
 .action_group .action_block:hover{
