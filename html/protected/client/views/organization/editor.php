@@ -5,8 +5,8 @@ if (!$model->isNewRecord) {
     array_push($navBarItems, '', array('label' => 'Create', 'url' => array('create'),
             ), '');
 
-    $this->headerButton = Chtml::linkButton('Remove', array(
-                'class' => 'btn btn-warning',
+    $this->headerButton = Chtml::linkButton('Delete', array(
+                'class' => 'btn btn-danger',
                 'submit' => array('delete', 'id' => $model->id),
                 'confirm' => 'Are you sure you want to delete this organization?'
             ));
