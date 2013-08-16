@@ -89,7 +89,7 @@ class Contact extends BaseActiveRecord {
      * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
      */
     public function search() {
-        $criteria = new CDbCriteria;
+        $criteria = new CDbCriteriaInsensitive;
 
         $criteria->compare('id', $this->id);
         $criteria->compare('first_name', $this->first_name, true);
