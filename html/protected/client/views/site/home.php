@@ -1,4 +1,18 @@
-<?php $this->pageTitle = Yii::app()->name; ?>
+<?php $this->pageTitle = Yii::app()->name; 
+
+// UI Helper
+function getBlockClassSize($number) {
+        $classBlock = 'whole';
+
+        if ($number == 3) {
+            $classBlock = 'third';
+        } elseif ($number == 2) {
+            $classBlock = 'half';
+        }
+        
+        return $classBlock;
+    }
+?>
 
 <div id="homepage">
     <div class="hero-unit">
@@ -7,17 +21,38 @@
     </div>
 
     <?php
-    if (Yii::app()->user->hasPermission('managePushMessages')):
+    $canManagePushMessages = Yii::app()->user->hasPermission('managePushMessages');
+    $canManagePayloads = Yii::app()->user->hasPermission('managePayloads');
+    $canManageAlertTypes = Yii::app()->user->hasPermission('manageAlertTypes');
+
+    // communicate section dynamic block size
+    $communicateBlockNumber = 0;
+    $communicateBlockNumber += $canManagePushMessages ? 1 : 0;
+    $communicateBlockNumber += $canManagePayloads ? 1 : 0;
+    $communicateBlockNumber += $canManageAlertTypes ? 1 : 0;
+    $classBlockSize = getBlockClassSize($communicateBlockNumber);
+
+    if ($communicateBlockNumber > 0):
         ?>
         <div class="section-divider clearfix">
             <h3>Communicate</h3>
         </div>
 
+
         <div class = "action_group clearfix">
             <?php
-            echo CHtml::link('Push Notifications', array('pushMessage/index'), array('class' => 'action_block whole'));
+            if ($canManagePushMessages) {
+                echo CHtml::link('Push Notifications', array('pushMessage/index'), array('class' => "action_block $classBlockSize"));
+            }
+            if ($canManagePayloads) {
+                echo CHtml::link('Payloads', array('payload/index'), array('class' => "action_block $classBlockSize"));
+            }
+            if ($canManageAlertTypes) {
+                echo CHtml::link('Alert Type', array('pushMessage/index'), array('class' => "action_block $classBlockSize"));
+            }
             ?>
         </div>
+
         <?php
     endif;
 
@@ -40,18 +75,14 @@
     $canManageContacts = Yii::app()->user->hasPermission('manageContacts');
     $canManageTags = Yii::app()->user->hasPermission('manageTags');
 
-    // dynamic block size
+    // manage section dynamic block size
     $manageBlockNumber = 0;
     $manageBlockNumber += $canManageOrganizations ? 1 : 0;
     $manageBlockNumber += $canManageContacts ? 1 : 0;
     $manageBlockNumber += $canManageTags ? 1 : 0;
-    $classBlock = 'whole';
-
-    if ($manageBlockNumber == 3) {
-        $classBlock = 'third';
-    } elseif ($manageBlockNumber == 2) {
-        $classBlock = 'half';
-    }
+    $classBlock = getBlockClassSize($manageBlockNumber);
+    
+    
 
     if ($manageBlockNumber > 0):
         ?>
