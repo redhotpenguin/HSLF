@@ -15,7 +15,7 @@ function composer($){
     segmentChoice = $("#segmentChoice"),
     segmentSelectInput = $("#segmentSelectInput"),
     singleDeviceChoice = $("#singleDeviceChoice"),
-    payloadTypeHelp = $("#payloadTypeHelp"),
+    payloadTitleHelp = $("#payloadTitleHelp"),
     updatePayloadType = function(){
         var type = this.value;
         
@@ -26,15 +26,15 @@ function composer($){
         if(type == 'share'){
             shareRelatedInputs.show();
             payloadTitleExplanation.html('Text that will be used for: the preview text on the share screen, the title of the shared item on Facebook and the subject line in the email share');
-            payloadTypeHelp.attr('data-original-title', pushcomposer_ns.action_help.share);
+            payloadTitleHelp.attr('data-original-title', pushcomposer_ns.action_help.share);
         }else if(type == 'post'){
             postRelatedInputs.show();
             payloadTitleExplanation.html('Title of the post being shared');
-            payloadTypeHelp.attr('data-original-title', pushcomposer_ns.action_help.post);
+            payloadTitleHelp.attr('data-original-title', pushcomposer_ns.action_help.post);
         }
         else{
             payloadTitleSection.hide();
-            payloadTypeHelp.attr('data-original-title', pushcomposer_ns.action_help.none);
+            payloadTitleHelp.attr('data-original-title', pushcomposer_ns.action_help.none);
         }
         
     },
