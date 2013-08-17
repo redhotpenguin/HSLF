@@ -5,7 +5,17 @@ $cs->registerScriptFile($baseUrl . '/static/pushcomposer/pushcomposer.js');
 $cs->registerCssFile($baseUrl . '/static/pushcomposer/pushcomposer.css');
 $tenant = Yii::app()->user->getLoggedInUserTenant();
 $controller_url = Yii::app()->params['site_url'] . '/client/' . $tenant->name;
-$ns = "var pushcomposer_ns  = {controller_url: '" . $controller_url . "/pushMessage'};";
+
+$ns = array(
+    'controller_url' => $controller_url . "/pushMessage",
+    'action_help' => array(
+        'none' => '',
+        'share' => 'The text that will appear as the preview text on the share screen, the title of the shared item on Facebook and the subject line in the email share.',
+        'post' => 'The title of the post being shared. This stores the action in the dashboard.'
+    )
+);
+
+$ns = 'var pushcomposer_ns = ' . json_encode($ns);
 
 Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::POS_HEAD);
 
@@ -15,7 +25,7 @@ $this->secondaryNav['url'] = array('pushMessage/index');
 $this->header = "Push Notification Composer";
 
 $mobileUserPageLink = Chtml::link("“Mobile Users”", array('mobileUser/index'));
-$this->introText = 'Create and send targeted messages to your users\' devices and save them to the Alert Inbox in the app. iOS users must manually opt in to receive notifications. Android users are automatically opted in when downloading the app. To see how many users are opted-in or have specific tags, visit the '. $mobileUserPageLink .' page from the “Reports” tab above.';
+$this->introText = 'Create and send targeted messages to your users\' devices and save them to the Alert Inbox in the app. iOS users must manually opt in to receive notifications. Android users are automatically opted in when downloading the app. To see how many users are opted-in or have specific tags, visit the ' . $mobileUserPageLink . ' page from the “Reports” tab above.';
 ?>
 
 <?php

@@ -7,7 +7,7 @@
     echo $form->labelEx($payload, 'type');
     echo $form->dropDownList($payload, 'type', $payload->getTypeOptions());
     ?>
-    <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title='Determines what happens when the user opens a push notification. Select “None” to include no action, “Push to Post” to direct the user to a post or “Push to Share” to direct the user to a share screen.'></a>
+    <a href="#" id="payloadTypeHelp" class="icon-question-sign" rel="tooltip" data-placement="right"></a>
 
     <?php
     echo $form->error($payload, 'type');
