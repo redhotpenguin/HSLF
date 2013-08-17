@@ -15,14 +15,20 @@ $this->secondaryNav['items'] = $navBarItems;
 $this->secondaryNav['name'] = 'Tags';
 $this->secondaryNav['url'] = array('tag/index');
 
-$this->widget('bootstrap.widgets.TbGridView', array(
+$this->widget('backend.extensions.ExtendedWidgets.GridView', array(
     'id' => 'tag-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
     'type' => 'striped',
     'columns' => array(
-        'name',
-        'display_name',
+        array(
+            'name' => 'name',
+            'placeholder' => 'Search by Name',
+        ),
+        array(
+            'name' => 'display_name',
+            'placeholder' => 'Search by Display Name',
+        ),
         array(
             'name' => 'type',
             'filter' => CHtml::dropDownList('Tag[type]', $model->type, array("" => 'Any') + Tag::model()->getTagTypes()),
