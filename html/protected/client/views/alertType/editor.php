@@ -17,44 +17,56 @@ $this->secondaryNav['url'] = array('alertType/index');
 ?>
 <div class="form">
 
-<?php
-$form = $this->beginWidget('CActiveForm', array(
-    'id' => 'alert-type-form',
-    'enableAjaxValidation' => false,
-    'htmlOptions' => array(
-        'class' => 'form-vertical'),
-        ));
-?>
+    <?php
+    $form = $this->beginWidget('CActiveForm', array(
+        'id' => 'alert-type-form',
+        'enableAjaxValidation' => false,
+        'htmlOptions' => array(
+            'class' => 'form-vertical'),
+            ));
+    ?>
 
     <?php echo $form->errorSummary($model); ?>
 
     <div class="">
-<?php echo $form->labelEx($model, 'display_name'); ?>
-        <?php echo $form->textField($model, 'display_name', array('size' => 60, 'maxlength' => 1024)); ?>
-        <?php echo $form->error($model, 'display_name'); ?>
+        <?php
+        echo $form->labelEx($model, 'display_name');
+        echo $form->textField($model, 'display_name', array('size' => 60, 'maxlength' => 1024));
+        ?>
+        <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="Displayed next to the interest switch in the app. To display properly, there is a 21 character limit. For example: “Political Action”"></a>
+        <?php
+        echo $form->error($model, 'display_name');
+        ?>
     </div>
 
     <div class="">
-<?php echo $form->labelEx($model, 'category'); ?>
-        <?php echo $form->textField($model, 'category', array('size' => 60, 'maxlength' => 512, 'placeholder' => 'Ex: organization')); ?>
-        <?php echo $form->error($model, 'category'); ?>
+        <?php
+        echo $form->labelEx($model, 'category');
+        echo $form->textField($model, 'category', array('size' => 60, 'maxlength' => 512, 'placeholder' => 'Ex: alert'));
+        ?>
+        <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="Enter the word “alert.”"></a>
+
+<?php echo $form->error($model, 'category'); ?>
     </div>
 
     <div class="">
-<?php
-echo $form->labelEx($model, 'tag_id');
-$tagList = CHtml::listData(Tag::model()->findAllByAttributes(array('type' => 'alert')), 'id', 'name');
-echo $form->dropDownList($model, 'tag_id', $tagList);
-echo $form->error($model, 'tag_id');
-?>
+        <?php
+        echo $form->labelEx($model, 'tag_id');
+        $tagList = CHtml::listData(Tag::model()->findAllByAttributes(array('type' => 'alert')), 'id', 'name');
+        echo $form->dropDownList($model, 'tag_id', $tagList);
+        ?>
+        <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="Choose the tag that will be assigned to the user when the interest switch is turned on."></a>
+        <?php
+        echo $form->error($model, 'tag_id');
+        ?>
     </div>
 
     <div class="buttons">
 <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'Save')); ?>
     </div>
 
-<?php
-$this->endWidget();
-?>
+    <?php
+    $this->endWidget();
+    ?>
 
 </div><!-- form -->
