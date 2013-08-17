@@ -241,7 +241,7 @@ h4{
 }
 
 div.modalHelp{
-    height:75%;
+    max-height:75%;
     overflow:auto;
     width: 85%; 
     max-width:960px;
