@@ -27,10 +27,10 @@ $this->secondaryNav['name'] = 'Mobile Users';
 $this->secondaryNav['url'] = array('mobileUser/index');
 ?>
 <div class = "heroUserCount">
-    <h2><?php echo CHtml::link(number_format($mobile_user_count), array('mobileUser/index')); ?> users have registered with your app.</h2>
+    <h2><?php echo CHtml::link(number_format($mobile_user_count), array('mobileUser/browse')); ?> users have registered with your app</h2>
 </div>
 
-<p class="helpText">To see how many users are tagged with different criteria, use the filters below. After applying filters, you can export the list of users who fit that criteria by clicking “Export this Selection.” An email containing the export will be sent to you. To view individual user records by user ID, click the "Browse" button above. To export the entire list of users, click the "Export" button above.</p>
+<p class="helpText">To see how many users are tagged with different criteria, use the filters below. After applying filters, you can export the list of users who fit that criteria by clicking “Export Filtered Users”. An email containing the export will be sent to you. To view individual user records by user ID, click the "Browse" button above. To export the entire list of users, click the "Export" button above.</p>
 
 <div class = "section-divider">
     <h3>Filter Users</h3>
@@ -96,7 +96,7 @@ $this->secondaryNav['url'] = array('mobileUser/index');
     <div  class="heroUserCount" id="userCountResult">
         <h2> <span id="mobile_user_count"><?php echo number_format($mobile_user_count); ?></span> mobile users found</h2>
         <?php
-        $this->widget('bootstrap.widgets.TbButton', array('htmlOptions' => array('id' => 'export_btn'), 'buttonType' => 'submit', 'type' => 'info', 'label' => 'Export this Selection'));
+        $this->widget('bootstrap.widgets.TbButton', array('htmlOptions' => array('id' => 'export_btn'), 'buttonType' => 'submit', 'type' => 'info', 'label' => 'Export Filtered Users'));
         ?>
     </div>
 </div>
