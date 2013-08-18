@@ -1,5 +1,6 @@
 <?php
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/static/mobileuser/mobile_user.js');
+Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . '/static/mobileuser/mobile_user.css');
 
 
 $tenant = Yii::app()->user->getLoggedInUserTenant();
@@ -9,9 +10,7 @@ $action_url = Yii::app()->params['site_url'] . '/client/' . $tenant->name;
 
 $ns = "var ns  = {action_url: '" . $action_url . "'};";
 
-
 Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::POS_HEAD);
-
 
 
 $navBarItems = array(
@@ -26,13 +25,12 @@ $navBarItems = array(
 $this->secondaryNav['items'] = $navBarItems;
 $this->secondaryNav['name'] = 'Mobile Users';
 $this->secondaryNav['url'] = array('mobileUser/index');
-
-$this->header = 'Mobile User Counts';
-$this->introText = 'To see how many users are tagged with different criteria, use the filters below. After applying filters, you can export the list of users who fit that criteria by clicking “Export this Selection.” An email containing the export will be sent to you. To view individual user records by user ID, click the "Browse" button above. To export the entire list of users, click the "Export" button above.' ;?>
-
+?>
 <div class = "heroUserCount">
     <h2><?php echo CHtml::link(number_format($mobile_user_count), array('mobileUser/index')); ?> users have registered with your app.</h2>
 </div>
+
+<p class="helpText">To see how many users are tagged with different criteria, use the filters below. After applying filters, you can export the list of users who fit that criteria by clicking “Export this Selection.” An email containing the export will be sent to you. To view individual user records by user ID, click the "Browse" button above. To export the entire list of users, click the "Export" button above.</p>
 
 <div class = "section-divider">
     <h3>Filter Users</h3>
@@ -60,9 +58,17 @@ $this->introText = 'To see how many users are tagged with different criteria, us
 
         <div class="row">
             <h4>Filter by Device</h4>
-            <?php
-            echo CHtml::dropDownList("device_type", "device_type", array("" => "Any", "ios" => "iOS", "android" => "Android"));
-            ?>
+            <div class="inlineRadioGroup">
+                <?php
+                echo CHtml::radioButtonList(
+                        "device_type", "", array("" => "Any", "ios" => "iOS", "android" => "Android"), array('separator' => '',
+                    'class' => 'inlineInput',
+                    'labelOptions' => array(
+                        'class' => 'inlineLabel'
+                        ))
+                );
+                ?>
+            </div>
         </div>
 
 
@@ -83,18 +89,12 @@ $this->introText = 'To see how many users are tagged with different criteria, us
 
 </div>
 
-<div class = "section-divider">
-    <h3>Result</h3>
-</div>
-
-<div class="heroUserCount">
+<div class="heroUserCount" id="searchResultContainer">
     <div id="userCountLoader"  style="display:none;">
         <h2>Searching...</h2>
     </div>
-    <div id="userCountResult">
-        <h2> <span id="mobile_user_count"><?php echo number_format($mobile_user_count); ?></span></h2>
-        <b>mobile users found</b>
-        <div class="clearfix>"></div>
+    <div  class="heroUserCount" id="userCountResult">
+        <h2> <span id="mobile_user_count"><?php echo number_format($mobile_user_count); ?></span> mobile users found</h2>
         <?php
         $this->widget('bootstrap.widgets.TbButton', array('htmlOptions' => array('id' => 'export_btn'), 'buttonType' => 'submit', 'type' => 'info', 'label' => 'Export this Selection'));
         ?>

@@ -246,3 +246,16 @@ div.modalHelp{
     max-width:960px;
     left:35%;
 }
+
+
+div.inlineRadioGroup input.inlineInput{
+    display: inline-block;
+    margin: 2px 0px 0 5px;
+    vertical-align: top;
+}
+
+div.inlineRadioGroup label.inlineLabel{
+    display:inline-block;
+    padding-right: 15px;
+    margin:0;
+}

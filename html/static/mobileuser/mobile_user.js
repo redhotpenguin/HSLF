@@ -29,7 +29,7 @@ function mobileUser($){
         submitForm(ns.action_url + '/mobileUser/getCount', function(count){
             mobileUserCount.html(count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
             userCountLoadingSection.hide();
-            userCountResultSection.show();
+            userCountResultSection.fadeIn(300);
         });
     };
     

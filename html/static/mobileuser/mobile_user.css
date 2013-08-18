@@ -1,0 +1,9 @@
+#export_btn{
+    top: -40px;
+    position: relative;
+    float: right;
+}
+
+#searchResultContainer{
+    height:75px;
+}
