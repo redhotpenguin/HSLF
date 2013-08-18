@@ -22,12 +22,12 @@ $this->widget('backend.extensions.ExtendedWidgets.GridView', array(
     'type' => 'striped',
     'columns' => array(
         array(
-            'name' => 'name',
-            'placeholder' => 'Search by Name',
-        ),
-        array(
             'name' => 'display_name',
             'placeholder' => 'Search by Display Name',
+        ),
+        array(
+            'name' => 'name',
+            'placeholder' => 'Search by Name',
         ),
         array(
             'name' => 'type',

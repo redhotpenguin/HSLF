@@ -79,7 +79,7 @@
 
 
                     if (Yii::app()->user->hasPermission('manageAlertTypes'))
-                        array_push($communicationMenuItems, array('label' => 'Alert types', 'url' => array('/alertType/index')));
+                        array_push($communicationMenuItems, array('label' => 'Alert Types', 'url' => array('/alertType/index')));
 
                     if (Yii::app()->user->hasPermission('managePayloads'))
                         array_push($communicationMenuItems, array('label' => 'Payloads', 'url' => array('/payload/index')));
