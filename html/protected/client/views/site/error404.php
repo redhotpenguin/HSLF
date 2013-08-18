@@ -3,12 +3,18 @@
     <div class="clearfix"></div>
     <p class="reason">
         <?php
-        if (isset($error['message']))
+        if (isset($error['message'])):
             echo $error['message'];
-        else
-            echo 'This is not the page you are looking for.';
-        ?>
-    </p>
+        else :
+            ?>
+        <p>  This is not the page you are looking for. <br/>
+            These may be the droids you are looking for.
+        </p>
+        <iframe width="620" height="340" src="https://www.youtube.com/embed/g5VR4wdGeRg?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
+    <?php
+    endif;
+    ?>
+</p>
 
 
 
