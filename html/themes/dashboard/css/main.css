@@ -162,8 +162,7 @@ h4{
 
 /* block sizes*/
 .whole{
-    width:99%;
-
+    width:96%;
 }
 .half{
     width:47%;
@@ -258,4 +257,8 @@ div.inlineRadioGroup label.inlineLabel{
     display:inline-block;
     padding-right: 15px;
     margin:0;
+}
+
+.tenantGroup .action_block{
+    margin-top:15px;
 }
