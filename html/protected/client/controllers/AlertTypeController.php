@@ -5,7 +5,9 @@ class AlertTypeController extends CrudController {
     
     public function __construct(){
         parent::__construct('alertType');
-        $this->setModel(new AlertType);
+        $alertType = new AlertType;
+        $alertType->category = 'alert';
+        $this->setModel($alertType);
         $this->setFriendlyModelName('Alert Type');
     }
 }

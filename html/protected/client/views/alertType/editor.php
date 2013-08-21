@@ -41,16 +41,6 @@ $this->secondaryNav['url'] = array('alertType/index');
 
     <div class="">
         <?php
-        echo $form->labelEx($model, 'category');
-        echo $form->textField($model, 'category', array('size' => 60, 'maxlength' => 512, 'placeholder' => 'Ex: alert'));
-        ?>
-        <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="Enter the word “alert.”"></a>
-
-<?php echo $form->error($model, 'category'); ?>
-    </div>
-
-    <div class="">
-        <?php
         echo $form->labelEx($model, 'tag_id');
         $tagList = CHtml::listData(Tag::model()->findAllByAttributes(array('type' => 'alert')), 'id', 'name');
         echo $form->dropDownList($model, 'tag_id', $tagList);

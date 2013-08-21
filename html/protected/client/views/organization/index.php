@@ -23,7 +23,7 @@ $this->widget('backend.extensions.ExtendedWidgets.GridView', array(
     'columns' => array(
         array(
             'name' => 'name',
-            'placeholder' => 'Search by Organization',
+            'placeholder' => 'Search by Organization Name',
         ),
         array(
             'name' => 'display_name',

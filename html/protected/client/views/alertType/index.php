@@ -32,10 +32,6 @@ $this->widget('backend.extensions.ExtendedWidgets.GridView', array(
             'value' => '$data->tag->name',
             'placeholder' => 'Search by Tag',
         ),
-         array(
-            'name' => 'category',
-            'placeholder' => 'Search by Category',
-        ),
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
             'template' => '{update}{delete}'
