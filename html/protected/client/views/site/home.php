@@ -1,17 +1,18 @@
-<?php $this->pageTitle = Yii::app()->name; 
+<?php
+$this->pageTitle = Yii::app()->name;
 
 // UI Helper
 function getBlockClassSize($number) {
-        $classBlock = 'whole';
+    $classBlock = 'whole';
 
-        if ($number == 3) {
-            $classBlock = 'third';
-        } elseif ($number == 2) {
-            $classBlock = 'half';
-        }
-        
-        return $classBlock;
+    if ($number == 3) {
+        $classBlock = 'third';
+    } elseif ($number == 2) {
+        $classBlock = 'half';
     }
+
+    return $classBlock;
+}
 ?>
 
 <div id="homepage">
@@ -19,6 +20,23 @@ function getBlockClassSize($number) {
         <h1><?php echo $tenantDisplayName; ?></h1>
         <p>Welcome to your mobile app dashboard. Here you can manage communication with your app users, access and evaluate usage data and manage the content of your app. Use the drop-down navigation above or click one of the buttons below to manage your app.</p>
     </div>
+
+    <?php
+    if (Yii::app()->user->hasPermission('manageMobileUsers')):
+        ?>
+
+        <div class = "section-divider">
+            <h3>Did you know?</h3>
+        </div>
+
+        <div class = "heroUserCount">
+            <h2><?php echo CHtml::link(number_format($userCount), array('mobileUser/index')); ?> users have registered with your app.</h2>
+            <?php echo CHtml::link('more stats', array('report/index'), array('class' => 'action_block')); ?>
+        </div>
+
+        <?php
+    endif;
+    ?>
 
     <?php
     $canManagePushMessages = Yii::app()->user->hasPermission('managePushMessages');
@@ -81,17 +99,17 @@ function getBlockClassSize($number) {
     $manageBlockNumber += $canManageContacts ? 1 : 0;
     $manageBlockNumber += $canManageTags ? 1 : 0;
     $classBlock = getBlockClassSize($manageBlockNumber);
-    
-    
+
+
 
     if ($manageBlockNumber > 0):
         ?>
 
+        <div class="section-divider">
+            <h3>Manage</h3>
+        </div>
         <div class="action_group clearfix">
 
-            <div class="section-divider">
-                <h3>Manage</h3>
-            </div>
             <?php
             if ($canManageOrganizations) {
                 echo CHtml::link('Organizations', array('organization/index'), array('class' => "action_block $classBlock"));
@@ -106,21 +124,5 @@ function getBlockClassSize($number) {
         </div>
         <?php
     endif;
-
-    if (Yii::app()->user->hasPermission('manageMobileUsers')):
-        ?>
-
-        <div class = "section-divider">
-            <h3>Did you know?</h3>
-        </div>
-
-        <div class = "heroUserCount">
-            <h2><?php echo CHtml::link(number_format($userCount), array('mobileUser/index')); ?> users have registered with your app.</h2>
-            <?php echo CHtml::link('more stats', array('report/index'), array('class' => 'action_block')); ?>
-        </div>
-
-        <?php
-    endif;
     ?>
-
 </div>
