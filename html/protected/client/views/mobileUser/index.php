@@ -74,11 +74,13 @@ $this->secondaryNav['url'] = array('mobileUser/index');
 
         <div class="row">
             <h4>Filter by Push </h4>
-            <em>Users who have push enabled</em>
 
             <?php
             echo CHtml::checkBox("push_only", false, array("id" => "push_only_checkbox"));
             ?>
+
+            <em>Users who have push enabled</em>
+
 
         </div>
     </div>
