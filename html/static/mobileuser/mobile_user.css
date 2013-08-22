@@ -7,3 +7,7 @@
 #searchResultContainer{
     height:75px;
 }
+
+#user_attributes{
+    word-break:break-all;
+}

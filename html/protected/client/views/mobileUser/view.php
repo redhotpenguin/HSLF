@@ -1,4 +1,6 @@
 <?php
+Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . '/static/mobileuser/mobile_user.css');
+
 $navBarItems = array(
     '',
     array('label' => 'Browse', 'url' => array('browse')),
@@ -6,11 +8,11 @@ $navBarItems = array(
 );
 $this->secondaryNav['items'] = $navBarItems;
 $this->secondaryNav['name'] = 'Mobile Users';
-$this->secondaryNav['url'] =array('mobileUser/index');
+$this->secondaryNav['url'] = array('mobileUser/index');
 ?>
 
 
-<table>
+<table id="user_attributes">
 
     <tbody class="table">
         <?php

@@ -1,5 +1,4 @@
 <?php
-
 $this->secondaryNav['name'] = 'Mobile Users';
 $this->secondaryNav['url'] = array('mobileUser/index');
 

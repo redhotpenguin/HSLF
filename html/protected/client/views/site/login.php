@@ -11,7 +11,6 @@ $this->pageTitle = Yii::app()->name . ' - Login';
         <?php
         $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
             'id' => 'login-form',
-            // 'id'=>'verticalForm',
             'htmlOptions' => array('class' => 'form-horizontal'),
             'enableClientValidation' => true,
             'clientOptions' => array(
@@ -34,8 +33,13 @@ $this->pageTitle = Yii::app()->name . ' - Login';
             <?php
             echo $form->passwordField($model, 'password', array('class' => 'input-large span10', 'placeholder' => 'password'));
             ?>
-        </div>
 
+
+
+        </div>
+        <div class="prepend">
+            Forgot your password? Contact <a href="mailto:support@winningmark.com?subject=[Forgot My Mobile Dashboard Password]">Winning Mark</a> to reset it.
+        </div>
         <div class="prepend">
             <?php
             echo $form->error($model, 'username');
@@ -43,6 +47,7 @@ $this->pageTitle = Yii::app()->name . ' - Login';
             echo $form->error($model, 'password');
             ?>
         </div>
+
 
         <div class="prepend button-login">	
             <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'Login'));
