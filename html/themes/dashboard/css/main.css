@@ -164,21 +164,21 @@ h4{
 
 /* block sizes*/
 .whole{
-    width:96%;
+    width:95%;
 }
 .half{
     width:47%;
-    margin-right: 15px;
+    margin-right: 1%;
 }
 
 .third{
     width:31%;
-    margin-right: 15px;
+    margin-right: 1%;
 }
 
 .fourth{
     width:23%;
-    margin-right: 15px;
+    margin-right: 1%;
 }
 
 
