@@ -21,7 +21,7 @@ $this->secondaryNav['url'] = array('mobileUser/index');
         foreach ($model->fields as $field => $value) {
             ?>
             <tr>
-                <td style="width:100px;"><?php echo $field; ?></td>
+                <td style="width:150px;"><?php echo $field; ?></td>
                 <td><?php
         if (is_array($value)) {
             foreach ($value as $v) {
