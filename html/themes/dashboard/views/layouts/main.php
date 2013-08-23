@@ -228,15 +228,15 @@
 
                 <div class="span12">
                     <div class="clearfix" id="pageHeader">
-                    <?php
-                    if ($this->header) {
-                        echo "<h4 id='pageHeaderTitle'>{$this->header}</h4>";
-                    }
+                        <?php
+                        if ($this->header) {
+                            echo "<h4 id='pageHeaderTitle'>{$this->header}</h4>";
+                        }
 
-                    if ($this->headerButton) {
-                        echo "<div id='pageHeaderButton'>$this->headerButton</div>";
-                    }
-                    ?>
+                        if ($this->headerButton) {
+                            echo "<div id='pageHeaderButton'>$this->headerButton</div>";
+                        }
+                        ?>
                     </div>
                     <?php
                     if ($this->introText) {
