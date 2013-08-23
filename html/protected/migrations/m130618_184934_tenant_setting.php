@@ -24,15 +24,15 @@ class m130618_184934_tenant_setting extends CDbMigration {
 
 
         $this->insert('tenant_setting', array(
-            'analytics_link' => 'http://www.google.com',
-            'ios_link' => 'http://www.google.com',
-            'android_link' => 'http://www.google.com'
+            'analytics_link' => 'http://www.google.com/analytics/',
+            'ios_link' => 'https://itunesconnect.apple.com/',
+            'android_link' => 'https://play.google.com/apps/publish/'
         ));
 
         $this->insert('tenant_setting', array(
-            'analytics_link' => 'http://www.google.com',
-            'ios_link' => 'http://www.google.com',
-            'android_link' => 'http://www.google.com'
+            'analytics_link' => 'http://www.google.com/analytics/',
+            'ios_link' => 'https://itunesconnect.apple.com/',
+            'android_link' => 'https://play.google.com/apps/publish/'
         ));
 
         $this->addForeignKey('tenant_tenant_setting_id_fkey', 'tenant', 'tenant_setting_id', 'tenant_setting', 'id');
