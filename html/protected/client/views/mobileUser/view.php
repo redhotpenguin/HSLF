@@ -16,10 +16,12 @@ $this->secondaryNav['url'] = array('mobileUser/index');
 
     <tbody class="table">
         <?php
+        ksort($model->fields);
+
         foreach ($model->fields as $field => $value) {
             ?>
             <tr>
-                <td><?php echo $field; ?></td>
+                <td style="width:100px;"><?php echo $field; ?></td>
                 <td><?php
         if (is_array($value)) {
             foreach ($value as $v) {
@@ -47,13 +49,3 @@ $this->secondaryNav['url'] = array('mobileUser/index');
     </tbody>
 
 </table>
-
-
-
-
-<?php
-if (YII_DEBUG):
-    echo 'Debug:<pre>';
-    print_r($model->fields);
-    echo '</pre>';
-endif;
