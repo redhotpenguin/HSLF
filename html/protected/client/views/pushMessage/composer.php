@@ -102,6 +102,7 @@ $this->beginWidget(
 <div class="modal-header">
     <a class="close" data-dismiss="modal">&times;</a>
     <h4>Push Notification Composer</h4>
+    <?php echo '<a class="modalContactLink" href="mailto:' . Yii::app()->params['support_email'] . '?subject=[Mobile Dashboard Support]">Contact Support</a>' ?>
 </div>
 <?php
 echo $this->renderPartial('composer/_help');

@@ -260,6 +260,13 @@ div.modalHelp{
     left:35%;
 }
 
+div.modal-header .modalContactLink{
+    float: right;
+    position: relative;
+    top: -38px;
+    left: -22px;
+}
+
 
 div.inlineRadioGroup input.inlineInput{
     display: inline-block;

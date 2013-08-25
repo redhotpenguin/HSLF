@@ -58,7 +58,7 @@ $this->widget('bootstrap.widgets.TbButton', array(
     <h3>Stats</h3>
 </div>
 
-<h3 id="totalUserRegistrationHeader">Total User Registrations: <?php echo number_format($userCount);?></h3>
+<h3 id="totalUserRegistrationHeader">Total User Registrations: <?php echo number_format($userCount); ?></h3>
 <a id="totalUserRegistrationIcon" href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title='Total number of user registrations for the lifetime of your app.'></a>
 
 <div class="clearfix"></div>
@@ -104,6 +104,8 @@ $this->beginWidget(
 <div class="modal-header">
     <a class="close" data-dismiss="modal">&times;</a>
     <h4>Resources</h4>
+    <?php echo '<a class="modalContactLink" href="mailto:' . Yii::app()->params['support_email'] . '?subject=[Mobile Dashboard Support]">Contact Support</a>' ?>
+
 </div>
 <?php
 echo $this->renderPartial('help/_resources');
