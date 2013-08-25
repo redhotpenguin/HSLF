@@ -140,6 +140,7 @@ DEFINE('UPLOAD_DIR', $uploaddir);
 DEFINE('UPLOAD_PATH', $uploadpath);
 DEFINE('SITE_URL', $siteurl);
 DEFINE('MAINTENANCE', $maintenance);
+DEFINE('SUPPORT_EMAIL', 'support@winningmark.com');
 
 
 // API Cache duration values

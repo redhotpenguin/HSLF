@@ -161,6 +161,19 @@
                     }
                 }
 
+                $helpMenu = array(
+                    'class' => 'bootstrap.widgets.TbMenu',
+                    'htmlOptions' => array('class' => 'pull-right'),
+                    'items' => array(
+                        '---',
+                        array('label' => 'Support', 'url' => '#', 'items' => array(
+                                array(
+                                    'label' => 'Contact Us',
+                                    'url' => 'mailto:' . Yii::app()->params['support_email'] . '?subject=[Mobile Dashboard Support]',
+                                ),))
+                    )
+                );
+
                 $loginMenu = array(
                     'class' => 'bootstrap.widgets.TbMenu',
                     'htmlOptions' => array('class' => 'pull-right'),
@@ -182,8 +195,9 @@
                         ))),
                 );
 
-
                 array_push($items, $loginMenu);
+
+                array_push($items, $helpMenu);
 
             else: // else user is not logged in
                 $brandUrl = '/client/';

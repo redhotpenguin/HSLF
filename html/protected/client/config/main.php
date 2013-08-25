@@ -143,6 +143,7 @@ return array(
     'params' => array(
         'dateFormat' => 'Y-m-d H:i:s',
         'site_url' => SITE_URL,
+        'support_email' => SUPPORT_EMAIL,
         'upload_path' => SITE_URL . UPLOAD_PATH,
         'upload_dir' => UPLOAD_DIR,
         'mongodb_ack_level' => MONGODB_ACK_LEVEL,

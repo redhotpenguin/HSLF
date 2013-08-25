@@ -38,7 +38,7 @@ $this->pageTitle = Yii::app()->name . ' - Login';
 
         </div>
         <div class="prepend">
-            Forgot your password? Contact <a href="mailto:support@winningmark.com?subject=[Forgot My Mobile Dashboard Password]">Winning Mark</a> to reset it.
+            Forgot your password? Contact <a href="mailto:<?php echo Yii::app()->params['support_email']; ?>?subject=[Forgot My Mobile Dashboard Password]">Winning Mark</a> to reset it.
         </div>
         <div class="prepend">
             <?php
