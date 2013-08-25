@@ -32,7 +32,7 @@
         </div>
         <div id="singleDeviceChoice">
             <p class="helpText">A unique device identified by an ID. Find this ID by opening a user's record from the <?php echo Chtml::link("browse", array("mobileUser/browse"), array("target"=>"blank")); ?>  screen and looking for the ua_identifier. This is not the same as the App ID.</p>
-            <input class="span6" type="text" name="device_id" placeholder="Enter a Device ID"/></div>
+            <input class="span6" type="text" name="device_id" value="<?php echo $device_id; ?>" placeholder="Enter a Device ID"/></div>
         <div id="segmentChoice"> 
             <p class="helpText">All devices that are in this segment.</p>
             <select class="span6" name="segment_id" id="segmentSelectInput">

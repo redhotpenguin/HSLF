@@ -38,7 +38,7 @@ class PushMessageController extends CrudController {
         $this->setExtraRules($extraRules);
     }
 
-    protected function afterSave(CActiveRecord $model, $postData = array()) {        
+    protected function afterSave(CActiveRecord $model, $postData = array()) {
         if (isset($postData['PushMessage']['tags']))
             $model->massUpdateTags($postData['PushMessage']['tags']);
         else
@@ -142,7 +142,8 @@ class PushMessageController extends CrudController {
         $data = array(
             'pushMessage' => $pushMessage,
             'payload' => $payload,
-            'tagTypes' => Tag::model()->getAllowedTypes()
+            'tagTypes' => Tag::model()->getAllowedTypes(),
+            'device_id' => isset($_POST['device_id']) ? $_POST['device_id'] : ""
         );
 
         $this->render('composer', $data);
@@ -160,7 +161,7 @@ class PushMessageController extends CrudController {
     }
 
     private function sendPushMessage(PushMessage $pushMessage, $method, $id = null) {
-        
+
         $pushNotification = new PushNotification($pushMessage->alert);
 
         if ($pushMessage->payload->type != 'other') {
