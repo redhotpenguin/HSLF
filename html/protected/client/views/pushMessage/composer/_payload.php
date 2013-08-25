@@ -53,5 +53,6 @@
         ?>
         <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="The exact content of the tweet shared on Twitter."></a>
         <?php echo $form->error($payload, 'tweet'); ?>
+        <p>You have <span id="previewTweetChars" class="badge"></span> characters left.</p>
     </div>
 </div>

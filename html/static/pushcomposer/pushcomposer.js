@@ -16,6 +16,8 @@ function composer($){
     segmentSelectInput = $("#segmentSelectInput"),
     singleDeviceChoice = $("#singleDeviceChoice"),
     payloadTitleHelp = $("#payloadTitleHelp"),
+    previewTweetChars  = $("#previewTweetChars"),
+    tweetTextarea = $("#Payload_tweet"),
     updatePayloadType = function(){
         var type = this.value;
         
@@ -41,6 +43,24 @@ function composer($){
     pushMessageTextareaChange = function(e){
         var message =  pushMessageTextarea.val();
         var previewChars = $("#previewChars");
+        previewChars.removeClass('badge-success badge-warning badge-important');
+        var charLeft = 140 - ( message ? message.length : 0 );
+       
+        if(charLeft > 10){
+            previewChars.addClass('badge badge-success');
+        }
+        else if(charLeft > -1){
+            previewChars.addClass('badge badge-warning');
+        }
+        else{
+            previewChars.addClass('badge badge-important');
+        }
+        
+        previewChars.html(charLeft);
+    },
+    tweetTextareaChange = function(e){
+        var message =  tweetTextarea.val();
+        var previewChars = previewTweetChars;
         previewChars.removeClass('badge-success badge-warning badge-important');
         var charLeft = 140 - ( message ? message.length : 0 );
        
@@ -101,6 +121,7 @@ function composer($){
     // event binding    
     payloadType.change(updatePayloadType); 
     pushMessageTextarea.keyup(pushMessageTextareaChange);
+    tweetTextarea.keyup(tweetTextareaChange);
     sendNotificationBtn.click(formSubmitEvent);
     recipientTypeInputs.bind('click', recipientChoiceChange);
 
@@ -109,6 +130,7 @@ function composer($){
     shareRelatedInputs.hide();
     postRelatedInputs.hide();
     pushMessageTextareaChange();
+    tweetTextareaChange();
     payloadType.trigger('change');
     populateSegmentList();
     $('input[name=recipient_type]:checked', '#recipient_type').click();
