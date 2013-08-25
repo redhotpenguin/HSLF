@@ -58,7 +58,7 @@ if (getParam('updated') == '1' || getParam('created') == '1') {
                 <label for="User_email">Email Address</label>
                 <span class="add-on"><i class="halflings-icon email"></i></span>
                 <?php
-                echo $form->textField($model, 'email', array('class' => 'input-large span10', 'placeholder' => 'email'));
+                echo $form->textField($model, 'email', array('class' => 'input-large span10', 'placeholder' => 'Email Address'));
                 ?>
             </div>
 
