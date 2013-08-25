@@ -19,8 +19,8 @@ $this->widget('backend.extensions.ExtendedWidgets.GridView', array(
     'columns' => array(
         array(
             'name' => '_id',
-            'header' => 'ID',
-            'placeholder' => 'Search by ID',
+            'header' => 'App ID',
+            'placeholder' => 'Search by App ID',
         ),
         array(
             'name' => 'device_type',

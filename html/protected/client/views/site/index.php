@@ -1,5 +1,5 @@
 <div class="hero-unit">
-    <h1>Dashboard</h1>
+    <h1>Mobile App Dashboard</h1>
 </div>
 <?php
 
