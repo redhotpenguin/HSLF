@@ -8,6 +8,7 @@
  * @property string analytics_link
  * @property string ios_link
  * @property string android_link
+ * @property string app_version
  *
  */
 class TenantSetting extends CActiveRecord {
@@ -35,7 +36,7 @@ class TenantSetting extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('analytics_link,ios_link,android_link', 'required'),
+            array('analytics_link,ios_link,android_link, app_version', 'required'),
             array('analytics_link,ios_link,android_link', 'url'),
             array('id', 'safe', 'on' => 'search'),
         );
@@ -50,6 +51,7 @@ class TenantSetting extends CActiveRecord {
             'analytics_link' => 'Analytics Link',
             'ios_link' => 'iOs Store Link',
             'android_link' => 'Android Store Link',
+            'app_version' => 'App Version',
         );
     }
 

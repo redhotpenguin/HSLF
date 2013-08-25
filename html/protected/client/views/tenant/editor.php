@@ -121,6 +121,12 @@ $this->secondaryNav['url'] = array('tenant/index');
         <?php echo $form->error($tenantSetting, 'android_link'); ?>
     </div>
 
+    <div class="row-fluid">
+        <?php echo $form->labelEx($tenantSetting, 'app_version'); ?>
+        <?php echo $form->textField($tenantSetting, 'app_version', array('class' => 'span9',)); ?>
+        <?php echo $form->error($tenantSetting, 'app_version'); ?>
+    </div>
+
     <div class="row-fluid buttons">
         <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'Save')); ?>
     </div>

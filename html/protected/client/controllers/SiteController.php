@@ -50,7 +50,8 @@ class SiteController extends Controller {
         $data = array(
             'tenantSettings' => $tenant->getSettingRelation(),
             'userCount' => MobileUser::model()->count(),
-            'tenantDisplayName' => $tenant->display_name
+            'tenantDisplayName' => $tenant->display_name,
+            'isAdmin' => Yii::app()->user->hasPermission('admin'),
         );
 
 
