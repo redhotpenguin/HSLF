@@ -31,7 +31,7 @@ $this->secondaryNav['url'] = array('alertType/index');
     <div class="">
         <?php
         echo $form->labelEx($model, 'display_name');
-        echo $form->textField($model, 'display_name', array('size' => 60, 'maxlength' => 1024));
+        echo $form->textField($model, 'display_name', array('size' => 60, 'maxlength' => 21));
         ?>
         <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="Displayed next to the interest switch in the app. To display properly, there is a 21 character limit. For example: “Political Action”"></a>
         <?php
