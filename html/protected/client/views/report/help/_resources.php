@@ -4,7 +4,7 @@
 
     <p class="indented">Log in to Google Analytics to see statistics about how your app is being used. View information about active users, sessions and most popular content. You will need your Google Analytics login information. Contact Winning Mark to add Google Analytics to your Gmail account.</p>
     
-    <h4> App Store</h4>
+    <h4> Apple App Store</h4>
 
     <p class="indented">Log in to Apple iTunes Connect to view and download sales and trends information, including download and update statistics for the iOS version of your app. You will need your iTunes login information.</p>
 

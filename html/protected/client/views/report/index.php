@@ -45,7 +45,7 @@ $this->widget('bootstrap.widgets.TbButton', array(
 <div class="action_group">
     <?php
     echo CHtml::link("Google Analytics", $tenantSettings->analytics_link, array('class' => 'action_block fourth', 'target' => '_blank'));
-    echo CHtml::link("App Store", $tenantSettings->ios_link, array('class' => 'action_block fourth', 'target' => '_blank'));
+    echo CHtml::link("Apple App Store", $tenantSettings->ios_link, array('class' => 'action_block fourth', 'target' => '_blank'));
     echo CHtml::link("Google Play", $tenantSettings->android_link, array('class' => 'action_block fourth', 'target' => '_blank'));
     echo CHtml::link("Push Notifications", array('pushMessage/index'), array('class' => 'action_block fourth'));
     ?>
