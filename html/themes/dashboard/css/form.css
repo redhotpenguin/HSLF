@@ -249,6 +249,11 @@ input{
     font-weight: normal;
 }
 
+.login-box h4 {
+    margin-left: 30px;
+    font-weight: normal;
+}
+
 .login-box p {
     margin: 10px 30px;
     font-weight: normal;
@@ -302,7 +307,9 @@ input{
     float: left;
 }
 
-.login-box .button-login {
+.login-box label{
+    margin-left: 33px;
+    text-align: left;
 }
 
 .halflings-icon {

@@ -206,8 +206,14 @@ class UserController extends Controller {
             else
                 $model->initial_password = $currentPassword;
 
-            if ($model->save())
-                $this->redirect(array('settings',));
+            if ($model->save()) {
+                Yii::app()->user->setFlash('account_settings_success', "User successfully updated");
+                $this->redirect(array('settings'));
+                
+            } else {
+                logIt($model->errors);
+                Yii::app()->user->setFlash('account_settings_error', 'Could not save user');
+            }
         }
 
 
@@ -289,7 +295,7 @@ class UserController extends Controller {
         // allow users to be an admin of a specific project
         // needs to happen after 'updateTasks' because 'updateTasks' revoke all permissions then add the new ones back
         if (isset($_POST['projectAdministrator']) && $_POST['projectAdministrator'] == '1') {
-            
+
             if (Yii::app()->authManager->assign('admin', $tenantUserId) != null)
                 $result = 'success';
             else

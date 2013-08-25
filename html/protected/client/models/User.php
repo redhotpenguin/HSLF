@@ -37,7 +37,7 @@ class User extends BaseActiveRecord {
         return array(
             array('email', 'required', 'on' => 'update'),
             array('password, username, email, repeat_password', 'required', 'on' => 'insert'),
-            array('repeat_password', 'compare', 'compareAttribute' => 'password', 'on' => 'insert, update', 'message' => 'Passwords mismatch'),
+            array('repeat_password', 'comparePasswords', 'compareAttribute' => 'password', 'on' => 'insert, updateSettings, update', 'message' => 'Passwords mismatch'),
             array('email', 'email'),
             array('username, email, administrator', 'length', 'max' => 128, 'on' => 'insert'),
             array('email', 'length', 'max' => 128, 'on' => 'update'),
@@ -152,6 +152,17 @@ class User extends BaseActiveRecord {
 
 
         return $user;
+    }
+    
+    public function comparePasswords($attributes, $param){
+        error_log('ok');
+        
+        if($this->password != "" || $this->repeat_password != ""){
+            if($this->password !== $this->repeat_password){
+                 $this->addError('repeat_password', 'Passwords don\'t match');
+            }
+        }
+        
     }
 
     public function behaviors() {
