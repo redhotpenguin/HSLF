@@ -9,7 +9,7 @@ $navBarItems = array(
 );
 
 $this->secondaryNav['items'] = $navBarItems;
-$this->secondaryNav['name'] = 'Push Notifications';
+$this->secondaryNav['name'] = 'Push Notifications History ';
 $this->secondaryNav['url'] = array('pushMessage/index');
 
 $this->header = 'History';
