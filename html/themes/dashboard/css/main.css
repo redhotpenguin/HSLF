@@ -71,6 +71,21 @@ h4{
     margin-top:80px;
 }
 
+#subnav a{
+    color: #08c;
+    cursor: auto;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    text-shadow: white 0px 1px 0px;
+}
+
+#subnav a:hover{
+    color: #005580;
+    text-decoration: none;
+    background-color: transparent;
+}
+
 .footer 
 {
     position: fixed;
