@@ -8,8 +8,7 @@ if (!$model->isNewRecord) {
 
 $this->secondaryNav['items'] = $navBarItems;
 $this->secondaryNav['name'] = 'Tags';
-$this->secondaryNav['url'] =array('tag/index');
-
+$this->secondaryNav['url'] = array('tag/index');
 ?>
 
 
@@ -26,22 +25,32 @@ $this->secondaryNav['url'] =array('tag/index');
     <?php echo $form->errorSummary($model); ?>
 
     <div class="row">
-        <?php echo $form->labelEx($model, 'name'); ?>
-        <?php echo $form->textField($model, 'name', array('size' => 60, 'maxlength' => 255)); ?>
-        <?php echo $form->error($model, 'name'); ?>
+        <?php
+        echo $form->labelEx($model, 'name');
+        echo $form->textField($model, 'name', array('size' => 60, 'maxlength' => 255));
+        ?>
+        <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="Placeholder"></a>
+<?php echo $form->error($model, 'name'); ?>
     </div>
 
     <div class="row">
-        <?php echo $form->labelEx($model, 'display_name'); ?>
-        <?php echo $form->textField($model, 'display_name', array('size' => 60)); ?>
-        <?php echo $form->error($model, 'display_name'); ?>
+        <?php
+        echo $form->labelEx($model, 'display_name');
+        echo $form->textField($model, 'display_name', array('size' => 60));
+        ?>
+        <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="Placeholder"></a>
+
+<?php echo $form->error($model, 'display_name'); ?>
     </div>
 
     <div class="row">
         <?php
         echo $form->labelEx($model, 'type');
         echo $form->dropDownList($model, 'type', $model->getTagTypes());
+        ?>
+        <a href="#" class="icon-question-sign" rel="tooltip" data-placement="right" title="Placeholder"></a>
 
+        <?php
         echo $form->error($model, 'type');
         ?>
     </div>
@@ -117,7 +126,6 @@ $this->secondaryNav['url'] =array('tag/index');
 
     <?php
     $this->endWidget();
-
     ?>
 
 </div><!-- form -->

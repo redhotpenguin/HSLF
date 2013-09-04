@@ -45,7 +45,7 @@ if (getParam('updated') == '1' || getParam('created') == '1') {
             </div>
 
             <div class="input-prepend">
-                <label for="User_repeat_password">Repeat New Password</label>
+                <label for="User_repeat_password">Confirm New Password</label>
                 <span class="add-on"><i class="halflings-icon lock"></i></span>
                 <?php
                 echo $form->passwordField($model, 'repeat_password', array('class' => 'input-large span10', 'placeholder' => 'Confirm New Password'));
