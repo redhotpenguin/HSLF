@@ -71,6 +71,7 @@ h4{
 }
 
 #subnav a{
+      color: #08c;
     font-size: 14px;
     line-height: 20px;
     text-shadow: white 0px 1px 0px;
@@ -81,7 +82,7 @@ h4{
     color: #08c;
 }
 
-#subnav .nav a:hover {
+#subnav a:hover {
     color: #005580;
 }
 

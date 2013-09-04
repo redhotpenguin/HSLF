@@ -168,9 +168,10 @@
                         '---',
                         array('label' => 'Support', 'url' => '#', 'items' => array(
                                 array(
+                                    'linkOptions' => array('target'=>'_blank'),
                                     'label' => 'Contact Us',
                                     'url' => 'mailto:' . Yii::app()->params['support_email'] . '?subject=[Mobile Dashboard Support]',
-                                ),))
+                                )))
                     )
                 );
 
