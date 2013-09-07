@@ -3,12 +3,18 @@ $navBarItems = array();
 
 if (!$model->isNewRecord) {
     array_push($navBarItems, '', array('label' => 'New Message', 'url' => array('composer'),
-            ), '', array('label' => 'Delete', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this push message?')), '');
+            ), '');
 }
 
 $this->secondaryNav['items'] = $navBarItems;
-$this->secondaryNav['name'] = 'Push Notifications';
+$this->secondaryNav['name'] = 'Push Notifications History';
 $this->secondaryNav['url'] = array('pushMessage/index');
+
+$this->headerButton = Chtml::linkButton('Delete', array(
+            'class' => 'btn btn-danger',
+            'submit' => array('delete', 'id' => $model->id),
+            'confirm' => 'Are you sure you want to delete this push message?'
+        ));
 ?>
 
 
@@ -30,7 +36,7 @@ $this->secondaryNav['url'] = array('pushMessage/index');
         'model' => $model,
         'form' => $form,
             ), true);
-    
+
     $tabs = array(
         array('label' => 'Push Message', 'content' => $pushMessageTab, 'active' => true),
         array('label' => 'Tags', 'content' => $tagsTab)
@@ -64,7 +70,7 @@ $this->secondaryNav['url'] = array('pushMessage/index');
     if (!$model->isNewRecord):
         ?>
         <div class="alert alert-info">
-Updates to push notifications will not affect previously sent push notifications. Changes will only be reflected in the Alert Inbox. If the push was sent as a broadcast to all users, the message will appear in all inboxes and that cannot be changed.
+            Updates to push notifications will not affect previously sent push notifications. Changes will only be reflected in the Alert Inbox. If the push was sent as a broadcast to all users, the message will appear in all inboxes and that cannot be changed.
         </div>
         <?php
     endif;

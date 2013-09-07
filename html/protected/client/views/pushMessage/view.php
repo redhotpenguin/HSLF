@@ -9,16 +9,10 @@ $pushId = $pushMessage->push_identifier;
 $ns = "var pushmessage_ns  = {controller_url: '" . $controller_url . "/pushMessage', pushId:'$pushId'};";
 Yii::app()->clientScript->registerScript('settings-script', $ns, CClientScript::POS_HEAD);
 
-
-
-
-
-
-
 $status = $pushMessage->isDelivered() ? "Delivered" : "Not delivered";
 
 
-$this->secondaryNav['name'] = 'Push Notifications';
+$this->secondaryNav['name'] = 'Push Notifications History';
 $this->secondaryNav['url'] = array('pushMessage/index');
 $this->secondaryNav['items'] = array('', array('label' => 'New Message', 'url' => array('composer')), '');
 ?>
