@@ -67,7 +67,6 @@
                         $contentMenu = array(
                             'class' => 'bootstrap.widgets.TbMenu',
                             'items' => array(
-                                '---',
                                 array('label' => 'Content', 'url' => '#', 'items' => $contentMenuItems),
                             ),
                         );
@@ -93,7 +92,6 @@
                         $communicationMenu = array(
                             'class' => 'bootstrap.widgets.TbMenu',
                             'items' => array(
-                                '---',
                                 array('label' =>
                                     'Communication',
                                     'url' => '#',
@@ -114,7 +112,6 @@
                         $reportMenu = array(
                             'class' => 'bootstrap.widgets.TbMenu',
                             'items' => array(
-                                '---',
                                 array('label' =>
                                     'Reports',
                                     'url' => '#',
@@ -165,7 +162,6 @@
                     'class' => 'bootstrap.widgets.TbMenu',
                     'htmlOptions' => array('class' => 'pull-right'),
                     'items' => array(
-                        '---',
                         array('label' => 'Support', 'url' => '#', 'items' => array(
                                 array(
                                     'linkOptions' => array('target'=>'_blank'),
@@ -179,7 +175,6 @@
                     'class' => 'bootstrap.widgets.TbMenu',
                     'htmlOptions' => array('class' => 'pull-right'),
                     'items' => array(
-                        '---',
                         array('label' => 'Account (' . Yii::app()->user->name . ')', 'url' => '#', 'items' => array(
                                 array(
                                     'label' => 'My Projects',
