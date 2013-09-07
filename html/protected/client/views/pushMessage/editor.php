@@ -4,17 +4,18 @@ $navBarItems = array();
 if (!$model->isNewRecord) {
     array_push($navBarItems, '', array('label' => 'New Message', 'url' => array('composer'),
             ), '');
+
+
+    $this->secondaryNav['items'] = $navBarItems;
+    $this->secondaryNav['name'] = 'Push Notifications History';
+    $this->secondaryNav['url'] = array('pushMessage/index');
+
+    $this->headerButton = Chtml::linkButton('Delete', array(
+                'class' => 'btn btn-danger',
+                'submit' => array('delete', 'id' => $model->id),
+                'confirm' => 'Are you sure you want to delete this push message?'
+            ));
 }
-
-$this->secondaryNav['items'] = $navBarItems;
-$this->secondaryNav['name'] = 'Push Notifications History';
-$this->secondaryNav['url'] = array('pushMessage/index');
-
-$this->headerButton = Chtml::linkButton('Delete', array(
-            'class' => 'btn btn-danger',
-            'submit' => array('delete', 'id' => $model->id),
-            'confirm' => 'Are you sure you want to delete this push message?'
-        ));
 ?>
 
 
@@ -42,15 +43,6 @@ $this->headerButton = Chtml::linkButton('Delete', array(
         array('label' => 'Tags', 'content' => $tagsTab)
     );
 
-    if ($model->isNewRecord) {
-        $tagsTab = $this->renderPartial('tabs/_tab_tags', array(
-            'model' => $model,
-            'form' => $form,
-                ), true);
-
-
-        array_push($tabs, array('label' => 'Tags', 'content' => $tagsTab));
-    }
 
     $this->widget('bootstrap.widgets.TbTabs', array(
         'type' => 'tabs', // 'tabs' or 'pills'
