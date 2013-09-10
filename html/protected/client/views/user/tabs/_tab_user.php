@@ -38,12 +38,16 @@
 
 <div class ="row">
     <legend><i class="icon-warning-sign"></i> Danger Zone </legend>
+
+    <div class="alert alert-danger">
+        Administrators can make changes to tenants, manage users and import data. These privileges can directly affect the app's functionality so be sure users with admin privileges understand the dangers before they make any changes.
+    </div>
+
     <?php
     echo $form->labelEx($model, 'administrator');
-    echo CHtml::checkBox('User[administrator]', $model->getAdministrator() );
+    echo CHtml::checkBox('User[administrator]', $model->getAdministrator());
     echo $form->error($model, 'administrator');
-    
-    
     ?>
+
 
 </div>
