@@ -238,6 +238,8 @@
 
                 <div class="span12">
 
+                    <div class="hidden update_box" id="targetdiv"></div>
+
                     <div class="status_box">
                         <?php
                         if (Yii::app()->user->hasFlash('success')):

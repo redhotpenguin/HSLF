@@ -43,19 +43,23 @@ $this->header = $model->isNewRecord ? 'Create Organization' : $model->name;
 
 
 
-    $contactTab = $this->renderPartial('tabs/_tab_contact', array(
-        'model' => $model,
-        'form' => $form,
-            ), true);
-
 
     $tabs = array(
         array('label' => 'Contact Information', 'content' => $infoTab, 'active' => true),
         array('label' => 'Details', 'content' => $detailTab),
-        array('label' => 'Contacts', 'content' => $contactTab, 'active' => false),
     );
 
-    if (Yii::app()->user->hasPermission('manageTags')) {
+    if (Yii::app()->user->canManageContacts()) {
+        $contactTab = $this->renderPartial('tabs/_tab_contact', array(
+            'model' => $model,
+            'form' => $form,
+                ), true);
+
+
+        array_push($tabs, array('label' => 'Contacts', 'content' => $contactTab, 'active' => false));
+    }
+
+    if (Yii::app()->user->canManageTags()) {
         $tagsTab = $this->renderPartial('tabs/_tab_tags', array(
             'model' => $model,
             'form' => $form,
@@ -79,12 +83,8 @@ $this->header = $model->isNewRecord ? 'Create Organization' : $model->name;
 
     <hr/>
 
-
     <div class="row buttons">
         <?php
-//$this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'type' => 'primary', 'label' => 'Save'));
-
-
         if (!$model->isNewRecord) {
             $url = CHtml::normalizeUrl(array(
                         'organization/update',
@@ -121,10 +121,14 @@ $this->header = $model->isNewRecord ? 'Create Organization' : $model->name;
                     target.addClass("btn-danger");
                       target.html( "Could not save organization." );
                   }
-                target.fadeOut(5000, function(){
-                 target.removeClass("btn-danger");
+
+                     target.fadeTo(5000, 0.00, function(){ //fade
+        $(this).slideUp(500, function() { //slide up
+             target.removeClass("btn-danger");
                  target.removeClass("btn-success");
-                });
+            $(this).remove(); //then remove from the DOM
+        });
+    });
               
                 
              }',
@@ -144,7 +148,6 @@ $this->header = $model->isNewRecord ? 'Create Organization' : $model->name;
             $this->widget('bootstrap.widgets.TbButton', array('buttonType' => 'submit', 'label' => 'Save', 'type' => 'primary'));
         ?>
     </div>
-    <div class="hidden update_box" id="targetdiv"></div>
 
     <?php
     $this->endWidget();

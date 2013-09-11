@@ -36,7 +36,7 @@ class WebUser extends CWebUser {
         if ($tenant == null)
             return false;
 
-  
+
         if (User::model()->belongsToTenant($tenant->id, Yii::app()->user->id)) {
             Yii::app()->params['current_tenant'] = $tenant;
             return true;
@@ -118,6 +118,14 @@ class WebUser extends CWebUser {
             }
 
         return (in_array($permissionName, $this->permissions));
+    }
+
+    public function canManageContacts() {
+        return Yii::app()->user->hasPermission('manageContacts');
+    }
+
+    public function canManageTags() {
+        return Yii::app()->user->hasPermission('manageTags');
     }
 
 }
