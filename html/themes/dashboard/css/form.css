@@ -184,6 +184,10 @@ input{
     width:200px;
 }
 
+.status_box{
+    margin-top:10px;
+}
+
 .update_box{
     padding: 10px;
     font-weight: bold;

@@ -164,10 +164,10 @@
                     'items' => array(
                         array('label' => 'Support', 'url' => '#', 'items' => array(
                                 array(
-                                    'linkOptions' => array('target'=>'_blank'),
+                                    'linkOptions' => array('target' => '_blank'),
                                     'label' => 'Contact Us',
                                     'url' => 'mailto:' . Yii::app()->params['support_email'] . '?subject=[Mobile Dashboard Support]',
-                                )))
+                            )))
                     )
                 );
 
@@ -252,27 +252,31 @@
                     if ($this->introText) {
                         echo "<div class='introSection'><p class='helpText'>{$this->introText}</p></div>";
                     }
-
-                    echo $content;
-
-                    if (Yii::app()->user->hasFlash('success')):
-                        ?>
-                        <div class="update_box btn-success">
-                            <?php echo Yii::app()->user->getFlash('success'); ?>
-                        </div>
+                    ?>
+                    <div class="status_box">
                         <?php
-                    endif;
+                        if (Yii::app()->user->hasFlash('success')):
+                            ?>
+                            <div class="update_box btn-success">
+                                <?php echo Yii::app()->user->getFlash('success'); ?>
+                            </div>
+                            <?php
+                        endif;
 
-                    if (Yii::app()->user->hasFlash('error')):
-                        $flashMessages = Yii::app()->user->getFlashes();
-                        if ($flashMessages) {
-                            echo '<div class="flashes">';
-                            foreach ($flashMessages as $key => $message) {
-                                echo '<div class="update_box btn-danger flash-' . $key . '">' . $message . "</div>\n";
+                        if (Yii::app()->user->hasFlash('error')):
+                            $flashMessages = Yii::app()->user->getFlashes();
+                            if ($flashMessages) {
+                                echo '<div class="flashes">';
+                                foreach ($flashMessages as $key => $message) {
+                                    echo '<div class="update_box btn-danger flash-' . $key . '">' . $message . "</div>\n";
+                                }
+                                echo '</div>';
                             }
-                            echo '</div>';
-                        }
-                    endif;
+                        endif;
+                        ?>
+                    </div>
+                    <?php
+                    echo $content;
                     ?>
 
                 </div>
