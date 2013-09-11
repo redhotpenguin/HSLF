@@ -45,7 +45,7 @@
 
     <?php
     echo $form->labelEx($model, 'administrator');
-    echo CHtml::checkBox('User[administrator]', $model->getAdministrator());
+    echo CHtml::checkBox('administrator', $model->isAdministrator());
     echo $form->error($model, 'administrator');
     ?>
 

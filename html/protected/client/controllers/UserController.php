@@ -113,8 +113,13 @@ class UserController extends Controller {
                     Yii::app()->user->setFlash('error', "Error while removing {$model->username} from {$_POST['remove_from_tenant']}");
 
 
-            Yii::app()->user->setFlash('success', "User successfully updated.");
+            if (isset($_POST['administrator']) && $_POST['administrator'] == '1') {
+                Yii::app()->authManager->assign('admin', $model->getTenantUserId(0));
+            } else {
+                Yii::app()->authManager->revoke('admin', $model->getTenantUserId(0));
+            }
 
+            Yii::app()->user->setFlash('success', "User successfully updated.");
 
             $this->redirect(
                     array('update',
@@ -209,7 +214,6 @@ class UserController extends Controller {
             if ($model->save()) {
                 Yii::app()->user->setFlash('account_settings_success', "User successfully updated");
                 $this->redirect(array('settings'));
-                
             } else {
                 logIt($model->errors);
                 Yii::app()->user->setFlash('account_settings_error', 'Could not save user');

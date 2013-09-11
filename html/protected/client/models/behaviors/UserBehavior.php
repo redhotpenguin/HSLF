@@ -2,33 +2,21 @@
 
 class UserBehavior extends CActiveRecordBehavior {
 
-    public $administrator;
-
     /**
      * Return whether  a user is an admin or not
      * administrator is a virtual property
      * @return boolean true or false
      */
-    public function getAdministrator() {
+    public function isAdministrator() {
         $tenantUserId = $this->getTenantUserId(0, $this->owner->id);
 
         return Yii::app()->authManager->checkAccess('admin', $tenantUserId);
     }
 
-    public function afterSave($event) {
-        parent::afterSave($event);
-
-        $tenantUserId = $this->getTenantUserId(0, $this->owner->id);
-
-        if ($this->administrator == true) {
-            Yii::app()->authManager->assign('admin', $tenantUserId);
-        } else
-        if ($this->owner->username != 'admin')
-            Yii::app()->authManager->revoke('admin', $tenantUserId);
-    }
-
-    public function getTenantUserId($tenantId, $userId) {
-
+    public function getTenantUserId($tenantId, $userId = null) {
+        if($userId == null){
+            $userId = $this->owner->id;
+        }
         return $tenantId . "/" . $userId;
     }
 
@@ -127,12 +115,12 @@ class UserBehavior extends CActiveRecordBehavior {
      * @return boolean
      */
     public function belongsToTenant($tenantId, $userId = null) {
-        
-        if(!$userId){
+
+        if (!$userId) {
             $userId = $this->owner->id;
         }
-            
-        
+
+
         $user = User::model()->with('tenants')->find(
                 array(
                     'condition' => "user_id = :user_id AND tenant_id =:tenant_id",
