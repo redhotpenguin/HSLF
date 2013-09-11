@@ -45,6 +45,7 @@ class User extends BaseActiveRecord {
             array('id, username, email', 'safe', 'on' => 'search'),
             array('email, password, administrator', 'safe', 'on' => 'update'),
             array('password', 'safe', 'on' => 'updateSettings'),
+            array('email', 'required', 'on' => 'updateSettings')
         );
     }
 
