@@ -58,13 +58,16 @@ class UserController extends Controller {
         if (isset($_POST['User'])) {
 
             $model->attributes = $_POST['User'];
-            //  $model->password = sha1($_POST['User']['password']);
 
             if ($model->save()) {
 
                 if (( isset($_POST['add_to_tenant']) && !empty($_POST['add_to_tenant'])))
                     if (!$this->addUserToTenant($model, $_POST['add_to_tenant']))
                         Yii::app()->user->setFlash('error', "Error while adding this user to this tenant");
+
+                if (isset($_POST['administrator']) && $_POST['administrator'] == '1') {
+                    Yii::app()->authManager->assign('admin', $model->getTenantUserId(0));
+                }
 
                 Yii::app()->user->setFlash('success', "User successfully updated.");
 
@@ -112,13 +115,15 @@ class UserController extends Controller {
                 if (!$this->removeUserFromTenant($model, $_POST['remove_from_tenant']))
                     Yii::app()->user->setFlash('error', "Error while removing {$model->username} from {$_POST['remove_from_tenant']}");
 
-
-            if (isset($_POST['administrator']) && $_POST['administrator'] == '1') {
-                Yii::app()->authManager->assign('admin', $model->getTenantUserId(0));
-            } else {
-                Yii::app()->authManager->revoke('admin', $model->getTenantUserId(0));
+            try {
+                if (isset($_POST['administrator']) && $_POST['administrator'] == '1') {
+                    Yii::app()->authManager->assign('admin', $model->getTenantUserId(0));
+                } else {
+                    Yii::app()->authManager->revoke('admin', $model->getTenantUserId(0));
+                }
+            } catch (CDbException $e) {
+                error_log("error updating admin privileges for user $model->id");
             }
-
             Yii::app()->user->setFlash('success', "User successfully updated.");
 
             $this->redirect(
