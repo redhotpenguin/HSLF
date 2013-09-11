@@ -1,11 +1,30 @@
-<?php
-if (getParam('updated') == '1' || getParam('created') == '1') {
-    echo '<div class="update_box btn-success">Account settings successfully updated</div>';
-}
-?>
-
 <div class="row-fluid">
+
+
     <div class="login-box">
+        <div class="status_box">
+        <?php
+        if (Yii::app()->user->hasFlash('account_settings_success')):
+            ?>
+                 <div style="width:90%;margin-left:15px;" class="update_box btn-success">
+                         <?php echo Yii::app()->user->getFlash('account_settings_success'); ?>
+                </div>
+                <?php
+            endif;
+
+            if (Yii::app()->user->hasFlash('account_settings_error')):
+                $flashMessages = Yii::app()->user->getFlashes();
+                if ($flashMessages) {
+                    echo '<div class="flashes" style="width:90%;margin-left:15px;">';
+                    foreach ($flashMessages as $key => $message) {
+                        echo '<div class="update_box btn-danger flash-' . $key . '">' . $message . "</div>\n";
+                    }
+                    echo '</div>';
+                }
+
+            endif;
+            ?>
+        </div>
         <h2>Account settings</h2>
         <h4>Change your password or email address below.</h4>
 
@@ -71,26 +90,7 @@ if (getParam('updated') == '1' || getParam('created') == '1') {
 
         <?php
         $this->endWidget();
-        if (Yii::app()->user->hasFlash('account_settings_success')):
-            ?>
-            <div style="width:90%;margin-left:15px;" class="update_box btn-success">
-                <?php echo Yii::app()->user->getFlash('account_settings_success'); ?>
-            </div>
-            <?php
-        endif;
 
-
-        if (Yii::app()->user->hasFlash('account_settings_error')):
-            $flashMessages = Yii::app()->user->getFlashes();
-            if ($flashMessages) {
-                echo '<div class="flashes" style="width:90%;margin-left:15px;">';
-                foreach ($flashMessages as $key => $message) {
-                    echo '<div class="update_box btn-danger flash-' . $key . '">' . $message . "</div>\n";
-                }
-                echo '</div>';
-            }
-
-        endif;
         echo $form->errorSummary($model);
         ?>
 

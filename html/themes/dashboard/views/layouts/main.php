@@ -237,22 +237,7 @@
             <div class="row-fluid">
 
                 <div class="span12">
-                    <div class="clearfix" id="pageHeader">
-                        <?php
-                        if ($this->header) {
-                            echo "<h4 id='pageHeaderTitle'>{$this->header}</h4>";
-                        }
 
-                        if ($this->headerButton) {
-                            echo "<div id='pageHeaderButton'>$this->headerButton</div>";
-                        }
-                        ?>
-                    </div>
-                    <?php
-                    if ($this->introText) {
-                        echo "<div class='introSection'><p class='helpText'>{$this->introText}</p></div>";
-                    }
-                    ?>
                     <div class="status_box">
                         <?php
                         if (Yii::app()->user->hasFlash('success')):
@@ -275,7 +260,23 @@
                         endif;
                         ?>
                     </div>
+
+
+                    <div class="clearfix" id="pageHeader">
+                        <?php
+                        if ($this->header) {
+                            echo "<h4 id='pageHeaderTitle'>{$this->header}</h4>";
+                        }
+
+                        if ($this->headerButton) {
+                            echo "<div id='pageHeaderButton'>$this->headerButton</div>";
+                        }
+                        ?>
+                    </div>
                     <?php
+                    if ($this->introText) {
+                        echo "<div class='introSection'><p class='helpText'>{$this->introText}</p></div>";
+                    }
                     echo $content;
                     ?>
 
