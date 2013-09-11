@@ -110,7 +110,7 @@ $this->header = $model->isNewRecord ? 'Create Organization' : $model->name;
                     'success' => 'js:function(response) {
                target =$("#targetdiv");
                 target.removeClass("btn-info");
-                 target.fadeIn();
+                 target.fadeTo(500, 1.00);
                  target.removeClass("hidden");
                  
                   if ( response == "success" ){
@@ -121,16 +121,17 @@ $this->header = $model->isNewRecord ? 'Create Organization' : $model->name;
                     target.addClass("btn-danger");
                       target.html( "Could not save organization." );
                   }
+                  
+                     $("html, body").animate({ scrollTop: 0 }, 300);
 
                      target.fadeTo(5000, 0.00, function(){ //fade
+
         $(this).slideUp(500, function() { //slide up
-             target.removeClass("btn-danger");
+                 target.removeClass("btn-danger");
                  target.removeClass("btn-success");
-            $(this).remove(); //then remove from the DOM
         });
     });
-              
-                
+                         
              }',
                     'error' => 'js:function(object){
               
