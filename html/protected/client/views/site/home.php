@@ -71,7 +71,7 @@ function getBlockClassSize($number) {
                 echo CHtml::link('Payloads', array('payload/index'), array('class' => "action_block $classBlockSize"));
             }
             if ($canManageAlertTypes) {
-                echo CHtml::link('Alert Types', array('pushMessage/index'), array('class' => "action_block $classBlockSize"));
+                echo CHtml::link('Alert Types', array('alertType/index'), array('class' => "action_block $classBlockSize"));
             }
             ?>
         </div>
