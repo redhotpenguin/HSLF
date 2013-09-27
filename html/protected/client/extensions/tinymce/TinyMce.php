@@ -59,15 +59,14 @@ class TinyMce extends CInputWidget {
                     convert_urls : false,       
                     theme_ribbon_tab1 : {   title : "HTML",
                         items : [
-                            ["paste"], 
+                            ["link","|","fontselect","|","fontsizeselect"], 
                             ["justifyleft,justifycenter,justifyright,justifyfull",
                                 "bullist,numlist",
                                 "|",     
                                 "bold,italic,underline",
                                 "outdent,indent"], 
                             ["paragraph", "heading1", "heading2", "heading3"],
-                            ["fontselect","|","fontsizeselect"],
-                            ["search", "|", "replace", "|", "removeformat", "|", "link"]]
+                            ["search", "|", "replace", "|", "paste"]]
                     },
                                                                                                                                                     
 
