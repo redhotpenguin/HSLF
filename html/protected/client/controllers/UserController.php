@@ -296,19 +296,17 @@ class UserController extends Controller {
 
         $tenantUserId = $user->getTenantUserId($_POST['tenantId'], $_POST['userId']);
 
+
         if ($user->updateTasks($tenantId, $tasks))
-            $result = 'success';
+            Yii::app()->user->setFlash('success', "User permissions successfully updated.");
         else
-            $result = 'error';
+            Yii::app()->user->setFlash('error', "Error while updating user permissions");
 
         // allow users to be an admin of a specific project
         // needs to happen after 'updateTasks' because 'updateTasks' revoke all permissions then add the new ones back
         if (isset($_POST['projectAdministrator']) && $_POST['projectAdministrator'] == '1') {
 
-            if (Yii::app()->authManager->assign('admin', $tenantUserId) != null)
-                $result = 'success';
-            else
-                $result = 'error';
+            Yii::app()->authManager->assign('admin', $tenantUserId);
         } else {
             Yii::app()->authManager->revoke('admin', $tenantUserId);
         }
@@ -316,8 +314,7 @@ class UserController extends Controller {
 
         $this->redirect(array('permissions',
             'tenantId' => $tenantId,
-            'userId' => $user->id,
-            'result' => $result
+            'userId' => $user->id
         ));
     }
 

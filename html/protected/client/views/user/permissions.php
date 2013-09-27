@@ -83,11 +83,3 @@ echo CHtml::hiddenField('userId', $user->id);
 
 <?php
 echo CHtml::endForm(); // end form widget
-
-if (getParam('result') == 'success') {
-    echo '<div class="update_box btn-success">User permissions successfully updated</div>';
-} elseif (getParam('result') == 'error') {
-    echo '<div class="update_box btn-danger">Error while updating user permissions</div>';
-}
-?>
-
