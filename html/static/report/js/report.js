@@ -17,7 +17,7 @@ function report($){
             
           
                 pushSerie.push(total);
-                ticks.push( moment(report.date).format('MMMM YYYY') );
+                ticks.push( moment(report.date).format('MMM YYYY') );
             }
        
             var graphOptions =  {
@@ -98,7 +98,7 @@ function report($){
  
                 directSerie.push( total );
                 influenceSerie.push(response.ios.influenced + response.android.influenced );
-                ticks.push( moment(response.date).format('MMMM YYYY') );
+                ticks.push( moment(response.date).format('MMM YYYY') );
                 
             }
             
@@ -196,7 +196,7 @@ function report($){
 
                 androidSerie.push(report.android);
                 iosSerie.push(report.ios);
-                ticks.push( moment(report.date).format('MMMM YYYY') );            
+                ticks.push( moment(report.date).format('MMM YYYY') );            
             }
             
             var graphOptions = {
